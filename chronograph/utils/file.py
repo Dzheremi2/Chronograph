@@ -16,24 +16,31 @@ class BaseFile:
     --------
     ::
 
-        title : str -> Title of song
-        artist : str -> Artist of song
-        album : str -> Album of song
-        cover : Gdk.Texture | str -> Cover of song
+        title : str -> Title of the song
+        artist : str -> Artist of the song
+        album : str -> Album of the song
+        cover : Gdk.Texture | str -> Cover of the song
+        path : str -> Path to the loaded song
+        duration : int -> Duration of the loaded song
     """
 
     __gtype_name__ = "BaseFile"
 
-    _title: str = "Unknown"
-    _artist: str = "Unknown"
-    _album: str = "Unknown"
+    _title: str = "Unknоwn"
+    _artist: str = "Unknоwn"
+    _album: str = "Unknоwn"
     _cover: Union[bytes, str] = None
-    _mutagen_file: dict = None
+    _mutagen_file: mutagen.FileType = None
     _duration: float = None
+    _cover_updated: bool = False
 
     def __init__(self, path: str) -> None:
         self._path: str = path
         self.load_from_file(path)
+
+    def save(self) -> None:
+        """Saves the changes to the file"""
+        self._mutagen_file.save()
 
     def load_from_file(self, path: str) -> None:
         """Generates mutagen file instance for path
@@ -96,15 +103,23 @@ class BaseFile:
     @property
     def path(self) -> str:
         return self._path
-    
+
     @property
     def duration(self) -> int:
         return round(self._duration)
 
     def load_str_data(self) -> None:
-        """Should be implemenmted in file specific child classes"""
+        """Should be implemented in file specific child classes"""
         raise NotImplementedError
 
     def load_cover(self) -> None:
-        """Should be implemenmted in file specific child classes"""
+        """Should be implemented in file specific child classes"""
+        raise NotImplementedError
+
+    def set_str_data(self) -> None:
+        """Should be implemented in file specific child classes"""
+        raise NotImplementedError
+
+    def set_cover(self) -> None:
+        """Should be implemented in file specific child classes"""
         raise NotImplementedError

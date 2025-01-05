@@ -1,4 +1,5 @@
 from typing import Union
+import mutagen
 
 from gi.repository import Gdk
 
@@ -14,22 +15,28 @@ class BaseFile:
     --------
     ::
 
-        title : str -> Title of song
-        artist : str -> Artist of song
-        album : str -> Album of song
-        cover : Gdk.Texture | str -> Cover of song
+        title : str -> Title of the song
+        artist : str -> Artist of the song
+        album : str -> Album of the song
+        cover : Gdk.Texture | str -> Cover of the song
+        path : str -> Path to the loaded song
+        duration : float -> Duration of the loaded song
     """
 
     _title: str
     _artist: str
     _album: str
     _cover: Union[bytes, str]
-    _mutagen_file: dict
+    _mutagen_file: mutagen.FileType
     _duration: float
+    _cover_updated: bool
 
     _path: str
 
+    def save(self) -> None: ...
     def load_from_file(self, path: str) -> None: ...
     def get_cover_texture(self) -> Union[Gdk.Texture, str]: ...
     def load_str_data(self) -> None: ...
     def load_cover(self) -> None: ...
+    def set_str_data(self) -> None: ...
+    def set_cover(self) -> None: ...

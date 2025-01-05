@@ -127,7 +127,7 @@ def on_clipboard_parsed(_clipboard, result: Gio.Task, clipboard: Gdk.Clipboard) 
 
 
 def file_parser(file: str) -> None:
-    """Parses file and sets it to `ChronographWindow.sync_lines`
+    """Parses file and sets it to `chronograph.ChronographWindow.sync_lines`
 
     Parameters
     ----------

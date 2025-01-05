@@ -7,8 +7,6 @@
         ".flatpak/**": true,
         "_build/**": true
     },
-    "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "_build",
     "search.followSymlinks": false,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
@@ -21,5 +19,8 @@
     "isort.args":["--profile", "black"],
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "none"
-    }
+    },
+    "mesonbuild.configureOnOpen": false,
+    "mesonbuild.buildFolder": "_build",
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
 }

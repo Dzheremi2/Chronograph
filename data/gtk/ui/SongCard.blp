@@ -1,6 +1,94 @@
 using Gtk 4.0;
 using Adw 1;
 
+Adw.Dialog metadata_editor {
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      [start]
+      Button metadata_editor_cancel_button {
+        label: _("Cancel");
+      }
+
+      [end]
+      Button metadata_editor_apply_button {
+        label: _("Apply");
+        styles ["suggested-action"]
+      }
+    }
+
+    Adw.Clamp {
+      orientation: horizontal;
+      maximum-size: 300;
+      tightening-threshold: 300;
+
+      Adw.Clamp {
+        orientation: vertical;
+        maximum-size: 300;
+        tightening-threshold: 300;
+
+        Box {
+          margin-bottom: 12;
+          margin-start: 12;
+          margin-end: 12;
+          orientation: vertical;
+          spacing: 8;
+          hexpand: true;
+
+          // Adw.Clamp {
+          //   orientation: horizontal;
+          //   maximum-size: 160;
+
+          //   MenuButton metadata_editor_cover_button {
+          //     tooltip-text: _("Change cover");
+          //     overflow: hidden;
+          //     has-frame: false;
+          //     menu-model: cover_action;
+
+          //     Box {
+          //       orientation: vertical;
+
+          //       Image metadata_editor_cover_image {
+          //         width-request: 160;
+          //         height-request: 160;
+          //         hexpand: true;
+          //         vexpand: true;
+          //         overflow: hidden;
+          //         icon-name: "note-placeholder";
+          //         pixel-size: 160;
+
+          //         styles ["rounded"]
+          //       }
+          //     }
+          //   }
+          // }
+
+          ListBox metadata_editor_props {
+            selection-mode: none;
+
+            Adw.EntryRow metadata_editor_title_row {
+              title: _("Title");
+            }
+
+            Adw.EntryRow metadata_editor_artist_row {
+              title: _("Artist");
+            }
+
+            Adw.EntryRow metadata_editor_album_row {
+              title: _("Album");
+            }
+
+            styles ["boxed-list"]
+          }
+        }
+      }
+    }
+  }
+}
+
 template $SongCard: Box {
   orientation: vertical;
   halign: center;
@@ -115,6 +203,20 @@ template $SongCard: Box {
           "card"
         ]
       }
+    }
+  }
+}
+
+menu cover_action {
+  section {
+    item {
+      label: _("Set cover");
+      action: "card.change";
+    }
+
+    item {
+      label: _("Remove cover");
+      action: "card.remove";
     }
   }
 }

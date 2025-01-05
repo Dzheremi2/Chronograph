@@ -85,7 +85,7 @@ def do_publish() -> None:
         shared.win.loaded_card.title
         or shared.win.loaded_card.artist
         or shared.win.loaded_card.album
-    ) == "Unknown":
+    ) == "Unknоwn":
         shared.win.toast_overlay.add_toast(
             Adw.Toast(title=_("Some of Title, Artist and/or Album fileds are Unknown!"))
         )
