@@ -40,7 +40,7 @@ class ChronographApplication(Adw.Application):
                 ("quit", ("<primary>q",)),
                 ("toggle_sidebar", ("F9",), shared.win),
                 ("toggle_search", ("<primary>f",), shared.win),
-                ("select_dir", ("<primary><shift>o",), shared.win),
+                ("select_dir", ("<primary>o",), shared.win),
                 ("append_line", ("<Alt><primary>a",), shared.win),
                 ("remove_selected_line", ("<Alt>r",), shared.win),
                 ("append_selected_line", ("<Alt>a",), shared.win),
@@ -61,7 +61,7 @@ class ChronographApplication(Adw.Application):
                 ("export_to_lrclib", (), shared.win),
                 ("show_preferences", ("<primary>comma",), shared.win),
                 ("open_quick_editor", (), shared.win),
-                ("about",),
+                ("about",)
             }
         )
 

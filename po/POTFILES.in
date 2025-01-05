@@ -1,21 +1,16 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/io.github.dzheremi2.lrcmake-gtk.desktop.in
-data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in
-data/io.github.dzheremi2.lrcmake-gtk.gschema.xml.in
+chronograph/window.py
+chronograph/main.py
+chronograph/ui/LrclibTrack.py
+chronograph/ui/SavedLocation.py
+chronograph/ui/SongCard.py
+chronograph/utils/caching.py
+chronograph/utils/parsers.py
+chronograph/utils/publish.py
 data/gtk/window.blp
-data/gtk/help-overlay.blp
-data/gtk/components/fileDetails.blp
-data/gtk/components/noDirSelectedGreeting.blp
-data/gtk/components/preferences.blp
-data/gtk/components/lrclibTrack.blp
-data/gtk/components/lrclibWindow.blp
-lrcmake/main.py
-lrcmake/window.py
-lrcmake/methods/publish.py
-lrcmake/methods/exportData.py
-lrcmake/methods/parsers.py
-lrcmake/components/fileDetails.py
-lrcmake/components/songCard.py
-lrcmake/components/lrclibTrack.py
-lrcmake/components/lrclibWindow.py
+data/gtk/ui/Preferences.blp
+data/gtk/ui/SavedLocation.blp
+data/gtk/ui/SongCard.blp
+data/io.github.dzheremi2.Chronograph.metainfo.xml.in
+data/io.github.dzheremi2.Chronograph.desktop.in

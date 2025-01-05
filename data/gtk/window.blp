@@ -874,16 +874,11 @@ ShortcutsWindow help_overlay {
   modal: true;
 
   ShortcutsSection {
-    section-name: _("shortcuts");
+    section-name: _("Shortcuts");
     max-height: 10;
 
     ShortcutsGroup {
       title: _("General");
-
-      ShortcutsShortcut {
-        title: _("Toggle sidebar");
-        action-name: "win.toggle_sidebar";
-      }
 
       ShortcutsShortcut {
         title: _("Toggle search");
@@ -898,6 +893,11 @@ ShortcutsWindow help_overlay {
       ShortcutsShortcut {
         title: _("Quit");
         action-name: "app.quit";
+      }
+
+      ShortcutsShortcut {
+        title: _("Toggle sidebar");
+        action-name: "win.toggle_sidebar";
       }
     }
 
@@ -951,7 +951,6 @@ ShortcutsWindow help_overlay {
 menu open_source_menu {
   section {
     item (_("Directory"), "win.select_dir")
-    item (_("File"))
   }
 }
 
@@ -977,7 +976,7 @@ menu import_from {
 
     item (_("File"), "win.import_from_file")
     item (_("Clipboard"), "win.import_from_clipboard")
-    item (_("LRClib"), "win.import_from_lrclib")
+    item ("LRClib", "win.import_from_lrclib")
   }
 }
 
@@ -987,7 +986,7 @@ menu export_to {
 
     item (_("File"), "win.export_to_file")
     item (_("Clipboard"), "win.export_to_clipboard")
-    item (_("LRClib"), "win.export_to_lrclib")
+    item ("LRClib", "win.export_to_lrclib")
   }
 }
 

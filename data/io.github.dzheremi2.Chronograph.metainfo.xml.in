@@ -4,7 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
-  <name translate="no">Chronograph</name>
+  <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
     <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface.</p>
@@ -22,7 +22,7 @@
   <url type="contact">https://github.com/Dzheremi2/LRCMake-GTK/issues</url>
   <url type="contribute">https://github.com/Dzheremi2/LRCMake-GTK/pulls</url>
 
-  <translation type="gettext">lrcmake</translation>
+  <translation type="gettext">Chronograph</translation>
   <launchable type="desktop-id">io.github.dzheremi2.Chronograph.desktop</launchable>
   <content_rating type="oars-1.1" />
 

@@ -7,382 +7,471 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:37+0300\n"
+"POT-Creation-Date: 2025-01-05 23:49+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
-msgid "LRCMake"
+#: chronograph/window.py:505
+msgid "Copied successfully"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:9
-msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
-msgid "Sync lyrics of your loved songs"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-msgid ""
-"This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:37
-msgid "Library view"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:41
-msgid "Lyrics syncing page view"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
-msgid "Dialog with opened file details view"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
-msgid "Library view light"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
-msgid "Lyrics syncing page view light"
-msgstr ""
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
-msgid "Dialog with opened file details view light"
-msgstr ""
-
-#: data/gtk/window.blp:18 data/gtk/window.blp:456
-msgid "Quick edit"
-msgstr ""
-
-#: data/gtk/window.blp:42
-msgid "Copy to clipboard"
-msgstr ""
-
-#: data/gtk/window.blp:65
-msgid "Select directory or file to open"
-msgstr ""
-
-#: data/gtk/window.blp:75
-msgid "Enable search"
-msgstr ""
-
-#: data/gtk/window.blp:83
-msgid "App settings, info and utils"
-msgstr ""
-
-#: data/gtk/window.blp:95
-msgid "Sorting method"
-msgstr ""
-
-#: data/gtk/window.blp:111 data/gtk/components/fileDetails.blp:40
-#: data/gtk/components/lrclibWindow.blp:46 lrcmake/components/lrclibWindow.py:7
-msgid "Title"
-msgstr ""
-
-#: data/gtk/window.blp:150
-msgid "Sync"
-msgstr ""
-
-#: data/gtk/window.blp:230
-msgid "Toggle song repeat"
-msgstr ""
-
-#: data/gtk/window.blp:250
-msgid "Sync/Re-sync line"
-msgstr ""
-
-#: data/gtk/window.blp:259 data/gtk/help-overlay.blp:33
-msgid "Replay selected line"
-msgstr ""
-
-#: data/gtk/window.blp:268
-msgid "Re-sync selected line 100ms back"
-msgstr ""
-
-#: data/gtk/window.blp:276
-msgid "Re-sync selected line 100ms forward"
-msgstr ""
-
-#: data/gtk/window.blp:284 data/gtk/window.blp:394
-msgid "Import from..."
-msgstr ""
-
-#: data/gtk/window.blp:295 data/gtk/window.blp:413
-msgid "Export to..."
-msgstr ""
-
-#: data/gtk/window.blp:315
-msgid "Actions with selected line"
-msgstr ""
-
-#: data/gtk/window.blp:326
-msgid "Info about file"
-msgstr ""
-
-#: data/gtk/window.blp:362
-msgid "Add Line"
-msgstr ""
-
-#: data/gtk/window.blp:381
-msgid "Open Folder"
-msgstr ""
-
-#: data/gtk/window.blp:386
-msgid "Open File"
-msgstr ""
-
-#: data/gtk/window.blp:397 data/gtk/window.blp:424
-msgid "File"
-msgstr ""
-
-#: data/gtk/window.blp:401 data/gtk/window.blp:420
-msgid "Clipboard"
-msgstr ""
-
-#: data/gtk/window.blp:432
-msgid "Line actions"
-msgstr ""
-
-#: data/gtk/window.blp:435
-msgid "Remove line"
-msgstr ""
-
-#: data/gtk/window.blp:439
-msgid "Prepend line"
-msgstr ""
-
-#: data/gtk/window.blp:443
-msgid "Append line"
-msgstr ""
-
-#: data/gtk/window.blp:447 data/gtk/help-overlay.blp:53
-msgid "Append line to end"
-msgstr ""
-
-#: data/gtk/window.blp:462
-msgid "Preferences"
-msgstr ""
-
-#: data/gtk/window.blp:467 data/gtk/help-overlay.blp:19
-msgid "Keybindings"
-msgstr ""
-
-#: data/gtk/window.blp:472
-msgid "About"
-msgstr ""
-
-#: data/gtk/window.blp:481
-msgid "A-Z"
-msgstr ""
-
-#: data/gtk/window.blp:487
-msgid "Z-A"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:11 data/gtk/components/preferences.blp:8
-msgid "General"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:14
-msgid "Quit"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:25
-msgid "Sync mode"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:28
-msgid "Sync/Re-sync"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:38
-msgid "Remove selected line"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:43
-msgid "Prepend line to selected"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:48
-msgid "Append line to selected"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:58
-msgid "Resync 100ms back"
-msgstr ""
-
-#: data/gtk/help-overlay.blp:63
-msgid "Resync 100ms forward"
-msgstr ""
-
-#: data/gtk/components/fileDetails.blp:17
-msgid "File Details:"
-msgstr ""
-
-#: data/gtk/components/fileDetails.blp:41
-#: data/gtk/components/fileDetails.blp:51
-#: data/gtk/components/fileDetails.blp:61 lrcmake/components/fileDetails.py:13
-msgid "No Data"
-msgstr ""
-
-#. type: ignore
-#: data/gtk/components/fileDetails.blp:50
-#: data/gtk/components/lrclibWindow.blp:50 lrcmake/components/lrclibWindow.py:8
-msgid "Artist"
-msgstr ""
-
-#: data/gtk/components/fileDetails.blp:60
-msgid "Filename"
-msgstr ""
-
-#: data/gtk/components/noDirSelectedGreeting.blp:18
-msgid "Select a directory or open a file"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:12
-msgid "General App Behavior"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:15
-msgid "Reset quick edit dialog on close?"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:16
-msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:21
-msgid "Sync Page Behavior"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:24
-msgid "Auto File Manipulation"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:25
-msgid ""
-"Automatically creates and updates files when any of lyrics lines changed"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:29
-msgid "File format"
-msgstr ""
-
-#: data/gtk/components/preferences.blp:30
-msgid "File format for auto manipulation"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:6
-msgid "Nothing was found for this request"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:7
-msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:59
-msgid "Search LRClib for provided title and artist"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:63
-msgid "Search"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:108
-msgid "Synced"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:131
-msgid "Plain"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:159
-msgid ""
-"Synced lyrics are used by default, to use plain, select 'Use plain' from "
-"submenu"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:164
-msgid "Use"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:182
-msgid "Use plain"
-msgstr ""
-
-#: data/gtk/components/lrclibWindow.blp:183
-msgid "Use synced"
-msgstr ""
-
-#: lrcmake/main.py:109
+#: chronograph/main.py:101
 msgid ""
 "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
 "projects/lrcmake/lrcmake/"
 msgstr ""
 
-#: lrcmake/window.py:200
-msgid "Loaded from Filepath"
+#: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:14
+#: data/gtk/window.blp:154 data/gtk/window.blp:308 data/gtk/ui/SongCard.blp:73
+#: data/gtk/ui/SongCard.blp:176
+msgid "Title"
 msgstr ""
 
-#: lrcmake/methods/publish.py:38
-msgid "Some of Title, Artist and/or Album fileds are Unknown!"
+#: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:15
+#: data/gtk/window.blp:158 data/gtk/window.blp:313 data/gtk/ui/SongCard.blp:77
+#: data/gtk/ui/SongCard.blp:191
+msgid "Artist"
 msgstr ""
 
-#: lrcmake/methods/publish.py:62
-msgid "Published successfully: "
-msgstr ""
-
-#: lrcmake/methods/publish.py:65
-msgid "Incorrect publish token: "
-msgstr ""
-
-#: lrcmake/methods/publish.py:68
-msgid "Unknown error occured: "
-msgstr ""
-
-#: lrcmake/methods/exportData.py:28
-msgid "Seems like not every line is synced!"
-msgstr ""
-
-#. type: ignore
-#: lrcmake/components/lrclibWindow.py:9
+#: chronograph/ui/LrclibTrack.py:10
 msgid "Duration"
 msgstr ""
 
-#. type: ignore
-#: lrcmake/components/lrclibWindow.py:10
+#: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:16
+#: data/gtk/ui/SongCard.blp:81
 msgid "Album"
 msgstr ""
 
-#. type: ignore
-#: lrcmake/components/lrclibWindow.py:11
+#: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
 msgstr ""
 
-#. type: ignore
-#: lrcmake/components/lrclibWindow.py:12
+#: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
 msgstr ""
 
-#. type: ignore
-#: lrcmake/components/lrclibWindow.py:13
+#: chronograph/ui/LrclibTrack.py:16
 msgid "No"
 msgstr ""
 
-#: lrcmake/components/lrclibWindow.py:69
+#: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
 msgstr ""
 
-#: lrcmake/components/lrclibWindow.py:75
+#: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
+msgstr ""
+
+#: chronograph/ui/SavedLocation.py:6
+msgid "Path: "
+msgstr ""
+
+#: chronograph/ui/SongCard.py:13
+msgid "About File"
+msgstr ""
+
+#: chronograph/ui/SongCard.py:17
+msgid "Path"
+msgstr ""
+
+#: chronograph/utils/caching.py:52
+msgid "Directory saved successfully"
+msgstr ""
+
+#: chronograph/utils/caching.py:58
+msgid "This directory is already in saves"
+msgstr ""
+
+#: chronograph/utils/parsers.py:181
+msgid "Seems like not every line is synced"
+msgstr ""
+
+#: chronograph/utils/publish.py:90
+msgid "Some of Title, Artist and/or Album fileds are Unknown!"
+msgstr ""
+
+#: chronograph/utils/publish.py:120
+msgid "Published successfully: "
+msgstr ""
+
+#: chronograph/utils/publish.py:124
+msgid "Incorrect publish token: "
+msgstr ""
+
+#: chronograph/utils/publish.py:128
+msgid "Unknown error occured: "
+msgstr ""
+
+#: data/gtk/window.blp:5
+msgid "No source selected yet"
+msgstr ""
+
+#: data/gtk/window.blp:6 data/gtk/window.blp:510
+msgid "Select a directory or open a file"
+msgstr ""
+
+#: data/gtk/window.blp:14
+msgid "Open source"
+msgstr ""
+
+#: data/gtk/window.blp:26 data/gtk/window.blp:31
+msgid "Search on LRClib by title and artist names"
+msgstr ""
+
+#: data/gtk/window.blp:37 data/gtk/window.blp:43
+msgid "Nothing was found for this request"
+msgstr ""
+
+#: data/gtk/window.blp:38 data/gtk/window.blp:44
+msgid "Try out another request, maybe there are mistakes in request text."
+msgstr ""
+
+#: data/gtk/window.blp:48
+msgid "No saves found yet"
+msgstr ""
+
+#: data/gtk/window.blp:50
+msgid "Press pin button to add current directory to the saves"
+msgstr ""
+
+#: data/gtk/window.blp:78
+msgid "Quick Edit"
+msgstr ""
+
+#: data/gtk/window.blp:102
+msgid "Copy to clipboard"
+msgstr ""
+
+#: data/gtk/window.blp:166 data/gtk/window.blp:322
+msgid "Search LRClib for provided title and artist"
+msgstr ""
+
+#: data/gtk/window.blp:171 data/gtk/window.blp:327 data/gtk/window.blp:567
+msgid "Search"
+msgstr ""
+
+#: data/gtk/window.blp:212 data/gtk/window.blp:374
+msgid "Synced"
+msgstr ""
+
+#: data/gtk/window.blp:237 data/gtk/window.blp:400
+msgid "Plain"
+msgstr ""
+
+#: data/gtk/window.blp:266 data/gtk/window.blp:430
+msgid ""
+"Synced lyrics are used by default, to use plain, select 'Use plain' from "
+"submenu"
+msgstr ""
+
+#: data/gtk/window.blp:272 data/gtk/window.blp:436
+msgid "Use"
+msgstr ""
+
+#: data/gtk/window.blp:450 data/gtk/window.blp:469
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:7
+#: data/io.github.dzheremi2.Chronograph.desktop.in:3
+msgid "Chronograph"
+msgstr ""
+
+#: data/gtk/window.blp:476
+msgid "Saves"
+msgstr ""
+
+#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
+msgid "Toggle sidebar"
+msgstr ""
+
+#: data/gtk/window.blp:522 data/gtk/window.blp:884
+msgid "Toggle search"
+msgstr ""
+
+#: data/gtk/window.blp:530 data/gtk/window.blp:615
+msgid "App settings, info and utils"
+msgstr ""
+
+#: data/gtk/window.blp:545
+msgid "Sorting method"
+msgstr ""
+
+#: data/gtk/window.blp:551
+msgid "Add current directory to saves"
+msgstr ""
+
+#: data/gtk/window.blp:605
+msgid "Syncing"
+msgstr ""
+
+#: data/gtk/window.blp:696
+msgid "Toggle song repeat"
+msgstr ""
+
+#: data/gtk/window.blp:751
+msgid "Sync/Re-sync line"
+msgstr ""
+
+#: data/gtk/window.blp:762 data/gtk/window.blp:913
+msgid "Replay selected line"
+msgstr ""
+
+#: data/gtk/window.blp:770
+msgid "Re-sync selected line 100ms back"
+msgstr ""
+
+#: data/gtk/window.blp:778
+msgid "Re-sync selected line 100ms forward"
+msgstr ""
+
+#: data/gtk/window.blp:786 data/gtk/window.blp:975
+msgid "Import from …"
+msgstr ""
+
+#: data/gtk/window.blp:797 data/gtk/window.blp:985
+msgid "Export to …"
+msgstr ""
+
+#: data/gtk/window.blp:815 data/gtk/window.blp:995
+msgid "Actions with selected line"
+msgstr ""
+
+#: data/gtk/window.blp:826
+msgid "About file"
+msgstr ""
+
+#: data/gtk/window.blp:860
+msgid "Add line"
+msgstr ""
+
+#: data/gtk/window.blp:877
+msgid "Shortcuts"
+msgstr ""
+
+#: data/gtk/window.blp:881 data/gtk/ui/Preferences.blp:6
+msgid "General"
+msgstr ""
+
+#: data/gtk/window.blp:889
+msgid "Select directory"
+msgstr ""
+
+#: data/gtk/window.blp:894
+msgid "Quit"
+msgstr ""
+
+#: data/gtk/window.blp:905
+msgid "Sync mode"
+msgstr ""
+
+#: data/gtk/window.blp:908
+msgid "Sync/Re-sync"
+msgstr ""
+
+#: data/gtk/window.blp:918
+msgid "Remove selected line"
+msgstr ""
+
+#: data/gtk/window.blp:923
+msgid "Prepend line to selected"
+msgstr ""
+
+#: data/gtk/window.blp:928
+msgid "Append line to selected"
+msgstr ""
+
+#: data/gtk/window.blp:933 data/gtk/window.blp:1000
+msgid "Append line to end"
+msgstr ""
+
+#: data/gtk/window.blp:938
+msgid "Re-sync 100ms back"
+msgstr ""
+
+#: data/gtk/window.blp:943
+msgid "Re-sync 100ms forward"
+msgstr ""
+
+#: data/gtk/window.blp:953
+msgid "Directory"
+msgstr ""
+
+#: data/gtk/window.blp:960
+msgid "A-Z"
+msgstr ""
+
+#: data/gtk/window.blp:966
+msgid "Z-A"
+msgstr ""
+
+#: data/gtk/window.blp:977 data/gtk/window.blp:987
+msgid "File"
+msgstr ""
+
+#: data/gtk/window.blp:978 data/gtk/window.blp:988
+msgid "Clipboard"
+msgstr ""
+
+#: data/gtk/window.blp:997
+msgid "Remove line"
+msgstr ""
+
+#: data/gtk/window.blp:998
+msgid "Prepend line"
+msgstr ""
+
+#: data/gtk/window.blp:999
+msgid "Append line"
+msgstr ""
+
+#: data/gtk/window.blp:1006
+msgid "Use plain"
+msgstr ""
+
+#: data/gtk/window.blp:1007
+msgid "Use synced"
+msgstr ""
+
+#: data/gtk/window.blp:1013
+msgid "Quick Editor"
+msgstr ""
+
+#: data/gtk/window.blp:1017
+msgid "Preferences"
+msgstr ""
+
+#: data/gtk/window.blp:1018
+msgid "Keybindings"
+msgstr ""
+
+#: data/gtk/window.blp:1019
+msgid "About"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:10
+msgid "Behavior"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:13
+msgid "Reset quick edit dialog on close"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:14
+msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:18
+msgid "Save session on app close"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:19
+msgid "Re-opens last opened directory on the next startup"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:24
+msgid "Sync Page"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:27
+msgid "Auto file manipulation"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:28
+msgid ""
+"Automatically creates and updates files when any of lyrics lines changed"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:32
+msgid "File format"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:33
+msgid "File format for auto manipulation"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:35
+msgid "Remove this from saves"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:52
+msgid "Delete name to remove"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:13
+msgid "Cancel"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:18
+msgid "Apply"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:46
+msgid "Change cover"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:120
+msgid "Sync"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:130
+msgid "Edit song metadata"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:140
+msgid "Show song info"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:153
+msgid "Open syncing page"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:213
+msgid "Set cover"
+msgstr ""
+
+#: data/gtk/ui/SongCard.blp:218
+msgid "Remove cover"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:8
+msgid "Sync lyrics of your loved songs"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+msgid ""
+"This app helps you to contribute to the large database of synced lyrics with "
+"beautiful GTK4 and LibAdwaita interface."
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:37
+msgid "Library view"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:41
+msgid "Lyrics syncing page view"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
+msgid "Dialog with opened file details view"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
+msgid "Library view light"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
+msgid "Lyrics syncing page view light"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+msgid "Dialog with opened file details view light"
+msgstr ""
+
+#: data/io.github.dzheremi2.Chronograph.desktop.in:9
+msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
