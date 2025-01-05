@@ -23,7 +23,7 @@
   <url type="contribute">https://github.com/Dzheremi2/Chronograph/pulls</url>
 
   <translation type="gettext">Chronograph</translation>
-  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+  <launchable type="desktop-id">io.github.dzheremi2.Chronograph.desktop</launchable>
   <content_rating type="oars-1.1" />
 
   <branding>
@@ -36,7 +36,7 @@
     <control>pointing</control>
   </supports>
   <requires>
-    <display_lenth compare="ge">360</display_lenth>
+    <display_length compare="ge">360</display_length>
   </requires>
 
   <screenshots>
