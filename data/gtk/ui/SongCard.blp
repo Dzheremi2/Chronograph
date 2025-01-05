@@ -38,33 +38,33 @@ Adw.Dialog metadata_editor {
           spacing: 8;
           hexpand: true;
 
-          // Adw.Clamp {
-          //   orientation: horizontal;
-          //   maximum-size: 160;
+          Adw.Clamp {
+            orientation: horizontal;
+            maximum-size: 160;
 
-          //   MenuButton metadata_editor_cover_button {
-          //     tooltip-text: _("Change cover");
-          //     overflow: hidden;
-          //     has-frame: false;
-          //     menu-model: cover_action;
+            MenuButton metadata_editor_cover_button {
+              tooltip-text: _("Change cover");
+              overflow: hidden;
+              has-frame: false;
+              menu-model: cover_action;
 
-          //     Box {
-          //       orientation: vertical;
+              Box {
+                orientation: vertical;
 
-          //       Image metadata_editor_cover_image {
-          //         width-request: 160;
-          //         height-request: 160;
-          //         hexpand: true;
-          //         vexpand: true;
-          //         overflow: hidden;
-          //         icon-name: "note-placeholder";
-          //         pixel-size: 160;
+                Image metadata_editor_cover_image {
+                  width-request: 160;
+                  height-request: 160;
+                  hexpand: true;
+                  vexpand: true;
+                  overflow: hidden;
+                  icon-name: "note-placeholder";
+                  pixel-size: 160;
 
-          //         styles ["rounded"]
-          //       }
-          //     }
-          //   }
-          // }
+                  styles ["rounded"]
+                }
+              }
+            }
+          }
 
           ListBox metadata_editor_props {
             selection-mode: none;

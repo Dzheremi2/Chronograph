@@ -67,7 +67,6 @@ class FileID3(BaseFile):
         img_path : str | None
             path to image or None if cover should be deleted
         """
-        print("Test")
         if img_path is not None:
             self._cover = open(img_path, "rb").read()
             if self._mutagen_file.tags:

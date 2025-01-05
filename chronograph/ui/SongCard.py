@@ -2,7 +2,7 @@ import os
 import pathlib
 from typing import Union
 
-from gi.repository import Adw, Gdk, GObject, Gtk  # type: ignore
+from gi.repository import Adw, Gdk, Gio, GObject, Gtk  # type: ignore
 
 from chronograph import shared
 from chronograph.ui.BoxDialog import BoxDialog
@@ -40,8 +40,8 @@ class SongCard(Gtk.Box):
 
     # Metadata editor
     metadata_editor: Adw.Dialog = Gtk.Template.Child()
-    # metadata_editor_cover_button: Gtk.MenuButton = Gtk.Template.Child()
-    # metadata_editor_cover_image: Gtk.Image = Gtk.Template.Child()
+    metadata_editor_cover_button: Gtk.MenuButton = Gtk.Template.Child()
+    metadata_editor_cover_image: Gtk.Image = Gtk.Template.Child()
     metadata_editor_title_row: Adw.EntryRow = Gtk.Template.Child()
     metadata_editor_artist_row: Adw.EntryRow = Gtk.Template.Child()
     metadata_editor_album_row: Adw.EntryRow = Gtk.Template.Child()
@@ -82,20 +82,22 @@ class SongCard(Gtk.Box):
         self.play_button.connect("clicked", self.on_play_button_clicked)
         self.bind_props()
         self.invalidate_cover(self.cover_img)
-        # TODO Until better times
-        # self.metadata_editor_cover_button.install_action(
-        #     "card.change", None, self.metadata_change_cover
-        # )
-        # self.metadata_editor_cover_button.install_action(
-        #     "card.remove", None, self.metadata_remove_cover
-        # )
+
+        actions: Gio.SimpleActionGroup = Gio.SimpleActionGroup.new()
+        change_action: Gio.SimpleAction = Gio.SimpleAction.new("change", None)
+        change_action.connect("activate", self.metadata_change_cover)
+        remove_action: Gio.SimpleAction = Gio.SimpleAction.new("remove", None)
+        remove_action.connect("activate", self.metadata_remove_cover)
+        actions.add_action(change_action)
+        actions.add_action(remove_action)
+        self.metadata_editor_cover_button.insert_action_group("card", actions)
 
     def open_metadata_editor(self, *_args) -> None:
-        # TODO Until better times
-        # if (texture := self._file.get_cover_texture()) != "icon":
-        #     self.metadata_editor_cover_image.set_from_paintable(texture)
-        # else:
-        #     self.metadata_editor_cover_image.set_from_icon_name("note-placeholder")
+
+        if (texture := self._file.get_cover_texture()) != "icon":
+            self.metadata_editor_cover_image.set_from_paintable(texture)
+        else:
+            self.metadata_editor_cover_image.set_from_icon_name("note-placeholder")
         (
             self.metadata_editor_title_row.set_text(self.title)
             if self.title != "Unknоwn"
@@ -114,17 +116,17 @@ class SongCard(Gtk.Box):
         self.metadata_editor.present(shared.win)
 
     def metadata_editor_save(self, *_args) -> None:
-        # TODO Until better times
-        # if (
-        #     self._file._cover_updated
-        #     and self._mde_new_cover_path != ""
-        #     and self._mde_new_cover_path is not None
-        # ):
-        #     self._file.set_cover(self._mde_new_cover_path)
-        #     self._file._cover_updated = False
-        # elif (self._file._cover_updated) and (self._mde_new_cover_path is None):
-        #     self._file.set_cover(None)
-        #     self._file._cover_updated = False
+
+        if (
+            self._file._cover_updated
+            and self._mde_new_cover_path != ""
+            and self._mde_new_cover_path is not None
+        ):
+            self._file.set_cover(self._mde_new_cover_path)
+            self._file._cover_updated = False
+        elif (self._file._cover_updated) and (self._mde_new_cover_path is None):
+            self._file.set_cover(None)
+            self._file._cover_updated = False
 
         if (title_data := self.metadata_editor_title_row.get_text()) != self.title:
             self._file.set_str_data("TIT2", title_data)
@@ -134,30 +136,28 @@ class SongCard(Gtk.Box):
             self._file.set_str_data("TALB", album_data)
 
         self._file.save()
-        # TODO Until better times
-        # self.invalidate_cover(self.cover_img)
+        self.invalidate_cover(self.cover_img)
         self.invalidate_update("title")
         self.invalidate_update("artist")
         self.metadata_editor.close()
 
-    # TODO Until better times
-    # def metadata_change_cover(self, *_args) -> None:
-    #     dialog = Gtk.FileDialog(
-    #         default_filter=Gtk.FileFilter(mime_types=["image/png", "image/jpeg"])
-    #     )
-    #     dialog.open(shared.win, None, self.on_metadata_change_cover)
+    def metadata_change_cover(self, *_args) -> None:
+        dialog = Gtk.FileDialog(
+            default_filter=Gtk.FileFilter(mime_types=["image/png", "image/jpeg"])
+        )
+        dialog.open(shared.win, None, self.on_metadata_change_cover)
 
-    # def on_metadata_change_cover(self, file_dialog: Gtk.FileDialog, result) -> None:
-    #     self._mde_new_cover_path = file_dialog.open_finish(result).get_path()
-    #     self._file._cover_updated = True
-    #     self.metadata_editor_cover_image.set_from_paintable(
-    #         Gdk.Texture.new_from_filename(self._mde_new_cover_path)
-    #     )
+    def on_metadata_change_cover(self, file_dialog: Gtk.FileDialog, result) -> None:
+        self._mde_new_cover_path = file_dialog.open_finish(result).get_path()
+        self._file._cover_updated = True
+        self.metadata_editor_cover_image.set_from_paintable(
+            Gdk.Texture.new_from_filename(self._mde_new_cover_path)
+        )
 
-    # def metadata_remove_cover(self, *_args) -> None:
-    #     self._mde_new_cover_path = None
-    #     self._file._cover_updated = True
-    #     self.metadata_editor_cover_image.set_from_icon_name("note-placeholder")
+    def metadata_remove_cover(self, *_args) -> None:
+        self._mde_new_cover_path = None
+        self._file._cover_updated = True
+        self.metadata_editor_cover_image.set_from_icon_name("note-placeholder")
 
     def on_metadata_editor_close(self, *_args) -> None:
         self._file._cover_updated = False
