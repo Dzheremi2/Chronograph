@@ -7,58 +7,78 @@
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
-    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface.</p>
+    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 and wav formats</p>
   </description>
 
-  <developer id="tld.vendor">
+  <developer id="com.github">
     <name translate="no">Dzheremi</name>
   </developer>
 
-  <url type="homepage">https://github.com/Dzheremi2/LRCMake-GTK/</url>
-  <url type="vcs-browser">https://github.com/Dzheremi2/LRCMake-GTK/</url>
-  <url type="bugtracker">https://github.com/Dzheremi2/LRCMake-GTK/issues</url>
-  <url type="translate">https://hosted.weblate.org/projects/lrcmake/lrcmake/</url>
-  <url type="help">https://github.com/Dzheremi2/LRCMake-GTK/discussions</url>
-  <url type="contact">https://github.com/Dzheremi2/LRCMake-GTK/issues</url>
-  <url type="contribute">https://github.com/Dzheremi2/LRCMake-GTK/pulls</url>
+  <url type="homepage">https://github.com/Dzheremi2/Chronograph/</url>
+  <url type="vcs-browser">https://github.com/Dzheremi2/Chronograph/</url>
+  <url type="bugtracker">https://github.com/Dzheremi2/Chronograph/issues</url>
+  <url type="translate">https://hosted.weblate.org/projects/lrcmake/chronograph/</url>
+  <url type="help">https://github.com/Dzheremi2/Chronograph/discussions</url>
+  <url type="contact">https://github.com/Dzheremi2/Chronograph/issues</url>
+  <url type="contribute">https://github.com/Dzheremi2/Chronograph/pulls</url>
 
   <translation type="gettext">Chronograph</translation>
-  <launchable type="desktop-id">io.github.dzheremi2.Chronograph.desktop</launchable>
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
   <content_rating type="oars-1.1" />
 
   <branding>
     <color type="primary" scheme_preference="light">#74c69d</color>
     <color type="primary" scheme_preference="dark">#1b4332</color>
   </branding>
+  <supports>
+    <control>keyboard</control>
+    <control>touch</control>
+    <control>pointing</control>
+  </supports>
+  <requires>
+    <display_lenth compare="ge">360</display_lenth>
+  </requires>
 
   <screenshots>
-    <screenshot type="default" xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/LRCMake-GTK/refs/heads/master/docs/screenshots/lib.png</image>
-      <caption>Library view</caption>
+    <screenshot type="default" xml:lang="ru">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libW.png</image>
+      <caption>Library</caption>
     </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/LRCMake-GTK/refs/heads/master/docs/screenshots/syncing.png</image>
-      <caption>Lyrics syncing page view</caption>
+    <screenshot xml:lang="ru">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncW.png</image>
+      <caption>Lyrics syncing page</caption>
     </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/LRCMake-GTK/refs/heads/master/docs/screenshots/file_info.png</image>
-      <caption>Dialog with opened file details view</caption>
+    <screenshot xml:lang="ru">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/lrclibW.png</image>
+      <caption>LRClib import dialog</caption>
     </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/LRCMake-GTK/2df0ef7fec9291f5877dc4e74ab05537d2d2b8d9/docs/screenshots/lib_light.png</image>
-      <caption>Library view light</caption>
+    <screenshot xml:lang="ru">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libB.png</image>
+      <caption>Library</caption>
     </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/LRCMake-GTK/2df0ef7fec9291f5877dc4e74ab05537d2d2b8d9/docs/screenshots/syncing_light.png</image>
-      <caption>Lyrics syncing page view light</caption>
+    <screenshot xml:lang="ru">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncB.png</image>
+      <caption>Lyrics syncing page</caption>
     </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/LRCMake-GTK/2df0ef7fec9291f5877dc4e74ab05537d2d2b8d9/docs/screenshots/file_info_light.png</image>
-      <caption>Dialog with opened file details view light</caption>
+    <screenshot xml:lang="ru">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/lrclibB.png</image>
+      <caption>LRClib import dialog</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="2.0" date="2025-01-06">
+      <description translate="no">
+        <p>Full app rewrite for better performance and flexibility</p>
+        <ul>
+          <li>App has been renamed to Chronograph</li>
+          <li>New icon</li>
+          <li>App is now adaptive for different display sizes</li>
+          <li>Added session saving</li>
+          <li>Added ability to pin current directory</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.2.1" date="2024-12-10">
       <description translate="no">
         <p>Important hotfix of publishing functionality</p>
@@ -150,5 +170,4 @@
       </description>
     </release>
   </releases>
-
 </component>
