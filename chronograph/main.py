@@ -56,7 +56,8 @@ class ChronographApplication(Adw.Application):
                 ("export_to_clipboard", (), shared.win),
                 ("export_to_lrclib", (), shared.win),
                 ("show_preferences", ("<primary>comma",), shared.win),
-                ("open_quick_editor", (), shared.win)
+                ("open_quick_editor", (), shared.win),
+                ("about",),
             }
         )
 
@@ -81,6 +82,22 @@ class ChronographApplication(Adw.Application):
         )
 
         shared.win.present()
+
+    def on_about_action(self, *_args) -> None:
+        """Shows About App dialog"""
+        dialog = Adw.AboutDialog.new_from_appdata(
+            shared.PREFIX + "/" + shared.APP_ID + ".metainfo.xml", shared.VERSION
+        )
+        dialog.set_developers(("Dzheremi https://github.com/Dzheremi2",))
+        dialog.set_designers(("Dzheremi",))
+        dialog.set_translator_credits(_("Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/projects/lrcmake/lrcmake/"))  # type: ignore
+        dialog.set_copyright("© 2024-2025 Dzheremi")
+        dialog.add_legal_section(
+            "LRClib",
+            "tranxuanthang",
+            Gtk.License.MIT_X11,
+        )
+        dialog.present(shared.win)
 
     def on_quit_action(self, *_args) -> None:
         self.quit()

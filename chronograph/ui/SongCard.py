@@ -93,7 +93,7 @@ class SongCard(Gtk.Box):
         self.metadata_editor_cover_button.insert_action_group("card", actions)
 
     def open_metadata_editor(self, *_args) -> None:
-
+        """Prepares metadata editor and shows it"""
         if (texture := self._file.get_cover_texture()) != "icon":
             self.metadata_editor_cover_image.set_from_paintable(texture)
         else:
@@ -116,7 +116,7 @@ class SongCard(Gtk.Box):
         self.metadata_editor.present(shared.win)
 
     def metadata_editor_save(self, *_args) -> None:
-
+        """Emits when Apply button of metadata editor pressed. Saves chages to file and updates the UI"""
         if (
             self._file._cover_updated
             and self._mde_new_cover_path != ""
@@ -142,12 +142,24 @@ class SongCard(Gtk.Box):
         self.metadata_editor.close()
 
     def metadata_change_cover(self, *_args) -> None:
+        """Presents new cover selection file dialog"""
         dialog = Gtk.FileDialog(
             default_filter=Gtk.FileFilter(mime_types=["image/png", "image/jpeg"])
         )
         dialog.open(shared.win, None, self.on_metadata_change_cover)
 
-    def on_metadata_change_cover(self, file_dialog: Gtk.FileDialog, result) -> None:
+    def on_metadata_change_cover(
+        self, file_dialog: Gtk.FileDialog, result: Gio.Task
+    ) -> None:
+        """Emits by `self.metadata_chage_cover` and sets new picture to unsaved changes
+
+        Parameters
+        ----------
+        file_dialog : Gtk.FileDialog
+            FileDialog which emited this function
+        result : Gio.Task
+            The result of the file selection
+        """
         self._mde_new_cover_path = file_dialog.open_finish(result).get_path()
         self._file._cover_updated = True
         self.metadata_editor_cover_image.set_from_paintable(
@@ -155,11 +167,13 @@ class SongCard(Gtk.Box):
         )
 
     def metadata_remove_cover(self, *_args) -> None:
+        """Removes cover from the file and sets it to unsaved changes"""
         self._mde_new_cover_path = None
         self._file._cover_updated = True
         self.metadata_editor_cover_image.set_from_icon_name("note-placeholder")
 
     def on_metadata_editor_close(self, *_args) -> None:
+        """Sets temporary changes variables to default"""
         self._file._cover_updated = False
         self._mde_new_cover_path = ""
         self.metadata_editor.close()
