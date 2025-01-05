@@ -21,4 +21,4 @@ jobs:
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6.3
         with:
           bundle: io.github.dzheremi2.Chronograph.flatpak
-          manifest-path: io.github.dzheremi2.Chronograph.json
+          manifest-path: io.github.dzheremi2.Chronograph.yaml

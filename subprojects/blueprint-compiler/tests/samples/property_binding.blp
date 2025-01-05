@@ -1,0 +1,12 @@
+using Gtk 4.0;
+
+Box {
+  visible: bind box2.visible inverted;
+  orientation: bind box2.orientation;
+  spacing: bind box2.spacing no-sync-create;
+  tooltip-text: bind box2.tooltip-text bidirectional;
+}
+
+Box box2 {
+  spacing: 6;
+}
