@@ -10,11 +10,11 @@ from chronograph.utils.file_mutagen_id3 import FileID3
 from chronograph.utils.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.parsers import file_parser
 
-label_str = _("About File")
-title_str = _("Title")
-artist_str = _("Artist")
-album_str = _("Album")
-path_str = _("Path")
+label_str: str = _("About File")
+title_str: str = _("Title")
+artist_str: str = _("Artist")
+album_str: str = _("Album")
+path_str: str = _("Path")
 
 
 @Gtk.Template(resource_path=shared.PREFIX + "/gtk/ui/SongCard.ui")

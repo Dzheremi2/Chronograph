@@ -5,13 +5,17 @@ from gi.repository import Gio, GLib, Adw # type: ignore
 APP_ID = "@APP_ID@"
 VERSION = "@VERSION@"
 PREFIX = "@PREFIX@"
+CACHEV = "@CACHEV@"
 
 config_dir = Path(GLib.get_user_config_dir())
-cache_dir = Path(GLib.get_user_cache_dir())
+data_dir = Path(GLib.get_user_data_dir())
 
 schema = Gio.Settings.new(APP_ID)
 state_schema = Gio.Settings.new(APP_ID + ".State")
 
 app: Adw.Application = None
 win: Adw.ApplicationWindow = None
+
 selected_line = None
+cache_file = None
+cache = None

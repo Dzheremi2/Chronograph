@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import TextIO
 
 from gi.repository import Adw, Gio
 
@@ -10,11 +11,14 @@ VERSION: str
 PREFIX: str
 
 config_dir: Path
-cache_dir: Path
+data_dir: Path
 
 schema: Gio.Settings
 state_schema: Gio.Settings
 
 app: ChronographApplication
 win: ChronographWindow
+
 selected_line: Adw.EntryRow
+cache_file: TextIO
+cache: dict

@@ -10,8 +10,13 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("Behavior");
 
       Adw.SwitchRow reset_quick_edit_switch {
-          title: _("Reset quick edit dialog on close?");
-          subtitle: _("Choose, if quick edit dialog text should be cleaned after exit or not");
+        title: _("Reset quick edit dialog on close");
+        subtitle: _("Choose, if quick edit dialog text should be cleaned after exit or not");
+      }
+
+      Adw.SwitchRow save_session_on_quit_switch {
+        title: _("Save session on app close");
+        subtitle: _("Re-opens last opened directory on the next startup");
       }
     }
 
@@ -19,7 +24,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("Sync Page");
 
       Adw.ExpanderRow auto_file_manipulation_switch {
-        title: _("Auto File Manipulation");
+        title: _("Auto file manipulation");
         subtitle: _("Automatically creates and updates files when any of lyrics lines changed");
         show-enable-switch: true;
 

@@ -12,6 +12,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
     reset_quick_edit_switch: Adw.SwitchRow = Gtk.Template.Child()
     auto_file_manipulation_switch: Adw.ExpanderRow = Gtk.Template.Child()
     auto_file_manipulation_format: Adw.ComboRow = Gtk.Template.Child()
+    save_session_on_quit_switch: Adw.SwitchRow = Gtk.Template.Child()
 
     opened = False
 
@@ -31,6 +32,12 @@ class ChronographPreferences(Adw.PreferencesDialog):
         shared.schema.bind(
             "reset-quick-editor",
             self.reset_quick_edit_switch,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        shared.schema.bind(
+            "save-session",
+            self.save_session_on_quit_switch,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )

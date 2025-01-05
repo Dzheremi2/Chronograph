@@ -11,7 +11,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     search_lrclib_collapsed_status_page: Adw.StatusPage
     lrclib_window_nothing_found_status: Adw.StatusPage
     lrclib_window_collapsed_nothing_found_status: Adw.StatusPage
-    parsing_in_progress: Adw.StatusPage
+    no_saves_found_status: Adw.StatusPage
 
     # Library view widgets
     help_overlay: Gtk.ShortcutsWindow
@@ -19,11 +19,14 @@ class ChronographWindow(Adw.ApplicationWindow):
     navigation_view: Adw.NavigationView
     library_nav_page: Adw.NavigationPage
     overlay_split_view: Adw.OverlaySplitView
+    sidebar_window: Gtk.ScrolledWindow
+    sidebar: Gtk.ListBox
     open_source_button: Gtk.MenuButton
-    right_buttons_revealer: Gtk.Revealer
     left_buttons_revealer: Gtk.Revealer
     search_bar: Gtk.SearchBar
     search_entry: Gtk.SearchEntry
+    right_buttons_revealer: Gtk.Revealer
+    add_dir_to_saves_button: Gtk.Button
     library_overlay: Gtk.Overlay
     library_scrolled_window: Gtk.ScrolledWindow
     library: Gtk.FlowBox
@@ -99,5 +102,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_show_preferences_action(self, *args) -> None: ...
     def on_open_quick_editor_action(self, *_args) -> None: ...
     def copy_quick_editor_text(self, *_args) -> None: ...
-    def on_timestamp_changed(self, media_stream: Gtk.MediaStream, *_) -> None: ...
+    def on_timestamp_changed(self, media_stream: Gtk.MediaStream, *_args) -> None: ...
     def toggle_repeat(self, *_args) -> None: ...
+    def build_sidebar(self, *_args) -> None: ...
+    def load_save(self, _listbox: Gtk.ListBox, row: Gtk.ListBoxRow) -> None: ...

@@ -20,7 +20,6 @@ def dir_parser(path: str, *_args) -> None:
         Path to directory to parse
     """
     shared.win.library.remove_all()
-    shared.win.open_source_button.set_child(Adw.Spinner())
     path = path + "/"
     mutagen_files = []
     for file in os.listdir(path):

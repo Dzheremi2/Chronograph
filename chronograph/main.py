@@ -1,6 +1,10 @@
+import os
 import sys
 
 import gi
+import yaml
+
+from chronograph.utils.parsers import dir_parser
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -34,7 +38,7 @@ class ChronographApplication(Adw.Application):
         self.create_actions(
             {
                 ("quit", ("<primary>q",)),
-                # ("toggle_sidebar", ("F9",), shared.win),
+                ("toggle_sidebar", ("F9",), shared.win),
                 ("toggle_search", ("<primary>f",), shared.win),
                 ("select_dir", ("<primary><shift>o",), shared.win),
                 ("append_line", ("<Alt><primary>a",), shared.win),
@@ -81,6 +85,10 @@ class ChronographApplication(Adw.Application):
             "window-maximized", shared.win, "maximized", Gio.SettingsBindFlags.DEFAULT
         )
 
+        if (path := shared.cache["session"]) is not None:
+            dir_parser(path)
+            del path
+
         shared.win.present()
 
     def on_about_action(self, *_args) -> None:
@@ -101,6 +109,26 @@ class ChronographApplication(Adw.Application):
 
     def on_quit_action(self, *_args) -> None:
         self.quit()
+
+    def do_shutdown(self):
+        if shared.schema.get_boolean("save-session") and (
+            shared.state_schema.get_string("opened-dir") != "None"
+        ):
+            shared.cache["session"] = shared.state_schema.get_string("opened-dir")[:-1]
+        else:
+            shared.cache["session"] = None
+
+        shared.cache_file.seek(0)
+        shared.cache_file.truncate(0)
+        yaml.dump(
+            shared.cache,
+            shared.cache_file,
+            sort_keys=False,
+            encoding=None,
+            allow_unicode=True,
+        )
+
+        shared.state_schema.set_string("opened-dir", "None")
 
     def create_actions(self, actions: set) -> None:
         """Creates actions for provided scope with provided accels
@@ -126,5 +154,14 @@ class ChronographApplication(Adw.Application):
 
 def main(_version):
     """App entrypoint"""
+    if not ("cache.yaml" in os.listdir(shared.data_dir)):
+        file = open(str(shared.data_dir) + "/cache.yaml", "x+")
+        file.write("pins: []\nsession: null\ncache_version: 1")
+        file.close()
+
+    shared.cache_file = open(
+        str(shared.data_dir) + "/cache.yaml", "r+", encoding="utf-8"
+    )
+    shared.cache = yaml.safe_load(shared.cache_file)
     shared.app = app = ChronographApplication()
     return app.run(sys.argv)

@@ -1,6 +1,4 @@
-import threading
-
-from gi.repository import Gio, Gtk  # type: ignore
+from gi.repository import Gio, Gtk, Adw, GLib  # type: ignore
 
 from chronograph import shared
 from chronograph.utils.parsers import dir_parser, file_parser
@@ -11,11 +9,12 @@ def select_dir(*_args) -> None:
     dialog = Gtk.FileDialog(
         default_filter=Gtk.FileFilter(mime_types=["inode/directory"])
     )
+    shared.win.open_source_button.set_child(Adw.Spinner())
     dialog.select_folder(shared.win, None, on_selected_dir)
 
 
 def on_selected_dir(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
-    """Callbacked by `select_dir`. Creates thread for `chronograph.utils.parsers.dir_parser` launches this function in it
+    """Callbacked by `select_dir`. Launching `chronograph.utils.parsers.dir_parser`
 
     Parameters
     ----------
@@ -24,10 +23,11 @@ def on_selected_dir(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
     result : Gio.Task
         Task for reading, callbacked from `select_dir`
     """
-    dir = file_dialog.select_folder_finish(result)
-    thread = threading.Thread(target=lambda: (dir_parser(dir.get_path())))
-    thread.daemon = True
-    thread.start()
+    try:
+        dir = file_dialog.select_folder_finish(result)
+        dir_parser(dir.get_path())
+    except GLib.GError:
+        shared.win.open_source_button.set_icon_name("open-source-symbolic")
 
 
 def select_lyrics_file(*_args) -> None:

@@ -8,6 +8,7 @@ from chronograph import shared
 from chronograph.ui.BoxDialog import BoxDialog
 from chronograph.ui.LrclibTrack import LrclibTrack
 from chronograph.ui.Preferences import ChronographPreferences
+from chronograph.ui.SavedLocation import SavedLocation
 from chronograph.ui.SongCard import (
     SongCard,
     album_str,
@@ -17,10 +18,11 @@ from chronograph.ui.SongCard import (
     title_str,
 )
 from chronograph.ui.SyncLine import SyncLine
+from chronograph.utils.caching import save_location
 from chronograph.utils.export_data import export_clipboard, export_file
 from chronograph.utils.parsers import (
     clipboard_parser,
-    line_parser,
+    dir_parser,
     string_parser,
     sync_lines_parser,
     timing_parser,
@@ -41,6 +43,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     search_lrclib_collapsed_status_page: Adw.StatusPage = Gtk.Template.Child()
     lrclib_window_nothing_found_status: Adw.StatusPage = Gtk.Template.Child()
     lrclib_window_collapsed_nothing_found_status: Adw.StatusPage = Gtk.Template.Child()
+    no_saves_found_status: Adw.StatusPage = Gtk.Template.Child()
 
     # Library view widgets
     help_overlay: Gtk.ShortcutsWindow = Gtk.Template.Child()
@@ -48,11 +51,14 @@ class ChronographWindow(Adw.ApplicationWindow):
     navigation_view: Adw.NavigationView = Gtk.Template.Child()
     library_nav_page: Adw.NavigationPage = Gtk.Template.Child()
     overlay_split_view: Adw.OverlaySplitView = Gtk.Template.Child()
+    sidebar_window: Gtk.ScrolledWindow = Gtk.Template.Child()
+    sidebar: Gtk.ListBox = Gtk.Template.Child()
     open_source_button: Gtk.MenuButton = Gtk.Template.Child()
-    right_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
     left_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
     search_bar: Gtk.SearchBar = Gtk.Template.Child()
     search_entry: Gtk.SearchEntry = Gtk.Template.Child()
+    right_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
+    add_dir_to_saves_button: Gtk.Button = Gtk.Template.Child()
     library_overlay: Gtk.Overlay = Gtk.Template.Child()
     library_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
     library: Gtk.FlowBox = Gtk.Template.Child()
@@ -113,12 +119,15 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sync_navigation_page.connect("hiding", self.reset_sync_editor)
         self.quick_edit_copy_button.connect("clicked", self.copy_quick_editor_text)
         self.toggle_repeat_button.connect("toggled", self.toggle_repeat)
+        self.add_dir_to_saves_button.connect("clicked", save_location)
+        self.sidebar.connect("row-activated", self.load_save)
         self.lrclib_window_collapsed_results_list.connect(
             "row-selected", self.set_lyrics
         )
 
         if self.library.get_child_at_index(0) is None:
             self.library_scrolled_window.set_child(self.no_source_opened)
+        self.build_sidebar()
 
     def on_toggle_sidebar_action(self, *_args) -> None:
         """Toggles sidebar of `self`"""
@@ -496,7 +505,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             Adw.Toast(title=_("Copied successfully"))
         )
 
-    def on_timestamp_changed(self, media_stream: Gtk.MediaStream, *_) -> None:
+    def on_timestamp_changed(self, media_stream: Gtk.MediaStream, *_args) -> None:
         """Higlights line with timestamp larger that current and smaller that next
 
         Parameters
@@ -533,3 +542,39 @@ class ChronographWindow(Adw.ApplicationWindow):
         else:
             self.controls.get_media_stream().set_loop(False)
             self.controls_shrinked.get_media_stream().set_loop(False)
+
+    def build_sidebar(self, *_args) -> None:
+        """Fills saves sidebar with save rows"""
+        if len(shared.cache["pins"]) != 0:
+            self.sidebar.remove_all()
+            entries: list = []
+            for entry in shared.cache["pins"]:
+                entries.append(entry)
+            entries = sorted(entries, key=lambda x: x["name"].lower())
+            for entry in entries:
+                self.sidebar.append(
+                    SavedLocation(path=entry["path"], name=entry["name"])
+                )
+            self.sidebar_window.set_child(self.sidebar)
+        else:
+            self.sidebar_window.set_child(self.no_saves_found_status)
+
+    def load_save(self, _listbox: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:
+        """Launching `chronograph.utils.parsers.dir_parser` for saved path
+
+        Parameters
+        ----------
+        _listbox : Gtk.ListBox
+            ListBox which emited this method
+        row : Gtk.ListBoxRow
+            Row to get SavedLocation from
+        """
+        for pin in shared.cache["pins"]:
+            if pin["path"] == row.get_child().path:
+                if row.get_child().path != shared.state_schema.get_string("opened-dir"):
+                    if self.overlay_split_view.get_collapsed():
+                        self.overlay_split_view.set_show_sidebar(
+                            not self.overlay_split_view.get_show_sidebar()
+                        )
+                    dir_parser(pin["path"][:-1])
+                    break

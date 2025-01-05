@@ -44,6 +44,14 @@ Adw.StatusPage lrclib_window_collapsed_nothing_found_status {
   description: _("Try out another request, maybe there are mistakes in request text.");
 }
 
+Adw.StatusPage no_saves_found_status {
+  title: _("No saves found yet");
+  icon-name: "nothing-found-symbolic";
+  description: _("Press pin button to add current directory to the saves");
+
+  styles ["compact"]
+}
+
 Adw.Dialog quick_edit_dialog {
   can-close: true;
 
@@ -447,7 +455,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
     condition ("max-width: 564px")
 
     setters {
-      // overlay_split_view.collapsed: true;
+      overlay_split_view.collapsed: true;
       controls_box_shrinked.visible: true;
       syncing_buttons_box.halign: center;
       lrclib_window_main_clamp.child: lrclib_window_collapsed_navigation_view;
@@ -462,41 +470,40 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
         Adw.OverlaySplitView overlay_split_view {
           sidebar-width-fraction: .2;
-          collapsed: true;
 
-          // [sidebar]
-          // Adw.NavigationPage sidebar_nav_page {
-          //   title: _("Saves");
+          [sidebar]
+          Adw.NavigationPage sidebar_nav_page {
+            title: _("Saves");
 
-          //   Adw.ToolbarView {
-          //     [top]
-          //     Adw.HeaderBar {
-          //       [start]
-          //       Button {
-          //         icon-name: "toggle-sidebar-symbolic";
-          //         tooltip-text: _("Toggle sidebar");
-          //         action-name: "win.toggle_sidebar";
-          //       }
-          //     }
+            Adw.ToolbarView {
+              [top]
+              Adw.HeaderBar {
+                [start]
+                Button {
+                  icon-name: "toggle-sidebar-symbolic";
+                  tooltip-text: _("Toggle sidebar");
+                  action-name: "win.toggle_sidebar";
+                }
+              }
 
-          //     ScrolledWindow {
-          //       ListBox sidebar {
-          //         styles ["navigation-sidebar"]
-          //       }
-          //     }
-          //   }
-          // }
+              ScrolledWindow sidebar_window {
+                ListBox sidebar {
+                  styles ["navigation-sidebar"]
+                }
+              }
+            }
+          }
 
           Adw.ToolbarView library_view {
             [top]
             Adw.HeaderBar header_bar {
-              // [start]
-              // Button show_sidebar_button {
-              //   icon-name: "toggle-sidebar-symbolic";
-              //   tooltip-text: _("Toggle sidebar");
-              //   action-name: "win.toggle_sidebar";
-              //   visible: bind overlay_split_view.show-sidebar inverted;
-              // }
+              [start]
+              Button show_sidebar_button {
+                icon-name: "toggle-sidebar-symbolic";
+                tooltip-text: _("Toggle sidebar");
+                action-name: "win.toggle_sidebar";
+                visible: bind overlay_split_view.show-sidebar inverted;
+              }
 
               MenuButton open_source_button {
                 icon-name: "open-source-symbolic";
@@ -530,10 +537,19 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 valign: start;
                 halign: start;
 
-                MenuButton sorting_button {
-                  icon-name: "sort-alphabetically-symbolic";
-                  tooltip-text: _("Sorting method");
-                  menu-model: sorting_menu;
+                Box {
+                  orientation: horizontal;
+
+                  MenuButton sorting_button {
+                    icon-name: "sort-alphabetically-symbolic";
+                    tooltip-text: _("Sorting method");
+                    menu-model: sorting_menu;
+                  }
+
+                  Button add_dir_to_saves_button {
+                    icon-name: "pin-dir-symbolic";
+                    tooltip-text: _("Add current directory to saves");
+                  }
                 }
               }
             }
