@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-05 23:49+0300\n"
-"PO-Revision-Date: 2024-12-08 05:00+0000\n"
-"Last-Translator: volkov <volkov@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-01-05 22:03+0000\n"
+"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
 "ru/>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: chronograph/window.py:505
 msgid "Copied successfully"
@@ -96,7 +96,7 @@ msgstr "Эта директория уже сохранена"
 
 #: chronograph/utils/parsers.py:181
 msgid "Seems like not every line is synced"
-msgstr "Похоже, не все строки синхронизированы!"
+msgstr "Похоже, не все строки синхронизированы"
 
 #: chronograph/utils/publish.py:90
 msgid "Some of Title, Artist and/or Album fileds are Unknown!"
