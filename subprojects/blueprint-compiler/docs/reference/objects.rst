@@ -58,7 +58,7 @@ Properties
 
 .. rst-class:: grammar-block
 
-   Property = <name::ref:`IDENT<Syntax IDENT>`> ':' ( :ref:`Binding<Syntax Binding>` | :ref:`ObjectValue<Syntax ObjectValue>` | :ref:`Value<Syntax Value>` ) ';'
+   Property = <name::ref:`IDENT<Syntax IDENT>`> ':' ( :ref:`Binding<Syntax Binding>` | :ref:`ExprValue<Syntax ExprValue>` | :ref:`ObjectValue<Syntax ObjectValue>` | :ref:`Value<Syntax Value>` ) ';'
 
 Properties specify the details of each object, like a label's text, an image's icon name, or the margins on a container.
 
@@ -91,13 +91,15 @@ Signal Handlers
 .. rst-class:: grammar-block
 
    Signal = <name::ref:`IDENT<Syntax IDENT>`> ('::' <detail::ref:`IDENT<Syntax IDENT>`>)? '=>' '$' <handler::ref:`IDENT<Syntax IDENT>`> '(' <object::ref:`IDENT<Syntax IDENT>`>? ')' (SignalFlag)* ';'
-   SignalFlag = 'after' | 'swapped'
+   SignalFlag = 'after' | 'swapped' | 'not-swapped'
 
 Signals are one way to respond to user input (another is `actions <https://docs.gtk.org/gtk4/actions.html>`_, which use the `action-name property <https://docs.gtk.org/gtk4/property.Actionable.action-name.html>`_).
 
 Signals provide a handle for your code to listen to events in the UI. The handler name is prefixed with ``$`` to indicate that it's an external symbol which needs to be provided by your code; if it isn't, things might not work correctly, or at all.
 
 Optionally, you can provide an object ID to use when connecting the signal.
+
+The ``swapped`` flag is used to swap the order of the object and userdata arguments in C applications. If an object argument is specified, then this is the default behavior, so the ``not-swapped`` flag can be used to prevent the swap.
 
 Example
 ~~~~~~~
@@ -107,7 +109,6 @@ Example
    Button {
      clicked => $on_button_clicked();
    }
-
 
 .. _Syntax Child:
 

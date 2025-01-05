@@ -1,0 +1,45 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $BoxDialog : Adw.Dialog {
+  content-width: 300;
+  margin-bottom: 20;
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {}
+
+    Box {
+      orientation: vertical;
+      spacing: 12;
+
+      Label dialog_title_label {
+        label: "Label";
+        ellipsize: end;
+
+        styles ["title-3"]
+      }
+
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 300;
+
+        ListBox props_list {
+          selection-mode: none;
+          margin-start: 12;
+          margin-end: 12;
+          
+          styles ["boxed-list"]
+        }
+      }
+    }
+
+    [bottom]
+    Separator {
+      height-request: 12;
+      vexpand: true;
+
+      styles ["spacer"]
+    }
+  }
+}

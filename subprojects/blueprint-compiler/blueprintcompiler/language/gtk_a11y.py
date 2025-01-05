@@ -19,8 +19,6 @@
 
 import typing as T
 
-from ..decompiler import escape_quote
-from .attributes import BaseAttribute
 from .common import *
 from .contexts import ValueTypeCtx
 from .gobject_object import ObjectContent, validate_parent_type
@@ -119,7 +117,7 @@ def _get_docs(gir, name):
         return gir_type.doc
 
 
-class A11yProperty(BaseAttribute):
+class A11yProperty(AstNode):
     grammar = Statement(
         UseIdent("name"),
         ":",

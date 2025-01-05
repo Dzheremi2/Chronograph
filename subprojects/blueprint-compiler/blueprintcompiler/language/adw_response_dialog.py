@@ -20,7 +20,6 @@
 
 from ..decompiler import decompile_translatable, truthy
 from .common import *
-from .contexts import ValueTypeCtx
 from .gobject_object import ObjectContent, validate_parent_type
 from .values import StringValue
 
@@ -93,10 +92,6 @@ class ExtAdwResponseDialogResponse(AstNode):
             self.group.tokens["id"].range,
             self.value.range.text,
         )
-
-    @context(ValueTypeCtx)
-    def value_type(self) -> ValueTypeCtx:
-        return ValueTypeCtx(StringType())
 
     @validate("id")
     def unique_in_parent(self):

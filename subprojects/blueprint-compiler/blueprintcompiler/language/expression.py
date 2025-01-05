@@ -39,10 +39,6 @@ class ExprBase(AstNode):
         raise NotImplementedError()
 
     @property
-    def type_complete(self) -> bool:
-        return True
-
-    @property
     def rhs(self) -> T.Optional["ExprBase"]:
         if isinstance(self.parent, Expression):
             children = list(self.parent.children)
@@ -65,10 +61,6 @@ class Expression(ExprBase):
     def type(self) -> T.Optional[GirType]:
         return self.last.type
 
-    @property
-    def type_complete(self) -> bool:
-        return self.last.type_complete
-
 
 class InfixExpr(ExprBase):
     @property
@@ -90,6 +82,16 @@ class LiteralExpr(ExprBase):
         )
 
     @property
+    def is_this(self) -> bool:
+        from .values import IdentLiteral
+
+        return (
+            not self.is_object
+            and isinstance(self.literal.value, IdentLiteral)
+            and self.literal.value.ident == "item"
+        )
+
+    @property
     def literal(self):
         from .values import Literal
 
@@ -99,14 +101,14 @@ class LiteralExpr(ExprBase):
     def type(self) -> T.Optional[GirType]:
         return self.literal.value.type
 
-    @property
-    def type_complete(self) -> bool:
-        from .values import IdentLiteral
+    @validate()
+    def item_validations(self):
+        if self.is_this:
+            if not isinstance(self.rhs, CastExpr):
+                raise CompileError('"item" must be cast to its object type')
 
-        if isinstance(self.literal.value, IdentLiteral):
-            if object := self.context[ScopeCtx].objects.get(self.literal.value.ident):
-                return not object.gir_class.incomplete
-        return True
+            if not isinstance(self.rhs.rhs, LookupOp):
+                raise CompileError('"item" can only be used for looking up properties')
 
 
 class LookupOp(InfixExpr):
@@ -171,6 +173,24 @@ class LookupOp(InfixExpr):
                 did_you_mean=(self.property_name, self.lhs.type.properties.keys()),
             )
 
+    @validate("property")
+    def property_deprecated(self):
+        if self.lhs.type is None or not (
+            isinstance(self.lhs.type, gir.Class)
+            or isinstance(self.lhs.type, gir.Interface)
+        ):
+            return
+
+        if property := self.lhs.type.properties.get(self.property_name):
+            if property.deprecated:
+                hints = []
+                if property.deprecated_doc:
+                    hints.append(property.deprecated_doc)
+                raise DeprecatedWarning(
+                    f"{property.signature} is deprecated",
+                    hints=hints,
+                )
+
 
 class CastExpr(InfixExpr):
     grammar = [
@@ -192,10 +212,6 @@ class CastExpr(InfixExpr):
     @property
     def type(self) -> T.Optional[GirType]:
         return self.children[TypeName][0].gir_type
-
-    @property
-    def type_complete(self) -> bool:
-        return True
 
     @validate()
     def cast_makes_sense(self):
@@ -288,6 +304,9 @@ expr.children = [
 def decompile_lookup(
     ctx: DecompileCtx, gir: gir.GirContext, cdata: str, name: str, type: str
 ):
+    if ctx.parent_node is not None and ctx.parent_node.tag == "property":
+        ctx.print("expr ")
+
     if t := ctx.type_by_cname(type):
         type = decompile.full_name(t)
     else:
@@ -307,6 +326,8 @@ def decompile_lookup(
     if constant is not None:
         if constant == ctx.template_class:
             ctx.print("template." + name)
+        elif constant == "":
+            ctx.print("item as <" + type + ">." + name)
         else:
             ctx.print(constant + "." + name)
         return
@@ -321,6 +342,9 @@ def decompile_lookup(
 def decompile_constant(
     ctx: DecompileCtx, gir: gir.GirContext, cdata: str, type: T.Optional[str] = None
 ):
+    if ctx.parent_node is not None and ctx.parent_node.tag == "property":
+        ctx.print("expr ")
+
     if type is None:
         if cdata == ctx.template_class:
             ctx.print("template")
@@ -333,6 +357,9 @@ def decompile_constant(
 
 @decompiler("closure", skip_children=True)
 def decompile_closure(ctx: DecompileCtx, gir: gir.GirContext, function: str, type: str):
+    if ctx.parent_node is not None and ctx.parent_node.tag == "property":
+        ctx.print("expr ")
+
     if t := ctx.type_by_cname(type):
         type = decompile.full_name(t)
     else:

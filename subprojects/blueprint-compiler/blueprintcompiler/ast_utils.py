@@ -160,6 +160,11 @@ class AstNode:
                 yield e
                 if e.fatal:
                     return
+            except MultipleErrors as e:
+                for error in e.errors:
+                    yield error
+                    if error.fatal:
+                        return
 
         for child in self.children:
             yield from child._get_errors()
@@ -249,14 +254,7 @@ def validate(
             if skip_incomplete and self.incomplete:
                 return
 
-            try:
-                func(self)
-            except CompileError as e:
-                # If the node is only partially complete, then an error must
-                # have already been reported at the parsing stage
-                if self.incomplete:
-                    return
-
+            def fill_error(e: CompileError):
                 if e.range is None:
                     e.range = (
                         Range.join(
@@ -266,7 +264,25 @@ def validate(
                         or self.range
                     )
 
+            try:
+                func(self)
+            except CompileError as e:
+                # If the node is only partially complete, then an error must
+                # have already been reported at the parsing stage
+                if self.incomplete:
+                    return
+
+                fill_error(e)
+
                 # Re-raise the exception
+                raise e
+            except MultipleErrors as e:
+                if self.incomplete:
+                    return
+
+                for error in e.errors:
+                    fill_error(error)
+
                 raise e
 
         inner._validator = True

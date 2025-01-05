@@ -27,6 +27,7 @@ from .gtkbuilder_template import Template
 class SignalFlag(AstNode):
     grammar = AnyOf(
         UseExact("flag", "swapped"),
+        UseExact("flag", "not-swapped"),
         UseExact("flag", "after"),
     )
 
@@ -39,6 +40,27 @@ class SignalFlag(AstNode):
         self.validate_unique_in_parent(
             f"Duplicate flag '{self.flag}'", lambda x: x.flag == self.flag
         )
+
+    @validate()
+    def swapped_exclusive(self):
+        if self.flag in ["swapped", "not-swapped"]:
+            self.validate_unique_in_parent(
+                "'swapped' and 'not-swapped' flags cannot be used together",
+                lambda x: x.flag in ["swapped", "not-swapped"],
+            )
+
+    @validate()
+    def swapped_unnecessary(self):
+        if self.flag == "not-swapped" and self.parent.object_id is None:
+            raise CompileWarning(
+                "'not-swapped' is the default for handlers that do not specify an object",
+                actions=[CodeAction("Remove 'not-swapped' flag", "")],
+            )
+        elif self.flag == "swapped" and self.parent.object_id is not None:
+            raise CompileWarning(
+                "'swapped' is the default for handlers that specify an object",
+                actions=[CodeAction("Remove 'swapped' flag", "")],
+            )
 
     @docs()
     def ref_docs(self):
@@ -92,9 +114,17 @@ class Signal(AstNode):
     def flags(self) -> T.List[SignalFlag]:
         return self.children[SignalFlag]
 
+    # Returns True if the "swapped" flag is present, False if "not-swapped" is present, and None if neither are present.
+    # GtkBuilder's default if swapped is not specified is to not swap the arguments if no object is specified, and to
+    # swap them if an object is specified.
     @property
-    def is_swapped(self) -> bool:
-        return any(x.flag == "swapped" for x in self.flags)
+    def is_swapped(self) -> T.Optional[bool]:
+        for flag in self.flags:
+            if flag.flag == "swapped":
+                return True
+            elif flag.flag == "not-swapped":
+                return False
+        return None
 
     @property
     def is_after(self) -> bool:
@@ -113,16 +143,17 @@ class Signal(AstNode):
 
     @property
     def document_symbol(self) -> DocumentSymbol:
+        detail = self.ranges["detail_start", "detail_end"]
         return DocumentSymbol(
             self.full_name,
             SymbolKind.Event,
             self.range,
             self.group.tokens["name"].range,
-            self.ranges["detail_start", "detail_end"].text,
+            detail.text if detail is not None else None,
         )
 
     def get_reference(self, idx: int) -> T.Optional[LocationLink]:
-        if idx in self.group.tokens["object"].range:
+        if self.object_id is not None and idx in self.group.tokens["object"].range:
             obj = self.context[ScopeCtx].objects.get(self.object_id)
             if obj is not None:
                 return LocationLink(
@@ -194,15 +225,16 @@ class Signal(AstNode):
 
 
 @decompiler("signal")
-def decompile_signal(
-    ctx, gir, name, handler, swapped="false", after="false", object=None
-):
+def decompile_signal(ctx, gir, name, handler, swapped=None, after="false", object=None):
     object_name = object or ""
     name = name.replace("_", "-")
     line = f"{name} => ${handler}({object_name})"
 
     if decompile.truthy(swapped):
         line += " swapped"
+    elif swapped is not None:
+        line += " not-swapped"
+
     if decompile.truthy(after):
         line += " after"
 

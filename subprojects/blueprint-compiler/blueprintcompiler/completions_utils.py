@@ -31,17 +31,6 @@ new_statement_patterns = [
 ]
 
 
-def applies_to(*ast_types):
-    """Decorator describing which AST nodes the completer should apply in."""
-
-    def decorator(func):
-        for c in ast_types:
-            c.completers.append(func)
-        return func
-
-    return decorator
-
-
 def completer(applies_in: T.List, matches: T.List = [], applies_in_subclass=None):
     def decorator(func):
         def inner(prev_tokens: T.List[Token], ast_node, lsp):

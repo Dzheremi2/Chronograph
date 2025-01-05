@@ -17,10 +17,9 @@
 #
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-import sys
 import typing as T
 
-from . import gir, language
+from . import annotations, gir, language
 from .ast_utils import AstNode
 from .completions_utils import *
 from .language.types import ClassName
@@ -29,10 +28,6 @@ from .parser import SKIP_TOKENS
 from .tokenizer import Token, TokenType
 
 Pattern = T.List[T.Tuple[TokenType, T.Optional[str]]]
-
-
-def debug(*args, **kwargs):
-    print(*args, file=sys.stderr, **kwargs)
 
 
 def _complete(
@@ -139,7 +134,7 @@ def gtk_object_completer(lsp, ast_node, match_variables):
     matches=new_statement_patterns,
 )
 def property_completer(lsp, ast_node, match_variables):
-    if ast_node.gir_class and not isinstance(ast_node.gir_class, gir.ExternType):
+    if ast_node.gir_class and hasattr(ast_node.gir_class, "properties"):
         for prop_name, prop in ast_node.gir_class.properties.items():
             if (
                 isinstance(prop.type, gir.BoolType)
@@ -154,11 +149,17 @@ def property_completer(lsp, ast_node, match_variables):
                     detail=prop.detail,
                 )
             elif isinstance(prop.type, gir.StringType):
+                snippet = (
+                    f'{prop_name}: _("$0");'
+                    if annotations.is_property_translated(prop)
+                    else f'{prop_name}: "$0";'
+                )
+
                 yield Completion(
                     prop_name,
                     CompletionItemKind.Property,
                     sort_text=f"0 {prop_name}",
-                    snippet=f'{prop_name}: "$0";',
+                    snippet=snippet,
                     docs=prop.doc,
                     detail=prop.detail,
                 )
@@ -176,6 +177,15 @@ def property_completer(lsp, ast_node, match_variables):
                     docs=prop.doc,
                     detail=prop.detail,
                 )
+            elif prop.type.full_name == "Gtk.Expression":
+                yield Completion(
+                    prop_name,
+                    CompletionItemKind.Property,
+                    sort_text=f"0 {prop_name}",
+                    snippet=f"{prop_name}: expr $0;",
+                    docs=prop.doc,
+                    detail=prop.detail,
+                )
             else:
                 yield Completion(
                     prop_name,
@@ -188,7 +198,7 @@ def property_completer(lsp, ast_node, match_variables):
 
 
 @completer(
-    applies_in=[language.Property, language.BaseAttribute],
+    applies_in=[language.Property, language.A11yProperty],
     matches=[[(TokenType.IDENT, None), (TokenType.OP, ":")]],
 )
 def prop_value_completer(lsp, ast_node, match_variables):
@@ -212,7 +222,7 @@ def prop_value_completer(lsp, ast_node, match_variables):
     matches=new_statement_patterns,
 )
 def signal_completer(lsp, ast_node, match_variables):
-    if ast_node.gir_class and not isinstance(ast_node.gir_class, gir.ExternType):
+    if ast_node.gir_class and hasattr(ast_node.gir_class, "signals"):
         for signal_name, signal in ast_node.gir_class.signals.items():
             if not isinstance(ast_node.parent, language.Object):
                 name = "on"

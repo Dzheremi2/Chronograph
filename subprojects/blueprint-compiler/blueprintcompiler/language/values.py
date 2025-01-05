@@ -23,7 +23,8 @@ from blueprintcompiler.gir import ArrayType
 from blueprintcompiler.lsp_utils import SemanticToken
 
 from .common import *
-from .contexts import ScopeCtx, ValueTypeCtx
+from .contexts import ExprValueCtx, ScopeCtx, ValueTypeCtx
+from .expression import Expression
 from .gobject_object import Object
 from .types import TypeName
 
@@ -319,7 +320,12 @@ class IdentLiteral(AstNode):
                 if self.ident == "null":
                     if not self.context[ValueTypeCtx].allow_null:
                         raise CompileError("null is not permitted here")
-                else:
+                elif self.ident == "item":
+                    if not self.context[ExprValueCtx]:
+                        raise CompileError(
+                            '"item" can only be used in an expression literal'
+                        )
+                elif self.ident not in ["true", "false"]:
                     raise CompileError(
                         f"Could not find object with ID {self.ident}",
                         did_you_mean=(
@@ -407,6 +413,35 @@ class ObjectValue(AstNode):
             )
 
 
+class ExprValue(AstNode):
+    grammar = [Keyword("expr"), Expression]
+
+    @property
+    def expression(self) -> Expression:
+        return self.children[Expression][0]
+
+    @validate("expr")
+    def validate_for_type(self) -> None:
+        expected_type = self.parent.context[ValueTypeCtx].value_type
+        expr_type = self.root.gir.get_type("Expression", "Gtk")
+        if expected_type is not None and not expected_type.assignable_to(expr_type):
+            raise CompileError(
+                f"Cannot convert Gtk.Expression to {expected_type.full_name}"
+            )
+
+    @docs("expr")
+    def ref_docs(self):
+        return get_docs_section("Syntax ExprValue")
+
+    @context(ExprValueCtx)
+    def expr_literal(self):
+        return ExprValueCtx()
+
+    @context(ValueTypeCtx)
+    def value_type(self):
+        return ValueTypeCtx(None, must_infer_type=True)
+
+
 class Value(AstNode):
     grammar = AnyOf(Translated, Flags, Literal)
 
@@ -452,6 +487,14 @@ class ArrayValue(AstNode):
                                 range=quoted_literal.range,
                             )
                         )
+                elif isinstance(value.child, Translated):
+                    errors.append(
+                        CompileError(
+                            "Arrays can't contain translated strings",
+                            range=value.child.range,
+                        )
+                    )
+
             if len(errors) > 0:
                 raise MultipleErrors(errors)
 

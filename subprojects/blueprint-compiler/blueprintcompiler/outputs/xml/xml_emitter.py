@@ -40,7 +40,9 @@ class XmlEmitter:
         self._tag_stack = []
         self._needs_newline = False
 
-    def start_tag(self, tag, **attrs: T.Union[str, GirType, ClassName, bool, None]):
+    def start_tag(
+        self, tag, **attrs: T.Union[str, GirType, ClassName, bool, None, float]
+    ):
         self._indent()
         self.result += f"<{tag}"
         for key, val in attrs.items():

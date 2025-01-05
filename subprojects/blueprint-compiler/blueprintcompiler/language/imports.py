@@ -59,14 +59,8 @@ class GtkDirective(AstNode):
 
     @property
     def gir_namespace(self):
-        # validate the GTK version first to make sure the more specific error
-        # message is emitted
-        self.gtk_version()
-        if self.tokens["version"] is not None:
-            return gir.get_namespace("Gtk", self.tokens["version"])
-        else:
-            # For better error handling, just assume it's 4.0
-            return gir.get_namespace("Gtk", "4.0")
+        # For better error handling, just assume it's 4.0
+        return gir.get_namespace("Gtk", "4.0")
 
     @docs()
     def ref_docs(self):
@@ -90,7 +84,7 @@ class Import(AstNode):
 
     @validate("namespace", "version")
     def namespace_exists(self):
-        gir.get_namespace(self.tokens["namespace"], self.tokens["version"])
+        gir.get_namespace(self.namespace, self.version)
 
     @validate()
     def unused(self):
@@ -106,7 +100,7 @@ class Import(AstNode):
     @property
     def gir_namespace(self):
         try:
-            return gir.get_namespace(self.tokens["namespace"], self.tokens["version"])
+            return gir.get_namespace(self.namespace, self.version)
         except CompileError:
             return None
 

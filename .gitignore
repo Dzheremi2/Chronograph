@@ -3,7 +3,6 @@
 .idea/
 COPYING
 .flatpak/
-.vscode/
 builddir/
 data/icons/icons/symbolic/lyrics-symbolic.svg
 data/icons/icons/symbolic/publish-symbolic.svg
@@ -14,3 +13,5 @@ flathub/
 build/
 _build/
 po/qa.po
+io.github.dzheremi2.Chronograph.flatpak
+*.pyc

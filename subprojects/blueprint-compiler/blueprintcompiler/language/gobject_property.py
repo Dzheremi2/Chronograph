@@ -21,13 +21,12 @@
 from .binding import Binding
 from .common import *
 from .contexts import ValueTypeCtx
-from .gtkbuilder_template import Template
-from .values import ArrayValue, ObjectValue, Value
+from .values import ArrayValue, ExprValue, ObjectValue, Value
 
 
 class Property(AstNode):
     grammar = Statement(
-        UseIdent("name"), ":", AnyOf(Binding, ObjectValue, Value, ArrayValue)
+        UseIdent("name"), ":", AnyOf(Binding, ExprValue, ObjectValue, Value, ArrayValue)
     )
 
     @property
@@ -35,7 +34,7 @@ class Property(AstNode):
         return self.tokens["name"]
 
     @property
-    def value(self) -> T.Union[Binding, ObjectValue, Value, ArrayValue]:
+    def value(self) -> T.Union[Binding, ExprValue, ObjectValue, Value, ArrayValue]:
         return self.children[0]
 
     @property
@@ -51,7 +50,7 @@ class Property(AstNode):
 
     @property
     def document_symbol(self) -> DocumentSymbol:
-        if isinstance(self.value, ObjectValue):
+        if isinstance(self.value, ObjectValue) or self.value is None:
             detail = None
         else:
             detail = self.value.range.text

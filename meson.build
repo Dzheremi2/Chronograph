@@ -1,5 +1,5 @@
-project('lrcmake',
-          version: '1.2.1 (a84ef86)',
+project('chronograph',
+          version: '2.0',
     meson_version: '>= 1.0.0',
   default_options: [ 'warning_level=2', 'werror=false', ],
 )
@@ -10,8 +10,9 @@ python = import('python')
 
 py_installation = python.find_installation('python3')
 
-app_id = 'io.github.dzheremi2.lrcmake-gtk'
-prefix = '/io/github/dzheremi2/lrcmake-gtk'
+app_id = 'io.github.dzheremi2.Chronograph'
+prefix = '/io/github/dzheremi2/Chronograph'
+cachev = 1
 python = import('python')
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 
@@ -19,12 +20,13 @@ conf = configuration_data()
 conf.set('PYTHON', python.find_installation('python3').full_path())
 conf.set('APP_ID', app_id)
 conf.set('PREFIX', prefix)
+conf.set('CACHEV', cachev)
 conf.set('VERSION', meson.project_version())
 conf.set('localedir', join_paths(get_option('prefix') / get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
 subdir('data')
-subdir('lrcmake')
+subdir('chronograph')
 subdir('po')
 
 gnome.post_install(

@@ -4,7 +4,6 @@ from .adw_breakpoint import (
     AdwBreakpointSetters,
 )
 from .adw_response_dialog import ExtAdwResponseDialog
-from .attributes import BaseAttribute
 from .binding import Binding
 from .common import *
 from .contexts import ScopeCtx, ValueTypeCtx
@@ -20,7 +19,7 @@ from .expression import (
 from .gobject_object import Object, ObjectContent
 from .gobject_property import Property
 from .gobject_signal import Signal
-from .gtk_a11y import ExtAccessibility
+from .gtk_a11y import A11yProperty, ExtAccessibility
 from .gtk_combo_box_text import ExtComboBoxItems
 from .gtk_file_filter import (
     Filters,
@@ -42,6 +41,7 @@ from .types import ClassName
 from .ui import UI
 from .values import (
     ArrayValue,
+    ExprValue,
     Flag,
     Flags,
     IdentLiteral,

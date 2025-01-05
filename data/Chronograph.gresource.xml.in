@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="@PREFIX@">
+    <file preprocess="xml-stripblanks">@APP_ID@.metainfo.xml</file>
+    <file preprocess="xml-stripblanks">gtk/window.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/SongCard.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/BoxDialog.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/SyncLine.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/LrclibTrack.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/Preferences.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/SavedLocation.ui</file>
+    <file alias="style.css">gtk/css/style.css</file>
+  </gresource>
+  <!-- Icons -->
+  <gresource prefix="@PREFIX@/icons/scalable/actions/">
+    <file alias="toggle-sidebar-symbolic.svg">icons/icons/symbolic/toggle-sidebar-symbolic.svg</file>
+    <file alias="open-source-symbolic.svg">icons/icons/symbolic/open-source-symbolic.svg</file>
+    <file alias="search-symbolic.svg">icons/icons/symbolic/search-symbolic.svg</file>
+    <file alias="play-button-symbolic.svg">icons/icons/symbolic/play-button-symbolic.svg</file>
+    <file alias="edit-metadata-symbolic.svg">icons/icons/symbolic/edit-metadata-symbolic.svg</file>
+    <file alias="sort-alphabetically-symbolic.svg">icons/icons/symbolic/sort-alphabetically-symbolic.svg</file>
+    <file alias="toggle-repeat-symbolic.svg">icons/icons/symbolic/toggle-repeat-symbolic.svg</file>
+    <file alias="info-button-symbolic.svg">icons/icons/symbolic/info-button-symbolic.svg</file>
+    <file alias="sync-line-symbolic.svg">icons/icons/symbolic/sync-line-symbolic.svg</file>
+    <file alias="replay-line-symbolic.svg">icons/icons/symbolic/replay-line-symbolic.svg</file>
+    <file alias="100ms-back-symbolic.svg">icons/icons/symbolic/100ms-back-symbolic.svg</file>
+    <file alias="100ms-forw-symbolic.svg">icons/icons/symbolic/100ms-forw-symbolic.svg</file>
+    <file alias="import-from-symbolic.svg">icons/icons/symbolic/import-from-symbolic.svg</file>
+    <file alias="export-to-symbolic.svg">icons/icons/symbolic/export-to-symbolic.svg</file>
+    <file alias="line-actions-symbolic.svg">icons/icons/symbolic/line-actions-symbolic.svg</file>
+    <file alias="add-line-symbolic.svg">icons/icons/symbolic/add-line-symbolic.svg</file>
+    <file alias="lrclib-track-symbolic.svg">icons/icons/symbolic/lrclib-track-symbolic.svg</file>
+    <file alias="nothing-found-symbolic.svg">icons/icons/symbolic/nothing-found-symbolic.svg</file>
+    <file alias="home-symbolic.svg">icons/icons/symbolic/home-symbolic.svg</file>
+    <file alias="app-menu-symbolic.svg">icons/icons/symbolic/app-menu-symbolic.svg</file>
+    <file alias="cache-symbolic.svg">icons/icons/symbolic/cache-symbolic.svg</file>
+    <file alias="pin-dir-symbolic.svg">icons/icons/symbolic/pin-dir-symbolic.svg</file>
+    <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
+  </gresource>
+</gresources>

@@ -19,7 +19,6 @@
 
 
 from .common import *
-from .contexts import ValueTypeCtx
 from .gobject_object import ObjectContent, validate_parent_type
 from .values import StringValue
 

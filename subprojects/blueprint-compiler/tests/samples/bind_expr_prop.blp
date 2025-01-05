@@ -1,0 +1,9 @@
+using Gtk 4.0;
+
+BoolFilter filter1 {
+  expression: expr true;
+}
+
+BoolFilter filter2 {
+  expression: bind filter1.expression;
+}

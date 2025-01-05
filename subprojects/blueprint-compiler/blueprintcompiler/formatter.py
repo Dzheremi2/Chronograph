@@ -20,7 +20,8 @@
 import re
 from enum import Enum
 
-from . import tokenizer, utils
+from . import tokenizer
+from .errors import CompilerBugError
 from .tokenizer import TokenType
 
 OPENING_TOKENS = ("{", "[")
@@ -145,8 +146,10 @@ def format(data, tab_size=2, insert_space=True):
                 is_child_type = False
 
             elif str_item in CLOSING_TOKENS:
-                if str_item == "]" and last_not_whitespace != ",":
+                if str_item == "]" and str(last_not_whitespace) != "[":
                     current_line = current_line[:-1]
+                    if str(last_not_whitespace) != ",":
+                        current_line += ","
                     commit_current_line()
                     current_line = "]"
                 elif str(last_not_whitespace) in OPENING_TOKENS:
@@ -190,10 +193,13 @@ def format(data, tab_size=2, insert_space=True):
                 elif prev_line_type in require_extra_newline:
                     newlines = 2
 
+                current_line = "\n".join(
+                    [line.rstrip() for line in current_line.split("\n")]
+                )
                 commit_current_line(LineType.COMMENT, newlines_before=newlines)
 
-            else:
-                commit_current_line()
+            else:  # pragma: no cover
+                raise CompilerBugError()
 
         elif str_item == "(" and (
             re.match(r"^([A-Za-z_\-])+\s*\(", current_line) or watch_parentheses

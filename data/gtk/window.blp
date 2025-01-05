@@ -1,366 +1,330 @@
 using Gtk 4.0;
 using Adw 1;
 
+Adw.StatusPage no_source_opened {
+  title: _("No source selected yet");
+  description: _("Select a directory or open a file");
+  icon-name: "open-source-symbolic";
+
+  Box {
+    halign: center;
+    hexpand: true;
+
+    MenuButton status_open_source_button {
+      label: _("Open source");
+      menu-model: open_source_menu;
+
+      styles [
+        "pill",
+        "suggested-action"
+      ]
+    }
+  }
+}
+
+Adw.StatusPage search_lrclib_status_page {
+  title: _("Search on LRClib by title and artist names");
+  icon-name: "search-symbolic";
+}
+
+Adw.StatusPage search_lrclib_collapsed_status_page {
+  title: _("Search on LRClib by title and artist names");
+  icon-name: "search-symbolic";
+}
+
+Adw.StatusPage lrclib_window_nothing_found_status {
+  icon-name: "nothing-found-symbolic";
+  title: _("Nothing was found for this request");
+  description: _("Try out another request, maybe there are mistakes in request text.");
+}
+
+Adw.StatusPage lrclib_window_collapsed_nothing_found_status {
+  icon-name: "nothing-found-symbolic";
+  title: _("Nothing was found for this request");
+  description: _("Try out another request, maybe there are mistakes in request text.");
+}
+
+Adw.StatusPage no_saves_found_status {
+  title: _("No saves found yet");
+  icon-name: "nothing-found-symbolic";
+  description: _("Press pin button to add current directory to the saves");
+
+  styles ["compact"]
+}
+
 Adw.Dialog quick_edit_dialog {
-  width-request: 500;
-  height-request: 600;
   can-close: true;
 
-  Adw.ToolbarView {
-    margin-bottom: 12;
-    margin-end: 12;
-    margin-start: 12;
-    margin-top: 12;
+  Adw.Clamp {
+    orientation: horizontal;
+    maximum-size: 500;
+    tightening-threshold: 500;
 
-    [top]
-    Adw.HeaderBar {
-      Label {
-        label: _("Quick edit");
+    Adw.Clamp {
+      orientation: vertical;
+      maximum-size: 600;
+      tightening-threshold: 600;
 
-        styles [
-          'title-3'
-        ]
-      }
-    }
+      Adw.ToastOverlay quck_editor_toast_overlay {
+        Adw.ToolbarView {
+          margin-bottom: 12;
+          margin-end: 12;
+          margin-start: 12;
+          margin-top: 12;
 
-    ScrolledWindow {
-      TextView quick_edit_dialog_input {
-        right-margin: 4;
-        bottom-margin: 4;
-        top-margin: 4;
-        left-margin: 4;
-      }
-    }
+          [top]
+          Adw.HeaderBar {
+            Label {
+              label: _("Quick Edit");
 
-    [bottom]
-    Box {
-      orientation: horizontal;
-      margin-top: 4;
-      halign: end;
+              styles ["title-3"]
+            }
+          }
 
-      Button quick_edit_dialog_copy_button {
-        label: _("Copy to clipboard");
+          ScrolledWindow {
+            Frame {
+              TextView quick_edit_text_view {
+                right-margin: 4;
+                bottom-margin: 4;
+                top-margin: 4;
+                left-margin: 4;
+              }
+            }
+          }
 
-        styles [
-          "suggested-action",
-        ]
+          [bottom]
+          Box {
+            orientation: horizontal;
+            margin-top: 4;
+            halign: end;
+
+            Button quick_edit_copy_button {
+              label: _("Copy to clipboard");
+
+              styles ["suggested-action"]
+            }
+          }
+        }
       }
     }
   }
 }
 
-template $LrcmakeWindow: Adw.ApplicationWindow {
-  default-height: 735;
-  default-width: 910;
-  title: "LRCMake";
+Adw.Dialog lrclib_window {
+  Adw.ToastOverlay lrclib_window_toast_overlay {
+    Adw.Clamp {
+      orientation: horizontal;
+      tightening-threshold: 800;
+      maximum-size: 800;
 
-  content: Box {
-    orientation: vertical;
+      Adw.Clamp lrclib_window_main_clamp {
+        orientation: vertical;
+        tightening-threshold: 600;
+        maximum-size: 600;
 
-    Adw.ToolbarView {
-      [top]
-      Adw.HeaderBar headerbar {
-        [start]
-        MenuButton source_selection_button {
-          tooltip-text: _("Select directory or file to open");
-          icon-name: "dir-open-symbolic";
-          menu-model: open_select;
-        }
-        Revealer search_button_revealer {
-          transition-type: none;
-          valign: start;
-          halign: start;
-          
-          ToggleButton search_button {
-            tooltip-text: _("Enable search");
-            icon-name: "search-button-symbolic";
-            action-name: "app.toggle_search";
-          }
-        }
+        Adw.NavigationView lrclib_window_navigation_view {
+          Adw.NavigationPage lrclib_window_default_page {
+            Adw.ToolbarView {
+              [top]
+              Adw.HeaderBar {
+                show-title: false;
+              }
 
-        [end]
-        MenuButton {
-          tooltip-text: _("App settings, info and utils");
-          icon-name: "app-menu-symbolic";
-          menu-model: about_app;
-        }
+              Box {
+                margin-start: 8;
+                margin-end: 8;
+                margin-bottom: 8;
+                orientation: horizontal;
+                homogeneous: true;
+                margin-top: 4;
+                spacing: 2;
 
-        [end]
-        Revealer sort_revealer {
-          transition-type: none;
-          valign: start;
-          halign: start;
+                Box {
+                  orientation: vertical;
+                  spacing: 12;
+                  
+                    Box {
+                      margin-start: 8;
+                      margin-top: 8;
+                      margin-end: 8;
+                      spacing: 4;
+                      orientation: vertical;
+                      
+                      Entry lrclib_window_title_entry {
+                        placeholder-text: _("Title");
+                      }
 
-          MenuButton sorting_menu {
-            tooltip-text: _("Sorting method");
-            icon-name: "sorting-symbolic";
-            menu-model: sorting;
-          }
-        }
-      }
-      [top]
-      SearchBar search_bar {
-        search-mode-enabled: bind search_button.active bidirectional;
-        key-capture-widget: nav_view;
+                      Entry lrclib_window_artist_entry {
+                        placeholder-text: _("Artist");
+                      }
 
-        Adw.Clamp {
-          maximum-size: 450;
-          tightening-threshold: 450;
+                      Box {
+                        orientation: horizontal;
+                        margin-top: 4;
 
-          SearchEntry search_entry {
-            placeholder-text: _("Title");
-            hexpand: true;
+                        Button lrclib_window_start_search_button {
+                          tooltip-text: _("Search LRClib for provided title and artist");
+                          action-name: "win.search_lrclib";
 
-            ShortcutController {
-              Shortcut {
-                trigger: "Escape";
-                action: "action(app.toggle_search)";
+                          Adw.ButtonContent {
+                            icon-name: "search-symbolic";
+                            label: _("Search");
+                          }
+
+                          styles [
+                            'suggested-action'
+                          ]
+                        }
+                      }
+                    }
+                  
+                  Separator {}
+                  
+                  ScrolledWindow lrclib_window_results_list_window {
+                    vexpand: true;
+                    ListBox lrclib_window_results_list {
+                    
+                      styles [
+                        'navigation-sidebar'
+                      ]
+                    }
+                  }
+                
+                  styles [
+                    'card',
+                  ]
+                }
+
+                Box {
+                  orientation: vertical;
+
+                  StackSwitcher lrclib_window_stack_switcher {
+                    margin-top: 8;
+                    halign: center;
+                    stack: lrclib_window_lyrics;
+                  }
+                  
+                  Stack lrclib_window_lyrics {
+                    transition-type: crossfade;
+                    
+                    Gtk.StackPage {
+                      name: "synced";
+                      title: _("Synced");
+                      
+                      child: Box {
+                        margin-top: 8;
+                        margin-bottom: 8;
+                        margin-start: 8;
+                        margin-end: 8;
+                        
+                        ScrolledWindow {
+                          Frame {
+                            TextView lrclib_window_synced_lyrics_text_view {
+                              editable: false;
+                              left-margin: 4;
+                              top-margin: 4;
+                              hexpand: true;
+                              vexpand: true;
+                              wrap-mode: word_char;
+                            }
+                          }
+                        }
+                      };
+                    }
+                    
+                    Gtk.StackPage {
+                      name: 'plain';
+                      title: _("Plain");
+                      
+                      child: Box {
+                        margin-top: 8;
+                        margin-bottom: 8;
+                        margin-start: 8;
+                        margin-end: 8;
+                        
+                        ScrolledWindow {
+                          Frame {
+                            TextView lrclib_window_plain_lyrics_text_view {
+                              left-margin: 4;
+                              top-margin: 4;
+                              hexpand: true;
+                              vexpand: true;
+                              wrap-mode: word_char;
+                            }
+                          }
+                        }
+                      };
+                    }
+                  }
+                  
+                  Box {
+                    margin-bottom: 8;
+                    margin-end: 8;
+                    halign: end;
+
+                    Adw.SplitButton {
+                      tooltip-text: _("Synced lyrics are used by default, to use plain, select 'Use plain' from submenu");
+                      menu-model: use_lyrics_menu;
+                      action-name: "win.import_lyrics_lrclib_synced";
+
+                      Adw.ButtonContent {
+                        icon-name: 'import-from-symbolic';
+                        label: _("Use");
+                      }
+                      
+                      styles ["suggested-action"]
+                    }
+                  }
+
+                  styles ["card"]
+                }
               }
             }
           }
         }
       }
     }
+  }
+} 
 
-    Adw.NavigationView nav_view {
-      Adw.NavigationPage library {
-        ScrolledWindow {
-          FlowBox music_lib {
-            orientation: horizontal;
-            max-children-per-line: 100;
-            homogeneous: true;
-            halign: center;
-            valign: start;
-            column-spacing: 12;
-            row-spacing: 12;
-            margin-top: 12;
-            margin-start: 12;
-            margin-end: 12;
-            margin-bottom: 12;
-            hexpand: true;
-            vexpand: true;
-          }
-        }
-      }
-    }
-  };
-}
-
-Adw.NavigationPage syncing {
-  title: _("Sync");
-
-  Adw.ToastOverlay toast_overlay {
+Adw.NavigationView lrclib_window_collapsed_navigation_view {
+  Adw.NavigationPage lrclib_window_collapsed_default_page {
     Adw.ToolbarView {
       [top]
-      Adw.HeaderBar {
-        show-end-title-buttons: false;
-      }
+      Adw.HeaderBar {}
 
       Box {
         orientation: vertical;
         spacing: 12;
+        
+          Box {
+            margin-start: 8;
+            margin-top: 8;
+            margin-end: 8;
+            spacing: 4;
+            orientation: vertical;
+            
+            Entry lrclib_window_collapsed_title_entry {
+              placeholder-text: _("Title");
+              buffer: bind lrclib_window_title_entry.buffer bidirectional;
+            }
 
-        Adw.Clamp {
-          orientation: vertical;
-          maximum-size: 100;
-
-          Box player_block {
-            orientation: horizontal;
-            halign: center;
-            valign: start;
-            spacing: 8;
-            width-request: 300;
-            height-request: 100;
-            vexpand: false;
-            margin-top: 12;
-
-            styles [
-              "card",
-            ]
-
-            Adw.Clamp {
-              maximum-size: 100;
-
-              Image sync_page_cover {
-                name: "sync_page_cover";
-                icon-name: "note-placeholder";
-                pixel-size: 100;
-                overflow: hidden;
-              }
+            Entry lrclib_window_colapsed_artist_entry {
+              placeholder-text: _("Artist");
+              buffer: bind lrclib_window_artist_entry.buffer bidirectional;
             }
 
             Box {
-              orientation: vertical;
-              vexpand: true;
-              spacing: 2;
-              margin-top: 8;
-
-              Inscription sync_page_title {
-                text: "Unknown";
-                text-overflow: ellipsize_end;
-
-                styles [
-                  'heading',
-                ]
-              }
-
-              Inscription sync_page_artist {
-                text: "Unknown";
-                text-overflow: ellipsize_end;
-
-                styles [
-                  'heading',
-                ]
-              }
-
-              Box {
-                margin-top: 4;
-                margin-end: 8;
-                spacing: 4;
-
-                Adw.Clamp {
-                  maximum-size: 400;
-                  width-request: 400;
-
-                  MediaControls controls {
-                    hexpand: true;
-                  }
-                }
-                ToggleButton toggle_repeat {
-                  tooltip-text: _("Toggle song repeat");
-                  active: false;
-                  icon-name: "toggle-repeat-symbolic";
-                  halign: center;
-                }
-              }
-            }
-          }
-        }
-
-
-        Box {
-          orientation: horizontal;
-          hexpand: true;
-          valign: center;
-          spacing: 6;
-          halign: center;
-          margin-bottom: 4;
-
-          Button sync_line_button {
-            tooltip-text: _("Sync/Re-sync line");
-            icon-name: "sync-line-symbolic";
-
-            styles [
-              'circular',
-              'suggested-action',
-            ]
-          }
-          Button replay_line_button {
-            tooltip-text: _("Replay selected line");
-            icon-name: "replay-line-symbolic";
-
-            styles [
-              'circular',
-            ]
-          }
-
-          Button rew100_button {
-            tooltip-text: _("Re-sync selected line 100ms back");
-            icon-name: "seek100-rew-symbolic";
-
-            styles [
-              'circular',
-            ]
-          }
-          Button forw100_button{
-            tooltip-text: _("Re-sync selected line 100ms forward");
-            icon-name: "seek100-forw-symbolic";
-
-            styles [
-              'circular',
-            ]
-          }
-          MenuButton import_lyrics {
-            tooltip-text: _("Import from...");
-            icon-name: "import-from-symbolic";
-            menu-model: import_from;
-
-            styles [
-              'osd',
-              'circular',
-            ]
-          }
-
-          MenuButton export_lyrics {
-            tooltip-text: _("Export to...");
-            icon-name: "export-to-symbolic";
-            menu-model: export_to;
-
-            styles [
-              'osd',
-              'circular',
-            ]
-          }
-
-          Box {
-            orientation: horizontal;
-            width-request: 235;
-
-            styles [
-              'spacer'
-            ]
-          }
-
-          MenuButton line_actions_button {
-            tooltip-text: _("Actions with selected line");
-            icon-name: "line-actions-symbolic";
-            menu-model: line_actions;
-
-            styles [
-              'osd',
-              'circular',
-            ]
-          }
-
-          Button playing_info_button {
-            tooltip-text: _("Info about file");
-            icon-name: "info-playing-symbolic";
-
-            styles [
-              'circular',
-            ]
-          }
-        }
-        ScrolledWindow {
-          Box {
-            orientation: vertical;
-            halign: center;
-            valign: start;
-            vexpand: true;
-            spacing: 8;
-
-            Adw.Clamp {
-              maximum-size: 800;
               orientation: horizontal;
+              margin-top: 4;
 
-              ListBox lyrics_lines_box {
-                width-request: 550;
-                selection-mode: none;
+              Button lrclib_window_collapsed_start_search_button {
+                tooltip-text: _("Search LRClib for provided title and artist");
+                action-name: "win.search_lrclib";
 
-                styles [
-                  'boxed-list'
-                ]
-              }
-            }
-            Adw.Clamp {
-              orientation: horizontal;
-              maximum-size: 120;
-              halign: end;
-
-              Button add_line_button {
                 Adw.ButtonContent {
-                  label: _("Add Line");
-                  icon-name: "add-line-symbolic";
+                  icon-name: "search-symbolic";
+                  label: _("Search");
                 }
 
                 styles [
@@ -369,113 +333,629 @@ Adw.NavigationPage syncing {
               }
             }
           }
+        
+        Separator {}
+        
+        ScrolledWindow lrclib_window_collapsed_results_list_window {
+          vexpand: true;
+          ListBox lrclib_window_collapsed_results_list {
+            styles [
+              'navigation-sidebar'
+            ]
+          }
+        }
+      
+        styles [
+          'card',
+        ]
+      }
+    }
+  }
+
+  Adw.NavigationPage lrclib_window_collapsed_lyrics_page {
+    Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar {}
+
+      Box {
+        orientation: vertical;
+
+        StackSwitcher {
+          margin-top: 8;
+          halign: center;
+          stack: lrclib_window_collapsed_lyrics;
+        }
+
+        Stack lrclib_window_collapsed_lyrics {
+          transition-type: crossfade;
+          
+          Gtk.StackPage {
+            name: "synced";
+            title: _("Synced");
+            
+            child: Box {
+              margin-top: 8;
+              margin-bottom: 8;
+              margin-start: 8;
+              margin-end: 8;
+              
+              ScrolledWindow {
+                Frame {
+                  TextView {
+                    editable: false;
+                    left-margin: 4;
+                    top-margin: 4;
+                    hexpand: true;
+                    vexpand: true;
+                    buffer: bind lrclib_window_synced_lyrics_text_view.buffer;
+                    wrap-mode: word_char;
+                  }
+                }
+              }
+            };
+          }
+          
+          Gtk.StackPage {
+            name: 'plain';
+            title: _("Plain");
+            
+            child: Box {
+              margin-top: 8;
+              margin-bottom: 8;
+              margin-start: 8;
+              margin-end: 8;
+              
+              ScrolledWindow {
+                Frame {
+                  TextView {
+                    left-margin: 4;
+                    top-margin: 4;
+                    hexpand: true;
+                    vexpand: true;
+                    buffer: bind lrclib_window_plain_lyrics_text_view.buffer;
+                    wrap-mode: word_char;
+                  }
+                }
+              }
+            };
+          }
+        }
+        
+        Box {
+          margin-bottom: 8;
+          margin-end: 8;
+          halign: end;
+
+          Adw.SplitButton {
+            tooltip-text: _("Synced lyrics are used by default, to use plain, select 'Use plain' from submenu");
+            menu-model: use_lyrics_menu;
+            action-name: "win.import_lyrics_lrclib_synced";
+
+            Adw.ButtonContent {
+              icon-name: 'import-from-symbolic';
+              label: _("Use");
+            }
+            
+            styles ["suggested-action"]
+          }
+        }
+
+        styles ["card"]
+      }
+    }
+  }
+}
+
+template $ChronographWindow : Adw.ApplicationWindow {
+  title: _("Chronograph");
+  width-request: 360;
+  height-request: 100;
+
+  Adw.Breakpoint {
+    condition ("max-width: 564px")
+
+    setters {
+      overlay_split_view.collapsed: true;
+      controls_box_shrinked.visible: true;
+      syncing_buttons_box.halign: center;
+      lrclib_window_main_clamp.child: lrclib_window_collapsed_navigation_view;
+      header_bar.show-title: false;
+    }
+  }
+
+  Adw.ToastOverlay toast_overlay {
+    Adw.NavigationView navigation_view {
+      Adw.NavigationPage library_nav_page {
+        title: _("Chronograph");
+
+        Adw.OverlaySplitView overlay_split_view {
+          sidebar-width-fraction: .2;
+
+          [sidebar]
+          Adw.NavigationPage sidebar_nav_page {
+            title: _("Saves");
+
+            Adw.ToolbarView {
+              [top]
+              Adw.HeaderBar {
+                [start]
+                Button {
+                  icon-name: "toggle-sidebar-symbolic";
+                  tooltip-text: _("Toggle sidebar");
+                  action-name: "win.toggle_sidebar";
+                }
+              }
+
+              ScrolledWindow sidebar_window {
+                ListBox sidebar {
+                  styles ["navigation-sidebar"]
+                }
+              }
+            }
+          }
+
+          Adw.ToolbarView library_view {
+            [top]
+            Adw.HeaderBar header_bar {
+              [start]
+              Button show_sidebar_button {
+                icon-name: "toggle-sidebar-symbolic";
+                tooltip-text: _("Toggle sidebar");
+                action-name: "win.toggle_sidebar";
+                visible: bind overlay_split_view.show-sidebar inverted;
+              }
+
+              MenuButton open_source_button {
+                icon-name: "open-source-symbolic";
+                tooltip-text: _("Select a directory or open a file");
+                menu-model: open_source_menu;
+              }
+
+              [start]
+              Revealer left_buttons_revealer {
+                transition-type: none;
+                valign: start;
+                halign: start;
+
+                ToggleButton toggle_search_button {
+                  icon-name: "search-symbolic";
+                  tooltip-text: _("Toggle search");
+                  action-name: "win.toggle_search";
+                }
+              }
+
+              [end]
+              MenuButton {
+                icon-name: "app-menu-symbolic";
+                tooltip-text: _("App settings, info and utils");
+                menu-model: about_app;
+              }
+
+              [end]
+              Revealer right_buttons_revealer {
+                transition-type: none;
+                valign: start;
+                halign: start;
+
+                Box {
+                  orientation: horizontal;
+
+                  MenuButton sorting_button {
+                    icon-name: "sort-alphabetically-symbolic";
+                    tooltip-text: _("Sorting method");
+                    menu-model: sorting_menu;
+                  }
+
+                  Button add_dir_to_saves_button {
+                    icon-name: "pin-dir-symbolic";
+                    tooltip-text: _("Add current directory to saves");
+                  }
+                }
+              }
+            }
+
+            [top]
+            SearchBar search_bar {
+              search-mode-enabled: bind toggle_search_button.active bidirectional;
+              key-capture-widget: navigation_view;
+
+              Adw.Clamp {
+                maximum-size: 500;
+                tightening-threshold: 500;
+
+                SearchEntry search_entry {
+                  placeholder-text: _("Search");
+                  hexpand: true;
+
+                  ShortcutController {
+                    Shortcut {
+                      trigger: "Escape";
+                      action: "action(win.toggle_search)";
+                    }
+                  }
+                }
+              }
+            }
+
+            Overlay library_overlay {
+              ScrolledWindow library_scrolled_window {
+                FlowBox library {
+                  homogeneous: true;
+                  halign: center;
+                  max-children-per-line: 100;
+                  valign: start;
+                  column-spacing: 12;
+                  row-spacing: 12;
+                  margin-top: 12;
+                  margin-bottom: 12;
+                  margin-end: 12;
+                  margin-start: 12;
+                  selection-mode: none;
+                }
+              }
+            }
+          }
         }
       }
     }
   }
 }
 
-menu open_select {
-  section {
-    item {
-      label: _("Open Folder");
-      action: "app.select_dir";
+Adw.NavigationPage sync_navigation_page {
+  title: _("Syncing");
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      decoration-layout: ":close";
+
+      [end]
+      MenuButton {
+        icon-name: "app-menu-symbolic";
+        tooltip-text: _("App settings, info and utils");
+        menu-model: about_app;
+      }
     }
 
-    item {
-      label: _("Open File");
-      action: "app.select_file";
+    [top]
+    Adw.Clamp {
+      maximum-size: 600;
+      orientation: horizontal;
+
+      Box {
+        orientation: horizontal;
+        spacing: 8;
+        margin-top: 12;
+        margin-start: 4;
+        margin-end: 4;
+
+        styles ["card"]
+
+        Image sync_page_cover {
+          icon-name: "note-placeholder";
+          pixel-size: 100;
+          overflow: hidden;
+
+          styles ["rounded"]
+        }
+
+        Box {
+          orientation: vertical;
+          vexpand: true;
+          spacing: 2;
+          margin-top: 8;
+          margin-end: 4;
+
+          Inscription sync_page_title {
+            text: "Unknown";
+            text-overflow: ellipsize_end;
+            hexpand: true;
+
+            styles ["heading"]
+          }
+
+          Inscription sync_page_artist {
+            text: "Unknown";
+            text-overflow: ellipsize_end;
+            hexpand: true;
+
+            styles ["heading"]
+          }
+
+          Box {
+            visible: bind controls_box_shrinked.visible bidirectional;
+            orientation: horizontal;
+            margin-top: 4;
+            spacing: 6;
+
+            ToggleButton toggle_repeat_button_shrinked {
+              tooltip-text: bind toggle_repeat_button.tooltip-text bidirectional;
+              icon-name: bind toggle_repeat_button.icon-name bidirectional;
+              active: bind toggle_repeat_button.active bidirectional;
+            }
+
+            Button info_button_shrinked {
+              tooltip-text: bind info_button.tooltip-text bidirectional;
+              icon-name: bind info_button.icon-name bidirectional;
+              action-name: "win.show_file_info";
+            }
+          }
+
+          Box controls_box {
+            margin-top: 4;
+            margin-end: 8;
+            spacing: 4;
+            visible: bind controls_box_shrinked.visible inverted;
+
+            MediaControls controls {
+              hexpand: true;
+              visible: true;
+            }
+
+            ToggleButton toggle_repeat_button {
+              tooltip-text: _("Toggle song repeat");
+              icon-name: "toggle-repeat-symbolic";
+              active: false;
+              halign: center;
+            }
+          }
+        }
+      }
+    }
+
+    [top]
+    Adw.Clamp {
+      orientation: vertical;
+      maximum-size: 30;
+      margin-top: 4;
+
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 600;
+
+        Box controls_box_shrinked {
+          orientation: horizontal;
+          visible: false;
+          margin-start: 4;
+          margin-end: 4;
+
+          Box {
+            margin-end: 8;
+            margin-start: 8;
+            spacing: 4;
+            valign: center;
+
+            MediaControls controls_shrinked {
+              hexpand: true;
+            }
+          }
+
+          styles ["card"]
+        }
+      }
+    }
+
+    [top]
+    Adw.Clamp {
+      margin-top: 4;
+      orientation: horizontal;
+      maximum-size: 600;
+
+      Box syncing_buttons_box {
+        orientation: horizontal;
+        valign: center;
+        spacing: 4;
+        margin-bottom: 4;
+
+        Button sync_line_button {
+          tooltip-text: _("Sync/Re-sync line");
+          icon-name: "sync-line-symbolic";
+          action-name: "win.sync_line";
+
+          styles [
+            "suggested-action",
+            "circular"
+          ]
+        }
+
+        Button replay_line_button {
+          tooltip-text: _("Replay selected line");
+          icon-name: "replay-line-symbolic";
+          action-name: "win.replay_line";
+
+          styles ["circular"]
+        }
+
+        Button rew100_button {
+          tooltip-text: _("Re-sync selected line 100ms back");
+          icon-name: "100ms-back-symbolic";
+          action-name: "win.100ms_rew";
+
+          styles ["circular"]
+        }
+
+        Button forw100_button {
+          tooltip-text: _("Re-sync selected line 100ms forward");
+          icon-name: "100ms-forw-symbolic";
+          action-name: "win.100ms_forw";
+
+          styles ["circular"]
+        }
+
+        MenuButton import_lyrics_button {
+          tooltip-text: _("Import from …");
+          icon-name: "import-from-symbolic";
+          menu-model: import_from;
+
+          styles [
+            "osd",
+            "circular"
+          ]
+        }
+
+        MenuButton export_lyrics_button {
+          tooltip-text: _("Export to …");
+          icon-name: "export-to-symbolic";
+          menu-model: export_to;
+
+          styles [
+            "osd",
+            "circular"
+          ]
+        }
+
+        Separator {
+          hexpand: true;
+          visible: bind controls_box_shrinked.visible inverted;
+
+          styles ["spacer"]
+        }
+
+        MenuButton line_actions_button {
+          tooltip-text: _("Actions with selected line");
+          icon-name: "line-actions-symbolic";
+          menu-model: line_actions;
+
+          styles [
+            "osd",
+            "circular"
+          ]
+        }
+
+        Button info_button {
+          tooltip-text: _("About file");
+          icon-name: "info-button-symbolic";
+          visible: bind controls_box_shrinked.visible inverted;
+          action-name: "win.show_file_info";
+
+          styles ["circular"]
+        }
+      }
+    }
+
+    ScrolledWindow {
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 600;
+
+        Box {
+          orientation: vertical;
+          spacing: 8;
+          hexpand: true;
+          margin-start: 4;
+          margin-end: 4;
+
+          ListBox sync_lines {
+            selection-mode: none;
+
+            styles ["boxed-list"]
+          }
+
+          Box add_line_button_box {
+            halign: end;
+
+            Button add_line_button {
+              action-name: "win.append_line";
+              Adw.ButtonContent {
+                label: _("Add line");
+                icon-name: "add-line-symbolic";
+              }
+
+              styles ["suggested-action"]
+            }
+          }
+        }
+      }
     }
   }
 }
 
-menu import_from {
-  section {
-    label: _("Import from...");
+ShortcutsWindow help_overlay {
+  modal: true;
 
-    item {
-      label: _("File");
-      action: "app.read_from_file";
+  ShortcutsSection {
+    section-name: _("shortcuts");
+    max-height: 10;
+
+    ShortcutsGroup {
+      title: _("General");
+
+      ShortcutsShortcut {
+        title: _("Toggle sidebar");
+        action-name: "win.toggle_sidebar";
+      }
+
+      ShortcutsShortcut {
+        title: _("Toggle search");
+        action-name: "win.toggle_search";
+      }
+
+      ShortcutsShortcut {
+        title: _("Select directory");
+        action-name: "win.select_dir";
+      }
+
+      ShortcutsShortcut {
+        title: _("Quit");
+        action-name: "app.quit";
+      }
     }
-    item {
-      label: _("Clipboard");
-      action: "app.read_from_clipboard";
-    }
-    item {
-      label: "LRCLib";
-      action: "app.open_lrclib_search";
+
+    ShortcutsGroup {
+      title: _("Sync mode");
+
+      ShortcutsShortcut {
+        title: _("Sync/Re-sync");
+        action-name: "win.sync_line";
+      }
+
+      ShortcutsShortcut {
+        title: _("Replay selected line");
+        action-name: "win.replay_line";
+      }
+
+      ShortcutsShortcut {
+        title: _("Remove selected line");
+        action-name: "win.remove_selected_line";
+      }
+
+      ShortcutsShortcut {
+        title: _("Prepend line to selected");
+        action-name: "win.prepend_selected_line";
+      }
+
+      ShortcutsShortcut {
+        title: _("Append line to selected");
+        action-name: "win.append_selected_line";
+      }
+
+      ShortcutsShortcut {
+        title: _("Append line to end");
+        action-name: "win.append_line";
+      }
+
+      ShortcutsShortcut {
+        title: _("Re-sync 100ms back");
+        action-name: "win.100ms_rew";
+      }
+
+      ShortcutsShortcut {
+        title: _("Re-sync 100ms forward");
+        action-name: "win.100ms_forw";
+      }
     }
   }
 }
 
-menu export_to {
-  section {
-    label: _("Export to...");
 
-    item {
-      label: "LRClib";
-      action: "app.export_to_lrclib";
-    }
-    item {
-      label: _("Clipboard");
-      action: "app.export_to_clipboard";
-    }
-    item {
-      label: _("File");
-      action: "app.export_to_file";
-    }
+menu open_source_menu {
+  section {
+    item (_("Directory"), "win.select_dir")
+    item (_("File"))
   }
 }
 
-menu line_actions {
-  section {
-    label: _("Line actions");
-
-    item {
-      label: _("Remove line");
-      action: "app.remove_selected_line";
-    }
-    item {
-      label: _("Prepend line");
-      action: "app.add_line_over_selected";
-    }
-    item {
-      label: _("Append line");
-      action: "app.add_line_below_selected";
-    }
-    item {
-      label: _("Append line to end");
-      action: "app.append_line_end";
-    }
-  }
-}
-
-menu about_app {
-  section {
-    item {
-      label: _("Quick edit");
-      action: "app.open_quick_edit";
-    }
-  }
-  section {
-    item {
-      label: _("Preferences");
-      action: "app.show_preferences";
-    }
-
-    item {
-      label: _("Keybindings");
-      action: "win.show-help-overlay";
-    }
-
-    item {
-      label: _("About");
-      action: "app.about_app";
-    }
-  }
-}
-
-menu sorting {
+menu sorting_menu {
   section {
     item {
       label: _("A-Z");
@@ -488,5 +968,55 @@ menu sorting {
       action: "app.sort_type";
       target: "z-a";
     }
+  }
+}
+
+menu import_from {
+  section {
+    label: _("Import from …");
+
+    item (_("File"), "win.import_from_file")
+    item (_("Clipboard"), "win.import_from_clipboard")
+    item (_("LRClib"), "win.import_from_lrclib")
+  }
+}
+
+menu export_to {
+  section {
+    label: _("Export to …");
+
+    item (_("File"), "win.export_to_file")
+    item (_("Clipboard"), "win.export_to_clipboard")
+    item (_("LRClib"), "win.export_to_lrclib")
+  }
+}
+
+menu line_actions {
+  section {
+    label: _("Actions with selected line");
+
+    item (_("Remove line"), "win.remove_selected_line")
+    item (_("Prepend line"), "win.prepend_selected_line")
+    item (_("Append line"), "win.append_selected_line")
+    item (_("Append line to end"), "win.append_line")
+  }
+}
+
+menu use_lyrics_menu {
+  section {
+    item (_("Use plain"), "win.import_lyrics_lrclib_plain")
+    item (_("Use synced"), "win.import_lyrics_lrclib_synced")
+  }
+}
+
+menu about_app {
+  section {
+    item (_("Quick Editor"), "win.open_quick_editor")
+  }
+
+  section {
+    item (_("Preferences"), "win.show_preferences")
+    item (_("Keybindings"), "win.show-help-overlay")
+    item (_("About"), "app.about")
   }
 }

@@ -134,6 +134,11 @@ class XmlOutput(OutputFormat):
                 self._emit_expression(value.expression, xml)
                 xml.end_tag()
 
+        elif isinstance(value, ExprValue):
+            xml.start_tag("property", **props)
+            self._emit_expression(value.expression, xml)
+            xml.end_tag()
+
         elif isinstance(value, ObjectValue):
             xml.start_tag("property", **props)
             self._emit_object(value.object, xml)
@@ -169,7 +174,7 @@ class XmlOutput(OutputFormat):
             "signal",
             name=name,
             handler=signal.handler,
-            swapped=signal.is_swapped or None,
+            swapped=signal.is_swapped,
             after=signal.is_after or None,
             object=(
                 self._object_id(signal, signal.object_id) if signal.object_id else None
@@ -218,12 +223,6 @@ class XmlOutput(OutputFormat):
             xml.put_text(
                 "|".join([str(flag.value or flag.name) for flag in value.child.flags])
             )
-        elif isinstance(value.child, Translated):
-            raise CompilerBugError("translated values must be handled in the parent")
-        elif isinstance(value.child, TypeLiteral):
-            xml.put_text(value.child.type_name.glib_type_name)
-        elif isinstance(value.child, ObjectValue):
-            self._emit_object(value.child.object, xml)
         else:
             raise CompilerBugError()
 
@@ -245,6 +244,9 @@ class XmlOutput(OutputFormat):
             raise CompilerBugError()
 
     def _emit_literal_expr(self, expr: LiteralExpr, xml: XmlEmitter):
+        if expr.is_this:
+            return
+
         if expr.is_object:
             xml.start_tag("constant")
         else:
@@ -366,12 +368,13 @@ class XmlOutput(OutputFormat):
 
         elif isinstance(extension, ExtScaleMarks):
             xml.start_tag("marks")
-            for mark in extension.children:
+            for mark in extension.marks:
+                label = mark.label.child if mark.label is not None else None
                 xml.start_tag(
                     "mark",
                     value=mark.value,
                     position=mark.position,
-                    **self._translated_string_attrs(mark.label and mark.label.child),
+                    **self._translated_string_attrs(label),
                 )
                 if mark.label is not None:
                     xml.put_text(mark.label.string)

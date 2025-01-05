@@ -95,18 +95,10 @@ class ParseGroup:
 
         try:
             return self.ast_type(self, children, self.keys, incomplete=self.incomplete)
-        except TypeError as e:
+        except TypeError:  # pragma: no cover
             raise CompilerBugError(
                 f"Failed to construct ast.{self.ast_type.__name__} from ParseGroup. See the previous stacktrace."
             )
-
-    def __str__(self):
-        result = str(self.ast_type.__name__)
-        result += "".join([f"\n{key}: {val}" for key, val in self.keys.items()]) + "\n"
-        result += "\n".join(
-            [str(child) for children in self.children.values() for child in children]
-        )
-        return result.replace("\n", "\n  ")
 
 
 class ParseContext:
@@ -265,10 +257,6 @@ class ParseNode:
         """Convenience method for err()."""
         return self.err("Expected " + expect)
 
-    def warn(self, message) -> "Warning":
-        """Causes this ParseNode to emit a warning if it parses successfully."""
-        return Warning(self, message)
-
 
 class Err(ParseNode):
     """ParseNode that emits a compile error if it fails to parse."""
@@ -288,27 +276,6 @@ class Err(ParseNode):
                 self.message, Range(start_token.start, start_token.start, ctx.text)
             )
         return True
-
-
-class Warning(ParseNode):
-    """ParseNode that emits a compile warning if it parses successfully."""
-
-    def __init__(self, child, message: str):
-        self.child = to_parse_node(child)
-        self.message = message
-
-    def _parse(self, ctx: ParseContext):
-        ctx.skip()
-        start_idx = ctx.index
-        if self.child.parse(ctx).succeeded():
-            start_token = ctx.tokens[start_idx]
-            end_token = ctx.tokens[ctx.index]
-            ctx.warnings.append(
-                CompileWarning(self.message, start_token.start, end_token.end)
-            )
-            return True
-        else:
-            return False
 
 
 class Fail(ParseNode):

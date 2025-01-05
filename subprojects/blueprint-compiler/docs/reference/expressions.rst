@@ -42,8 +42,8 @@ Expressions are composed of property lookups and/or closures. Property lookups a
 
 .. _Syntax LookupExpression:
 
-Lookup Expressions
-------------------
+Lookups
+-------
 
 .. rst-class:: grammar-block
 
@@ -56,8 +56,8 @@ The type of a property expression is the type of the property it refers to.
 
 .. _Syntax ClosureExpression:
 
-Closure Expressions
--------------------
+Closures
+--------
 
 .. rst-class:: grammar-block
 
@@ -72,8 +72,8 @@ Blueprint doesn't know the closure's return type, so closure expressions must be
 
 .. _Syntax CastExpression:
 
-Cast Expressions
-----------------
+Casts
+-----
 
 .. rst-class:: grammar-block
 
@@ -81,7 +81,32 @@ Cast Expressions
 
 Cast expressions allow Blueprint to know the type of an expression when it can't otherwise determine it. This is necessary for closures and for properties of application-defined types.
 
+Example
+~~~~~~~
+
 .. code-block:: blueprint
 
    // Cast the result of the closure so blueprint knows it's a string
-   label: bind $my_closure() as <string>
+   label: bind $format_bytes(template.file-size) as <string>
+
+.. _Syntax ExprValue:
+
+Expression Values
+-----------------
+
+.. rst-class:: grammar-block
+
+   ExprValue = 'expr' :ref:`Expression<Syntax Expression>`
+
+Some APIs take *an expression itself*--not its result--as a property value. For example, `Gtk.BoolFilter <https://docs.gtk.org/gtk4/class.BoolFilter.html>`_ has an ``expression`` property of type `Gtk.Expression <https://docs.gtk.org/gtk4/class.Expression.html>`_. This expression is evaluated for every item in a list model to determine whether the item should be filtered.
+
+To define an expression for such a property, use ``expr`` instead of ``bind``. Inside the expression, you can use the ``item`` keyword to refer to the item being evaluated. You must cast the item to the correct type using the ``as`` keyword, and you can only use ``item`` in a property lookup--you may not pass it to a closure.
+
+Example
+~~~~~~~
+
+.. code-block:: blueprint
+
+   BoolFilter {
+     expression: expr item as <$UserAccount>.active;
+   }

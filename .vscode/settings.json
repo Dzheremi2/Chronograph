@@ -1,0 +1,26 @@
+{
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true,
+        "**/.dart_tool": true,
+        ".flatpak/**": true,
+        "_build/**": true
+    },
+    "search.followSymlinks": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.rulers": [88],
+    },
+    "isort.args":["--profile", "black"],
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    },
+    "mesonbuild.configureOnOpen": false,
+    "mesonbuild.buildFolder": "_build",
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
+}

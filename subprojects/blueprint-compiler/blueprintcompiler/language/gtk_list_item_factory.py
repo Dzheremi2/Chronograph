@@ -50,7 +50,7 @@ class ExtListItemFactory(AstNode):
         else:
             return self.root.gir.get_type("ListItem", "Gtk")
 
-    @validate("template")
+    @validate("id")
     def container_is_builder_list(self):
         validate_parent_type(
             self,
@@ -59,7 +59,7 @@ class ExtListItemFactory(AstNode):
             "sub-templates",
         )
 
-    @validate("template")
+    @validate("id")
     def unique_in_parent(self):
         self.validate_unique_in_parent("Duplicate template block")
 
@@ -76,7 +76,7 @@ class ExtListItemFactory(AstNode):
                     f"Only Gtk.ListItem, Gtk.ListHeader, Gtk.ColumnViewRow, or Gtk.ColumnViewCell is allowed as a type here"
                 )
 
-    @validate("template")
+    @validate("id")
     def type_name_upgrade(self):
         if self.type_name is None:
             raise UpgradeWarning(
@@ -103,10 +103,7 @@ class ExtListItemFactory(AstNode):
 
     @property
     def action_widgets(self):
-        """
-        The sub-template shouldn't have it`s own actions this is
-        just hear to satisfy XmlOutput._emit_object_or_template
-        """
+        # The sub-template shouldn't have its own actions, this is just here to satisfy XmlOutput._emit_object_or_template
         return None
 
     @docs("id")

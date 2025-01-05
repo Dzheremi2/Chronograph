@@ -1,4 +1,4 @@
-name: Build Bundle
+name: Build Bundle rewrite
 on:
   push:
     branches: [full-rewrite]

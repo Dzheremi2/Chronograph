@@ -79,3 +79,9 @@ class ScopeCtx:
         for child in node.children:
             if child.context[ScopeCtx] is self:
                 yield from self._iter_recursive(child)
+
+
+@dataclass
+class ExprValueCtx:
+    """Indicates that the context is an expression literal, where the
+    "item" keyword may be used."""

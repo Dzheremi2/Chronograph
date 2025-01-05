@@ -28,7 +28,18 @@ from .common import *
 from .response_id import ExtResponse
 from .types import ClassName, ConcreteClassName
 
-RESERVED_IDS = {"this", "self", "template", "true", "false", "null", "none"}
+RESERVED_IDS = {
+    "this",
+    "self",
+    "template",
+    "true",
+    "false",
+    "null",
+    "none",
+    "item",
+    "expr",
+    "typeof",
+}
 
 
 class ObjectContent(AstNode):

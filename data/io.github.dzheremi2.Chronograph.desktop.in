@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Chronograph
+Exec=Chronograph
+Icon=io.github.dzheremi2.Chronograph
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=lyrics;internet;songs;multimedia;media;lrclib;music;syncing;
+StartupNotify=true
+DBusActivatable=true
