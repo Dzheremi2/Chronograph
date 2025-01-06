@@ -186,6 +186,8 @@ msgstr "Использовать"
 #: data/gtk/window.blp:450 data/gtk/window.blp:469
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:7
+#: data/io.github.dzheremi2.Chronograph.desktop.in:3
 msgid "Chronograph"
 msgstr "Хронограф"
 
@@ -449,36 +451,57 @@ msgid "Remove cover"
 msgstr "Удалить обложку"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:8
 msgid "Sync lyrics of your loved songs"
 msgstr "Синхронизируйте тексты своих любимых песен"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
 "and wav formats"
 msgstr ""
 "Это приложение помогает вам содействовать расширению большой базы данных "
-"синхронизированных текстов, с красивым интерфейсом на GTK4 и LibAdwaita."
+"синхронизированных текстов, с красивым интерфейсом на GTK4 и LibAdwaita. "
+"Поддерживаются музыкальные форматы ogg, flac, mp3 и wav"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
 msgid "Library"
 msgstr "Библиотека"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
 msgid "Lyrics syncing page"
 msgstr "Страница синхронизации"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
 msgid "LRClib import dialog"
-msgstr ""
+msgstr "Диалог импорта из LRClib"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:9
+#: data/io.github.dzheremi2.Chronograph.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;слова;интернет;"
 "песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;"
+
+#~ msgid "Quick Edit"
+#~ msgstr "Быстрое форматирование"
+
+#~ msgid "Dialog with opened file details view"
+#~ msgstr "Диалог с информацией об открытом файле"
+
+#~ msgid "Library view light"
+#~ msgstr "Библиотека (светлая тема)"
+
+#~ msgid "Lyrics syncing page view light"
+#~ msgstr "Страница синхронизации (светлая тема)"
+
+#~ msgid "Dialog with opened file details view light"
+#~ msgstr "Диалог с информацией об открытом файле (светлая тема)"
