@@ -8,22 +8,21 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-05 23:49+0300\n"
-"PO-Revision-Date: 2024-12-08 19:00+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-01-06 09:54+0000\n"
+"Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
-"lrcmake/uk/>\n"
+"chronograph/uk/>\n"
 "Language: ua\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: chronograph/window.py:505
-#, fuzzy
 msgid "Copied successfully"
-msgstr "Успішно опубліковано: "
+msgstr "Успішно опубліковано"
 
 #: chronograph/main.py:101
 msgid ""
@@ -60,11 +59,11 @@ msgstr "Інструментальна?"
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Ні"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
@@ -76,30 +75,27 @@ msgstr "Прості слова пісні не доступні"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Шлях: "
 
 #: chronograph/ui/SongCard.py:13
-#, fuzzy
 msgid "About File"
-msgstr "Про додаток"
+msgstr "Про Файл"
 
 #: chronograph/ui/SongCard.py:17
 msgid "Path"
-msgstr ""
+msgstr "Шлях"
 
 #: chronograph/utils/caching.py:52
-#, fuzzy
 msgid "Directory saved successfully"
-msgstr "Успішно опубліковано: "
+msgstr "Каталог успішно збережено"
 
 #: chronograph/utils/caching.py:58
 msgid "This directory is already in saves"
-msgstr ""
+msgstr "Цей каталог уже зберігається"
 
 #: chronograph/utils/parsers.py:181
-#, fuzzy
 msgid "Seems like not every line is synced"
-msgstr "Схоже, що не всі рядки синхронізовані!"
+msgstr "Схоже, що не всі рядки синхронізовані"
 
 #: chronograph/utils/publish.py:90
 msgid "Some of Title, Artist and/or Album fileds are Unknown!"
@@ -118,23 +114,20 @@ msgid "Unknown error occured: "
 msgstr "Сталася невідома помилка: "
 
 #: data/gtk/window.blp:5
-#, fuzzy
 msgid "No source selected yet"
-msgstr "Видалити обраний рядок"
+msgstr "Джерело ще не вибрано"
 
 #: data/gtk/window.blp:6 data/gtk/window.blp:510
 msgid "Select a directory or open a file"
 msgstr "Обрати теки або відкрити файл"
 
 #: data/gtk/window.blp:14
-#, fuzzy
 msgid "Open source"
-msgstr "Відкрити теку"
+msgstr "Відкритий код"
 
 #: data/gtk/window.blp:26 data/gtk/window.blp:31
-#, fuzzy
 msgid "Search on LRClib by title and artist names"
-msgstr "Шукати у LRClib по заданій назві та виконавцю"
+msgstr "Шукайте в LRClib за назвою та іменами виконавців"
 
 #: data/gtk/window.blp:37 data/gtk/window.blp:43
 msgid "Nothing was found for this request"
@@ -146,14 +139,13 @@ msgstr "Спробуйте інший запит, мабуть у тексті �
 
 #: data/gtk/window.blp:48
 msgid "No saves found yet"
-msgstr ""
+msgstr "Збережень ще не знайдено"
 
 #: data/gtk/window.blp:50
 msgid "Press pin button to add current directory to the saves"
-msgstr ""
+msgstr "Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
 
 #: data/gtk/window.blp:78
-#, fuzzy
 msgid "Quick Edit"
 msgstr "Швидке редагування"
 
@@ -193,21 +185,19 @@ msgstr "Використовувати"
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:7
 #: data/io.github.dzheremi2.Chronograph.desktop.in:3
 msgid "Chronograph"
-msgstr ""
+msgstr "Хронограф"
 
 #: data/gtk/window.blp:476
 msgid "Saves"
-msgstr ""
+msgstr "Зберігає"
 
 #: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
-#, fuzzy
 msgid "Toggle sidebar"
-msgstr "Перемикнути повторення пісні"
+msgstr "Перемкнути бічну панель"
 
 #: data/gtk/window.blp:522 data/gtk/window.blp:884
-#, fuzzy
 msgid "Toggle search"
-msgstr "Активувати пошук"
+msgstr "Увімкнути пошук"
 
 #: data/gtk/window.blp:530 data/gtk/window.blp:615
 msgid "App settings, info and utils"
@@ -219,12 +209,11 @@ msgstr "Метод сортування"
 
 #: data/gtk/window.blp:551
 msgid "Add current directory to saves"
-msgstr ""
+msgstr "Додати поточний каталог до збереження"
 
 #: data/gtk/window.blp:605
-#, fuzzy
 msgid "Syncing"
-msgstr "Синхронізувати"
+msgstr "Синхронізація"
 
 #: data/gtk/window.blp:696
 msgid "Toggle song repeat"
@@ -247,41 +236,36 @@ msgid "Re-sync selected line 100ms forward"
 msgstr "Десинхронізувати обраний рядок на 100мс вперед"
 
 #: data/gtk/window.blp:786 data/gtk/window.blp:975
-#, fuzzy
 msgid "Import from …"
-msgstr "Імпортувати з..."
+msgstr "Імпорт з…"
 
 #: data/gtk/window.blp:797 data/gtk/window.blp:985
-#, fuzzy
 msgid "Export to …"
-msgstr "Експортувати в..."
+msgstr "Експорт до…"
 
 #: data/gtk/window.blp:815 data/gtk/window.blp:995
 msgid "Actions with selected line"
 msgstr "Дії з обраним рядком"
 
 #: data/gtk/window.blp:826
-#, fuzzy
 msgid "About file"
-msgstr "Інформація про файл"
+msgstr "Про файл"
 
 #: data/gtk/window.blp:860
-#, fuzzy
 msgid "Add line"
-msgstr "Додати рядок"
+msgstr "Додайте лінію"
 
 #: data/gtk/window.blp:877
 msgid "Shortcuts"
-msgstr ""
+msgstr "Ярлики"
 
 #: data/gtk/window.blp:881 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr "Загальні"
 
 #: data/gtk/window.blp:889
-#, fuzzy
 msgid "Select directory"
-msgstr "Обрати теку або файл для відкриття"
+msgstr "Виберіть каталог"
 
 #: data/gtk/window.blp:894
 msgid "Quit"
@@ -312,18 +296,16 @@ msgid "Append line to end"
 msgstr "Вставити строку до кінця"
 
 #: data/gtk/window.blp:938
-#, fuzzy
 msgid "Re-sync 100ms back"
-msgstr "Десинхронізувати на 100мс назад"
+msgstr "Повторна синхронізація на 100 мс назад"
 
 #: data/gtk/window.blp:943
-#, fuzzy
 msgid "Re-sync 100ms forward"
-msgstr "Десинхронізувати на 100мс вперед"
+msgstr "Повторна синхронізація на 100 мс вперед"
 
 #: data/gtk/window.blp:953
 msgid "Directory"
-msgstr ""
+msgstr "Довідник"
 
 #: data/gtk/window.blp:960
 msgid "A-Z"
@@ -362,9 +344,8 @@ msgid "Use synced"
 msgstr "Використовувати синхронізовані"
 
 #: data/gtk/window.blp:1013
-#, fuzzy
 msgid "Quick Editor"
-msgstr "Швидке редагування"
+msgstr "Швидкий редактор"
 
 #: data/gtk/window.blp:1017
 msgid "Preferences"
@@ -379,14 +360,12 @@ msgid "About"
 msgstr "Про додаток"
 
 #: data/gtk/ui/Preferences.blp:10
-#, fuzzy
 msgid "Behavior"
-msgstr "Поведінка сторінки синхронізації"
+msgstr "Поведінка"
 
 #: data/gtk/ui/Preferences.blp:13
-#, fuzzy
 msgid "Reset quick edit dialog on close"
-msgstr "Скидати зміни швидкого редагування при зачиненні?"
+msgstr "Скидати зміни швидкого редагування при зачиненні"
 
 #: data/gtk/ui/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
@@ -396,21 +375,20 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:18
 msgid "Save session on app close"
-msgstr ""
+msgstr "Зберегти сеанс після закриття програми"
 
 #: data/gtk/ui/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
 msgstr ""
+"Повторно відкриває останній відкритий каталог під час наступного запуску"
 
 #: data/gtk/ui/Preferences.blp:24
-#, fuzzy
 msgid "Sync Page"
-msgstr "Поведінка сторінки синхронізації"
+msgstr "Сторінка синхронізації"
 
 #: data/gtk/ui/Preferences.blp:27
-#, fuzzy
 msgid "Auto file manipulation"
-msgstr "Автоматична маніпуляція файлом"
+msgstr "Автоматична робота з файлами"
 
 #: data/gtk/ui/Preferences.blp:28
 msgid ""
@@ -429,23 +407,23 @@ msgstr "Формат файлу для автоматичних маніпуля
 
 #: data/gtk/ui/SavedLocation.blp:35
 msgid "Remove this from saves"
-msgstr ""
+msgstr "Видаліть це зі збереження"
 
 #: data/gtk/ui/SavedLocation.blp:52
 msgid "Delete name to remove"
-msgstr ""
+msgstr "Видалити назву, щоб видалити"
 
 #: data/gtk/ui/SongCard.blp:13
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #: data/gtk/ui/SongCard.blp:18
 msgid "Apply"
-msgstr ""
+msgstr "Застосувати"
 
 #: data/gtk/ui/SongCard.blp:46
 msgid "Change cover"
-msgstr ""
+msgstr "Змінити кришку"
 
 #: data/gtk/ui/SongCard.blp:120
 msgid "Sync"
@@ -453,25 +431,23 @@ msgstr "Синхронізувати"
 
 #: data/gtk/ui/SongCard.blp:130
 msgid "Edit song metadata"
-msgstr ""
+msgstr "Редагувати метадані пісні"
 
 #: data/gtk/ui/SongCard.blp:140
 msgid "Show song info"
-msgstr ""
+msgstr "Показати інформацію про пісню"
 
 #: data/gtk/ui/SongCard.blp:153
-#, fuzzy
 msgid "Open syncing page"
-msgstr "Перегляд синхронізації текстів пісень"
+msgstr "Відкрити сторінку синхронізації"
 
 #: data/gtk/ui/SongCard.blp:213
 msgid "Set cover"
-msgstr ""
+msgstr "Набір кришки"
 
 #: data/gtk/ui/SongCard.blp:218
-#, fuzzy
 msgid "Remove cover"
-msgstr "Видалити рядок"
+msgstr "Зняти кришку"
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:8
 msgid "Sync lyrics of your loved songs"
