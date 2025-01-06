@@ -12,5 +12,5 @@ data/gtk/window.blp
 data/gtk/ui/Preferences.blp
 data/gtk/ui/SavedLocation.blp
 data/gtk/ui/SongCard.blp
-data/io.github.dzheremi2.Chronograph.metainfo.xml.in
-data/io.github.dzheremi2.Chronograph.desktop.in
+data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in
+data/io.github.dzheremi2.lrcmake-gtk.desktop.in

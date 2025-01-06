@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 12:54+0300\n"
+"POT-Creation-Date: 2025-01-06 17:29+0300\n"
 "PO-Revision-Date: 2024-11-23 23:01+0000\n"
 "Last-Translator: Recep Kaan Ergün <recepkaanergun2008@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
@@ -188,8 +188,8 @@ msgid "Use"
 msgstr ""
 
 #: data/gtk/window.blp:450 data/gtk/window.blp:469
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:7
-#: data/io.github.dzheremi2.Chronograph.desktop.in:3
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
 msgstr ""
 
@@ -469,11 +469,11 @@ msgstr ""
 msgid "Remove cover"
 msgstr "Seçili satırı kaldır"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 msgid "Sync lyrics of your loved songs"
 msgstr "Sevdiğiniz şarkıların sözlerini senkronize edin"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 #, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
@@ -483,24 +483,24 @@ msgstr ""
 "Bu uygulama, geniş GTK4 ve LibAdwaita arayüzüyle senkronize edilmiş şarkı "
 "sözlerinin büyük veri tabanına katkıda bulunmanızı sağlar."
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #, fuzzy
 msgid "Library"
 msgstr "Kütüphane görünümü"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
 #, fuzzy
 msgid "Lyrics syncing page"
 msgstr "Şarkı sözlerini senkronize etme sayfası görünümü"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "LRClib import dialog"
 msgstr ""
 
-#: data/io.github.dzheremi2.Chronograph.desktop.in:9
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
 
