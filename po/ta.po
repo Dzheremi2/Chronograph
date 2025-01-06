@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 17:29+0300\n"
+"POT-Creation-Date: 2025-01-06 17:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -178,8 +178,8 @@ msgid "Use"
 msgstr "பயன்படுத்தவும்"
 
 #: data/gtk/window.blp:450 data/gtk/window.blp:469
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:7
-#: data/io.github.dzheremi2.Chronograph.desktop.in:3
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
 msgstr "கால வரைபடம்"
 
@@ -442,11 +442,11 @@ msgstr "கவர் அமைக்கவும்"
 msgid "Remove cover"
 msgstr "அட்டையை அகற்று"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 msgid "Sync lyrics of your loved songs"
 msgstr "நீங்கள் விரும்பிய பாடல்களின் பாடல் வரிகளை ஒத்திசைக்கவும்"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
@@ -456,21 +456,21 @@ msgstr ""
 "தரவுத்தளத்திற்கு பங்களிக்க இந்த பயன்பாடு உங்களுக்கு உதவுகிறது. இது OGG, FLAC, MP3 "
 "மற்றும் WAV வடிவங்களில் இசையை ஆதரிக்கிறது"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 msgid "Library"
 msgstr "நூலகம்"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
 msgid "Lyrics syncing page"
 msgstr "பாடல் ஒத்திசைவு பக்கம்"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "LRClib import dialog"
 msgstr "Lrclib இறக்குமதி உரையாடல்"
 
-#: data/io.github.dzheremi2.Chronograph.desktop.in:9
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr "பாடல்; இணையம்; பாடல்கள்; மல்டிமீடியா; மீடியா; lrclib; இசை; ஒத்திசைவு;"
