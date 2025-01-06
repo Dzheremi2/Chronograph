@@ -1,4 +1,4 @@
-id: io.github.dzheremi2.Chronograph
+id: io.github.dzheremi2.lrcmake-gtk
 runtime: org.gnome.Platform
 runtime-version: "47"
 sdk: org.gnome.Sdk

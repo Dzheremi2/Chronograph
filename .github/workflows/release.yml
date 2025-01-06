@@ -24,7 +24,7 @@ jobs:
         shell: python
         run: |
           import re, textwrap
-          file = open("./data/io.github.dzheremi2.Chronograph.metainfo.xml.in", "r", encoding="utf-8")
+          file = open("./data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in", "r", encoding="utf-8")
           string = file.read()
           file.close()
           string = re.findall("<release.*>\s*<description.*>\n([\s\S]*?)\s*</description>\s*<\/release>", string)[0]
@@ -41,7 +41,7 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         with:
           files: |
-            io.github.dzheremi2.Chronograph-x86_64/io.github.dzheremi2.Chronograph.flatpak
+            io.github.dzheremi2.lrcmake-gtk-x86_64/io.github.dzheremi2.lrcmake-gtk.flatpak
           fail_on_unmatched_files: true
           tag_name: ${{ steps.get_tag_name.outputs.tag_name }}
           body_path: release_notes

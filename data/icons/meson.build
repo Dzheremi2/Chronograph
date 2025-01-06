@@ -1,4 +1,4 @@
-application_id = 'io.github.dzheremi2.Chronograph'
+application_id = 'io.github.dzheremi2.lrcmake-gtk'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

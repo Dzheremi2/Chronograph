@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="data/icons/hicolor/scalable/apps/io.github.dzheremi2.Chronograph.svg" width="128" height="128">
+<img src="data/icons/hicolor/scalable/apps/io.github.dzheremi2.lrcmake-gtk.svg" width="128" height="128">
 
 # Chronograph
 [flathub-url]: https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk

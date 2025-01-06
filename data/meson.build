@@ -26,8 +26,8 @@ gnome.compile_resources(
 )
 
 desktop_file = i18n.merge_file(
-        input: 'io.github.dzheremi2.Chronograph.desktop.in',
-       output: 'io.github.dzheremi2.Chronograph.desktop',
+        input: 'io.github.dzheremi2.lrcmake-gtk.desktop.in',
+       output: 'io.github.dzheremi2.lrcmake-gtk.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -40,8 +40,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'io.github.dzheremi2.Chronograph.metainfo.xml.in',
-       output: 'io.github.dzheremi2.Chronograph.metainfo.xml',
+        input: 'io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in',
+       output: 'io.github.dzheremi2.lrcmake-gtk.metainfo.xml',
        po_dir: '../po',
       install: true,
   install_dir: get_option('datadir') / 'metainfo'
@@ -53,7 +53,7 @@ test('Validate appstream file', appstreamcli,
 
 install_data(
   configure_file(
-    input: 'io.github.dzheremi2.Chronograph.gschema.xml.in',
+    input: 'io.github.dzheremi2.lrcmake-gtk.gschema.xml.in',
     output: app_id + '.gschema.xml',
     configuration: conf
   ),
@@ -69,8 +69,8 @@ test('Validate schema file',
 service_conf = configuration_data()
 service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
 configure_file(
-  input: 'io.github.dzheremi2.Chronograph.service.in',
-  output: 'io.github.dzheremi2.Chronograph.service',
+  input: 'io.github.dzheremi2.lrcmake-gtk.service.in',
+  output: 'io.github.dzheremi2.lrcmake-gtk.service',
   configuration: service_conf,
   install_dir: get_option('datadir') / 'dbus-1' / 'services'
 )

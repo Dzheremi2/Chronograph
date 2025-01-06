@@ -10,8 +10,8 @@ python = import('python')
 
 py_installation = python.find_installation('python3')
 
-app_id = 'io.github.dzheremi2.Chronograph'
-prefix = '/io/github/dzheremi2/Chronograph'
+app_id = 'io.github.dzheremi2.lrcmake-gtk'
+prefix = '/io/github/dzheremi2/lrcmake-gtk'
 cachev = 1
 python = import('python')
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
