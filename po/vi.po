@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 17:43+0300\n"
+"POT-Creation-Date: 2025-01-06 20:24+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Copied successfully"
 msgstr ""
 
-#: chronograph/main.py:101
+#: chronograph/main.py:102
 msgid ""
 "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
 "projects/lrcmake/lrcmake/"
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+#: data/gtk/window.blp:78 data/gtk/window.blp:1018
 msgid "Quick Editor"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Saves"
 msgstr ""
 
-#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
+#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:904
 msgid "Toggle sidebar"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Select a directory or open a file"
 msgstr ""
 
-#: data/gtk/window.blp:522 data/gtk/window.blp:884
+#: data/gtk/window.blp:522 data/gtk/window.blp:889
 msgid "Toggle search"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr ""
 msgid "Sync/Re-sync line"
 msgstr ""
 
-#: data/gtk/window.blp:762 data/gtk/window.blp:913
+#: data/gtk/window.blp:762 data/gtk/window.blp:918
 msgid "Replay selected line"
 msgstr ""
 
@@ -232,15 +232,15 @@ msgstr ""
 msgid "Re-sync selected line 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:786 data/gtk/window.blp:975
+#: data/gtk/window.blp:786 data/gtk/window.blp:980
 msgid "Import from …"
 msgstr ""
 
-#: data/gtk/window.blp:797 data/gtk/window.blp:985
+#: data/gtk/window.blp:797 data/gtk/window.blp:990
 msgid "Export to …"
 msgstr ""
 
-#: data/gtk/window.blp:815 data/gtk/window.blp:995
+#: data/gtk/window.blp:815 data/gtk/window.blp:1000
 msgid "Actions with selected line"
 msgstr ""
 
@@ -260,95 +260,95 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: data/gtk/window.blp:889
-msgid "Select directory"
-msgstr ""
-
-#: data/gtk/window.blp:894
+#: data/gtk/window.blp:884
 msgid "Quit"
 msgstr ""
 
-#: data/gtk/window.blp:905
-msgid "Sync mode"
+#: data/gtk/window.blp:894
+msgid "Select directory"
 msgstr ""
 
-#: data/gtk/window.blp:908
-msgid "Sync/Re-sync"
-msgstr ""
-
-#: data/gtk/window.blp:918
-msgid "Remove selected line"
-msgstr ""
-
-#: data/gtk/window.blp:923
-msgid "Prepend line to selected"
-msgstr ""
-
-#: data/gtk/window.blp:928
-msgid "Append line to selected"
-msgstr ""
-
-#: data/gtk/window.blp:933 data/gtk/window.blp:1000
-msgid "Append line to end"
-msgstr ""
-
-#: data/gtk/window.blp:938
-msgid "Re-sync 100ms back"
-msgstr ""
-
-#: data/gtk/window.blp:943
-msgid "Re-sync 100ms forward"
-msgstr ""
-
-#: data/gtk/window.blp:953
-msgid "Directory"
-msgstr ""
-
-#: data/gtk/window.blp:960
-msgid "A-Z"
-msgstr ""
-
-#: data/gtk/window.blp:966
-msgid "Z-A"
-msgstr ""
-
-#: data/gtk/window.blp:977 data/gtk/window.blp:987
-msgid "File"
-msgstr ""
-
-#: data/gtk/window.blp:978 data/gtk/window.blp:988
-msgid "Clipboard"
-msgstr ""
-
-#: data/gtk/window.blp:997
-msgid "Remove line"
-msgstr ""
-
-#: data/gtk/window.blp:998
-msgid "Prepend line"
-msgstr ""
-
-#: data/gtk/window.blp:999
-msgid "Append line"
-msgstr ""
-
-#: data/gtk/window.blp:1006
-msgid "Use plain"
-msgstr ""
-
-#: data/gtk/window.blp:1007
-msgid "Use synced"
-msgstr ""
-
-#: data/gtk/window.blp:1017
-msgid "Preferences"
-msgstr ""
-
-#: data/gtk/window.blp:1018
+#: data/gtk/window.blp:899 data/gtk/window.blp:1023
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:1019
+#: data/gtk/window.blp:910
+msgid "Sync mode"
+msgstr ""
+
+#: data/gtk/window.blp:913
+msgid "Sync/Re-sync"
+msgstr ""
+
+#: data/gtk/window.blp:923
+msgid "Remove selected line"
+msgstr ""
+
+#: data/gtk/window.blp:928
+msgid "Prepend line to selected"
+msgstr ""
+
+#: data/gtk/window.blp:933
+msgid "Append line to selected"
+msgstr ""
+
+#: data/gtk/window.blp:938 data/gtk/window.blp:1005
+msgid "Append line to end"
+msgstr ""
+
+#: data/gtk/window.blp:943
+msgid "Re-sync 100ms back"
+msgstr ""
+
+#: data/gtk/window.blp:948
+msgid "Re-sync 100ms forward"
+msgstr ""
+
+#: data/gtk/window.blp:958
+msgid "Directory"
+msgstr ""
+
+#: data/gtk/window.blp:965
+msgid "A-Z"
+msgstr ""
+
+#: data/gtk/window.blp:971
+msgid "Z-A"
+msgstr ""
+
+#: data/gtk/window.blp:982 data/gtk/window.blp:992
+msgid "File"
+msgstr ""
+
+#: data/gtk/window.blp:983 data/gtk/window.blp:993
+msgid "Clipboard"
+msgstr ""
+
+#: data/gtk/window.blp:1002
+msgid "Remove line"
+msgstr ""
+
+#: data/gtk/window.blp:1003
+msgid "Prepend line"
+msgstr ""
+
+#: data/gtk/window.blp:1004
+msgid "Append line"
+msgstr ""
+
+#: data/gtk/window.blp:1011
+msgid "Use plain"
+msgstr ""
+
+#: data/gtk/window.blp:1012
+msgid "Use synced"
+msgstr ""
+
+#: data/gtk/window.blp:1022
+msgid "Preferences"
+msgstr ""
+
+#: data/gtk/window.blp:1024
 msgid "About"
 msgstr ""
 

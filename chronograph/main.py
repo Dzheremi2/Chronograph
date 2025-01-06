@@ -37,7 +37,7 @@ class ChronographApplication(Adw.Application):
 
         self.create_actions(
             {
-                ("quit", ("<primary>q",)),
+                ("quit", ("<primary>q","<primary>w",)),
                 ("toggle_sidebar", ("F9",), shared.win),
                 ("toggle_search", ("<primary>f",), shared.win),
                 ("select_dir", ("<primary>o",), shared.win),
@@ -64,6 +64,7 @@ class ChronographApplication(Adw.Application):
                 ("about",)
             }
         )
+        self.set_accels_for_action("win.show-help-overlay", ("<primary>question",))
 
         sorting_action = Gio.SimpleAction.new_stateful(
             "sort_type",

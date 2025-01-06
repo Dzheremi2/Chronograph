@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 17:43+0300\n"
+"POT-Creation-Date: 2025-01-06 20:24+0300\n"
 "PO-Revision-Date: 2024-11-23 23:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Copied successfully"
 msgstr "Pubblicato con successo: "
 
-#: chronograph/main.py:101
+#: chronograph/main.py:102
 msgid ""
 "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
 "projects/lrcmake/lrcmake/"
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+#: data/gtk/window.blp:78 data/gtk/window.blp:1018
 msgid "Quick Editor"
 msgstr ""
 
@@ -197,7 +197,7 @@ msgstr ""
 msgid "Saves"
 msgstr ""
 
-#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
+#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:904
 msgid "Toggle sidebar"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Select a directory or open a file"
 msgstr "Seleziona una directory o apri un file"
 
-#: data/gtk/window.blp:522 data/gtk/window.blp:884
+#: data/gtk/window.blp:522 data/gtk/window.blp:889
 msgid "Toggle search"
 msgstr ""
 
@@ -235,7 +235,7 @@ msgstr ""
 msgid "Sync/Re-sync line"
 msgstr "Sincronizzazione/Risincronizzazione"
 
-#: data/gtk/window.blp:762 data/gtk/window.blp:913
+#: data/gtk/window.blp:762 data/gtk/window.blp:918
 #, fuzzy
 msgid "Replay selected line"
 msgstr "Rimuovi la riga selezionata"
@@ -250,17 +250,17 @@ msgstr "Risincronizza 100 ms indietro"
 msgid "Re-sync selected line 100ms forward"
 msgstr "Risincronizza 100 ms in avanti"
 
-#: data/gtk/window.blp:786 data/gtk/window.blp:975
+#: data/gtk/window.blp:786 data/gtk/window.blp:980
 #, fuzzy
 msgid "Import from …"
 msgstr "Importa da..."
 
-#: data/gtk/window.blp:797 data/gtk/window.blp:985
+#: data/gtk/window.blp:797 data/gtk/window.blp:990
 #, fuzzy
 msgid "Export to …"
 msgstr "Esporta in..."
 
-#: data/gtk/window.blp:815 data/gtk/window.blp:995
+#: data/gtk/window.blp:815 data/gtk/window.blp:1000
 #, fuzzy
 msgid "Actions with selected line"
 msgstr "Rimuovi la riga selezionata"
@@ -283,101 +283,101 @@ msgstr ""
 msgid "General"
 msgstr "Generale"
 
-#: data/gtk/window.blp:889
+#: data/gtk/window.blp:884
+msgid "Quit"
+msgstr "Esci"
+
+#: data/gtk/window.blp:894
 #, fuzzy
 msgid "Select directory"
 msgstr "Seleziona una directory o apri un file"
 
-#: data/gtk/window.blp:894
-msgid "Quit"
-msgstr "Esci"
+#: data/gtk/window.blp:899 data/gtk/window.blp:1023
+msgid "Keybindings"
+msgstr "Abbinamenti di tasti"
 
-#: data/gtk/window.blp:905
+#: data/gtk/window.blp:910
 msgid "Sync mode"
 msgstr "Modalità di sincronizzazione"
 
-#: data/gtk/window.blp:908
+#: data/gtk/window.blp:913
 msgid "Sync/Re-sync"
 msgstr "Sincronizzazione/Risincronizzazione"
 
-#: data/gtk/window.blp:918
+#: data/gtk/window.blp:923
 msgid "Remove selected line"
 msgstr "Rimuovi la riga selezionata"
 
-#: data/gtk/window.blp:923
+#: data/gtk/window.blp:928
 msgid "Prepend line to selected"
 msgstr "Aggiungi la riga a quella selezionata"
 
-#: data/gtk/window.blp:928
+#: data/gtk/window.blp:933
 msgid "Append line to selected"
 msgstr "Aggiungi riga a selezionata"
 
-#: data/gtk/window.blp:933 data/gtk/window.blp:1000
+#: data/gtk/window.blp:938 data/gtk/window.blp:1005
 msgid "Append line to end"
 msgstr "Aggiungi riga alla fine"
 
-#: data/gtk/window.blp:938
+#: data/gtk/window.blp:943
 #, fuzzy
 msgid "Re-sync 100ms back"
 msgstr "Risincronizza 100 ms indietro"
 
-#: data/gtk/window.blp:943
+#: data/gtk/window.blp:948
 #, fuzzy
 msgid "Re-sync 100ms forward"
 msgstr "Risincronizza 100 ms in avanti"
 
-#: data/gtk/window.blp:953
+#: data/gtk/window.blp:958
 msgid "Directory"
 msgstr ""
 
-#: data/gtk/window.blp:960
+#: data/gtk/window.blp:965
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:966
+#: data/gtk/window.blp:971
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:977 data/gtk/window.blp:987
+#: data/gtk/window.blp:982 data/gtk/window.blp:992
 msgid "File"
 msgstr "File"
 
-#: data/gtk/window.blp:978 data/gtk/window.blp:988
+#: data/gtk/window.blp:983 data/gtk/window.blp:993
 msgid "Clipboard"
 msgstr "Appunti"
 
-#: data/gtk/window.blp:997
+#: data/gtk/window.blp:1002
 #, fuzzy
 msgid "Remove line"
 msgstr "Rimuovi la riga selezionata"
 
-#: data/gtk/window.blp:998
+#: data/gtk/window.blp:1003
 #, fuzzy
 msgid "Prepend line"
 msgstr "Aggiungi la riga a quella selezionata"
 
-#: data/gtk/window.blp:999
+#: data/gtk/window.blp:1004
 #, fuzzy
 msgid "Append line"
 msgstr "Aggiungi riga alla fine"
 
-#: data/gtk/window.blp:1006
+#: data/gtk/window.blp:1011
 msgid "Use plain"
 msgstr ""
 
-#: data/gtk/window.blp:1007
+#: data/gtk/window.blp:1012
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1017
+#: data/gtk/window.blp:1022
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:1018
-msgid "Keybindings"
-msgstr "Abbinamenti di tasti"
-
-#: data/gtk/window.blp:1019
+#: data/gtk/window.blp:1024
 msgid "About"
 msgstr "Informazioni"
 

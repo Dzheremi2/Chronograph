@@ -881,6 +881,11 @@ ShortcutsWindow help_overlay {
       title: _("General");
 
       ShortcutsShortcut {
+        title: _("Quit");
+        action-name: "app.quit";
+      }
+
+      ShortcutsShortcut {
         title: _("Toggle search");
         action-name: "win.toggle_search";
       }
@@ -891,8 +896,8 @@ ShortcutsWindow help_overlay {
       }
 
       ShortcutsShortcut {
-        title: _("Quit");
-        action-name: "app.quit";
+        title: _("Keybindings");
+        action-name: "win.show-help-overlay";
       }
 
       ShortcutsShortcut {

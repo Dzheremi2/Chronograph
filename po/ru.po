@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 17:43+0300\n"
+"POT-Creation-Date: 2025-01-06 20:24+0300\n"
 "PO-Revision-Date: 2025-01-05 22:03+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
-#: chronograph/main.py:101
+#: chronograph/main.py:102
 msgid ""
 "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
 "projects/lrcmake/lrcmake/"
@@ -147,7 +147,7 @@ msgid "Press pin button to add current directory to the saves"
 msgstr ""
 "Нажмите на кнопку закрепления, чтобы добавить текущую директорию в сохранения"
 
-#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+#: data/gtk/window.blp:78 data/gtk/window.blp:1018
 msgid "Quick Editor"
 msgstr "Быстрое форматирование"
 
@@ -193,7 +193,7 @@ msgstr "Хронограф"
 msgid "Saves"
 msgstr "Сохранения"
 
-#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
+#: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:904
 msgid "Toggle sidebar"
 msgstr "Переключить боковую панель"
 
@@ -201,7 +201,7 @@ msgstr "Переключить боковую панель"
 msgid "Select a directory or open a file"
 msgstr "Выберите директорию или файл"
 
-#: data/gtk/window.blp:522 data/gtk/window.blp:884
+#: data/gtk/window.blp:522 data/gtk/window.blp:889
 msgid "Toggle search"
 msgstr "Переключить поиск"
 
@@ -229,7 +229,7 @@ msgstr "Включить повторение трека"
 msgid "Sync/Re-sync line"
 msgstr "Синхронизировать/Пересинхронизировать строку"
 
-#: data/gtk/window.blp:762 data/gtk/window.blp:913
+#: data/gtk/window.blp:762 data/gtk/window.blp:918
 msgid "Replay selected line"
 msgstr "Воспроизвести строку"
 
@@ -241,15 +241,15 @@ msgstr "Пересинхронизировать на 100мс назад"
 msgid "Re-sync selected line 100ms forward"
 msgstr "Пересинхронизировать на 100мс вперёд"
 
-#: data/gtk/window.blp:786 data/gtk/window.blp:975
+#: data/gtk/window.blp:786 data/gtk/window.blp:980
 msgid "Import from …"
 msgstr "Импортировать из…"
 
-#: data/gtk/window.blp:797 data/gtk/window.blp:985
+#: data/gtk/window.blp:797 data/gtk/window.blp:990
 msgid "Export to …"
 msgstr "Экспортировать в…"
 
-#: data/gtk/window.blp:815 data/gtk/window.blp:995
+#: data/gtk/window.blp:815 data/gtk/window.blp:1000
 msgid "Actions with selected line"
 msgstr "Действия с выбранной строкой"
 
@@ -269,95 +269,95 @@ msgstr "Сочетания клавиш"
 msgid "General"
 msgstr "Основные"
 
-#: data/gtk/window.blp:889
-msgid "Select directory"
-msgstr "Выберить директорию"
-
-#: data/gtk/window.blp:894
+#: data/gtk/window.blp:884
 msgid "Quit"
 msgstr "Закрыть"
 
-#: data/gtk/window.blp:905
-msgid "Sync mode"
-msgstr "Режим синхронизации"
+#: data/gtk/window.blp:894
+msgid "Select directory"
+msgstr "Выберить директорию"
 
-#: data/gtk/window.blp:908
-msgid "Sync/Re-sync"
-msgstr "Синхронизировать/Пересинхронизировать"
-
-#: data/gtk/window.blp:918
-msgid "Remove selected line"
-msgstr "Удалить выбранную строку"
-
-#: data/gtk/window.blp:923
-msgid "Prepend line to selected"
-msgstr "Добавить новую строку выше выбранной"
-
-#: data/gtk/window.blp:928
-msgid "Append line to selected"
-msgstr "Добавить новую строку ниже выбранной"
-
-#: data/gtk/window.blp:933 data/gtk/window.blp:1000
-msgid "Append line to end"
-msgstr "Добавить строку к концу"
-
-#: data/gtk/window.blp:938
-msgid "Re-sync 100ms back"
-msgstr "Пересинхронизировать на 100мс назад"
-
-#: data/gtk/window.blp:943
-msgid "Re-sync 100ms forward"
-msgstr "Пересинхронизировать на 100мс вперёд"
-
-#: data/gtk/window.blp:953
-msgid "Directory"
-msgstr "Директория"
-
-#: data/gtk/window.blp:960
-msgid "A-Z"
-msgstr "А-Я"
-
-#: data/gtk/window.blp:966
-msgid "Z-A"
-msgstr "Я-А"
-
-#: data/gtk/window.blp:977 data/gtk/window.blp:987
-msgid "File"
-msgstr "Файл"
-
-#: data/gtk/window.blp:978 data/gtk/window.blp:988
-msgid "Clipboard"
-msgstr "Буфер обмена"
-
-#: data/gtk/window.blp:997
-msgid "Remove line"
-msgstr "Удалить строку"
-
-#: data/gtk/window.blp:998
-msgid "Prepend line"
-msgstr "Добавить строку выше"
-
-#: data/gtk/window.blp:999
-msgid "Append line"
-msgstr "Добавить строку ниже"
-
-#: data/gtk/window.blp:1006
-msgid "Use plain"
-msgstr "Использовать простые"
-
-#: data/gtk/window.blp:1007
-msgid "Use synced"
-msgstr "Использовать синхронизированные"
-
-#: data/gtk/window.blp:1017
-msgid "Preferences"
-msgstr "Настройки"
-
-#: data/gtk/window.blp:1018
+#: data/gtk/window.blp:899 data/gtk/window.blp:1023
 msgid "Keybindings"
 msgstr "Сочетания клавиш"
 
-#: data/gtk/window.blp:1019
+#: data/gtk/window.blp:910
+msgid "Sync mode"
+msgstr "Режим синхронизации"
+
+#: data/gtk/window.blp:913
+msgid "Sync/Re-sync"
+msgstr "Синхронизировать/Пересинхронизировать"
+
+#: data/gtk/window.blp:923
+msgid "Remove selected line"
+msgstr "Удалить выбранную строку"
+
+#: data/gtk/window.blp:928
+msgid "Prepend line to selected"
+msgstr "Добавить новую строку выше выбранной"
+
+#: data/gtk/window.blp:933
+msgid "Append line to selected"
+msgstr "Добавить новую строку ниже выбранной"
+
+#: data/gtk/window.blp:938 data/gtk/window.blp:1005
+msgid "Append line to end"
+msgstr "Добавить строку к концу"
+
+#: data/gtk/window.blp:943
+msgid "Re-sync 100ms back"
+msgstr "Пересинхронизировать на 100мс назад"
+
+#: data/gtk/window.blp:948
+msgid "Re-sync 100ms forward"
+msgstr "Пересинхронизировать на 100мс вперёд"
+
+#: data/gtk/window.blp:958
+msgid "Directory"
+msgstr "Директория"
+
+#: data/gtk/window.blp:965
+msgid "A-Z"
+msgstr "А-Я"
+
+#: data/gtk/window.blp:971
+msgid "Z-A"
+msgstr "Я-А"
+
+#: data/gtk/window.blp:982 data/gtk/window.blp:992
+msgid "File"
+msgstr "Файл"
+
+#: data/gtk/window.blp:983 data/gtk/window.blp:993
+msgid "Clipboard"
+msgstr "Буфер обмена"
+
+#: data/gtk/window.blp:1002
+msgid "Remove line"
+msgstr "Удалить строку"
+
+#: data/gtk/window.blp:1003
+msgid "Prepend line"
+msgstr "Добавить строку выше"
+
+#: data/gtk/window.blp:1004
+msgid "Append line"
+msgstr "Добавить строку ниже"
+
+#: data/gtk/window.blp:1011
+msgid "Use plain"
+msgstr "Использовать простые"
+
+#: data/gtk/window.blp:1012
+msgid "Use synced"
+msgstr "Использовать синхронизированные"
+
+#: data/gtk/window.blp:1022
+msgid "Preferences"
+msgstr "Настройки"
+
+#: data/gtk/window.blp:1024
 msgid "About"
 msgstr "О приложении"
 
