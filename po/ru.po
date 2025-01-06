@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 23:49+0300\n"
+"POT-Creation-Date: 2025-01-06 12:54+0300\n"
 "PO-Revision-Date: 2025-01-05 22:03+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
@@ -118,9 +118,9 @@ msgstr "Произошла неизвестная ошибка: "
 msgid "No source selected yet"
 msgstr "Еще ничего не открыто"
 
-#: data/gtk/window.blp:6 data/gtk/window.blp:510
-msgid "Select a directory or open a file"
-msgstr "Выберите директорию или файл"
+#: data/gtk/window.blp:6
+msgid "Select a directory"
+msgstr "Выберите директорию"
 
 #: data/gtk/window.blp:14
 msgid "Open source"
@@ -147,8 +147,8 @@ msgid "Press pin button to add current directory to the saves"
 msgstr ""
 "Нажмите на кнопку закрепления, чтобы добавить текущую директорию в сохранения"
 
-#: data/gtk/window.blp:78
-msgid "Quick Edit"
+#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+msgid "Quick Editor"
 msgstr "Быстрое форматирование"
 
 #: data/gtk/window.blp:102
@@ -196,6 +196,10 @@ msgstr "Сохранения"
 #: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
 msgid "Toggle sidebar"
 msgstr "Переключить боковую панель"
+
+#: data/gtk/window.blp:510
+msgid "Select a directory or open a file"
+msgstr "Выберите директорию или файл"
 
 #: data/gtk/window.blp:522 data/gtk/window.blp:884
 msgid "Toggle search"
@@ -345,10 +349,6 @@ msgstr "Использовать простые"
 msgid "Use synced"
 msgstr "Использовать синхронизированные"
 
-#: data/gtk/window.blp:1013
-msgid "Quick Editor"
-msgstr "Быстрое форматирование"
-
 #: data/gtk/window.blp:1017
 msgid "Preferences"
 msgstr "Настройки"
@@ -453,39 +453,47 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Синхронизируйте тексты своих любимых песен"
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
+"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
+"and wav formats"
 msgstr ""
 "Это приложение помогает вам содействовать расширению большой базы данных "
 "синхронизированных текстов, с красивым интерфейсом на GTK4 и LibAdwaita."
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:37
-msgid "Library view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+msgid "Library"
 msgstr "Библиотека"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:41
-msgid "Lyrics syncing page view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+msgid "Lyrics syncing page"
 msgstr "Страница синхронизации"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-msgid "Dialog with opened file details view"
-msgstr "Диалог с информацией об открытом файле"
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-msgid "Library view light"
-msgstr "Библиотека (светлая тема)"
-
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-msgid "Lyrics syncing page view light"
-msgstr "Страница синхронизации (светлая тема)"
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
-msgid "Dialog with opened file details view light"
-msgstr "Диалог с информацией об открытом файле (светлая тема)"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+msgid "LRClib import dialog"
+msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;слова;интернет;"
 "песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;"
+
+#~ msgid "Quick Edit"
+#~ msgstr "Быстрое форматирование"
+
+#~ msgid "Dialog with opened file details view"
+#~ msgstr "Диалог с информацией об открытом файле"
+
+#~ msgid "Library view light"
+#~ msgstr "Библиотека (светлая тема)"
+
+#~ msgid "Lyrics syncing page view light"
+#~ msgstr "Страница синхронизации (светлая тема)"
+
+#~ msgid "Dialog with opened file details view light"
+#~ msgstr "Диалог с информацией об открытом файле (светлая тема)"

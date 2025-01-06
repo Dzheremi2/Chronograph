@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 23:49+0300\n"
+"POT-Creation-Date: 2025-01-06 12:54+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -111,8 +111,8 @@ msgstr ""
 msgid "No source selected yet"
 msgstr ""
 
-#: data/gtk/window.blp:6 data/gtk/window.blp:510
-msgid "Select a directory or open a file"
+#: data/gtk/window.blp:6
+msgid "Select a directory"
 msgstr ""
 
 #: data/gtk/window.blp:14
@@ -139,8 +139,8 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:78
-msgid "Quick Edit"
+#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+msgid "Quick Editor"
 msgstr ""
 
 #: data/gtk/window.blp:102
@@ -185,6 +185,10 @@ msgstr ""
 
 #: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
 msgid "Toggle sidebar"
+msgstr ""
+
+#: data/gtk/window.blp:510
+msgid "Select a directory or open a file"
 msgstr ""
 
 #: data/gtk/window.blp:522 data/gtk/window.blp:884
@@ -335,10 +339,6 @@ msgstr ""
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1013
-msgid "Quick Editor"
-msgstr ""
-
 #: data/gtk/window.blp:1017
 msgid "Preferences"
 msgstr ""
@@ -443,31 +443,23 @@ msgstr ""
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
-msgstr ""
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:37
-msgid "Library view"
-msgstr ""
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:41
-msgid "Lyrics syncing page view"
+"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
+"and wav formats"
 msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-msgid "Dialog with opened file details view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+msgid "Library"
 msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-msgid "Library view light"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+msgid "Lyrics syncing page"
 msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-msgid "Lyrics syncing page view light"
-msgstr ""
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
-msgid "Dialog with opened file details view light"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+msgid "LRClib import dialog"
 msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.desktop.in:9

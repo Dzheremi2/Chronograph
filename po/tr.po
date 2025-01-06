@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 23:49+0300\n"
+"POT-Creation-Date: 2025-01-06 12:54+0300\n"
 "PO-Revision-Date: 2024-11-23 23:01+0000\n"
 "Last-Translator: Recep Kaan Ergün <recepkaanergun2008@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
@@ -121,8 +121,9 @@ msgstr "Bilinmeyen bir hata oluştu: "
 msgid "No source selected yet"
 msgstr "Seçili satırı kaldır"
 
-#: data/gtk/window.blp:6 data/gtk/window.blp:510
-msgid "Select a directory or open a file"
+#: data/gtk/window.blp:6
+#, fuzzy
+msgid "Select a directory"
 msgstr "Bir dizin seçin veya bir dosya açın"
 
 #: data/gtk/window.blp:14
@@ -150,8 +151,8 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:78
-msgid "Quick Edit"
+#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+msgid "Quick Editor"
 msgstr ""
 
 #: data/gtk/window.blp:102
@@ -199,6 +200,10 @@ msgstr ""
 #: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
 msgid "Toggle sidebar"
 msgstr ""
+
+#: data/gtk/window.blp:510
+msgid "Select a directory or open a file"
+msgstr "Bir dizin seçin veya bir dosya açın"
 
 #: data/gtk/window.blp:522 data/gtk/window.blp:884
 msgid "Toggle search"
@@ -364,10 +369,6 @@ msgstr ""
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1013
-msgid "Quick Editor"
-msgstr ""
-
 #: data/gtk/window.blp:1017
 msgid "Preferences"
 msgstr ""
@@ -473,40 +474,47 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Sevdiğiniz şarkıların sözlerini senkronize edin"
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
+"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
+"and wav formats"
 msgstr ""
 "Bu uygulama, geniş GTK4 ve LibAdwaita arayüzüyle senkronize edilmiş şarkı "
 "sözlerinin büyük veri tabanına katkıda bulunmanızı sağlar."
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:37
-msgid "Library view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+#, fuzzy
+msgid "Library"
 msgstr "Kütüphane görünümü"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:41
-msgid "Lyrics syncing page view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+#, fuzzy
+msgid "Lyrics syncing page"
 msgstr "Şarkı sözlerini senkronize etme sayfası görünümü"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-msgid "Dialog with opened file details view"
-msgstr "Açılan dosya ayrıntıları görünümünde olan iletişim kutusu"
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-msgid "Library view light"
-msgstr "Açık kütüphane görünümü"
-
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-msgid "Lyrics syncing page view light"
-msgstr "Açık şarkı sözlerini senkronize etme sayfası görünümü"
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
-msgid "Dialog with opened file details view light"
-msgstr "Açık açılan dosya ayrıntıları görünümünde olan iletişim kutusu"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+msgid "LRClib import dialog"
+msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
+
+#~ msgid "Dialog with opened file details view"
+#~ msgstr "Açılan dosya ayrıntıları görünümünde olan iletişim kutusu"
+
+#~ msgid "Library view light"
+#~ msgstr "Açık kütüphane görünümü"
+
+#~ msgid "Lyrics syncing page view light"
+#~ msgstr "Açık şarkı sözlerini senkronize etme sayfası görünümü"
+
+#~ msgid "Dialog with opened file details view light"
+#~ msgstr "Açık açılan dosya ayrıntıları görünümünde olan iletişim kutusu"
 
 #~ msgid "LRCMake"
 #~ msgstr "LRCMake"

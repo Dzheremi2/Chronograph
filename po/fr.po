@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 23:49+0300\n"
+"POT-Creation-Date: 2025-01-06 12:54+0300\n"
 "PO-Revision-Date: 2024-12-11 19:01+0000\n"
 "Last-Translator: Joris Guesné <weblate.xg84x@passmail.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
@@ -116,9 +116,10 @@ msgstr ""
 msgid "No source selected yet"
 msgstr "Supprimer la ligne sélectionnée"
 
-#: data/gtk/window.blp:6 data/gtk/window.blp:510
-msgid "Select a directory or open a file"
-msgstr ""
+#: data/gtk/window.blp:6
+#, fuzzy
+msgid "Select a directory"
+msgstr "Sélectionner le répertoire ou le fichier à ouvrir"
 
 #: data/gtk/window.blp:14
 #, fuzzy
@@ -145,9 +146,9 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:78
+#: data/gtk/window.blp:78 data/gtk/window.blp:1013
 #, fuzzy
-msgid "Quick Edit"
+msgid "Quick Editor"
 msgstr "Modification rapide"
 
 #: data/gtk/window.blp:102
@@ -194,6 +195,10 @@ msgstr ""
 #, fuzzy
 msgid "Toggle sidebar"
 msgstr "Activer/désactiver la répétition de la chanson"
+
+#: data/gtk/window.blp:510
+msgid "Select a directory or open a file"
+msgstr ""
 
 #: data/gtk/window.blp:522 data/gtk/window.blp:884
 #, fuzzy
@@ -352,11 +357,6 @@ msgstr ""
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1013
-#, fuzzy
-msgid "Quick Editor"
-msgstr "Modification rapide"
-
 #: data/gtk/window.blp:1017
 msgid "Preferences"
 msgstr "Préférences"
@@ -462,40 +462,38 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Synchronisez les paroles de vos chansons préférées"
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
+"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
+"and wav formats"
 msgstr ""
 "Cette application vous aide à contribuer à la grande base de données de "
 "paroles synchronisées avec une belle interface GTK4 et LibAdwaita."
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:37
-msgid "Library view"
-msgstr ""
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:41
-msgid "Lyrics syncing page view"
-msgstr "Vue de la page de synchronisation des paroles"
-
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-msgid "Dialog with opened file details view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+msgid "Library"
 msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-msgid "Library view light"
-msgstr ""
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+#, fuzzy
+msgid "Lyrics syncing page"
+msgstr "Vue de la page de synchronisation des paroles"
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-msgid "Lyrics syncing page view light"
-msgstr ""
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
-msgid "Dialog with opened file details view light"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+msgid "LRClib import dialog"
 msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Quick Edit"
+#~ msgstr "Modification rapide"
 
 #~ msgid "LRCMake"
 #~ msgstr "LRCMake"

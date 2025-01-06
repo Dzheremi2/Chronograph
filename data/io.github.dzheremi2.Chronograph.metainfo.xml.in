@@ -40,7 +40,7 @@
   </requires>
 
   <screenshots>
-    <screenshot type="default" xml:lang="ru">
+    <screenshot type="default" xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libW.png</image>
       <caption>Library</caption>
     </screenshot>
@@ -52,7 +52,7 @@
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/lrclibW.png</image>
       <caption>LRClib import dialog</caption>
     </screenshot>
-    <screenshot xml:lang="ru">
+    <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libB.png</image>
       <caption>Library</caption>
     </screenshot>

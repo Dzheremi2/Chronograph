@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 23:49+0300\n"
+"POT-Creation-Date: 2025-01-06 12:54+0300\n"
 "PO-Revision-Date: 2025-01-06 09:54+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
@@ -117,9 +117,10 @@ msgstr "Сталася невідома помилка: "
 msgid "No source selected yet"
 msgstr "Джерело ще не вибрано"
 
-#: data/gtk/window.blp:6 data/gtk/window.blp:510
-msgid "Select a directory or open a file"
-msgstr "Обрати теки або відкрити файл"
+#: data/gtk/window.blp:6
+#, fuzzy
+msgid "Select a directory"
+msgstr "Виберіть каталог"
 
 #: data/gtk/window.blp:14
 msgid "Open source"
@@ -143,11 +144,12 @@ msgstr "Збережень ще не знайдено"
 
 #: data/gtk/window.blp:50
 msgid "Press pin button to add current directory to the saves"
-msgstr "Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
+msgstr ""
+"Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
 
-#: data/gtk/window.blp:78
-msgid "Quick Edit"
-msgstr "Швидке редагування"
+#: data/gtk/window.blp:78 data/gtk/window.blp:1013
+msgid "Quick Editor"
+msgstr "Швидкий редактор"
 
 #: data/gtk/window.blp:102
 msgid "Copy to clipboard"
@@ -194,6 +196,10 @@ msgstr "Зберігає"
 #: data/gtk/window.blp:484 data/gtk/window.blp:503 data/gtk/window.blp:899
 msgid "Toggle sidebar"
 msgstr "Перемкнути бічну панель"
+
+#: data/gtk/window.blp:510
+msgid "Select a directory or open a file"
+msgstr "Обрати теки або відкрити файл"
 
 #: data/gtk/window.blp:522 data/gtk/window.blp:884
 msgid "Toggle search"
@@ -343,10 +349,6 @@ msgstr "Використовувати прості"
 msgid "Use synced"
 msgstr "Використовувати синхронізовані"
 
-#: data/gtk/window.blp:1013
-msgid "Quick Editor"
-msgstr "Швидкий редактор"
-
 #: data/gtk/window.blp:1017
 msgid "Preferences"
 msgstr "Налаштування"
@@ -454,42 +456,52 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Синхронізуйте тексти ваших улюблених пісень"
 
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
+"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
+"and wav formats"
 msgstr ""
 "Цей додаток допомагає вам зробити внесок у велику базу даних синхронізованих "
 "текстів пісень з гарним GTK4 та LibAdwaita інтерфейсом."
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:37
-msgid "Library view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
+#, fuzzy
+msgid "Library"
 msgstr "Перегляд бібліотеки"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:41
-msgid "Lyrics syncing page view"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:61
+#, fuzzy
+msgid "Lyrics syncing page"
 msgstr "Перегляд синхронізації текстів пісень"
 
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:45
-msgid "Dialog with opened file details view"
-msgstr "Перегляд діалогового вікна з подробицями про файл"
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:49
-msgid "Library view light"
-msgstr "Перегляд бібліотеки у світлому стилі"
-
 #: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:53
-msgid "Lyrics syncing page view light"
-msgstr "Перегляд синхронізації текстів пісень у світлому стилі"
-
-#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:57
-msgid "Dialog with opened file details view light"
-msgstr "Перегляд діалогового вікна з подробицями про файл у світлому стилі"
+#: data/io.github.dzheremi2.Chronograph.metainfo.xml.in:65
+msgid "LRClib import dialog"
+msgstr ""
 
 #: data/io.github.dzheremi2.Chronograph.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;текст;пісень;"
 "інтернет;пісні;мультимедіа;медіа;іркліб;музика;синхронізація;караоке;"
+
+#~ msgid "Quick Edit"
+#~ msgstr "Швидке редагування"
+
+#~ msgid "Dialog with opened file details view"
+#~ msgstr "Перегляд діалогового вікна з подробицями про файл"
+
+#~ msgid "Library view light"
+#~ msgstr "Перегляд бібліотеки у світлому стилі"
+
+#~ msgid "Lyrics syncing page view light"
+#~ msgstr "Перегляд синхронізації текстів пісень у світлому стилі"
+
+#~ msgid "Dialog with opened file details view light"
+#~ msgstr "Перегляд діалогового вікна з подробицями про файл у світлому стилі"
 
 #~ msgid "LRCMake"
 #~ msgstr "LRCMake"
