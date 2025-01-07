@@ -58,6 +58,19 @@ class Translated(AstNode):
                 f"Cannot convert translated string to {expected_type.full_name}"
             )
 
+    @validate("context")
+    def context_double_quoted(self):
+        if self.translate_context is None:
+            return
+
+        if not str(self.group.tokens["context"]).startswith('"'):
+            raise CompileWarning("gettext may not recognize single-quoted strings")
+
+    @validate("string")
+    def string_double_quoted(self):
+        if not str(self.group.tokens["string"]).startswith('"'):
+            raise CompileWarning("gettext may not recognize single-quoted strings")
+
     @docs()
     def ref_docs(self):
         return get_docs_section("Syntax Translated")

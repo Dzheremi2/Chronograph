@@ -24,6 +24,8 @@ If you're using Meson's `i18n module <https://mesonbuild.com/i18n-module.html#i1
 
    i18n.gettext('package name', preset: 'glib')
 
+You must use double quotes for the translated strings in order for gettext to recognize them. Newer versions of blueprint will warn you if you use single quotes.
+
 Contexts
 --------
 
