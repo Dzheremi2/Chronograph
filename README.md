@@ -6,12 +6,12 @@
 [flathub-url]: https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk
 [installs-img]: https://img.shields.io/flathub/downloads/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&color=gree&logo=flathub
 
-![GitHub Release](https://img.shields.io/github/v/release/Dzheremi2/Chronograph?style=for-the-badge&color=000B3C&logo=github)
-<img alt="Flathub Version" src="https://img.shields.io/flathub/v/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&logo=flathub&color=lightblue">
+[![GitHub Release](https://img.shields.io/github/v/release/Dzheremi2/Chronograph?style=for-the-badge&color=000B3C&logo=github)](https://github.com/Dzheremi2/Chronograph/releases/latest)
+<a href="https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk"><img alt="Flathub Version" src="https://img.shields.io/flathub/v/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&logo=flathub&color=lightblue"></a>
 [![Installs][installs-img]][flathub-url]
-![Weblate project translated](https://img.shields.io/weblate/progress/lrcmake?style=for-the-badge&logo=weblate&logoColor=white&logoSize=auto&color=magenta&cacheSeconds=600)
-<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Dzheremi2/Chronograph/.github%2Fworkflows%2Fci.yml?style=for-the-badge&logo=github">
-![GitHub License](https://img.shields.io/github/license/Dzheremi2/Chronograph?style=for-the-badge&color=C25D00)
+[![Weblate project translated](https://img.shields.io/weblate/progress/lrcmake?style=for-the-badge&logo=weblate&logoColor=white&logoSize=auto&color=magenta&cacheSeconds=600)](https://hosted.weblate.org/projects/lrcmake/chronograph/)
+<a href="https://github.com/Dzheremi2/Chronograph/actions"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Dzheremi2/Chronograph/.github%2Fworkflows%2Fci.yml?style=for-the-badge&logo=github"></a>
+[![GitHub License](https://img.shields.io/github/license/Dzheremi2/Chronograph?style=for-the-badge&color=C25D00)](https://github.com/Dzheremi2/Chronograph/blob/master/LICENSE)
 
 ![Screenshot](docs/screenshots/libB.png)
 
@@ -50,7 +50,7 @@ You can see future plans on Projects page of this repo on [Chronograph roadmap.]
 If you have an idea or you know a bug, please, open an [issue](https://github.com/Dzheremi2/Chronograph/issues) with you idea/bug and it will be added to roadmap.
 
 ### Code of Conduct
-The project follows the [GNOME Code of Conduct.](https://conduct.gnome.org)
+The project follows the [GNOME Code of Conduct](https://conduct.gnome.org)
 
 
 ### Screenshots
@@ -58,7 +58,9 @@ The project follows the [GNOME Code of Conduct.](https://conduct.gnome.org)
 
 ![](docs/screenshots/libW.png)
 ![](docs/screenshots/syncB.png)
+![](docs/screenshots/syncCB.png)
 ![](docs/screenshots/syncW.png)
+![](docs/screenshots/syncCW.png)
 ![](docs/screenshots/lrclibB.png)
 ![](docs/screenshots/lrclibW.png)
 
