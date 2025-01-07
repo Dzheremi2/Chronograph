@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from gi.repository import Gdk, Gio, Gtk
 
@@ -26,7 +27,7 @@ def export_file(lyrics: str) -> None:
         string to save to file
     """
     dialog = Gtk.FileDialog(
-        initial_name=os.path.basename(shared.win.loaded_card._file._path)
+        initial_name=Path(os.path.basename(shared.win.loaded_card._file._path)).stem
         + shared.schema.get_string("auto-file-format")
     )
     dialog.save(shared.win, None, on_export_file, lyrics)
