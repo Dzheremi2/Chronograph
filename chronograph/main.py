@@ -103,7 +103,7 @@ class ChronographApplication(Adw.Application):
         dialog.set_copyright("© 2024-2025 Dzheremi")
         dialog.add_legal_section(
             "LRClib",
-            "tranxuanthang",
+            "© 2024 tranxuanthang",
             Gtk.License.MIT_X11,
         )
         dialog.present(shared.win)
