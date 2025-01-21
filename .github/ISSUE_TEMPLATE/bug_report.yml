@@ -1,0 +1,49 @@
+name: Bug Report
+description: Chronograph bug that you found out
+title: "[Bug]: "
+labels: ["bug"]
+assignees: Dzheremi2
+body:
+  - type: checkboxes
+    attributes:
+      label: Validation checkboxes
+      description: Required checkboxes
+      options:
+        - label: I'm using the latest version available on Flathub
+          required: true
+        - label: I have searched for my issue around issue tracker and didn't find anything (closed issues count as well)
+          required: true
+        - label: I'm using English language for this issue. Non-English issue will be marked as invalid
+          required: true
+  - type: input
+    attributes:
+      label: Chronograph version
+      description: What version of Chronograph are you using?
+      placeholder: "2.0"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction steps
+      description: Steps to reproduce bug you have encountered
+      placeholder: "1. Sync line..."
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: What you expected to see
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual behavior
+      description: What you seeing currently
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Some info that may help to fix this bug
+    validations:
+      required: false
