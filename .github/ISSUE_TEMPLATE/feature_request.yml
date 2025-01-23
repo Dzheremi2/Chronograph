@@ -7,13 +7,13 @@ body:
   - type: checkboxes
     attributes:
       label: Validation checkboxes
-      description: Required checkboxes
+      description: Required checkboxes (if not checkmarked, then issue will be marked as invalid)
       options:
-        - label: I'm using the latest version available on Flathub
-          required: true
         - label: I have searched for my feature request around issue tracker and didn't find anything (closed issues count as well)
           required: true
         - label: I'm using English language for this issue. Non-English issue will be marked as invalid
+          required: true
+        - label: I declare that this issue is not a question. If you want to ask something, go to the Discussions
           required: true
   - type: textarea
     attributes:
