@@ -93,6 +93,8 @@ def timing_parser(string: str) -> int:
     try:
         pattern = r"(\d+):(\d+).(\d+)"
         mm, ss, ms = re.search(pattern, line_parser(string)).groups()
+        if len(ms) == 2:
+            ms = ms + "0"
         total_ss = int(mm) * 60 + int(ss)
         total_ms = total_ss * 1000 + int(ms)
         return total_ms
