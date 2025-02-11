@@ -83,13 +83,13 @@ Adw.Dialog quick_edit_dialog {
           }
 
           ScrolledWindow {
-            Frame {
-              TextView quick_edit_text_view {
-                right-margin: 4;
-                bottom-margin: 4;
-                top-margin: 4;
-                left-margin: 4;
-              }
+            TextView quick_edit_text_view {
+              right-margin: 4;
+              bottom-margin: 4;
+              top-margin: 4;
+              left-margin: 4;
+
+              styles ["rounded-frame"]
             }
           }
 
@@ -219,15 +219,15 @@ Adw.Dialog lrclib_window {
                         margin-end: 8;
                         
                         ScrolledWindow {
-                          Frame {
-                            TextView lrclib_window_synced_lyrics_text_view {
-                              editable: false;
-                              left-margin: 4;
-                              top-margin: 4;
-                              hexpand: true;
-                              vexpand: true;
-                              wrap-mode: word_char;
-                            }
+                          TextView lrclib_window_synced_lyrics_text_view {
+                            editable: false;
+                            left-margin: 4;
+                            top-margin: 4;
+                            hexpand: true;
+                            vexpand: true;
+                            wrap-mode: word_char;
+
+                            styles ["rounded-frame"]
                           }
                         }
                       };
@@ -244,14 +244,14 @@ Adw.Dialog lrclib_window {
                         margin-end: 8;
                         
                         ScrolledWindow {
-                          Frame {
-                            TextView lrclib_window_plain_lyrics_text_view {
-                              left-margin: 4;
-                              top-margin: 4;
-                              hexpand: true;
-                              vexpand: true;
-                              wrap-mode: word_char;
-                            }
+                          TextView lrclib_window_plain_lyrics_text_view {
+                            left-margin: 4;
+                            top-margin: 4;
+                            hexpand: true;
+                            vexpand: true;
+                            wrap-mode: word_char;
+
+                            styles ["rounded-frame"]
                           }
                         }
                       };
@@ -383,16 +383,16 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
               margin-end: 8;
               
               ScrolledWindow {
-                Frame {
-                  TextView {
-                    editable: false;
-                    left-margin: 4;
-                    top-margin: 4;
-                    hexpand: true;
-                    vexpand: true;
-                    buffer: bind lrclib_window_synced_lyrics_text_view.buffer;
-                    wrap-mode: word_char;
-                  }
+                TextView {
+                  editable: false;
+                  left-margin: 4;
+                  top-margin: 4;
+                  hexpand: true;
+                  vexpand: true;
+                  buffer: bind lrclib_window_synced_lyrics_text_view.buffer;
+                  wrap-mode: word_char;
+
+                  styles ["rounded-frame"]
                 }
               }
             };
@@ -409,15 +409,15 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
               margin-end: 8;
               
               ScrolledWindow {
-                Frame {
-                  TextView {
-                    left-margin: 4;
-                    top-margin: 4;
-                    hexpand: true;
-                    vexpand: true;
-                    buffer: bind lrclib_window_plain_lyrics_text_view.buffer;
-                    wrap-mode: word_char;
-                  }
+                TextView {
+                  left-margin: 4;
+                  top-margin: 4;
+                  hexpand: true;
+                  vexpand: true;
+                  buffer: bind lrclib_window_plain_lyrics_text_view.buffer;
+                  wrap-mode: word_char;
+
+                  styles ["rounded-frame"]
                 }
               }
             };
