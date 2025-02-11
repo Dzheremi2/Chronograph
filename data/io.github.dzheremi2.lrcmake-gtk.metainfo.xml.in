@@ -75,6 +75,20 @@
   </screenshots>
 
   <releases>
+    <release version="2.1" date="2025-02-11">
+      <description translate="no">
+        <p>New features and bug fixes</p>
+        <ul>
+          <li>Added setting for precise milliseconds (3-digit), enabled by default</li>
+          <li>Added reparse button for reparsing current directory</li>
+          <li>Sorting moved to the main app menu</li>
+          <li>Fixed incorrect LRClib import dialog collapsed navigation page behavior</li>
+          <li>Fixed inconsistent behavior of the label of the quick edit dialog</li>
+          <li>Added Portuguese (Brazil) translation</li>
+          <li>Added Finnish translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.0" date="2025-01-06">
       <description translate="no">
         <p>Full app rewrite for better performance and flexibility</p>
