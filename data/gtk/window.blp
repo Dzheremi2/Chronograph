@@ -543,10 +543,9 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 Box {
                   orientation: horizontal;
 
-                  MenuButton sorting_button {
-                    icon-name: "sort-alphabetically-symbolic";
-                    tooltip-text: _("Sorting method");
-                    menu-model: sorting_menu;
+                  Button reparse_dir_button {
+                    icon-name: "reparse-dir-symbolic";
+                    tooltip-text: _("Re-parse current directory");
                   }
 
                   Button add_dir_to_saves_button {
@@ -1017,6 +1016,24 @@ menu use_lyrics_menu {
 }
 
 menu about_app {
+  section {
+    submenu {
+      label: _("Sort");
+
+      item {
+        label: _("A-Z");
+        action: "app.sort_type";
+        target: "a-z";
+      }
+
+      item {
+        label: _("Z-A");
+        action: "app.sort_type";
+        target: "z-a";
+      }
+    }
+  }
+
   section {
     item (_("Quick Editor"), "win.open_quick_editor")
   }

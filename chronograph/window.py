@@ -58,6 +58,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     search_bar: Gtk.SearchBar = Gtk.Template.Child()
     search_entry: Gtk.SearchEntry = Gtk.Template.Child()
     right_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
+    reparse_dir_button: Gtk.Button = Gtk.Template.Child()
     add_dir_to_saves_button: Gtk.Button = Gtk.Template.Child()
     library_overlay: Gtk.Overlay = Gtk.Template.Child()
     library_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
@@ -119,6 +120,10 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sync_navigation_page.connect("hiding", self.reset_sync_editor)
         self.quick_edit_copy_button.connect("clicked", self.copy_quick_editor_text)
         self.toggle_repeat_button.connect("toggled", self.toggle_repeat)
+        self.reparse_dir_button.connect(
+            "clicked",
+            lambda *_: dir_parser(shared.state_schema.get_string("opened-dir")[:-1]),
+        )
         self.add_dir_to_saves_button.connect("clicked", save_location)
         self.sidebar.connect("row-activated", self.load_save)
         self.lrclib_window_collapsed_results_list.connect(
