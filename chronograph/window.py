@@ -288,7 +288,12 @@ class ChronographWindow(Adw.ApplicationWindow):
         if self.navigation_view.get_visible_page() is self.sync_navigation_page:
             pattern = r"\[([^\[\]]+)\] "
             timestamp = self.controls.get_media_stream().get_timestamp() // 1000
-            timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{timestamp % 1000:03d}] "
+            if shared.schema.get_boolean("precise-milliseconds"):
+                timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{timestamp % 1000:03d}] "
+            else:
+                milliseconds = f"{timestamp % 1000:03d}"
+                timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{milliseconds[:-1]}] "
+                del milliseconds
             if shared.selected_line in self.sync_lines:
                 childs = []
                 for child in self.sync_lines:

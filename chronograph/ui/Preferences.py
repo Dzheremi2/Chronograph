@@ -13,6 +13,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
     auto_file_manipulation_switch: Adw.ExpanderRow = Gtk.Template.Child()
     auto_file_manipulation_format: Adw.ComboRow = Gtk.Template.Child()
     save_session_on_quit_switch: Adw.SwitchRow = Gtk.Template.Child()
+    precise_milliseconds_switch: Adw.SwitchRow = Gtk.Template.Child()
 
     opened = False
 
@@ -38,6 +39,12 @@ class ChronographPreferences(Adw.PreferencesDialog):
         shared.schema.bind(
             "save-session",
             self.save_session_on_quit_switch,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        shared.schema.bind(
+            "precise-milliseconds",
+            self.precise_milliseconds_switch,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )

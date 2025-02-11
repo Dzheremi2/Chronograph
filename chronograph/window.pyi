@@ -26,6 +26,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     search_bar: Gtk.SearchBar
     search_entry: Gtk.SearchEntry
     right_buttons_revealer: Gtk.Revealer
+    reparse_dir_button: Gtk.Button
     add_dir_to_saves_button: Gtk.Button
     library_overlay: Gtk.Overlay
     library_scrolled_window: Gtk.ScrolledWindow

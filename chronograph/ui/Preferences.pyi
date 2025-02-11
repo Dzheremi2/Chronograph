@@ -6,6 +6,8 @@ class ChronographPreferences(Adw.PreferencesDialog):
     reset_quick_edit_switch: Adw.SwitchRow
     auto_file_manipulation_switch: Adw.ExpanderRow
     auto_file_manipulation_format: Adw.ComboRow
+    save_session_on_quit_switch: Adw.SwitchRow
+    precise_milliseconds_switch: Adw.SwitchRow
 
     opened: bool
 

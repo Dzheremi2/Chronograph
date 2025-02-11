@@ -23,6 +23,11 @@ template $ChronographPreferences : Adw.PreferencesDialog {
     Adw.PreferencesGroup {
       title: _("Sync Page");
 
+      Adw.SwitchRow precise_milliseconds_switch {
+        title: _("Use precise milliseconds");
+        subtitle: _("Use 3-digit milliseconds instead of 2-digit");
+      }
+
       Adw.ExpanderRow auto_file_manipulation_switch {
         title: _("Auto file manipulation");
         subtitle: _("Automatically creates and updates files when any of lyrics lines changed");

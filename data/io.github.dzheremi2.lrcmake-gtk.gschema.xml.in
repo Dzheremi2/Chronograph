@@ -17,6 +17,9 @@
 		<key name="save-session" type="b">
 			<default>false</default>
 		</key>
+		<key name="precise-milliseconds" type="b">
+			<default>true</default>
+		</key>
 	</schema>
 
 	<schema id="@APP_ID@.State" path="@PREFIX@/State/">
