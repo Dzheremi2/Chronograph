@@ -122,7 +122,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.add_dir_to_saves_button.connect("clicked", save_location)
         self.sidebar.connect("row-activated", self.load_save)
         self.lrclib_window_collapsed_results_list.connect(
-            "row-selected", self.set_lyrics
+            "row-activated", self.set_lyrics
         )
 
         if self.library.get_child_at_index(0) is None:
