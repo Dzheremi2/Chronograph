@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-11 22:19+0300\n"
-"PO-Revision-Date: 2025-01-07 00:00+0000\n"
+"PO-Revision-Date: 2025-02-11 19:51+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/uk/>\n"
@@ -209,9 +209,8 @@ msgid "App settings, info and utils"
 msgstr "Налаштування додатку, інформація та інструментарій"
 
 #: data/gtk/window.blp:548
-#, fuzzy
 msgid "Re-parse current directory"
-msgstr "Виберіть каталог"
+msgstr "Повторний аналіз поточного каталогу"
 
 #: data/gtk/window.blp:553
 msgid "Add current directory to saves"
@@ -355,7 +354,7 @@ msgstr "Використовувати синхронізовані"
 
 #: data/gtk/window.blp:1021
 msgid "Sort"
-msgstr ""
+msgstr "Сортувати"
 
 #: data/gtk/window.blp:1042
 msgid "Preferences"
@@ -394,11 +393,11 @@ msgstr "Сторінка синхронізації"
 
 #: data/gtk/ui/Preferences.blp:27
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Використовуйте точні мілісекунди"
 
 #: data/gtk/ui/Preferences.blp:28
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "Використовуйте 3-значні мілісекунди замість 2-значних"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Auto file manipulation"
@@ -489,9 +488,8 @@ msgstr "Сторінка синхронізації пісень"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Lyrics syncing page on smaller display"
-msgstr "Перегляд синхронізації текстів пісень у світлому стилі"
+msgstr "Сторінка синхронізації пісень на меншому дисплеї"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
