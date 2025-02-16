@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-16 12:07+0300\n"
-"PO-Revision-Date: 2025-01-07 19:10+0000\n"
+"PO-Revision-Date: 2025-02-16 11:35+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 #: chronograph/window.py:519
 msgid "Copied successfully"
@@ -220,9 +220,8 @@ msgid "App settings, info and utils"
 msgstr "Impostazioni, informazioni e utilità dell'app"
 
 #: data/gtk/window.blp:569
-#, fuzzy
 msgid "Re-parse current directory"
-msgstr "Seleziona directory"
+msgstr "Rianalizzare la directory corrente"
 
 #: data/gtk/window.blp:574
 msgid "Add current directory to saves"
@@ -366,7 +365,7 @@ msgstr "Usa sincronizzato"
 
 #: data/gtk/window.blp:1042
 msgid "Sort"
-msgstr ""
+msgstr "Ordina"
 
 #: data/gtk/window.blp:1063
 msgid "Preferences"
@@ -404,11 +403,11 @@ msgstr "Sincronizza pagina"
 
 #: data/gtk/ui/Preferences.blp:27
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Utilizzare millisecondi precisi"
 
 #: data/gtk/ui/Preferences.blp:28
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "Utilizzare millisecondi a 3 cifre anziché a 2 cifre"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Auto file manipulation"
@@ -499,9 +498,8 @@ msgstr "Pagina di sincronizzazione dei testi"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Lyrics syncing page on smaller display"
-msgstr "Sincronizzazione dei testi con visualizzazione chiara della pagina"
+msgstr "Pagina di sincronizzazione dei testi su display più piccoli"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
