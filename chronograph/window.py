@@ -39,6 +39,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     # Status pages
     no_source_opened: Adw.StatusPage = Gtk.Template.Child()
+    empty_directory: Adw.StatusPage = Gtk.Template.Child()
     search_lrclib_status_page: Adw.StatusPage = Gtk.Template.Child()
     search_lrclib_collapsed_status_page: Adw.StatusPage = Gtk.Template.Child()
     lrclib_window_nothing_found_status: Adw.StatusPage = Gtk.Template.Child()

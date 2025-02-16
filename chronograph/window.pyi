@@ -7,6 +7,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     # Status pages
     no_source_opened: Adw.StatusPage
+    empty_directory: Adw.StatusPage
     search_lrclib_status_page: Adw.StatusPage
     search_lrclib_collapsed_status_page: Adw.StatusPage
     lrclib_window_nothing_found_status: Adw.StatusPage

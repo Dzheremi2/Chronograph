@@ -29,6 +29,14 @@ def dir_parser(path: str, *_args) -> None:
             elif Path(file).suffix in (".mp3", ".wav"):
                 mutagen_files.append(FileID3(path + file))
 
+    if len(mutagen_files) == 0:
+        shared.win.library_scrolled_window.set_child(shared.win.empty_directory)
+        shared.win.open_source_button.set_icon_name("open-source-symbolic")
+        shared.win.right_buttons_revealer.set_reveal_child(False)
+        shared.win.left_buttons_revealer.set_reveal_child(False)
+        shared.state_schema.set_string("opened-dir", "None")
+        return
+
     for file in mutagen_files:
         GLib.idle_add(songcard_idle, file)
 

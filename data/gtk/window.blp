@@ -10,7 +10,28 @@ Adw.StatusPage no_source_opened {
     halign: center;
     hexpand: true;
 
-    MenuButton status_open_source_button {
+    MenuButton {
+      label: _("Open source");
+      menu-model: open_source_menu;
+
+      styles [
+        "pill",
+        "suggested-action"
+      ]
+    }
+  }
+}
+
+Adw.StatusPage empty_directory {
+  title: _("Empty directory");
+  description: _("This directory doesn't have any supported music files");
+  icon-name: "nothing-found-symbolic";
+
+  Box {
+    halign: center;
+    hexpand: true;
+
+    MenuButton {
       label: _("Open source");
       menu-model: open_source_menu;
 
