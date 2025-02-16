@@ -10,11 +10,18 @@ python = import('python')
 
 py_installation = python.find_installation('python3')
 
-app_id = 'io.github.dzheremi2.lrcmake-gtk'
-prefix = '/io/github/dzheremi2/lrcmake-gtk'
 cachev = 1
 python = import('python')
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+
+profile = get_option('profile')
+if profile == 'development'
+    app_id = 'io.github.dzheremi2.lrcmake_gtk.Devel'
+    prefix = '/io/github/dzheremi2/lrcmake_gtk/Devel'
+elif profile == 'release'
+    app_id = 'io.github.dzheremi2.lrcmake-gtk'
+    prefix = '/io/github/dzheremi2/lrcmake-gtk'
+endif
 
 conf = configuration_data()
 conf.set('PYTHON', python.find_installation('python3').full_path())

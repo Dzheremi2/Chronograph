@@ -1,4 +1,4 @@
-name: Publish Release
+name: Build and Publish Release
 on:
   push:
     tags: "*"
@@ -7,20 +7,33 @@ concurrency:
   group: release-${{ github.sha }}
 
 jobs:
-  publish-release:
-    name: Publish Release
+  flatpak-release:
+    name: Flatpak
     runs-on: ubuntu-latest
-    steps: 
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
+      options: --privileged
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download Artifact
-        uses: dawidd6/action-download-artifact@v7
+      - name: Flatpak Builder
+        uses: flatpak/flatpak-github-actions/flatpak-builder@fc80c13788c1ba0f45add99b19cf26b616ccab4f
         with:
-          workflow: ci.yml
-          commit: ${{ github.sha }}
+          bundle: io.github.dzheremi2.lrcmake-gtk.flatpak
+          manifest-path: build-aux/flatpak/io.github.dzheremi2.lrcmake-gtk.yaml
 
-      - name: Extract release notes
+  publish-release:
+    needs: flatpak-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: io.github.dzheremi2.lrcmake-gtk-x86-64
+      - name: Extract Release Notes
         shell: python
         run: |
           import re, textwrap
@@ -32,11 +45,9 @@ jobs:
           file = open("release_notes", "w", encoding="utf-8")
           file.write(string)
           file.close()
-
       - name: Get Tag Name
         id: get_tag_name
         run: echo tag_name=${GITHUB_REF#refs/tags/} >> $GITHUB_OUTPUT
-
       - name: Publish Release
         uses: softprops/action-gh-release@v2.1.0
         with:

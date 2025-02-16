@@ -112,6 +112,9 @@ class ChronographWindow(Adw.ApplicationWindow):
 
         self.loaded_card: SongCard = None
 
+        if shared.APP_ID.endswith("Devel"):
+            self.add_css_class("devel")
+
         self.set_help_overlay(self.help_overlay)
         self.search_bar.connect_entry(self.search_entry)
         self.library.set_filter_func(self.filtering)

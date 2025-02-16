@@ -1,11 +1,15 @@
 name: Build Bundle
 on:
   push:
-    branches: [master]
+    branches:
+      - "**"
   pull_request:
+    branches:
+      - "**"
 
 concurrency:
   group: release-${{ github.sha }}
+
 jobs:
   flatpak:
     name: Flatpak
@@ -18,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Flatpak Builder
-        uses: jochumdev/flatpak-github-actions/flatpak-builder@builder-update-deps
+        uses: flatpak/flatpak-github-actions/flatpak-builder@fc80c13788c1ba0f45add99b19cf26b616ccab4f
         with:
-          bundle: io.github.dzheremi2.lrcmake-gtk.flatpak
-          manifest-path: io.github.dzheremi2.lrcmake-gtk.yaml
+          bundle: io.github.dzheremi2.lrcmake_gtk.Devel.flatpak
+          manifest-path: build-aux/flatpak/io.github.dzheremi2.lrcmake_gtk.Devel.yaml

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.dzheremi2.lrcmake-gtk</id>
+  <id>@APP_ID@</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
@@ -23,7 +23,7 @@
   <url type="contribute">https://github.com/Dzheremi2/Chronograph/pulls</url>
 
   <translation type="gettext">Chronograph</translation>
-  <launchable type="desktop-id">io.github.dzheremi2.lrcmake-gtk.desktop</launchable>
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
   <content_rating type="oars-1.1" />
 
   <branding>

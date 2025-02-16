@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Chronograph
 Exec=Chronograph
-Icon=io.github.dzheremi2.lrcmake-gtk
+Icon=@APP_ID@
 Terminal=false
 Type=Application
 Categories=Utility;Audio;
