@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 22:19+0300\n"
+"POT-Creation-Date: 2025-02-16 12:07+0300\n"
 "PO-Revision-Date: 2025-02-11 19:51+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.10-dev\n"
 
-#: chronograph/window.py:515
+#: chronograph/window.py:519
 msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
@@ -33,13 +33,13 @@ msgstr ""
 "projects/lrcmake/lrcmake/"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:14
-#: data/gtk/window.blp:155 data/gtk/window.blp:309 data/gtk/ui/SongCard.blp:73
+#: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/ui/SongCard.blp:73
 #: data/gtk/ui/SongCard.blp:176
 msgid "Title"
 msgstr "Назва"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:15
-#: data/gtk/window.blp:159 data/gtk/window.blp:314 data/gtk/ui/SongCard.blp:77
+#: data/gtk/window.blp:180 data/gtk/window.blp:335 data/gtk/ui/SongCard.blp:77
 #: data/gtk/ui/SongCard.blp:191
 msgid "Artist"
 msgstr "Виконавець"
@@ -93,7 +93,7 @@ msgstr "Каталог успішно збережено"
 msgid "This directory is already in saves"
 msgstr "Цей каталог уже зберігається"
 
-#: chronograph/utils/parsers.py:183
+#: chronograph/utils/parsers.py:191
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
@@ -121,56 +121,65 @@ msgstr "Джерело ще не вибрано"
 msgid "Select a directory"
 msgstr "Виберіть каталог"
 
-#: data/gtk/window.blp:14
+#: data/gtk/window.blp:14 data/gtk/window.blp:35
 msgid "Open source"
 msgstr "Відкритий код"
 
-#: data/gtk/window.blp:26 data/gtk/window.blp:31
+#: data/gtk/window.blp:26
+#, fuzzy
+msgid "Empty directory"
+msgstr "Виберіть каталог"
+
+#: data/gtk/window.blp:27
+msgid "This directory doesn't have any supported music files"
+msgstr ""
+
+#: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
 msgstr "Шукайте в LRClib за назвою та іменами виконавців"
 
-#: data/gtk/window.blp:37 data/gtk/window.blp:43
+#: data/gtk/window.blp:58 data/gtk/window.blp:64
 msgid "Nothing was found for this request"
 msgstr "Нічого не було знайдено за цим запитом"
 
-#: data/gtk/window.blp:38 data/gtk/window.blp:44
+#: data/gtk/window.blp:59 data/gtk/window.blp:65
 msgid "Try out another request, maybe there are mistakes in request text."
 msgstr "Спробуйте інший запит, мабуть у тексті є помилки."
 
-#: data/gtk/window.blp:48
+#: data/gtk/window.blp:69
 msgid "No saves found yet"
 msgstr "Збережень ще не знайдено"
 
-#: data/gtk/window.blp:50
+#: data/gtk/window.blp:71
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 "Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
 
-#: data/gtk/window.blp:78 data/gtk/window.blp:1038
+#: data/gtk/window.blp:99 data/gtk/window.blp:1059
 msgid "Quick Editor"
 msgstr "Швидкий редактор"
 
-#: data/gtk/window.blp:103
+#: data/gtk/window.blp:124
 msgid "Copy to clipboard"
 msgstr "Скопіювати у буфер обміну"
 
-#: data/gtk/window.blp:167 data/gtk/window.blp:323
+#: data/gtk/window.blp:188 data/gtk/window.blp:344
 msgid "Search LRClib for provided title and artist"
 msgstr "Шукати у LRClib по заданій назві та виконавцю"
 
-#: data/gtk/window.blp:172 data/gtk/window.blp:328 data/gtk/window.blp:569
+#: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:590
 msgid "Search"
 msgstr "Шукати"
 
-#: data/gtk/window.blp:213 data/gtk/window.blp:377
+#: data/gtk/window.blp:234 data/gtk/window.blp:398
 msgid "Synced"
 msgstr "Синхронізовані"
 
-#: data/gtk/window.blp:238 data/gtk/window.blp:403
+#: data/gtk/window.blp:259 data/gtk/window.blp:424
 msgid "Plain"
 msgstr "Прості"
 
-#: data/gtk/window.blp:267 data/gtk/window.blp:433
+#: data/gtk/window.blp:288 data/gtk/window.blp:454
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
@@ -178,189 +187,189 @@ msgstr ""
 "Синхронізовані слова пісень використовуються за замовченням, щоб "
 "використовувати прості, оберіть \"Використовувати прості\" із випадного меню"
 
-#: data/gtk/window.blp:273 data/gtk/window.blp:439
+#: data/gtk/window.blp:294 data/gtk/window.blp:460
 msgid "Use"
 msgstr "Використовувати"
 
-#: data/gtk/window.blp:453 data/gtk/window.blp:472
+#: data/gtk/window.blp:474 data/gtk/window.blp:493
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
 msgstr "Хронограф"
 
-#: data/gtk/window.blp:479
+#: data/gtk/window.blp:500
 msgid "Saves"
 msgstr "Зберігає"
 
-#: data/gtk/window.blp:487 data/gtk/window.blp:506 data/gtk/window.blp:906
+#: data/gtk/window.blp:508 data/gtk/window.blp:527 data/gtk/window.blp:927
 msgid "Toggle sidebar"
 msgstr "Перемкнути бічну панель"
 
-#: data/gtk/window.blp:513
+#: data/gtk/window.blp:534
 msgid "Select a directory or open a file"
 msgstr "Обрати теки або відкрити файл"
 
-#: data/gtk/window.blp:525 data/gtk/window.blp:891
+#: data/gtk/window.blp:546 data/gtk/window.blp:912
 msgid "Toggle search"
 msgstr "Увімкнути пошук"
 
-#: data/gtk/window.blp:533 data/gtk/window.blp:617
+#: data/gtk/window.blp:554 data/gtk/window.blp:638
 msgid "App settings, info and utils"
 msgstr "Налаштування додатку, інформація та інструментарій"
 
-#: data/gtk/window.blp:548
+#: data/gtk/window.blp:569
 msgid "Re-parse current directory"
 msgstr "Повторний аналіз поточного каталогу"
 
-#: data/gtk/window.blp:553
+#: data/gtk/window.blp:574
 msgid "Add current directory to saves"
 msgstr "Додати поточний каталог до збереження"
 
-#: data/gtk/window.blp:607
+#: data/gtk/window.blp:628
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: data/gtk/window.blp:698
+#: data/gtk/window.blp:719
 msgid "Toggle song repeat"
 msgstr "Перемикнути повторення пісні"
 
-#: data/gtk/window.blp:753
+#: data/gtk/window.blp:774
 msgid "Sync/Re-sync line"
 msgstr "Синхронізувати/десинхронізувати рядок"
 
-#: data/gtk/window.blp:764 data/gtk/window.blp:920
+#: data/gtk/window.blp:785 data/gtk/window.blp:941
 msgid "Replay selected line"
 msgstr "Повторно програти рядок"
 
-#: data/gtk/window.blp:772
+#: data/gtk/window.blp:793
 msgid "Re-sync selected line 100ms back"
 msgstr "Десинхронізувати обраний рядок на 100мс назад"
 
-#: data/gtk/window.blp:780
+#: data/gtk/window.blp:801
 msgid "Re-sync selected line 100ms forward"
 msgstr "Десинхронізувати обраний рядок на 100мс вперед"
 
-#: data/gtk/window.blp:788 data/gtk/window.blp:982
+#: data/gtk/window.blp:809 data/gtk/window.blp:1003
 msgid "Import from …"
 msgstr "Імпорт з…"
 
-#: data/gtk/window.blp:799 data/gtk/window.blp:992
+#: data/gtk/window.blp:820 data/gtk/window.blp:1013
 msgid "Export to …"
 msgstr "Експорт до…"
 
-#: data/gtk/window.blp:817 data/gtk/window.blp:1002
+#: data/gtk/window.blp:838 data/gtk/window.blp:1023
 msgid "Actions with selected line"
 msgstr "Дії з обраним рядком"
 
-#: data/gtk/window.blp:828
+#: data/gtk/window.blp:849
 msgid "About file"
 msgstr "Про файл"
 
-#: data/gtk/window.blp:862
+#: data/gtk/window.blp:883
 msgid "Add line"
 msgstr "Додайте лінію"
 
-#: data/gtk/window.blp:879
+#: data/gtk/window.blp:900
 msgid "Shortcuts"
 msgstr "Ярлики"
 
-#: data/gtk/window.blp:883 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:904 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr "Загальні"
 
-#: data/gtk/window.blp:886
+#: data/gtk/window.blp:907
 msgid "Quit"
 msgstr "Вийти"
 
-#: data/gtk/window.blp:896
+#: data/gtk/window.blp:917
 msgid "Select directory"
 msgstr "Виберіть каталог"
 
-#: data/gtk/window.blp:901 data/gtk/window.blp:1043
+#: data/gtk/window.blp:922 data/gtk/window.blp:1064
 msgid "Keybindings"
 msgstr "Клавіатурні скорочення"
 
-#: data/gtk/window.blp:912
+#: data/gtk/window.blp:933
 msgid "Sync mode"
 msgstr "Режим синхронізації"
 
-#: data/gtk/window.blp:915
+#: data/gtk/window.blp:936
 msgid "Sync/Re-sync"
 msgstr "Синхронізувати/десинхронізувати"
 
-#: data/gtk/window.blp:925
+#: data/gtk/window.blp:946
 msgid "Remove selected line"
 msgstr "Видалити обраний рядок"
 
-#: data/gtk/window.blp:930
+#: data/gtk/window.blp:951
 msgid "Prepend line to selected"
 msgstr "Вставити рядок вище обраного"
 
-#: data/gtk/window.blp:935
+#: data/gtk/window.blp:956
 msgid "Append line to selected"
 msgstr "Вставити строку нижче обраного"
 
-#: data/gtk/window.blp:940 data/gtk/window.blp:1007
+#: data/gtk/window.blp:961 data/gtk/window.blp:1028
 msgid "Append line to end"
 msgstr "Вставити строку до кінця"
 
-#: data/gtk/window.blp:945
+#: data/gtk/window.blp:966
 msgid "Re-sync 100ms back"
 msgstr "Повторна синхронізація на 100 мс назад"
 
-#: data/gtk/window.blp:950
+#: data/gtk/window.blp:971
 msgid "Re-sync 100ms forward"
 msgstr "Повторна синхронізація на 100 мс вперед"
 
-#: data/gtk/window.blp:960
+#: data/gtk/window.blp:981
 msgid "Directory"
 msgstr "Довідник"
 
-#: data/gtk/window.blp:967 data/gtk/window.blp:1024
+#: data/gtk/window.blp:988 data/gtk/window.blp:1045
 msgid "A-Z"
 msgstr "А-Я"
 
-#: data/gtk/window.blp:973 data/gtk/window.blp:1030
+#: data/gtk/window.blp:994 data/gtk/window.blp:1051
 msgid "Z-A"
 msgstr "Я-А"
 
-#: data/gtk/window.blp:984 data/gtk/window.blp:994
+#: data/gtk/window.blp:1005 data/gtk/window.blp:1015
 msgid "File"
 msgstr "Файл"
 
-#: data/gtk/window.blp:985 data/gtk/window.blp:995
+#: data/gtk/window.blp:1006 data/gtk/window.blp:1016
 msgid "Clipboard"
 msgstr "Буфер обміну"
 
-#: data/gtk/window.blp:1004
+#: data/gtk/window.blp:1025
 msgid "Remove line"
 msgstr "Видалити рядок"
 
-#: data/gtk/window.blp:1005
+#: data/gtk/window.blp:1026
 msgid "Prepend line"
 msgstr "Додати рядок вище"
 
-#: data/gtk/window.blp:1006
+#: data/gtk/window.blp:1027
 msgid "Append line"
 msgstr "Додати рядок нижче"
 
-#: data/gtk/window.blp:1013
+#: data/gtk/window.blp:1034
 msgid "Use plain"
 msgstr "Використовувати прості"
 
-#: data/gtk/window.blp:1014
+#: data/gtk/window.blp:1035
 msgid "Use synced"
 msgstr "Використовувати синхронізовані"
 
-#: data/gtk/window.blp:1021
+#: data/gtk/window.blp:1042
 msgid "Sort"
 msgstr "Сортувати"
 
-#: data/gtk/window.blp:1042
+#: data/gtk/window.blp:1063
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: data/gtk/window.blp:1044
+#: data/gtk/window.blp:1065
 msgid "About"
 msgstr "Про додаток"
 
