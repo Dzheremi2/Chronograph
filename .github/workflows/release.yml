@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Flatpak Builder
-        uses: flatpak/flatpak-github-actions/flatpak-builder@fc80c13788c1ba0f45add99b19cf26b616ccab4f
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.4
         with:
           bundle: io.github.dzheremi2.lrcmake-gtk.flatpak
           manifest-path: build-aux/flatpak/io.github.dzheremi2.lrcmake-gtk.yaml
