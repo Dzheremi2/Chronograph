@@ -4,6 +4,6 @@ Exec=Chronograph
 Icon=@APP_ID@
 Terminal=false
 Type=Application
-Categories=Utility;AudioVideo;
+Categories=GNOME;GTK;Utility;AudioVideo;Audio;
 Keywords=lyrics;internet;songs;multimedia;media;lrclib;music;syncing;
 StartupNotify=true
