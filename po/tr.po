@@ -8,21 +8,20 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-16 12:07+0300\n"
-"PO-Revision-Date: 2024-11-23 23:01+0000\n"
-"Last-Translator: Recep Kaan Ergün <recepkaanergun2008@gmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/lrcmake/"
-"tr/>\n"
+"PO-Revision-Date: 2025-02-17 20:02+0000\n"
+"Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/"
+"chronograph/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: chronograph/window.py:519
-#, fuzzy
 msgid "Copied successfully"
-msgstr "Başarıyla yayınlandı: "
+msgstr "Başarıyla kopyalandı"
 
 #: chronograph/main.py:102
 msgid ""
@@ -46,24 +45,24 @@ msgstr "Sanatçı"
 
 #: chronograph/ui/LrclibTrack.py:10
 msgid "Duration"
-msgstr ""
+msgstr "Uzunluk"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:16
 #: data/gtk/ui/SongCard.blp:81
 msgid "Album"
-msgstr ""
+msgstr "Albüm"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
-msgstr ""
+msgstr "Enstrümental"
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
