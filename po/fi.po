@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-16 12:07+0300\n"
-"PO-Revision-Date: 2025-01-11 02:00+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2025-02-19 16:01+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/fi/>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: chronograph/window.py:519
 msgid "Copied successfully"
@@ -98,7 +98,7 @@ msgstr "Vaikuttaa siltä, ettei jokaista riviä ole synkronoitu"
 
 #: chronograph/utils/publish.py:90
 msgid "Some of Title, Artist and/or Album fileds are Unknown!"
-msgstr ""
+msgstr "Osa nimi-, taiteilija- ja/tai albumikentistä ovat tuntemattomia!"
 
 #: chronograph/utils/publish.py:120
 msgid "Published successfully: "
@@ -125,13 +125,12 @@ msgid "Open source"
 msgstr "Avaa lähde"
 
 #: data/gtk/window.blp:26
-#, fuzzy
 msgid "Empty directory"
-msgstr "Valitse kansio"
+msgstr "Tyhjä hakemisto"
 
 #: data/gtk/window.blp:27
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Tämä hakemisto ei sisällä tuettuja musiikkitiedostoja"
 
 #: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
@@ -143,7 +142,7 @@ msgstr "Mitään ei löytynyt"
 
 #: data/gtk/window.blp:59 data/gtk/window.blp:65
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
+msgstr "Kokeile toista pyyntöä, ehkä pyynnön tekstissä on virheitä."
 
 #: data/gtk/window.blp:69
 msgid "No saves found yet"
@@ -193,7 +192,7 @@ msgstr "Käytä"
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
-msgstr ""
+msgstr "Kronografi"
 
 #: data/gtk/window.blp:500
 msgid "Saves"
@@ -216,9 +215,8 @@ msgid "App settings, info and utils"
 msgstr "Sovelluksen asetukset, tiedot ja työkalut"
 
 #: data/gtk/window.blp:569
-#, fuzzy
 msgid "Re-parse current directory"
-msgstr "Valitse kansio"
+msgstr "Jäsennä nykyinen hakemisto uudelleen"
 
 #: data/gtk/window.blp:574
 msgid "Add current directory to saves"
@@ -302,11 +300,11 @@ msgstr "Poista valittu rivi"
 
 #: data/gtk/window.blp:951
 msgid "Prepend line to selected"
-msgstr ""
+msgstr "Liitä rivi eteen valittuun"
 
 #: data/gtk/window.blp:956
 msgid "Append line to selected"
-msgstr ""
+msgstr "Liitä rivi valittuun"
 
 #: data/gtk/window.blp:961 data/gtk/window.blp:1028
 msgid "Append line to end"
@@ -346,11 +344,11 @@ msgstr "Poista rivi"
 
 #: data/gtk/window.blp:1026
 msgid "Prepend line"
-msgstr ""
+msgstr "Liitä rivi eteen"
 
 #: data/gtk/window.blp:1027
 msgid "Append line"
-msgstr ""
+msgstr "Liitä rivi"
 
 #: data/gtk/window.blp:1034
 msgid "Use plain"
@@ -362,7 +360,7 @@ msgstr "Käytä synkronoitua"
 
 #: data/gtk/window.blp:1042
 msgid "Sort"
-msgstr ""
+msgstr "Lajittele"
 
 #: data/gtk/window.blp:1063
 msgid "Preferences"
@@ -383,6 +381,7 @@ msgstr "Tyhjennä pikamuokkain suljettaessa"
 #: data/gtk/ui/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
+"Valitse, siivotaanko pikamuokkausikkunan teksti poistumisen jälkeen vai ei"
 
 #: data/gtk/ui/Preferences.blp:18
 msgid "Save session on app close"
@@ -391,6 +390,7 @@ msgstr "Tallenna istunto kun sovellus suljetaan"
 #: data/gtk/ui/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
 msgstr ""
+"Avaa viimeksi avatun hakemiston uudelleen seuraavan käynnistyksen yhteydessä"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid "Sync Page"
@@ -398,20 +398,22 @@ msgstr "Synkronoi sivu"
 
 #: data/gtk/ui/Preferences.blp:27
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Käytä tarkkoja millisekunteja"
 
 #: data/gtk/ui/Preferences.blp:28
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "Käytä kolmen luvun millisekuntia kahden luvun sijasta"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Auto file manipulation"
-msgstr ""
+msgstr "Automaattinen tiedostojen käsittely"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
+"Luo ja päivittää tiedostoja automaattisesti, kun jokin sanoitusriveistä "
+"muuttuu"
 
 #: data/gtk/ui/Preferences.blp:37
 msgid "File format"
@@ -419,7 +421,7 @@ msgstr "Tiedostomuoto"
 
 #: data/gtk/ui/Preferences.blp:38
 msgid "File format for auto manipulation"
-msgstr ""
+msgstr "Tiedostomuoto automaattista käsittelyä varten"
 
 #: data/gtk/ui/SavedLocation.blp:35
 msgid "Remove this from saves"
@@ -427,7 +429,7 @@ msgstr "Poista tallennuksista"
 
 #: data/gtk/ui/SavedLocation.blp:52
 msgid "Delete name to remove"
-msgstr ""
+msgstr "Poista poistettava nimi"
 
 #: data/gtk/ui/SongCard.blp:13
 msgid "Cancel"
@@ -455,7 +457,7 @@ msgstr "Näytä kappaleen tiedot"
 
 #: data/gtk/ui/SongCard.blp:153
 msgid "Open syncing page"
-msgstr ""
+msgstr "Avaa synkronointisivu"
 
 #: data/gtk/ui/SongCard.blp:213
 msgid "Set cover"
@@ -475,6 +477,9 @@ msgid ""
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
 "and wav formats"
 msgstr ""
+"Tämä sovellus auttaa sinua osallistumaan suureen synkronoitujen sanoitusten "
+"tietokantaan kauniilla GTK4- ja LibAdwaita-käyttöliittymällä. Se tukee "
+"musiikkia ogg-, flac-, mp3- ja wav-muodoissa"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
@@ -484,12 +489,12 @@ msgstr "Kirjasto"
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Lyrics syncing page"
-msgstr ""
+msgstr "Sanoitusten synkronointisivu"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
 msgid "Lyrics syncing page on smaller display"
-msgstr ""
+msgstr "Sanoitusten synkronointisivu pienemmällä näytöllä"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
