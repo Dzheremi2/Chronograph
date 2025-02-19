@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-16 12:07+0300\n"
-"PO-Revision-Date: 2025-02-17 20:02+0000\n"
+"PO-Revision-Date: 2025-02-19 16:01+0000\n"
 "Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/tr/>\n"
@@ -74,30 +74,27 @@ msgstr ""
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Yol: "
 
 #: chronograph/ui/SongCard.py:13
-#, fuzzy
 msgid "About File"
-msgstr "Hakkında"
+msgstr "Dosya Hakkında"
 
 #: chronograph/ui/SongCard.py:17
 msgid "Path"
-msgstr ""
+msgstr "Yol"
 
 #: chronograph/utils/caching.py:52
-#, fuzzy
 msgid "Directory saved successfully"
-msgstr "Başarıyla yayınlandı: "
+msgstr "Dizin başarıyla kaydedildi"
 
 #: chronograph/utils/caching.py:58
 msgid "This directory is already in saves"
-msgstr ""
+msgstr "Bu dizin çoktan kayıtlarda"
 
 #: chronograph/utils/parsers.py:191
-#, fuzzy
 msgid "Seems like not every line is synced"
-msgstr "Her satır senkronize edilmemiş gibi gözüküyor!"
+msgstr "Her satır eşzamanlanmamış gibi gözüküyor!"
 
 #: chronograph/utils/publish.py:90
 msgid "Some of Title, Artist and/or Album fileds are Unknown!"
