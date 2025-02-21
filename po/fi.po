@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 13:51+0300\n"
+"POT-Creation-Date: 2025-02-16 12:07+0300\n"
 "PO-Revision-Date: 2025-01-11 02:00+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/lrcmake/"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10-dev\n"
 
-#: chronograph/window.py:592
+#: chronograph/window.py:519
 msgid "Copied successfully"
 msgstr "Kopiointi onnistui"
 
-#: chronograph/main.py:112
+#: chronograph/main.py:102
 msgid ""
 "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
 "projects/lrcmake/lrcmake/"
@@ -92,7 +92,7 @@ msgstr "Kansio tallennettu"
 msgid "This directory is already in saves"
 msgstr "Tämä kansio on jo tallennuksissa"
 
-#: chronograph/utils/parsers.py:198
+#: chronograph/utils/parsers.py:191
 msgid "Seems like not every line is synced"
 msgstr "Vaikuttaa siltä, ettei jokaista riviä ole synkronoitu"
 
@@ -153,7 +153,7 @@ msgstr "Ei tallennuksia vielä"
 msgid "Press pin button to add current directory to the saves"
 msgstr "Paina nuppineulapainiketta lisätäksesi nykyisen kansion tallennuksiin"
 
-#: data/gtk/window.blp:99 data/gtk/window.blp:1081
+#: data/gtk/window.blp:99 data/gtk/window.blp:1059
 msgid "Quick Editor"
 msgstr "Pikamuokkain"
 
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Saves"
 msgstr "Tallennukset"
 
-#: data/gtk/window.blp:508 data/gtk/window.blp:527 data/gtk/window.blp:933
+#: data/gtk/window.blp:508 data/gtk/window.blp:527 data/gtk/window.blp:927
 msgid "Toggle sidebar"
 msgstr "Sivupalkki päällä/pois"
 
@@ -207,7 +207,7 @@ msgstr "Sivupalkki päällä/pois"
 msgid "Select a directory or open a file"
 msgstr "Valitse kansio tai avaa tiedosto"
 
-#: data/gtk/window.blp:546 data/gtk/window.blp:918
+#: data/gtk/window.blp:546 data/gtk/window.blp:912
 msgid "Toggle search"
 msgstr "Haku päällä/pois"
 
@@ -236,7 +236,7 @@ msgstr "Kappaleen kertaus päällä/pois"
 msgid "Sync/Re-sync line"
 msgstr "Synkronoi rivi"
 
-#: data/gtk/window.blp:785 data/gtk/window.blp:947
+#: data/gtk/window.blp:785 data/gtk/window.blp:941
 msgid "Replay selected line"
 msgstr "Toista uudelleen synkronoitu rivi"
 
@@ -248,15 +248,15 @@ msgstr "Synkronoi uudelleen valittu rivi 100 ms taaksepäin"
 msgid "Re-sync selected line 100ms forward"
 msgstr "Synkronoi uudelleen valittu rivi 100 ms eteenpäin"
 
-#: data/gtk/window.blp:809 data/gtk/window.blp:1009
+#: data/gtk/window.blp:809 data/gtk/window.blp:1003
 msgid "Import from …"
 msgstr "Tuo…"
 
-#: data/gtk/window.blp:820 data/gtk/window.blp:1019
+#: data/gtk/window.blp:820 data/gtk/window.blp:1013
 msgid "Export to …"
 msgstr "Vie…"
 
-#: data/gtk/window.blp:838 data/gtk/window.blp:1029
+#: data/gtk/window.blp:838 data/gtk/window.blp:1023
 msgid "Actions with selected line"
 msgstr "Toiminnot valitulle riville"
 
@@ -268,119 +268,107 @@ msgstr "Tietoja tiedostosta"
 msgid "Add line"
 msgstr "Lisää rivi"
 
-#: data/gtk/window.blp:906
+#: data/gtk/window.blp:900
 msgid "Shortcuts"
 msgstr "Pikanäppäimet"
 
-#: data/gtk/window.blp:910 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:904 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr "Yleiset"
 
-#: data/gtk/window.blp:913
+#: data/gtk/window.blp:907
 msgid "Quit"
 msgstr "Lopeta"
 
-#: data/gtk/window.blp:923
+#: data/gtk/window.blp:917
 msgid "Select directory"
 msgstr "Valitse kansio"
 
-#: data/gtk/window.blp:928 data/gtk/window.blp:1086
+#: data/gtk/window.blp:922 data/gtk/window.blp:1064
 msgid "Keybindings"
 msgstr "Pikanäppäimet"
 
-#: data/gtk/window.blp:939
+#: data/gtk/window.blp:933
 msgid "Sync mode"
 msgstr "Synkronointitila"
 
-#: data/gtk/window.blp:942
+#: data/gtk/window.blp:936
 msgid "Sync/Re-sync"
 msgstr "Synkronoi / synkronoi uudelleen"
 
-#: data/gtk/window.blp:952
+#: data/gtk/window.blp:946
 msgid "Remove selected line"
 msgstr "Poista valittu rivi"
 
-#: data/gtk/window.blp:957
+#: data/gtk/window.blp:951
 msgid "Prepend line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:962
+#: data/gtk/window.blp:956
 msgid "Append line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:967 data/gtk/window.blp:1034
+#: data/gtk/window.blp:961 data/gtk/window.blp:1028
 msgid "Append line to end"
 msgstr "Lisää rivi loppuun"
 
-#: data/gtk/window.blp:972
+#: data/gtk/window.blp:966
 msgid "Re-sync 100ms back"
 msgstr "Synkronoi taaksepäin 100 ms"
 
-#: data/gtk/window.blp:977
+#: data/gtk/window.blp:971
 msgid "Re-sync 100ms forward"
 msgstr "Synkronoi eteenpäin 100 ms"
 
-#: data/gtk/window.blp:987
+#: data/gtk/window.blp:981
 msgid "Directory"
 msgstr "Kansio"
 
-#: data/gtk/window.blp:994 data/gtk/window.blp:1051
+#: data/gtk/window.blp:988 data/gtk/window.blp:1045
 msgid "A-Z"
 msgstr "A-Ö"
 
-#: data/gtk/window.blp:1000 data/gtk/window.blp:1057
+#: data/gtk/window.blp:994 data/gtk/window.blp:1051
 msgid "Z-A"
 msgstr "Ö-A"
 
-#: data/gtk/window.blp:1011 data/gtk/window.blp:1021
+#: data/gtk/window.blp:1005 data/gtk/window.blp:1015
 msgid "File"
 msgstr "Tiedosto"
 
-#: data/gtk/window.blp:1012 data/gtk/window.blp:1022
+#: data/gtk/window.blp:1006 data/gtk/window.blp:1016
 msgid "Clipboard"
 msgstr "Leikepöytä"
 
-#: data/gtk/window.blp:1031
+#: data/gtk/window.blp:1025
 msgid "Remove line"
 msgstr "Poista rivi"
 
-#: data/gtk/window.blp:1032
+#: data/gtk/window.blp:1026
 msgid "Prepend line"
 msgstr ""
 
-#: data/gtk/window.blp:1033
+#: data/gtk/window.blp:1027
 msgid "Append line"
 msgstr ""
 
-#: data/gtk/window.blp:1040
+#: data/gtk/window.blp:1034
 msgid "Use plain"
 msgstr "Käytä raakaa"
 
-#: data/gtk/window.blp:1041
+#: data/gtk/window.blp:1035
 msgid "Use synced"
 msgstr "Käytä synkronoitua"
 
-#: data/gtk/window.blp:1048
+#: data/gtk/window.blp:1042
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:1064
-msgid "View"
-msgstr ""
-
-#: data/gtk/window.blp:1067
-msgid "Grid"
-msgstr ""
-
-#: data/gtk/window.blp:1073
-msgid "List"
-msgstr ""
-
-#: data/gtk/window.blp:1085
+#: data/gtk/window.blp:1063
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: data/gtk/window.blp:1087
+#: data/gtk/window.blp:1065
 msgid "About"
 msgstr "Tietoja"
 
@@ -404,41 +392,32 @@ msgstr "Tallenna istunto kun sovellus suljetaan"
 msgid "Re-opens last opened directory on the next startup"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:23
-msgid "Automatically toggle List View mode"
-msgstr ""
-
 #: data/gtk/ui/Preferences.blp:24
-msgid ""
-"Automatically toggles List View mode when display size is not big enought"
-msgstr ""
-
-#: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
 msgstr "Synkronoi sivu"
 
-#: data/gtk/ui/Preferences.blp:32
+#: data/gtk/ui/Preferences.blp:27
 msgid "Use precise milliseconds"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:28
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:37
+#: data/gtk/ui/Preferences.blp:32
 msgid "Auto file manipulation"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:38
+#: data/gtk/ui/Preferences.blp:33
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/Preferences.blp:37
 msgid "File format"
 msgstr "Tiedostomuoto"
 
-#: data/gtk/ui/Preferences.blp:43
+#: data/gtk/ui/Preferences.blp:38
 msgid "File format for auto manipulation"
 msgstr ""
 
