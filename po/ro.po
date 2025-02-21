@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-16 12:07+0300\n"
+"POT-Creation-Date: 2025-02-21 14:14+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: chronograph/window.py:519
+#: chronograph/window.py:592
 msgid "Copied successfully"
 msgstr ""
 
-#: chronograph/main.py:102
+#: chronograph/main.py:112
 msgid ""
 "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
 "projects/lrcmake/lrcmake/"
@@ -89,7 +89,7 @@ msgstr ""
 msgid "This directory is already in saves"
 msgstr ""
 
-#: chronograph/utils/parsers.py:191
+#: chronograph/utils/parsers.py:198
 msgid "Seems like not every line is synced"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:99 data/gtk/window.blp:1059
+#: data/gtk/window.blp:99 data/gtk/window.blp:1081
 msgid "Quick Editor"
 msgstr ""
 
@@ -193,7 +193,7 @@ msgstr ""
 msgid "Saves"
 msgstr ""
 
-#: data/gtk/window.blp:508 data/gtk/window.blp:527 data/gtk/window.blp:927
+#: data/gtk/window.blp:508 data/gtk/window.blp:527 data/gtk/window.blp:933
 msgid "Toggle sidebar"
 msgstr ""
 
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Select a directory or open a file"
 msgstr ""
 
-#: data/gtk/window.blp:546 data/gtk/window.blp:912
+#: data/gtk/window.blp:546 data/gtk/window.blp:918
 msgid "Toggle search"
 msgstr ""
 
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Sync/Re-sync line"
 msgstr ""
 
-#: data/gtk/window.blp:785 data/gtk/window.blp:941
+#: data/gtk/window.blp:785 data/gtk/window.blp:947
 msgid "Replay selected line"
 msgstr ""
 
@@ -241,15 +241,15 @@ msgstr ""
 msgid "Re-sync selected line 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:809 data/gtk/window.blp:1003
+#: data/gtk/window.blp:809 data/gtk/window.blp:1009
 msgid "Import from …"
 msgstr ""
 
-#: data/gtk/window.blp:820 data/gtk/window.blp:1013
+#: data/gtk/window.blp:820 data/gtk/window.blp:1019
 msgid "Export to …"
 msgstr ""
 
-#: data/gtk/window.blp:838 data/gtk/window.blp:1023
+#: data/gtk/window.blp:838 data/gtk/window.blp:1029
 msgid "Actions with selected line"
 msgstr ""
 
@@ -261,107 +261,119 @@ msgstr ""
 msgid "Add line"
 msgstr ""
 
-#: data/gtk/window.blp:900
+#: data/gtk/window.blp:906
 msgid "Shortcuts"
 msgstr ""
 
-#: data/gtk/window.blp:904 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:910 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr ""
 
-#: data/gtk/window.blp:907
+#: data/gtk/window.blp:913
 msgid "Quit"
 msgstr ""
 
-#: data/gtk/window.blp:917
+#: data/gtk/window.blp:923
 msgid "Select directory"
 msgstr ""
 
-#: data/gtk/window.blp:922 data/gtk/window.blp:1064
+#: data/gtk/window.blp:928 data/gtk/window.blp:1086
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:933
+#: data/gtk/window.blp:939
 msgid "Sync mode"
 msgstr ""
 
-#: data/gtk/window.blp:936
+#: data/gtk/window.blp:942
 msgid "Sync/Re-sync"
 msgstr ""
 
-#: data/gtk/window.blp:946
+#: data/gtk/window.blp:952
 msgid "Remove selected line"
 msgstr ""
 
-#: data/gtk/window.blp:951
+#: data/gtk/window.blp:957
 msgid "Prepend line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:956
+#: data/gtk/window.blp:962
 msgid "Append line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:961 data/gtk/window.blp:1028
+#: data/gtk/window.blp:967 data/gtk/window.blp:1034
 msgid "Append line to end"
 msgstr ""
 
-#: data/gtk/window.blp:966
+#: data/gtk/window.blp:972
 msgid "Re-sync 100ms back"
 msgstr ""
 
-#: data/gtk/window.blp:971
+#: data/gtk/window.blp:977
 msgid "Re-sync 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:981
+#: data/gtk/window.blp:987
 msgid "Directory"
 msgstr ""
 
-#: data/gtk/window.blp:988 data/gtk/window.blp:1045
+#: data/gtk/window.blp:994 data/gtk/window.blp:1051
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:994 data/gtk/window.blp:1051
+#: data/gtk/window.blp:1000 data/gtk/window.blp:1057
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:1005 data/gtk/window.blp:1015
+#: data/gtk/window.blp:1011 data/gtk/window.blp:1021
 msgid "File"
 msgstr ""
 
-#: data/gtk/window.blp:1006 data/gtk/window.blp:1016
+#: data/gtk/window.blp:1012 data/gtk/window.blp:1022
 msgid "Clipboard"
 msgstr ""
 
-#: data/gtk/window.blp:1025
+#: data/gtk/window.blp:1031
 msgid "Remove line"
 msgstr ""
 
-#: data/gtk/window.blp:1026
+#: data/gtk/window.blp:1032
 msgid "Prepend line"
 msgstr ""
 
-#: data/gtk/window.blp:1027
+#: data/gtk/window.blp:1033
 msgid "Append line"
 msgstr ""
 
-#: data/gtk/window.blp:1034
+#: data/gtk/window.blp:1040
 msgid "Use plain"
 msgstr ""
 
-#: data/gtk/window.blp:1035
+#: data/gtk/window.blp:1041
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1042
+#: data/gtk/window.blp:1048
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:1063
+#: data/gtk/window.blp:1064
+msgid "View"
+msgstr ""
+
+#: data/gtk/window.blp:1067
+msgid "Grid"
+msgstr ""
+
+#: data/gtk/window.blp:1073
+msgid "List"
+msgstr ""
+
+#: data/gtk/window.blp:1085
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:1065
+#: data/gtk/window.blp:1087
 msgid "About"
 msgstr ""
 
@@ -385,32 +397,41 @@ msgstr ""
 msgid "Re-opens last opened directory on the next startup"
 msgstr ""
 
+#: data/gtk/ui/Preferences.blp:23
+msgid "Automatically toggle List View mode"
+msgstr ""
+
 #: data/gtk/ui/Preferences.blp:24
+msgid ""
+"Automatically toggles List View mode when display size is not big enought"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:27
+#: data/gtk/ui/Preferences.blp:32
 msgid "Use precise milliseconds"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:28
+#: data/gtk/ui/Preferences.blp:33
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:32
+#: data/gtk/ui/Preferences.blp:37
 msgid "Auto file manipulation"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:38
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:37
+#: data/gtk/ui/Preferences.blp:42
 msgid "File format"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:38
+#: data/gtk/ui/Preferences.blp:43
 msgid "File format for auto manipulation"
 msgstr ""
 
