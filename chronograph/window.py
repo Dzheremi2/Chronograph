@@ -1,11 +1,13 @@
 import re
 import threading
+from typing import Union
 
 import requests
 from gi.repository import Adw, Gio, GLib, Gtk, Pango  # type: ignore
 
 from chronograph import shared
 from chronograph.ui.BoxDialog import BoxDialog
+from chronograph.ui.ListViewRow import ListViewRow
 from chronograph.ui.LrclibTrack import LrclibTrack
 from chronograph.ui.Preferences import ChronographPreferences
 from chronograph.ui.SavedLocation import SavedLocation
@@ -64,6 +66,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     library_overlay: Gtk.Overlay = Gtk.Template.Child()
     library_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
     library: Gtk.FlowBox = Gtk.Template.Child()
+    library_list: Gtk.ListBox = Gtk.Template.Child()
 
     # Quick Editor
     quick_edit_dialog: Adw.Dialog = Gtk.Template.Child()
@@ -106,11 +109,12 @@ class ChronographWindow(Adw.ApplicationWindow):
     lrclib_window_collapsed_results_list: Gtk.ListBox = Gtk.Template.Child()
 
     sort_state: str = shared.state_schema.get_string("sorting")
+    view_state: str = shared.state_schema.get_string("view")
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 
-        self.loaded_card: SongCard = None
+        self.loaded_card: Union[SongCard, ListViewRow] = None
 
         if shared.APP_ID.endswith("Devel"):
             self.add_css_class("devel")
@@ -119,11 +123,14 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.search_bar.connect_entry(self.search_entry)
         self.library.set_filter_func(self.filtering)
         self.library.set_sort_func(self.sorting)
+        self.library_list.set_sort_func(self.sorting_list_view)
+        self.library_list.set_filter_func(self.filtering_list_view)
         self.search_entry.connect("search-changed", self.on_search_changed)
         self.lrclib_window_results_list.connect("row-selected", self.set_lyrics)
         self.sync_navigation_page.connect("hiding", self.reset_sync_editor)
         self.quick_edit_copy_button.connect("clicked", self.copy_quick_editor_text)
         self.toggle_repeat_button.connect("toggled", self.toggle_repeat)
+        self.connect("notify::default-width", self.toggle_list_view)
         self.reparse_dir_button.connect(
             "clicked",
             lambda *_: dir_parser(shared.state_schema.get_string("opened-dir")[:-1]),
@@ -194,6 +201,27 @@ class ChronographWindow(Adw.ApplicationWindow):
         except AttributeError:
             pass
 
+    def filtering_list_view(self, child: Gtk.ListBoxRow) -> bool:
+        """Technical function for `Gtk.ListBox.invalidate_filter` working
+
+        Parameters
+        ----------
+        child : Gtk.ListBoxRow
+            Child for determining if it should be filtered or not
+
+        Returns
+        ----------
+        bool
+            `True` if child should be displayed, `False` if not
+        """
+        try:
+            row = child
+            text = self.search_entry.get_text().lower()
+            filtered = text != "" and not (text in row.title.lower() or text in row.artist.lower())
+            return not filtered
+        except AttributeError:
+            pass
+
     def sorting(self, child1: Gtk.FlowBoxChild, child2: Gtk.FlowBoxChild) -> int:
         """Technical function for `Gtk.FlowBox.invalidate_sort` working
 
@@ -215,10 +243,33 @@ class ChronographWindow(Adw.ApplicationWindow):
         elif shared.win.sort_state == "z-a":
             order = True
         return ((child1.get_child().title > child2.get_child().title) ^ order) * 2 - 1
+    
+    def sorting_list_view(self, child1: Gtk.ListBoxRow, child2: Gtk.ListBoxRow) -> int:
+        """Technical function for `Gtk.ListBox.invalidate_sort` working
+
+        Parameters
+        ----------
+        child1 : Gtk.ListBoxRow
+            1st child for comparison
+        child2 : Gtk.ListBoxRow
+            2nd child for comparison
+
+        Returns
+        ----------
+        int
+            `-1` if `child1` should be before `child2`, `1` if `child1` should be after `child2`
+        """
+        order = None
+        if shared.win.sort_state == "a-z":
+            order = False
+        elif shared.win.sort_state == "z-a":
+            order = True
+        return ((child1.title > child2.title) ^ order) * 2 - 1
 
     def on_search_changed(self, *_args) -> None:
         """Invalidates filter for `self.library`"""
         self.library.invalidate_filter()
+        self.library_list.invalidate_filter()
 
     def on_sorting_type_action(
         self, action: Gio.SimpleAction, state: GLib.Variant
@@ -235,7 +286,29 @@ class ChronographWindow(Adw.ApplicationWindow):
         action.set_state(state)
         self.sort_state = str(state).strip("'")
         self.library.invalidate_sort()
+        self.library_list.invalidate_sort()
         shared.state_schema.set_string("sorting", self.sort_state)
+
+    def on_view_type_action(
+        self, action: Gio.SimpleAction, state: GLib.Variant
+    ) -> None:
+        """Sets view type state for `self.library_list` and invalidates sorting
+
+        Parameters
+        ----------
+        action : Gio.SimpleAction
+            Action which triggered this function
+        state : GLib.Variant
+            Current view type state
+        """
+        action.set_state(state)
+        self.view_state = str(state).strip("'")
+        match self.view_state:
+            case "g":
+                self.library_scrolled_window.set_child(self.library)
+            case "l":
+                self.library_scrolled_window.set_child(self.library_list)
+        shared.state_schema.set_string("view", self.view_state)
 
     def on_show_file_info_action(self, *_args) -> None:
         """Creates dialog with information about selected file"""
@@ -592,3 +665,14 @@ class ChronographWindow(Adw.ApplicationWindow):
                         )
                     dir_parser(pin["path"][:-1])
                     break
+
+    def toggle_list_view(self, *_args) -> None:
+        if shared.schema.get_boolean("auto-list-view"):
+            if self.get_width() <= 564:
+                self.library_scrolled_window.set_child(self.library_list)
+                shared.state_schema.set_string("view", "l")
+                shared.app.lookup_action("view_type").set_state(GLib.Variant.new_string("l"))
+            else:
+                self.library_scrolled_window.set_child(self.library)
+                shared.state_schema.set_string("view", "g")
+                shared.app.lookup_action("view_type").set_state(GLib.Variant.new_string("g"))

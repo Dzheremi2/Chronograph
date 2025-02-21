@@ -20,6 +20,7 @@ def dir_parser(path: str, *_args) -> None:
         Path to directory to parse
     """
     shared.win.library.remove_all()
+    shared.win.library_list.remove_all()
     path = path + "/"
     mutagen_files = []
     for file in os.listdir(path):
@@ -41,7 +42,11 @@ def dir_parser(path: str, *_args) -> None:
         GLib.idle_add(songcard_idle, file)
 
     shared.win.open_source_button.set_icon_name("open-source-symbolic")
-    shared.win.library_scrolled_window.set_child(shared.win.library)
+    match shared.state_schema.get_string("view"):
+        case "g":
+            shared.win.library_scrolled_window.set_child(shared.win.library)
+        case "l":
+            shared.win.library_scrolled_window.set_child(shared.win.library_list)
     shared.win.right_buttons_revealer.set_reveal_child(True)
     shared.win.left_buttons_revealer.set_reveal_child(True)
     shared.state_schema.set_string("opened-dir", path)
@@ -59,11 +64,13 @@ def songcard_idle(file: Union[FileID3, FileVorbis]) -> None:
         File of song
     """
     from chronograph.ui.SongCard import SongCard
+    from chronograph.ui.ListViewRow import ListViewRow
 
     song_card = SongCard(file)
+    list_view_row = ListViewRow(file)
     shared.win.library.append(song_card)
+    shared.win.library_list.append(list_view_row)
     song_card.get_parent().set_focusable(False)
-
 
 def line_parser(string: str) -> str:
     """Parses line for square brackets

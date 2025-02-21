@@ -2,41 +2,31 @@ import os
 import pathlib
 from typing import Union
 
-from gi.repository import Adw, Gdk, Gio, GObject, Gtk  # type: ignore
+from gi.repository import Adw, GObject, Gtk, Gdk, Gio
 
 from chronograph import shared
 from chronograph.ui.BoxDialog import BoxDialog
+from chronograph.ui.SongCard import (
+    album_str,
+    artist_str,
+    label_str,
+    path_str,
+    title_str,
+)
 from chronograph.utils.file_mutagen_id3 import FileID3
 from chronograph.utils.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.parsers import file_parser
+from chronograph import shared
 
-label_str: str = _("About File")
-title_str: str = _("Title")
-artist_str: str = _("Artist")
-album_str: str = _("Album")
-path_str: str = _("Path")
+@Gtk.Template(resource_path=shared.PREFIX + "/gtk/ui/ListViewRow.ui")
+class ListViewRow(Adw.ActionRow):
+    __gtype_name__ = "ListViewRow"
 
-
-@Gtk.Template(resource_path=shared.PREFIX + "/gtk/ui/SongCard.ui")
-class SongCard(Gtk.Box):
-    """Card with Title, Artist and Cover of provided file
-
-    Parameters
-    ----------
-    file : FileID3 | FileVorbis
-        File of `.ogg`, `.flac`, `.mp3` and `.wav` formats
-    """
-
-    __gtype_name__ = "SongCard"
-
+    cover_img: Gtk.Image = Gtk.Template.Child()
     buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
     play_button: Gtk.Button = Gtk.Template.Child()
     metadata_editor_button: Gtk.Button = Gtk.Template.Child()
     info_button: Gtk.Button = Gtk.Template.Child()
-    cover_button: Gtk.Button = Gtk.Template.Child()
-    cover_img: Gtk.Image = Gtk.Template.Child()
-    title_label: Gtk.Label = Gtk.Template.Child()
-    artist_label: Gtk.Label = Gtk.Template.Child()
 
     # Metadata editor
     metadata_editor: Adw.Dialog = Gtk.Template.Child()
@@ -48,23 +38,18 @@ class SongCard(Gtk.Box):
     metadata_editor_apply_button: Gtk.Button = Gtk.Template.Child()
     metadata_editor_cancel_button: Gtk.Button = Gtk.Template.Child()
 
-    def __init__(self, file: Union[FileID3, FileVorbis]) -> None:
+    def __init__(self, file: Union[FileID3, FileVorbis]):
         super().__init__()
-        self._file: Union[FileID3, FileVorbis] = file
+        self._file = file
         self._mde_new_cover_path: str = ""
-        self.title_label.set_text(self._file.title)
-        self.artist_label.set_text(self._file.artist)
+        self.set_title(self._file.title)
+        self.set_subtitle(self._file.artist)
 
         self.event_controller_motion = Gtk.EventControllerMotion.new()
         self.add_controller(self.event_controller_motion)
         self.event_controller_motion.connect("enter", self.toggle_buttons)
         self.event_controller_motion.connect("leave", self.toggle_buttons)
-        self.metadata_editor_button.connect("clicked", self.open_metadata_editor)
-        self.metadata_editor_apply_button.connect("clicked", self.metadata_editor_save)
-        self.metadata_editor_cancel_button.connect(
-            "clicked", self.on_metadata_editor_close
-        )
-        self.metadata_editor_apply_button.connect("clicked", self.metadata_editor_save)
+
         self.info_button.connect(
             "clicked",
             lambda *_: BoxDialog(
@@ -77,7 +62,10 @@ class SongCard(Gtk.Box):
                 ),
             ).present(shared.win),
         )
-        self.cover_button.connect("clicked", self.on_play_button_clicked)
+        self.connect("activated", self.on_play_button_clicked)
+        self.metadata_editor_button.connect("clicked", self.open_metadata_editor)
+        self.metadata_editor_apply_button.connect("clicked", self.metadata_editor_save)
+        self.metadata_editor_cancel_button.connect("clicked", self.on_metadata_editor_close)
         self.play_button.connect("clicked", self.on_play_button_clicked)
         self.bind_props()
         self.invalidate_cover(self.cover_img)
@@ -183,30 +171,6 @@ class SongCard(Gtk.Box):
             not self.buttons_revealer.get_reveal_child()
         )
 
-    def invalidate_update(self, property: str, scope: str = "self") -> None:
-        """Automatically updates interface labels on property change
-
-        Parameters
-        ----------
-        property : str
-            name of propety in `chronograph.utils.file.BaseFile` which triggers update
-        scope : str, optional
-            scope of update, by default `self`, may be `sync_page` (`chronograph.ChronographWindow.sync_page`)
-        """
-        if scope == "self":
-            getattr(self, f"{property}_label").set_text(getattr(self, f"{property}"))
-        elif scope == "sync_page":
-            getattr(shared.win, f"sync_page_{property}").set_text(
-                getattr(self, f"{property}")
-            )
-
-    def invalidate_cover(self, widget: Gtk.Image) -> None:
-        """Automatically updates cover on property change"""
-        if (_texture := self._file.get_cover_texture()) == "icon":
-            widget.set_from_icon_name("note-placeholder")
-        else:
-            widget.set_from_paintable(_texture)
-
     def bind_props(self) -> None:
         """Binds properties to update interface labels on change"""
         self.connect(
@@ -218,6 +182,13 @@ class SongCard(Gtk.Box):
             lambda _object, property: self.invalidate_update(property.name),
         )
         self.connect("notify::cover", lambda *_: self.invalidate_cover(self.cover_img))
+
+    def invalidate_cover(self, widget: Gtk.Image) -> None:
+        """Automatically updates cover on property change"""
+        if (_texture := self._file.get_cover_texture()) == "icon":
+            widget.set_from_icon_name("note-placeholder")
+        else:
+            widget.set_from_paintable(_texture)
 
     def on_play_button_clicked(self, *_args) -> None:
         """Opens sync page for `self` and media stream"""
@@ -237,13 +208,37 @@ class SongCard(Gtk.Box):
         ) and shared.schema.get_boolean("auto-file-manipulation"):
             file_parser(file)
 
+    def invalidate_update(self, property: str, scope: str = "self") -> None:
+        """Automatically updates interface labels on property change
+
+        Parameters
+        ----------
+        property : str
+            name of propety in `chronograph.utils.file.BaseFile` which triggers update
+        scope : str, optional
+            scope of update, by default `self`, may be `sync_page` (`chronograph.ChronographWindow.sync_page`)
+        """
+        if scope == "self":
+            match property:
+                case "title":
+                    self.set_title(self.title)
+                case "artist":
+                    self.set_subtitle(self.artist)
+        elif scope == "sync_page":
+            getattr(shared.win, f"sync_page_{property}").set_text(
+                getattr(self, f"{property}")
+            )
+
     @GObject.Property(type=str)
     def title(self) -> str:
         return self._file.title
 
     @title.setter
     def title(self, value: str) -> None:
-        self._file.title = value
+        try:
+            self._file.title = value
+        except AttributeError:
+            pass
 
     @GObject.Property(type=str)
     def artist(self) -> str:

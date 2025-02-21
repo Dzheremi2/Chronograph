@@ -37,7 +37,8 @@ class ChronographApplication(Adw.Application):
 
         self.create_actions(
             {
-                ("quit", ("<primary>q","<primary>w",)),
+                # fmt: off
+                ("quit",("<primary>q","<primary>w",),),
                 ("toggle_sidebar", ("F9",), shared.win),
                 ("toggle_search", ("<primary>f",), shared.win),
                 ("select_dir", ("<primary>o",), shared.win),
@@ -61,7 +62,8 @@ class ChronographApplication(Adw.Application):
                 ("export_to_lrclib", (), shared.win),
                 ("show_preferences", ("<primary>comma",), shared.win),
                 ("open_quick_editor", (), shared.win),
-                ("about",)
+                ("about",),
+                # fmt: on
             }
         )
         self.set_accels_for_action("win.show-help-overlay", ("<primary>question",))
@@ -75,6 +77,14 @@ class ChronographApplication(Adw.Application):
         )
         sorting_action.connect("activate", shared.win.on_sorting_type_action)
         self.add_action(sorting_action)
+
+        view_action = Gio.SimpleAction.new_stateful(
+            "view_type",
+            GLib.VariantType.new("s"),
+            view_mode := GLib.Variant("s", shared.state_schema.get_string("view")),
+        )
+        view_action.connect("activate", shared.win.on_view_type_action)
+        self.add_action(view_action)
 
         shared.state_schema.bind(
             "window-width", shared.win, "default-width", Gio.SettingsBindFlags.DEFAULT

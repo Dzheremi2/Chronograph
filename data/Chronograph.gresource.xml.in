@@ -9,6 +9,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/LrclibTrack.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/Preferences.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/SavedLocation.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/ListViewRow.ui</file>
     <file alias="style.css">gtk/css/style.css</file>
   </gresource>
   <!-- Icons -->

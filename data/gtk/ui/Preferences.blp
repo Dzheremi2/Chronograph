@@ -18,6 +18,11 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         title: _("Save session on app close");
         subtitle: _("Re-opens last opened directory on the next startup");
       }
+
+      Adw.SwitchRow automatic_list_view_switch {
+        title: _("Automatically toggle List View mode");
+        subtitle: _("Automatically toggles List View mode when display size is not big enought");
+      }
     }
 
     Adw.PreferencesGroup {

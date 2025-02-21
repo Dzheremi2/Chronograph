@@ -893,6 +893,12 @@ Adw.NavigationPage sync_navigation_page {
   }
 }
 
+ListBox library_list {
+  styles ["navigation-sidebar"]
+  visible: true;
+  selection-mode: none;
+}
+
 ShortcutsWindow help_overlay {
   modal: true;
 
@@ -1051,6 +1057,22 @@ menu about_app {
         label: _("Z-A");
         action: "app.sort_type";
         target: "z-a";
+      }
+    }
+
+    submenu {
+      label: _("View");
+
+      item {
+        label: _("Grid");
+        action: "app.view_type";
+        target: "g";
+      }
+
+      item {
+        label: _("List");
+        action: "app.view_type";
+        target: "l";
       }
     }
   }

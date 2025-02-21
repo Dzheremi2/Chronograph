@@ -6,7 +6,8 @@ blueprints = custom_target('blueprints',
     'gtk/ui/SyncLine.blp',
     'gtk/ui/LrclibTrack.blp',
     'gtk/ui/Preferences.blp',
-    'gtk/ui/SavedLocation.blp'
+    'gtk/ui/SavedLocation.blp',
+    'gtk/ui/ListViewRow.blp'
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

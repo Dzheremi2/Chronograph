@@ -14,6 +14,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
     auto_file_manipulation_format: Adw.ComboRow = Gtk.Template.Child()
     save_session_on_quit_switch: Adw.SwitchRow = Gtk.Template.Child()
     precise_milliseconds_switch: Adw.SwitchRow = Gtk.Template.Child()
+    automatic_list_view_switch: Adw.SwitchRow = Gtk.Template.Child()
 
     opened = False
 
@@ -24,6 +25,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
         self.auto_file_manipulation_format.connect(
             "notify::selected", self.update_auto_file_format_schema
         )
+        self.automatic_list_view_switch.connect("notify::active", self.set_view_switcher_inactive)
         shared.schema.bind(
             "auto-file-manipulation",
             self.auto_file_manipulation_switch,
@@ -48,6 +50,12 @@ class ChronographPreferences(Adw.PreferencesDialog):
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
+        shared.schema.bind(
+            "auto-list-view",
+            self.automatic_list_view_switch,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
 
         if shared.schema.get_string("auto-file-format") == ".lrc":
             self.auto_file_manipulation_format.set_selected(0)
@@ -61,6 +69,12 @@ class ChronographPreferences(Adw.PreferencesDialog):
             shared.schema.set_string("auto-file-format", ".lrc")
         elif selected == 1:
             shared.schema.set_string("auto-file-format", ".txt")
+
+    def set_view_switcher_inactive(self, *_args) -> None:
+        if self.automatic_list_view_switch.get_active():
+            shared.app.lookup_action("view_type").set_enabled(False)
+        else:
+            shared.app.lookup_action("view_type").set_enabled(True)
 
     def set_opened(self, opened: bool) -> None:
         """Controls possibility to open `self` only once at the time
