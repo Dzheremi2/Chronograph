@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-21 14:14+0300\n"
-"PO-Revision-Date: 2025-02-18 05:59+0000\n"
+"PO-Revision-Date: 2025-02-21 18:02+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/uk/>\n"
@@ -366,15 +366,15 @@ msgstr "Сортувати"
 
 #: data/gtk/window.blp:1064
 msgid "View"
-msgstr ""
+msgstr "Переглянути"
 
 #: data/gtk/window.blp:1067
 msgid "Grid"
-msgstr ""
+msgstr "Сітка"
 
 #: data/gtk/window.blp:1073
 msgid "List"
-msgstr ""
+msgstr "Список"
 
 #: data/gtk/window.blp:1085
 msgid "Preferences"
@@ -409,12 +409,14 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Автоматично перемикати режим перегляду списку"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enought"
 msgstr ""
+"Автоматично перемикає режим перегляду списку, якщо розмір дисплея "
+"недостатньо великий"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
