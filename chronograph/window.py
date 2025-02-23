@@ -409,14 +409,22 @@ class ChronographWindow(Adw.ApplicationWindow):
                 line_timestamp_prefix := timing_parser(shared.selected_line.get_text())
             ) >= 100:
                 timestamp = line_timestamp_prefix - 100
-                new_timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{timestamp % 1000:03d}]"
+                if shared.schema.get_boolean("precise-milliseconds"):
+                    new_timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{timestamp % 1000:03d}]"
+                else:
+                    milliseconds = f"{timestamp % 1000:03d}"
+                    new_timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{milliseconds[:-1]}]"
+                    del milliseconds
                 replacement = rf"{new_timestamp}"
                 shared.selected_line.set_text(
                     re.sub(pattern, replacement, shared.selected_line.get_text())
                 )
                 self.controls.get_media_stream().seek(timestamp * 1000)
             else:
-                replacement = rf"[00:00.000]"
+                if shared.schema.get_boolean("precise-milliseconds"):
+                    replacement = rf"[00:00.000]"
+                else:
+                    replacement = rf"[00:00.00]"
                 shared.selected_line.set_text(
                     re.sub(pattern, replacement, shared.selected_line.get_text())
                 )
@@ -426,7 +434,12 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Forwards media stream for 100ms from selected `SyncLine` timestamp and resync itself timestamp"""
         if self.navigation_view.get_visible_page() is self.sync_navigation_page:
             timestamp = timing_parser(shared.selected_line.get_text()) + 100
-            new_timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{timestamp % 1000:03d}]"
+            if shared.schema.get_boolean("precise-milliseconds"):
+                new_timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{timestamp % 1000:03d}]"
+            else:
+                milliseconds = f"{timestamp % 1000:03d}"
+                new_timestamp = f"[{timestamp // 60000:02d}:{(timestamp % 60000) // 1000:02d}.{milliseconds[:-1]}]"
+                del milliseconds
             shared.selected_line.set_text(
                 re.sub(
                     r"\[([^\[\]]+)\]",
