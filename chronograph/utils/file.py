@@ -26,9 +26,9 @@ class BaseFile:
 
     __gtype_name__ = "BaseFile"
 
-    _title: str = "Unknоwn"
-    _artist: str = "Unknоwn"
-    _album: str = "Unknоwn"
+    _title: str = None
+    _artist: str = None
+    _album: str = None
     _cover: Union[bytes, str] = None
     _mutagen_file: mutagen.FileType = None
     _duration: float = None

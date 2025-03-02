@@ -64,12 +64,10 @@ def songcard_idle(file: Union[FileID3, FileVorbis]) -> None:
         File of song
     """
     from chronograph.ui.SongCard import SongCard
-    from chronograph.ui.ListViewRow import ListViewRow
 
     song_card = SongCard(file)
-    list_view_row = ListViewRow(file)
     shared.win.library.append(song_card)
-    shared.win.library_list.append(list_view_row)
+    shared.win.library_list.append(song_card.get_list_mode())
     song_card.get_parent().set_focusable(False)
 
 def line_parser(string: str) -> str:

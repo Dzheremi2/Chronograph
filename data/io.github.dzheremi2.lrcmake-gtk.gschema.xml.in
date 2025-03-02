@@ -2,7 +2,7 @@
 <schemalist gettext-domain="Chronograph">
 	<schema id="@APP_ID@" path="@PREFIX@/">
 		<key name="auto-file-manipulation" type="b">
-			<default>false</default>
+			<default>true</default>
 		</key>
 		<key name="auto-file-format" type="s">
 			<choices>

@@ -43,7 +43,7 @@ class FileID3(BaseFile):
                 if (_title := self._mutagen_file.tags["TIT2"].text[0]) is not None:
                     self._title = _title
             except KeyError:
-                self._title = os.path.basename(self._path)
+                pass
 
             try:
                 if (_artist := self._mutagen_file.tags["TPE1"].text[0]) is not None:
@@ -56,8 +56,6 @@ class FileID3(BaseFile):
                     self._album = _album
             except KeyError:
                 pass
-        else:
-            self._title = os.path.basename(self._path)
 
     def set_cover(self, img_path: Union[str, None]) -> None:
         """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`

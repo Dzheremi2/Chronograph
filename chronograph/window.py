@@ -7,7 +7,6 @@ from gi.repository import Adw, Gio, GLib, Gtk, Pango  # type: ignore
 
 from chronograph import shared
 from chronograph.ui.BoxDialog import BoxDialog
-from chronograph.ui.ListViewRow import ListViewRow
 from chronograph.ui.LrclibTrack import LrclibTrack
 from chronograph.ui.Preferences import ChronographPreferences
 from chronograph.ui.SavedLocation import SavedLocation
@@ -114,7 +113,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 
-        self.loaded_card: Union[SongCard, ListViewRow] = None
+        self.loaded_card: SongCard = None
 
         if shared.APP_ID.endswith("Devel"):
             self.add_css_class("devel")
@@ -122,9 +121,9 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.set_help_overlay(self.help_overlay)
         self.search_bar.connect_entry(self.search_entry)
         self.library.set_filter_func(self.filtering)
+        self.library_list.set_filter_func(self.filtering_list)
         self.library.set_sort_func(self.sorting)
-        self.library_list.set_sort_func(self.sorting_list_view)
-        self.library_list.set_filter_func(self.filtering_list_view)
+        self.library_list.set_sort_func(self.sorting_list)
         self.search_entry.connect("search-changed", self.on_search_changed)
         self.lrclib_window_results_list.connect("row-selected", self.set_lyrics)
         self.sync_navigation_page.connect("hiding", self.reset_sync_editor)
@@ -201,23 +200,23 @@ class ChronographWindow(Adw.ApplicationWindow):
         except AttributeError:
             pass
 
-    def filtering_list_view(self, child: Gtk.ListBoxRow) -> bool:
+    def filtering_list(self, row: Adw.ActionRow) -> bool:
         """Technical function for `Gtk.ListBox.invalidate_filter` working
-
         Parameters
         ----------
-        child : Gtk.ListBoxRow
-            Child for determining if it should be filtered or not
+        row : Adw.ActionRow
+            Row for determining if it should be filtered or not
 
         Returns
         ----------
         bool
-            `True` if child should be displayed, `False` if not
+            `True` if row should be displayed, `False` if not
         """
         try:
-            row = child
             text = self.search_entry.get_text().lower()
-            filtered = text != "" and not (text in row.title.lower() or text in row.artist.lower())
+            filtered = text != "" and not (
+                text in row.get_title().lower() or text in row.get_subtitle().lower()
+            )
             return not filtered
         except AttributeError:
             pass
@@ -243,15 +242,15 @@ class ChronographWindow(Adw.ApplicationWindow):
         elif shared.win.sort_state == "z-a":
             order = True
         return ((child1.get_child().title > child2.get_child().title) ^ order) * 2 - 1
-    
-    def sorting_list_view(self, child1: Gtk.ListBoxRow, child2: Gtk.ListBoxRow) -> int:
-        """Technical function for `Gtk.ListBox.invalidate_sort` working
 
+    def sorting_list(self, child1: Adw.ActionRow, child2: Adw.ActionRow) -> int:
+        """Technical function for `Gtk.ListBox.invalidate_sort` working
+        
         Parameters
         ----------
-        child1 : Gtk.ListBoxRow
+        child1 : Adw.ActionRow
             1st child for comparison
-        child2 : Gtk.ListBoxRow
+        child2 : Adw.ActionRow
             2nd child for comparison
 
         Returns
@@ -264,12 +263,14 @@ class ChronographWindow(Adw.ApplicationWindow):
             order = False
         elif shared.win.sort_state == "z-a":
             order = True
-        return ((child1.title > child2.title) ^ order) * 2 - 1
+        return ((child1.get_title() > child2.get_title()) ^ order) * 2 - 1
 
     def on_search_changed(self, *_args) -> None:
         """Invalidates filter for `self.library`"""
-        self.library.invalidate_filter()
-        self.library_list.invalidate_filter()
+        if self.library_scrolled_window.get_child().get_child() == self.library:
+            self.library.invalidate_filter()
+        else:
+            self.library_list.invalidate_filter()
 
     def on_sorting_type_action(
         self, action: Gio.SimpleAction, state: GLib.Variant
