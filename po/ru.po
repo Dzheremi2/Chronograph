@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-02 23:36+0300\n"
-"PO-Revision-Date: 2025-02-21 18:02+0000\n"
+"PO-Revision-Date: 2025-03-02 20:49+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: chronograph/window.py:598
 msgid "Copied successfully"
@@ -28,7 +28,7 @@ msgstr "Скопированно успешно"
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:113
 msgid "translator-credits"
-msgstr ""
+msgstr "Džeremi <chichvarov1315@gmail.com>"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:14
 #: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/ui/SongCard.blp:73
@@ -98,7 +98,6 @@ msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
 #: chronograph/utils/publish.py:93
-#, fuzzy
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Поля “Название”, “Исполнитель” и/или “Альбом” неизвестны!"
 
