@@ -230,9 +230,9 @@ class SongCard(Gtk.Box):
         BoxDialog(
             label_str,
             (
-                (title_str, self.title),
-                (artist_str, self.artist),
-                (album_str, self.album),
+                (title_str, self._file.title),
+                (artist_str, self._file.artist),
+                (album_str, self._file.album),
                 (path_str, self._file.path),
             ),
         ).present(shared.win)

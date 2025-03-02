@@ -313,15 +313,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_show_file_info_action(self, *_args) -> None:
         """Creates dialog with information about selected file"""
-        BoxDialog(
-            label_str,
-            (
-                (title_str, self.loaded_card.title),
-                (artist_str, self.loaded_card.artist),
-                (album_str, self.loaded_card.album),
-                (path_str, self.loaded_card._file.path),
-            ),
-        ).present(self)
+        self.loaded_card.gen_box_dialog()
 
     def on_append_line_action(self, *_args) -> None:
         """Appends new `SyncLine` to `self.sync_lines`"""

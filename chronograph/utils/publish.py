@@ -82,12 +82,15 @@ def do_publish() -> None:
         album: str
     """
     if (
-        shared.win.loaded_card.title
-        or shared.win.loaded_card.artist
-        or shared.win.loaded_card.album
-    ) == "Unknоwn":
+        shared.win.loaded_card._file.title is None
+        or shared.win.loaded_card._file.title == ""
+        or shared.win.loaded_card._file.artist is None
+        or shared.win.loaded_card._file.artist == ""
+        or shared.win.loaded_card._file.album is None
+        or shared.win.loaded_card._file.album == ""
+    ):
         shared.win.toast_overlay.add_toast(
-            Adw.Toast(title=_("Some of Title, Artist and/or Album fileds are Unknown!"))
+            Adw.Toast(title=_("Some of Title, Artist and/or Album fields are Unknown!"))
         )
         shared.win.export_lyrics_button.set_icon_name("export-to-symbolic")
         raise AttributeError('Some of Title, Artist and/or Album fields are "Unknown"')
@@ -114,7 +117,7 @@ def do_publish() -> None:
             "syncedLyrics": sync_lines_parser(),
         },
     )
-    
+
     if response.status_code == 201:
         shared.win.toast_overlay.add_toast(
             Adw.Toast(title=_("Published successfully: ") + str(response.status_code))
