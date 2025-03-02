@@ -55,10 +55,17 @@ class SongCard(Gtk.Box):
         self.title_label.set_text(self._file.title)
         self.artist_label.set_text(self._file.artist)
 
-        self.event_controller_motion = Gtk.EventControllerMotion.new()
-        self.add_controller(self.event_controller_motion)
-        self.event_controller_motion.connect("enter", self.toggle_buttons)
-        self.event_controller_motion.connect("leave", self.toggle_buttons)
+        for seat in Gdk.Display.get_default().list_seats():
+            if seat.get_capabilities() & Gdk.SeatCapabilities.TOUCH:
+                long_gesture_controller = Gtk.GestureLongPress.new()
+                self.add_controller(long_gesture_controller)
+                long_gesture_controller.connect("pressed", self.toggle_buttons)
+            else:
+                event_controller_motion = Gtk.EventControllerMotion.new()
+                self.add_controller(event_controller_motion)
+                event_controller_motion.connect("enter", self.toggle_buttons)
+                event_controller_motion.connect("leave", self.toggle_buttons)
+            break
         self.metadata_editor_button.connect("clicked", self.open_metadata_editor)
         self.metadata_editor_apply_button.connect("clicked", self.metadata_editor_save)
         self.metadata_editor_cancel_button.connect(

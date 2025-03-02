@@ -44,12 +44,19 @@ class ListViewRow(Adw.ActionRow):
         self._mde_new_cover_path: str = ""
         self.set_title(self._file.title)
         self.set_subtitle(self._file.artist)
+        self.set_use_markup(False)
 
-        self.event_controller_motion = Gtk.EventControllerMotion.new()
-        self.add_controller(self.event_controller_motion)
-        self.event_controller_motion.connect("enter", self.toggle_buttons)
-        self.event_controller_motion.connect("leave", self.toggle_buttons)
-
+        for seat in Gdk.Display.get_default().list_seats():
+            if seat.get_capabilities() & Gdk.SeatCapabilities.TOUCH:
+                long_gesture_controller = Gtk.GestureLongPress.new()
+                self.add_controller(long_gesture_controller)
+                long_gesture_controller.connect("pressed", self.toggle_buttons)
+            else:
+                event_controller_motion = Gtk.EventControllerMotion.new()
+                self.add_controller(event_controller_motion)
+                event_controller_motion.connect("enter", self.toggle_buttons)
+                event_controller_motion.connect("leave", self.toggle_buttons)
+            break
         self.info_button.connect(
             "clicked",
             lambda *_: BoxDialog(
