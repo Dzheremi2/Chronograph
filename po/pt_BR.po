@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-02 23:36+0300\n"
-"PO-Revision-Date: 2025-01-09 22:56+0000\n"
-"Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
+"PO-Revision-Date: 2025-03-02 20:49+0000\n"
+"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "lrcmake/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: chronograph/window.py:598
 msgid "Copied successfully"
@@ -26,7 +26,7 @@ msgstr "Copiado com sucesso"
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:113
 msgid "translator-credits"
-msgstr ""
+msgstr "John Peter Sa"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:14
 #: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/ui/SongCard.blp:73
