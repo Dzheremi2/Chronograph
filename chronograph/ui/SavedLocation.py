@@ -67,6 +67,7 @@ class SavedLocation(Gtk.Box):
         else:
             self.remove_from_saves()
             self.rename_popover.popdown()
+            shared.win.add_dir_to_saves_button.set_visible(True)
             shared.win.build_sidebar()
             del self
 

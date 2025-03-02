@@ -50,6 +50,10 @@ def dir_parser(path: str, *_args) -> None:
     shared.win.right_buttons_revealer.set_reveal_child(True)
     shared.win.left_buttons_revealer.set_reveal_child(True)
     shared.state_schema.set_string("opened-dir", path)
+    if any(pin['path'] == path for pin in shared.cache.get('pins', [])):
+        shared.win.add_dir_to_saves_button.set_visible(False)
+    else:
+        shared.win.add_dir_to_saves_button.set_visible(True)
     # NOTE: This should be implemented in ALL parsers functions
     # for child in shared.win.library:
     #     child.set_focusable(False)
