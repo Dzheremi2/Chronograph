@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 14:14+0300\n"
+"POT-Creation-Date: 2025-03-02 23:36+0300\n"
 "PO-Revision-Date: 2025-02-21 18:02+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
@@ -20,17 +20,14 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.10.1-dev\n"
 
-#: chronograph/window.py:592
+#: chronograph/window.py:598
 msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
-#: chronograph/main.py:112
-msgid ""
-"Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
-"projects/lrcmake/lrcmake/"
+#. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
+#: chronograph/main.py:113
+msgid "translator-credits"
 msgstr ""
-"Дякуємо усім перекладачам на Hosted Weblate! https://hosted.weblate.org/"
-"projects/lrcmake/lrcmake/"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:14
 #: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/ui/SongCard.blp:73
@@ -85,31 +82,34 @@ msgstr "Про Файл"
 msgid "Path"
 msgstr "Шлях"
 
-#: chronograph/utils/caching.py:52
+#: chronograph/ui/SongCard.py:285 chronograph/ui/SongCard.py:286
+#: chronograph/ui/SongCard.py:294 chronograph/ui/SongCard.py:301
+#: chronograph/ui/SongCard.py:302 chronograph/ui/SongCard.py:310
+msgid "Unknown"
+msgstr ""
+
+#: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
 msgstr "Каталог успішно збережено"
 
-#: chronograph/utils/caching.py:58
-msgid "This directory is already in saves"
-msgstr "Цей каталог уже зберігається"
-
-#: chronograph/utils/parsers.py:198
+#: chronograph/utils/parsers.py:200
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/utils/publish.py:90
-msgid "Some of Title, Artist and/or Album fileds are Unknown!"
+#: chronograph/utils/publish.py:93
+#, fuzzy
+msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Деякі поля назв, виконавців та/або альбому невідомі!"
 
-#: chronograph/utils/publish.py:120
+#: chronograph/utils/publish.py:123
 msgid "Published successfully: "
 msgstr "Успішно опубліковано: "
 
-#: chronograph/utils/publish.py:124
+#: chronograph/utils/publish.py:127
 msgid "Incorrect publish token: "
 msgstr "Не правильний токен публікації: "
 
-#: chronograph/utils/publish.py:128
+#: chronograph/utils/publish.py:131
 msgid "Unknown error occured: "
 msgstr "Сталася невідома помилка: "
 
@@ -469,15 +469,15 @@ msgstr "Застосувати"
 msgid "Change cover"
 msgstr "Змінити кришку"
 
-#: data/gtk/ui/SongCard.blp:120
+#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:238
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: data/gtk/ui/SongCard.blp:130
+#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:248
 msgid "Edit song metadata"
 msgstr "Редагувати метадані пісні"
 
-#: data/gtk/ui/SongCard.blp:140
+#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:257
 msgid "Show song info"
 msgstr "Показати інформацію про пісню"
 
@@ -485,11 +485,11 @@ msgstr "Показати інформацію про пісню"
 msgid "Open syncing page"
 msgstr "Відкрити сторінку синхронізації"
 
-#: data/gtk/ui/SongCard.blp:213
+#: data/gtk/ui/SongCard.blp:270
 msgid "Set cover"
 msgstr "Набір кришки"
 
-#: data/gtk/ui/SongCard.blp:218
+#: data/gtk/ui/SongCard.blp:275
 msgid "Remove cover"
 msgstr "Зняти кришку"
 
@@ -532,6 +532,16 @@ msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;текст;пісень;"
 "інтернет;пісні;мультимедіа;медіа;іркліб;музика;синхронізація;караоке;"
+
+#~ msgid ""
+#~ "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
+#~ "projects/lrcmake/lrcmake/"
+#~ msgstr ""
+#~ "Дякуємо усім перекладачам на Hosted Weblate! https://hosted.weblate.org/"
+#~ "projects/lrcmake/lrcmake/"
+
+#~ msgid "This directory is already in saves"
+#~ msgstr "Цей каталог уже зберігається"
 
 #~ msgid "Sorting method"
 #~ msgstr "Метод сортування"

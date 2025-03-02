@@ -109,7 +109,8 @@ class ChronographApplication(Adw.Application):
         )
         dialog.set_developers(("Dzheremi https://github.com/Dzheremi2",))
         dialog.set_designers(("Dzheremi",))
-        dialog.set_translator_credits(_("Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/projects/lrcmake/lrcmake/"))  # type: ignore
+        # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
+        dialog.set_translator_credits(_("translator-credits"))
         dialog.set_copyright("© 2024-2025 Dzheremi")
         dialog.add_legal_section(
             "LRClib",
