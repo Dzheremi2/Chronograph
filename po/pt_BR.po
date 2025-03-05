@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-02 23:36+0300\n"
-"PO-Revision-Date: 2025-03-02 20:49+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-05 07:01+0000\n"
+"Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "lrcmake/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -85,7 +85,7 @@ msgstr "Caminho"
 #: chronograph/ui/SongCard.py:294 chronograph/ui/SongCard.py:301
 #: chronograph/ui/SongCard.py:302 chronograph/ui/SongCard.py:310
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
@@ -96,9 +96,8 @@ msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
 #: chronograph/utils/publish.py:93
-#, fuzzy
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr "Alguns dos arquivos de título, artista e / ou álbum são desconhecidos!"
+msgstr "Alguns campos Título, Artista e/ou Álbum são Desconhecidos!"
 
 #: chronograph/utils/publish.py:123
 msgid "Published successfully: "
@@ -125,13 +124,12 @@ msgid "Open source"
 msgstr "Código aberto"
 
 #: data/gtk/window.blp:26
-#, fuzzy
 msgid "Empty directory"
-msgstr "Selecione diretório"
+msgstr "Diretório vazio"
 
 #: data/gtk/window.blp:27
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Este diretório não possui nenhum arquivo de música suportado"
 
 #: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
@@ -217,9 +215,8 @@ msgid "App settings, info and utils"
 msgstr "Configurações, informações e utilitários de aplicativos"
 
 #: data/gtk/window.blp:569
-#, fuzzy
 msgid "Re-parse current directory"
-msgstr "Selecione diretório"
+msgstr "Reanalisar o diretório atual"
 
 #: data/gtk/window.blp:574
 msgid "Add current directory to saves"
@@ -227,7 +224,7 @@ msgstr "Adicione o diretório atual às salvamentos"
 
 #: data/gtk/window.blp:628
 msgid "Syncing"
-msgstr "Sincronização"
+msgstr "Sincronizando"
 
 #: data/gtk/window.blp:719
 msgid "Toggle song repeat"
@@ -363,19 +360,19 @@ msgstr "Use sincronizado"
 
 #: data/gtk/window.blp:1048
 msgid "Sort"
-msgstr ""
+msgstr "Organizar"
 
 #: data/gtk/window.blp:1064
 msgid "View"
-msgstr ""
+msgstr "Visualizar"
 
 #: data/gtk/window.blp:1067
 msgid "Grid"
-msgstr ""
+msgstr "Grade"
 
 #: data/gtk/window.blp:1073
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: data/gtk/window.blp:1085
 msgid "Preferences"
@@ -409,12 +406,14 @@ msgstr "Reabre o último diretório aberto na próxima startup"
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Alternar automaticamente o modo de exibição de lista"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enought"
 msgstr ""
+"Alterna automaticamente o modo de exibição de lista quando o tamanho da tela "
+"não é grande o suficiente"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
@@ -422,11 +421,11 @@ msgstr "Página de sincronização"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Use milissegundos precisos"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "Use milissegundos de 3 dígitos em vez de 2 dígitos"
 
 #: data/gtk/ui/Preferences.blp:37
 msgid "Auto file manipulation"
@@ -517,9 +516,8 @@ msgstr "Página de sincronização de letras"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Lyrics syncing page on smaller display"
-msgstr "Página de sincronização de letras"
+msgstr "Página de sincronização de letras em tela menor"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
