@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Chronograph
-Exec=Chronograph
+Exec=chronograph
 Icon=@APP_ID@
 Terminal=false
 Type=Application
