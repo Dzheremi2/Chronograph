@@ -75,6 +75,19 @@
   </screenshots>
 
   <releases>
+    <release version="2.2" date="2025-03-06">
+      <description translate="no">
+        <p>New features and bug fixes</p>
+        <ul>
+          <li>New List View mode. Option preferred on smaller displays</li>
+          <li>Option to automatically toggle List View on display resize for better experience</li>
+          <li>Now, if empty directory was parsed, the specific status page will inform user about that</li>
+          <li>Fixes for precise milliseconds from previous release</li>
+          <li>Pin button now wouldn't appear if opened directory is already in saves</li>
+          <li>Translators for your language are now mentioned in the "About App"</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.1" date="2025-02-11">
       <description translate="no">
         <p>New features and bug fixes</p>

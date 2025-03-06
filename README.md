@@ -19,7 +19,7 @@
 
 ### About Chronograph
 Chronograph is the app for syncing song lyrics by timestamps. 
-Chronograph supports `.ogg`, `.flac`, `.mp3` and `.wav` media formats
+Chronograph supports `.ogg`, `.flac`, `.mp3` and `.wav` media formats.
 You can import lyrics from Clipboard, File or from [LRClib](https://lrclib.net) and export your lyrics to these destinations
 
 ### Installation
