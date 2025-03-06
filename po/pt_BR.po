@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-02 23:36+0300\n"
+"POT-Creation-Date: 2025-03-06 17:02+0300\n"
 "PO-Revision-Date: 2025-03-05 07:01+0000\n"
 "Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -24,7 +24,7 @@ msgid "Copied successfully"
 msgstr "Copiado com sucesso"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:113
+#: chronograph/main.py:120
 msgid "translator-credits"
 msgstr "John Peter Sa"
 
@@ -466,15 +466,15 @@ msgstr "Aplicar"
 msgid "Change cover"
 msgstr "Alterar cobertura"
 
-#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:238
+#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:244
 msgid "Sync"
 msgstr "Sincronização"
 
-#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:248
+#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:254
 msgid "Edit song metadata"
 msgstr "Editar metadados da música"
 
-#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:257
+#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:263
 msgid "Show song info"
 msgstr "Mostre informações da música"
 
@@ -482,11 +482,11 @@ msgstr "Mostre informações da música"
 msgid "Open syncing page"
 msgstr "Página de sincronização aberta"
 
-#: data/gtk/ui/SongCard.blp:270
+#: data/gtk/ui/SongCard.blp:277
 msgid "Set cover"
 msgstr "Capa do conjunto"
 
-#: data/gtk/ui/SongCard.blp:275
+#: data/gtk/ui/SongCard.blp:282
 msgid "Remove cover"
 msgstr "Remova a tampa"
 

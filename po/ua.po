@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-02 23:36+0300\n"
+"POT-Creation-Date: 2025-03-06 17:02+0300\n"
 "PO-Revision-Date: 2025-03-02 20:51+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
@@ -25,7 +25,7 @@ msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:113
+#: chronograph/main.py:120
 msgid "translator-credits"
 msgstr "Максим Горпиніч"
 
@@ -468,15 +468,15 @@ msgstr "Застосувати"
 msgid "Change cover"
 msgstr "Змінити кришку"
 
-#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:238
+#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:244
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:248
+#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:254
 msgid "Edit song metadata"
 msgstr "Редагувати метадані пісні"
 
-#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:257
+#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:263
 msgid "Show song info"
 msgstr "Показати інформацію про пісню"
 
@@ -484,11 +484,11 @@ msgstr "Показати інформацію про пісню"
 msgid "Open syncing page"
 msgstr "Відкрити сторінку синхронізації"
 
-#: data/gtk/ui/SongCard.blp:270
+#: data/gtk/ui/SongCard.blp:277
 msgid "Set cover"
 msgstr "Набір кришки"
 
-#: data/gtk/ui/SongCard.blp:275
+#: data/gtk/ui/SongCard.blp:282
 msgid "Remove cover"
 msgstr "Зняти кришку"
 
