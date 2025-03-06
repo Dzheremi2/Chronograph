@@ -245,7 +245,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def sorting_list(self, child1: Adw.ActionRow, child2: Adw.ActionRow) -> int:
         """Technical function for `Gtk.ListBox.invalidate_sort` working
-        
+
         Parameters
         ----------
         child1 : Adw.ActionRow
@@ -673,12 +673,22 @@ class ChronographWindow(Adw.ApplicationWindow):
                     break
 
     def toggle_list_view(self, *_args) -> None:
-        if shared.schema.get_boolean("auto-list-view"):
+        # print(shared.win.library_scrolled_window.get_child())
+        if shared.schema.get_boolean("auto-list-view") and (
+            shared.win.library_scrolled_window.get_child().get_child()
+            != shared.win.no_source_opened
+            and shared.win.library_scrolled_window.get_child().get_child()
+            != shared.win.empty_directory
+        ):
             if self.get_width() <= 564:
                 self.library_scrolled_window.set_child(self.library_list)
                 shared.state_schema.set_string("view", "l")
-                shared.app.lookup_action("view_type").set_state(GLib.Variant.new_string("l"))
+                shared.app.lookup_action("view_type").set_state(
+                    GLib.Variant.new_string("l")
+                )
             else:
                 self.library_scrolled_window.set_child(self.library)
                 shared.state_schema.set_string("view", "g")
-                shared.app.lookup_action("view_type").set_state(GLib.Variant.new_string("g"))
+                shared.app.lookup_action("view_type").set_state(
+                    GLib.Variant.new_string("g")
+                )

@@ -99,6 +99,13 @@ class ChronographApplication(Adw.Application):
         if (path := shared.cache["session"]) is not None:
             dir_parser(path)
             del path
+        else:
+            shared.win.library_scrolled_window.set_child(shared.win.no_source_opened)
+
+        if shared.schema.get_boolean("auto-list-view"):
+            shared.app.lookup_action("view_type").set_enabled(False)
+        else:
+            shared.app.lookup_action("view_type").set_enabled(True)
 
         shared.win.present()
 
