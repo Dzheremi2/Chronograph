@@ -19,8 +19,9 @@
 
 ### About Chronograph
 Chronograph is the app for syncing song lyrics by timestamps. 
-Chronograph supports `.ogg`, `.flac`, `.mp3` and `.wav` media formats.
-You can import lyrics from Clipboard, File or from [LRClib](https://lrclib.net) and export your lyrics to these destinations
+Chronograph supports `.ogg`, `.flac`, `.mp3`, `.m4a` and `.wav` media formats.
+Also it supports `.aac` format, but without metadata reading, editing and automatic publishing to the [LRClib](https://lrclib.net).
+You can import lyrics from Clipboard, File or from LRClib and export your lyrics to these destinations
 
 ### Installation
 <a href='https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk'>
@@ -48,6 +49,8 @@ You can help project to be internationalized using [Hosted Weblate](https://host
 You can see future plans on Projects page of this repo on [Chronograph roadmap.](https://github.com/users/Dzheremi2/projects/2)
 
 If you have an idea or you know a bug, please, open an [issue](https://github.com/Dzheremi2/Chronograph/issues) with you idea/bug and it will be added to roadmap.
+
+If you want the app to support more file formats, create a feature request about that and attach a sample file.
 
 ### Code of Conduct
 The project follows the [GNOME Code of Conduct](https://conduct.gnome.org)
