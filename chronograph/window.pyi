@@ -72,6 +72,16 @@ class ChronographWindow(Adw.ApplicationWindow):
     lrclib_window_collapsed_results_list_window: Gtk.ScrolledWindow
     lrclib_window_collapsed_results_list: Gtk.ListBox
 
+    # Lrclib manual publishing dialog
+    lrclib_manual_dialog: Adw.Dialog
+    lrclib_manual_toast_overlay: Adw.ToastOverlay
+    lrclib_manual_title_entry: Adw.EntryRow
+    lrclib_manual_artist_entry: Adw.EntryRow
+    lrclib_manual_album_entry: Adw.EntryRow
+    lrclib_manual_duration_entry: Adw.EntryRow
+    lrclib_manual_synced_entry: Gtk.TextView
+    lrclib_manual_publish_button: Gtk.Button
+
     sort_state: str
     view_state: str
 
@@ -110,6 +120,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_export_to_file_action(self, *_args) -> None: ...
     def on_export_to_clipboard_action(self, *_args) -> None: ...
     def on_export_to_lrclib_action(self, *_args) -> None: ...
+    def manual_publish(self, *_args) -> None: ...
     def on_show_preferences_action(self, *args) -> None: ...
     def on_open_quick_editor_action(self, *_args) -> None: ...
     def copy_quick_editor_text(self, *_args) -> None: ...

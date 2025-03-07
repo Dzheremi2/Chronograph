@@ -470,6 +470,81 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
   }
 }
 
+Adw.Dialog lrclib_manual_dialog {
+  Adw.ToastOverlay lrclib_manual_toast_overlay {
+    margin-top: 8;
+    margin-start: 8;
+    margin-end: 8;
+    margin-bottom: 8;
+
+    Adw.Clamp {
+      orientation: horizontal;
+      maximum-size: 400;
+      tightening-threshold: 400;
+
+      Adw.Clamp {
+        orientation: vertical;
+        maximum-size: 600;
+        tightening-threshold: 600;
+
+        Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {}
+
+          Box {
+            orientation: vertical;
+            spacing: 8;
+
+            ListBox {
+              Adw.EntryRow lrclib_manual_title_entry {
+                title: _("Title");
+              }
+
+              Adw.EntryRow lrclib_manual_artist_entry {
+                title: _("Artist");
+              }
+
+              Adw.EntryRow lrclib_manual_album_entry {
+                title: _("Album");
+              }
+
+              Adw.EntryRow lrclib_manual_duration_entry {
+                title: _("Duration");
+                input-purpose: digits;
+              }
+
+              styles ["boxed-list"]
+            }
+
+            ScrolledWindow {
+              TextView lrclib_manual_synced_entry {
+                editable: true;
+                left-margin: 4;
+                top-margin: 4;
+                hexpand: true;
+                vexpand: true;
+                wrap-mode: word_char;
+
+                styles ["rounded-frame"]
+              }
+            }
+
+            Box {
+              halign: center;
+
+              Button lrclib_manual_publish_button {
+                label: _("Publish");
+
+                styles ["pill", "suggested-action"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 template $ChronographWindow : Adw.ApplicationWindow {
   title: _("Chronograph");
   width-request: 360;

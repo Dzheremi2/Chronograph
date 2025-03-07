@@ -52,7 +52,7 @@ def solve_challenge(prefix, target_hex) -> str:
     return str(nonce)
 
 
-def make_plain_lyrics() -> str:
+def make_plain_lyrics(lyrics: str) -> str:
     """Generates plain lyrics form `chronograph.ChronographWindow.sync_lines`
 
     Returns
@@ -61,47 +61,21 @@ def make_plain_lyrics() -> str:
         plain lyrics
     """
     pattern = r"\[.*?\] "
+    lyrics = lyrics.splitlines()
     plain_lyrics = []
-    for child in shared.win.sync_lines:
-        plain_lyrics.append(re.sub(pattern, "", child.get_text()))
+    for line in plain_lyrics:
+        plain_lyrics.append(re.sub(pattern, "", line))
     return "\n".join(plain_lyrics[:-1])
 
 
-def do_publish() -> None:
-    """Publishes lyrics to LRClib
-
-    Raises
-    ------
-    AttributeError
-        raised if any needed property is \"Unknown\"
-
-    needed properties: ::
-
-        title: str
-        artist: str
-        album: str
-    """
-    if (
-        shared.win.loaded_card._file.title is None
-        or shared.win.loaded_card._file.title == ""
-        or shared.win.loaded_card._file.artist is None
-        or shared.win.loaded_card._file.artist == ""
-        or shared.win.loaded_card._file.album is None
-        or shared.win.loaded_card._file.album == ""
-    ):
-        shared.win.toast_overlay.add_toast(
-            Adw.Toast(title=_("Some of Title, Artist and/or Album fields are Unknown!"))
-        )
-        shared.win.export_lyrics_button.set_icon_name("export-to-symbolic")
-        raise AttributeError('Some of Title, Artist and/or Album fields are "Unknown"')
-
+def do_publish(title: str, artist: str, album: str, duration: int, lyrics: str) -> None:
     challenge_data = requests.post(url="https://lrclib.net/api/request-challenge")
     challenge_data = challenge_data.json()
     nonce = solve_challenge(
         prefix=challenge_data["prefix"], target_hex=challenge_data["target"]
     )
     print(f"X-Publish-Token: {challenge_data['prefix']}:{nonce}")
-    response = requests.post(
+    response: requests.Response = requests.post(
         url="https://lrclib.net/api/publish",
         headers={
             "X-Publish-Token": f"{challenge_data['prefix']}:{nonce}",
@@ -109,12 +83,12 @@ def do_publish() -> None:
         },
         params={"keep_headers": "true"},
         json={
-            "trackName": shared.win.loaded_card.title,
-            "artistName": shared.win.loaded_card.artist,
-            "albumName": shared.win.loaded_card.album,
-            "duration": shared.win.loaded_card.duration,
-            "plainLyrics": make_plain_lyrics(),
-            "syncedLyrics": sync_lines_parser(),
+            "trackName": title,
+            "artistName": artist,
+            "albumName": album,
+            "duration": duration,
+            "plainLyrics": make_plain_lyrics(lyrics),
+            "syncedLyrics": lyrics,
         },
     )
 
@@ -122,13 +96,23 @@ def do_publish() -> None:
         shared.win.toast_overlay.add_toast(
             Adw.Toast(title=_("Published successfully: ") + str(response.status_code))
         )
+        shared.win.lrclib_manual_toast_overlay.add_toast(
+            Adw.Toast(title=_("Published successfully: ") + str(response.status_code))
+        )
     elif response.status_code == 400:
         shared.win.toast_overlay.add_toast(
+            Adw.Toast(title=_("Incorrect publish token: ") + str(response.status_code))
+        )
+        shared.win.lrclib_manual_toast_overlay.add_toast(
             Adw.Toast(title=_("Incorrect publish token: ") + str(response.status_code))
         )
     else:
         shared.win.toast_overlay.add_toast(
             Adw.Toast(title=_("Unknown error occured: ") + str(response.status_code))
         )
+        shared.win.lrclib_manual_toast_overlay.add_toast(
+            Adw.Toast(title=_("Unknown error occured: ") + str(response.status_code))
+        )
 
     shared.win.export_lyrics_button.set_icon_name("export-to-symbolic")
+    shared.win.lrclib_manual_publish_button.set_label(_("Publish"))

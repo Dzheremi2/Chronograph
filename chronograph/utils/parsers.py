@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 from typing import Union
 
-from gi.repository import Adw, Gdk, Gio, GLib  # type: ignore
+from gi.repository import Adw, Gdk, Gio, GLib
 
 from chronograph import shared
 from chronograph.ui.SyncLine import SyncLine

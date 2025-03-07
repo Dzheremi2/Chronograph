@@ -21,6 +21,7 @@ from chronograph.ui.SongCard import (
 from chronograph.ui.SyncLine import SyncLine
 from chronograph.utils.caching import save_location
 from chronograph.utils.export_data import export_clipboard, export_file
+from chronograph.utils.file_untaggable import FileUntaggable
 from chronograph.utils.parsers import (
     clipboard_parser,
     dir_parser,
@@ -107,6 +108,16 @@ class ChronographWindow(Adw.ApplicationWindow):
     )
     lrclib_window_collapsed_results_list: Gtk.ListBox = Gtk.Template.Child()
 
+    # Lrclib manual publishing dialog
+    lrclib_manual_dialog: Adw.Dialog = Gtk.Template.Child()
+    lrclib_manual_toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
+    lrclib_manual_title_entry: Adw.EntryRow = Gtk.Template.Child()
+    lrclib_manual_artist_entry: Adw.EntryRow = Gtk.Template.Child()
+    lrclib_manual_album_entry: Adw.EntryRow = Gtk.Template.Child()
+    lrclib_manual_duration_entry: Adw.EntryRow = Gtk.Template.Child()
+    lrclib_manual_synced_entry: Gtk.TextView = Gtk.Template.Child()
+    lrclib_manual_publish_button: Gtk.Button = Gtk.Template.Child()
+
     sort_state: str = shared.state_schema.get_string("sorting")
     view_state: str = shared.state_schema.get_string("view")
 
@@ -129,6 +140,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sync_navigation_page.connect("hiding", self.reset_sync_editor)
         self.quick_edit_copy_button.connect("clicked", self.copy_quick_editor_text)
         self.toggle_repeat_button.connect("toggled", self.toggle_repeat)
+        self.lrclib_manual_publish_button.connect("clicked", self.manual_publish)
         self.connect("notify::default-width", self.toggle_list_view)
         self.reparse_dir_button.connect(
             "clicked",
@@ -567,10 +579,82 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_export_to_lrclib_action(self, *_args) -> None:
         """Publishes synced lyrics to LRClib"""
-        thread = threading.Thread(target=do_publish)
-        thread.daemon = True
-        thread.start()
-        shared.win.export_lyrics_button.set_child(Adw.Spinner())
+        if type(self.loaded_card._file) is FileUntaggable:
+            self.lrclib_manual_title_entry.set_text("")
+            self.lrclib_manual_artist_entry.set_text("")
+            self.lrclib_manual_album_entry.set_text("")
+            self.lrclib_manual_duration_entry.set_text("")
+            self.lrclib_manual_synced_entry.set_buffer(Gtk.TextBuffer.new())
+            self.lrclib_manual_dialog.present(self)
+        else:
+            if (
+                self.loaded_card._file.title is None
+                or self.loaded_card._file.title == ""
+                or self.loaded_card._file.artist is None
+                or self.loaded_card._file.artist == ""
+                or self.loaded_card._file.album is None
+                or self.loaded_card._file.album == ""
+            ):
+                self.toast_overlay.add_toast(
+                    Adw.Toast(
+                        title=_(
+                            "Some of Title, Artist and/or Album fields are Unknown!"
+                        )
+                    )
+                )
+                self.export_lyrics_button.set_icon_name("export-to-symbolic")
+                raise AttributeError(
+                    'Some of Title, Artist and/or Album fields are "Unknown"'
+                )
+
+            thread = threading.Thread(
+                target=do_publish,
+                args=[
+                    self.loaded_card._file.title,
+                    self.loaded_card._file.artist,
+                    self.loaded_card._file.album,
+                    self.loaded_card._file.duration,
+                    sync_lines_parser(),
+                ],
+            )
+            thread.daemon = True
+            thread.start()
+            shared.win.export_lyrics_button.set_child(Adw.Spinner())
+
+    def manual_publish(self, *_args) -> None:
+        """Manual publishing to the LRClib"""
+        if (
+            self.lrclib_manual_title_entry.get_text() != ""
+            and self.lrclib_manual_artist_entry.get_text() != ""
+            and self.lrclib_manual_album_entry.get_text() != ""
+            and self.lrclib_manual_duration_entry.get_text() != ""
+            and self.lrclib_manual_synced_entry.get_buffer().get_text(
+                start=self.lrclib_manual_synced_entry.get_buffer().get_start_iter(),
+                end=self.lrclib_manual_synced_entry.get_buffer().get_end_iter(),
+                include_hidden_chars=False,
+            )
+        ):
+            thread = threading.Thread(
+                target=do_publish,
+                args=[
+                    self.lrclib_manual_title_entry.get_text(),
+                    self.lrclib_manual_artist_entry.get_text(),
+                    self.lrclib_manual_album_entry.get_text(),
+                    int(self.lrclib_manual_duration_entry.get_text()),
+                    self.lrclib_manual_synced_entry.get_buffer().get_text(
+                        start=self.lrclib_manual_synced_entry.get_buffer().get_start_iter(),
+                        end=self.lrclib_manual_synced_entry.get_buffer().get_end_iter(),
+                        include_hidden_chars=False,
+                    ),
+                ],
+            )
+            thread.daemon = True
+            thread.start()
+            self.lrclib_manual_publish_button.set_child(Adw.Spinner())
+        else:
+            self.lrclib_manual_toast_overlay.add_toast(
+                Adw.Toast(title=_("Some of entries are empty"))
+            )
 
     def on_show_preferences_action(self, *args) -> None:
         """Shows preferences dialog"""
