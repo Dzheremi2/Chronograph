@@ -272,7 +272,7 @@ class SongCard(Gtk.Box):
         """
         return self.list_view_row
 
-    @GObject.Property(type=str)
+    @property
     def title(self) -> str:
         if self._file.title is None or self._file.title == "":
             return os.path.basename(self._file.path)
@@ -288,7 +288,7 @@ class SongCard(Gtk.Box):
             self.title_label.set_text(value)
             self.list_view_row.set_title(value)
 
-    @GObject.Property(type=str)
+    @property
     def artist(self) -> str:
         if self._file.artist is None or self._file.artist == "":
             return _("Unknown")
@@ -314,7 +314,7 @@ class SongCard(Gtk.Box):
     def album(self, value: str):
         self._file.album = value
 
-    @GObject.Property
+    @property
     def cover(self) -> Union[str, bytes]:
         return self._file.cover
 
