@@ -632,7 +632,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 start=self.lrclib_manual_synced_entry.get_buffer().get_start_iter(),
                 end=self.lrclib_manual_synced_entry.get_buffer().get_end_iter(),
                 include_hidden_chars=False,
-            )
+            ) != ""
         ):
             thread = threading.Thread(
                 target=do_publish,
