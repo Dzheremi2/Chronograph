@@ -51,7 +51,10 @@ class BaseFile:
             /path/to/file
         """
         self._mutagen_file = mutagen.File(path)
-        self._duration = self._mutagen_file.info.length
+        try:
+            self._duration = self._mutagen_file.info.length
+        except Exception:
+            pass
 
     def get_cover_texture(self) -> Union[Gdk.Texture, str]:
         """Prepares a Gdk.Texture for setting to SongCard.paintable

@@ -2,12 +2,14 @@ import os
 import pathlib
 from typing import Union
 
-from gi.repository import Adw, Gdk, Gio, GObject, Gtk  # type: ignore
+from gi.repository import Adw, Gdk, Gio, Gtk  # type: ignore
 
 from chronograph import shared
 from chronograph.ui.BoxDialog import BoxDialog
 from chronograph.utils.file_mutagen_id3 import FileID3
+from chronograph.utils.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_mutagen_vorbis import FileVorbis
+from chronograph.utils.file_untaggable import FileUntaggable
 from chronograph.utils.parsers import file_parser
 
 label_str: str = _("About File")
@@ -24,7 +26,7 @@ class SongCard(Gtk.Box):
     Parameters
     ----------
     file : FileID3 | FileVorbis
-        File of `.ogg`, `.flac`, `.mp3` and `.wav` formats
+        File of `.ogg`, `.flac`, `.mp3`, `.m4a` and `.wav` formats
     """
 
     __gtype_name__ = "SongCard"
@@ -58,17 +60,22 @@ class SongCard(Gtk.Box):
     metadata_editor_artist_row: Adw.EntryRow = Gtk.Template.Child()
     metadata_editor_album_row: Adw.EntryRow = Gtk.Template.Child()
 
-    def __init__(self, file: Union[FileID3, FileVorbis]) -> None:
+    def __init__(
+        self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable]
+    ) -> None:
         super().__init__()
 
-        self._file: Union[FileID3, FileVorbis] = file
+        self._file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable] = file
         self._mde_new_cover_path: str = ""
         self.title_label.set_text(self.title)
         self.list_view_row.set_title(self.title)
         self.artist_label.set_text(self.artist)
         self.list_view_row.set_subtitle(self.artist)
-        self.invalidate_cover(self.cover_img)
-        self.invalidate_cover(self.cover_img_row)
+
+        if type(self._file) == FileUntaggable:
+            self.untaggable()
+        else:
+            self.taggable()
 
         for seat in Gdk.Display.get_default().list_seats():
             if seat.get_capabilities() & Gdk.SeatCapabilities.TOUCH:
@@ -95,6 +102,12 @@ class SongCard(Gtk.Box):
         self.play_button_row.connect("clicked", self.on_play_button_clicked)
         self.info_button.connect("clicked", self.gen_box_dialog)
         self.info_button_row.connect("clicked", self.gen_box_dialog)
+
+    def taggable(self) -> None:
+        """Used if file's metadata can be tagged"""
+        self.invalidate_cover(self.cover_img)
+        self.invalidate_cover(self.cover_img_row)
+
         self.metadata_editor_button.connect("clicked", self.open_metadata_editor)
         self.metadata_editor_button_row.connect("clicked", self.open_metadata_editor)
 
@@ -111,6 +124,11 @@ class SongCard(Gtk.Box):
         actions.add_action(change_action)
         actions.add_action(remove_action)
         self.metadata_editor_cover_button.insert_action_group("card", actions)
+
+    def untaggable(self) -> None:
+        """Used if file's metadata cannot be tagged"""
+        self.metadata_editor_button.set_visible(False)
+        self.metadata_editor_button_row.set_visible(False)
 
     def on_play_button_clicked(self, *_args) -> None:
         """Opens sync page for `self` and media stream"""

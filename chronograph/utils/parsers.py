@@ -10,6 +10,8 @@ from chronograph.ui.SyncLine import SyncLine
 from chronograph.utils.file_mutagen_id3 import FileID3
 from chronograph.utils.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_mutagen_vorbis import FileVorbis
+from chronograph.utils.file_untaggable import FileUntaggable
+
 
 def dir_parser(path: str, *_args) -> None:
     """Parses directory and creates `SongCard` instances for files in directory of formats `ogg`, `flac`, `mp3` and `wav`
@@ -31,6 +33,8 @@ def dir_parser(path: str, *_args) -> None:
                 mutagen_files.append(FileID3(path + file))
             elif Path(file).suffix in (".m4a",):
                 mutagen_files.append(FileMP4(path + file))
+            elif Path(file).suffix in (".aac", ".AAC"):
+                mutagen_files.append(FileUntaggable(path + file))
 
     if len(mutagen_files) == 0:
         shared.win.library_scrolled_window.set_child(shared.win.empty_directory)
@@ -61,7 +65,7 @@ def dir_parser(path: str, *_args) -> None:
     #     child.set_focusable(False)
 
 
-def songcard_idle(file: Union[FileID3, FileVorbis]) -> None:
+def songcard_idle(file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable]) -> None:
     """Appends new `SongCard` instance to `ChronographWindow.library`
 
     Parameters
