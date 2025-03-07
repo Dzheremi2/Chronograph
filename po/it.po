@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-06 17:02+0300\n"
+"POT-Creation-Date: 2025-03-07 21:42+0300\n"
 "PO-Revision-Date: 2025-03-02 20:49+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/lrcmake/"
@@ -19,7 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10.3-dev\n"
 
-#: chronograph/window.py:598
+#: chronograph/window.py:601
+#, fuzzy
+msgid "Some of Title, Artist and/or Album fields are Unknown!"
+msgstr "Alcuni campi relativi a titolo, artista e/o album sono sconosciuti!"
+
+#: chronograph/window.py:656
+msgid "Some of entries are empty"
+msgstr ""
+
+#: chronograph/window.py:682
 msgid "Copied successfully"
 msgstr "Pubblicato con successo"
 
@@ -28,24 +37,24 @@ msgstr "Pubblicato con successo"
 msgid "translator-credits"
 msgstr "albanobattistella"
 
-#: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:14
-#: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/ui/SongCard.blp:73
-#: data/gtk/ui/SongCard.blp:176
+#: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
+#: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/window.blp:500
+#: data/gtk/ui/SongCard.blp:73 data/gtk/ui/SongCard.blp:176
 msgid "Title"
 msgstr "Titolo"
 
-#: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:15
-#: data/gtk/window.blp:180 data/gtk/window.blp:335 data/gtk/ui/SongCard.blp:77
-#: data/gtk/ui/SongCard.blp:191
+#: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
+#: data/gtk/window.blp:180 data/gtk/window.blp:335 data/gtk/window.blp:504
+#: data/gtk/ui/SongCard.blp:77 data/gtk/ui/SongCard.blp:191
 msgid "Artist"
 msgstr "Artista"
 
-#: chronograph/ui/LrclibTrack.py:10
+#: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:512
 msgid "Duration"
 msgstr "Durata"
 
-#: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:16
-#: data/gtk/ui/SongCard.blp:81
+#: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
+#: data/gtk/window.blp:508 data/gtk/ui/SongCard.blp:81
 msgid "Album"
 msgstr "Album"
 
@@ -73,17 +82,18 @@ msgstr "Nessun testo semplice disponibile"
 msgid "Path: "
 msgstr "Percorso: "
 
-#: chronograph/ui/SongCard.py:13
+#: chronograph/ui/SongCard.py:15
 msgid "About File"
 msgstr "Informazioni sul file"
 
-#: chronograph/ui/SongCard.py:17
+#: chronograph/ui/SongCard.py:19
 msgid "Path"
 msgstr "Percorso"
 
-#: chronograph/ui/SongCard.py:285 chronograph/ui/SongCard.py:286
-#: chronograph/ui/SongCard.py:294 chronograph/ui/SongCard.py:301
-#: chronograph/ui/SongCard.py:302 chronograph/ui/SongCard.py:310
+#: chronograph/ui/SongCard.py:254 chronograph/ui/SongCard.py:310
+#: chronograph/ui/SongCard.py:311 chronograph/ui/SongCard.py:319
+#: chronograph/ui/SongCard.py:326 chronograph/ui/SongCard.py:327
+#: chronograph/ui/SongCard.py:335
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -91,26 +101,25 @@ msgstr "Sconosciuto"
 msgid "Directory saved successfully"
 msgstr "Directory salvata correttamente"
 
-#: chronograph/utils/parsers.py:200
+#: chronograph/utils/parsers.py:206
 msgid "Seems like not every line is synced"
 msgstr "Sembra che non tutte le linee siano sincronizzate"
 
-#: chronograph/utils/publish.py:93
-#, fuzzy
-msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr "Alcuni campi relativi a titolo, artista e/o album sono sconosciuti!"
-
-#: chronograph/utils/publish.py:123
+#: chronograph/utils/publish.py:97 chronograph/utils/publish.py:100
 msgid "Published successfully: "
 msgstr "Pubblicato con successo: "
 
-#: chronograph/utils/publish.py:127
+#: chronograph/utils/publish.py:104 chronograph/utils/publish.py:107
 msgid "Incorrect publish token: "
 msgstr "Token di pubblicazione non corretto: "
 
-#: chronograph/utils/publish.py:131
+#: chronograph/utils/publish.py:111 chronograph/utils/publish.py:114
 msgid "Unknown error occured: "
 msgstr "Si è verificato un errore sconosciuto: "
+
+#: chronograph/utils/publish.py:118 data/gtk/window.blp:536
+msgid "Publish"
+msgstr ""
 
 #: data/gtk/window.blp:5
 msgid "No source selected yet"
@@ -157,7 +166,7 @@ msgstr ""
 "Premere il pulsante segnaposto per aggiungere la directory corrente ai "
 "salvataggi"
 
-#: data/gtk/window.blp:99 data/gtk/window.blp:1081
+#: data/gtk/window.blp:99 data/gtk/window.blp:1156
 msgid "Quick Editor"
 msgstr "Editor veloce"
 
@@ -169,7 +178,7 @@ msgstr "Copia negli appunti"
 msgid "Search LRClib for provided title and artist"
 msgstr "Cerca in LRClib il titolo e l'artista forniti"
 
-#: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:590
+#: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:665
 msgid "Search"
 msgstr "Cerca"
 
@@ -193,197 +202,197 @@ msgstr ""
 msgid "Use"
 msgstr "Usa"
 
-#: data/gtk/window.blp:474 data/gtk/window.blp:493
+#: data/gtk/window.blp:549 data/gtk/window.blp:568
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
 msgstr "Chronograph"
 
-#: data/gtk/window.blp:500
+#: data/gtk/window.blp:575
 msgid "Saves"
 msgstr "Salva"
 
-#: data/gtk/window.blp:508 data/gtk/window.blp:527 data/gtk/window.blp:933
+#: data/gtk/window.blp:583 data/gtk/window.blp:602 data/gtk/window.blp:1008
 msgid "Toggle sidebar"
 msgstr "Attiva la barra laterale"
 
-#: data/gtk/window.blp:534
+#: data/gtk/window.blp:609
 msgid "Select a directory or open a file"
 msgstr "Seleziona una directory o apri un file"
 
-#: data/gtk/window.blp:546 data/gtk/window.blp:918
+#: data/gtk/window.blp:621 data/gtk/window.blp:993
 msgid "Toggle search"
 msgstr "Attiva la ricerca"
 
-#: data/gtk/window.blp:554 data/gtk/window.blp:638
+#: data/gtk/window.blp:629 data/gtk/window.blp:713
 msgid "App settings, info and utils"
 msgstr "Impostazioni, informazioni e utilità dell'app"
 
-#: data/gtk/window.blp:569
+#: data/gtk/window.blp:644
 msgid "Re-parse current directory"
 msgstr "Rianalizzare la directory corrente"
 
-#: data/gtk/window.blp:574
+#: data/gtk/window.blp:649
 msgid "Add current directory to saves"
 msgstr "Aggiungi la directory corrente ai salvataggi"
 
-#: data/gtk/window.blp:628
+#: data/gtk/window.blp:703
 msgid "Syncing"
 msgstr "Sincronizzazione"
 
-#: data/gtk/window.blp:719
+#: data/gtk/window.blp:794
 msgid "Toggle song repeat"
 msgstr "Attiva la ripetizione del brano"
 
-#: data/gtk/window.blp:774
+#: data/gtk/window.blp:849
 msgid "Sync/Re-sync line"
 msgstr "Linea di sincronizzazione/risincronizzazione"
 
-#: data/gtk/window.blp:785 data/gtk/window.blp:947
+#: data/gtk/window.blp:860 data/gtk/window.blp:1022
 msgid "Replay selected line"
 msgstr "Riproduci la riga selezionata"
 
-#: data/gtk/window.blp:793
+#: data/gtk/window.blp:868
 msgid "Re-sync selected line 100ms back"
 msgstr "Risincronizza la linea selezionata 100 ms indietro"
 
-#: data/gtk/window.blp:801
+#: data/gtk/window.blp:876
 msgid "Re-sync selected line 100ms forward"
 msgstr "Risincronizza la linea selezionata 100 ms in avanti"
 
-#: data/gtk/window.blp:809 data/gtk/window.blp:1009
+#: data/gtk/window.blp:884 data/gtk/window.blp:1084
 msgid "Import from …"
 msgstr "Importa da …"
 
-#: data/gtk/window.blp:820 data/gtk/window.blp:1019
+#: data/gtk/window.blp:895 data/gtk/window.blp:1094
 msgid "Export to …"
 msgstr "Esporta in …"
 
-#: data/gtk/window.blp:838 data/gtk/window.blp:1029
+#: data/gtk/window.blp:913 data/gtk/window.blp:1104
 msgid "Actions with selected line"
 msgstr "Azioni con la riga selezionata"
 
-#: data/gtk/window.blp:849
+#: data/gtk/window.blp:924
 msgid "About file"
 msgstr "Informazioni sul file"
 
-#: data/gtk/window.blp:883
+#: data/gtk/window.blp:958
 msgid "Add line"
 msgstr "Aggiungi linea"
 
-#: data/gtk/window.blp:906
+#: data/gtk/window.blp:981
 msgid "Shortcuts"
 msgstr "Scorciatoie"
 
-#: data/gtk/window.blp:910 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:985 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr "Generale"
 
-#: data/gtk/window.blp:913
+#: data/gtk/window.blp:988
 msgid "Quit"
 msgstr "Esci"
 
-#: data/gtk/window.blp:923
+#: data/gtk/window.blp:998
 msgid "Select directory"
 msgstr "Seleziona directory"
 
-#: data/gtk/window.blp:928 data/gtk/window.blp:1086
+#: data/gtk/window.blp:1003 data/gtk/window.blp:1161
 msgid "Keybindings"
 msgstr "Abbinamenti di tasti"
 
-#: data/gtk/window.blp:939
+#: data/gtk/window.blp:1014
 msgid "Sync mode"
 msgstr "Modalità di sincronizzazione"
 
-#: data/gtk/window.blp:942
+#: data/gtk/window.blp:1017
 msgid "Sync/Re-sync"
 msgstr "Sincronizzazione/Risincronizzazione"
 
-#: data/gtk/window.blp:952
+#: data/gtk/window.blp:1027
 msgid "Remove selected line"
 msgstr "Rimuovi la riga selezionata"
 
-#: data/gtk/window.blp:957
+#: data/gtk/window.blp:1032
 msgid "Prepend line to selected"
 msgstr "Aggiungi la riga a quella selezionata"
 
-#: data/gtk/window.blp:962
+#: data/gtk/window.blp:1037
 msgid "Append line to selected"
 msgstr "Aggiungi riga a selezionata"
 
-#: data/gtk/window.blp:967 data/gtk/window.blp:1034
+#: data/gtk/window.blp:1042 data/gtk/window.blp:1109
 msgid "Append line to end"
 msgstr "Aggiungi riga alla fine"
 
-#: data/gtk/window.blp:972
+#: data/gtk/window.blp:1047
 msgid "Re-sync 100ms back"
 msgstr "Ri-sincronizzare 100 ms indietro"
 
-#: data/gtk/window.blp:977
+#: data/gtk/window.blp:1052
 msgid "Re-sync 100ms forward"
 msgstr "Ri-sincronizzazione 100 ms in avanti"
 
-#: data/gtk/window.blp:987
+#: data/gtk/window.blp:1062
 msgid "Directory"
 msgstr "Directory"
 
-#: data/gtk/window.blp:994 data/gtk/window.blp:1051
+#: data/gtk/window.blp:1069 data/gtk/window.blp:1126
 msgid "A-Z"
 msgstr "A-Z"
 
-#: data/gtk/window.blp:1000 data/gtk/window.blp:1057
+#: data/gtk/window.blp:1075 data/gtk/window.blp:1132
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:1011 data/gtk/window.blp:1021
+#: data/gtk/window.blp:1086 data/gtk/window.blp:1096
 msgid "File"
 msgstr "File"
 
-#: data/gtk/window.blp:1012 data/gtk/window.blp:1022
+#: data/gtk/window.blp:1087 data/gtk/window.blp:1097
 msgid "Clipboard"
 msgstr "Appunti"
 
-#: data/gtk/window.blp:1031
+#: data/gtk/window.blp:1106
 msgid "Remove line"
 msgstr "Rimuovi riga"
 
-#: data/gtk/window.blp:1032
+#: data/gtk/window.blp:1107
 msgid "Prepend line"
 msgstr "Aggiungi riga in anticipo"
 
-#: data/gtk/window.blp:1033
+#: data/gtk/window.blp:1108
 msgid "Append line"
 msgstr "Aggiungi riga"
 
-#: data/gtk/window.blp:1040
+#: data/gtk/window.blp:1115
 msgid "Use plain"
 msgstr "Usa semplice"
 
-#: data/gtk/window.blp:1041
+#: data/gtk/window.blp:1116
 msgid "Use synced"
 msgstr "Usa sincronizzato"
 
-#: data/gtk/window.blp:1048
+#: data/gtk/window.blp:1123
 msgid "Sort"
 msgstr "Ordina"
 
-#: data/gtk/window.blp:1064
+#: data/gtk/window.blp:1139
 msgid "View"
 msgstr ""
 
-#: data/gtk/window.blp:1067
+#: data/gtk/window.blp:1142
 msgid "Grid"
 msgstr ""
 
-#: data/gtk/window.blp:1073
+#: data/gtk/window.blp:1148
 msgid "List"
 msgstr ""
 
-#: data/gtk/window.blp:1085
+#: data/gtk/window.blp:1160
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: data/gtk/window.blp:1087
+#: data/gtk/window.blp:1162
 msgid "About"
 msgstr "Informazioni"
 
@@ -469,15 +478,15 @@ msgstr "Applica"
 msgid "Change cover"
 msgstr "Cambiare la copertina"
 
-#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:244
+#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:245
 msgid "Sync"
 msgstr "Sincronizzazione"
 
-#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:254
+#: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:255
 msgid "Edit song metadata"
 msgstr "Modifica i metadati del brano"
 
-#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:263
+#: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:264
 msgid "Show song info"
 msgstr "Mostra informazioni sulla canzone"
 
@@ -485,11 +494,11 @@ msgstr "Mostra informazioni sulla canzone"
 msgid "Open syncing page"
 msgstr "Apri la pagina di sincronizzazione"
 
-#: data/gtk/ui/SongCard.blp:277
+#: data/gtk/ui/SongCard.blp:278
 msgid "Set cover"
 msgstr "Imposta copertura"
 
-#: data/gtk/ui/SongCard.blp:282
+#: data/gtk/ui/SongCard.blp:283
 msgid "Remove cover"
 msgstr "Rimuovi copertina"
 
