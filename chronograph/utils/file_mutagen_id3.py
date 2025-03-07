@@ -1,7 +1,6 @@
-import os
 from typing import Union
 
-from mutagen.id3 import APIC, TALB, TIT2, TPE1, ID3Tags
+from mutagen.id3 import APIC, TALB, TIT2, TPE1
 
 from .file import BaseFile
 

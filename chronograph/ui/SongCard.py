@@ -230,9 +230,16 @@ class SongCard(Gtk.Box):
         BoxDialog(
             label_str,
             (
-                (title_str, self._file.title),
-                (artist_str, self._file.artist),
-                (album_str, self._file.album),
+                (
+                    title_str,
+                    (
+                        _("Unknown")
+                        if self._file.title == "" or self._file.title is None
+                        else self.title
+                    ),
+                ),
+                (artist_str, self.artist),
+                (album_str, self.album),
                 (path_str, self._file.path),
             ),
         ).present(shared.win)
@@ -304,7 +311,7 @@ class SongCard(Gtk.Box):
             self.artist_label.set_text(value)
             self.list_view_row.set_subtitle(value)
 
-    @GObject.Property(type=str)
+    @property
     def album(self) -> str:
         if self._file.album is None or self._file.album == "":
             return _("Unknown")

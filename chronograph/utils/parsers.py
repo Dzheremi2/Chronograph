@@ -8,8 +8,8 @@ from gi.repository import Adw, Gdk, Gio, GLib  # type: ignore
 from chronograph import shared
 from chronograph.ui.SyncLine import SyncLine
 from chronograph.utils.file_mutagen_id3 import FileID3
+from chronograph.utils.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_mutagen_vorbis import FileVorbis
-
 
 def dir_parser(path: str, *_args) -> None:
     """Parses directory and creates `SongCard` instances for files in directory of formats `ogg`, `flac`, `mp3` and `wav`
@@ -29,6 +29,8 @@ def dir_parser(path: str, *_args) -> None:
                 mutagen_files.append(FileVorbis(path + file))
             elif Path(file).suffix in (".mp3", ".wav"):
                 mutagen_files.append(FileID3(path + file))
+            elif Path(file).suffix in (".m4a",):
+                mutagen_files.append(FileMP4(path + file))
 
     if len(mutagen_files) == 0:
         shared.win.library_scrolled_window.set_child(shared.win.empty_directory)
@@ -50,7 +52,7 @@ def dir_parser(path: str, *_args) -> None:
     shared.win.right_buttons_revealer.set_reveal_child(True)
     shared.win.left_buttons_revealer.set_reveal_child(True)
     shared.state_schema.set_string("opened-dir", path)
-    if any(pin['path'] == path for pin in shared.cache.get('pins', [])):
+    if any(pin["path"] == path for pin in shared.cache.get("pins", [])):
         shared.win.add_dir_to_saves_button.set_visible(False)
     else:
         shared.win.add_dir_to_saves_button.set_visible(True)
@@ -73,6 +75,7 @@ def songcard_idle(file: Union[FileID3, FileVorbis]) -> None:
     shared.win.library.append(song_card)
     shared.win.library_list.append(song_card.get_list_mode())
     song_card.get_parent().set_focusable(False)
+
 
 def line_parser(string: str) -> str:
     """Parses line for square brackets
@@ -135,7 +138,6 @@ def on_clipboard_parsed(_clipboard, result: Gio.Task, clipboard: Gdk.Clipboard) 
     clipboard : Gdk.Clipboard
         Clipboard to read from
     """
-    print()
     data = clipboard.read_text_finish(result)
     list = data.splitlines()
     shared.win.sync_lines.remove_all()

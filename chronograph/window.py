@@ -673,7 +673,6 @@ class ChronographWindow(Adw.ApplicationWindow):
                     break
 
     def toggle_list_view(self, *_args) -> None:
-        # print(shared.win.library_scrolled_window.get_child())
         if shared.schema.get_boolean("auto-list-view") and (
             shared.win.library_scrolled_window.get_child().get_child()
             != shared.win.no_source_opened

@@ -25,7 +25,8 @@ install_subdir('utils', install_dir: moduledir, exclude_files: [
   'file.pyi',
   'parsers.pyi',
   'publish.pyi',
-  'select_data.pyi'
+  'select_data.pyi',
+  'file_mutagen_mp4.pyi'
 ])
 install_data(
     [
