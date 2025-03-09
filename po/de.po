@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-02 20:49+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-09 17:01+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/de/>\n"
 "Language: de\n"
@@ -21,15 +21,15 @@ msgstr ""
 
 #: chronograph/window.py:601
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "Einige der Felder Titel, Interpret und/oder Album sind unbekannt!"
 
 #: chronograph/window.py:656
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Einige der Einträge sind leer"
 
 #: chronograph/window.py:682
 msgid "Copied successfully"
-msgstr ""
+msgstr "Erfolgreich kopiert"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:120
@@ -50,110 +50,107 @@ msgstr "Künstler"
 
 #: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:512
 msgid "Duration"
-msgstr ""
+msgstr "Dauer"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
 #: data/gtk/window.blp:508 data/gtk/ui/SongCard.blp:81
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
-msgstr ""
+msgstr "Ist instrumental"
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "Keine synchronisierten Liedtexte verfügbar"
 
 #: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "Keine einfachen Liedtexte verfügbar"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Pfad: "
 
 #: chronograph/ui/SongCard.py:15
-#, fuzzy
 msgid "About File"
-msgstr "Über"
+msgstr "Über Datei"
 
 #: chronograph/ui/SongCard.py:19
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 #: chronograph/ui/SongCard.py:254 chronograph/ui/SongCard.py:310
 #: chronograph/ui/SongCard.py:311 chronograph/ui/SongCard.py:319
 #: chronograph/ui/SongCard.py:326 chronograph/ui/SongCard.py:327
 #: chronograph/ui/SongCard.py:335
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
-msgstr ""
+msgstr "Verzeichnis erfolgreich gespeichert"
 
 #: chronograph/utils/parsers.py:206
 msgid "Seems like not every line is synced"
-msgstr ""
+msgstr "Es scheint, dass nicht jede Zeile synchronisiert ist"
 
 #: chronograph/utils/publish.py:97 chronograph/utils/publish.py:100
 msgid "Published successfully: "
-msgstr ""
+msgstr "Erfolgreich veröffentlicht: "
 
 #: chronograph/utils/publish.py:104 chronograph/utils/publish.py:107
 msgid "Incorrect publish token: "
-msgstr ""
+msgstr "Falsches Veröffentlichungs-Token: "
 
 #: chronograph/utils/publish.py:111 chronograph/utils/publish.py:114
 msgid "Unknown error occured: "
-msgstr ""
+msgstr "Unbekannter Fehler aufgetreten: "
 
 #: chronograph/utils/publish.py:118 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Veröffentlichen"
 
 #: data/gtk/window.blp:5
-#, fuzzy
 msgid "No source selected yet"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "Noch keine Quelle ausgewählt"
 
 #: data/gtk/window.blp:6
 msgid "Select a directory"
-msgstr ""
+msgstr "Verzeichnis auswählen"
 
 #: data/gtk/window.blp:14 data/gtk/window.blp:35
-#, fuzzy
 msgid "Open source"
-msgstr "Ordner öffnen"
+msgstr ""
 
 #: data/gtk/window.blp:26
 msgid "Empty directory"
-msgstr ""
+msgstr "Leeres Verzeichnis"
 
 #: data/gtk/window.blp:27
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Dieses Verzeichnis enthält keine unterstützten Musikdateien"
 
 #: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "Auf LRClib nach Titel und Interpretennamen suchen"
 
 #: data/gtk/window.blp:58 data/gtk/window.blp:64
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "Es wurde nichts zu dieser Anfrage gefunden"
 
 #: data/gtk/window.blp:59 data/gtk/window.blp:65
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
+msgstr "Versuche eine andere Anfrage, vielleicht gibt es Fehler im Anfragetext."
 
 #: data/gtk/window.blp:69
 msgid "No saves found yet"
@@ -165,45 +162,45 @@ msgstr ""
 
 #: data/gtk/window.blp:99 data/gtk/window.blp:1156
 msgid "Quick Editor"
-msgstr ""
+msgstr "Schnelleditor"
 
 #: data/gtk/window.blp:124
-#, fuzzy
 msgid "Copy to clipboard"
-msgstr "Zwischenablage"
+msgstr "In die Zwischenablage kopieren"
 
 #: data/gtk/window.blp:188 data/gtk/window.blp:344
 msgid "Search LRClib for provided title and artist"
-msgstr ""
+msgstr "LRClib nach einem bestimmten Titel und Interpreten durchsuchen"
 
 #: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:665
 msgid "Search"
-msgstr ""
+msgstr "Suchen"
 
 #: data/gtk/window.blp:234 data/gtk/window.blp:398
-#, fuzzy
 msgid "Synced"
-msgstr "Synchronisation"
+msgstr "Synchronisiert"
 
 #: data/gtk/window.blp:259 data/gtk/window.blp:424
 msgid "Plain"
-msgstr ""
+msgstr "Einfach"
 
 #: data/gtk/window.blp:288 data/gtk/window.blp:454
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
 msgstr ""
+"Standardmäßig werden synchronisierte Liedtexte verwendet. Um einfache Texte "
+"zu verwenden, wähle im Untermenü „Einfache Texte verwenden“ aus"
 
 #: data/gtk/window.blp:294 data/gtk/window.blp:460
 msgid "Use"
-msgstr ""
+msgstr "Verwenden"
 
 #: data/gtk/window.blp:549 data/gtk/window.blp:568
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
-msgstr ""
+msgstr "Chronograph"
 
 #: data/gtk/window.blp:575
 msgid "Saves"
@@ -211,84 +208,75 @@ msgstr ""
 
 #: data/gtk/window.blp:583 data/gtk/window.blp:602 data/gtk/window.blp:1008
 msgid "Toggle sidebar"
-msgstr ""
+msgstr "Seitenleiste umschalten"
 
 #: data/gtk/window.blp:609
 msgid "Select a directory or open a file"
-msgstr ""
+msgstr "Verzeichnis auswählen oder Datei öffnen"
 
 #: data/gtk/window.blp:621 data/gtk/window.blp:993
 msgid "Toggle search"
-msgstr ""
+msgstr "Suche umschalten"
 
 #: data/gtk/window.blp:629 data/gtk/window.blp:713
 msgid "App settings, info and utils"
-msgstr ""
+msgstr "App-Einstellungen, Infos und Hilfsmittel"
 
 #: data/gtk/window.blp:644
 msgid "Re-parse current directory"
-msgstr ""
+msgstr "Aktuelles Verzeichnis neu parsen"
 
 #: data/gtk/window.blp:649
 msgid "Add current directory to saves"
 msgstr ""
 
 #: data/gtk/window.blp:703
-#, fuzzy
 msgid "Syncing"
-msgstr "Synchronisation"
+msgstr "Synchronisierung"
 
 #: data/gtk/window.blp:794
 msgid "Toggle song repeat"
-msgstr ""
+msgstr "Liedwiederholung umschalten"
 
 #: data/gtk/window.blp:849
-#, fuzzy
 msgid "Sync/Re-sync line"
-msgstr "Synchronisierung/Re-Synchronisierung"
+msgstr "Zeile (re-)synchronisieren"
 
 #: data/gtk/window.blp:860 data/gtk/window.blp:1022
-#, fuzzy
 msgid "Replay selected line"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "Ausgewählte Zeile wiederholen"
 
 #: data/gtk/window.blp:868
-#, fuzzy
 msgid "Re-sync selected line 100ms back"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "Ausgewählte Zeile 100 ms zurück resynchronisieren"
 
 #: data/gtk/window.blp:876
 msgid "Re-sync selected line 100ms forward"
-msgstr ""
+msgstr "Ausgewählte Zeile 100 ms vor resynchronisieren"
 
 #: data/gtk/window.blp:884 data/gtk/window.blp:1084
-#, fuzzy
 msgid "Import from …"
-msgstr "Importieren aus..."
+msgstr "Importieren aus …"
 
 #: data/gtk/window.blp:895 data/gtk/window.blp:1094
-#, fuzzy
 msgid "Export to …"
-msgstr "Exportieren nach..."
+msgstr "Exportieren nach …"
 
 #: data/gtk/window.blp:913 data/gtk/window.blp:1104
-#, fuzzy
 msgid "Actions with selected line"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "Aktionen mit ausgewählter Zeile"
 
 #: data/gtk/window.blp:924
-#, fuzzy
 msgid "About file"
-msgstr "Über"
+msgstr "Über Datei"
 
 #: data/gtk/window.blp:958
-#, fuzzy
 msgid "Add line"
 msgstr "Zeile hinzufügen"
 
 #: data/gtk/window.blp:981
 msgid "Shortcuts"
-msgstr ""
+msgstr "Tastenkombinationen"
 
 #: data/gtk/window.blp:985 data/gtk/ui/Preferences.blp:6
 msgid "General"
@@ -300,7 +288,7 @@ msgstr "Beenden"
 
 #: data/gtk/window.blp:998
 msgid "Select directory"
-msgstr ""
+msgstr "Verzeichnis auswählen"
 
 #: data/gtk/window.blp:1003 data/gtk/window.blp:1161
 msgid "Keybindings"
@@ -320,28 +308,27 @@ msgstr "Ausgewählte Zeile entfernen"
 
 #: data/gtk/window.blp:1032
 msgid "Prepend line to selected"
-msgstr ""
+msgstr "Zeile der ausgewählten Zeile voranstellen"
 
 #: data/gtk/window.blp:1037
 msgid "Append line to selected"
-msgstr ""
+msgstr "Zeile an ausgewählte Zeile anfügen"
 
 #: data/gtk/window.blp:1042 data/gtk/window.blp:1109
 msgid "Append line to end"
-msgstr ""
+msgstr "Zeile am Ende anfügen"
 
 #: data/gtk/window.blp:1047
-#, fuzzy
 msgid "Re-sync 100ms back"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "100 ms zurück resynchronisieren"
 
 #: data/gtk/window.blp:1052
 msgid "Re-sync 100ms forward"
-msgstr ""
+msgstr "100 ms vor resynchronisieren"
 
 #: data/gtk/window.blp:1062
 msgid "Directory"
-msgstr ""
+msgstr "Verzeichnis"
 
 #: data/gtk/window.blp:1069 data/gtk/window.blp:1126
 msgid "A-Z"
@@ -360,41 +347,40 @@ msgid "Clipboard"
 msgstr "Zwischenablage"
 
 #: data/gtk/window.blp:1106
-#, fuzzy
 msgid "Remove line"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "Zeile entfernen"
 
 #: data/gtk/window.blp:1107
 msgid "Prepend line"
-msgstr ""
+msgstr "Zeile voranstellen"
 
 #: data/gtk/window.blp:1108
 msgid "Append line"
-msgstr ""
+msgstr "Zeile anfügen"
 
 #: data/gtk/window.blp:1115
 msgid "Use plain"
-msgstr ""
+msgstr "Einfachen Text verwenden"
 
 #: data/gtk/window.blp:1116
 msgid "Use synced"
-msgstr ""
+msgstr "Synchronisierten Text verwenden"
 
 #: data/gtk/window.blp:1123
 msgid "Sort"
-msgstr ""
+msgstr "Sortierung"
 
 #: data/gtk/window.blp:1139
 msgid "View"
-msgstr ""
+msgstr "Ansicht"
 
 #: data/gtk/window.blp:1142
 msgid "Grid"
-msgstr ""
+msgstr "Raster"
 
 #: data/gtk/window.blp:1148
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: data/gtk/window.blp:1160
 msgid "Preferences"
@@ -406,62 +392,67 @@ msgstr "Über"
 
 #: data/gtk/ui/Preferences.blp:10
 msgid "Behavior"
-msgstr ""
+msgstr "Verhalten"
 
 #: data/gtk/ui/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
-msgstr ""
+msgstr "Schnellbearbeitungsdialog beim Schließen zurücksetzen"
 
 #: data/gtk/ui/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
+"Auswählen, ob der Text des Schnelleingabe-Dialogs nach dem Beenden gelöscht "
+"werden soll oder nicht"
 
 #: data/gtk/ui/Preferences.blp:18
 msgid "Save session on app close"
-msgstr ""
+msgstr "Sitzung beim Schließen der App speichern"
 
 #: data/gtk/ui/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
-msgstr ""
+msgstr "Öffnet das zuletzt geöffnete Verzeichnis beim nächsten Start erneut"
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Listenansichtsmodus automatisch umschalten"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enought"
 msgstr ""
+"Schaltet automatisch in die Listenansicht um, wenn der Bildschirm nicht groß "
+"genug ist"
 
 #: data/gtk/ui/Preferences.blp:29
-#, fuzzy
 msgid "Sync Page"
-msgstr "Synchronisationsmodus"
+msgstr "Synchronisationsseite"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Genaue Millisekunden verwenden"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "3-stellige Millisekunden anstelle von 2-stelligen verwenden"
 
 #: data/gtk/ui/Preferences.blp:37
 msgid "Auto file manipulation"
-msgstr ""
+msgstr "Automatische Dateibearbeitung"
 
 #: data/gtk/ui/Preferences.blp:38
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
+"Erstellt und aktualisiert automatisch Dateien, wenn sich eine der "
+"Liedtextzeilen ändert"
 
 #: data/gtk/ui/Preferences.blp:42
 msgid "File format"
-msgstr ""
+msgstr "Dateiformat"
 
 #: data/gtk/ui/Preferences.blp:43
 msgid "File format for auto manipulation"
-msgstr ""
+msgstr "Dateiformat für die automatische Bearbeitung"
 
 #: data/gtk/ui/SavedLocation.blp:35
 msgid "Remove this from saves"
@@ -469,19 +460,19 @@ msgstr ""
 
 #: data/gtk/ui/SavedLocation.blp:52
 msgid "Delete name to remove"
-msgstr ""
+msgstr "Zum Entfernen Name löschen"
 
 #: data/gtk/ui/SongCard.blp:13
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: data/gtk/ui/SongCard.blp:18
 msgid "Apply"
-msgstr ""
+msgstr "Anwenden"
 
 #: data/gtk/ui/SongCard.blp:46
 msgid "Change cover"
-msgstr ""
+msgstr "Cover ändern"
 
 #: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:245
 msgid "Sync"
@@ -489,28 +480,27 @@ msgstr "Synchronisation"
 
 #: data/gtk/ui/SongCard.blp:130 data/gtk/ui/SongCard.blp:255
 msgid "Edit song metadata"
-msgstr ""
+msgstr "Lied-Metadaten bearbeiten"
 
 #: data/gtk/ui/SongCard.blp:140 data/gtk/ui/SongCard.blp:264
 msgid "Show song info"
-msgstr ""
+msgstr "Liedinformationen anzeigen"
 
 #: data/gtk/ui/SongCard.blp:153
 msgid "Open syncing page"
-msgstr ""
+msgstr "Synchronisierungsseite öffnen"
 
 #: data/gtk/ui/SongCard.blp:278
 msgid "Set cover"
-msgstr ""
+msgstr "Cover festlegen"
 
 #: data/gtk/ui/SongCard.blp:283
-#, fuzzy
 msgid "Remove cover"
-msgstr "Ausgewählte Zeile entfernen"
+msgstr "Cover entfernen"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 msgid "Sync lyrics of your loved songs"
-msgstr ""
+msgstr "Liedtexte deiner Lieblingslieder synchronisieren"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 msgid ""
@@ -518,31 +508,35 @@ msgid ""
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
 "and wav formats"
 msgstr ""
+"Diese App hilft dir, zu der großen Datenbank von synchronisierten Liedtexten "
+"mit schöner GTK4- und LibAdwaita-Schnittstelle beizutragen. Es unterstützt "
+"Musik in den Formaten ogg, flac, mp3 und wav"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
-#, fuzzy
 msgid "Library"
-msgstr "Bibliotheksansicht"
+msgstr "Bibliothek"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Lyrics syncing page"
-msgstr ""
+msgstr "Liedtext-Synchronisierungsseite"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
 msgid "Lyrics syncing page on smaller display"
-msgstr ""
+msgstr "Liedtext-Synchronisierungsseite auf kleinerem Bildschirm"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
 msgid "LRClib import dialog"
-msgstr ""
+msgstr "LRClib-Importdialog"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:9
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
+"liedtexte;internet;lieder;multimedia;medium;lrclib;musik;synchronisation;synchronisierung;"
+""
 
 #~ msgid "Dialog with opened file details view"
 #~ msgstr "Dialog mit geöffneter Dateidetailansicht"
