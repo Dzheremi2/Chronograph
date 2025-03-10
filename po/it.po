@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-02 20:49+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-10 17:02+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/it/>\n"
 "Language: it\n"
@@ -20,13 +20,12 @@ msgstr ""
 "X-Generator: Weblate 5.10.3-dev\n"
 
 #: chronograph/window.py:601
-#, fuzzy
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr "Alcuni campi relativi a titolo, artista e/o album sono sconosciuti!"
+msgstr "Alcuni campi Titolo, Artista e/o Album sono Sconosciuti!"
 
 #: chronograph/window.py:656
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Alcune voci sono vuote"
 
 #: chronograph/window.py:682
 msgid "Copied successfully"
@@ -119,7 +118,7 @@ msgstr "Si è verificato un errore sconosciuto: "
 
 #: chronograph/utils/publish.py:118 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Pubblicare"
 
 #: data/gtk/window.blp:5
 msgid "No source selected yet"
@@ -134,13 +133,12 @@ msgid "Open source"
 msgstr "Open source"
 
 #: data/gtk/window.blp:26
-#, fuzzy
 msgid "Empty directory"
-msgstr "Seleziona directory"
+msgstr "Directory vuota"
 
 #: data/gtk/window.blp:27
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Questa directory non contiene file musicali supportati"
 
 #: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
@@ -378,15 +376,15 @@ msgstr "Ordina"
 
 #: data/gtk/window.blp:1139
 msgid "View"
-msgstr ""
+msgstr "Vista"
 
 #: data/gtk/window.blp:1142
 msgid "Grid"
-msgstr ""
+msgstr "Griglia"
 
 #: data/gtk/window.blp:1148
 msgid "List"
-msgstr ""
+msgstr "Elenco"
 
 #: data/gtk/window.blp:1160
 msgid "Preferences"
@@ -420,12 +418,14 @@ msgstr "Riapre l'ultima directory aperta al prossimo avvio"
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Attiva automaticamente la modalità visualizzazione elenco"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enought"
 msgstr ""
+"Attiva automaticamente la modalità visualizzazione ad elenco quando la "
+"dimensione dello schermo non è sufficientemente grande"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
