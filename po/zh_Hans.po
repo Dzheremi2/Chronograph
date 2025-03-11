@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-11 04:02+0000\n"
+"PO-Revision-Date: 2025-03-11 21:26+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/lrcmake/chronograph/zh_Hans/>\n"
@@ -29,33 +29,33 @@ msgstr ""
 
 #: chronograph/window.py:682
 msgid "Copied successfully"
-msgstr ""
+msgstr "已成功复制"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:120
 msgid "translator-credits"
-msgstr ""
+msgstr "Mevius<mevius.3301@gmail.com>"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/window.blp:500
 #: data/gtk/ui/SongCard.blp:73 data/gtk/ui/SongCard.blp:176
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
 #: data/gtk/window.blp:180 data/gtk/window.blp:335 data/gtk/window.blp:504
 #: data/gtk/ui/SongCard.blp:77 data/gtk/ui/SongCard.blp:191
 msgid "Artist"
-msgstr ""
+msgstr "作者"
 
 #: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:512
 msgid "Duration"
-msgstr ""
+msgstr "时长"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
 #: data/gtk/window.blp:508 data/gtk/ui/SongCard.blp:81
 msgid "Album"
-msgstr ""
+msgstr "专辑"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
@@ -71,11 +71,11 @@ msgstr ""
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "无同步歌词可用"
 
 #: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "无纯文本歌词可用"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
@@ -138,7 +138,7 @@ msgstr ""
 
 #: data/gtk/window.blp:27
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "此目录中无任何受支持的音乐文件"
 
 #: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
