@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-11 21:26+0000\n"
+"PO-Revision-Date: 2025-03-12 00:59+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/lrcmake/chronograph/zh_Hans/>\n"
@@ -21,11 +21,12 @@ msgstr ""
 
 #: chronograph/window.py:601
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "标题、作者和/或专辑字段部分为未知！"
 
 #: chronograph/window.py:656
+#, fuzzy
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "部分条目为空"
 
 #: chronograph/window.py:682
 msgid "Copied successfully"
@@ -79,26 +80,26 @@ msgstr "无纯文本歌词可用"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "路径 "
 
 #: chronograph/ui/SongCard.py:15
 msgid "About File"
-msgstr ""
+msgstr "关于文件"
 
 #: chronograph/ui/SongCard.py:19
 msgid "Path"
-msgstr ""
+msgstr "路径"
 
 #: chronograph/ui/SongCard.py:254 chronograph/ui/SongCard.py:310
 #: chronograph/ui/SongCard.py:311 chronograph/ui/SongCard.py:319
 #: chronograph/ui/SongCard.py:326 chronograph/ui/SongCard.py:327
 #: chronograph/ui/SongCard.py:335
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
-msgstr ""
+msgstr "目录保存成功"
 
 #: chronograph/utils/parsers.py:206
 msgid "Seems like not every line is synced"
@@ -106,35 +107,35 @@ msgstr "似乎不是每一句歌词都是同步的"
 
 #: chronograph/utils/publish.py:97 chronograph/utils/publish.py:100
 msgid "Published successfully: "
-msgstr ""
+msgstr "发布成功 "
 
 #: chronograph/utils/publish.py:104 chronograph/utils/publish.py:107
 msgid "Incorrect publish token: "
-msgstr ""
+msgstr "发布令牌错误 "
 
 #: chronograph/utils/publish.py:111 chronograph/utils/publish.py:114
 msgid "Unknown error occured: "
-msgstr ""
+msgstr "发生未知错误 "
 
 #: chronograph/utils/publish.py:118 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "发布"
 
 #: data/gtk/window.blp:5
 msgid "No source selected yet"
-msgstr ""
+msgstr "尚未选择源"
 
 #: data/gtk/window.blp:6
 msgid "Select a directory"
-msgstr ""
+msgstr "选择目录"
 
 #: data/gtk/window.blp:14 data/gtk/window.blp:35
 msgid "Open source"
-msgstr ""
+msgstr "打开源"
 
 #: data/gtk/window.blp:26
 msgid "Empty directory"
-msgstr ""
+msgstr "空目录"
 
 #: data/gtk/window.blp:27
 msgid "This directory doesn't have any supported music files"
@@ -142,53 +143,54 @@ msgstr "此目录中无任何受支持的音乐文件"
 
 #: data/gtk/window.blp:47 data/gtk/window.blp:52
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "按标题和作者名称在「LRclib」上搜索"
 
 #: data/gtk/window.blp:58 data/gtk/window.blp:64
+#, fuzzy
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "未找到于此请求匹配的内容"
 
 #: data/gtk/window.blp:59 data/gtk/window.blp:65
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
+msgstr "正在尝试其他亲亲，可能请求文件中存在错误。"
 
 #: data/gtk/window.blp:69
 msgid "No saves found yet"
-msgstr ""
+msgstr "尚未找到保存项"
 
 #: data/gtk/window.blp:71
 msgid "Press pin button to add current directory to the saves"
-msgstr ""
+msgstr "点击固定按钮将当前目录添加到保存项"
 
 #: data/gtk/window.blp:99 data/gtk/window.blp:1156
 msgid "Quick Editor"
-msgstr ""
+msgstr "快速编辑器"
 
 #: data/gtk/window.blp:124
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "复制到粘贴板"
 
 #: data/gtk/window.blp:188 data/gtk/window.blp:344
 msgid "Search LRClib for provided title and artist"
-msgstr ""
+msgstr "根据提供的标题和作者搜索LRClib"
 
 #: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:665
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: data/gtk/window.blp:234 data/gtk/window.blp:398
 msgid "Synced"
-msgstr ""
+msgstr "已同步"
 
 #: data/gtk/window.blp:259 data/gtk/window.blp:424
 msgid "Plain"
-msgstr ""
+msgstr "纯文本"
 
 #: data/gtk/window.blp:288 data/gtk/window.blp:454
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
-msgstr ""
+msgstr "默认使用同步歌词，如需使用纯文本歌词，请从子菜单中选择“使用纯文本"
 
 #: data/gtk/window.blp:294 data/gtk/window.blp:460
 msgid "Use"
