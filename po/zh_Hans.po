@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-12 00:59+0000\n"
+"PO-Revision-Date: 2025-03-12 01:05+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/lrcmake/chronograph/zh_Hans/>\n"
@@ -152,7 +152,7 @@ msgstr "未找到于此请求匹配的内容"
 
 #: data/gtk/window.blp:59 data/gtk/window.blp:65
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr "正在尝试其他亲亲，可能请求文件中存在错误。"
+msgstr "正在尝试其他请求，可能请求文件中存在错误。"
 
 #: data/gtk/window.blp:69
 msgid "No saves found yet"
