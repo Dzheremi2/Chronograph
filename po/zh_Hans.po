@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-12 01:05+0000\n"
+"PO-Revision-Date: 2025-03-12 08:01+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/lrcmake/chronograph/zh_Hans/>\n"
@@ -200,55 +200,58 @@ msgstr ""
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
-msgstr ""
+msgstr "Chronograph"
 
 #: data/gtk/window.blp:575
+#, fuzzy
 msgid "Saves"
-msgstr ""
+msgstr "保存"
 
 #: data/gtk/window.blp:583 data/gtk/window.blp:602 data/gtk/window.blp:1008
 msgid "Toggle sidebar"
-msgstr ""
+msgstr "切换侧栏"
 
 #: data/gtk/window.blp:609
 msgid "Select a directory or open a file"
-msgstr ""
+msgstr "选择目录或打开文件"
 
 #: data/gtk/window.blp:621 data/gtk/window.blp:993
 msgid "Toggle search"
-msgstr ""
+msgstr "切换搜索"
 
 #: data/gtk/window.blp:629 data/gtk/window.blp:713
 msgid "App settings, info and utils"
-msgstr ""
+msgstr "应用设置，信息与工具"
 
 #: data/gtk/window.blp:644
 msgid "Re-parse current directory"
-msgstr ""
+msgstr "重新解析当前目录"
 
 #: data/gtk/window.blp:649
 msgid "Add current directory to saves"
-msgstr ""
+msgstr "将当前目录添加到保存项目"
 
 #: data/gtk/window.blp:703
 msgid "Syncing"
-msgstr ""
+msgstr "同步中"
 
 #: data/gtk/window.blp:794
+#, fuzzy
 msgid "Toggle song repeat"
-msgstr ""
+msgstr "切换歌曲重复播放"
 
 #: data/gtk/window.blp:849
 msgid "Sync/Re-sync line"
-msgstr ""
+msgstr "同步/重新同步歌词行"
 
 #: data/gtk/window.blp:860 data/gtk/window.blp:1022
+#, fuzzy
 msgid "Replay selected line"
-msgstr ""
+msgstr "重新播放选中的歌词行"
 
 #: data/gtk/window.blp:868
 msgid "Re-sync selected line 100ms back"
-msgstr ""
+msgstr "将"
 
 #: data/gtk/window.blp:876
 msgid "Re-sync selected line 100ms forward"
