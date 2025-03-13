@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-02 20:51+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-08 18:16+0000\n"
+"Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/uk/>\n"
 "Language: ua\n"
@@ -26,7 +26,7 @@ msgstr "Деякі поля Назва, Виконавець і/або Альб�
 
 #: chronograph/window.py:656
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Деякі записи порожні"
 
 #: chronograph/window.py:682
 msgid "Copied successfully"
@@ -119,7 +119,7 @@ msgstr "Сталася невідома помилка: "
 
 #: chronograph/utils/publish.py:118 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Опублікувати"
 
 #: data/gtk/window.blp:5
 msgid "No source selected yet"

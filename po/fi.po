@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-02 20:51+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-09 19:10+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/fi/>\n"
 "Language: fi\n"
@@ -97,7 +97,7 @@ msgstr "Polku"
 #: chronograph/ui/SongCard.py:326 chronograph/ui/SongCard.py:327
 #: chronograph/ui/SongCard.py:335
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
@@ -379,11 +379,11 @@ msgstr ""
 
 #: data/gtk/window.blp:1142
 msgid "Grid"
-msgstr ""
+msgstr "Ruudukko"
 
 #: data/gtk/window.blp:1148
 msgid "List"
-msgstr ""
+msgstr "Luettelo"
 
 #: data/gtk/window.blp:1160
 msgid "Preferences"

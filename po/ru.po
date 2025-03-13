@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-07 21:42+0300\n"
-"PO-Revision-Date: 2025-03-02 20:49+0000\n"
+"PO-Revision-Date: 2025-03-10 02:21+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/ru/>\n"
@@ -36,7 +36,7 @@ msgstr "Скопированно успешно"
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:120
 msgid "translator-credits"
-msgstr "Džeremi <chichvarov1315@gmail.com>"
+msgstr "Артём Чичваров <chichvarov1315@gmail.com>"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:176 data/gtk/window.blp:330 data/gtk/window.blp:500
