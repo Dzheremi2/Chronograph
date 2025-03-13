@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-13 10:59+0300\n"
-"PO-Revision-Date: 2025-03-10 02:21+0000\n"
-"Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
+"PO-Revision-Date: 2025-03-13 15:02+0000\n"
+"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "lrcmake/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:599
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -535,6 +535,7 @@ msgstr "Caixa de diálogo de importação LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+#, fuzzy
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
 "letras; internet; canções; multimídia; mídia; lrclib; música; sincronização;"
