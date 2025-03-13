@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-07 21:42+0300\n"
+"POT-Creation-Date: 2025-03-13 10:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: chronograph/window.py:601
+#: chronograph/window.py:599
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr ""
 
-#: chronograph/window.py:656
+#: chronograph/window.py:645
 msgid "Some of entries are empty"
 msgstr ""
 
-#: chronograph/window.py:682
+#: chronograph/window.py:671
 msgid "Copied successfully"
 msgstr ""
 
@@ -98,23 +98,23 @@ msgstr ""
 msgid "Directory saved successfully"
 msgstr ""
 
-#: chronograph/utils/parsers.py:206
+#: chronograph/utils/parsers.py:207 chronograph/utils/parsers.py:211
 msgid "Seems like not every line is synced"
 msgstr ""
 
-#: chronograph/utils/publish.py:97 chronograph/utils/publish.py:100
+#: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
 msgid "Published successfully: "
 msgstr ""
 
-#: chronograph/utils/publish.py:104 chronograph/utils/publish.py:107
+#: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
 msgid "Incorrect publish token: "
 msgstr ""
 
-#: chronograph/utils/publish.py:111 chronograph/utils/publish.py:114
+#: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
 msgid "Unknown error occured: "
 msgstr ""
 
-#: chronograph/utils/publish.py:118 data/gtk/window.blp:536
+#: chronograph/utils/publish.py:124 data/gtk/window.blp:523
 msgid "Publish"
 msgstr ""
 
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:99 data/gtk/window.blp:1156
+#: data/gtk/window.blp:99 data/gtk/window.blp:1143
 msgid "Quick Editor"
 msgstr ""
 
@@ -170,7 +170,7 @@ msgstr ""
 msgid "Search LRClib for provided title and artist"
 msgstr ""
 
-#: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:665
+#: data/gtk/window.blp:193 data/gtk/window.blp:349 data/gtk/window.blp:652
 msgid "Search"
 msgstr ""
 
@@ -192,197 +192,197 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-#: data/gtk/window.blp:549 data/gtk/window.blp:568
+#: data/gtk/window.blp:536 data/gtk/window.blp:555
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
 msgstr ""
 
-#: data/gtk/window.blp:575
+#: data/gtk/window.blp:562
 msgid "Saves"
 msgstr ""
 
-#: data/gtk/window.blp:583 data/gtk/window.blp:602 data/gtk/window.blp:1008
+#: data/gtk/window.blp:570 data/gtk/window.blp:589 data/gtk/window.blp:995
 msgid "Toggle sidebar"
 msgstr ""
 
-#: data/gtk/window.blp:609
+#: data/gtk/window.blp:596
 msgid "Select a directory or open a file"
 msgstr ""
 
-#: data/gtk/window.blp:621 data/gtk/window.blp:993
+#: data/gtk/window.blp:608 data/gtk/window.blp:980
 msgid "Toggle search"
 msgstr ""
 
-#: data/gtk/window.blp:629 data/gtk/window.blp:713
+#: data/gtk/window.blp:616 data/gtk/window.blp:700
 msgid "App settings, info and utils"
 msgstr ""
 
-#: data/gtk/window.blp:644
+#: data/gtk/window.blp:631
 msgid "Re-parse current directory"
 msgstr ""
 
-#: data/gtk/window.blp:649
+#: data/gtk/window.blp:636
 msgid "Add current directory to saves"
 msgstr ""
 
-#: data/gtk/window.blp:703
+#: data/gtk/window.blp:690
 msgid "Syncing"
 msgstr ""
 
-#: data/gtk/window.blp:794
+#: data/gtk/window.blp:781
 msgid "Toggle song repeat"
 msgstr ""
 
-#: data/gtk/window.blp:849
+#: data/gtk/window.blp:836
 msgid "Sync/Re-sync line"
 msgstr ""
 
-#: data/gtk/window.blp:860 data/gtk/window.blp:1022
+#: data/gtk/window.blp:847 data/gtk/window.blp:1009
 msgid "Replay selected line"
 msgstr ""
 
-#: data/gtk/window.blp:868
+#: data/gtk/window.blp:855
 msgid "Re-sync selected line 100ms back"
 msgstr ""
 
-#: data/gtk/window.blp:876
+#: data/gtk/window.blp:863
 msgid "Re-sync selected line 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:884 data/gtk/window.blp:1084
+#: data/gtk/window.blp:871 data/gtk/window.blp:1071
 msgid "Import from …"
 msgstr ""
 
-#: data/gtk/window.blp:895 data/gtk/window.blp:1094
+#: data/gtk/window.blp:882 data/gtk/window.blp:1081
 msgid "Export to …"
 msgstr ""
 
-#: data/gtk/window.blp:913 data/gtk/window.blp:1104
+#: data/gtk/window.blp:900 data/gtk/window.blp:1091
 msgid "Actions with selected line"
 msgstr ""
 
-#: data/gtk/window.blp:924
+#: data/gtk/window.blp:911
 msgid "About file"
 msgstr ""
 
-#: data/gtk/window.blp:958
+#: data/gtk/window.blp:945
 msgid "Add line"
 msgstr ""
 
-#: data/gtk/window.blp:981
+#: data/gtk/window.blp:968
 msgid "Shortcuts"
 msgstr ""
 
-#: data/gtk/window.blp:985 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:972 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr ""
 
-#: data/gtk/window.blp:988
+#: data/gtk/window.blp:975
 msgid "Quit"
 msgstr ""
 
-#: data/gtk/window.blp:998
+#: data/gtk/window.blp:985
 msgid "Select directory"
 msgstr ""
 
-#: data/gtk/window.blp:1003 data/gtk/window.blp:1161
+#: data/gtk/window.blp:990 data/gtk/window.blp:1148
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:1014
+#: data/gtk/window.blp:1001
 msgid "Sync mode"
 msgstr ""
 
-#: data/gtk/window.blp:1017
+#: data/gtk/window.blp:1004
 msgid "Sync/Re-sync"
 msgstr ""
 
-#: data/gtk/window.blp:1027
+#: data/gtk/window.blp:1014
 msgid "Remove selected line"
 msgstr ""
 
-#: data/gtk/window.blp:1032
+#: data/gtk/window.blp:1019
 msgid "Prepend line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:1037
+#: data/gtk/window.blp:1024
 msgid "Append line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:1042 data/gtk/window.blp:1109
+#: data/gtk/window.blp:1029 data/gtk/window.blp:1096
 msgid "Append line to end"
 msgstr ""
 
-#: data/gtk/window.blp:1047
+#: data/gtk/window.blp:1034
 msgid "Re-sync 100ms back"
 msgstr ""
 
-#: data/gtk/window.blp:1052
+#: data/gtk/window.blp:1039
 msgid "Re-sync 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:1062
+#: data/gtk/window.blp:1049
 msgid "Directory"
 msgstr ""
 
-#: data/gtk/window.blp:1069 data/gtk/window.blp:1126
+#: data/gtk/window.blp:1056 data/gtk/window.blp:1113
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:1075 data/gtk/window.blp:1132
+#: data/gtk/window.blp:1062 data/gtk/window.blp:1119
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:1086 data/gtk/window.blp:1096
+#: data/gtk/window.blp:1073 data/gtk/window.blp:1083
 msgid "File"
 msgstr ""
 
-#: data/gtk/window.blp:1087 data/gtk/window.blp:1097
+#: data/gtk/window.blp:1074 data/gtk/window.blp:1084
 msgid "Clipboard"
 msgstr ""
 
-#: data/gtk/window.blp:1106
+#: data/gtk/window.blp:1093
 msgid "Remove line"
 msgstr ""
 
-#: data/gtk/window.blp:1107
+#: data/gtk/window.blp:1094
 msgid "Prepend line"
 msgstr ""
 
-#: data/gtk/window.blp:1108
+#: data/gtk/window.blp:1095
 msgid "Append line"
 msgstr ""
 
-#: data/gtk/window.blp:1115
+#: data/gtk/window.blp:1102
 msgid "Use plain"
 msgstr ""
 
-#: data/gtk/window.blp:1116
+#: data/gtk/window.blp:1103
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1123
+#: data/gtk/window.blp:1110
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:1139
+#: data/gtk/window.blp:1126
 msgid "View"
 msgstr ""
 
-#: data/gtk/window.blp:1142
+#: data/gtk/window.blp:1129
 msgid "Grid"
 msgstr ""
 
-#: data/gtk/window.blp:1148
+#: data/gtk/window.blp:1135
 msgid "List"
 msgstr ""
 
-#: data/gtk/window.blp:1160
+#: data/gtk/window.blp:1147
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:1162
+#: data/gtk/window.blp:1149
 msgid "About"
 msgstr ""
 
@@ -412,7 +412,7 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
-"Automatically toggles List View mode when display size is not big enought"
+"Automatically toggles List View mode when display size is not big enough"
 msgstr ""
 
 #: data/gtk/ui/Preferences.blp:29
@@ -519,6 +519,7 @@ msgstr ""
 msgid "LRClib import dialog"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:9
+#. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
