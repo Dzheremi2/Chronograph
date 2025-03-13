@@ -115,7 +115,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     lrclib_manual_artist_entry: Adw.EntryRow = Gtk.Template.Child()
     lrclib_manual_album_entry: Adw.EntryRow = Gtk.Template.Child()
     lrclib_manual_duration_entry: Adw.EntryRow = Gtk.Template.Child()
-    lrclib_manual_synced_entry: Gtk.TextView = Gtk.Template.Child()
     lrclib_manual_publish_button: Gtk.Button = Gtk.Template.Child()
 
     sort_state: str = shared.state_schema.get_string("sorting")
@@ -584,7 +583,6 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.lrclib_manual_artist_entry.set_text("")
             self.lrclib_manual_album_entry.set_text("")
             self.lrclib_manual_duration_entry.set_text("")
-            self.lrclib_manual_synced_entry.set_buffer(Gtk.TextBuffer.new())
             self.lrclib_manual_dialog.present(self)
         else:
             if (
@@ -628,11 +626,6 @@ class ChronographWindow(Adw.ApplicationWindow):
             and self.lrclib_manual_artist_entry.get_text() != ""
             and self.lrclib_manual_album_entry.get_text() != ""
             and self.lrclib_manual_duration_entry.get_text() != ""
-            and self.lrclib_manual_synced_entry.get_buffer().get_text(
-                start=self.lrclib_manual_synced_entry.get_buffer().get_start_iter(),
-                end=self.lrclib_manual_synced_entry.get_buffer().get_end_iter(),
-                include_hidden_chars=False,
-            ) != ""
         ):
             thread = threading.Thread(
                 target=do_publish,
@@ -641,11 +634,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     self.lrclib_manual_artist_entry.get_text(),
                     self.lrclib_manual_album_entry.get_text(),
                     int(self.lrclib_manual_duration_entry.get_text()),
-                    self.lrclib_manual_synced_entry.get_buffer().get_text(
-                        start=self.lrclib_manual_synced_entry.get_buffer().get_start_iter(),
-                        end=self.lrclib_manual_synced_entry.get_buffer().get_end_iter(),
-                        include_hidden_chars=False,
-                    ),
+                    sync_lines_parser()
                 ],
             )
             thread.daemon = True

@@ -484,8 +484,8 @@ Adw.Dialog lrclib_manual_dialog {
 
       Adw.Clamp {
         orientation: vertical;
-        maximum-size: 600;
-        tightening-threshold: 600;
+        maximum-size: 350;
+        tightening-threshold: 350;
 
         Adw.ToolbarView {
           [top]
@@ -514,19 +514,6 @@ Adw.Dialog lrclib_manual_dialog {
               }
 
               styles ["boxed-list"]
-            }
-
-            ScrolledWindow {
-              TextView lrclib_manual_synced_entry {
-                editable: true;
-                left-margin: 4;
-                top-margin: 4;
-                hexpand: true;
-                vexpand: true;
-                wrap-mode: word_char;
-
-                styles ["rounded-frame"]
-              }
             }
 
             Box {

@@ -79,7 +79,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     lrclib_manual_artist_entry: Adw.EntryRow
     lrclib_manual_album_entry: Adw.EntryRow
     lrclib_manual_duration_entry: Adw.EntryRow
-    lrclib_manual_synced_entry: Gtk.TextView
     lrclib_manual_publish_button: Gtk.Button
 
     sort_state: str

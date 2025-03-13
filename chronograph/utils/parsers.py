@@ -202,9 +202,14 @@ def sync_lines_parser() -> str:
         if line_parser(line.get_text()) is not None:
             lyrics += line.get_text() + "\n"
         else:
-            shared.win.toast_overlay.add_toast(
-                Adw.Toast(title=_("Seems like not every line is synced"))
-            )
+            if shared.win.lrclib_manual_dialog.is_visible():
+                shared.win.lrclib_manual_toast_overlay.add_toast(
+                    Adw.Toast(title=_("Seems like not every line is synced"))
+                )
+            else:
+                shared.win.toast_overlay.add_toast(
+                    Adw.Toast(title=_("Seems like not every line is synced"))
+                )
             raise IndexError("Not all lines have timestamps")
     lyrics = lyrics[:-1]
     return lyrics
