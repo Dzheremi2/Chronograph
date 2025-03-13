@@ -75,6 +75,16 @@
   </screenshots>
 
   <releases>
+    <release version="2.3" date="2025-03-16">
+      <description translate="no">
+        <p>New features</p>
+        <ul>
+          <li>New file formats: m4a and aac (reduced functionality)</li>
+          <li>Manual LRClib publishing dialog for tracks in untaggable formats (like aac)</li>
+          <li>Added Chinese (Simplified Han script) translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.2" date="2025-03-06">
       <description translate="no">
         <p>New features and bug fixes</p>
