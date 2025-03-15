@@ -7,7 +7,7 @@
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
-    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 and wav formats</p>
+    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3, m4a, wav and aac (reduced functionality) formats</p>
   </description>
 
   <developer id="com.github">
