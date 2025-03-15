@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-13 10:59+0300\n"
-"PO-Revision-Date: 2025-03-13 15:02+0000\n"
+"PO-Revision-Date: 2025-03-15 08:47+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "lrcmake/chronograph/pt_BR/>\n"
@@ -535,10 +535,10 @@ msgstr "Caixa de diálogo de importação LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;"
 msgstr ""
-"letras; internet; canções; multimídia; mídia; lrclib; música; sincronização;"
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;multimídia;mídia;música;sincronização;"
+""
 
 #~ msgid ""
 #~ "Thanks for all translators on Hosted Weblate! https://hosted.weblate.org/"
