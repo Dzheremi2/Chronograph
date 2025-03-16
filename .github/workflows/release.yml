@@ -52,7 +52,7 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         with:
           files: |
-            io.github.dzheremi2.lrcmake-gtk-x86_64/io.github.dzheremi2.lrcmake-gtk.flatpak
+            io.github.dzheremi2.lrcmake-gtk-x86_64
           fail_on_unmatched_files: true
           tag_name: ${{ steps.get_tag_name.outputs.tag_name }}
           body_path: release_notes
