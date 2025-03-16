@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-13 10:59+0300\n"
+"POT-Creation-Date: 2025-03-16 07:41+0300\n"
 "PO-Revision-Date: 2025-03-10 02:21+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/"
@@ -504,12 +504,12 @@ msgstr "Синхронизируйте тексты своих любимых п
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3 "
-"and wav formats"
+"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
+"mp3, m4a, wav and aac (reduced functionality) formats"
 msgstr ""
 "Это приложение помогает вам содействовать расширению большой базы данных "
 "синхронизированных текстов, с красивым интерфейсом на GTK4 и LibAdwaita. "
-"Поддерживаются музыкальные форматы ogg, flac, mp3 и wav"
+"Поддерживаются музыкальные форматы ogg, flac, mp3, m4a, wav и aac (ограниченная функциональность)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
