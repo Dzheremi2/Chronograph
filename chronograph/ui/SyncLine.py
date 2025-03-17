@@ -35,12 +35,10 @@ class SyncLine(Adw.EntryRow):
             for line in shared.win.sync_lines:
                 lyrics = lyrics + (line.get_text() + "\n")
             lyrics = lyrics[:-1]
-            if (dir := shared.state_schema.get_string("opened-dir")) != "None":
-                file = open(
-                    dir
-                    + pathlib.Path(shared.win.loaded_card._file.path).stem
-                    + shared.schema.get_string("auto-file-format"),
-                    "w",
-                )
-                file.write(lyrics)
-                file.close()
+            file = open(
+                str(pathlib.Path(shared.win.loaded_card._file.path).with_suffix(""))
+                + shared.schema.get_string("auto-file-format"),
+                "w",
+            )
+            file.write(lyrics)
+            file.close()

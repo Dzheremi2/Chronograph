@@ -4,7 +4,7 @@ import sys
 import gi
 import yaml
 
-from chronograph.utils.parsers import dir_parser
+from chronograph.utils.parsers import dir_parser, parse_files
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -13,7 +13,7 @@ gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # type: ignore
 
 from chronograph import shared
-from chronograph.window import ChronographWindow
+from chronograph.window import ChronographWindow, WindowState
 
 
 class ChronographApplication(Adw.Application):
@@ -23,10 +23,31 @@ class ChronographApplication(Adw.Application):
 
     def __init__(self) -> None:
         super().__init__(
-            application_id=shared.APP_ID, flags=Gio.ApplicationFlags.DEFAULT_FLAGS
+            application_id=shared.APP_ID, flags=Gio.ApplicationFlags.HANDLES_OPEN
         )
         theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
         theme.add_resource_path(shared.PREFIX + "/data/icons")
+        self.paths = []
+        self.connect("open", self.on_open)
+
+    def on_open(self, app, files: list, *_args) -> None:
+        """Implicates an ability to open files within the app from file manager
+
+        Parameters
+        ----------
+        app : self
+            app itself
+        files : list
+            files passed from the file manager
+        """
+        for file in files:
+            path = file.get_path()
+            if path:
+                if os.path.isdir(path):
+                    pass
+                else:
+                    self.paths.append(path)
+        self.do_activate()
 
     def do_activate(self) -> None:  # pylint: disable=arguments-differ
         """Emits on app creation"""
@@ -34,6 +55,8 @@ class ChronographApplication(Adw.Application):
         win = self.props.active_window  # pylint: disable=no-member
         if not win:
             shared.win = win = ChronographWindow(application=self)
+        else:
+            shared.win = win
 
         self.create_actions(
             {
@@ -41,7 +64,8 @@ class ChronographApplication(Adw.Application):
                 ("quit",("<primary>q","<primary>w",),),
                 ("toggle_sidebar", ("F9",), shared.win),
                 ("toggle_search", ("<primary>f",), shared.win),
-                ("select_dir", ("<primary>o",), shared.win),
+                ("select_dir", ("<primary><shift>o",), shared.win),
+                ("select_files", ("<primary>o",), shared.win),
                 ("append_line", ("<Alt><primary>a",), shared.win),
                 ("remove_selected_line", ("<Alt>r",), shared.win),
                 ("append_selected_line", ("<Alt>a",), shared.win),
@@ -96,11 +120,16 @@ class ChronographApplication(Adw.Application):
             "window-maximized", shared.win, "maximized", Gio.SettingsBindFlags.DEFAULT
         )
 
-        if (path := shared.cache["session"]) is not None:
+        if (path := shared.cache["session"]) is not None and len(self.paths) == 0:
             dir_parser(path)
             del path
+        elif len(self.paths) != 0:
+            if parse_files(self.paths):
+                shared.win.state = WindowState.LOADED_FILES
+            else:
+                shared.win.state = WindowState.EMPTY
         else:
-            shared.win.library_scrolled_window.set_child(shared.win.no_source_opened)
+            shared.win.state = WindowState.EMPTY
 
         if shared.schema.get_boolean("auto-list-view"):
             shared.app.lookup_action("view_type").set_enabled(False)
@@ -116,7 +145,7 @@ class ChronographApplication(Adw.Application):
         )
         dialog.set_developers(("Dzheremi https://github.com/Dzheremi2",))
         dialog.set_designers(("Dzheremi",))
-        # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPRATED YOUSELF BY NEWLINE `\n` METASYMBOL
+        # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
         dialog.set_translator_credits(_("translator-credits"))
         dialog.set_copyright("© 2024-2025 Dzheremi")
         dialog.add_legal_section(

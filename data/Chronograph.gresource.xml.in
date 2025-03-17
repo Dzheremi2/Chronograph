@@ -35,6 +35,7 @@
     <file alias="cache-symbolic.svg">icons/icons/symbolic/cache-symbolic.svg</file>
     <file alias="pin-dir-symbolic.svg">icons/icons/symbolic/pin-dir-symbolic.svg</file>
     <file alias="reparse-dir-symbolic.svg">icons/icons/symbolic/reparse-dir-symbolic.svg</file>
+    <file alias="clean-files-symbolic.svg">icons/icons/symbolic/clean-files-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

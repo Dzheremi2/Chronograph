@@ -48,6 +48,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     right_buttons_revealer: Gtk.Revealer
     reparse_dir_button: Gtk.Button
     add_dir_to_saves_button: Gtk.Button
+    clean_files_button: Gtk.Button
     library_overlay: Gtk.Overlay
     library_scrolled_window: Gtk.ScrolledWindow
     library: Gtk.FlowBox

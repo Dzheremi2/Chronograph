@@ -2,8 +2,9 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.StatusPage no_source_opened {
+  // Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
   title: _("No source selected yet");
-  description: _("Select a directory");
+  description: _("Select a directory or Drag-N-Drop files to load them");
   icon-name: "open-source-symbolic";
 
   Box {
@@ -11,6 +12,7 @@ Adw.StatusPage no_source_opened {
     hexpand: true;
 
     MenuButton {
+      // Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
       label: _("Open source");
       menu-model: open_source_menu;
 
@@ -618,6 +620,12 @@ template $ChronographWindow : Adw.ApplicationWindow {
               }
 
               [end]
+              Button clean_files_button {
+                icon-name: "clean-files-symbolic";
+                tooltip-text: _("Clean library");
+              }
+
+              [end]
               Revealer right_buttons_revealer {
                 transition-type: none;
                 valign: start;
@@ -987,6 +995,11 @@ ShortcutsWindow help_overlay {
       }
 
       ShortcutsShortcut {
+        title: _("Select files");
+        action-name: "win.select_files";
+      }
+
+      ShortcutsShortcut {
         title: _("Keybindings");
         action-name: "win.show-help-overlay";
       }
@@ -1047,6 +1060,7 @@ ShortcutsWindow help_overlay {
 menu open_source_menu {
   section {
     item (_("Directory"), "win.select_dir")
+    item (_("Files"), "win.select_files")
   }
 }
 

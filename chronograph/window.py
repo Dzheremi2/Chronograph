@@ -22,7 +22,7 @@ from chronograph.utils.parsers import (
     timing_parser,
 )
 from chronograph.utils.publish import do_publish
-from chronograph.utils.select_data import select_dir, select_lyrics_file
+from chronograph.utils.select_data import select_dir, select_files, select_lyrics_file
 
 
 class WindowState(Enum):
@@ -72,6 +72,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     right_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
     reparse_dir_button: Gtk.Button = Gtk.Template.Child()
     add_dir_to_saves_button: Gtk.Button = Gtk.Template.Child()
+    clean_files_button: Gtk.Button = Gtk.Template.Child()
     library_overlay: Gtk.Overlay = Gtk.Template.Child()
     library_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
     library: Gtk.FlowBox = Gtk.Template.Child()
@@ -150,6 +151,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.quick_edit_copy_button.connect("clicked", self.copy_quick_editor_text)
         self.toggle_repeat_button.connect("toggled", self.toggle_repeat)
         self.lrclib_manual_publish_button.connect("clicked", self.manual_publish)
+        self.clean_files_button.connect("clicked", self.clean_library)
         self.connect("notify::default-width", self.toggle_list_view)
         self.reparse_dir_button.connect(
             "clicked",
@@ -198,6 +200,10 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_select_dir_action(self, *_args) -> None:
         """Creates directory selection dialog for adding Songs to `self.library`"""
         select_dir()
+
+    def on_select_files_action(self, *_args) -> None:
+        """Create files selection dialog for adding songs to `self.library`"""
+        select_files()
 
     def filtering(self, child: Gtk.FlowBoxChild) -> bool:
         """Technical function for `Gtk.FlowBox.invalidate_filter` working
@@ -776,6 +782,11 @@ class ChronographWindow(Adw.ApplicationWindow):
                     GLib.Variant.new_string("g")
                 )
 
+    def clean_library(self, *_args) -> None:
+        self.library.remove_all()
+        self.library_list.remove_all()
+        self.state = WindowState.EMPTY
+
     @GObject.Property
     def state(self) -> WindowState:
         return self._state
@@ -792,11 +803,13 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.library_scrolled_window.set_child(self.no_source_opened)
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
+                self.clean_files_button.set_visible(False)
                 shared.state_schema.set_string("opened-dir", "None")
             case WindowState.EMPTY_DIR:
                 self.library_scrolled_window.set_child(self.empty_directory)
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
+                self.clean_files_button.set_visible(False)
                 shared.state_schema.set_string("opened-dir", "None")
             case WindowState.LOADED_DIR:
                 match shared.state_schema.get_string("view"):
@@ -814,3 +827,4 @@ class ChronographWindow(Adw.ApplicationWindow):
                         self.library_scrolled_window.set_child(self.library_list)
                 shared.state_schema.set_string("opened-dir", "None")
                 self.right_buttons_revealer.set_reveal_child(False)
+                self.clean_files_button.set_visible(True)

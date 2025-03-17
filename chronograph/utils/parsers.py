@@ -22,7 +22,8 @@ def dir_parser(path: str, *_args) -> None:
         Path to directory to parse
     """
     from chronograph.window import WindowState
-
+    shared.win.library.remove_all()
+    shared.win.library_list.remove_all()
     path = f"{path}/"
     files = []
     for file in os.listdir(path):
@@ -58,8 +59,6 @@ def parse_files(files: list) -> bool:
         True -> Something was added
         False -> Nothing was added
     """
-    shared.win.library.remove_all()
-    shared.win.library_list.remove_all()
     mutagen_files = []
     for file in files:
         if Path(file).suffix in (".ogg", ".flac"):

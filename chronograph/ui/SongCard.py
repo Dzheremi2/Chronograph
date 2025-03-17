@@ -141,11 +141,10 @@ class SongCard(Gtk.Box):
         shared.win.controls.set_media_stream(mediastream)
         shared.win.controls_shrinked.set_media_stream(mediastream)
         shared.win.navigation_view.push(shared.win.sync_navigation_page)
-        if os.path.exists(
-            file := shared.state_schema.get_string("opened-dir")
-            + pathlib.Path(self._file.path).stem
-            + shared.schema.get_string("auto-file-format")
-        ) and shared.schema.get_boolean("auto-file-manipulation"):
+        file = str(
+            pathlib.Path(self._file.path).with_suffix("")
+        ) + shared.schema.get_string("auto-file-format")
+        if os.path.exists(file) and shared.schema.get_boolean("auto-file-manipulation"):
             file_parser(file)
 
     def open_metadata_editor(self, *_args) -> None:

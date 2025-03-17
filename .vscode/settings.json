@@ -19,8 +19,10 @@
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "none"
     },
+    "pylint.args": [
+        "--disabled"
+    ],
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
-    "pylint.args": ["--disabled"]
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
 }
