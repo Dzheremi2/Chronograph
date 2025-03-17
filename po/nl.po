@@ -8,180 +8,183 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 14:56+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-17 20:01+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/lrcmake/"
+"chronograph/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:621
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "Het titel-, artiest- en/of albumveld staat op ‘onbekend’!"
 
 #: chronograph/window.py:668
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Enkele items zijn blanco"
 
 #: chronograph/window.py:695
 msgid "Copied successfully"
-msgstr ""
+msgstr "Gekopieerd"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:149
 msgid "translator-credits"
-msgstr ""
+msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:179 data/gtk/window.blp:334 data/gtk/window.blp:505
 #: data/gtk/ui/SongCard.blp:73 data/gtk/ui/SongCard.blp:179
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
 #: data/gtk/window.blp:183 data/gtk/window.blp:339 data/gtk/window.blp:509
 #: data/gtk/ui/SongCard.blp:77 data/gtk/ui/SongCard.blp:194
 msgid "Artist"
-msgstr ""
+msgstr "Artiest"
 
 #: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:517
 msgid "Duration"
-msgstr ""
+msgstr "Duur"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
 #: data/gtk/window.blp:513 data/gtk/ui/SongCard.blp:81
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
-msgstr ""
+msgstr "Instrumentaal"
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "Er is geen gesynchroniseerde songtekst beschikbaar"
 
 #: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "Er is geen songtekst beschikbaar"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Locatie: "
 
 #: chronograph/ui/SongCard.py:15
 msgid "About File"
-msgstr ""
+msgstr "Over bestand"
 
 #: chronograph/ui/SongCard.py:19
 msgid "Path"
-msgstr ""
+msgstr "Locatie"
 
 #: chronograph/ui/SongCard.py:248 chronograph/ui/SongCard.py:304
 #: chronograph/ui/SongCard.py:305 chronograph/ui/SongCard.py:313
 #: chronograph/ui/SongCard.py:320 chronograph/ui/SongCard.py:321
 #: chronograph/ui/SongCard.py:329
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
-msgstr ""
+msgstr "De map is opgeslagen"
 
 #: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
 msgid "Seems like not every line is synced"
-msgstr ""
+msgstr "Niet alle regels lijken gesynchroniseerd"
 
 #: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
 msgid "Published successfully: "
-msgstr ""
+msgstr "Gepubliceerd: "
 
 #: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
 msgid "Incorrect publish token: "
-msgstr ""
+msgstr "Ongeldige publicatiesleutel: "
 
 #: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
 msgid "Unknown error occured: "
-msgstr ""
+msgstr "Er is een onbekende fout opgetreden: "
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:528
 msgid "Publish"
-msgstr ""
+msgstr "Publiceren"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
 msgid "No source selected yet"
-msgstr ""
+msgstr "Er is geen bron gekozen"
 
 #: data/gtk/window.blp:7
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr ""
+msgstr "Kies een map of sleep bestanden hierheen"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr ""
+msgstr "Bron openen"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
-msgstr ""
+msgstr "Lege map"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Deze map bevat geen ondersteunde muziekbestanden"
 
 #: data/gtk/window.blp:49 data/gtk/window.blp:54
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "Zoeken op LRClib op titels en artiestnamen"
 
 #: data/gtk/window.blp:60 data/gtk/window.blp:66
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "Er zijn geen zoekresultaten"
 
 #: data/gtk/window.blp:61 data/gtk/window.blp:67
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
+msgstr "Probeer een andere zoekopdracht of controleer de opdracht op typfouten."
 
 #: data/gtk/window.blp:71
 msgid "No saves found yet"
-msgstr ""
+msgstr "Er zijn geen bewaarde teksten"
 
 #: data/gtk/window.blp:73
 msgid "Press pin button to add current directory to the saves"
-msgstr ""
+msgstr "Klik op de vastmaakknop om de huidige map te bewaren"
 
 #: data/gtk/window.blp:101 data/gtk/window.blp:1214
 msgid "Quick Editor"
-msgstr ""
+msgstr "Snelle bewerker"
 
 #: data/gtk/window.blp:126
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiëren naar klembord"
 
 #: data/gtk/window.blp:191 data/gtk/window.blp:348
 msgid "Search LRClib for provided title and artist"
-msgstr ""
+msgstr "Zoeken op LRClib naar titel en artiest"
 
 #: data/gtk/window.blp:196 data/gtk/window.blp:353 data/gtk/window.blp:713
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 #: data/gtk/window.blp:238 data/gtk/window.blp:403
 msgid "Synced"
-msgstr ""
+msgstr "Gesynchroniseerd"
 
 #: data/gtk/window.blp:263 data/gtk/window.blp:429
 msgid "Plain"
-msgstr ""
+msgstr "Platte tekst"
 
 #: data/gtk/window.blp:292 data/gtk/window.blp:459
 msgid ""
