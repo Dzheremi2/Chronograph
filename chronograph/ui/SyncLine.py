@@ -16,7 +16,6 @@ class SyncLine(Adw.EntryRow):
         self.focus_controller = Gtk.EventControllerFocus()
         self.focus_controller.connect("enter", self.update_selected_row)
         self.add_controller(self.focus_controller)
-        self.connect("changed", self.save_file_on_update)
 
     def update_selected_row(self, event: Gtk.EventControllerFocus) -> None:
         """Updates global selected line to `self`
@@ -28,6 +27,7 @@ class SyncLine(Adw.EntryRow):
         """
         shared.selected_line = event.get_widget()
 
+    @Gtk.Template.Callback()
     def save_file_on_update(self, *_args) -> None:
         """Saves lines from `chronograph.ChronographWindow.sync_lines` to file"""
         if shared.schema.get_boolean("auto-file-manipulation"):

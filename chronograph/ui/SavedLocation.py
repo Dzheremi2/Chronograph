@@ -22,9 +22,7 @@ class SavedLocation(Gtk.Box):
 
     title: Gtk.Label = Gtk.Template.Child()
     actions_box: Gtk.Box = Gtk.Template.Child()
-    self_action_button: Gtk.Button = Gtk.Template.Child()
     rename_popover: Gtk.Popover = Gtk.Template.Child()
-    rename_entry: Adw.EntryRow = Gtk.Template.Child()
 
     def __init__(self, path: str, name: str) -> None:
         super().__init__()
@@ -36,10 +34,9 @@ class SavedLocation(Gtk.Box):
         self.add_controller(self.event_controller_motion)
         self.event_controller_motion.connect("enter", self.toggle_button)
         self.event_controller_motion.connect("leave", self.toggle_button)
-        self.self_action_button.connect("clicked", self.rename_save)
-        self.rename_entry.connect("apply", self.perform_action)
         self.rename_popover.set_parent(self)
 
+    @Gtk.Template.Callback()
     def perform_action(self, entry_row: Adw.EntryRow) -> None:
         """Performs rename or delete depends on changed name text
 
@@ -91,6 +88,7 @@ class SavedLocation(Gtk.Box):
             allow_unicode=True,
         )
 
+    @Gtk.Template.Callback()
     def rename_save(self, *_args) -> None:
         """Presents `self.rename_popover`"""
         self.rename_popover.popup()

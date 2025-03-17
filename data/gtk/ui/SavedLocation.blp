@@ -34,6 +34,7 @@ template $SavedLocation: Box {
       icon-name: "edit-metadata-symbolic";
       tooltip-text: _("Remove this from saves");
       has-frame: false;
+      clicked => $rename_save();
     }
   }
 }
@@ -51,6 +52,7 @@ Popover rename_popover {
     Adw.EntryRow rename_entry {
       title: _("Delete name to remove");
       show-apply-button: true;
+      apply => $perform_action();
     }
   }
 }

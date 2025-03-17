@@ -13,9 +13,7 @@ class SavedLocation(Gtk.Box):
 
     title: Gtk.Label
     actions_box: Gtk.Box
-    self_action_button: Gtk.Button
     rename_popover: Gtk.Popover
-    rename_entry: Adw.EntryRow
 
     path: str
 

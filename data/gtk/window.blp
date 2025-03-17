@@ -124,6 +124,7 @@ Adw.Dialog quick_edit_dialog {
 
             Button quick_edit_copy_button {
               label: _("Copy to clipboard");
+              clicked => $copy_quick_editor_text();
 
               styles ["suggested-action"]
             }
@@ -207,6 +208,7 @@ Adw.Dialog lrclib_window {
                   ScrolledWindow lrclib_window_results_list_window {
                     vexpand: true;
                     ListBox lrclib_window_results_list {
+                      row-activated => $set_lyrics();
                     
                       styles [
                         'navigation-sidebar'
@@ -364,6 +366,7 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
           vexpand: true;
           ListBox lrclib_window_collapsed_results_list {
             selection-mode: none;
+            row-activated => $set_lyrics();
 
             styles [
               'navigation-sidebar'
@@ -523,6 +526,7 @@ Adw.Dialog lrclib_manual_dialog {
 
               Button lrclib_manual_publish_button {
                 label: _("Publish");
+                clicked => $manual_publish();
 
                 styles ["pill", "suggested-action"]
               }
@@ -538,6 +542,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
   title: _("Chronograph");
   width-request: 360;
   height-request: 100;
+  notify::default-width => $toggle_list_view();
 
   Adw.Breakpoint {
     condition ("max-width: 564px")
@@ -621,6 +626,8 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                 ScrolledWindow sidebar_window {
                   ListBox sidebar {
+                    row-activated => $load_save();
+
                     styles ["navigation-sidebar"]
                   }
                 }
@@ -668,6 +675,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 Button clean_files_button {
                   icon-name: "clean-files-symbolic";
                   tooltip-text: _("Clean library");
+                  clicked => $clean_library();
                 }
 
                 [end]
@@ -704,6 +712,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
                   SearchEntry search_entry {
                     placeholder-text: _("Search");
                     hexpand: true;
+                    search-changed => $on_search_changed();
 
                     ShortcutController {
                       Shortcut {
@@ -742,6 +751,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
 Adw.NavigationPage sync_navigation_page {
   title: _("Syncing");
+  hiding => $reset_sync_editor();
 
   Adw.ToolbarView {
     [top]
@@ -836,6 +846,7 @@ Adw.NavigationPage sync_navigation_page {
               icon-name: "toggle-repeat-symbolic";
               active: false;
               halign: center;
+              toggled => $toggle_repeat();
             }
           }
         }

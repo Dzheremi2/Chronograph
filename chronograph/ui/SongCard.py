@@ -96,13 +96,6 @@ class SongCard(Gtk.Box):
                 event_controller_motion_row.connect("leave", self.toggle_buttons_row)
             break
 
-        self.cover_button.connect("clicked", self.on_play_button_clicked)
-        self.list_view_row.connect("activated", self.on_play_button_clicked)
-        self.play_button.connect("clicked", self.on_play_button_clicked)
-        self.play_button_row.connect("clicked", self.on_play_button_clicked)
-        self.info_button.connect("clicked", self.gen_box_dialog)
-        self.info_button_row.connect("clicked", self.gen_box_dialog)
-
     def taggable(self) -> None:
         """Used if file's metadata can be tagged"""
         self.invalidate_cover(self.cover_img)
@@ -130,6 +123,7 @@ class SongCard(Gtk.Box):
         self.metadata_editor_button.set_visible(False)
         self.metadata_editor_button_row.set_visible(False)
 
+    @Gtk.Template.Callback()
     def on_play_button_clicked(self, *_args) -> None:
         """Opens sync page for `self` and media stream"""
         shared.win.loaded_card = self
@@ -242,6 +236,7 @@ class SongCard(Gtk.Box):
         self._mde_new_cover_path = ""
         self.metadata_editor.close()
 
+    @Gtk.Template.Callback()
     def gen_box_dialog(self, *_args) -> None:
         """Generates and presents dialog with file metadata"""
         BoxDialog(

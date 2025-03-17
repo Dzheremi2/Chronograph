@@ -149,23 +149,11 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.library_list.set_filter_func(self.filtering_list)
         self.library.set_sort_func(self.sorting)
         self.library_list.set_sort_func(self.sorting_list)
-        self.search_entry.connect("search-changed", self.on_search_changed)
-        self.lrclib_window_results_list.connect("row-selected", self.set_lyrics)
-        self.sync_navigation_page.connect("hiding", self.reset_sync_editor)
-        self.quick_edit_copy_button.connect("clicked", self.copy_quick_editor_text)
-        self.toggle_repeat_button.connect("toggled", self.toggle_repeat)
-        self.lrclib_manual_publish_button.connect("clicked", self.manual_publish)
-        self.clean_files_button.connect("clicked", self.clean_library)
-        self.connect("notify::default-width", self.toggle_list_view)
         self.reparse_dir_button.connect(
             "clicked",
             lambda *_: dir_parser(shared.state_schema.get_string("opened-dir")[:-1]),
         )
         self.add_dir_to_saves_button.connect("clicked", save_location)
-        self.sidebar.connect("row-activated", self.load_save)
-        self.lrclib_window_collapsed_results_list.connect(
-            "row-activated", self.set_lyrics
-        )
         self.connect("notify::state", self.update_win_state)
 
         self.drop_target = Gtk.DropTarget(
@@ -189,6 +177,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 not self.overlay_split_view.get_show_sidebar()
             )
 
+    @Gtk.Template.Callback()
     def reset_sync_editor(self, *_args) -> None:
         self.sync_lines.remove_all()
         shared.selected_line = None
@@ -307,6 +296,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             order = True
         return ((child1.get_title() > child2.get_title()) ^ order) * 2 - 1
 
+    @Gtk.Template.Callback()
     def on_search_changed(self, *_args) -> None:
         """Invalidates filter for `self.library`"""
         if self.library_scrolled_window.get_child().get_child() == self.library:
@@ -565,6 +555,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.lrclib_window_collapsed_nothing_found_status
             )
 
+    @Gtk.Template.Callback()
     def set_lyrics(self, _listbox: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:
         """Triggers `chronograph.ui.LrclibTrack.set_lyrics`
 
@@ -650,6 +641,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             thread.start()
             shared.win.export_lyrics_button.set_child(Adw.Spinner())
 
+    @Gtk.Template.Callback()
     def manual_publish(self, *_args) -> None:
         """Manual publishing to the LRClib"""
         if (
@@ -689,6 +681,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.quick_edit_text_view.set_buffer(Gtk.TextBuffer.new())
         self.quick_edit_dialog.present(self)
 
+    @Gtk.Template.Callback()
     def copy_quick_editor_text(self, *_args) -> None:
         """Exports `self.quick_editor` text to clipboard"""
         export_clipboard(
@@ -731,6 +724,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         except (TypeError, AttributeError, IndexError):
             pass
 
+    @Gtk.Template.Callback()
     def toggle_repeat(self, *_args) -> None:
         """Toggles repeat mode in player"""
         if self.toggle_repeat_button.get_active():
@@ -756,6 +750,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         else:
             self.sidebar_window.set_child(self.no_saves_found_status)
 
+    @Gtk.Template.Callback()
     def load_save(self, _listbox: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:
         """Launching `chronograph.utils.parsers.dir_parser` for saved path
 
@@ -776,6 +771,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     dir_parser(pin["path"][:-1])
                     break
 
+    @Gtk.Template.Callback()
     def toggle_list_view(self, *_args) -> None:
         if shared.schema.get_boolean("auto-list-view") and (
             shared.win.library_scrolled_window.get_child().get_child()
@@ -796,6 +792,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     GLib.Variant.new_string("g")
                 )
 
+    @Gtk.Template.Callback()
     def clean_library(self, *_args) -> None:
         """Removes all song cards and sets self state to `EMPTY`"""
         self.library.remove_all()
