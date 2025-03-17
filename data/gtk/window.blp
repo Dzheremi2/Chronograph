@@ -551,139 +551,185 @@ template $ChronographWindow : Adw.ApplicationWindow {
     }
   }
 
-  Adw.ToastOverlay toast_overlay {
-    Adw.NavigationView navigation_view {
-      Adw.NavigationPage library_nav_page {
-        title: _("Chronograph");
+  Overlay {
+    hexpand: true;
+    vexpand: true;
 
-        Adw.OverlaySplitView overlay_split_view {
-          sidebar-width-fraction: .2;
+    [overlay]
+    Revealer dnd_area_revealer {
+      receives-default: true;
+      can-focus: false;
+      can-target: false;
+      visible: false;
+      transition-type: crossfade;
+      hexpand: true;
+      vexpand: true;
+      notify::child-revealed => $dnd_area_autohide();
 
-          [sidebar]
-          Adw.NavigationPage sidebar_nav_page {
-            title: _("Saves");
+      Adw.Bin {
+        hexpand: true;
+        vexpand: true;
 
-            Adw.ToolbarView {
+        Box {
+          orientation: vertical;
+          valign: center;
+          spacing: 40;
+          margin-bottom: 24;
+          margin-end: 24;
+          margin-start: 24;
+          margin-top: 24;
+
+          Image {
+            icon-name: "dnd-area-symbolic";
+            pixel-size: 96;
+          }
+
+          Label {
+            label: _("Drop files here to open them");
+            wrap: true;
+
+            styles ["title-1"]
+          }
+        }
+
+        styles ["drag-target"]
+      }
+    }
+
+    Adw.ToastOverlay toast_overlay {
+      Adw.NavigationView navigation_view {
+        Adw.NavigationPage library_nav_page {
+          title: _("Chronograph");
+
+          Adw.OverlaySplitView overlay_split_view {
+            sidebar-width-fraction: .2;
+
+            [sidebar]
+            Adw.NavigationPage sidebar_nav_page {
+              title: _("Saves");
+
+              Adw.ToolbarView {
+                [top]
+                Adw.HeaderBar {
+                  [start]
+                  Button {
+                    icon-name: "toggle-sidebar-symbolic";
+                    tooltip-text: _("Toggle sidebar");
+                    action-name: "win.toggle_sidebar";
+                  }
+                }
+
+                ScrolledWindow sidebar_window {
+                  ListBox sidebar {
+                    styles ["navigation-sidebar"]
+                  }
+                }
+              }
+            }
+
+            Adw.ToolbarView library_view {
               [top]
-              Adw.HeaderBar {
+              Adw.HeaderBar header_bar {
                 [start]
-                Button {
+                Button show_sidebar_button {
                   icon-name: "toggle-sidebar-symbolic";
                   tooltip-text: _("Toggle sidebar");
                   action-name: "win.toggle_sidebar";
+                  visible: bind overlay_split_view.show-sidebar inverted;
                 }
-              }
 
-              ScrolledWindow sidebar_window {
-                ListBox sidebar {
-                  styles ["navigation-sidebar"]
+                MenuButton open_source_button {
+                  icon-name: "open-source-symbolic";
+                  tooltip-text: _("Select a directory or open a file");
+                  menu-model: open_source_menu;
                 }
-              }
-            }
-          }
 
-          Adw.ToolbarView library_view {
-            [top]
-            Adw.HeaderBar header_bar {
-              [start]
-              Button show_sidebar_button {
-                icon-name: "toggle-sidebar-symbolic";
-                tooltip-text: _("Toggle sidebar");
-                action-name: "win.toggle_sidebar";
-                visible: bind overlay_split_view.show-sidebar inverted;
-              }
+                [start]
+                Revealer left_buttons_revealer {
+                  transition-type: none;
+                  valign: start;
+                  halign: start;
 
-              MenuButton open_source_button {
-                icon-name: "open-source-symbolic";
-                tooltip-text: _("Select a directory or open a file");
-                menu-model: open_source_menu;
-              }
-
-              [start]
-              Revealer left_buttons_revealer {
-                transition-type: none;
-                valign: start;
-                halign: start;
-
-                ToggleButton toggle_search_button {
-                  icon-name: "search-symbolic";
-                  tooltip-text: _("Toggle search");
-                  action-name: "win.toggle_search";
-                }
-              }
-
-              [end]
-              MenuButton {
-                icon-name: "app-menu-symbolic";
-                tooltip-text: _("App settings, info and utils");
-                menu-model: about_app;
-              }
-
-              [end]
-              Button clean_files_button {
-                icon-name: "clean-files-symbolic";
-                tooltip-text: _("Clean library");
-              }
-
-              [end]
-              Revealer right_buttons_revealer {
-                transition-type: none;
-                valign: start;
-                halign: start;
-
-                Box {
-                  orientation: horizontal;
-
-                  Button reparse_dir_button {
-                    icon-name: "reparse-dir-symbolic";
-                    tooltip-text: _("Re-parse current directory");
-                  }
-
-                  Button add_dir_to_saves_button {
-                    icon-name: "pin-dir-symbolic";
-                    tooltip-text: _("Add current directory to saves");
+                  ToggleButton toggle_search_button {
+                    icon-name: "search-symbolic";
+                    tooltip-text: _("Toggle search");
+                    action-name: "win.toggle_search";
                   }
                 }
-              }
-            }
 
-            [top]
-            SearchBar search_bar {
-              search-mode-enabled: bind toggle_search_button.active bidirectional;
-              key-capture-widget: navigation_view;
+                [end]
+                MenuButton {
+                  icon-name: "app-menu-symbolic";
+                  tooltip-text: _("App settings, info and utils");
+                  menu-model: about_app;
+                }
 
-              Adw.Clamp {
-                maximum-size: 500;
-                tightening-threshold: 500;
+                [end]
+                Button clean_files_button {
+                  icon-name: "clean-files-symbolic";
+                  tooltip-text: _("Clean library");
+                }
 
-                SearchEntry search_entry {
-                  placeholder-text: _("Search");
-                  hexpand: true;
+                [end]
+                Revealer right_buttons_revealer {
+                  transition-type: none;
+                  valign: start;
+                  halign: start;
 
-                  ShortcutController {
-                    Shortcut {
-                      trigger: "Escape";
-                      action: "action(win.toggle_search)";
+                  Box {
+                    orientation: horizontal;
+
+                    Button reparse_dir_button {
+                      icon-name: "reparse-dir-symbolic";
+                      tooltip-text: _("Re-parse current directory");
+                    }
+
+                    Button add_dir_to_saves_button {
+                      icon-name: "pin-dir-symbolic";
+                      tooltip-text: _("Add current directory to saves");
                     }
                   }
                 }
               }
-            }
 
-            Overlay library_overlay {
-              ScrolledWindow library_scrolled_window {
-                FlowBox library {
-                  homogeneous: true;
-                  halign: center;
-                  max-children-per-line: 100;
-                  valign: start;
-                  column-spacing: 12;
-                  row-spacing: 12;
-                  margin-top: 12;
-                  margin-bottom: 12;
-                  margin-end: 12;
-                  margin-start: 12;
-                  selection-mode: none;
+              [top]
+              SearchBar search_bar {
+                search-mode-enabled: bind toggle_search_button.active bidirectional;
+                key-capture-widget: navigation_view;
+
+                Adw.Clamp {
+                  maximum-size: 500;
+                  tightening-threshold: 500;
+
+                  SearchEntry search_entry {
+                    placeholder-text: _("Search");
+                    hexpand: true;
+
+                    ShortcutController {
+                      Shortcut {
+                        trigger: "Escape";
+                        action: "action(win.toggle_search)";
+                      }
+                    }
+                  }
+                }
+              }
+
+              Overlay library_overlay {
+                ScrolledWindow library_scrolled_window {
+                  FlowBox library {
+                    homogeneous: true;
+                    halign: center;
+                    max-children-per-line: 100;
+                    valign: start;
+                    column-spacing: 12;
+                    row-spacing: 12;
+                    margin-top: 12;
+                    margin-bottom: 12;
+                    margin-end: 12;
+                    margin-start: 12;
+                    selection-mode: none;
+                  }
                 }
               }
             }

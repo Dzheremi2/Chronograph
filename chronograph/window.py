@@ -1,9 +1,11 @@
+import os
+import pathlib
 import re
 import threading
 from enum import Enum
 
 import requests
-from gi.repository import Adw, Gio, GLib, GObject, Gtk, Pango
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph import shared
 from chronograph.ui.LrclibTrack import LrclibTrack
@@ -17,6 +19,7 @@ from chronograph.utils.file_untaggable import FileUntaggable
 from chronograph.utils.parsers import (
     clipboard_parser,
     dir_parser,
+    parse_files,
     string_parser,
     sync_lines_parser,
     timing_parser,
@@ -59,6 +62,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     # Library view widgets
     help_overlay: Gtk.ShortcutsWindow = Gtk.Template.Child()
+    dnd_area_revealer: Gtk.Revealer = Gtk.Template.Child()
     toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
     navigation_view: Adw.NavigationView = Gtk.Template.Child()
     library_nav_page: Adw.NavigationPage = Gtk.Template.Child()
@@ -163,6 +167,16 @@ class ChronographWindow(Adw.ApplicationWindow):
             "row-activated", self.set_lyrics
         )
         self.connect("notify::state", self.update_win_state)
+
+        self.drop_target = Gtk.DropTarget(
+            actions=Gdk.DragAction.COPY,
+            formats=Gdk.ContentFormats.new_for_gtype(Gdk.FileList),
+        )
+        self.drop_target.connect("accept", self.on_drag_accept)
+        self.drop_target.connect("enter", self.on_drag_enter)
+        self.drop_target.connect("leave", self.on_drag_leave)
+        self.drop_target.connect("drop", self.on_drag_drop)
+        self.add_controller(self.drop_target)
 
         if self.library.get_child_at_index(0) is None:
             self.library_scrolled_window.set_child(self.no_source_opened)
@@ -783,9 +797,119 @@ class ChronographWindow(Adw.ApplicationWindow):
                 )
 
     def clean_library(self, *_args) -> None:
+        """Removes all song cards and sets self state to `EMPTY`"""
         self.library.remove_all()
         self.library_list.remove_all()
         self.state = WindowState.EMPTY
+
+    @Gtk.Template.Callback()
+    def dnd_area_autohide(self, revealer: Gtk.Revealer, *_args) -> None:
+        """Sets the DND area to be invisible
+
+        Parameters
+        ----------
+        revealer : Gtk.Revealer
+            revealer to hide
+        """
+        revealer.set_visible(revealer.props.child_revealed)
+
+    def on_drag_accept(self, target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
+        """Trigger when DND action is about to happen and runs files validity checker
+
+        Parameters
+        ----------
+        target : Gtk.DropTarget
+            DropTarget callbacked this method
+        drop : Gdk.Drop
+            Drop itsefl
+
+        Returns
+        -------
+        bool
+        """
+        drop.read_value_async(Gdk.FileList, 0, None, self.verify_files_valid)
+        return True
+
+    def verify_files_valid(self, drop: Gdk.Drop, task: Gio.Task, *_args) -> bool:
+        """Denies DropTarget if droppable files contains invalid files
+
+        Parameters
+        ----------
+        drop : Gdk.Drop
+            Drop itself
+        task : Gio.Task
+            Task to get files from
+
+        Returns
+        -------
+        bool
+            False if error in reading files occured
+        """
+        try:
+            files = drop.read_value_finish(task).get_files()
+        except GLib.GError:
+            self.drop_target.reject()
+            self.on_drag_leave()
+            return False
+
+        for file in files:
+            path = file.get_path()
+            if os.path.isdir(path) or pathlib.Path(path).suffix not in (
+                ".mp3",
+                ".m4a",
+                ".flac",
+                ".aac",
+                ".AAC",
+                ".ogg",
+                ".wav",
+            ):
+                self.drop_target.reject()
+                self.on_drag_leave()
+
+    def on_drag_enter(self, *_args) -> None:
+        """Shows DropTarget area to user
+
+        Returns
+        -------
+        Gdk.DragAction
+            COPY type of Dragging
+        """
+        if self.navigation_view.get_visible_page() != self.sync_navigation_page:
+            self.dnd_area_revealer.set_visible(True)
+            self.dnd_area_revealer.set_reveal_child(True)
+            self.dnd_area_revealer.set_can_target(True)
+            return Gdk.DragAction.COPY
+        else:
+            self.drop_target.reject()
+
+    def on_drag_leave(self, *_args) -> None:
+        """Hides DropTarget area from the user"""
+        self.dnd_area_revealer.set_reveal_child(False)
+        self.dnd_area_revealer.set_can_target(False)
+
+    def on_drag_drop(
+        self, drop_target: Gtk.DropTarget, value: GObject.Value, *_args
+    ) -> None:
+        """Adds dropped files to the `self.library`
+
+        Parameters
+        ----------
+        drop_target : Gtk.DropTarget
+            DropTarget itself
+        value : GObject.Value
+            A group of files
+        """
+        files = value.get_files()
+
+        if self.state == WindowState.LOADED_DIR:
+            shared.win.library.remove_all()
+            shared.win.library_list.remove_all()
+
+        if parse_files([f.get_path() for f in files]):
+            self.state = WindowState.LOADED_FILES
+        else:
+            self.state = WindowState.EMPTY
+        self.on_drag_leave()
 
     @GObject.Property
     def state(self) -> WindowState:
@@ -819,6 +943,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                         self.library_scrolled_window.set_child(self.library_list)
                 self.right_buttons_revealer.set_reveal_child(True)
                 self.left_buttons_revealer.set_reveal_child(True)
+                self.clean_files_button.set_visible(False)
             case WindowState.LOADED_FILES:
                 match shared.state_schema.get_string("view"):
                     case "g":
