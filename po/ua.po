@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 14:56+0300\n"
-"PO-Revision-Date: 2025-03-16 12:18+0000\n"
+"PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/uk/>\n"
@@ -127,9 +127,8 @@ msgid "No source selected yet"
 msgstr "Джерело ще не вибрано"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "Обрати теки або відкрити файл"
+msgstr "Виберіть каталог або перетягніть файли, щоб завантажити їх"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -209,7 +208,7 @@ msgstr "Хронограф"
 
 #: data/gtk/window.blp:593
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Перетягніть файли сюди, щоб відкрити їх"
 
 #: data/gtk/window.blp:614
 msgid "Saves"
@@ -232,9 +231,8 @@ msgid "App settings, info and utils"
 msgstr "Налаштування додатку, інформація та інструментарій"
 
 #: data/gtk/window.blp:677
-#, fuzzy
 msgid "Clean library"
-msgstr "Бібліотека"
+msgstr "Чиста бібліотека"
 
 #: data/gtk/window.blp:692
 msgid "Re-parse current directory"
@@ -305,9 +303,8 @@ msgid "Select directory"
 msgstr "Виберіть каталог"
 
 #: data/gtk/window.blp:1055
-#, fuzzy
 msgid "Select files"
-msgstr "Виберіть каталог"
+msgstr "Виберіть файли"
 
 #: data/gtk/window.blp:1060 data/gtk/window.blp:1219
 msgid "Keybindings"
@@ -350,9 +347,8 @@ msgid "Directory"
 msgstr "Довідник"
 
 #: data/gtk/window.blp:1120
-#, fuzzy
 msgid "Files"
-msgstr "Файл"
+msgstr "Файли"
 
 #: data/gtk/window.blp:1127 data/gtk/window.blp:1184
 msgid "A-Z"
@@ -560,12 +556,12 @@ msgstr "Діалог імпорту LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;текст;пісень;"
-"інтернет;пісні;мультимедіа;медіа;іркліб;музика;синхронізація;караоке;"
+"тексти "
+"пісень;інтернет;пісні;мультимедіа;медіа;lrclib;музика;синхронізація;хронограф;"
+""
 
 #~ msgid "Select a directory"
 #~ msgstr "Виберіть каталог"
