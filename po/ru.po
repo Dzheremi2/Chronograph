@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 14:56+0300\n"
-"PO-Revision-Date: 2025-03-10 02:21+0000\n"
+"PO-Revision-Date: 2025-03-17 12:15+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:621
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -128,9 +128,8 @@ msgid "No source selected yet"
 msgstr "Еще ничего не открыто"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "Выберите директорию или файл"
+msgstr "Выберите директорию или перетащите файлы, чтобы загрузить их"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -210,7 +209,7 @@ msgstr "Хронограф"
 
 #: data/gtk/window.blp:593
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Перетащите файлы сюда, чтобы открыть их"
 
 #: data/gtk/window.blp:614
 msgid "Saves"
@@ -233,9 +232,8 @@ msgid "App settings, info and utils"
 msgstr "Настройки приложения, информация, инструменты"
 
 #: data/gtk/window.blp:677
-#, fuzzy
 msgid "Clean library"
-msgstr "Библиотека"
+msgstr "Очистить библиотеку"
 
 #: data/gtk/window.blp:692
 msgid "Re-parse current directory"
@@ -306,9 +304,8 @@ msgid "Select directory"
 msgstr "Выберить директорию"
 
 #: data/gtk/window.blp:1055
-#, fuzzy
 msgid "Select files"
-msgstr "Выберить директорию"
+msgstr "Выбрать файлы"
 
 #: data/gtk/window.blp:1060 data/gtk/window.blp:1219
 msgid "Keybindings"
@@ -351,9 +348,8 @@ msgid "Directory"
 msgstr "Директория"
 
 #: data/gtk/window.blp:1120
-#, fuzzy
 msgid "Files"
-msgstr "Файл"
+msgstr "Файлы"
 
 #: data/gtk/window.blp:1127 data/gtk/window.blp:1184
 msgid "A-Z"
@@ -556,12 +552,11 @@ msgstr "Диалог импорта из LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;слова;интернет;"
-"песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;"
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;слова;интернет;песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;хронограф;"
+""
 
 #~ msgid "Select a directory"
 #~ msgstr "Выберите директорию"
