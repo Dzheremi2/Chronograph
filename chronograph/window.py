@@ -1,23 +1,15 @@
 import re
 import threading
-from typing import Union
+from enum import Enum
 
 import requests
-from gi.repository import Adw, Gio, GLib, Gtk, Pango  # type: ignore
+from gi.repository import Adw, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph import shared
-from chronograph.ui.BoxDialog import BoxDialog
 from chronograph.ui.LrclibTrack import LrclibTrack
 from chronograph.ui.Preferences import ChronographPreferences
 from chronograph.ui.SavedLocation import SavedLocation
-from chronograph.ui.SongCard import (
-    SongCard,
-    album_str,
-    artist_str,
-    label_str,
-    path_str,
-    title_str,
-)
+from chronograph.ui.SongCard import SongCard
 from chronograph.ui.SyncLine import SyncLine
 from chronograph.utils.caching import save_location
 from chronograph.utils.export_data import export_clipboard, export_file
@@ -31,6 +23,23 @@ from chronograph.utils.parsers import (
 )
 from chronograph.utils.publish import do_publish
 from chronograph.utils.select_data import select_dir, select_lyrics_file
+
+
+class WindowState(Enum):
+    """Enum for window states
+
+    ::
+
+        EMPTY -> "No dir nor files opened"
+        EMPTY_DIR -> "Opened an empty dir"
+        LOADED_DIR -> "Opened a non-empty dir"
+        LOADED_FILES -> "Opened a bunch of files separately from the dir"
+    """
+
+    EMPTY = 0
+    EMPTY_DIR = 1
+    LOADED_DIR = 2
+    LOADED_FILES = 3
 
 
 @Gtk.Template(resource_path=shared.PREFIX + "/gtk/window.ui")
@@ -124,6 +133,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
 
         self.loaded_card: SongCard = None
+        self._state: WindowState = None
 
         if shared.APP_ID.endswith("Devel"):
             self.add_css_class("devel")
@@ -150,6 +160,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.lrclib_window_collapsed_results_list.connect(
             "row-activated", self.set_lyrics
         )
+        self.connect("notify::state", self.update_win_state)
 
         if self.library.get_child_at_index(0) is None:
             self.library_scrolled_window.set_child(self.no_source_opened)
@@ -634,7 +645,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     self.lrclib_manual_artist_entry.get_text(),
                     self.lrclib_manual_album_entry.get_text(),
                     int(self.lrclib_manual_duration_entry.get_text()),
-                    sync_lines_parser()
+                    sync_lines_parser(),
                 ],
             )
             thread.daemon = True
@@ -764,3 +775,42 @@ class ChronographWindow(Adw.ApplicationWindow):
                 shared.app.lookup_action("view_type").set_state(
                     GLib.Variant.new_string("g")
                 )
+
+    @GObject.Property
+    def state(self) -> WindowState:
+        return self._state
+
+    @state.setter
+    def state(self, new_state: WindowState) -> None:
+        self._state = new_state
+
+    def update_win_state(self, *_args) -> None:
+        """Changes state of `self` depending on current `self.state` prop value"""
+        self.open_source_button.set_icon_name("open-source-symbolic")
+        match self.state:
+            case WindowState.EMPTY:
+                self.library_scrolled_window.set_child(self.no_source_opened)
+                self.right_buttons_revealer.set_reveal_child(False)
+                self.left_buttons_revealer.set_reveal_child(False)
+                shared.state_schema.set_string("opened-dir", "None")
+            case WindowState.EMPTY_DIR:
+                self.library_scrolled_window.set_child(self.empty_directory)
+                self.right_buttons_revealer.set_reveal_child(False)
+                self.left_buttons_revealer.set_reveal_child(False)
+                shared.state_schema.set_string("opened-dir", "None")
+            case WindowState.LOADED_DIR:
+                match shared.state_schema.get_string("view"):
+                    case "g":
+                        self.library_scrolled_window.set_child(self.library)
+                    case "l":
+                        self.library_scrolled_window.set_child(self.library_list)
+                self.right_buttons_revealer.set_reveal_child(True)
+                self.left_buttons_revealer.set_reveal_child(True)
+            case WindowState.LOADED_FILES:
+                match shared.state_schema.get_string("view"):
+                    case "g":
+                        self.library_scrolled_window.set_child(self.library)
+                    case "l":
+                        self.library_scrolled_window.set_child(self.library_list)
+                shared.state_schema.set_string("opened-dir", "None")
+                self.right_buttons_revealer.set_reveal_child(False)

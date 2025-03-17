@@ -21,5 +21,6 @@
     },
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
+    "pylint.args": ["--disabled"]
 }

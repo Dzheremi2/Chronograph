@@ -14,55 +14,70 @@ from chronograph.utils.file_untaggable import FileUntaggable
 
 
 def dir_parser(path: str, *_args) -> None:
-    """Parses directory and creates `SongCard` instances for files in directory of formats `ogg`, `flac`, `mp3` and `wav`
+    """Launches `parse_files` for provided directory
 
     Parameters
     ----------
     path : str
         Path to directory to parse
     """
-    shared.win.library.remove_all()
-    shared.win.library_list.remove_all()
-    path = path + "/"
-    mutagen_files = []
+    from chronograph.window import WindowState
+
+    path = f"{path}/"
+    files = []
     for file in os.listdir(path):
-        if not os.path.isdir(path + file):
-            if Path(file).suffix in (".ogg", ".flac"):
-                mutagen_files.append(FileVorbis(path + file))
-            elif Path(file).suffix in (".mp3", ".wav"):
-                mutagen_files.append(FileID3(path + file))
-            elif Path(file).suffix in (".m4a",):
-                mutagen_files.append(FileMP4(path + file))
-            elif Path(file).suffix in (".aac", ".AAC"):
-                mutagen_files.append(FileUntaggable(path + file))
+        if not os.path.isdir(file):
+            files.append(path + file)
 
-    if len(mutagen_files) == 0:
-        shared.win.library_scrolled_window.set_child(shared.win.empty_directory)
-        shared.win.open_source_button.set_icon_name("open-source-symbolic")
-        shared.win.right_buttons_revealer.set_reveal_child(False)
-        shared.win.left_buttons_revealer.set_reveal_child(False)
-        shared.state_schema.set_string("opened-dir", "None")
-        return
+    if parse_files(files):
+        shared.win.state = WindowState.LOADED_DIR
+    else:
+        shared.win.state = WindowState.EMPTY_DIR
 
-    for file in mutagen_files:
-        GLib.idle_add(songcard_idle, file)
-
-    shared.win.open_source_button.set_icon_name("open-source-symbolic")
-    match shared.state_schema.get_string("view"):
-        case "g":
-            shared.win.library_scrolled_window.set_child(shared.win.library)
-        case "l":
-            shared.win.library_scrolled_window.set_child(shared.win.library_list)
-    shared.win.right_buttons_revealer.set_reveal_child(True)
-    shared.win.left_buttons_revealer.set_reveal_child(True)
     shared.state_schema.set_string("opened-dir", path)
     if any(pin["path"] == path for pin in shared.cache.get("pins", [])):
         shared.win.add_dir_to_saves_button.set_visible(False)
     else:
         shared.win.add_dir_to_saves_button.set_visible(True)
-    # NOTE: This should be implemented in ALL parsers functions
-    # for child in shared.win.library:
-    #     child.set_focusable(False)
+
+
+def parse_files(files: list) -> bool:
+    """Generates `SongCard`s for porovided list of files
+
+    Parameters
+    ----------
+    files : list
+        List of file to find supported songs in and add `SongCard`s
+
+    Returns
+    -------
+    bool
+
+    ::
+
+        True -> Something was added
+        False -> Nothing was added
+    """
+    shared.win.library.remove_all()
+    shared.win.library_list.remove_all()
+    mutagen_files = []
+    for file in files:
+        if Path(file).suffix in (".ogg", ".flac"):
+            mutagen_files.append(FileVorbis(file))
+        elif Path(file).suffix in (".mp3", ".wav"):
+            mutagen_files.append(FileID3(file))
+        elif Path(file).suffix in (".m4a",):
+            mutagen_files.append(FileMP4(file))
+        elif Path(file).suffix in (".aac", ".AAC"):
+            mutagen_files.append(FileUntaggable(file))
+
+    if len(mutagen_files) == 0:
+        return False
+
+    for file in mutagen_files:
+        GLib.idle_add(songcard_idle, file)
+
+    return True
 
 
 def songcard_idle(file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable]) -> None:
@@ -70,7 +85,7 @@ def songcard_idle(file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable]) -> 
 
     Parameters
     ----------
-    file : FileID3 | FileVorbis
+    file : FileID3 | FileVorbis | FileMP4 | FileUntaggable
         File of song
     """
     from chronograph.ui.SongCard import SongCard
@@ -78,6 +93,7 @@ def songcard_idle(file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable]) -> 
     song_card = SongCard(file)
     shared.win.library.append(song_card)
     shared.win.library_list.append(song_card.get_list_mode())
+    # NOTE: This should be implemented in ALL parsers functions
     song_card.get_parent().set_focusable(False)
 
 

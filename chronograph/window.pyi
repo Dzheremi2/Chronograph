@@ -1,6 +1,25 @@
-from gi.repository import Adw, Gio, GLib, Gtk
+from enum import Enum
+from typing import Literal
+
+from gi.repository import Adw, Gio, GLib, Gtk, GObject
 
 from chronograph.ui.SongCard import SongCard  # type: ignore
+
+class WindowState(Enum):
+    """Enum for window states
+
+    ::
+
+        EMPTY -> "No dir nor files opened"
+        EMPTY_DIR -> "Opened an empty dir"
+        LOADED_DIR -> "Opened a non-empty dir"
+        LOADED_FILES -> "Opened a bunch of files separately from the dir "
+    """
+
+    EMPTY: Literal[0]
+    EMPTY_DIR: Literal[1]
+    LOADED_DIR: Literal[2]
+    LOADED_FILES: Literal[3]
 
 class ChronographWindow(Adw.ApplicationWindow):
     """App window class"""
@@ -85,6 +104,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     view_state: str
 
     loaded_card: SongCard
+    _state: WindowState
 
     def on_toggle_sidebar_action(self, *_args) -> None: ...
     def on_toggle_search_action(self, *_args) -> None: ...
@@ -92,9 +112,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def filtering(self, child: Gtk.FlowBoxChild) -> bool: ...
     def filtering_list(self, child: Adw.ActionRow) -> bool: ...
     def sorting(self, child1: Gtk.FlowBoxChild, child2: Gtk.FlowBoxChild) -> int: ...
-    def sorting_list(
-        self, child1: Adw.ActionRow, child2: Adw.ActionRow
-    ) -> int: ...
+    def sorting_list(self, child1: Adw.ActionRow, child2: Adw.ActionRow) -> int: ...
     def on_search_changed(self, entry: Gtk.SearchEntry) -> None: ...
     def on_sort_changed(self, *_args) -> None: ...
     def on_view_type_action(
@@ -128,3 +146,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     def build_sidebar(self, *_args) -> None: ...
     def load_save(self, _listbox: Gtk.ListBox, row: Gtk.ListBoxRow) -> None: ...
     def toggle_list_view(self, *_args) -> None: ...
+    @GObject.Property
+    def state(self) -> WindowState: ...
+    @state.setter
+    def state(self, new_state: WindowState) -> None: ...
+    def update_win_state(self, *_args) -> None: ...
