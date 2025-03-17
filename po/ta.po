@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 14:56+0300\n"
-"PO-Revision-Date: 2025-03-15 08:47+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-17 20:01+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/ta/>\n"
 "Language: ta\n"
@@ -20,13 +20,12 @@ msgstr ""
 "X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:621
-#, fuzzy
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr "தலைப்பு, கலைஞர் மற்றும்/அல்லது ஆல்பம் தாக்கல் செய்யப்பட்டவை தெரியவில்லை!"
+msgstr "தலைப்பு, கலைஞர் மற்றும்/அல்லது தொகுப்பில் சில தெரியவில்லை!"
 
 #: chronograph/window.py:668
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "சில உள்ளீடுகள் காலியாக உள்ளன"
 
 #: chronograph/window.py:695
 msgid "Copied successfully"
@@ -95,7 +94,7 @@ msgstr "பாதை"
 #: chronograph/ui/SongCard.py:320 chronograph/ui/SongCard.py:321
 #: chronograph/ui/SongCard.py:329
 msgid "Unknown"
-msgstr ""
+msgstr "தெரியாத"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
@@ -119,7 +118,7 @@ msgstr "அறியப்படாத பிழை ஏற்பட்டது:
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:528
 msgid "Publish"
-msgstr ""
+msgstr "பதிப்பிடு"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -127,9 +126,8 @@ msgid "No source selected yet"
 msgstr "இதுவரை எந்த மூலமும் தேர்ந்தெடுக்கப்படவில்லை"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும் அல்லது ஒரு கோப்பைத் திறக்கவும்"
+msgstr "ஏற்றுவதற்கு ஒரு கோப்பகத்தைத் தேர்ந்தெடு அல்லது கோப்புகளை இழுத்துவிடு"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -137,13 +135,12 @@ msgid "Open source"
 msgstr "திறந்த மூல"
 
 #: data/gtk/window.blp:28
-#, fuzzy
 msgid "Empty directory"
-msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
+msgstr "ஏதுமில்லா கோப்பகம்"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "இந்தக் கோப்பகத்தில் ஆதரிக்கப்படும் இசைக் கோப்புகள் எதுவும் இல்லை"
 
 #: data/gtk/window.blp:49 data/gtk/window.blp:54
 msgid "Search on LRClib by title and artist names"
@@ -209,7 +206,7 @@ msgstr "கால வரைபடம்"
 
 #: data/gtk/window.blp:593
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "கோப்புகளைத் திறக்க இங்கே விடுங்கள்"
 
 #: data/gtk/window.blp:614
 msgid "Saves"
@@ -232,14 +229,12 @@ msgid "App settings, info and utils"
 msgstr "பயன்பாட்டு அமைப்புகள், செய்தி மற்றும் பயன்பாடுகள்"
 
 #: data/gtk/window.blp:677
-#, fuzzy
 msgid "Clean library"
-msgstr "நூலகம்"
+msgstr "நூலகம் துடை"
 
 #: data/gtk/window.blp:692
-#, fuzzy
 msgid "Re-parse current directory"
-msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
+msgstr "தற்போதைய கோப்பகத்தை மீண்டும் அலசுங்கள்"
 
 #: data/gtk/window.blp:697
 msgid "Add current directory to saves"
@@ -247,11 +242,11 @@ msgstr "சேமிப்புகளுக்கு தற்போதைய �
 
 #: data/gtk/window.blp:753
 msgid "Syncing"
-msgstr "ஒத்திசைவு"
+msgstr "ஒத்திசைகிறது"
 
 #: data/gtk/window.blp:845
 msgid "Toggle song repeat"
-msgstr "பாடல் மீண்டும் மீண்டும்"
+msgstr "பாடல் மறுபடியும் மாற்று"
 
 #: data/gtk/window.blp:901
 msgid "Sync/Re-sync line"
@@ -287,7 +282,7 @@ msgstr "கோப்பு பற்றி"
 
 #: data/gtk/window.blp:1010
 msgid "Add line"
-msgstr "வரி சேர்க்கவும்"
+msgstr "வரி சேர்"
 
 #: data/gtk/window.blp:1033
 msgid "Shortcuts"
@@ -306,9 +301,8 @@ msgid "Select directory"
 msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
 
 #: data/gtk/window.blp:1055
-#, fuzzy
 msgid "Select files"
-msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
+msgstr "கோப்புகளைத் தேர்ந்தெடு"
 
 #: data/gtk/window.blp:1060 data/gtk/window.blp:1219
 msgid "Keybindings"
@@ -351,9 +345,8 @@ msgid "Directory"
 msgstr "அடைவு"
 
 #: data/gtk/window.blp:1120
-#, fuzzy
 msgid "Files"
-msgstr "கோப்பு"
+msgstr "கோப்புகள்"
 
 #: data/gtk/window.blp:1127 data/gtk/window.blp:1184
 msgid "A-Z"
@@ -381,7 +374,7 @@ msgstr "வரி ஆயத்தம் செய்யுங்கள்"
 
 #: data/gtk/window.blp:1166
 msgid "Append line"
-msgstr "வரி சேர்க்கவும்"
+msgstr "வரி பின்சேர்"
 
 #: data/gtk/window.blp:1173
 msgid "Use plain"
@@ -393,19 +386,19 @@ msgstr "ஒத்திசைக்கப்பட்ட பயன்படு�
 
 #: data/gtk/window.blp:1181
 msgid "Sort"
-msgstr ""
+msgstr "வரிசைப்படுத்து"
 
 #: data/gtk/window.blp:1197
 msgid "View"
-msgstr ""
+msgstr "நோக்கு"
 
 #: data/gtk/window.blp:1200
 msgid "Grid"
-msgstr ""
+msgstr "பின்னல்"
 
 #: data/gtk/window.blp:1206
 msgid "List"
-msgstr ""
+msgstr "பட்டியல்"
 
 #: data/gtk/window.blp:1218
 msgid "Preferences"
@@ -439,12 +432,13 @@ msgstr "அடுத்த தொடக்கத்தில் கடைசி�
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "பட்டியல் காட்சிப் பயன்முறையைத் தானாக நிலைமாற்று"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
+"காட்சி அளவு போதுமானதாக இல்லாதபோது பட்டியல் காட்சி பயன்முறையை தானாகவே மாற்றுகிறது"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
@@ -452,11 +446,11 @@ msgstr "ஒத்திசைவு பக்கம்"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "துல்லியமான மில்லி நொடிகளைப் பயன்படுத்து"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "2-இலக்கத்திற்குப் பதிலாக 3-இலக்க மில்லி விநாடிகளைப் பயன்படுத்து"
 
 #: data/gtk/ui/Preferences.blp:37
 msgid "Auto file manipulation"
@@ -524,15 +518,14 @@ msgid "Sync lyrics of your loved songs"
 msgstr "நீங்கள் விரும்பிய பாடல்களின் பாடல் வரிகளை ஒத்திசைக்கவும்"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav and aac (reduced functionality) formats"
 msgstr ""
-"அழகான சி.டி.கே 4 மற்றும் லிபாட்வைட்டா இடைமுகத்துடன் ஒத்திசைக்கப்பட்ட பாடல்களின் பெரிய "
-"தரவுத்தளத்திற்கு பங்களிக்க இந்த பயன்பாடு உங்களுக்கு உதவுகிறது. இது OGG, FLAC, MP3 "
-"மற்றும் WAV வடிவங்களில் இசையை ஆதரிக்கிறது"
+"இந்தச் செயலி அழகான GTK4 மற்றும் LibAdwaita இடைமுகத்துடன் ஒத்திசைக்கப்பட்ட பாடல் வரிகளின் "
+"பெரிய தரவுத்தளத்திற்கு பங்களிக்க உதவுகிறது. இது ogg, flac, mp3, m4a, wav மற்றும் "
+"aac (குறைக்கப்பட்ட செயல்பாடு) வடிவங்களில் இசையை ஆதரிக்கிறது"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
@@ -546,9 +539,8 @@ msgstr "பாடல் ஒத்திசைவு பக்கம்"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Lyrics syncing page on smaller display"
-msgstr "பாடல் ஒத்திசைவு பக்கம்"
+msgstr "சிறிய திரையில் பாடல் வரிகளை ஒத்திசைக்கும் பக்கம்"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
@@ -557,12 +549,10 @@ msgstr "Lrclib இறக்குமதி உரையாடல்"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;பாடல்;இணையம்;"
-"பாடல்கள்;மல்டிமீடியா;மீடியா;இசை;ஒத்திசைவு;"
+"பாடல் வரிகள்; இணையம்; பாடல்கள்; பலூடகம்; ஊடகம்; எல்ஆர்எல்ஐபி; இசை; ஒத்திசைத்தல்; காலவரிசை;"
 
 #~ msgid "Select a directory"
 #~ msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
