@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 14:56+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-20 18:01+0000\n"
+"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/lrcmake/"
+"chronograph/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:621
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -37,61 +40,61 @@ msgstr ""
 #: data/gtk/window.blp:179 data/gtk/window.blp:334 data/gtk/window.blp:505
 #: data/gtk/ui/SongCard.blp:73 data/gtk/ui/SongCard.blp:179
 msgid "Title"
-msgstr ""
+msgstr "Nimi"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
 #: data/gtk/window.blp:183 data/gtk/window.blp:339 data/gtk/window.blp:509
 #: data/gtk/ui/SongCard.blp:77 data/gtk/ui/SongCard.blp:194
 msgid "Artist"
-msgstr ""
+msgstr "Esitaja"
 
 #: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:517
 msgid "Duration"
-msgstr ""
+msgstr "Kestus"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
 #: data/gtk/window.blp:513 data/gtk/ui/SongCard.blp:81
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
-msgstr ""
+msgstr "On instrumentaalpala"
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Jah"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "Sünkroniseeritud laulusõnad pole saadaval"
 
 #: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "Tavalisi laulusõnu pole saadaval"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Asukoht: "
 
 #: chronograph/ui/SongCard.py:15
 msgid "About File"
-msgstr ""
+msgstr "Faili teave"
 
 #: chronograph/ui/SongCard.py:19
 msgid "Path"
-msgstr ""
+msgstr "Asukoht"
 
 #: chronograph/ui/SongCard.py:248 chronograph/ui/SongCard.py:304
 #: chronograph/ui/SongCard.py:305 chronograph/ui/SongCard.py:313
 #: chronograph/ui/SongCard.py:320 chronograph/ui/SongCard.py:321
 #: chronograph/ui/SongCard.py:329
 msgid "Unknown"
-msgstr ""
+msgstr "Tundmatu"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
