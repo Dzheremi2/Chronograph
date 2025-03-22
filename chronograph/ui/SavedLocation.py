@@ -23,6 +23,7 @@ class SavedLocation(Gtk.Box):
     title: Gtk.Label = Gtk.Template.Child()
     actions_box: Gtk.Box = Gtk.Template.Child()
     rename_popover: Gtk.Popover = Gtk.Template.Child()
+    rename_entry: Adw.EntryRow = Gtk.Template.Child()
 
     def __init__(self, path: str, name: str) -> None:
         super().__init__()
@@ -64,7 +65,8 @@ class SavedLocation(Gtk.Box):
         else:
             self.remove_from_saves()
             self.rename_popover.popdown()
-            shared.win.add_dir_to_saves_button.set_visible(True)
+            if self.path == shared.state_schema.get_string("opened-dir"):
+                shared.win.add_dir_to_saves_button.set_visible(True)
             shared.win.build_sidebar()
             del self
 
