@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 16:43+0300\n"
+"POT-Creation-Date: 2025-03-22 17:13+0300\n"
 "PO-Revision-Date: 2025-03-02 20:49+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/"
@@ -555,25 +555,30 @@ msgstr ""
 "sözlerinin büyük veri tabanına katkıda bulunmanızı sağlar."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 #, fuzzy
 msgid "Library"
 msgstr "Kütüphane görünümü"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
+msgid "Library in List View mode"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
 #, fuzzy
 msgid "Lyrics syncing page"
 msgstr "Şarkı sözlerini senkronize etme sayfası görünümü"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
 #, fuzzy
 msgid "Lyrics syncing page on smaller display"
 msgstr "Açık şarkı sözlerini senkronize etme sayfası görünümü"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
 msgid "LRClib import dialog"
 msgstr ""
 

@@ -144,7 +144,7 @@ class ChronographApplication(Adw.Application):
             shared.PREFIX + "/" + shared.APP_ID + ".metainfo.xml", shared.VERSION
         )
         dialog.set_developers(("Dzheremi https://github.com/Dzheremi2",))
-        dialog.set_designers(("Dzheremi",))
+        dialog.set_designers(("Dzheremi https://github.com/Dzheremi2",))
         # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
         dialog.set_translator_credits(_("translator-credits"))
         dialog.set_copyright("© 2024-2025 Dzheremi")
@@ -153,6 +153,8 @@ class ChronographApplication(Adw.Application):
             "© 2024 tranxuanthang",
             Gtk.License.MIT_X11,
         )
+        if shared.PREFIX.endswith("Devel"):
+            dialog.set_version("Devel")
         dialog.present(shared.win)
 
     def on_quit_action(self, *_args) -> None:

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 16:43+0300\n"
+"POT-Creation-Date: 2025-03-22 17:13+0300\n"
 "PO-Revision-Date: 2025-03-13 15:02+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/lrcmake/"
@@ -540,23 +540,28 @@ msgstr ""
 "formatos ogg, flac, mp3 y wav"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Library"
 msgstr "Biblioteca"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
+msgid "Library in List View mode"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
 msgid "Lyrics syncing page"
 msgstr "Página de sincronización de letras"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
 #, fuzzy
 msgid "Lyrics syncing page on smaller display"
 msgstr "Sincronización de textos con visualización en modo claro"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
 msgid "LRClib import dialog"
 msgstr "Diálogo de importación de LRClib"
 

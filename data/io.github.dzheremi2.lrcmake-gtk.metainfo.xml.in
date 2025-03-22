@@ -45,6 +45,10 @@
       <caption>Library</caption>
     </screenshot>
     <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libLW.png</image>
+      <caption>Library in List View mode</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncW.png</image>
       <caption>Lyrics syncing page</caption>
     </screenshot>
@@ -61,6 +65,10 @@
       <caption>Library</caption>
     </screenshot>
     <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libLB.png</image>
+      <caption>Library in List View mode</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncB.png</image>
       <caption>Lyrics syncing page</caption>
     </screenshot>
@@ -75,6 +83,18 @@
   </screenshots>
 
   <releases>
+  <release version="2.4" date="2025-03-23">
+      <description translate="no">
+        <p>GNOME Platform 48 &amp; New features</p>
+        <ul>
+          <li>Now you can add separate file to the library by opening them or by Drag-N-Dropping them into the window</li>
+          <li>App now using GNOME Platform 48 meaning now it's using Adwaita 1.7</li>
+          <li>New beautiful Adwaita 1.7 switcher in LRClib import dialog</li>
+          <li>Added Dutch translation</li>
+          <li>Added Estonian translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.3" date="2025-03-16">
       <description translate="no">
         <p>New features</p>

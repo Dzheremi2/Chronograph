@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 16:43+0300\n"
+"POT-Creation-Date: 2025-03-22 17:13+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/lrcmake/"
@@ -522,22 +522,27 @@ msgid ""
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Library"
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
-msgid "Lyrics syncing page"
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
+msgid "Library in List View mode"
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-msgid "Lyrics syncing page on smaller display"
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
+msgid "Lyrics syncing page"
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
+msgid "Lyrics syncing page on smaller display"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
 msgid "LRClib import dialog"
 msgstr ""
 
