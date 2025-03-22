@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-17 14:56+0300\n"
+"POT-Creation-Date: 2025-03-22 16:43+0300\n"
 "PO-Revision-Date: 2025-03-19 20:16+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/lrcmake/"
@@ -40,23 +40,23 @@ msgstr ""
 "Ricky Tigg"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
-#: data/gtk/window.blp:179 data/gtk/window.blp:334 data/gtk/window.blp:505
-#: data/gtk/ui/SongCard.blp:73 data/gtk/ui/SongCard.blp:179
+#: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
+#: data/gtk/ui/SongCard.blp:76 data/gtk/ui/SongCard.blp:182
 msgid "Title"
 msgstr "Otsikko"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
-#: data/gtk/window.blp:183 data/gtk/window.blp:339 data/gtk/window.blp:509
-#: data/gtk/ui/SongCard.blp:77 data/gtk/ui/SongCard.blp:194
+#: data/gtk/window.blp:188 data/gtk/window.blp:344 data/gtk/window.blp:517
+#: data/gtk/ui/SongCard.blp:80 data/gtk/ui/SongCard.blp:197
 msgid "Artist"
 msgstr "Esittäjä"
 
-#: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:517
+#: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:525
 msgid "Duration"
 msgstr "Kesto"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
-#: data/gtk/window.blp:513 data/gtk/ui/SongCard.blp:81
+#: data/gtk/window.blp:521 data/gtk/ui/SongCard.blp:84
 msgid "Album"
 msgstr "Albumi"
 
@@ -92,10 +92,10 @@ msgstr "Tietoja tiedostosta"
 msgid "Path"
 msgstr "Polku"
 
-#: chronograph/ui/SongCard.py:248 chronograph/ui/SongCard.py:304
-#: chronograph/ui/SongCard.py:305 chronograph/ui/SongCard.py:313
-#: chronograph/ui/SongCard.py:320 chronograph/ui/SongCard.py:321
-#: chronograph/ui/SongCard.py:329
+#: chronograph/ui/SongCard.py:244 chronograph/ui/SongCard.py:300
+#: chronograph/ui/SongCard.py:301 chronograph/ui/SongCard.py:309
+#: chronograph/ui/SongCard.py:316 chronograph/ui/SongCard.py:317
+#: chronograph/ui/SongCard.py:325
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -119,7 +119,7 @@ msgstr "Virheellinen julkaisupoletti: "
 msgid "Unknown error occured: "
 msgstr "Tuntematon virhe: "
 
-#: chronograph/utils/publish.py:124 data/gtk/window.blp:528
+#: chronograph/utils/publish.py:124 data/gtk/window.blp:536
 msgid "Publish"
 msgstr ""
 
@@ -166,31 +166,31 @@ msgstr "Ei tallennuksia vielä"
 msgid "Press pin button to add current directory to the saves"
 msgstr "Paina nuppineulapainiketta lisätäksesi nykyisen kansion tallennuksiin"
 
-#: data/gtk/window.blp:101 data/gtk/window.blp:1214
+#: data/gtk/window.blp:103 data/gtk/window.blp:1237
 msgid "Quick Editor"
 msgstr "Pikamuokkain"
 
-#: data/gtk/window.blp:126
+#: data/gtk/window.blp:128
 msgid "Copy to clipboard"
 msgstr "Kopioi leikepöydälle"
 
-#: data/gtk/window.blp:191 data/gtk/window.blp:348
+#: data/gtk/window.blp:196 data/gtk/window.blp:353
 msgid "Search LRClib for provided title and artist"
 msgstr "Etsi LRClibistä kappaleen tai esittäjän nimeä"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:353 data/gtk/window.blp:713
+#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:721
 msgid "Search"
 msgstr "Etsi"
 
-#: data/gtk/window.blp:238 data/gtk/window.blp:403
+#: data/gtk/window.blp:243 data/gtk/window.blp:408
 msgid "Synced"
 msgstr "Synkronoitu"
 
-#: data/gtk/window.blp:263 data/gtk/window.blp:429
+#: data/gtk/window.blp:268 data/gtk/window.blp:434
 msgid "Plain"
 msgstr "Raaka"
 
-#: data/gtk/window.blp:292 data/gtk/window.blp:459
+#: data/gtk/window.blp:297 data/gtk/window.blp:464
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
@@ -198,218 +198,223 @@ msgstr ""
 "Synkronoituja sanoituksia käytetään oletuksena. Jos haluat käyttää "
 "raakasanoituksia, valitse alivalikosta \"Käytä raakaa\""
 
-#: data/gtk/window.blp:298 data/gtk/window.blp:465
+#: data/gtk/window.blp:303 data/gtk/window.blp:470
 msgid "Use"
 msgstr "Käytä"
 
-#: data/gtk/window.blp:542 data/gtk/window.blp:607
+#: data/gtk/window.blp:550 data/gtk/window.blp:615
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
 msgstr "Kronografi"
 
-#: data/gtk/window.blp:593
+#: data/gtk/window.blp:601
 msgid "Drop files here to open them"
 msgstr ""
 
-#: data/gtk/window.blp:614
+#: data/gtk/window.blp:622
 msgid "Saves"
 msgstr "Tallennukset"
 
-#: data/gtk/window.blp:622 data/gtk/window.blp:643 data/gtk/window.blp:1065
+#: data/gtk/window.blp:630 data/gtk/window.blp:651 data/gtk/window.blp:1088
 msgid "Toggle sidebar"
 msgstr "Sivupalkki päällä/pois"
 
-#: data/gtk/window.blp:650
+#: data/gtk/window.blp:658
 msgid "Select a directory or open a file"
 msgstr "Valitse kansio tai avaa tiedosto"
 
-#: data/gtk/window.blp:662 data/gtk/window.blp:1045
+#: data/gtk/window.blp:670 data/gtk/window.blp:1068
 msgid "Toggle search"
 msgstr "Haku päällä/pois"
 
-#: data/gtk/window.blp:670 data/gtk/window.blp:764
+#: data/gtk/window.blp:678 data/gtk/window.blp:772
 msgid "App settings, info and utils"
 msgstr "Sovelluksen asetukset, tiedot ja työkalut"
 
-#: data/gtk/window.blp:677
+#: data/gtk/window.blp:685
 #, fuzzy
 msgid "Clean library"
 msgstr "Kirjasto"
 
-#: data/gtk/window.blp:692
+#: data/gtk/window.blp:700
 msgid "Re-parse current directory"
 msgstr "Jäsennä nykyinen hakemisto uudelleen"
 
-#: data/gtk/window.blp:697
+#: data/gtk/window.blp:705
 msgid "Add current directory to saves"
 msgstr "Lisää nykyinen kansion tallennuksiin"
 
-#: data/gtk/window.blp:753
+#: data/gtk/window.blp:761
 msgid "Syncing"
 msgstr "Synkronoidaan"
 
-#: data/gtk/window.blp:845
+#: data/gtk/window.blp:859
 msgid "Toggle song repeat"
 msgstr "Kappaleen kertaus päällä/pois"
 
-#: data/gtk/window.blp:901
+#: data/gtk/window.blp:915
 msgid "Sync/Re-sync line"
 msgstr "Synkronoi rivi"
 
-#: data/gtk/window.blp:912 data/gtk/window.blp:1079
+#: data/gtk/window.blp:926 data/gtk/window.blp:1102
 msgid "Replay selected line"
 msgstr "Toista uudelleen synkronoitu rivi"
 
-#: data/gtk/window.blp:920
+#: data/gtk/window.blp:934
 msgid "Re-sync selected line 100ms back"
 msgstr "Synkronoi uudelleen valittu rivi 100 ms taaksepäin"
 
-#: data/gtk/window.blp:928
+#: data/gtk/window.blp:942
 msgid "Re-sync selected line 100ms forward"
 msgstr "Synkronoi uudelleen valittu rivi 100 ms eteenpäin"
 
-#: data/gtk/window.blp:936 data/gtk/window.blp:1142
+#: data/gtk/window.blp:950 data/gtk/window.blp:1165
 msgid "Import from …"
 msgstr "Tuo…"
 
-#: data/gtk/window.blp:947 data/gtk/window.blp:1152
+#: data/gtk/window.blp:961 data/gtk/window.blp:1175
 msgid "Export to …"
 msgstr "Vie…"
 
-#: data/gtk/window.blp:965 data/gtk/window.blp:1162
+#: data/gtk/window.blp:979 data/gtk/window.blp:1185
 msgid "Actions with selected line"
 msgstr "Toiminnot valitulle riville"
 
-#: data/gtk/window.blp:976
+#: data/gtk/window.blp:990 data/gtk/ui/SongCard.blp:134
+#: data/gtk/ui/SongCard.blp:263
+msgid "Edit song metadata"
+msgstr "Muokkaa kappaleen metatietoja"
+
+#: data/gtk/window.blp:999
 msgid "About file"
 msgstr "Tietoja tiedostosta"
 
-#: data/gtk/window.blp:1010
+#: data/gtk/window.blp:1033
 msgid "Add line"
 msgstr "Lisää rivi"
 
-#: data/gtk/window.blp:1033
+#: data/gtk/window.blp:1056
 msgid "Shortcuts"
 msgstr "Pikanäppäimet"
 
-#: data/gtk/window.blp:1037 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:1060 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr "Yleiset"
 
-#: data/gtk/window.blp:1040
+#: data/gtk/window.blp:1063
 msgid "Quit"
 msgstr "Lopeta"
 
-#: data/gtk/window.blp:1050
+#: data/gtk/window.blp:1073
 msgid "Select directory"
 msgstr "Valitse kansio"
 
-#: data/gtk/window.blp:1055
+#: data/gtk/window.blp:1078
 msgid "Select files"
 msgstr "Valitse tiedostot"
 
-#: data/gtk/window.blp:1060 data/gtk/window.blp:1219
+#: data/gtk/window.blp:1083 data/gtk/window.blp:1242
 msgid "Keybindings"
 msgstr "Pikanäppäimet"
 
-#: data/gtk/window.blp:1071
+#: data/gtk/window.blp:1094
 msgid "Sync mode"
 msgstr "Synkronointitila"
 
-#: data/gtk/window.blp:1074
+#: data/gtk/window.blp:1097
 msgid "Sync/Re-sync"
 msgstr "Synkronoi / synkronoi uudelleen"
 
-#: data/gtk/window.blp:1084
+#: data/gtk/window.blp:1107
 msgid "Remove selected line"
 msgstr "Poista valittu rivi"
 
-#: data/gtk/window.blp:1089
+#: data/gtk/window.blp:1112
 msgid "Prepend line to selected"
 msgstr "Liitä rivi eteen valittuun"
 
-#: data/gtk/window.blp:1094
+#: data/gtk/window.blp:1117
 msgid "Append line to selected"
 msgstr "Liitä rivi valittuun"
 
-#: data/gtk/window.blp:1099 data/gtk/window.blp:1167
+#: data/gtk/window.blp:1122 data/gtk/window.blp:1190
 msgid "Append line to end"
 msgstr "Lisää rivi loppuun"
 
-#: data/gtk/window.blp:1104
+#: data/gtk/window.blp:1127
 msgid "Re-sync 100ms back"
 msgstr "Synkronoi taaksepäin 100 ms"
 
-#: data/gtk/window.blp:1109
+#: data/gtk/window.blp:1132
 msgid "Re-sync 100ms forward"
 msgstr "Synkronoi eteenpäin 100 ms"
 
-#: data/gtk/window.blp:1119
+#: data/gtk/window.blp:1142
 msgid "Directory"
 msgstr "Kansio"
 
-#: data/gtk/window.blp:1120
+#: data/gtk/window.blp:1143
 msgid "Files"
 msgstr "Tiedostot"
 
-#: data/gtk/window.blp:1127 data/gtk/window.blp:1184
+#: data/gtk/window.blp:1150 data/gtk/window.blp:1207
 msgid "A-Z"
 msgstr "A-Ö"
 
-#: data/gtk/window.blp:1133 data/gtk/window.blp:1190
+#: data/gtk/window.blp:1156 data/gtk/window.blp:1213
 msgid "Z-A"
 msgstr "Ö-A"
 
-#: data/gtk/window.blp:1144 data/gtk/window.blp:1154
+#: data/gtk/window.blp:1167 data/gtk/window.blp:1177
 msgid "File"
 msgstr "Tiedosto"
 
-#: data/gtk/window.blp:1145 data/gtk/window.blp:1155
+#: data/gtk/window.blp:1168 data/gtk/window.blp:1178
 msgid "Clipboard"
 msgstr "Leikepöytä"
 
-#: data/gtk/window.blp:1164
+#: data/gtk/window.blp:1187
 msgid "Remove line"
 msgstr "Poista rivi"
 
-#: data/gtk/window.blp:1165
+#: data/gtk/window.blp:1188
 msgid "Prepend line"
 msgstr "Liitä rivi eteen"
 
-#: data/gtk/window.blp:1166
+#: data/gtk/window.blp:1189
 msgid "Append line"
 msgstr "Liitä rivi"
 
-#: data/gtk/window.blp:1173
+#: data/gtk/window.blp:1196
 msgid "Use plain"
 msgstr "Käytä raakaa"
 
-#: data/gtk/window.blp:1174
+#: data/gtk/window.blp:1197
 msgid "Use synced"
 msgstr "Käytä synkronoitua"
 
-#: data/gtk/window.blp:1181
+#: data/gtk/window.blp:1204
 msgid "Sort"
 msgstr "Lajittele"
 
-#: data/gtk/window.blp:1197
+#: data/gtk/window.blp:1220
 msgid "View"
 msgstr "Näytä"
 
-#: data/gtk/window.blp:1200
+#: data/gtk/window.blp:1223
 msgid "Grid"
 msgstr "Ruudukko"
 
-#: data/gtk/window.blp:1206
+#: data/gtk/window.blp:1229
 msgid "List"
 msgstr "Luettelo"
 
-#: data/gtk/window.blp:1218
+#: data/gtk/window.blp:1241
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: data/gtk/window.blp:1220
+#: data/gtk/window.blp:1243
 msgid "About"
 msgstr "Tietoja"
 
@@ -483,39 +488,35 @@ msgstr "Poista tallennuksista"
 msgid "Delete name to remove"
 msgstr "Poista poistettava nimi"
 
-#: data/gtk/ui/SongCard.blp:13
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Peru"
 
-#: data/gtk/ui/SongCard.blp:18
+#: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
 msgstr "Toteuta"
 
-#: data/gtk/ui/SongCard.blp:46
+#: data/gtk/ui/SongCard.blp:49
 msgid "Change cover"
 msgstr "Vaihda kansi"
 
-#: data/gtk/ui/SongCard.blp:120 data/gtk/ui/SongCard.blp:249
+#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:252
 msgid "Sync"
 msgstr "Synkronoi"
 
-#: data/gtk/ui/SongCard.blp:131 data/gtk/ui/SongCard.blp:260
-msgid "Edit song metadata"
-msgstr "Muokkaa kappaleen metatietoja"
-
-#: data/gtk/ui/SongCard.blp:141 data/gtk/ui/SongCard.blp:269
+#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:272
 msgid "Show song info"
 msgstr "Näytä kappaleen tiedot"
 
-#: data/gtk/ui/SongCard.blp:155
+#: data/gtk/ui/SongCard.blp:158
 msgid "Open syncing page"
 msgstr "Avaa synkronointisivu"
 
-#: data/gtk/ui/SongCard.blp:284
+#: data/gtk/ui/SongCard.blp:287
 msgid "Set cover"
 msgstr "Aseta kansi"
 
-#: data/gtk/ui/SongCard.blp:289
+#: data/gtk/ui/SongCard.blp:292
 msgid "Remove cover"
 msgstr "Poista kansi"
 
@@ -559,8 +560,8 @@ msgstr "LRClib-tuonti-ikkuna"
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;lyriikat;sanoitukset;kappaleet;musiikki;synkronointi;"
-""
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+"lyriikat;sanoitukset;kappaleet;musiikki;synkronointi;"
 
 #~ msgid "Select a directory"
 #~ msgstr "Valitse kansio"
