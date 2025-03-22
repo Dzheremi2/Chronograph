@@ -77,6 +77,8 @@ Adw.StatusPage no_saves_found_status {
 
 Adw.Dialog quick_edit_dialog {
   can-close: true;
+  content-height: 600;
+  content-width: 500;
 
   Adw.Clamp {
     orientation: horizontal;
@@ -136,6 +138,9 @@ Adw.Dialog quick_edit_dialog {
 }
 
 Adw.Dialog lrclib_window {
+  content-height: 600;
+  content-width: 800;
+
   Adw.ToastOverlay lrclib_window_toast_overlay {
     Adw.Clamp {
       orientation: horizontal;
@@ -224,16 +229,16 @@ Adw.Dialog lrclib_window {
                 Box {
                   orientation: vertical;
 
-                  StackSwitcher lrclib_window_stack_switcher {
+                  Adw.InlineViewSwitcher lrclib_window_stack_switcher {
                     margin-top: 8;
                     halign: center;
                     stack: lrclib_window_lyrics;
                   }
                   
-                  Stack lrclib_window_lyrics {
-                    transition-type: crossfade;
+                  Adw.ViewStack lrclib_window_lyrics {
+                    enable-transitions: true;
                     
-                    Gtk.StackPage {
+                    Adw.ViewStackPage {
                       name: "synced";
                       title: _("Synced");
                       
@@ -258,7 +263,7 @@ Adw.Dialog lrclib_window {
                       };
                     }
                     
-                    Gtk.StackPage {
+                    Adw.ViewStackPage {
                       name: 'plain';
                       title: _("Plain");
                       
@@ -389,16 +394,16 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
       Box {
         orientation: vertical;
 
-        StackSwitcher {
+        Adw.InlineViewSwitcher {
           margin-top: 8;
           halign: center;
           stack: lrclib_window_collapsed_lyrics;
         }
 
-        Stack lrclib_window_collapsed_lyrics {
-          transition-type: crossfade;
+        Adw.ViewStack lrclib_window_collapsed_lyrics {
+          enable-transitions: true;
           
-          Gtk.StackPage {
+          Adw.ViewStackPage {
             name: "synced";
             title: _("Synced");
             
@@ -424,7 +429,7 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
             };
           }
           
-          Gtk.StackPage {
+          Adw.ViewStackPage {
             name: 'plain';
             title: _("Plain");
             
@@ -476,6 +481,9 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
 }
 
 Adw.Dialog lrclib_manual_dialog {
+  content-height: 350;
+  content-width: 400;
+  
   Adw.ToastOverlay lrclib_manual_toast_overlay {
     margin-top: 8;
     margin-start: 8;
