@@ -1,6 +1,6 @@
 id: io.github.dzheremi2.lrcmake_gtk.Devel
 runtime: org.gnome.Platform
-runtime-version: "47"
+runtime-version: "48"
 sdk: org.gnome.Sdk
 command: chronograph
 finish-args:
