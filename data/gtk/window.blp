@@ -818,14 +818,20 @@ Adw.NavigationPage sync_navigation_page {
             spacing: 6;
 
             ToggleButton toggle_repeat_button_shrinked {
-              tooltip-text: bind toggle_repeat_button.tooltip-text bidirectional;
-              icon-name: bind toggle_repeat_button.icon-name bidirectional;
+              tooltip-text: bind toggle_repeat_button.tooltip-text;
+              icon-name: bind toggle_repeat_button.icon-name;
               active: bind toggle_repeat_button.active bidirectional;
             }
 
+            Button sync_page_metadata_editor_button_shrinked {
+              tooltip-text: bind sync_page_metadata_editor_button.tooltip-text;
+              icon-name: bind sync_page_metadata_editor_button.icon-name;
+              clicked => $on_edit_song_metadata();
+            }
+
             Button info_button_shrinked {
-              tooltip-text: bind info_button.tooltip-text bidirectional;
-              icon-name: bind info_button.icon-name bidirectional;
+              tooltip-text: bind info_button.tooltip-text;
+              icon-name: bind info_button.icon-name;
               action-name: "win.show_file_info";
             }
           }
@@ -970,6 +976,15 @@ Adw.NavigationPage sync_navigation_page {
             "osd",
             "circular"
           ]
+        }
+
+        Button sync_page_metadata_editor_button {
+          tooltip-text: _("Edit song metadata");
+          icon-name: "edit-metadata-symbolic";
+          visible: bind controls_box_shrinked.visible inverted;
+          clicked => $on_edit_song_metadata();
+
+          styles ["circular"]
         }
 
         Button info_button {

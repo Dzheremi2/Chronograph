@@ -77,24 +77,14 @@ class SongCard(Gtk.Box):
         else:
             self.taggable()
 
-        for seat in Gdk.Display.get_default().list_seats():
-            if seat.get_capabilities() & Gdk.SeatCapabilities.TOUCH:
-                long_gesture_controller = Gtk.GestureLongPress.new()
-                self.add_controller(long_gesture_controller)
-                long_gesture_controller.connect("pressed", self.toggle_buttons)
-                long_gesture_controller_row = Gtk.GestureLongPress.new()
-                self.list_view_row.add_controller(long_gesture_controller_row)
-                long_gesture_controller_row.connect("pressed", self.toggle_buttons_row)
-            else:
-                event_controller_motion = Gtk.EventControllerMotion.new()
-                self.add_controller(event_controller_motion)
-                event_controller_motion.connect("enter", self.toggle_buttons)
-                event_controller_motion.connect("leave", self.toggle_buttons)
-                event_controller_motion_row = Gtk.EventControllerMotion.new()
-                self.list_view_row.add_controller(event_controller_motion_row)
-                event_controller_motion_row.connect("enter", self.toggle_buttons_row)
-                event_controller_motion_row.connect("leave", self.toggle_buttons_row)
-            break
+        event_controller_motion = Gtk.EventControllerMotion.new()
+        self.add_controller(event_controller_motion)
+        event_controller_motion.connect("enter", self.toggle_buttons)
+        event_controller_motion.connect("leave", self.toggle_buttons)
+        event_controller_motion_row = Gtk.EventControllerMotion.new()
+        self.list_view_row.add_controller(event_controller_motion_row)
+        event_controller_motion_row.connect("enter", self.toggle_buttons_row)
+        event_controller_motion_row.connect("leave", self.toggle_buttons_row)
 
     def taggable(self) -> None:
         """Used if file's metadata can be tagged"""
@@ -103,11 +93,11 @@ class SongCard(Gtk.Box):
 
         self.metadata_editor_button.connect("clicked", self.open_metadata_editor)
         self.metadata_editor_button_row.connect("clicked", self.open_metadata_editor)
-
         self.metadata_editor_apply_button.connect("clicked", self.metadata_editor_save)
         self.metadata_editor_cancel_button.connect(
             "clicked", self.on_metadata_editor_close
         )
+        self.metadata_editor.connect("closed", self.on_metadata_editor_closed)
 
         actions: Gio.SimpleActionGroup = Gio.SimpleActionGroup.new()
         change_action: Gio.SimpleAction = Gio.SimpleAction.new("change", None)
@@ -193,10 +183,13 @@ class SongCard(Gtk.Box):
         self._file.save()
         self.invalidate_cover(self.cover_img)
         self.invalidate_cover(self.cover_img_row)
+        self.invalidate_cover(shared.win.sync_page_cover)
         self.title_label.set_text(self.title)
         self.list_view_row.set_title(self.title)
         self.artist_label.set_text(self.artist)
         self.list_view_row.set_subtitle(self.artist)
+        shared.win.sync_page_title.set_text(self.title)
+        shared.win.sync_page_artist.set_text(self.artist)
         self.metadata_editor.close()
 
     def metadata_change_cover(self, *_args) -> None:
@@ -231,10 +224,13 @@ class SongCard(Gtk.Box):
         self.metadata_editor_cover_image.set_from_icon_name("note-placeholder")
 
     def on_metadata_editor_close(self, *_args) -> None:
+        """Closes metadata editor"""
+        self.metadata_editor.close()
+
+    def on_metadata_editor_closed(self, *_args) -> None:
         """Sets temporary changes variables to default"""
         self._file._cover_updated = False
         self._mde_new_cover_path = ""
-        self.metadata_editor.close()
 
     @Gtk.Template.Callback()
     def gen_box_dialog(self, *_args) -> None:

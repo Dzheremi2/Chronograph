@@ -774,8 +774,10 @@ class ChronographWindow(Adw.ApplicationWindow):
     @Gtk.Template.Callback()
     def toggle_list_view(self, *_args) -> None:
         if shared.schema.get_boolean("auto-list-view") and (
-            self.state != WindowState.EMPTY
-            and self.state != WindowState.EMPTY_DIR
+            self.library_scrolled_window.get_child().get_child()
+            != self.no_source_opened
+            and self.library_scrolled_window.get_child().get_child()
+            != self.empty_directory
         ):
             if self.get_width() <= 564:
                 self.library_scrolled_window.set_child(self.library_list)
@@ -897,6 +899,10 @@ class ChronographWindow(Adw.ApplicationWindow):
         else:
             self.state = WindowState.EMPTY
         self.on_drag_leave()
+
+    @Gtk.Template.Callback()
+    def on_edit_song_metadata(self, *_args) -> None:
+        self.loaded_card.open_metadata_editor()
 
     @GObject.Property
     def state(self) -> WindowState:
