@@ -229,16 +229,16 @@ Adw.Dialog lrclib_window {
                 Box {
                   orientation: vertical;
 
-                  StackSwitcher lrclib_window_stack_switcher {
+                  Adw.InlineViewSwitcher lrclib_window_stack_switcher {
                     margin-top: 8;
                     halign: center;
                     stack: lrclib_window_lyrics;
                   }
                   
-                  Stack lrclib_window_lyrics {
-                    transition-type: crossfade;
+                  Adw.ViewStack lrclib_window_lyrics {
+                    enable-transitions: true;
                     
-                    Gtk.StackPage {
+                    Adw.ViewStackPage {
                       name: "synced";
                       title: _("Synced");
                       
@@ -263,7 +263,7 @@ Adw.Dialog lrclib_window {
                       };
                     }
                     
-                    Gtk.StackPage {
+                    Adw.ViewStackPage {
                       name: 'plain';
                       title: _("Plain");
                       
@@ -394,16 +394,16 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
       Box {
         orientation: vertical;
 
-        StackSwitcher {
+        Adw.InlineViewSwitcher {
           margin-top: 8;
           halign: center;
           stack: lrclib_window_collapsed_lyrics;
         }
 
-        Stack lrclib_window_collapsed_lyrics {
-          transition-type: crossfade;
+        Adw.ViewStack lrclib_window_collapsed_lyrics {
+          enable-transitions: true;
           
-          Gtk.StackPage {
+          Adw.ViewStackPage {
             name: "synced";
             title: _("Synced");
             
@@ -429,7 +429,7 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
             };
           }
           
-          Gtk.StackPage {
+          Adw.ViewStackPage {
             name: 'plain';
             title: _("Plain");
             
