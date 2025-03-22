@@ -774,10 +774,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     @Gtk.Template.Callback()
     def toggle_list_view(self, *_args) -> None:
         if shared.schema.get_boolean("auto-list-view") and (
-            shared.win.library_scrolled_window.get_child().get_child()
-            != shared.win.no_source_opened
-            and shared.win.library_scrolled_window.get_child().get_child()
-            != shared.win.empty_directory
+            self.state != WindowState.EMPTY
+            and self.state != WindowState.EMPTY_DIR
         ):
             if self.get_width() <= 564:
                 self.library_scrolled_window.set_child(self.library_list)
@@ -851,15 +849,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
         for file in files:
             path = file.get_path()
-            if os.path.isdir(path) or pathlib.Path(path).suffix not in (
-                ".mp3",
-                ".m4a",
-                ".flac",
-                ".aac",
-                ".AAC",
-                ".ogg",
-                ".wav",
-            ):
+            if os.path.isdir(path):
                 self.drop_target.reject()
                 self.on_drag_leave()
 

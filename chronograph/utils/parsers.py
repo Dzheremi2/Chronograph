@@ -35,6 +35,8 @@ def dir_parser(path: str, *_args) -> None:
     else:
         shared.win.state = WindowState.EMPTY_DIR
 
+    shared.win.toggle_list_view()
+
     shared.state_schema.set_string("opened-dir", path)
     if any(pin["path"] == path for pin in shared.cache.get("pins", [])):
         shared.win.add_dir_to_saves_button.set_visible(False)
