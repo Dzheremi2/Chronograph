@@ -101,6 +101,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     rew100_button: Gtk.Button = Gtk.Template.Child()
     forw100_button: Gtk.Button = Gtk.Template.Child()
     export_lyrics_button: Gtk.MenuButton = Gtk.Template.Child()
+    sync_page_metadata_editor_button_box: Gtk.Box = Gtk.Template.Child()
+    sync_page_metadata_editor_button_shrinked_box: Gtk.Box = Gtk.Template.Child()
     info_button: Gtk.Button = Gtk.Template.Child()
     sync_lines: Gtk.ListBox = Gtk.Template.Child()
     add_line_button: Gtk.Button = Gtk.Template.Child()

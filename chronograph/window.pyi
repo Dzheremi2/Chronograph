@@ -74,6 +74,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     rew100_button: Gtk.Button
     forw100_button: Gtk.Button
     export_lyrics_button: Gtk.MenuButton
+    sync_page_metadata_editor_button_box: Gtk.Box
+    sync_page_metadata_editor_button_shrinked_box: Gtk.Box
     info_button: Gtk.Button
     sync_lines: Gtk.ListBox
     add_line_button: Gtk.Button

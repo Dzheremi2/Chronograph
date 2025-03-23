@@ -561,6 +561,8 @@ template $ChronographWindow : Adw.ApplicationWindow {
       syncing_buttons_box.halign: center;
       lrclib_window_main_clamp.child: lrclib_window_collapsed_navigation_view;
       header_bar.show-title: false;
+      sync_page_metadata_editor_button.visible: false;
+      sync_page_metadata_editor_button_shrinked.visible: true;
     }
   }
 
@@ -759,7 +761,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
 Adw.NavigationPage sync_navigation_page {
   title: _("Syncing");
-  hiding => $reset_sync_editor();
+  hidden => $reset_sync_editor();
 
   Adw.ToolbarView {
     [top]
@@ -831,10 +833,12 @@ Adw.NavigationPage sync_navigation_page {
               active: bind toggle_repeat_button.active bidirectional;
             }
 
-            Button sync_page_metadata_editor_button_shrinked {
-              tooltip-text: bind sync_page_metadata_editor_button.tooltip-text;
-              icon-name: bind sync_page_metadata_editor_button.icon-name;
-              clicked => $on_edit_song_metadata();
+            Box sync_page_metadata_editor_button_shrinked_box {
+              Button sync_page_metadata_editor_button_shrinked {
+                tooltip-text: bind sync_page_metadata_editor_button.tooltip-text;
+                icon-name: bind sync_page_metadata_editor_button.icon-name;
+                clicked => $on_edit_song_metadata();
+              }
             }
 
             Button info_button_shrinked {
@@ -986,13 +990,14 @@ Adw.NavigationPage sync_navigation_page {
           ]
         }
 
-        Button sync_page_metadata_editor_button {
-          tooltip-text: _("Edit song metadata");
-          icon-name: "edit-metadata-symbolic";
-          visible: bind controls_box_shrinked.visible inverted;
-          clicked => $on_edit_song_metadata();
+        Box sync_page_metadata_editor_button_box {
+          Button sync_page_metadata_editor_button {
+            tooltip-text: _("Edit song metadata");
+            icon-name: "edit-metadata-symbolic";
+            clicked => $on_edit_song_metadata();
 
-          styles ["circular"]
+            styles ["circular"]
+          }
         }
 
         Button info_button {

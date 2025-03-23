@@ -130,6 +130,12 @@ class SongCard(Gtk.Box):
         ) + shared.schema.get_string("auto-file-format")
         if os.path.exists(file) and shared.schema.get_boolean("auto-file-manipulation"):
             file_parser(file)
+        if type(self._file) == FileUntaggable:
+            shared.win.sync_page_metadata_editor_button_box.set_visible(False)
+            shared.win.sync_page_metadata_editor_button_shrinked_box.set_visible(False)
+        else:
+            shared.win.sync_page_metadata_editor_button_box.set_visible(True)
+            shared.win.sync_page_metadata_editor_button_shrinked_box.set_visible(True)
 
     def open_metadata_editor(self, *_args) -> None:
         """Prepares metadata editor and shows it"""

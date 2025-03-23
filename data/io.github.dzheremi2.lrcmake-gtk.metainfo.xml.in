@@ -83,7 +83,15 @@
   </screenshots>
 
   <releases>
-  <release version="2.4" date="2025-03-23">
+    <release version="2.4.1" date="2025-03-23">
+      <description translate="no">
+        <p>Bug fixes</p>
+        <ul>
+          <li>Metadata editor buttons now doesn't show if user syncing an untaggable file</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.4" date="2025-03-23">
       <description translate="no">
         <p>GNOME Platform 48 &amp; New features</p>
         <ul>
