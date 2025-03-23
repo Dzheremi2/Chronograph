@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-22 17:13+0300\n"
-"PO-Revision-Date: 2025-03-17 20:01+0000\n"
+"PO-Revision-Date: 2025-03-22 21:48+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
 "chronograph/uk/>\n"
@@ -542,9 +542,8 @@ msgstr "Бібліотека"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Library in List View mode"
-msgstr "Автоматично перемикати режим перегляду списку"
+msgstr "Бібліотека в режимі перегляду списку"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
