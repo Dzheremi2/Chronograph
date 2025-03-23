@@ -33,6 +33,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: io.github.dzheremi2.lrcmake-gtk-x86_64
+      - name: Extract Artifact
+        run: unzip io.github.dzheremi2.lrcmake-gtk-x86_64.zip
       - name: Extract Release Notes
         shell: python
         run: |
@@ -52,7 +54,7 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         with:
           files: |
-            /home/runner/work/Chronograph/Chronograph/io.github.dzheremi2.lrcmake-gtk-x86_64
+            io.github.dzheremi2.lrcmake-gtk.flatpak
           fail_on_unmatched_files: true
           tag_name: ${{ steps.get_tag_name.outputs.tag_name }}
           body_path: release_notes
