@@ -13,9 +13,44 @@ class SyncLine(Adw.EntryRow):
 
     def __init__(self):
         super().__init__()
+        self.text_field: Gtk.Text = None
         self.focus_controller = Gtk.EventControllerFocus()
         self.focus_controller.connect("enter", self.update_selected_row)
         self.add_controller(self.focus_controller)
+
+        for item in self.get_child():
+            for _item in item:
+                if type(text_field := _item) == Gtk.Text:
+                    self.text_field = text_field
+                    break
+        self.text_field.connect("backspace", self.rm_line_on_backspace)
+
+    @Gtk.Template.Callback()
+    def add_line_on_enter(self, *_args) -> None:
+        """Adds new line below `self` on Enter press"""
+        shared.win.on_append_selected_line_action()
+        childs = []
+        for child in shared.win.sync_lines:
+            childs.append(child)
+        index = childs.index(self)
+        shared.win.sync_lines.get_row_at_index(index + 1).grab_focus()
+
+    def rm_line_on_backspace(self, text: Gtk.Text) -> None:
+        """Removes `self` and focuses on previous line if Backspace pressed when `self.text` length is 0
+
+        Parameters
+        ----------
+        text : Gtk.Text
+            Gtk.Text to get text length from
+        """
+        if text.get_text_length() == 0:
+            lines = []
+            for line in shared.win.sync_lines:
+                lines.append(line)
+            index = lines.index(self)
+            shared.win.sync_lines.remove(self)
+            shared.win.sync_lines.get_row_at_index(index - 1).grab_focus()
+            del self
 
     def update_selected_row(self, event: Gtk.EventControllerFocus) -> None:
         """Updates global selected line to `self`

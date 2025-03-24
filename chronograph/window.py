@@ -362,7 +362,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 lines.append(line)
             index = lines.index(shared.selected_line)
             self.sync_lines.remove(shared.selected_line)
-            self.sync_lines.get_row_at_index(index).grab_focus()
+            self.sync_lines.get_row_at_index(index - 1).grab_focus()
 
     def on_prepend_selected_line_action(self, *_args) -> None:
         """Prepends new `SyncLine` before selected `SyncLine` in `self.sync_lines`"""
