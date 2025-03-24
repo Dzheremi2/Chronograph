@@ -1,0 +1,28 @@
+name: Auto Label Issues
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  label_issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Extract issue numbers from commit messages
+        id: extract_issues
+        run: |
+          issues=$(git log --format=%B -n 1 | grep -oE "fix-available: #[0-9]+" | grep -oE "[0-9]+")
+          echo "ISSUES=$issues" >> $GITHUB_ENV
+
+      - name: Add label to issues
+        if: env.ISSUES != ''
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: fix-available
+          number: ${{ env.ISSUES }}
