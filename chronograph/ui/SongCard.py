@@ -266,8 +266,8 @@ class SongCard(Gtk.Box):
 
     def toggle_buttons_row(self, *_args) -> None:
         """Sets if buttons should be visible or not"""
-        self.buttons_revealer_row.set_reveal_child(
-            not self.buttons_revealer_row.get_reveal_child()
+        self.buttons_revealer_row.set_visible(
+            not self.buttons_revealer_row.get_visible()
         )
 
     def invalidate_cover(self, widget: Gtk.Image) -> None:

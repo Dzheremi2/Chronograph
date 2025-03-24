@@ -216,6 +216,8 @@ template $SongCard: Box {
 Adw.ActionRow list_view_row {
   activatable: true;
   use-markup: false;
+  subtitle-lines: 1;
+  title-lines: 1;
   activated => $on_play_button_clicked();
 
   [prefix]
@@ -236,46 +238,41 @@ Adw.ActionRow list_view_row {
     hexpand: false;
     valign: center;
 
-    Revealer buttons_revealer_row {
-      reveal-child: false;
-      transition-duration: 0;
-      transition-type: slide_down;
+    Box buttons_revealer_row {
+      margin-top: 8;
+      margin-bottom: 8;
+      orientation: horizontal;
+      spacing: 6;
+      visible: false;
 
-      Box {
-        margin-top: 8;
-        margin-bottom: 8;
-        orientation: horizontal;
-        spacing: 6;
+      Button play_button_row {
+        icon-name: "play-button-symbolic";
+        tooltip-text: _("Sync");
+        clicked => $on_play_button_clicked();
 
-        Button play_button_row {
-          icon-name: "play-button-symbolic";
-          tooltip-text: _("Sync");
-          clicked => $on_play_button_clicked();
+        styles [
+          "circular",
+          "suggested-action"
+        ]
+      }
 
-          styles [
-            "circular",
-            "suggested-action"
-          ]
-        }
+      Button metadata_editor_button_row {
+        icon-name: "edit-metadata-symbolic";
+        tooltip-text: _("Edit song metadata");
 
-        Button metadata_editor_button_row {
-          icon-name: "edit-metadata-symbolic";
-          tooltip-text: _("Edit song metadata");
+        styles [
+          "circular"
+        ]
+      }
 
-          styles [
-            "circular"
-          ]
-        }
+      Button info_button_row {
+        icon-name: "info-button-symbolic";
+        tooltip-text: _("Show song info");
+        clicked => $gen_box_dialog();
 
-        Button info_button_row {
-          icon-name: "info-button-symbolic";
-          tooltip-text: _("Show song info");
-          clicked => $gen_box_dialog();
-
-          styles [
-            "circular"
-          ]
-        }
+        styles [
+          "circular"
+        ]
       }
     }
   }

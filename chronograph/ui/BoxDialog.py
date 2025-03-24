@@ -14,7 +14,7 @@ class BoxDialog(Adw.Dialog):
     lines_content : tuple
         titles and subtitles of `Adw.ActionRow(s)`. Like `(("1st Title", "1st subtitle"), ("2nd title", "2nd subtitle"), ...)`
     """
-    
+
     __gtype_name__ = "BoxDialog"
 
     dialog_title_label: Gtk.Label = Gtk.Template.Child()
@@ -26,7 +26,10 @@ class BoxDialog(Adw.Dialog):
         for entry in lines_content:
             self.props_list.append(
                 Adw.ActionRow(
-                    title=entry[0], subtitle=entry[1], css_classes=["property"], use_markup=False
+                    title=entry[0],
+                    subtitle=entry[1],
+                    css_classes=["property"],
+                    use_markup=False,
                 )
             )
 
