@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-23 09:25+0300\n"
+"POT-Creation-Date: 2025-03-24 19:34+0300\n"
 "PO-Revision-Date: 2025-03-15 08:47+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/lrcmake/"
@@ -280,7 +280,7 @@ msgid "Actions with selected line"
 msgstr "Ações com linha selecionada"
 
 #: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
-#: data/gtk/ui/SongCard.blp:263
+#: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
 msgstr "Editar metadados da música"
 
@@ -502,11 +502,11 @@ msgstr "Aplicar"
 msgid "Change cover"
 msgstr "Alterar cobertura"
 
-#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:252
+#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
 msgid "Sync"
 msgstr "Sincronização"
 
-#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:272
+#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
 msgid "Show song info"
 msgstr "Mostre informações da música"
 
@@ -514,11 +514,11 @@ msgstr "Mostre informações da música"
 msgid "Open syncing page"
 msgstr "Página de sincronização aberta"
 
-#: data/gtk/ui/SongCard.blp:287
+#: data/gtk/ui/SongCard.blp:284
 msgid "Set cover"
 msgstr "Capa do conjunto"
 
-#: data/gtk/ui/SongCard.blp:292
+#: data/gtk/ui/SongCard.blp:289
 msgid "Remove cover"
 msgstr "Remova a tampa"
 

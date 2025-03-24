@@ -158,6 +158,7 @@ class SongCard(Gtk.Box):
             if self._file.album is not None and self._file.album != ""
             else self.metadata_editor_album_row.set_text("")
         )
+        self.metadata_editor.grab_focus()
         self.metadata_editor.present(shared.win)
 
     def metadata_editor_save(self, *_args) -> None:

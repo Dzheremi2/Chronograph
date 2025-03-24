@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-23 09:25+0300\n"
+"POT-Creation-Date: 2025-03-24 19:34+0300\n"
 "PO-Revision-Date: 2025-03-12 08:01+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -281,7 +281,7 @@ msgid "Actions with selected line"
 msgstr ""
 
 #: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
-#: data/gtk/ui/SongCard.blp:263
+#: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
 msgstr ""
 
@@ -496,11 +496,11 @@ msgstr ""
 msgid "Change cover"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:252
+#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
 msgid "Sync"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:272
+#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
 msgid "Show song info"
 msgstr ""
 
@@ -508,11 +508,11 @@ msgstr ""
 msgid "Open syncing page"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:287
+#: data/gtk/ui/SongCard.blp:284
 msgid "Set cover"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:292
+#: data/gtk/ui/SongCard.blp:289
 msgid "Remove cover"
 msgstr ""
 

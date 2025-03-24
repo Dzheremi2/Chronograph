@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-23 09:25+0300\n"
+"POT-Creation-Date: 2025-03-24 19:34+0300\n"
 "PO-Revision-Date: 2025-03-22 21:48+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
@@ -279,7 +279,7 @@ msgid "Actions with selected line"
 msgstr "Дії з обраним рядком"
 
 #: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
-#: data/gtk/ui/SongCard.blp:263
+#: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
 msgstr "Редагувати метадані пісні"
 
@@ -500,11 +500,11 @@ msgstr "Застосувати"
 msgid "Change cover"
 msgstr "Змінити кришку"
 
-#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:252
+#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:272
+#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
 msgid "Show song info"
 msgstr "Показати інформацію про пісню"
 
@@ -512,11 +512,11 @@ msgstr "Показати інформацію про пісню"
 msgid "Open syncing page"
 msgstr "Відкрити сторінку синхронізації"
 
-#: data/gtk/ui/SongCard.blp:287
+#: data/gtk/ui/SongCard.blp:284
 msgid "Set cover"
 msgstr "Набір кришки"
 
-#: data/gtk/ui/SongCard.blp:292
+#: data/gtk/ui/SongCard.blp:289
 msgid "Remove cover"
 msgstr "Зняти кришку"
 
