@@ -15,7 +15,8 @@ If you found a bug, and you're not that lazy, then you should report this bug by
 ## Direct Contributing
 #### Code Contributing
 To directly contribute to the app, [fork](https://github.com/Dzheremi2/Chronograph/fork) the repo, make your changes and [open](https://github.com/Dzheremi2/Chronograph/pulls) a pull request. If your code satisfies the maintainer, then it would be merged, and you will be mentioned in the upcoming release and added to the `About App` section in the app.
->![IMPORTANT]
+
+>[!IMPORTANT]
 >Code in pull requests should respect the [Project's Code Style](#code-style).
 
 #### Internationalization
