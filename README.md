@@ -55,6 +55,8 @@ If you want the app to support more file formats, create a feature request about
 ### Code of Conduct
 The project follows the [GNOME Code of Conduct](https://conduct.gnome.org)
 
+### Contributing
+All contribution instructions are described in [CONTRIBUTING.md](https://github.com/Dzheremi2/Chronograph/blob/master/CONTRIBUTING.md) file.
 
 ### Screenshots
 <div align="center">
