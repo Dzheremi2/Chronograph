@@ -208,7 +208,7 @@ msgstr "Cronógrafo"
 
 #: data/gtk/window.blp:603
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Solte arquivos aqui para abri-los"
 
 #: data/gtk/window.blp:624
 msgid "Saves"
