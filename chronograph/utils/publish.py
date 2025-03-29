@@ -93,7 +93,7 @@ def do_publish(title: str, artist: str, album: str, duration: int, lyrics: str) 
     )
 
     if response.status_code == 201:
-        if shared.win.lrclib_manual_dialog.is_visible():
+        if shared.win.props.visible_dialog is shared.win.lrclib_manual_dialog:
             shared.win.lrclib_manual_toast_overlay.add_toast(
                 Adw.Toast(title=_("Published successfully: ") + str(response.status_code))
             )
@@ -102,7 +102,7 @@ def do_publish(title: str, artist: str, album: str, duration: int, lyrics: str) 
             Adw.Toast(title=_("Published successfully: ") + str(response.status_code))
             )
     elif response.status_code == 400:
-        if shared.win.lrclib_manual_dialog.is_visible():
+        if shared.win.props.visible_dialog is shared.win.lrclib_manual_dialog:
             shared.win.lrclib_manual_toast_overlay.add_toast(
             Adw.Toast(title=_("Incorrect publish token: ") + str(response.status_code))
             )
@@ -111,7 +111,7 @@ def do_publish(title: str, artist: str, album: str, duration: int, lyrics: str) 
                 Adw.Toast(title=_("Incorrect publish token: ") + str(response.status_code))
             )
     else:
-        if shared.win.lrclib_manual_dialog.is_visible():
+        if shared.win.props.visible_dialog is shared.win.lrclib_manual_dialog:
             shared.win.lrclib_manual_toast_overlay.add_toast(
                 Adw.Toast(title=_("Unknown error occured: ") + str(response.status_code))
             )
