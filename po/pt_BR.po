@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-24 20:57+0300\n"
-"PO-Revision-Date: 2025-03-15 08:47+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-03-28 17:57+0000\n"
+"Last-Translator: burns <ahoradocafezinho@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "lrcmake/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -126,9 +126,8 @@ msgid "No source selected yet"
 msgstr "Nenhuma fonte selecionada ainda"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "Selecione um diretório ou abra um arquivo"
+msgstr "Selecione um diretório ou arraste e solte arquivos para carregá-los"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -208,7 +207,7 @@ msgstr "Cronógrafo"
 
 #: data/gtk/window.blp:603
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Solte arquivos aqui para abri-los"
 
 #: data/gtk/window.blp:624
 msgid "Saves"
@@ -231,9 +230,8 @@ msgid "App settings, info and utils"
 msgstr "Configurações, informações e utilitários de aplicativos"
 
 #: data/gtk/window.blp:687
-#, fuzzy
 msgid "Clean library"
-msgstr "Biblioteca"
+msgstr "Limpar Biblioteca"
 
 #: data/gtk/window.blp:702
 msgid "Re-parse current directory"
@@ -309,9 +307,8 @@ msgid "Select directory"
 msgstr "Selecione diretório"
 
 #: data/gtk/window.blp:1081
-#, fuzzy
 msgid "Select files"
-msgstr "Selecione diretório"
+msgstr "Selecione arquivos"
 
 #: data/gtk/window.blp:1086 data/gtk/window.blp:1245
 msgid "Keybindings"
@@ -354,9 +351,8 @@ msgid "Directory"
 msgstr "Diretório"
 
 #: data/gtk/window.blp:1146
-#, fuzzy
 msgid "Files"
-msgstr "Arquivo"
+msgstr "Arquivos"
 
 #: data/gtk/window.blp:1153 data/gtk/window.blp:1210
 msgid "A-Z"
@@ -527,7 +523,6 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Sincronizar letras de suas músicas amadas"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
@@ -535,7 +530,7 @@ msgid ""
 msgstr ""
 "Este aplicativo ajuda você a contribuir para o grande banco de dados de "
 "letras sincronizadas com a bela interface GTK4 e LibAdwaita. Ele suporta "
-"música nos formatos ogg, flac, mp3 e wav"
+"música nos formatos ogg, flac, mp3 e wav e acc (funcionalidade reduzida)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
@@ -544,9 +539,8 @@ msgstr "Biblioteca"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Library in List View mode"
-msgstr "Alternar automaticamente o modo de exibição de lista"
+msgstr "Biblioteca em modo de exibição de lista"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
@@ -565,12 +559,11 @@ msgstr "Caixa de diálogo de importação LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;"
-"multimídia;mídia;música;sincronização;"
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;multimídia;mídia;música;sincronização;"
+""
 
 #~ msgid "Select a directory"
 #~ msgstr "Selecione um diretório"
