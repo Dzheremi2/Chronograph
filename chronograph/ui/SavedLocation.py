@@ -68,7 +68,6 @@ class SavedLocation(Gtk.Box):
             if self.path == shared.state_schema.get_string("opened-dir"):
                 shared.win.add_dir_to_saves_button.set_visible(True)
             shared.win.build_sidebar()
-            del self
 
     def toggle_button(self, *_args) -> None:
         """Chages rename icon visibility"""

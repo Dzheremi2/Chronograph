@@ -50,7 +50,6 @@ class SyncLine(Adw.EntryRow):
             index = lines.index(self)
             shared.win.sync_lines.remove(self)
             shared.win.sync_lines.get_row_at_index(index - 1).grab_focus()
-            del self
 
     def update_selected_row(self, event: Gtk.EventControllerFocus) -> None:
         """Updates global selected line to `self`
