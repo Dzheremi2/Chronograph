@@ -83,6 +83,16 @@
   </screenshots>
 
   <releases>
+    <release version="2.4.3" date="2025-03-30">
+      <description translate="no">
+        <p>Bug fixes</p>
+        <ul>
+          <li>Window control buttons on syncing page now depends on system settings</li>
+          <li>LRClib Publish result toasts now shows correctly</li>
+          <li>Primary app menu now opens on F10 press</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.4.2" date="2025-03-24">
       <description translate="no">
         <p>Bug fixes &amp; Common text editor like behavior</p>

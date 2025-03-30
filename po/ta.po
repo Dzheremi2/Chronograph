@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-24 20:57+0300\n"
+"POT-Creation-Date: 2025-03-30 09:44+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/lrcmake/"
@@ -162,7 +162,7 @@ msgstr "சேமிப்புகள் எதுவும் இன்னு�
 msgid "Press pin button to add current directory to the saves"
 msgstr "சேமிப்புகளில் தற்போதைய கோப்பகத்தைச் சேர்க்க முள் பொத்தானை அழுத்தவும்"
 
-#: data/gtk/window.blp:103 data/gtk/window.blp:1240
+#: data/gtk/window.blp:103 data/gtk/window.blp:1242
 msgid "Quick Editor"
 msgstr "விரைவான ஆசிரியர்"
 
@@ -174,7 +174,7 @@ msgstr "இடைநிலைப்பலகைக்கு நகலெடு�
 msgid "Search LRClib for provided title and artist"
 msgstr "வழங்கப்பட்ட தலைப்பு மற்றும் கலைஞருக்காக LRCLIB ஐத் தேடுங்கள்"
 
-#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:723
+#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:724
 msgid "Search"
 msgstr "தேடல்"
 
@@ -212,7 +212,7 @@ msgstr "கோப்புகளைத் திறக்க இங்கே வ
 msgid "Saves"
 msgstr "சேமிக்கிறது"
 
-#: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1091
+#: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1093
 msgid "Toggle sidebar"
 msgstr "பக்கப்பட்டியை மாற்றவும்"
 
@@ -220,196 +220,197 @@ msgstr "பக்கப்பட்டியை மாற்றவும்"
 msgid "Select a directory or open a file"
 msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும் அல்லது ஒரு கோப்பைத் திறக்கவும்"
 
-#: data/gtk/window.blp:672 data/gtk/window.blp:1071
+#: data/gtk/window.blp:672 data/gtk/window.blp:1073
 msgid "Toggle search"
 msgstr "தேடலை மாற்றவும்"
 
-#: data/gtk/window.blp:680 data/gtk/window.blp:772
+#: data/gtk/window.blp:680 data/gtk/window.blp:773
 msgid "App settings, info and utils"
 msgstr "பயன்பாட்டு அமைப்புகள், செய்தி மற்றும் பயன்பாடுகள்"
 
-#: data/gtk/window.blp:687
-msgid "Clean library"
+#: data/gtk/window.blp:688
+#, fuzzy
+msgid "Clean the library"
 msgstr "நூலகம் துடை"
 
-#: data/gtk/window.blp:702
+#: data/gtk/window.blp:703
 msgid "Re-parse current directory"
 msgstr "தற்போதைய கோப்பகத்தை மீண்டும் அலசுங்கள்"
 
-#: data/gtk/window.blp:707
+#: data/gtk/window.blp:708
 msgid "Add current directory to saves"
 msgstr "சேமிப்புகளுக்கு தற்போதைய கோப்பகத்தைச் சேர்க்கவும்"
 
-#: data/gtk/window.blp:763
+#: data/gtk/window.blp:764
 msgid "Syncing"
 msgstr "ஒத்திசைகிறது"
 
-#: data/gtk/window.blp:861
+#: data/gtk/window.blp:863
 msgid "Toggle song repeat"
 msgstr "பாடல் மறுபடியும் மாற்று"
 
-#: data/gtk/window.blp:917
+#: data/gtk/window.blp:919
 msgid "Sync/Re-sync line"
 msgstr "ஒத்திசைவு/மறு ஒத்திசைவு வரி"
 
-#: data/gtk/window.blp:928 data/gtk/window.blp:1105
+#: data/gtk/window.blp:930 data/gtk/window.blp:1107
 msgid "Replay selected line"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை மீண்டும் இயக்கவும்"
 
-#: data/gtk/window.blp:936
+#: data/gtk/window.blp:938
 msgid "Re-sync selected line 100ms back"
 msgstr "மீண்டும் ஒத்திசைவு தேர்ந்தெடுக்கப்பட்ட வரி 100 மீட்டர் பின்னால்"
 
-#: data/gtk/window.blp:944
+#: data/gtk/window.blp:946
 msgid "Re-sync selected line 100ms forward"
 msgstr "மீண்டும் ஒத்திசைவு தேர்ந்தெடுக்கப்பட்ட வரி 100ms முன்னோக்கி"
 
-#: data/gtk/window.blp:952 data/gtk/window.blp:1168
+#: data/gtk/window.blp:954 data/gtk/window.blp:1170
 msgid "Import from …"
 msgstr "இருந்து இறக்குமதி…"
 
-#: data/gtk/window.blp:963 data/gtk/window.blp:1178
+#: data/gtk/window.blp:965 data/gtk/window.blp:1180
 msgid "Export to …"
 msgstr "ஏற்றுமதி…"
 
-#: data/gtk/window.blp:981 data/gtk/window.blp:1188
+#: data/gtk/window.blp:983 data/gtk/window.blp:1190
 msgid "Actions with selected line"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரியுடன் செயல்கள்"
 
-#: data/gtk/window.blp:993 data/gtk/ui/SongCard.blp:134
+#: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
 #: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
 msgstr "பாடல் மெட்டாடேட்டாவைத் திருத்தவும்"
 
-#: data/gtk/window.blp:1002
+#: data/gtk/window.blp:1004
 msgid "About file"
 msgstr "கோப்பு பற்றி"
 
-#: data/gtk/window.blp:1036
+#: data/gtk/window.blp:1038
 msgid "Add line"
 msgstr "வரி சேர்"
 
-#: data/gtk/window.blp:1059
+#: data/gtk/window.blp:1061
 msgid "Shortcuts"
 msgstr "குறுக்குவழிகள்"
 
-#: data/gtk/window.blp:1063 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:1065 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr "பொது"
 
-#: data/gtk/window.blp:1066
+#: data/gtk/window.blp:1068
 msgid "Quit"
 msgstr "வெளியேறு"
 
-#: data/gtk/window.blp:1076
+#: data/gtk/window.blp:1078
 msgid "Select directory"
 msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
 
-#: data/gtk/window.blp:1081
+#: data/gtk/window.blp:1083
 msgid "Select files"
 msgstr "கோப்புகளைத் தேர்ந்தெடு"
 
-#: data/gtk/window.blp:1086 data/gtk/window.blp:1245
+#: data/gtk/window.blp:1088 data/gtk/window.blp:1247
 msgid "Keybindings"
 msgstr "விசைப்பலகைகள்"
 
-#: data/gtk/window.blp:1097
+#: data/gtk/window.blp:1099
 msgid "Sync mode"
 msgstr "ஒத்திசைவு பயன்முறை"
 
-#: data/gtk/window.blp:1100
+#: data/gtk/window.blp:1102
 msgid "Sync/Re-sync"
 msgstr "ஒத்திசைவு/மறு ஒத்திசைவு"
 
-#: data/gtk/window.blp:1110
+#: data/gtk/window.blp:1112
 msgid "Remove selected line"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை அகற்று"
 
-#: data/gtk/window.blp:1115
+#: data/gtk/window.blp:1117
 msgid "Prepend line to selected"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரிக்கு வரியைத் தயாரிக்கவும்"
 
-#: data/gtk/window.blp:1120
+#: data/gtk/window.blp:1122
 msgid "Append line to selected"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரி சேர்க்கவும்"
 
-#: data/gtk/window.blp:1125 data/gtk/window.blp:1193
+#: data/gtk/window.blp:1127 data/gtk/window.blp:1195
 msgid "Append line to end"
 msgstr "முடிவுக்கு வரியைச் சேர்க்கவும்"
 
-#: data/gtk/window.blp:1130
+#: data/gtk/window.blp:1132
 msgid "Re-sync 100ms back"
 msgstr "100 மீட்டர் பின்னால் மீண்டும் ஒத்திசைக்கவும்"
 
-#: data/gtk/window.blp:1135
+#: data/gtk/window.blp:1137
 msgid "Re-sync 100ms forward"
 msgstr "100ms முன்னோக்கி மீண்டும் ஒத்திசைக்கவும்"
 
-#: data/gtk/window.blp:1145
+#: data/gtk/window.blp:1147
 msgid "Directory"
 msgstr "அடைவு"
 
-#: data/gtk/window.blp:1146
+#: data/gtk/window.blp:1148
 msgid "Files"
 msgstr "கோப்புகள்"
 
-#: data/gtk/window.blp:1153 data/gtk/window.blp:1210
+#: data/gtk/window.blp:1155 data/gtk/window.blp:1212
 msgid "A-Z"
 msgstr "A-z"
 
-#: data/gtk/window.blp:1159 data/gtk/window.blp:1216
+#: data/gtk/window.blp:1161 data/gtk/window.blp:1218
 msgid "Z-A"
 msgstr "Z-A."
 
-#: data/gtk/window.blp:1170 data/gtk/window.blp:1180
+#: data/gtk/window.blp:1172 data/gtk/window.blp:1182
 msgid "File"
 msgstr "கோப்பு"
 
-#: data/gtk/window.blp:1171 data/gtk/window.blp:1181
+#: data/gtk/window.blp:1173 data/gtk/window.blp:1183
 msgid "Clipboard"
 msgstr "இடைநிலைப் பலகை"
 
-#: data/gtk/window.blp:1190
+#: data/gtk/window.blp:1192
 msgid "Remove line"
 msgstr "வரியை அகற்று"
 
-#: data/gtk/window.blp:1191
+#: data/gtk/window.blp:1193
 msgid "Prepend line"
 msgstr "வரி ஆயத்தம் செய்யுங்கள்"
 
-#: data/gtk/window.blp:1192
+#: data/gtk/window.blp:1194
 msgid "Append line"
 msgstr "வரி பின்சேர்"
 
-#: data/gtk/window.blp:1199
+#: data/gtk/window.blp:1201
 msgid "Use plain"
 msgstr "வெற்று பயன்படுத்தவும்"
 
-#: data/gtk/window.blp:1200
+#: data/gtk/window.blp:1202
 msgid "Use synced"
 msgstr "ஒத்திசைக்கப்பட்ட பயன்படுத்தவும்"
 
-#: data/gtk/window.blp:1207
+#: data/gtk/window.blp:1209
 msgid "Sort"
 msgstr "வரிசைப்படுத்து"
 
-#: data/gtk/window.blp:1223
+#: data/gtk/window.blp:1225
 msgid "View"
 msgstr "நோக்கு"
 
-#: data/gtk/window.blp:1226
+#: data/gtk/window.blp:1228
 msgid "Grid"
 msgstr "பின்னல்"
 
-#: data/gtk/window.blp:1232
+#: data/gtk/window.blp:1234
 msgid "List"
 msgstr "பட்டியல்"
 
-#: data/gtk/window.blp:1244
+#: data/gtk/window.blp:1246
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-#: data/gtk/window.blp:1246
+#: data/gtk/window.blp:1248
 msgid "About"
 msgstr "பற்றி"
 

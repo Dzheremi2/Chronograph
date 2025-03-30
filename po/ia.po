@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-24 20:57+0300\n"
+"POT-Creation-Date: 2025-03-30 09:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:103 data/gtk/window.blp:1240
+#: data/gtk/window.blp:103 data/gtk/window.blp:1242
 msgid "Quick Editor"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr ""
 msgid "Search LRClib for provided title and artist"
 msgstr ""
 
-#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:723
+#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:724
 msgid "Search"
 msgstr ""
 
@@ -207,7 +207,7 @@ msgstr ""
 msgid "Saves"
 msgstr ""
 
-#: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1091
+#: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1093
 msgid "Toggle sidebar"
 msgstr ""
 
@@ -215,196 +215,196 @@ msgstr ""
 msgid "Select a directory or open a file"
 msgstr ""
 
-#: data/gtk/window.blp:672 data/gtk/window.blp:1071
+#: data/gtk/window.blp:672 data/gtk/window.blp:1073
 msgid "Toggle search"
 msgstr ""
 
-#: data/gtk/window.blp:680 data/gtk/window.blp:772
+#: data/gtk/window.blp:680 data/gtk/window.blp:773
 msgid "App settings, info and utils"
 msgstr ""
 
-#: data/gtk/window.blp:687
-msgid "Clean library"
+#: data/gtk/window.blp:688
+msgid "Clean the library"
 msgstr ""
 
-#: data/gtk/window.blp:702
+#: data/gtk/window.blp:703
 msgid "Re-parse current directory"
 msgstr ""
 
-#: data/gtk/window.blp:707
+#: data/gtk/window.blp:708
 msgid "Add current directory to saves"
 msgstr ""
 
-#: data/gtk/window.blp:763
+#: data/gtk/window.blp:764
 msgid "Syncing"
 msgstr ""
 
-#: data/gtk/window.blp:861
+#: data/gtk/window.blp:863
 msgid "Toggle song repeat"
 msgstr ""
 
-#: data/gtk/window.blp:917
+#: data/gtk/window.blp:919
 msgid "Sync/Re-sync line"
 msgstr ""
 
-#: data/gtk/window.blp:928 data/gtk/window.blp:1105
+#: data/gtk/window.blp:930 data/gtk/window.blp:1107
 msgid "Replay selected line"
 msgstr ""
 
-#: data/gtk/window.blp:936
+#: data/gtk/window.blp:938
 msgid "Re-sync selected line 100ms back"
 msgstr ""
 
-#: data/gtk/window.blp:944
+#: data/gtk/window.blp:946
 msgid "Re-sync selected line 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:952 data/gtk/window.blp:1168
+#: data/gtk/window.blp:954 data/gtk/window.blp:1170
 msgid "Import from …"
 msgstr ""
 
-#: data/gtk/window.blp:963 data/gtk/window.blp:1178
+#: data/gtk/window.blp:965 data/gtk/window.blp:1180
 msgid "Export to …"
 msgstr ""
 
-#: data/gtk/window.blp:981 data/gtk/window.blp:1188
+#: data/gtk/window.blp:983 data/gtk/window.blp:1190
 msgid "Actions with selected line"
 msgstr ""
 
-#: data/gtk/window.blp:993 data/gtk/ui/SongCard.blp:134
+#: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
 #: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
 msgstr ""
 
-#: data/gtk/window.blp:1002
+#: data/gtk/window.blp:1004
 msgid "About file"
 msgstr ""
 
-#: data/gtk/window.blp:1036
+#: data/gtk/window.blp:1038
 msgid "Add line"
 msgstr ""
 
-#: data/gtk/window.blp:1059
+#: data/gtk/window.blp:1061
 msgid "Shortcuts"
 msgstr ""
 
-#: data/gtk/window.blp:1063 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:1065 data/gtk/ui/Preferences.blp:6
 msgid "General"
 msgstr ""
 
-#: data/gtk/window.blp:1066
+#: data/gtk/window.blp:1068
 msgid "Quit"
 msgstr ""
 
-#: data/gtk/window.blp:1076
+#: data/gtk/window.blp:1078
 msgid "Select directory"
 msgstr ""
 
-#: data/gtk/window.blp:1081
+#: data/gtk/window.blp:1083
 msgid "Select files"
 msgstr ""
 
-#: data/gtk/window.blp:1086 data/gtk/window.blp:1245
+#: data/gtk/window.blp:1088 data/gtk/window.blp:1247
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:1097
+#: data/gtk/window.blp:1099
 msgid "Sync mode"
 msgstr ""
 
-#: data/gtk/window.blp:1100
+#: data/gtk/window.blp:1102
 msgid "Sync/Re-sync"
 msgstr ""
 
-#: data/gtk/window.blp:1110
+#: data/gtk/window.blp:1112
 msgid "Remove selected line"
 msgstr ""
 
-#: data/gtk/window.blp:1115
+#: data/gtk/window.blp:1117
 msgid "Prepend line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:1120
+#: data/gtk/window.blp:1122
 msgid "Append line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:1125 data/gtk/window.blp:1193
+#: data/gtk/window.blp:1127 data/gtk/window.blp:1195
 msgid "Append line to end"
 msgstr ""
 
-#: data/gtk/window.blp:1130
+#: data/gtk/window.blp:1132
 msgid "Re-sync 100ms back"
 msgstr ""
 
-#: data/gtk/window.blp:1135
+#: data/gtk/window.blp:1137
 msgid "Re-sync 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:1145
+#: data/gtk/window.blp:1147
 msgid "Directory"
 msgstr ""
 
-#: data/gtk/window.blp:1146
+#: data/gtk/window.blp:1148
 msgid "Files"
 msgstr ""
 
-#: data/gtk/window.blp:1153 data/gtk/window.blp:1210
+#: data/gtk/window.blp:1155 data/gtk/window.blp:1212
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:1159 data/gtk/window.blp:1216
+#: data/gtk/window.blp:1161 data/gtk/window.blp:1218
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:1170 data/gtk/window.blp:1180
+#: data/gtk/window.blp:1172 data/gtk/window.blp:1182
 msgid "File"
 msgstr ""
 
-#: data/gtk/window.blp:1171 data/gtk/window.blp:1181
+#: data/gtk/window.blp:1173 data/gtk/window.blp:1183
 msgid "Clipboard"
 msgstr ""
 
-#: data/gtk/window.blp:1190
+#: data/gtk/window.blp:1192
 msgid "Remove line"
 msgstr ""
 
-#: data/gtk/window.blp:1191
+#: data/gtk/window.blp:1193
 msgid "Prepend line"
 msgstr ""
 
-#: data/gtk/window.blp:1192
+#: data/gtk/window.blp:1194
 msgid "Append line"
 msgstr ""
 
-#: data/gtk/window.blp:1199
+#: data/gtk/window.blp:1201
 msgid "Use plain"
 msgstr ""
 
-#: data/gtk/window.blp:1200
+#: data/gtk/window.blp:1202
 msgid "Use synced"
 msgstr ""
 
-#: data/gtk/window.blp:1207
+#: data/gtk/window.blp:1209
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:1223
+#: data/gtk/window.blp:1225
 msgid "View"
 msgstr ""
 
-#: data/gtk/window.blp:1226
+#: data/gtk/window.blp:1228
 msgid "Grid"
 msgstr ""
 
-#: data/gtk/window.blp:1232
+#: data/gtk/window.blp:1234
 msgid "List"
 msgstr ""
 
-#: data/gtk/window.blp:1244
+#: data/gtk/window.blp:1246
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:1246
+#: data/gtk/window.blp:1248
 msgid "About"
 msgstr ""
 
