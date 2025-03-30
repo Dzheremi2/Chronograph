@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-30 09:44+0300\n"
-"PO-Revision-Date: 2025-03-22 21:48+0000\n"
+"PO-Revision-Date: 2025-03-30 13:56+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
-"Language-Team: Ukrainian <https://hosted.weblate.org/projects/lrcmake/"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/dzheremi/"
 "chronograph/uk/>\n"
 "Language: ua\n"
 "MIME-Version: 1.0\n"
@@ -231,9 +231,8 @@ msgid "App settings, info and utils"
 msgstr "Налаштування додатку, інформація та інструментарій"
 
 #: data/gtk/window.blp:688
-#, fuzzy
 msgid "Clean the library"
-msgstr "Чиста бібліотека"
+msgstr "Приберіть бібліотеку"
 
 #: data/gtk/window.blp:703
 msgid "Re-parse current directory"
