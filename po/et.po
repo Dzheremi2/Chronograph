@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-30 09:44+0300\n"
-"PO-Revision-Date: 2025-03-20 18:01+0000\n"
+"PO-Revision-Date: 2025-03-31 19:03+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/lrcmake/"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/dzheremi/"
 "chronograph/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -21,20 +21,20 @@ msgstr ""
 
 #: chronograph/window.py:623
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "Mõnede pealkirja, esitaja ja/või albumi väljade andmed pole teada!"
 
 #: chronograph/window.py:670
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Mõned kirjed on tühjad"
 
 #: chronograph/window.py:697
 msgid "Copied successfully"
-msgstr ""
+msgstr "Kopeerimine õnnestus"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:149
 msgid "translator-credits"
-msgstr ""
+msgstr "Priit Jõerüüt 2025"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -98,69 +98,71 @@ msgstr "Tundmatu"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
-msgstr ""
+msgstr "Kausta salvestamine õnnestus"
 
 #: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
 msgid "Seems like not every line is synced"
-msgstr ""
+msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
 #: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
 msgid "Published successfully: "
-msgstr ""
+msgstr "Avaldamine õnnestus: "
 
 #: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
 msgid "Incorrect publish token: "
-msgstr ""
+msgstr "Vigane avaldamise tunnusluba: "
 
 #: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
 msgid "Unknown error occured: "
-msgstr ""
+msgstr "Tekkis tundmatu viga: "
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Avalda"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
 msgid "No source selected yet"
-msgstr ""
+msgstr "Sa pole ühtegi andmeallikat veel valinud"
 
 #: data/gtk/window.blp:7
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr ""
+msgstr "Laadimiseks vali mõni kaust või lohista siia mõned failid"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr ""
+msgstr "Ava andmeallikas"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
-msgstr ""
+msgstr "Tühi kaust"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
 msgstr ""
+"Selles kaustas pole ühtegi toetatud muusikafaili või leidub siin ainult "
+"alamkaustu"
 
 #: data/gtk/window.blp:49 data/gtk/window.blp:54
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "Otsi pealkirja ja esitaja nime alusel LRClibi veebiteenusest"
 
 #: data/gtk/window.blp:60 data/gtk/window.blp:66
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "Sellele päringule ei leidu ühtegi vastust"
 
 #: data/gtk/window.blp:61 data/gtk/window.blp:67
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
+msgstr "Proovi mõnda muud päringut või vaata, et otsingus poleks ühtegi viga."
 
 #: data/gtk/window.blp:71
 msgid "No saves found yet"
-msgstr ""
+msgstr "Ühtegi lemmikut veel ei leidu"
 
 #: data/gtk/window.blp:73
 msgid "Press pin button to add current directory to the saves"
-msgstr ""
+msgstr "Vajutades nööpnõela ikooni, saad lisada kausta lemmikute hulka"
 
 #: data/gtk/window.blp:103 data/gtk/window.blp:1242
 msgid "Quick Editor"
