@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 09:44+0300\n"
+"POT-Creation-Date: 2025-04-02 20:19+0300\n"
 "PO-Revision-Date: 2025-03-15 08:47+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/lrcmake/"
@@ -482,17 +482,21 @@ msgstr "Formato de ficheiro"
 msgid "File format for auto manipulation"
 msgstr "Formato de ficheiro para manipulação automática"
 
-#: data/gtk/ui/SavedLocation.blp:35
-msgid "Remove this from saves"
-msgstr "Remova isto das gravações"
+#: data/gtk/ui/SavedLocation.blp:55
+msgid "Delete this Save?"
+msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:53
-msgid "Delete name to remove"
-msgstr "Apagar o nome para remover"
-
-#: data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
+msgid "Delete"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:67
+msgid "Rename"
+msgstr ""
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
@@ -571,6 +575,12 @@ msgid ""
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;"
 "multimídia;média;música;sincronização;"
+
+#~ msgid "Remove this from saves"
+#~ msgstr "Remova isto das gravações"
+
+#~ msgid "Delete name to remove"
+#~ msgstr "Apagar o nome para remover"
 
 #~ msgid "Select a directory"
 #~ msgstr "Selecione um diretório"

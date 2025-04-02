@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 09:44+0300\n"
+"POT-Creation-Date: 2025-04-02 20:19+0300\n"
 "PO-Revision-Date: 2025-03-22 17:15+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -475,17 +475,21 @@ msgstr "Формат файла"
 msgid "File format for auto manipulation"
 msgstr "Формат файла для автоманипуляции"
 
-#: data/gtk/ui/SavedLocation.blp:35
-msgid "Remove this from saves"
-msgstr "Удалить из сохранённых"
+#: data/gtk/ui/SavedLocation.blp:55
+msgid "Delete this Save?"
+msgstr "Удалить это сохранение?"
 
-#: data/gtk/ui/SavedLocation.blp:53
-msgid "Delete name to remove"
-msgstr "Удалите имя, чтобы убрать"
-
-#: data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Отмена"
+
+#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
+msgid "Delete"
+msgstr "Удалить"
+
+#: data/gtk/ui/SavedLocation.blp:67
+msgid "Rename"
+msgstr "Переименовать"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
@@ -562,6 +566,12 @@ msgid ""
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 "слова;интернет;песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;хронограф;"
+
+#~ msgid "Remove this from saves"
+#~ msgstr "Удалить из сохранённых"
+
+#~ msgid "Delete name to remove"
+#~ msgstr "Удалите имя, чтобы убрать"
 
 #~ msgid "Select a directory"
 #~ msgstr "Выберите директорию"

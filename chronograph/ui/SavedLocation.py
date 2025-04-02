@@ -21,59 +21,47 @@ class SavedLocation(Gtk.Box):
     __gtype_name__ = "SavedLocation"
 
     title: Gtk.Label = Gtk.Template.Child()
-    actions_box: Gtk.Box = Gtk.Template.Child()
+    actions_popover: Gtk.Popover = Gtk.Template.Child()
     rename_popover: Gtk.Popover = Gtk.Template.Child()
     rename_entry: Adw.EntryRow = Gtk.Template.Child()
+    deletion_alert_dialog: Adw.AlertDialog = Gtk.Template.Child()
 
     def __init__(self, path: str, name: str) -> None:
         super().__init__()
         self._path: str = path
         self.title.set_text(name)
         self.set_tooltip_text(path_str + path)
-
-        self.event_controller_motion = Gtk.EventControllerMotion.new()
-        self.add_controller(self.event_controller_motion)
-        self.event_controller_motion.connect("enter", self.toggle_button)
-        self.event_controller_motion.connect("leave", self.toggle_button)
         self.rename_popover.set_parent(self)
+        self.actions_popover.set_parent(self)
+
+        self.rmb_gesture = Gtk.GestureClick(button=3)
+        self.long_press_gesture = Gtk.GestureLongPress()
+        self.add_controller(self.rmb_gesture)
+        self.add_controller(self.long_press_gesture)
+        self.rmb_gesture.connect("released", lambda *_: self.actions_popover.popup())
+        self.long_press_gesture.connect(
+            "pressed", lambda *_: self.actions_popover.popup()
+        )
+
+        actions: Gio.SimpleActionGroup = Gio.SimpleActionGroup.new()
+        rename_action: Gio.SimpleAction = Gio.SimpleAction.new("rename", None)
+        rename_action.connect("activate", self.rename_save)
+        delete_action: Gio.SimpleAction = Gio.SimpleAction.new("delete", None)
+        delete_action.connect(
+            "activate", lambda *_: self.deletion_alert_dialog.present(shared.win)
+        )
+        actions.add_action(rename_action)
+        actions.add_action(delete_action)
+        self.insert_action_group("sv", actions)
 
     @Gtk.Template.Callback()
-    def perform_action(self, entry_row: Adw.EntryRow) -> None:
-        """Performs rename or delete depends on changed name text
+    def on_deletion_alert_response(
+        self, _alert_dialog: Adw.AlertDialog, response: str
+    ) -> None:
+        if response == "delete":
+            self.on_delete_save()
 
-        Parameters
-        ----------
-        entry_row : Adw.EntryRow
-            EntryRow to get text from
-        """
-        if entry_row.get_text() != "":
-            for index, pin in enumerate(shared.cache["pins"]):
-                if pin["path"] == self.path:
-                    shared.cache["pins"][index]["name"] = entry_row.get_text()
-                    self.title.set_text(entry_row.get_text())
-                    shared.cache_file.seek(0)
-                    shared.cache_file.truncate(0)
-                    yaml.dump(
-                        shared.cache,
-                        shared.cache_file,
-                        sort_keys=False,
-                        encoding=None,
-                        allow_unicode=True,
-                    )
-                    break
-            self.rename_popover.popdown()
-        else:
-            self.remove_from_saves()
-            self.rename_popover.popdown()
-            if self.path == shared.state_schema.get_string("opened-dir"):
-                shared.win.add_dir_to_saves_button.set_visible(True)
-            shared.win.build_sidebar()
-
-    def toggle_button(self, *_args) -> None:
-        """Chages rename icon visibility"""
-        self.actions_box.set_visible(not self.actions_box.get_visible())
-
-    def remove_from_saves(self, *_args) -> None:
+    def on_delete_save(self, *_args) -> None:
         """Removed this saves from `pins` from `shared.cache` and dumps updated cache to file"""
         for index, pin in enumerate(shared.cache["pins"]):
             if pin["path"] == self.path:
@@ -88,12 +76,43 @@ class SavedLocation(Gtk.Box):
             encoding=None,
             allow_unicode=True,
         )
+        shared.win.build_sidebar(self.path)
 
-    @Gtk.Template.Callback()
     def rename_save(self, *_args) -> None:
         """Presents `self.rename_popover`"""
+        self.actions_popover.popdown()
         self.rename_popover.popup()
         self.rename_entry.set_text(self.title.get_text())
+
+    @Gtk.Template.Callback()
+    def on_rename_entry_changed(self, text: Gtk.Text) -> None:
+        if text.get_text_length() == 0:
+            self.rename_entry.add_css_class("error")
+        else:
+            if "error" in self.rename_entry.get_css_classes():
+                self.rename_entry.remove_css_class("error")
+
+    @Gtk.Template.Callback()
+    def do_rename(self, entry_row: Adw.EntryRow) -> None:
+        if entry_row.get_text() == "":
+            return
+        else:
+            self.rename_popover.popdown()
+            for index, pin in enumerate(shared.cache["pins"]):
+                if pin["path"] == self.path:
+                    shared.cache["pins"][index]["name"] = entry_row.get_text()
+                    break
+            self.title.set_label(entry_row.get_text())
+            shared.cache_file.seek(0)
+            shared.cache_file.truncate(0)
+            yaml.dump(
+                shared.cache,
+                shared.cache_file,
+                sort_keys=False,
+                encoding=None,
+                allow_unicode=True,
+            )
+            shared.win.build_sidebar()
 
     @property
     def path(self) -> str:

@@ -736,8 +736,8 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.controls.get_media_stream().set_loop(False)
             self.controls_shrinked.get_media_stream().set_loop(False)
 
-    def build_sidebar(self, *_args) -> None:
-        """Fills saves sidebar with save rows"""
+    def build_sidebar(self, path: str = None, *_args) -> None:
+        """Fills saves sidebar with saved rows"""
         if len(shared.cache["pins"]) != 0:
             self.sidebar.remove_all()
             entries: list = []
@@ -751,6 +751,9 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.sidebar_window.set_child(self.sidebar)
         else:
             self.sidebar_window.set_child(self.no_saves_found_status)
+
+        if shared.state_schema.get_string("opened-dir") == path:
+            self.add_dir_to_saves_button.set_visible(True)
 
     @Gtk.Template.Callback()
     def load_save(self, _listbox: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:

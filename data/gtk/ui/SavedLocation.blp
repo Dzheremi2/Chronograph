@@ -25,18 +25,11 @@ template $SavedLocation: Box {
       'heading'
     ]
   }
+}
 
-  Box actions_box {
-    halign: end;
-    visible: false;
-
-    Button self_action_button {
-      icon-name: "edit-metadata-symbolic";
-      tooltip-text: _("Remove this from saves");
-      has-frame: false;
-      clicked => $rename_save();
-    }
-  }
+PopoverMenu actions_popover {
+  position: bottom;
+  menu-model: actions_menu;
 }
 
 Popover rename_popover {
@@ -50,9 +43,28 @@ Popover rename_popover {
     margin-top: 4;
 
     Adw.EntryRow rename_entry {
-      title: _("Delete name to remove");
       show-apply-button: true;
-      apply => $perform_action();
+      changed => $on_rename_entry_changed();
+      apply => $do_rename();
     }
+  }
+}
+
+Adw.AlertDialog deletion_alert_dialog {
+  close-response: "cancel";
+  heading: _("Delete this Save?");
+  default-response: "cancel";
+  response => $on_deletion_alert_response();
+
+  responses [
+    cancel: _("Cancel"),
+    delete: _("Delete") destructive,
+  ]
+}
+
+menu actions_menu {
+  section {
+    item (_("Rename"), "sv.rename")
+    item (_("Delete"), "sv.delete")
   }
 }

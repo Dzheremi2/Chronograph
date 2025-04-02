@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 09:44+0300\n"
+"POT-Creation-Date: 2025-04-02 20:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -466,16 +466,20 @@ msgstr ""
 msgid "File format for auto manipulation"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:35
-msgid "Remove this from saves"
+#: data/gtk/ui/SavedLocation.blp:55
+msgid "Delete this Save?"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:53
-msgid "Delete name to remove"
-msgstr ""
-
-#: data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
+msgid "Delete"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:67
+msgid "Rename"
 msgstr ""
 
 #: data/gtk/ui/SongCard.blp:21
