@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-02 20:19+0300\n"
-"PO-Revision-Date: 2025-04-01 04:02+0000\n"
+"PO-Revision-Date: 2025-04-02 19:34+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/dzheremi/"
 "chronograph/et/>\n"
@@ -476,7 +476,7 @@ msgstr "Failivorming automaatseks muutmiseks"
 
 #: data/gtk/ui/SavedLocation.blp:55
 msgid "Delete this Save?"
-msgstr ""
+msgstr "Kas kustutame selle lemmiku?"
 
 #: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
@@ -484,11 +484,11 @@ msgstr "Katkesta"
 
 #: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
 msgid "Delete"
-msgstr ""
+msgstr "Kustuta"
 
 #: data/gtk/ui/SavedLocation.blp:67
 msgid "Rename"
-msgstr ""
+msgstr "Muuda nime"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
