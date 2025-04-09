@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-02 20:19+0300\n"
-"PO-Revision-Date: 2025-03-02 20:49+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/lrcmake/"
+"PO-Revision-Date: 2025-04-09 14:03+0000\n"
+"Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/dzheremi/"
 "chronograph/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:623
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "Bazı Başlık, Sanatçı ve(ya) Albüm alanları bilinmiyor!"
 
 #: chronograph/window.py:670
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Bazı girdiler boş"
 
 #: chronograph/window.py:697
 msgid "Copied successfully"
