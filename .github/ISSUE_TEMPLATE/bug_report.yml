@@ -19,7 +19,7 @@ body:
     attributes:
       label: Chronograph version
       description: What version of Chronograph are you using? (if using Devel, please point it here)
-      placeholder: "2.0 Devel #commit_id"
+      placeholder: "2.0 or Devel #commit_id"
     validations:
       required: true
   - type: textarea

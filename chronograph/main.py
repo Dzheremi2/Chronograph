@@ -153,6 +153,10 @@ class ChronographApplication(Adw.Application):
             "© 2024 tranxuanthang",
             Gtk.License.MIT_X11,
         )
+        dialog.add_acknowledgement_section(
+            None, ("knuxify (Ear Tag) https://gitlab.gnome.org/World/eartag")
+        )
+
         if shared.PREFIX.endswith("Devel"):
             dialog.set_version("Devel")
         dialog.present(shared.win)

@@ -37,6 +37,9 @@ If you want to download a devel build, you can do it by downloading it from [Git
 >[!CAUTION]
 >Devel builds may be unstable or don't even launch. Use it at your own risk
 
+### Changelog
+You can see full changelog for all versions [here](docs/CHANGELOG.md)
+
 ### Translation
 You can help project to be internationalized using [Hosted Weblate](https://hosted.weblate.org/projects/dzheremi/chronograph/)
 
