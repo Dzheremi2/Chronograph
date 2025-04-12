@@ -5,7 +5,7 @@ Exec=chronograph %U
 Icon=@APP_ID@
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;Utility;AudioVideo;Audio;
+Categories=AudioVideo;Audio;Utility;GNOME;GTK;
 # Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 Keywords=lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;
 MimeType=application/ogg;application/x-ogg;audio/mpeg;audio/aac;audio/ogg;audio/x-vorbis+ogg;audio/flac;audio/vnd.wave;audio/mp4;
