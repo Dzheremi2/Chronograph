@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 20:19+0300\n"
+"POT-Creation-Date: 2025-04-12 14:51+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/lrcmake/"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:623
+#: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Het titel-, artiest- en/of albumveld staat op ‘onbekend’!"
 
-#: chronograph/window.py:670
+#: chronograph/window.py:669
 msgid "Some of entries are empty"
 msgstr "Enkele items zijn blanco"
 
-#: chronograph/window.py:697
+#: chronograph/window.py:696
 msgid "Copied successfully"
 msgstr "Gekopieerd"
 
@@ -35,6 +35,10 @@ msgstr "Gekopieerd"
 #: chronograph/main.py:149
 msgid "translator-credits"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
+
+#: chronograph/main.py:162
+msgid "Build your own dictionary"
+msgstr ""
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -515,6 +519,7 @@ msgid "Remove cover"
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
 msgstr ""
 
@@ -551,7 +556,7 @@ msgid "LRClib import dialog"
 msgstr ""
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""

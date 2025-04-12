@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 20:19+0300\n"
+"POT-Creation-Date: 2025-04-12 14:51+0300\n"
 "PO-Revision-Date: 2025-03-12 08:01+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -19,16 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.10.3-dev\n"
 
-#: chronograph/window.py:623
+#: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "标题、作者和/或专辑字段部分为未知！"
 
-#: chronograph/window.py:670
+#: chronograph/window.py:669
 #, fuzzy
 msgid "Some of entries are empty"
 msgstr "部分条目为空"
 
-#: chronograph/window.py:697
+#: chronograph/window.py:696
 msgid "Copied successfully"
 msgstr "已成功复制"
 
@@ -36,6 +36,10 @@ msgstr "已成功复制"
 #: chronograph/main.py:149
 msgid "translator-credits"
 msgstr "Mevius<mevius.3301@gmail.com>"
+
+#: chronograph/main.py:162
+msgid "Build your own dictionary"
+msgstr ""
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -521,6 +525,7 @@ msgid "Remove cover"
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
 msgstr ""
 
@@ -557,7 +562,7 @@ msgid "LRClib import dialog"
 msgstr ""
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 20:19+0300\n"
+"POT-Creation-Date: 2025-04-12 14:51+0300\n"
 "PO-Revision-Date: 2025-04-09 14:03+0000\n"
 "Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/dzheremi/"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:623
+#: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Bazı Başlık, Sanatçı ve(ya) Albüm alanları bilinmiyor!"
 
-#: chronograph/window.py:670
+#: chronograph/window.py:669
 msgid "Some of entries are empty"
 msgstr "Bazı girdiler boş"
 
-#: chronograph/window.py:697
+#: chronograph/window.py:696
 msgid "Copied successfully"
 msgstr "Başarıyla kopyalandı"
 
@@ -37,6 +37,10 @@ msgid "translator-credits"
 msgstr ""
 "Recep Kaan Ergün\n"
 "polarwood"
+
+#: chronograph/main.py:162
+msgid "Build your own dictionary"
+msgstr ""
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -546,6 +550,7 @@ msgid "Remove cover"
 msgstr "Seçili satırı kaldır"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
 msgstr "Sevdiğiniz şarkıların sözlerini senkronize edin"
 
@@ -588,7 +593,7 @@ msgid "LRClib import dialog"
 msgstr ""
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""

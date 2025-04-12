@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 20:19+0300\n"
+"POT-Creation-Date: 2025-04-12 14:51+0300\n"
 "PO-Revision-Date: 2025-04-03 16:05+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/dzheremi/"
@@ -20,15 +20,15 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:623
+#: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Деякі поля Назва, Виконавець і/або Альбом невідомі!"
 
-#: chronograph/window.py:670
+#: chronograph/window.py:669
 msgid "Some of entries are empty"
 msgstr "Деякі записи порожні"
 
-#: chronograph/window.py:697
+#: chronograph/window.py:696
 msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
@@ -36,6 +36,10 @@ msgstr "Успішно опубліковано"
 #: chronograph/main.py:149
 msgid "translator-credits"
 msgstr "Максим Горпиніч"
+
+#: chronograph/main.py:162
+msgid "Build your own dictionary"
+msgstr ""
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -525,6 +529,7 @@ msgid "Remove cover"
 msgstr "Зняти кришку"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
 msgstr "Синхронізуйте тексти ваших улюблених пісень"
 
@@ -565,7 +570,7 @@ msgid "LRClib import dialog"
 msgstr "Діалог імпорту LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""

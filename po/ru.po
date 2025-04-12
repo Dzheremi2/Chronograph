@@ -2,14 +2,14 @@
 # Copyright (C) 2024 THE lrcmake'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the lrcmake package.
 # Automatically generated, 2024.
-# Артём Чичваров <chichvarov1315@gmail.com>, 2024, 2025.
+# Артём Чичваров <chichvarov1315@gmail.com>, 2024-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 20:19+0300\n"
-"PO-Revision-Date: 2025-03-22 17:15+0300\n"
+"POT-Creation-Date: 2025-04-12 14:51+0300\n"
+"PO-Revision-Date: 2025-04-12 14:52+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-Generator: Gtranslator 48.0\n"
 
-#: chronograph/window.py:623
+#: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Поля “Название”, “Исполнитель” и/или “Альбом” неизвестны!"
 
-#: chronograph/window.py:670
+#: chronograph/window.py:669
 msgid "Some of entries are empty"
 msgstr "Некоторые поля пусты"
 
-#: chronograph/window.py:697
+#: chronograph/window.py:696
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
@@ -36,6 +36,10 @@ msgstr "Скопированно успешно"
 #: chronograph/main.py:149
 msgid "translator-credits"
 msgstr "Артём Чичваров <chichvarov1315@gmail.com>"
+
+#: chronograph/main.py:162
+msgid "Build your own dictionary"
+msgstr "Создайте свой собственный словарь"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -520,6 +524,7 @@ msgid "Remove cover"
 msgstr "Удалить обложку"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
 msgstr "Синхронизируйте тексты своих любимых песен"
 
@@ -560,7 +565,7 @@ msgid "LRClib import dialog"
 msgstr "Диалог импорта из LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
