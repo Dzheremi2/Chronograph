@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-12 14:51+0300\n"
-"PO-Revision-Date: 2025-04-02 19:34+0000\n"
+"PO-Revision-Date: 2025-04-12 19:05+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/dzheremi/"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Priit Jõerüüt 2025"
 
 #: chronograph/main.py:162
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Loo oma sõnastik"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
