@@ -156,6 +156,11 @@ class ChronographApplication(Adw.Application):
         dialog.add_acknowledgement_section(
             None, ("knuxify (Ear Tag) https://gitlab.gnome.org/World/eartag")
         )
+        dialog.add_other_app(
+            "io.github.dzheremi2.lexi",
+            "Lexi",
+            _("Build your own dictionary")
+        )
 
         if shared.PREFIX.endswith("Devel"):
             dialog.set_version("Devel")
