@@ -83,6 +83,11 @@
   </screenshots>
 
   <releases>
+    <release version="2.4.4" date="2025-04-13">
+      <description translate="no">
+        <p>Actions with saved locations now performing using RMB click or long press</p>
+      </description>
+    </release>
     <release version="2.4.3" date="2025-03-30">
       <description translate="no">
         <p>Bug fixes</p>
