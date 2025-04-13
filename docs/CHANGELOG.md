@@ -1,3 +1,6 @@
+## 2.4.4
+<p>Actions with saved locations now performing using RMB click or long press</p>
+
 ## 2.4.3
 <p>Bug fixes</p>
 <ul>
