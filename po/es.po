@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-12 14:51+0300\n"
-"PO-Revision-Date: 2025-03-13 15:02+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/lrcmake/"
+"PO-Revision-Date: 2025-04-14 19:03+0000\n"
+"Last-Translator: \"Emilio S.\" <emism.translations@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Óscar Fernández Díaz"
 
 #: chronograph/main.py:162
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Construya su propio diccionario"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -123,7 +123,7 @@ msgstr "Ha ocurrido un error desconocido: "
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Publicar"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
