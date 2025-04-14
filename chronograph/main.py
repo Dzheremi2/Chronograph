@@ -154,7 +154,7 @@ class ChronographApplication(Adw.Application):
             Gtk.License.MIT_X11,
         )
         dialog.add_acknowledgement_section(
-            None, ("knuxify (Ear Tag) https://gitlab.gnome.org/World/eartag")
+            None, ("knuxify (Ear Tag) https://gitlab.gnome.org/World/eartag",)
         )
         dialog.add_other_app(
             "io.github.dzheremi2.lexi",
