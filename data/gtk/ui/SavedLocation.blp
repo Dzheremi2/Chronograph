@@ -32,22 +32,20 @@ PopoverMenu actions_popover {
   menu-model: actions_menu;
 }
 
-Popover rename_popover {
-  position: bottom;
+Adw.AlertDialog rename_dialog {
+  close-response: "cancel";
+  heading: _("Rename this Save");
+  default-response: "not_rename";
+  extra-child: Gtk.Entry rename_entry {
+    placeholder-text: _("Name");
+    changed => $on_rename_entry_changed();
+  };
+  response => $do_rename();
 
-  Box {
-    orientation: horizontal;
-    margin-bottom: 4;
-    margin-end: 4;
-    margin-start: 4;
-    margin-top: 4;
-
-    Adw.EntryRow rename_entry {
-      show-apply-button: true;
-      changed => $on_rename_entry_changed();
-      apply => $do_rename();
-    }
-  }
+  responses [
+    not_rename: _("Cancel"),
+    rename: _("Rename") suggested,
+  ]
 }
 
 Adw.AlertDialog deletion_alert_dialog {

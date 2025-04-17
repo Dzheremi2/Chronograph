@@ -22,8 +22,8 @@ class SavedLocation(Gtk.Box):
 
     title: Gtk.Label = Gtk.Template.Child()
     actions_popover: Gtk.Popover = Gtk.Template.Child()
-    rename_popover: Gtk.Popover = Gtk.Template.Child()
-    rename_entry: Adw.EntryRow = Gtk.Template.Child()
+    rename_dialog: Adw.AlertDialog = Gtk.Template.Child()
+    rename_entry: Gtk.Entry = Gtk.Template.Child()
     deletion_alert_dialog: Adw.AlertDialog = Gtk.Template.Child()
 
     def __init__(self, path: str, name: str) -> None:
@@ -31,7 +31,6 @@ class SavedLocation(Gtk.Box):
         self._path: str = path
         self.title.set_text(name)
         self.set_tooltip_text(path_str + path)
-        self.rename_popover.set_parent(self)
         self.actions_popover.set_parent(self)
 
         self.rmb_gesture = Gtk.GestureClick(button=3)
@@ -80,9 +79,9 @@ class SavedLocation(Gtk.Box):
 
     def rename_save(self, *_args) -> None:
         """Presents `self.rename_popover`"""
-        self.actions_popover.popdown()
-        self.rename_popover.popup()
-        self.rename_entry.set_text(self.title.get_text())
+        self.rename_dialog.present(shared.win)
+        self.rename_entry.set_buffer(Gtk.EntryBuffer.new(self.title.get_label(), -1))
+        self.rename_entry.grab_focus()
 
     @Gtk.Template.Callback()
     def on_rename_entry_changed(self, text: Gtk.Text) -> None:
@@ -93,26 +92,30 @@ class SavedLocation(Gtk.Box):
                 self.rename_entry.remove_css_class("error")
 
     @Gtk.Template.Callback()
-    def do_rename(self, entry_row: Adw.EntryRow) -> None:
-        if entry_row.get_text() == "":
-            return
-        else:
-            self.rename_popover.popdown()
-            for index, pin in enumerate(shared.cache["pins"]):
-                if pin["path"] == self.path:
-                    shared.cache["pins"][index]["name"] = entry_row.get_text()
-                    break
-            self.title.set_label(entry_row.get_text())
-            shared.cache_file.seek(0)
-            shared.cache_file.truncate(0)
-            yaml.dump(
-                shared.cache,
-                shared.cache_file,
-                sort_keys=False,
-                encoding=None,
-                allow_unicode=True,
-            )
-            shared.win.build_sidebar()
+    def do_rename(self, alert_dialog: Adw.AlertDialog, response: str) -> None:
+        if response == "rename":
+            if alert_dialog.get_extra_child().get_text_length() == 0:
+                return
+            else:
+                for index, pin in enumerate(shared.cache["pins"]):
+                    if pin["path"] == self.path:
+                        shared.cache["pins"][index]["name"] = (
+                            alert_dialog.get_extra_child().get_buffer().get_text()
+                        )
+                        break
+                self.title.set_label(
+                    alert_dialog.get_extra_child().get_buffer().get_text()
+                )
+                shared.cache_file.seek(0)
+                shared.cache_file.truncate(0)
+                yaml.dump(
+                    shared.cache,
+                    shared.cache_file,
+                    sort_keys=False,
+                    encoding=None,
+                    allow_unicode=True,
+                )
+                shared.win.build_sidebar()
 
     @property
     def path(self) -> str:
