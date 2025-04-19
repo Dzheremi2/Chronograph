@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-12 14:51+0300\n"
-"PO-Revision-Date: 2025-03-19 20:16+0000\n"
+"PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://hosted.weblate.org/projects/lrcmake/"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,12 @@ msgstr ""
 "X-Generator: Weblate 5.11-dev\n"
 
 #: chronograph/window.py:622
-#, fuzzy
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr "Osa nimi-, taiteilija- ja/tai albumikentistä ovat tuntemattomia!"
+msgstr "Osa nimi-, esittäjä- ja/tai albumikentistä on tuntemattomia!"
 
 #: chronograph/window.py:669
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Jotkin tietueet ovat tyhjiä"
 
 #: chronograph/window.py:696
 msgid "Copied successfully"
@@ -41,7 +40,7 @@ msgstr ""
 
 #: chronograph/main.py:162
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Rakenna oma sanasto"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
@@ -125,7 +124,7 @@ msgstr "Tuntematon virhe: "
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Julkaise"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -133,9 +132,8 @@ msgid "No source selected yet"
 msgstr "Lähdettä ei ole valittu"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "Valitse kansio tai avaa tiedosto"
+msgstr "Valitse kansio tai avaa tiedostoja vetämällä ja pudottamalla ne tähän"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -214,7 +212,7 @@ msgstr "Kronografi"
 
 #: data/gtk/window.blp:603
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Pudota tiedostot tähän avataksesi ne"
 
 #: data/gtk/window.blp:624
 msgid "Saves"
@@ -237,9 +235,8 @@ msgid "App settings, info and utils"
 msgstr "Sovelluksen asetukset, tiedot ja työkalut"
 
 #: data/gtk/window.blp:688
-#, fuzzy
 msgid "Clean the library"
-msgstr "Kirjasto"
+msgstr "Tyhjennä kirjasto"
 
 #: data/gtk/window.blp:703
 msgid "Re-parse current directory"
@@ -486,7 +483,7 @@ msgstr "Tiedostomuoto automaattista käsittelyä varten"
 
 #: data/gtk/ui/SavedLocation.blp:55
 msgid "Delete this Save?"
-msgstr ""
+msgstr "Poistetaanko tämä tallennus?"
 
 #: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
@@ -494,11 +491,11 @@ msgstr "Peru"
 
 #: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
 msgid "Delete"
-msgstr ""
+msgstr "Poista"
 
 #: data/gtk/ui/SavedLocation.blp:67
 msgid "Rename"
-msgstr ""
+msgstr "Nimeä uudelleen"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"

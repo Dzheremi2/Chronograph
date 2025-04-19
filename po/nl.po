@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-12 14:51+0300\n"
-"PO-Revision-Date: 2025-03-17 20:01+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/lrcmake/"
+"PO-Revision-Date: 2025-04-17 14:23+0000\n"
+"Last-Translator: \"Bharat Madho (Bharat)\" <madhobharat@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -196,32 +196,34 @@ msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
 msgstr ""
+"Gesynchroniseerde teksten worden standaard gebruikt. Om platte tekst te "
+"gebruiken, kies 'Gebruik platte tekst' uit het submenu"
 
 #: data/gtk/window.blp:303 data/gtk/window.blp:470
 msgid "Use"
-msgstr ""
+msgstr "Gebruik"
 
 #: data/gtk/window.blp:550 data/gtk/window.blp:617
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
-msgstr ""
+msgstr "Chronograph"
 
 #: data/gtk/window.blp:603
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Gooi bestanden hier om ze te openen"
 
 #: data/gtk/window.blp:624
 msgid "Saves"
-msgstr ""
+msgstr "Opgeslagen"
 
 #: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1093
 msgid "Toggle sidebar"
-msgstr ""
+msgstr "Schakel zijbalk"
 
 #: data/gtk/window.blp:660
 msgid "Select a directory or open a file"
-msgstr ""
+msgstr "Kies een werkmap of open een bestand"
 
 #: data/gtk/window.blp:672 data/gtk/window.blp:1073
 msgid "Toggle search"
@@ -233,23 +235,23 @@ msgstr ""
 
 #: data/gtk/window.blp:688
 msgid "Clean the library"
-msgstr ""
+msgstr "Bibliotheek opruimen"
 
 #: data/gtk/window.blp:703
 msgid "Re-parse current directory"
-msgstr ""
+msgstr "Huidige werkmap opnieuw parseren"
 
 #: data/gtk/window.blp:708
 msgid "Add current directory to saves"
-msgstr ""
+msgstr "Voeg huidige werkmap toe aan opgeslagen"
 
 #: data/gtk/window.blp:764
 msgid "Syncing"
-msgstr ""
+msgstr "Synchroniseren"
 
 #: data/gtk/window.blp:863
 msgid "Toggle song repeat"
-msgstr ""
+msgstr "Schakel nummer herhaling"
 
 #: data/gtk/window.blp:919
 msgid "Sync/Re-sync line"
@@ -257,68 +259,69 @@ msgstr ""
 
 #: data/gtk/window.blp:930 data/gtk/window.blp:1107
 msgid "Replay selected line"
-msgstr ""
+msgstr "Herhaal geselecteerde regel"
 
 #: data/gtk/window.blp:938
 msgid "Re-sync selected line 100ms back"
-msgstr ""
+msgstr "Re-synchroniseer geselecteerde regel 100ms terug"
 
 #: data/gtk/window.blp:946
 msgid "Re-sync selected line 100ms forward"
-msgstr ""
+msgstr "Re-synchroniseer geselecteerde regel 100ms verder"
 
 #: data/gtk/window.blp:954 data/gtk/window.blp:1170
 msgid "Import from …"
-msgstr ""
+msgstr "Importeer vanuit …"
 
 #: data/gtk/window.blp:965 data/gtk/window.blp:1180
 msgid "Export to …"
-msgstr ""
+msgstr "Exporteer naar …"
 
 #: data/gtk/window.blp:983 data/gtk/window.blp:1190
 msgid "Actions with selected line"
-msgstr ""
+msgstr "Acties met geselecteerde regel"
 
 #: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
 #: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
-msgstr ""
+msgstr "wijzig nummer metadata"
 
 #: data/gtk/window.blp:1004
 msgid "About file"
-msgstr ""
+msgstr "Over bestand"
 
 #: data/gtk/window.blp:1038
 msgid "Add line"
-msgstr ""
+msgstr "Voeg regel toe"
 
 #: data/gtk/window.blp:1061
 msgid "Shortcuts"
-msgstr ""
+msgstr "Snelkoppelingen"
 
 #: data/gtk/window.blp:1065 data/gtk/ui/Preferences.blp:6
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: data/gtk/window.blp:1068
 msgid "Quit"
-msgstr ""
+msgstr "Beëindig"
 
 #: data/gtk/window.blp:1078
 msgid "Select directory"
-msgstr ""
+msgstr "Selecteer werkmap"
 
 #: data/gtk/window.blp:1083
 msgid "Select files"
-msgstr ""
+msgstr "Selecteer bestanden"
 
 #: data/gtk/window.blp:1088 data/gtk/window.blp:1247
+#, fuzzy
 msgid "Keybindings"
-msgstr ""
+msgstr "Toetsen snelkoppeling"
 
 #: data/gtk/window.blp:1099
 msgid "Sync mode"
-msgstr ""
+msgstr "Synchroniseer modus"
 
 #: data/gtk/window.blp:1102
 msgid "Sync/Re-sync"
@@ -326,7 +329,7 @@ msgstr ""
 
 #: data/gtk/window.blp:1112
 msgid "Remove selected line"
-msgstr ""
+msgstr "Verwijder geselecteerde regel"
 
 #: data/gtk/window.blp:1117
 msgid "Prepend line to selected"
@@ -342,39 +345,39 @@ msgstr ""
 
 #: data/gtk/window.blp:1132
 msgid "Re-sync 100ms back"
-msgstr ""
+msgstr "Re-sync 100ms terug"
 
 #: data/gtk/window.blp:1137
 msgid "Re-sync 100ms forward"
-msgstr ""
+msgstr "Re-sync 100ms verder"
 
 #: data/gtk/window.blp:1147
 msgid "Directory"
-msgstr ""
+msgstr "Werkmap"
 
 #: data/gtk/window.blp:1148
 msgid "Files"
-msgstr ""
+msgstr "Bestanden"
 
 #: data/gtk/window.blp:1155 data/gtk/window.blp:1212
 msgid "A-Z"
-msgstr ""
+msgstr "A-Z"
 
 #: data/gtk/window.blp:1161 data/gtk/window.blp:1218
 msgid "Z-A"
-msgstr ""
+msgstr "Z-A"
 
 #: data/gtk/window.blp:1172 data/gtk/window.blp:1182
 msgid "File"
-msgstr ""
+msgstr "Bestand"
 
 #: data/gtk/window.blp:1173 data/gtk/window.blp:1183
 msgid "Clipboard"
-msgstr ""
+msgstr "Klembord"
 
 #: data/gtk/window.blp:1192
 msgid "Remove line"
-msgstr ""
+msgstr "Verwijder regel"
 
 #: data/gtk/window.blp:1193
 msgid "Prepend line"
@@ -390,138 +393,143 @@ msgstr ""
 
 #: data/gtk/window.blp:1202
 msgid "Use synced"
-msgstr ""
+msgstr "Gebruik gesynchroniseerden"
 
 #: data/gtk/window.blp:1209
 msgid "Sort"
-msgstr ""
+msgstr "Sorteer"
 
 #: data/gtk/window.blp:1225
 msgid "View"
-msgstr ""
+msgstr "Weergave"
 
 #: data/gtk/window.blp:1228
 msgid "Grid"
-msgstr ""
+msgstr "Grid"
 
 #: data/gtk/window.blp:1234
 msgid "List"
-msgstr ""
+msgstr "Lijst"
 
 #: data/gtk/window.blp:1246
 msgid "Preferences"
-msgstr ""
+msgstr "Voorkeuren"
 
 #: data/gtk/window.blp:1248
 msgid "About"
-msgstr ""
+msgstr "Over"
 
 #: data/gtk/ui/Preferences.blp:10
 msgid "Behavior"
-msgstr ""
+msgstr "Gedrag"
 
 #: data/gtk/ui/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
-msgstr ""
+msgstr "Reset het snel-aanpassen dialoog venster bij sluiten"
 
 #: data/gtk/ui/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
+"Kies of het snel-aanpas dialoog venster moet worden geledigd bij het sluiten "
+"of niet"
 
 #: data/gtk/ui/Preferences.blp:18
 msgid "Save session on app close"
-msgstr ""
+msgstr "Sla sessie op bij het sluiten van de app"
 
 #: data/gtk/ui/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
-msgstr ""
+msgstr "Opent laatst geopende werkmap opnieuw bij volgende startup"
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Schakel automatisch Weergave Lijst modus"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
+"Schakelt Lijst Weergave modus automatisch wanneer het beeldscherm niet groot "
+"genoeg is"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
-msgstr ""
+msgstr "Sync Pagina"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Gebruik exacte milliseconden"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "Gebruik 3-cijferige milliseconden in plaats van 2-cijferige"
 
 #: data/gtk/ui/Preferences.blp:37
 msgid "Auto file manipulation"
-msgstr ""
+msgstr "Automatische bestands manipulatie"
 
 #: data/gtk/ui/Preferences.blp:38
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
+"Creëert en updatet automatisch bestanden wanneer tekst regels veranderen"
 
 #: data/gtk/ui/Preferences.blp:42
 msgid "File format"
-msgstr ""
+msgstr "Bestandsformaat"
 
 #: data/gtk/ui/Preferences.blp:43
 msgid "File format for auto manipulation"
-msgstr ""
+msgstr "Bestandsformaat voor auto-manipulatie"
 
 #: data/gtk/ui/SavedLocation.blp:55
 msgid "Delete this Save?"
-msgstr ""
+msgstr "Verwijder dit opslagbestand?"
 
 #: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #: data/gtk/ui/SavedLocation.blp:67
 msgid "Rename"
-msgstr ""
+msgstr "Hernoemen"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
-msgstr ""
+msgstr "Bevestigen"
 
 #: data/gtk/ui/SongCard.blp:49
 msgid "Change cover"
-msgstr ""
+msgstr "Verander omslag"
 
 #: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 #: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
 msgid "Show song info"
-msgstr ""
+msgstr "Geef nummer info weer"
 
 #: data/gtk/ui/SongCard.blp:158
 msgid "Open syncing page"
-msgstr ""
+msgstr "Open synchronisatie pagina"
 
 #: data/gtk/ui/SongCard.blp:284
 msgid "Set cover"
-msgstr ""
+msgstr "Plaats omslag"
 
 #: data/gtk/ui/SongCard.blp:289
 msgid "Remove cover"
-msgstr ""
+msgstr "Verwijder omslag"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
-msgstr ""
+msgstr "Synchroniseer de tekst van je favoriete nummers"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 msgid ""
@@ -529,34 +537,40 @@ msgid ""
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav and aac (reduced functionality) formats"
 msgstr ""
+"Deze app helpt je met het bijdragen aan de grote database van "
+"gesynchroniseerde teksten met het prachtige GTK4 en LibAdwaita interface. "
+"Het ondersteunt audio in ogg, falc, mp3, m4a, wav en aac (verminderde "
+"functionaliteit) formaten"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Library"
-msgstr ""
+msgstr "Bibliotheek"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
 msgid "Library in List View mode"
-msgstr ""
+msgstr "Bibliotheek in Lijst Weergave modus"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
 msgid "Lyrics syncing page"
-msgstr ""
+msgstr "Tekst synchronisatie pagina"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
 msgid "Lyrics syncing page on smaller display"
-msgstr ""
+msgstr "Tekst synchronisatie pagina op kleiner display"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
 msgid "LRClib import dialog"
-msgstr ""
+msgstr "LRClib importeer dialoog"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
+"tekst;internet;nummers;multimedia;media;lrclib;muziek;synchronisatie;chronograph;"
+""
