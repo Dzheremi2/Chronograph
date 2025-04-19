@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 14:51+0300\n"
+"POT-Creation-Date: 2025-04-19 15:08+0300\n"
 "PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/chronograph/"
@@ -39,7 +39,13 @@ msgstr ""
 "Joris Guesné\n"
 "Nathan Bonnemains <bonnemainsnathan@gmail.com>"
 
-#: chronograph/main.py:162
+#: chronograph/main.py:157
+#, fuzzy
+msgid "Inspiration"
+msgstr "Durée"
+
+#. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+#: chronograph/main.py:167
 msgid "Build your own dictionary"
 msgstr ""
 
@@ -489,21 +495,31 @@ msgstr "Format de fichier"
 msgid "File format for auto manipulation"
 msgstr "Format de fichier pour la manipulation auto"
 
-#: data/gtk/ui/SavedLocation.blp:55
-msgid "Delete this Save?"
+#: data/gtk/ui/SavedLocation.blp:37
+#, fuzzy
+msgid "Rename this Save"
 msgstr "Supprimer ce dossier épinglé ?"
 
-#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:40
+msgid "Name"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Annuler"
 
-#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
-msgid "Delete"
-msgstr "Supprimer"
-
-#: data/gtk/ui/SavedLocation.blp:67
+#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
 msgid "Rename"
 msgstr "Renommer"
+
+#: data/gtk/ui/SavedLocation.blp:53
+msgid "Delete this Save?"
+msgstr "Supprimer ce dossier épinglé ?"
+
+#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+msgid "Delete"
+msgstr "Supprimer"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
@@ -546,8 +562,8 @@ msgid ""
 msgstr ""
 "Cette application vous aide à contribuer à la grande base de données de "
 "paroles synchronisées avec une belle interface GTK4 et LibAdwaita. Elle "
-"prend en charge la musique aux formats ogg, flac, mp3, m4a, wav et aac ("
-"fonctionnalités réduites)"
+"prend en charge la musique aux formats ogg, flac, mp3, m4a, wav et aac "
+"(fonctionnalités réduites)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
@@ -579,8 +595,8 @@ msgstr "Fenêtre d'import depuis LRClib"
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;paroles;chansons;morceaux;multimédia;musique;"
-""
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+"paroles;chansons;morceaux;multimédia;musique;"
 
 #~ msgid "Select a directory"
 #~ msgstr "Sélectionner un répertoire"

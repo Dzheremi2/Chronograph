@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 14:51+0300\n"
+"POT-Creation-Date: 2025-04-19 15:08+0300\n"
 "PO-Revision-Date: 2025-03-28 17:57+0000\n"
 "Last-Translator: burns <ahoradocafezinho@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -38,7 +38,13 @@ msgstr ""
 "John Peter Sa\n"
 "burns"
 
-#: chronograph/main.py:162
+#: chronograph/main.py:157
+#, fuzzy
+msgid "Inspiration"
+msgstr "Duração"
+
+#. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+#: chronograph/main.py:167
 msgid "Build your own dictionary"
 msgstr ""
 
@@ -485,20 +491,30 @@ msgstr "Formato de arquivo"
 msgid "File format for auto manipulation"
 msgstr "Formato de arquivo para manipulação automática"
 
-#: data/gtk/ui/SavedLocation.blp:55
-msgid "Delete this Save?"
+#: data/gtk/ui/SavedLocation.blp:37
+#, fuzzy
+msgid "Rename this Save"
+msgstr "Remova isso de salvamentos"
+
+#: data/gtk/ui/SavedLocation.blp:40
+msgid "Name"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
-msgid "Delete"
+#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
+msgid "Rename"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:67
-msgid "Rename"
+#: data/gtk/ui/SavedLocation.blp:53
+msgid "Delete this Save?"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+msgid "Delete"
 msgstr ""
 
 #: data/gtk/ui/SongCard.blp:21
@@ -576,9 +592,6 @@ msgid ""
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;"
 "multimídia;mídia;música;sincronização;"
-
-#~ msgid "Remove this from saves"
-#~ msgstr "Remova isso de salvamentos"
 
 #~ msgid "Delete name to remove"
 #~ msgstr "Excluir o nome para remover"

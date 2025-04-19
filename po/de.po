@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 14:51+0300\n"
+"POT-Creation-Date: 2025-04-19 15:08+0300\n"
 "PO-Revision-Date: 2025-03-15 08:47+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/lrcmake/"
@@ -36,7 +36,13 @@ msgstr "Erfolgreich kopiert"
 msgid "translator-credits"
 msgstr "Ettore Atalan"
 
-#: chronograph/main.py:162
+#: chronograph/main.py:157
+#, fuzzy
+msgid "Inspiration"
+msgstr "Dauer"
+
+#. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+#: chronograph/main.py:167
 msgid "Build your own dictionary"
 msgstr ""
 
@@ -486,22 +492,31 @@ msgstr "Dateiformat"
 msgid "File format for auto manipulation"
 msgstr "Dateiformat für die automatische Bearbeitung"
 
-#: data/gtk/ui/SavedLocation.blp:55
-msgid "Delete this Save?"
+#: data/gtk/ui/SavedLocation.blp:37
+msgid "Rename this Save"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:40
+msgid "Name"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
-msgid "Delete"
-msgstr ""
-
-#: data/gtk/ui/SavedLocation.blp:67
+#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
 #, fuzzy
 msgid "Rename"
 msgstr "Dateiname"
+
+#: data/gtk/ui/SavedLocation.blp:53
+msgid "Delete this Save?"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+msgid "Delete"
+msgstr ""
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"

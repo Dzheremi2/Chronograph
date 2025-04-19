@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 14:51+0300\n"
-"PO-Revision-Date: 2025-04-12 14:52+0300\n"
+"POT-Creation-Date: 2025-04-19 15:08+0300\n"
+"PO-Revision-Date: 2025-04-19 15:09+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -37,7 +37,12 @@ msgstr "Скопированно успешно"
 msgid "translator-credits"
 msgstr "Артём Чичваров <chichvarov1315@gmail.com>"
 
-#: chronograph/main.py:162
+#: chronograph/main.py:157
+msgid "Inspiration"
+msgstr "Вдохновение"
+
+#. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+#: chronograph/main.py:167
 msgid "Build your own dictionary"
 msgstr "Создайте свой собственный словарь"
 
@@ -479,21 +484,30 @@ msgstr "Формат файла"
 msgid "File format for auto manipulation"
 msgstr "Формат файла для автоманипуляции"
 
-#: data/gtk/ui/SavedLocation.blp:55
-msgid "Delete this Save?"
-msgstr "Удалить это сохранение?"
+#: data/gtk/ui/SavedLocation.blp:37
+msgid "Rename this Save"
+msgstr "Переименовать сохранение"
 
-#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:40
+msgid "Name"
+msgstr "Название"
+
+#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Отмена"
 
-#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
-msgid "Delete"
-msgstr "Удалить"
-
-#: data/gtk/ui/SavedLocation.blp:67
+#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
 msgid "Rename"
 msgstr "Переименовать"
+
+#: data/gtk/ui/SavedLocation.blp:53
+msgid "Delete this Save?"
+msgstr "Удалить это сохранение?"
+
+#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+msgid "Delete"
+msgstr "Удалить"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 14:51+0300\n"
+"POT-Creation-Date: 2025-04-19 15:08+0300\n"
 "PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: \"Emilio S.\" <emism.translations@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/chronograph/"
@@ -37,7 +37,13 @@ msgstr "Copiado correctamente"
 msgid "translator-credits"
 msgstr "Óscar Fernández Díaz"
 
-#: chronograph/main.py:162
+#: chronograph/main.py:157
+#, fuzzy
+msgid "Inspiration"
+msgstr "Duración"
+
+#. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+#: chronograph/main.py:167
 msgid "Build your own dictionary"
 msgstr "Construya su propio diccionario"
 
@@ -488,22 +494,32 @@ msgstr "Formato del archivo"
 msgid "File format for auto manipulation"
 msgstr "Formato del archivo para la automanipulación"
 
-#: data/gtk/ui/SavedLocation.blp:55
-msgid "Delete this Save?"
+#: data/gtk/ui/SavedLocation.blp:37
+#, fuzzy
+msgid "Rename this Save"
+msgstr "Quitar esto de guardados"
+
+#: data/gtk/ui/SavedLocation.blp:40
+msgid "Name"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
-msgid "Delete"
-msgstr ""
-
-#: data/gtk/ui/SavedLocation.blp:67
+#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
 #, fuzzy
 msgid "Rename"
 msgstr "Nombre del archivo"
+
+#: data/gtk/ui/SavedLocation.blp:53
+msgid "Delete this Save?"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+msgid "Delete"
+msgstr ""
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
@@ -583,9 +599,6 @@ msgid ""
 msgstr ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canciones;"
 "música;sincronización;"
-
-#~ msgid "Remove this from saves"
-#~ msgstr "Quitar esto de guardados"
 
 #~ msgid "Delete name to remove"
 #~ msgstr "Borrar nombre para eliminar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 14:51+0300\n"
+"POT-Creation-Date: 2025-04-19 15:08+0300\n"
 "PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/chronograph/"
@@ -38,7 +38,13 @@ msgstr ""
 "Jiri Grönroos\n"
 "Ricky Tigg"
 
-#: chronograph/main.py:162
+#: chronograph/main.py:157
+#, fuzzy
+msgid "Inspiration"
+msgstr "Kesto"
+
+#. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+#: chronograph/main.py:167
 msgid "Build your own dictionary"
 msgstr "Rakenna oma sanasto"
 
@@ -481,21 +487,31 @@ msgstr "Tiedostomuoto"
 msgid "File format for auto manipulation"
 msgstr "Tiedostomuoto automaattista käsittelyä varten"
 
-#: data/gtk/ui/SavedLocation.blp:55
-msgid "Delete this Save?"
+#: data/gtk/ui/SavedLocation.blp:37
+#, fuzzy
+msgid "Rename this Save"
 msgstr "Poistetaanko tämä tallennus?"
 
-#: data/gtk/ui/SavedLocation.blp:60 data/gtk/ui/SongCard.blp:16
+#: data/gtk/ui/SavedLocation.blp:40
+msgid "Name"
+msgstr ""
+
+#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
+#: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
 msgstr "Peru"
 
-#: data/gtk/ui/SavedLocation.blp:61 data/gtk/ui/SavedLocation.blp:68
-msgid "Delete"
-msgstr "Poista"
-
-#: data/gtk/ui/SavedLocation.blp:67
+#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
 msgid "Rename"
 msgstr "Nimeä uudelleen"
+
+#: data/gtk/ui/SavedLocation.blp:53
+msgid "Delete this Save?"
+msgstr "Poistetaanko tämä tallennus?"
+
+#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+msgid "Delete"
+msgstr "Poista"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"

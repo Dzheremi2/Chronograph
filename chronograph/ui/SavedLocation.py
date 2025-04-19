@@ -85,6 +85,13 @@ class SavedLocation(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_rename_entry_changed(self, text: Gtk.Text) -> None:
+        """Checks if the rename entry is empty and adds an error class if it is
+
+        Parameters
+        ----------
+        text : Gtk.Text
+            The text entry that is used to rename the save
+        """
         if text.get_text_length() == 0:
             self.rename_entry.add_css_class("error")
         else:
@@ -93,6 +100,15 @@ class SavedLocation(Gtk.Box):
 
     @Gtk.Template.Callback()
     def do_rename(self, alert_dialog: Adw.AlertDialog, response: str) -> None:
+        """Renames the save in `shared.cache` and dumps updated cache to file
+
+        Parameters
+        ----------
+        alert_dialog : Adw.AlertDialog
+            An alert dialog that is used to rename the save
+        response : str
+            The response of the alert dialog
+        """
         if response == "rename":
             if alert_dialog.get_extra_child().get_text_length() == 0:
                 return

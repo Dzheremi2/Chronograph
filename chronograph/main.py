@@ -154,12 +154,17 @@ class ChronographApplication(Adw.Application):
             Gtk.License.MIT_X11,
         )
         dialog.add_acknowledgement_section(
-            None, ("knuxify (Ear Tag) https://gitlab.gnome.org/World/eartag",)
+            _("Inspiration"),
+            (
+                "knuxify (Ear Tag) https://gitlab.gnome.org/World/eartag",
+                "kra-mo (Cartridges) https://github.com/kra-mo/cartridges",
+            ),
         )
         dialog.add_other_app(
             "io.github.dzheremi2.lexi",
             "Lexi",
-            _("Build your own dictionary")
+            # Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
+            _("Build your own dictionary"),
         )
 
         if shared.PREFIX.endswith("Devel"):
