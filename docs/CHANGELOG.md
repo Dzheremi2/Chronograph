@@ -1,3 +1,6 @@
+## 2.4.5
+<p>Renaming the Saved Location now performs using dialogs instead of popovers</p>
+
 ## 2.4.4
 <p>Actions with saved locations now performing using RMB click or long press</p>
 

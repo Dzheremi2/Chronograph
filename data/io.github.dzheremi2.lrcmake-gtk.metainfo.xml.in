@@ -83,6 +83,11 @@
   </screenshots>
 
   <releases>
+    <release version="2.4.5" date="2025-04-20">
+      <description translate="no">
+        <p>Renaming the Saved Location now performs using dialogs instead of popovers</p>
+      </description>
+    </release>
     <release version="2.4.4" date="2025-04-13">
       <description translate="no">
         <p>Actions with saved locations now performing using RMB click or long press</p>
