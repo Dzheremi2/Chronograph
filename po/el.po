@@ -8,531 +8,546 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-19 15:08+0300\n"
-"PO-Revision-Date: 2024-11-18 00:25+0300\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-04-27 18:01+0000\n"
+"Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
+"Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
+"chronograph/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "Ορισμένα από τα πεδία Τίτλος, Καλλιτέχνης ή/και Άλμπουμ είναι Άγνωστα!"
 
 #: chronograph/window.py:669
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Ορισμένες από τις καταχωρήσεις είναι κενές"
 
 #: chronograph/window.py:696
 msgid "Copied successfully"
-msgstr ""
+msgstr "Αντιγράφηκε επιτυχώς"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:149
 msgid "translator-credits"
-msgstr ""
+msgstr "Γιάννος Ασημακόπουλος 2025"
 
 #: chronograph/main.py:157
 msgid "Inspiration"
-msgstr ""
+msgstr "Έμπνευση"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:167
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Φτιάξτε το δικό σας λεξικό"
 
 #: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
 #: data/gtk/ui/SongCard.blp:76 data/gtk/ui/SongCard.blp:182
 msgid "Title"
-msgstr ""
+msgstr "Τίτλος"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
 #: data/gtk/window.blp:188 data/gtk/window.blp:344 data/gtk/window.blp:517
 #: data/gtk/ui/SongCard.blp:80 data/gtk/ui/SongCard.blp:197
 msgid "Artist"
-msgstr ""
+msgstr "Καλλιτέχνης"
 
 #: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:525
 msgid "Duration"
-msgstr ""
+msgstr "Διάρκεια"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
 #: data/gtk/window.blp:521 data/gtk/ui/SongCard.blp:84
 msgid "Album"
-msgstr ""
+msgstr "Άλμπουμ"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
-msgstr ""
+msgstr "Είναι ορχηστρικό"
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Ναι"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Όχι"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "Δεν υπάρχουν διαθέσιμοι συγχρονισμένοι στίχοι"
 
 #: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Μονοπάτι: "
 
 #: chronograph/ui/SongCard.py:15
 msgid "About File"
-msgstr ""
+msgstr "Σχετικά με το Αρχείο"
 
 #: chronograph/ui/SongCard.py:19
 msgid "Path"
-msgstr ""
+msgstr "Διαδρομή"
 
 #: chronograph/ui/SongCard.py:251 chronograph/ui/SongCard.py:307
 #: chronograph/ui/SongCard.py:308 chronograph/ui/SongCard.py:316
 #: chronograph/ui/SongCard.py:323 chronograph/ui/SongCard.py:324
 #: chronograph/ui/SongCard.py:332
 msgid "Unknown"
-msgstr ""
+msgstr "Άγνωστος"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
-msgstr ""
+msgstr "Ο κατάλογος αποθηκεύτηκε με επιτυχία"
 
 #: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
 msgid "Seems like not every line is synced"
-msgstr ""
+msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
 
 #: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
 msgid "Published successfully: "
-msgstr ""
+msgstr "Δημοσιεύθηκε με επιτυχία: "
 
 #: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
 msgid "Incorrect publish token: "
-msgstr ""
+msgstr "Λανθασμένο διακριτικό δημοσίευσης: "
 
 #: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
 msgid "Unknown error occured: "
-msgstr ""
+msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Δημοσίευση"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
 msgid "No source selected yet"
-msgstr ""
+msgstr "Δεν έχει επιλεγεί ακόμα πηγή"
 
 #: data/gtk/window.blp:7
 msgid "Select a directory or Drag-N-Drop files to load them"
 msgstr ""
+"Επιλέξτε έναν κατάλογο ή κάντε Drag-N-Drop σε αρχεία για να τα φορτώσετε"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr ""
+msgstr "Ανοιχτός κώδικας"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
-msgstr ""
+msgstr "Άδειος κατάλογος"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Αυτός ο κατάλογος δεν έχει υποστηριζόμενα αρχεία μουσικής"
 
 #: data/gtk/window.blp:49 data/gtk/window.blp:54
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "Αναζήτηση στο LRClib με βάση τον τίτλο και τα ονόματα των καλλιτεχνών"
 
 #: data/gtk/window.blp:60 data/gtk/window.blp:66
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "Δεν βρέθηκε τίποτα για αυτό το αίτημα"
 
 #: data/gtk/window.blp:61 data/gtk/window.blp:67
 msgid "Try out another request, maybe there are mistakes in request text."
 msgstr ""
+"Δοκιμάστε ένα άλλο αίτημα, ίσως υπάρχουν λάθη στο κείμενο του αιτήματος."
 
 #: data/gtk/window.blp:71
 msgid "No saves found yet"
-msgstr ""
+msgstr "Δεν έχουν βρεθεί ακόμα αποθηκεύσεις"
 
 #: data/gtk/window.blp:73
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
+"Πατήστε το κουμπί pin για να προσθέσετε τον τρέχοντα κατάλογο στις "
+"αποθηκεύσεις"
 
 #: data/gtk/window.blp:103 data/gtk/window.blp:1242
 msgid "Quick Editor"
-msgstr ""
+msgstr "Γρήγορος επεξεργαστής"
 
 #: data/gtk/window.blp:128
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Αντιγραφή στο πρόχειρο"
 
 #: data/gtk/window.blp:196 data/gtk/window.blp:353
 msgid "Search LRClib for provided title and artist"
-msgstr ""
+msgstr "Αναζήτηση στην LRClib για τον παρεχόμενο τίτλο και καλλιτέχνη"
 
 #: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:724
 msgid "Search"
-msgstr ""
+msgstr "Αναζήτηση"
 
 #: data/gtk/window.blp:243 data/gtk/window.blp:408
 msgid "Synced"
-msgstr ""
+msgstr "Συγχρονισμένα"
 
 #: data/gtk/window.blp:268 data/gtk/window.blp:434
 msgid "Plain"
-msgstr ""
+msgstr "Απλά"
 
 #: data/gtk/window.blp:297 data/gtk/window.blp:464
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
 msgstr ""
+"Οι συγχρονισμένοι στίχοι χρησιμοποιούνται από προεπιλογή, για να "
+"χρησιμοποιήσετε απλούς στίχους, επιλέξτε ''Χρήση απλών στίχων'' από το "
+"υπομενού"
 
 #: data/gtk/window.blp:303 data/gtk/window.blp:470
 msgid "Use"
-msgstr ""
+msgstr "Χρήση"
 
 #: data/gtk/window.blp:550 data/gtk/window.blp:617
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Chronograph"
-msgstr ""
+msgstr "Χρονογράφος"
 
 #: data/gtk/window.blp:603
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Αποθέστε αρχεία εδώ για να τα ανοίξετε"
 
 #: data/gtk/window.blp:624
 msgid "Saves"
-msgstr ""
+msgstr "Αποθηκεύει"
 
 #: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1093
 msgid "Toggle sidebar"
-msgstr ""
+msgstr "Εναλλαγή πλαϊνής μπάρας"
 
 #: data/gtk/window.blp:660
 msgid "Select a directory or open a file"
-msgstr ""
+msgstr "Επιλογή καταλόγου ή άνοιγμα αρχείου"
 
 #: data/gtk/window.blp:672 data/gtk/window.blp:1073
 msgid "Toggle search"
-msgstr ""
+msgstr "Εναλλαγή αναζήτησης"
 
 #: data/gtk/window.blp:680 data/gtk/window.blp:773
 msgid "App settings, info and utils"
-msgstr ""
+msgstr "Ρυθμίσεις εφαρμογής, πληροφορίες και βοηθήματα"
 
 #: data/gtk/window.blp:688
 msgid "Clean the library"
-msgstr ""
+msgstr "Καθαρίστε τη βιβλιοθήκη"
 
 #: data/gtk/window.blp:703
 msgid "Re-parse current directory"
-msgstr ""
+msgstr "Επανάληψη της ανάλυσης του τρέχοντος καταλόγου"
 
 #: data/gtk/window.blp:708
 msgid "Add current directory to saves"
-msgstr ""
+msgstr "Προσθήκη τρέχοντος καταλόγου στις αποθηκεύσεις"
 
 #: data/gtk/window.blp:764
 msgid "Syncing"
-msgstr ""
+msgstr "Γίνεται Συγχρονισμός"
 
 #: data/gtk/window.blp:863
 msgid "Toggle song repeat"
-msgstr ""
+msgstr "Εναλλαγή επανάληψης τραγουδιού"
 
 #: data/gtk/window.blp:919
 msgid "Sync/Re-sync line"
-msgstr ""
+msgstr "Γραμμή συγχρονισμού/επανασυγχρονισμού"
 
 #: data/gtk/window.blp:930 data/gtk/window.blp:1107
 msgid "Replay selected line"
-msgstr ""
+msgstr "Επανάληψη επιλεγμένης γραμμής"
 
 #: data/gtk/window.blp:938
 msgid "Re-sync selected line 100ms back"
-msgstr ""
+msgstr "Επανασυντονισμός επιλεγμένης γραμμής 100ms πίσω"
 
 #: data/gtk/window.blp:946
 msgid "Re-sync selected line 100ms forward"
-msgstr ""
+msgstr "Επανασυγχρονισμός επιλεγμένης γραμμής 100ms προς τα εμπρός"
 
 #: data/gtk/window.blp:954 data/gtk/window.blp:1170
 msgid "Import from …"
-msgstr ""
+msgstr "Εισαγωγή από …"
 
 #: data/gtk/window.blp:965 data/gtk/window.blp:1180
 msgid "Export to …"
-msgstr ""
+msgstr "Εξαγωγή σε …"
 
 #: data/gtk/window.blp:983 data/gtk/window.blp:1190
 msgid "Actions with selected line"
-msgstr ""
+msgstr "Ενέργειες με επιλεγμένη γραμμή"
 
 #: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
 #: data/gtk/ui/SongCard.blp:261
 msgid "Edit song metadata"
-msgstr ""
+msgstr "Επεξεργασία μεταδεδομένων τραγουδιού"
 
 #: data/gtk/window.blp:1004
 msgid "About file"
-msgstr ""
+msgstr "Σχετικά με το αρχείο"
 
 #: data/gtk/window.blp:1038
 msgid "Add line"
-msgstr ""
+msgstr "Προσθήκη γραμμής"
 
 #: data/gtk/window.blp:1061
 msgid "Shortcuts"
-msgstr ""
+msgstr "Συντομεύσεις"
 
 #: data/gtk/window.blp:1065 data/gtk/ui/Preferences.blp:6
 msgid "General"
-msgstr ""
+msgstr "Γενικά"
 
 #: data/gtk/window.blp:1068
 msgid "Quit"
-msgstr ""
+msgstr "Κλείστε το"
 
 #: data/gtk/window.blp:1078
 msgid "Select directory"
-msgstr ""
+msgstr "Επιλέξτε κατάλογο"
 
 #: data/gtk/window.blp:1083
 msgid "Select files"
-msgstr ""
+msgstr "Επιλογή αρχείων"
 
 #: data/gtk/window.blp:1088 data/gtk/window.blp:1247
 msgid "Keybindings"
-msgstr ""
+msgstr "Δεσμοί πλήκτρων"
 
 #: data/gtk/window.blp:1099
 msgid "Sync mode"
-msgstr ""
+msgstr "Λειτουργία συγχρονισμού"
 
 #: data/gtk/window.blp:1102
 msgid "Sync/Re-sync"
-msgstr ""
+msgstr "Συγχρονισμός/επανασυγχρονισμός"
 
 #: data/gtk/window.blp:1112
 msgid "Remove selected line"
-msgstr ""
+msgstr "Αφαίρεση επιλεγμένης γραμμής"
 
 #: data/gtk/window.blp:1117
 msgid "Prepend line to selected"
-msgstr ""
+msgstr "Προσθήκη γραμμής στην επιλεγμένη"
 
 #: data/gtk/window.blp:1122
 msgid "Append line to selected"
-msgstr ""
+msgstr "Προσάρτηση γραμμής στην επιλεγμένη"
 
 #: data/gtk/window.blp:1127 data/gtk/window.blp:1195
 msgid "Append line to end"
-msgstr ""
+msgstr "Προσάρτηση γραμμής στο τέλος"
 
 #: data/gtk/window.blp:1132
 msgid "Re-sync 100ms back"
-msgstr ""
+msgstr "Επανασυντονισμός 100ms πίσω"
 
 #: data/gtk/window.blp:1137
 msgid "Re-sync 100ms forward"
-msgstr ""
+msgstr "Επανασυγχρονισμός 100ms προς τα εμπρός"
 
 #: data/gtk/window.blp:1147
 msgid "Directory"
-msgstr ""
+msgstr "Κατάλογος"
 
 #: data/gtk/window.blp:1148
 msgid "Files"
-msgstr ""
+msgstr "Αρχεία"
 
 #: data/gtk/window.blp:1155 data/gtk/window.blp:1212
 msgid "A-Z"
-msgstr ""
+msgstr "Α-Ω"
 
 #: data/gtk/window.blp:1161 data/gtk/window.blp:1218
 msgid "Z-A"
-msgstr ""
+msgstr "Ω-Α"
 
 #: data/gtk/window.blp:1172 data/gtk/window.blp:1182
 msgid "File"
-msgstr ""
+msgstr "Αρχείο"
 
 #: data/gtk/window.blp:1173 data/gtk/window.blp:1183
 msgid "Clipboard"
-msgstr ""
+msgstr "Πρόχειρο"
 
 #: data/gtk/window.blp:1192
 msgid "Remove line"
-msgstr ""
+msgstr "Αφαίρεση γραμμής"
 
 #: data/gtk/window.blp:1193
 msgid "Prepend line"
-msgstr ""
+msgstr "Αποσάρτηση γραμμή"
 
 #: data/gtk/window.blp:1194
 msgid "Append line"
-msgstr ""
+msgstr "Προσάρτηση γραμμής"
 
 #: data/gtk/window.blp:1201
 msgid "Use plain"
-msgstr ""
+msgstr "Χρήση απλών"
 
 #: data/gtk/window.blp:1202
 msgid "Use synced"
-msgstr ""
+msgstr "Χρήση συγχρονισμένων"
 
 #: data/gtk/window.blp:1209
 msgid "Sort"
-msgstr ""
+msgstr "Ταξινόμηση"
 
 #: data/gtk/window.blp:1225
 msgid "View"
-msgstr ""
+msgstr "Προβολή"
 
 #: data/gtk/window.blp:1228
 msgid "Grid"
-msgstr ""
+msgstr "Πλέγμα"
 
 #: data/gtk/window.blp:1234
 msgid "List"
-msgstr ""
+msgstr "Λίστα"
 
 #: data/gtk/window.blp:1246
 msgid "Preferences"
-msgstr ""
+msgstr "Προτιμήσεις"
 
 #: data/gtk/window.blp:1248
 msgid "About"
-msgstr ""
+msgstr "Σχετικά με"
 
 #: data/gtk/ui/Preferences.blp:10
 msgid "Behavior"
-msgstr ""
+msgstr "Συμπεριφορά"
 
 #: data/gtk/ui/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
-msgstr ""
+msgstr "Επαναφορά διαλόγου γρήγορης επεξεργασίας κατά το κλείσιμο"
 
 #: data/gtk/ui/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
+"Επιλέξτε, αν το κείμενο διαλόγου γρήγορης επεξεργασίας θα πρέπει να "
+"καθαρίζεται μετά την έξοδο ή όχι"
 
 #: data/gtk/ui/Preferences.blp:18
 msgid "Save session on app close"
-msgstr ""
+msgstr "Αποθήκευση συνεδρίας κατά το κλείσιμο της εφαρμογής"
 
 #: data/gtk/ui/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
-msgstr ""
+msgstr "Ανοίγει ξανά τον τελευταίο ανοιχτό κατάλογο κατά την επόμενη εκκίνηση"
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Αυτόματη εναλλαγή λειτουργίας προβολής λίστας"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
+"Αλλάζει αυτόματα τη λειτουργία προβολής λίστας όταν το μέγεθος της οθόνης "
+"δεν είναι αρκετά μεγάλο"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Sync Page"
-msgstr ""
+msgstr "Συντονισμός Σελίδας"
 
 #: data/gtk/ui/Preferences.blp:32
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Χρησιμοποιήστε ακριβή χιλιοστά του δευτερολέπτου"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "Χρησιμοποιήστε τριψήφια χιλιοστά του δευτερολέπτου αντί για διψήφια"
 
 #: data/gtk/ui/Preferences.blp:37
 msgid "Auto file manipulation"
-msgstr ""
+msgstr "Αυτόματος χειρισμός αρχείων"
 
 #: data/gtk/ui/Preferences.blp:38
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
+"Δημιουργεί αυτόματα και ενημερώνει τα αρχεία όταν αλλάζει κάποια από τις "
+"γραμμές στίχων"
 
 #: data/gtk/ui/Preferences.blp:42
 msgid "File format"
-msgstr ""
+msgstr "Μορφή αρχείου"
 
 #: data/gtk/ui/Preferences.blp:43
 msgid "File format for auto manipulation"
-msgstr ""
+msgstr "Μορφή αρχείου για αυτόματο χειρισμό"
 
 #: data/gtk/ui/SavedLocation.blp:37
 msgid "Rename this Save"
-msgstr ""
+msgstr "Μετονομάστε αυτό Αποθήκευση"
 
 #: data/gtk/ui/SavedLocation.blp:40
 msgid "Name"
-msgstr ""
+msgstr "Όνομα"
 
 #: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
 #: data/gtk/ui/SongCard.blp:16
 msgid "Cancel"
-msgstr ""
+msgstr "Ακύρωση"
 
 #: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
 msgid "Rename"
-msgstr ""
+msgstr "Μετονομασία"
 
 #: data/gtk/ui/SavedLocation.blp:53
 msgid "Delete this Save?"
-msgstr ""
+msgstr "Διαγραφή αυτής της Αποθήκευσης?"
 
 #: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
 msgid "Delete"
-msgstr ""
+msgstr "Διαγραφή"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
-msgstr ""
+msgstr "Εφαρμογή"
 
 #: data/gtk/ui/SongCard.blp:49
 msgid "Change cover"
-msgstr ""
+msgstr "Αλλαγή καλύμματος"
 
 #: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
 msgid "Sync"
-msgstr ""
+msgstr "Συγχρονισμός"
 
 #: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
 msgid "Show song info"
-msgstr ""
+msgstr "Εμφάνιση πληροφοριών τραγουδιού"
 
 #: data/gtk/ui/SongCard.blp:158
 msgid "Open syncing page"
-msgstr ""
+msgstr "Άνοιγμα σελίδας συγχρονισμού"
 
 #: data/gtk/ui/SongCard.blp:284
 msgid "Set cover"
-msgstr ""
+msgstr "Σετ καλύμματος"
 
 #: data/gtk/ui/SongCard.blp:289
 msgid "Remove cover"
-msgstr ""
+msgstr "Αφαίρεση του καλύμματος"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
 msgid "Sync lyrics of your loved songs"
-msgstr ""
+msgstr "Συγχρονίστε τους στίχους των αγαπημένων σας τραγουδιών"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 msgid ""
@@ -540,34 +555,39 @@ msgid ""
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav and aac (reduced functionality) formats"
 msgstr ""
+"Αυτή η εφαρμογή σας βοηθά να συνεισφέρετε στη μεγάλη βάση δεδομένων των "
+"συγχρονισμένων στίχων με όμορφο περιβάλλον GTK4 και LibAdwaita. Υποστηρίζει "
+"μουσική σε μορφές ogg, flac, mp3, m4a, wav και aac (μειωμένη λειτουργικότητα)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Library"
-msgstr ""
+msgstr "Βιβλιοθήκη"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
 msgid "Library in List View mode"
-msgstr ""
+msgstr "Βιβλιοθήκη σε λειτουργία προβολής λίστας"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
 msgid "Lyrics syncing page"
-msgstr ""
+msgstr "Σειρά συγχρονισμού στίχων"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
 msgid "Lyrics syncing page on smaller display"
-msgstr ""
+msgstr "Σελίδα συγχρονισμού στίχων σε μικρότερη οθόνη"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
 msgid "LRClib import dialog"
-msgstr ""
+msgstr "Διάλογος εισαγωγής LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;στίχοι;διαδίκτυο;τραγούδια;πολυμέσα;μέσα;lrclib;μουσική;συγχρονισμός;χρονογράφος;"
+""
