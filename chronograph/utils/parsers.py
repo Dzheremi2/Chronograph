@@ -61,7 +61,7 @@ def parse_files(files: list) -> bool:
     """
     mutagen_files = []
     for file in files:
-        if Path(file).suffix in (".ogg", ".flac"):
+        if Path(file).suffix in (".ogg", ".flac", ".opus"):
             mutagen_files.append(FileVorbis(file))
         elif Path(file).suffix in (".mp3", ".wav"):
             mutagen_files.append(FileID3(file))
