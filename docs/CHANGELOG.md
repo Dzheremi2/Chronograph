@@ -1,3 +1,10 @@
+## 2.5
+<p>New features</p>
+<ul>
+    <li>Added .opus file format support</li>
+    <li>Added support for subdirectories</li>
+</ul>
+
 ## 2.4.5
 <p>Renaming the Saved Location now performs using dialogs instead of popovers</p>
 
