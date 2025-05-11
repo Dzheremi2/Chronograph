@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-19 15:08+0300\n"
-"PO-Revision-Date: 2025-03-15 08:47+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/lrcmake/"
+"PO-Revision-Date: 2025-05-01 06:01+0000\n"
+"Last-Translator: Aircraft192 <finnwiggers2006@gmail.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -136,14 +136,13 @@ msgid "No source selected yet"
 msgstr "Noch keine Quelle ausgewählt"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "Verzeichnis auswählen oder Datei öffnen"
+msgstr "Verzeichnis auswählen oder Dateien per Dag-N-Drop öffnen"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr ""
+msgstr "Quelle öffnen"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
@@ -168,7 +167,7 @@ msgstr ""
 
 #: data/gtk/window.blp:71
 msgid "No saves found yet"
-msgstr ""
+msgstr "Noch keine gespeicherten Ordner vorhanden"
 
 #: data/gtk/window.blp:73
 msgid "Press pin button to add current directory to the saves"
@@ -218,7 +217,7 @@ msgstr "Chronograph"
 
 #: data/gtk/window.blp:603
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Dateien zum Öffnen hierhin ziehen"
 
 #: data/gtk/window.blp:624
 msgid "Saves"
@@ -319,9 +318,8 @@ msgid "Select directory"
 msgstr "Verzeichnis auswählen"
 
 #: data/gtk/window.blp:1083
-#, fuzzy
 msgid "Select files"
-msgstr "Verzeichnis auswählen"
+msgstr "Dateien auswählen"
 
 #: data/gtk/window.blp:1088 data/gtk/window.blp:1247
 msgid "Keybindings"
@@ -364,9 +362,8 @@ msgid "Directory"
 msgstr "Verzeichnis"
 
 #: data/gtk/window.blp:1148
-#, fuzzy
 msgid "Files"
-msgstr "Datei"
+msgstr "Dateien"
 
 #: data/gtk/window.blp:1155 data/gtk/window.blp:1212
 msgid "A-Z"
@@ -452,7 +449,7 @@ msgstr "Öffnet das zuletzt geöffnete Verzeichnis beim nächsten Start erneut"
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr "Listenansichtsmodus automatisch umschalten"
+msgstr "Listenansicht automatisch umschalten"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
@@ -498,7 +495,7 @@ msgstr ""
 
 #: data/gtk/ui/SavedLocation.blp:40
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
 #: data/gtk/ui/SongCard.blp:16
@@ -506,9 +503,8 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
-#, fuzzy
 msgid "Rename"
-msgstr "Dateiname"
+msgstr "Umbenennen"
 
 #: data/gtk/ui/SavedLocation.blp:53
 msgid "Delete this Save?"
@@ -516,7 +512,7 @@ msgstr ""
 
 #: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: data/gtk/ui/SongCard.blp:21
 msgid "Apply"
@@ -552,15 +548,15 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Liedtexte deiner Lieblingslieder synchronisieren"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav and aac (reduced functionality) formats"
 msgstr ""
-"Diese App hilft dir, zu der großen Datenbank von synchronisierten Liedtexten "
-"mit schöner GTK4- und LibAdwaita-Schnittstelle beizutragen. Es unterstützt "
-"Musik in den Formaten ogg, flac, mp3 und wav"
+"Diese App mit schöner GTK4- und LibAdwaita-Benutzeroberfläche hilft dir, zu "
+"der großen Datenbank von synchronisierten Liedtexten beizutragen. Musik in "
+"folgenden Formaten wird unterstützt: ogg, flac, mp3, wav und aac (reduzierte "
+"Funktionalität)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
@@ -569,9 +565,8 @@ msgstr "Bibliothek"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Library in List View mode"
-msgstr "Listenansichtsmodus automatisch umschalten"
+msgstr "Listenansicht automatisch umschalten"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
@@ -590,12 +585,11 @@ msgstr "LRClib-Importdialog"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
-#, fuzzy
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;liedtexte;lieder;"
-"medium;musik;synchronisation;synchronisierung;"
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;songtexte;lieder;medien;musik;synchronisierung;"
+""
 
 #~ msgid "Delete name to remove"
 #~ msgstr "Zum Entfernen Name löschen"
