@@ -22,13 +22,21 @@ def dir_parser(path: str, *_args) -> None:
         Path to directory to parse
     """
     from chronograph.window import WindowState
+
     shared.win.library.remove_all()
     shared.win.library_list.remove_all()
     path = f"{path}/"
     files = []
-    for file in os.listdir(path):
-        if not os.path.isdir(file):
-            files.append(path + file)
+    if not shared.schema.get_boolean("recursive-parsing"):
+        for file in os.listdir(path):
+            if not os.path.isdir(file):
+                files.append(path + file)
+    else:
+        for root, _, filenames in os.walk(
+            path, followlinks=shared.schema.get_boolean("follow-symlinks")
+        ):
+            for file in filenames:
+                files.append(os.path.join(root, file))
 
     if parse_files(files):
         shared.win.state = WindowState.LOADED_DIR

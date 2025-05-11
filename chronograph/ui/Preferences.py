@@ -15,6 +15,8 @@ class ChronographPreferences(Adw.PreferencesDialog):
     save_session_on_quit_switch: Adw.SwitchRow = Gtk.Template.Child()
     precise_milliseconds_switch: Adw.SwitchRow = Gtk.Template.Child()
     automatic_list_view_switch: Adw.SwitchRow = Gtk.Template.Child()
+    recursive_parsing_switch: Adw.ExpanderRow = Gtk.Template.Child()
+    follow_symlinks_switch: Adw.SwitchRow = Gtk.Template.Child()
 
     opened = False
 
@@ -53,6 +55,18 @@ class ChronographPreferences(Adw.PreferencesDialog):
         shared.schema.bind(
             "auto-list-view",
             self.automatic_list_view_switch,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        shared.schema.bind(
+            "recursive-parsing",
+            self.recursive_parsing_switch,
+            "enable-expansion",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        shared.schema.bind(
+            "follow-symlinks",
+            self.follow_symlinks_switch,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )

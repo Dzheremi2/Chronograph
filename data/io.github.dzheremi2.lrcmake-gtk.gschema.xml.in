@@ -23,6 +23,12 @@
     <key name="auto-list-view" type="b">
       <default>false</default>
     </key>
+    <key name="recursive-parsing" type="b">
+      <default>false</default>
+    </key>
+    <key name="follow-symlinks" type="b">
+      <default>false</default>
+    </key>
   </schema>
 
   <schema id="@APP_ID@.State" path="@PREFIX@/State/">

@@ -23,6 +23,17 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         title: _("Automatically toggle List View mode");
         subtitle: _("Automatically toggles List View mode when display size is not big enough");
       }
+
+      Adw.ExpanderRow recursive_parsing_switch {
+        show-enable-switch: true;
+        title: _("Parse directories recursively");
+        subtitle: _("Scans provided directory for supported files recursively");
+
+        Adw.SwitchRow follow_symlinks_switch {
+          title: _("Follow symlinks");
+          subtitle: _("If a directory has symlinks to other directories, they would be parsed too\nMay cause excessive memory consumption and looping if it has looped symlinks");
+        }
+      }
     }
 
     Adw.PreferencesGroup {
