@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 15:08+0300\n"
+"POT-Creation-Date: 2025-05-11 11:00+0300\n"
 "PO-Revision-Date: 2025-04-27 18:01+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -109,7 +109,7 @@ msgstr "Άγνωστος"
 msgid "Directory saved successfully"
 msgstr "Ο κατάλογος αποθηκεύτηκε με επιτυχία"
 
-#: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
+#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
 msgid "Seems like not every line is synced"
 msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
 
@@ -214,7 +214,7 @@ msgstr "Χρήση"
 
 #: data/gtk/window.blp:550 data/gtk/window.blp:617
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Χρονογράφος"
 
@@ -461,33 +461,51 @@ msgstr ""
 "δεν είναι αρκετά μεγάλο"
 
 #: data/gtk/ui/Preferences.blp:29
+msgid "Parse directories recursively"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:30
+msgid "Scans provided directory for supported files recursively"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:33
+msgid "Follow symlinks"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:34
+msgid ""
+"If a directory has symlinks to other directories, they would be parsed too\n"
+"May cause excessive memory consumption and looping if it has looped symlinks"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
 msgstr "Συντονισμός Σελίδας"
 
-#: data/gtk/ui/Preferences.blp:32
+#: data/gtk/ui/Preferences.blp:43
 msgid "Use precise milliseconds"
 msgstr "Χρησιμοποιήστε ακριβή χιλιοστά του δευτερολέπτου"
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:44
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Χρησιμοποιήστε τριψήφια χιλιοστά του δευτερολέπτου αντί για διψήφια"
 
-#: data/gtk/ui/Preferences.blp:37
+#: data/gtk/ui/Preferences.blp:48
 msgid "Auto file manipulation"
 msgstr "Αυτόματος χειρισμός αρχείων"
 
-#: data/gtk/ui/Preferences.blp:38
+#: data/gtk/ui/Preferences.blp:49
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Δημιουργεί αυτόματα και ενημερώνει τα αρχεία όταν αλλάζει κάποια από τις "
 "γραμμές στίχων"
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/Preferences.blp:53
 msgid "File format"
 msgstr "Μορφή αρχείου"
 
-#: data/gtk/ui/Preferences.blp:43
+#: data/gtk/ui/Preferences.blp:54
 msgid "File format for auto manipulation"
 msgstr "Μορφή αρχείου για αυτόματο χειρισμό"
 
@@ -545,15 +563,16 @@ msgid "Remove cover"
 msgstr "Αφαίρεση του καλύμματος"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr "Συγχρονίστε τους στίχους των αγαπημένων σας τραγουδιών"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
-"mp3, m4a, wav and aac (reduced functionality) formats"
+"mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
 "Αυτή η εφαρμογή σας βοηθά να συνεισφέρετε στη μεγάλη βάση δεδομένων των "
 "συγχρονισμένων στίχων με όμορφο περιβάλλον GTK4 και LibAdwaita. Υποστηρίζει "
@@ -585,9 +604,6 @@ msgid "LRClib import dialog"
 msgstr "Διάλογος εισαγωγής LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
-msgid ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;στίχοι;διαδίκτυο;τραγούδια;πολυμέσα;μέσα;lrclib;μουσική;συγχρονισμός;χρονογράφος;"
-""
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;στίχοι;διαδίκτυο;τραγούδια;πολυμέσα;μέσα;lrclib;μουσική;συγχρονισμός;χρονογράφος;"

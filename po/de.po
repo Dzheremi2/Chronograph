@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 15:08+0300\n"
+"POT-Creation-Date: 2025-05-11 11:00+0300\n"
 "PO-Revision-Date: 2025-05-01 06:01+0000\n"
 "Last-Translator: Aircraft192 <finnwiggers2006@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/chronograph/"
@@ -110,7 +110,7 @@ msgstr "Unbekannt"
 msgid "Directory saved successfully"
 msgstr "Verzeichnis erfolgreich gespeichert"
 
-#: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
+#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
 msgid "Seems like not every line is synced"
 msgstr "Es scheint, dass nicht jede Zeile synchronisiert ist"
 
@@ -211,7 +211,7 @@ msgstr "Verwenden"
 
 #: data/gtk/window.blp:550 data/gtk/window.blp:617
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Chronograph"
 
@@ -459,33 +459,51 @@ msgstr ""
 "genug ist"
 
 #: data/gtk/ui/Preferences.blp:29
+msgid "Parse directories recursively"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:30
+msgid "Scans provided directory for supported files recursively"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:33
+msgid "Follow symlinks"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:34
+msgid ""
+"If a directory has symlinks to other directories, they would be parsed too\n"
+"May cause excessive memory consumption and looping if it has looped symlinks"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
 msgstr "Synchronisationsseite"
 
-#: data/gtk/ui/Preferences.blp:32
+#: data/gtk/ui/Preferences.blp:43
 msgid "Use precise milliseconds"
 msgstr "Genaue Millisekunden verwenden"
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:44
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "3-stellige Millisekunden anstelle von 2-stelligen verwenden"
 
-#: data/gtk/ui/Preferences.blp:37
+#: data/gtk/ui/Preferences.blp:48
 msgid "Auto file manipulation"
 msgstr "Automatische Dateibearbeitung"
 
-#: data/gtk/ui/Preferences.blp:38
+#: data/gtk/ui/Preferences.blp:49
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Erstellt und aktualisiert automatisch Dateien, wenn sich eine der "
 "Liedtextzeilen ändert"
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/Preferences.blp:53
 msgid "File format"
 msgstr "Dateiformat"
 
-#: data/gtk/ui/Preferences.blp:43
+#: data/gtk/ui/Preferences.blp:54
 msgid "File format for auto manipulation"
 msgstr "Dateiformat für die automatische Bearbeitung"
 
@@ -543,15 +561,16 @@ msgid "Remove cover"
 msgstr "Cover entfernen"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr "Liedtexte deiner Lieblingslieder synchronisieren"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
-"mp3, m4a, wav and aac (reduced functionality) formats"
+"mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
 "Diese App mit schöner GTK4- und LibAdwaita-Benutzeroberfläche hilft dir, zu "
 "der großen Datenbank von synchronisierten Liedtexten beizutragen. Musik in "
@@ -584,12 +603,9 @@ msgid "LRClib import dialog"
 msgstr "LRClib-Importdialog"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
-msgid ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;songtexte;lieder;medien;musik;synchronisierung;"
-""
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;songtexte;lieder;medien;musik;synchronisierung;"
 
 #~ msgid "Delete name to remove"
 #~ msgstr "Zum Entfernen Name löschen"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 15:08+0300\n"
-"PO-Revision-Date: 2025-04-19 15:09+0300\n"
+"POT-Creation-Date: 2025-05-11 11:00+0300\n"
+"PO-Revision-Date: 2025-05-11 11:00+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -110,7 +110,7 @@ msgstr "Неизвестно"
 msgid "Directory saved successfully"
 msgstr "Дериктория успешно сохранена"
 
-#: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
+#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
@@ -211,7 +211,7 @@ msgstr "Использовать"
 
 #: data/gtk/window.blp:550 data/gtk/window.blp:617
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Хронограф"
 
@@ -456,31 +456,53 @@ msgid ""
 msgstr "Автоматически включает Режим Списка при недостаточном размере дисплея"
 
 #: data/gtk/ui/Preferences.blp:29
+msgid "Parse directories recursively"
+msgstr "Сканировать директории рекурсивно"
+
+#: data/gtk/ui/Preferences.blp:30
+msgid "Scans provided directory for supported files recursively"
+msgstr "Сканирует директории на наличие поддерживаемых форматов рекурсивно"
+
+#: data/gtk/ui/Preferences.blp:33
+msgid "Follow symlinks"
+msgstr "Следовать по символическим ссылкам"
+
+#: data/gtk/ui/Preferences.blp:34
+msgid ""
+"If a directory has symlinks to other directories, they would be parsed too\n"
+"May cause excessive memory consumption and looping if it has looped symlinks"
+msgstr ""
+"Если директория содержит символические ссылки, то они будут просканированы "
+"тоже\n"
+"Может вызвать повышенное потребление памяти и зацикливание, если есть "
+"зацикленные ссылки"
+
+#: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
 msgstr "Страница синхронизации"
 
-#: data/gtk/ui/Preferences.blp:32
+#: data/gtk/ui/Preferences.blp:43
 msgid "Use precise milliseconds"
 msgstr "Использовать точные миллисекунды"
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:44
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Использовать 3-х значные миллисекунды вместо 2-х значных"
 
-#: data/gtk/ui/Preferences.blp:37
+#: data/gtk/ui/Preferences.blp:48
 msgid "Auto file manipulation"
 msgstr "Автоматическое манипулирование файлами"
 
-#: data/gtk/ui/Preferences.blp:38
+#: data/gtk/ui/Preferences.blp:49
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Автоматически создаёт и обновляет файлы при изменении текста слов"
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/Preferences.blp:53
 msgid "File format"
 msgstr "Формат файла"
 
-#: data/gtk/ui/Preferences.blp:43
+#: data/gtk/ui/Preferences.blp:54
 msgid "File format for auto manipulation"
 msgstr "Формат файла для автоманипуляции"
 
@@ -538,7 +560,7 @@ msgid "Remove cover"
 msgstr "Удалить обложку"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr "Синхронизируйте тексты своих любимых песен"
 
@@ -546,11 +568,11 @@ msgstr "Синхронизируйте тексты своих любимых п
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
-"mp3, m4a, wav and aac (reduced functionality) formats"
+"mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
 "Это приложение помогает вам содействовать расширению большой базы данных "
 "синхронизированных текстов, с красивым интерфейсом на GTK4 и LibAdwaita. "
-"Поддерживаются музыкальные форматы ogg, flac, mp3, m4a, wav и aac "
+"Поддерживаются музыкальные форматы ogg, flac, mp3, m4a, wav, opus и aac "
 "(ограниченная функциональность)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
@@ -579,7 +601,7 @@ msgid "LRClib import dialog"
 msgstr "Диалог импорта из LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid ""
 "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""

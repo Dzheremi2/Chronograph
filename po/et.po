@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 15:08+0300\n"
+"POT-Creation-Date: 2025-05-11 11:00+0300\n"
 "PO-Revision-Date: 2025-04-20 17:22+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -109,7 +109,7 @@ msgstr "Tundmatu"
 msgid "Directory saved successfully"
 msgstr "Kausta salvestamine õnnestus"
 
-#: chronograph/utils/parsers.py:222 chronograph/utils/parsers.py:226
+#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
@@ -211,7 +211,7 @@ msgstr "Kasuta"
 
 #: data/gtk/window.blp:550 data/gtk/window.blp:617
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Kronograaf"
 
@@ -455,31 +455,49 @@ msgstr ""
 "Kui akna või ekraani mõõt pole piisav, siis muuda loendivaadet vastavalt"
 
 #: data/gtk/ui/Preferences.blp:29
+msgid "Parse directories recursively"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:30
+msgid "Scans provided directory for supported files recursively"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:33
+msgid "Follow symlinks"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:34
+msgid ""
+"If a directory has symlinks to other directories, they would be parsed too\n"
+"May cause excessive memory consumption and looping if it has looped symlinks"
+msgstr ""
+
+#: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
 msgstr "Sünkroniseerimisvaade"
 
-#: data/gtk/ui/Preferences.blp:32
+#: data/gtk/ui/Preferences.blp:43
 msgid "Use precise milliseconds"
 msgstr "Kasuta täpseid millisekundeid"
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:44
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Näita millisekundeid kahe koha asemel kolm kohta peale koma"
 
-#: data/gtk/ui/Preferences.blp:37
+#: data/gtk/ui/Preferences.blp:48
 msgid "Auto file manipulation"
 msgstr "Muuda laulusõnade faili automaatselt"
 
-#: data/gtk/ui/Preferences.blp:38
+#: data/gtk/ui/Preferences.blp:49
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Kui laulusõnade rida muutub, siis loo ja uuenda faili automaatselt"
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/Preferences.blp:53
 msgid "File format"
 msgstr "Failivorming"
 
-#: data/gtk/ui/Preferences.blp:43
+#: data/gtk/ui/Preferences.blp:54
 msgid "File format for auto manipulation"
 msgstr "Failivorming automaatseks muutmiseks"
 
@@ -537,15 +555,16 @@ msgid "Remove cover"
 msgstr "Eemalda kaanepilt"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:4
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr "Sinu lemmiklaulude sõnad"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
+#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
-"mp3, m4a, wav and aac (reduced functionality) formats"
+"mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
 "See GTK4 ja LibAdwaita kasutajaliidesega rakendus aitab sul täiendada suurt "
 "laulusõnade andmebaasi. Ta toetab ogg, flac, mp3, m4a, wav ja aac (viimane "
@@ -577,12 +596,9 @@ msgid "LRClib import dialog"
 msgstr "Impordivaade LRClib teenusest"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:11
-msgid ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-"kronograaf;muusika;laulud;laulusõnad;laulutekstid;lüürika;multimeedia;meedia;"
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
+msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;kronograaf;muusika;laulud;laulusõnad;laulutekstid;lüürika;multimeedia;meedia;"
 
 #~ msgid "Remove this from saves"
 #~ msgstr "Eemalda see kirje lemmikutest"

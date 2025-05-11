@@ -7,7 +7,7 @@
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
-    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3, m4a, wav and aac (reduced functionality) formats</p>
+    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced functionality) formats</p>
   </description>
 
   <developer id="com.github">
@@ -83,6 +83,15 @@
   </screenshots>
 
   <releases>
+    <release version="2.5" date="2025-05-11">
+      <description translate="no">
+        <p>New features</p>
+        <ul>
+          <li>Added .opus file format support</li>
+          <li>Added support for subdirectories</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.4.5" date="2025-04-20">
       <description translate="no">
         <p>Renaming the Saved Location now performs using dialogs instead of popovers</p>
