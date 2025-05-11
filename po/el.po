@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-11 11:00+0300\n"
-"PO-Revision-Date: 2025-04-27 18:01+0000\n"
+"PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/el/>\n"
@@ -462,21 +462,25 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Parse directories recursively"
-msgstr ""
+msgstr "Αναδρομική ανάλυση καταλόγων"
 
 #: data/gtk/ui/Preferences.blp:30
 msgid "Scans provided directory for supported files recursively"
-msgstr ""
+msgstr "Σαρώνει αναδρομικά τον παρεχόμενο κατάλογο για υποστηριζόμενα αρχεία"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Follow symlinks"
-msgstr ""
+msgstr "Ακολουθήστε τους συμβολικούς συνδέσμους"
 
 #: data/gtk/ui/Preferences.blp:34
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
+"Εάν ένας κατάλογος έχει συμβολικούς συνδέσμους προς άλλους καταλόγους, θα "
+"πρέπει να αναλυθούν και αυτοί\n"
+"Μπορεί να προκαλέσει υπερβολική κατανάλωση μνήμης και βρόχο αν έχει βρόχους "
+"συμβολικών συνδέσμων"
 
 #: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
@@ -568,7 +572,6 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Συγχρονίστε τους στίχους των αγαπημένων σας τραγουδιών"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
@@ -576,7 +579,8 @@ msgid ""
 msgstr ""
 "Αυτή η εφαρμογή σας βοηθά να συνεισφέρετε στη μεγάλη βάση δεδομένων των "
 "συγχρονισμένων στίχων με όμορφο περιβάλλον GTK4 και LibAdwaita. Υποστηρίζει "
-"μουσική σε μορφές ogg, flac, mp3, m4a, wav και aac (μειωμένη λειτουργικότητα)"
+"μουσική σε μορφές ogg, flac, mp3, m4a, wav, opus και aac (μειωμένη "
+"λειτουργικότητα)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
