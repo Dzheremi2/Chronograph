@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-11 11:00+0300\n"
-"PO-Revision-Date: 2025-04-20 17:22+0000\n"
+"PO-Revision-Date: 2025-05-13 00:05+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -456,21 +456,27 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Parse directories recursively"
-msgstr ""
+msgstr "Töötle kaustu rekursiivselt"
 
 #: data/gtk/ui/Preferences.blp:30
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
+"Sellega valikuga rakendus otsib toetatud faile etteantud kaustast ja tema "
+"kõikidest alamkaustadest"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Follow symlinks"
-msgstr ""
+msgstr "Järgne sümbollinkidele"
 
 #: data/gtk/ui/Preferences.blp:34
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
+"Kui kaustas on sümbollinke muudele failipuu kaustadele, siis need kuuluvad "
+"ka töötlemisele\n"
+"Võib ülemääraselt suurendada mälukasutust ja kui sümbollingid on tsüklis, "
+"siis läheb ka otsing tsüklisse"
 
 #: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
@@ -560,15 +566,14 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Sinu lemmiklaulude sõnad"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
 "See GTK4 ja LibAdwaita kasutajaliidesega rakendus aitab sul täiendada suurt "
-"laulusõnade andmebaasi. Ta toetab ogg, flac, mp3, m4a, wav ja aac (viimane "
-"on vähendatud funktsionaalsuses) vormingus laule"
+"laulusõnade andmebaasi. Ta toetab ogg, flac, mp3, m4a, wav, opus ja aac ("
+"viimane on vähendatud funktsionaalsuses) vormingus laule"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
