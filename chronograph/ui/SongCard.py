@@ -188,6 +188,7 @@ class SongCard(Gtk.Box):
             self._file.set_str_data("TALB", album_data)
 
         self._file.save()
+        self._file.compress_images()
         self.invalidate_cover(self.cover_img)
         self.invalidate_cover(self.cover_img_row)
         self.invalidate_cover(shared.win.sync_page_cover)

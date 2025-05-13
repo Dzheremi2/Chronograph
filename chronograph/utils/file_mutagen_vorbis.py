@@ -1,4 +1,5 @@
 import base64
+import io
 import os
 from typing import Union
 
@@ -6,6 +7,8 @@ import magic
 from mutagen.flac import FLAC, Picture
 from mutagen.flac import error as FLACError
 from PIL import Image
+
+from chronograph import shared
 
 from .file import BaseFile
 
@@ -29,9 +32,48 @@ class FileVorbis(BaseFile):
 
     def __init__(self, path: str) -> None:
         super().__init__(path)
-
+        self.compress_images()
         self.load_cover()
         self.load_str_data()
+
+    def compress_images(self) -> None:
+        if shared.schema.get_boolean("load-compressed-covers"):
+            quality = shared.schema.get_int("compress-level")
+            pic: Union[Picture, None] = None
+
+            if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:
+                pic = self._mutagen_file.pictures[0]
+            else:
+                encoded_blocks = self._mutagen_file.get("metadata_block_picture", [])
+                for base64_data in encoded_blocks:
+                    try:
+                        pic = Picture(base64.b64decode(base64_data))
+                        break
+                    except FLACError:
+                        continue
+
+            if not pic or not pic.data:
+                return
+
+            with Image.open(io.BytesIO(pic.data)) as img:
+                buffer = io.BytesIO()
+                img.convert("RGB").save(
+                    buffer, format="JPEG", quality=quality, optimize=True
+                )
+                bytes_compressed = buffer.getvalue()
+
+            pic.data = bytes_compressed
+            pic.mime = "image/jpeg"
+
+            if isinstance(self._mutagen_file, FLAC):
+                self._mutagen_file.clear_pictures()
+                self._mutagen_file.add_picture(pic)
+
+            picture_data = pic.write()
+            encoded = base64.b64encode(picture_data).decode("ascii")
+            self._mutagen_file["metadata_block_picture"] = [encoded]
+
+            self._cover = bytes_compressed
 
     def load_cover(self) -> None:
         """Loads cover for Vorbis format audio"""

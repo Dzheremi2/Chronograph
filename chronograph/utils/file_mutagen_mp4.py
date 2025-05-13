@@ -1,5 +1,10 @@
+import io
 from typing import Union
+
 from mutagen.mp4 import MP4Cover
+from PIL import Image
+
+from chronograph import shared
 
 from .file import BaseFile
 
@@ -9,6 +14,7 @@ tags_conjunction = {
     "TALB": ["_album", "\xa9alb"],
 }
 
+
 class FileMP4(BaseFile):
     """A MPEG-4 compatible file class. Inherited from `BaseFile`
 
@@ -17,17 +23,43 @@ class FileMP4(BaseFile):
     path : str
         A path to the file for loading
     """
+
     __gtype_name__ = "FileMP4"
 
     def __init__(self, path: str) -> None:
         super().__init__(path)
-
+        self.compress_images()
         self.load_cover()
         self.load_str_data()
 
+    def compress_images(self) -> None:
+        if shared.schema.get_boolean("load-compressed-covers"):
+            quality = shared.schema.get_int("compress-level")
+            tags = self._mutagen_file.tags
+            if tags is None or "covr" not in tags:
+                return
+
+            bytes_origin = tags["covr"][0]
+
+            with Image.open(io.BytesIO(bytes_origin)) as img:
+                buffer = io.BytesIO()
+                img.convert("RGB").save(
+                    buffer, format="JPEG", quality=quality, optimize=True
+                )
+                bytes_compressed = buffer.getvalue()
+
+            tags["covr"][0] = MP4Cover(
+                bytes_compressed, imageformat=MP4Cover.FORMAT_JPEG
+            )
+            self.cover = tags["covr"][0]
+
     def load_cover(self) -> None:
         """Extracts cover from song file. If no cover, then sets cover as `icon`"""
-        if "covr" not in self._mutagen_file.tags or not self._mutagen_file.tags["covr"] or self._mutagen_file.tags is None:
+        if (
+            "covr" not in self._mutagen_file.tags
+            or not self._mutagen_file.tags["covr"]
+            or self._mutagen_file.tags is None
+        ):
             self.cover = "icon"
         else:
             picture = self._mutagen_file.tags["covr"][0]
@@ -69,7 +101,7 @@ class FileMP4(BaseFile):
                 cover_val = []
                 if "covr" in self._mutagen_file.tags:
                     cover_val = self._mutagen_file.tags["covr"]
-                
+
                 try:
                     cover_val[0] = MP4Cover(cover_bytes, MP4Cover.FORMAT_PNG)
                 except IndexError:

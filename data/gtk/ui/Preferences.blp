@@ -24,6 +24,18 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         subtitle: _("Automatically toggles List View mode when display size is not big enough");
       }
 
+      Adw.ExpanderRow load_compressed_covers_switch {
+        title: _("Display compressed covers");
+        subtitle: _("May slightly reduce memory consumption.\nThis does not affect actual images stored within files");
+        show-enable-switch: true;
+
+        Adw.SpinRow compress_level_spin {
+          title: _("Quality level");
+          subtitle: _("The higher value, the higher cover quality");
+          adjustment: compress_level_adjustment;
+        }
+      }
+
       Adw.ExpanderRow recursive_parsing_switch {
         show-enable-switch: true;
         title: _("Parse directories recursively");
@@ -64,4 +76,11 @@ StringList formats {
     ".lrc",
     ".txt"
   ]
+}
+
+Adjustment compress_level_adjustment {
+  lower: 1;
+  upper: 95;
+  value: 75;
+  step-increment: 5;
 }

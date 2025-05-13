@@ -17,6 +17,9 @@ class ChronographPreferences(Adw.PreferencesDialog):
     automatic_list_view_switch: Adw.SwitchRow = Gtk.Template.Child()
     recursive_parsing_switch: Adw.ExpanderRow = Gtk.Template.Child()
     follow_symlinks_switch: Adw.SwitchRow = Gtk.Template.Child()
+    load_compressed_covers_switch: Adw.ExpanderRow = Gtk.Template.Child()
+    compress_level_spin: Adw.SpinRow = Gtk.Template.Child()
+    compress_level_adjustment: Gtk.Adjustment = Gtk.Template.Child()
 
     opened = False
 
@@ -68,6 +71,18 @@ class ChronographPreferences(Adw.PreferencesDialog):
             "follow-symlinks",
             self.follow_symlinks_switch,
             "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        shared.schema.bind(
+            "load-compressed-covers",
+            self.load_compressed_covers_switch,
+            "enable-expansion",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        shared.schema.bind(
+            "compress-level",
+            self.compress_level_adjustment,
+            "value",
             Gio.SettingsBindFlags.DEFAULT,
         )
 

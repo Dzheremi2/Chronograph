@@ -1,7 +1,7 @@
 from typing import Union
 
 import mutagen
-from gi.repository import Gdk, GLib  # type: ignore
+from gi.repository import Gdk, GdkPixbuf, GLib  # type: ignore
 
 
 class BaseFile:
@@ -65,8 +65,13 @@ class BaseFile:
             Gdk.Texture or 'icon' string if no cover
         """
         if not self._cover == "icon":
-            _bytes = GLib.Bytes(self._cover)
-            _texture = Gdk.Texture.new_from_bytes(_bytes)
+            loader = GdkPixbuf.PixbufLoader.new()
+            loader.write(self._cover)
+            loader.close()
+            pixbuf = loader.get_pixbuf()
+
+            scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
+            _texture = Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
             return _texture
         else:
             return "icon"

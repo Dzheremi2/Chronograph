@@ -29,6 +29,12 @@
     <key name="follow-symlinks" type="b">
       <default>false</default>
     </key>
+    <key name="load-compressed-covers" type="b">
+      <default>false</default>
+    </key>
+    <key name="compress-level" type="i">
+      <default>75</default>
+    </key>
   </schema>
 
   <schema id="@APP_ID@.State" path="@PREFIX@/State/">

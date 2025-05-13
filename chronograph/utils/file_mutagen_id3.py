@@ -1,6 +1,10 @@
+import io
 from typing import Union
 
-from mutagen.id3 import APIC, TALB, TIT2, TPE1
+from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1
+from PIL import Image
+
+from chronograph import shared
 
 from .file import BaseFile
 
@@ -20,8 +24,36 @@ class FileID3(BaseFile):
 
     def __init__(self, path: str) -> None:
         super().__init__(path)
+        self.compress_images()
         self.load_cover()
         self.load_str_data()
+
+    def compress_images(self) -> None:
+        if shared.schema.get_boolean("load-compressed-covers"):
+            quality = shared.schema.get_int("compress-level")
+            tags = self._mutagen_file.tags
+            if not isinstance(tags, ID3):
+                return
+            apics = [key for key in tags.keys() if key.startswith("APIC")]
+            for key in apics:
+                apic = tags[key]
+                bytes_origin = apic.data
+
+                with Image.open(io.BytesIO(bytes_origin)) as img:
+                    buffer = io.BytesIO()
+                    img.convert("RGB").save(
+                        buffer, format="JPEG", quality=quality, optimize=True
+                    )
+                    bytes_compressed = buffer.getvalue()
+
+                apic_compressed = APIC(
+                    mime="image/jpeg",
+                    encoding=apic.encoding,
+                    type=apic.type,
+                    desc=apic.desc,
+                    data=bytes_compressed,
+                )
+                tags[key] = apic_compressed
 
     # pylint: disable=attribute-defined-outside-init
     def load_cover(self) -> None:
@@ -82,6 +114,7 @@ class FileID3(BaseFile):
                     data=self._cover,
                 )
             )
+            return
         else:
             if self._mutagen_file.tags:
                 for tag in dict(self._mutagen_file.tags).copy().keys():
