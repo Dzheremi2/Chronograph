@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-11 11:00+0300\n"
-"PO-Revision-Date: 2025-04-14 19:03+0000\n"
+"PO-Revision-Date: 2025-05-14 22:01+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: chronograph/window.py:622
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
@@ -449,7 +449,7 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Vaihda automaatisesti luettelonäkymään"
 
 #: data/gtk/ui/Preferences.blp:24
 msgid ""
@@ -458,15 +458,15 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Parse directories recursively"
-msgstr ""
+msgstr "Jäsennä kansiot rekursiivisesti"
 
 #: data/gtk/ui/Preferences.blp:30
 msgid "Scans provided directory for supported files recursively"
-msgstr ""
+msgstr "Tutki kansiot rekursiivisesti tuettujen tiedostojen varalta"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Follow symlinks"
-msgstr ""
+msgstr "Seuraa symbolisia linkkejä"
 
 #: data/gtk/ui/Preferences.blp:34
 msgid ""
@@ -506,13 +506,12 @@ msgid "File format for auto manipulation"
 msgstr "Tiedostomuoto automaattista käsittelyä varten"
 
 #: data/gtk/ui/SavedLocation.blp:37
-#, fuzzy
 msgid "Rename this Save"
-msgstr "Poistetaanko tämä tallennus?"
+msgstr "Nimeä tämä tallennus uudelleen"
 
 #: data/gtk/ui/SavedLocation.blp:40
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
 #: data/gtk/ui/SongCard.blp:16
@@ -565,7 +564,6 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Synkronoi suosikkikappaleittesi sanoitukset"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
@@ -573,8 +571,8 @@ msgid ""
 msgstr ""
 "Tämä sovellus auttaa sinua osallistumaan suureen synkronoitujen sanoitusten "
 "tietokantaan kauniilla GTK4- ja LibAdwaita-käyttöliittymällä. Se tukee "
-"musiikkia ogg-, flac-, mp3-, m4a-, wav- ja (vähemmällä toiminnallisuudella) "
-"aac-muodoissa"
+"musiikkia ogg-, flac-, mp3-, m4a-, wav-, opus- ja (vähemmällä "
+"toiminnallisuudella) aac-muodoissa"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
@@ -584,7 +582,7 @@ msgstr "Kirjasto"
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
 msgid "Library in List View mode"
-msgstr ""
+msgstr "Kirjasto luettelonäkymässä"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
