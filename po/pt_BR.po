@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-11 11:00+0300\n"
-"PO-Revision-Date: 2025-05-05 11:03+0000\n"
-"Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
+"PO-Revision-Date: 2025-05-14 12:01+0000\n"
+"Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "chronograph/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -460,21 +460,26 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:29
 msgid "Parse directories recursively"
-msgstr ""
+msgstr "Analisar diretórios de forma recursiva"
 
 #: data/gtk/ui/Preferences.blp:30
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
+"Examina recursivamente o diretório fornecido em busca de arquivos compatíveis"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Follow symlinks"
-msgstr ""
+msgstr "Seguir links simbólicos"
 
 #: data/gtk/ui/Preferences.blp:34
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
+"Se um diretório tiver links simbólicos para outros diretórios, eles também "
+"serão analisados\n"
+"Pode causar consumo excessivo de memória e looping se houver links "
+"simbólicos em loop"
 
 #: data/gtk/ui/Preferences.blp:40
 msgid "Sync Page"
@@ -566,15 +571,15 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Sincronizar letras de suas músicas amadas"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
-"Este aplicativo ajuda você a contribuir para o grande banco de dados de "
-"letras sincronizadas com a bela interface GTK4 e LibAdwaita. Ele suporta "
-"música nos formatos ogg, flac, mp3 e wav e acc (funcionalidade reduzida)"
+"Esse aplicativo ajuda você a contribuir com o grande banco de dados de "
+"letras de música sincronizadas com uma bela interface GTK4 e LibAdwaita. Ele "
+"suporta músicas nos formatos ogg, flac, mp3, m4a, wav, opus e aac ("
+"funcionalidade reduzida)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
