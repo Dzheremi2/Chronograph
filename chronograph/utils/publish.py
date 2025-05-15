@@ -63,7 +63,7 @@ def make_plain_lyrics(lyrics: str) -> str:
     pattern = r"\[.*?\] "
     lyrics = lyrics.splitlines()
     plain_lyrics = []
-    for line in plain_lyrics:
+    for line in lyrics:
         plain_lyrics.append(re.sub(pattern, "", line))
     return "\n".join(plain_lyrics[:-1])
 
