@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-11 11:00+0300\n"
-"PO-Revision-Date: 2025-05-11 11:00+0300\n"
+"POT-Creation-Date: 2025-05-17 14:55+0300\n"
+"PO-Revision-Date: 2025-05-17 14:57+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -99,10 +99,10 @@ msgstr "Сведения о файле"
 msgid "Path"
 msgstr "Путь"
 
-#: chronograph/ui/SongCard.py:251 chronograph/ui/SongCard.py:307
-#: chronograph/ui/SongCard.py:308 chronograph/ui/SongCard.py:316
-#: chronograph/ui/SongCard.py:323 chronograph/ui/SongCard.py:324
-#: chronograph/ui/SongCard.py:332
+#: chronograph/ui/SongCard.py:252 chronograph/ui/SongCard.py:308
+#: chronograph/ui/SongCard.py:309 chronograph/ui/SongCard.py:317
+#: chronograph/ui/SongCard.py:324 chronograph/ui/SongCard.py:325
+#: chronograph/ui/SongCard.py:333
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -455,19 +455,39 @@ msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr "Автоматически включает Режим Списка при недостаточном размере дисплея"
 
+#: data/gtk/ui/Preferences.blp:28
+msgid "Display compressed covers"
+msgstr "Отображать сжатые обложки"
+
 #: data/gtk/ui/Preferences.blp:29
+msgid ""
+"May slightly reduce memory consumption.\n"
+"This does not affect actual images stored within files"
+msgstr ""
+"Может немного уменьшить потребление памяти.\n"
+"Не влияет на сами изображения, хранящиеся в файлах"
+
+#: data/gtk/ui/Preferences.blp:33
+msgid "Quality level"
+msgstr "Уровень качества"
+
+#: data/gtk/ui/Preferences.blp:34
+msgid "The higher value, the higher cover quality"
+msgstr "Чем выше значение, тем выше качество обложек"
+
+#: data/gtk/ui/Preferences.blp:41
 msgid "Parse directories recursively"
 msgstr "Сканировать директории рекурсивно"
 
-#: data/gtk/ui/Preferences.blp:30
+#: data/gtk/ui/Preferences.blp:42
 msgid "Scans provided directory for supported files recursively"
 msgstr "Сканирует директории на наличие поддерживаемых форматов рекурсивно"
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/Preferences.blp:45
 msgid "Follow symlinks"
 msgstr "Следовать по символическим ссылкам"
 
-#: data/gtk/ui/Preferences.blp:34
+#: data/gtk/ui/Preferences.blp:46
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
@@ -477,32 +497,32 @@ msgstr ""
 "Может вызвать повышенное потребление памяти и зацикливание, если есть "
 "зацикленные ссылки"
 
-#: data/gtk/ui/Preferences.blp:40
+#: data/gtk/ui/Preferences.blp:52
 msgid "Sync Page"
 msgstr "Страница синхронизации"
 
-#: data/gtk/ui/Preferences.blp:43
+#: data/gtk/ui/Preferences.blp:55
 msgid "Use precise milliseconds"
 msgstr "Использовать точные миллисекунды"
 
-#: data/gtk/ui/Preferences.blp:44
+#: data/gtk/ui/Preferences.blp:56
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Использовать 3-х значные миллисекунды вместо 2-х значных"
 
-#: data/gtk/ui/Preferences.blp:48
+#: data/gtk/ui/Preferences.blp:60
 msgid "Auto file manipulation"
 msgstr "Автоматическое манипулирование файлами"
 
-#: data/gtk/ui/Preferences.blp:49
+#: data/gtk/ui/Preferences.blp:61
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Автоматически создаёт и обновляет файлы при изменении текста слов"
 
-#: data/gtk/ui/Preferences.blp:53
+#: data/gtk/ui/Preferences.blp:65
 msgid "File format"
 msgstr "Формат файла"
 
-#: data/gtk/ui/Preferences.blp:54
+#: data/gtk/ui/Preferences.blp:66
 msgid "File format for auto manipulation"
 msgstr "Формат файла для автоманипуляции"
 
