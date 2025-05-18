@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-17 14:55+0300\n"
-"PO-Revision-Date: 2025-05-13 00:05+0000\n"
+"PO-Revision-Date: 2025-05-18 11:40+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -456,21 +456,23 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:28
 msgid "Display compressed covers"
-msgstr ""
+msgstr "Näita kaanepilte pakituna"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
+"See võib natuke vähendada mälukasutust,\n"
+"kuid ei mõjuta tegelikke salvestatud kaanepilte"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Quality level"
-msgstr ""
+msgstr "Pildikvaliteet"
 
 #: data/gtk/ui/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
-msgstr ""
+msgstr "Mida suurem number, seda kvaliteetsem kaanepilt"
 
 #: data/gtk/ui/Preferences.blp:41
 msgid "Parse directories recursively"
