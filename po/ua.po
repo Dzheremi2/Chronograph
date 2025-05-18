@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-17 14:55+0300\n"
-"PO-Revision-Date: 2025-05-11 22:03+0000\n"
+"PO-Revision-Date: 2025-05-17 20:02+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic4@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -460,21 +460,23 @@ msgstr ""
 
 #: data/gtk/ui/Preferences.blp:28
 msgid "Display compressed covers"
-msgstr ""
+msgstr "Стиснуті обкладинки для дисплеїв"
 
 #: data/gtk/ui/Preferences.blp:29
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
+"Може дещо зменшити споживання пам'яті.\n"
+"Це не впливає на фактичні зображення, що зберігаються у файлах"
 
 #: data/gtk/ui/Preferences.blp:33
 msgid "Quality level"
-msgstr ""
+msgstr "Рівень якості"
 
 #: data/gtk/ui/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
-msgstr ""
+msgstr "Чим вище значення, тим вища якість покриття"
 
 #: data/gtk/ui/Preferences.blp:41
 msgid "Parse directories recursively"
