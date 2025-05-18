@@ -1,3 +1,14 @@
+## 2.5.1
+<p>New features</p>
+<ul>
+    <li>Added preference for enabling cover images compression. Using scale from 1 to 95 where lower value means lower cover quality. May also slightly reduce memory consumption</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+    <li>Highly reduced the memory consumption by decreasing the size of the tracks covers</li>
+    <li>Fixed publishing plain lyrics to LRClib</li>
+</ul>
+
 ## 2.5
 <p>New features</p>
 <ul>
