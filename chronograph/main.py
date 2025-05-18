@@ -143,7 +143,9 @@ class ChronographApplication(Adw.Application):
         dialog = Adw.AboutDialog.new_from_appdata(
             shared.PREFIX + "/" + shared.APP_ID + ".metainfo.xml", shared.VERSION
         )
-        dialog.set_developers(("Dzheremi https://github.com/Dzheremi2",))
+        dialog.set_developers(
+            ("Dzheremi https://github.com/Dzheremi2", "ahi https://github.com/ahi6")
+        )
         dialog.set_designers(("Dzheremi https://github.com/Dzheremi2",))
         # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
         dialog.set_translator_credits(_("translator-credits"))

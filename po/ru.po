@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-17 14:55+0300\n"
+"POT-Creation-Date: 2025-05-18 14:41+0300\n"
 "PO-Revision-Date: 2025-05-17 14:57+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -33,16 +33,16 @@ msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:149
+#: chronograph/main.py:151
 msgid "translator-credits"
 msgstr "Артём Чичваров <chichvarov1315@gmail.com>"
 
-#: chronograph/main.py:157
+#: chronograph/main.py:159
 msgid "Inspiration"
 msgstr "Вдохновение"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:167
+#: chronograph/main.py:169
 msgid "Build your own dictionary"
 msgstr "Создайте свой собственный словарь"
 
@@ -622,11 +622,8 @@ msgstr "Диалог импорта из LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-msgid ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-"слова;интернет;песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;хронограф;"
+msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;слова;интернет;песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;хронограф;"
 
 #~ msgid "Remove this from saves"
 #~ msgstr "Удалить из сохранённых"

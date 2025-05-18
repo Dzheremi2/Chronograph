@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-17 14:55+0300\n"
+"POT-Creation-Date: 2025-05-18 14:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -29,16 +29,16 @@ msgid "Copied successfully"
 msgstr ""
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:149
+#: chronograph/main.py:151
 msgid "translator-credits"
 msgstr ""
 
-#: chronograph/main.py:157
+#: chronograph/main.py:159
 msgid "Inspiration"
 msgstr ""
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:167
+#: chronograph/main.py:169
 msgid "Build your own dictionary"
 msgstr ""
 
