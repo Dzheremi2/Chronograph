@@ -30,11 +30,6 @@ class SyncLine(Adw.EntryRow):
     def add_line_on_enter(self, *_args) -> None:
         """Adds new line below `self` on Enter press"""
         shared.win.on_append_selected_line_action()
-        childs = []
-        for child in shared.win.sync_lines:
-            childs.append(child)
-        index = childs.index(self)
-        shared.win.sync_lines.get_row_at_index(index + 1).grab_focus()
 
     def rm_line_on_backspace(self, text: Gtk.Text) -> None:
         """Removes `self` and focuses on previous line if Backspace pressed when `self.text` length is 0

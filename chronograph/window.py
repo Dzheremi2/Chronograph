@@ -103,6 +103,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     sync_page_metadata_editor_button_box: Gtk.Box = Gtk.Template.Child()
     sync_page_metadata_editor_button_shrinked_box: Gtk.Box = Gtk.Template.Child()
     info_button: Gtk.Button = Gtk.Template.Child()
+    sync_lines_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
     sync_lines: Gtk.ListBox = Gtk.Template.Child()
     add_line_button: Gtk.Button = Gtk.Template.Child()
 
@@ -388,6 +389,10 @@ class ChronographWindow(Adw.ApplicationWindow):
                 index = childs.index(shared.selected_line)
                 self.sync_lines.insert(sync_line := SyncLine(), index + 1)
                 sync_line.connect("changed", sync_line.save_file_on_update)
+                adj = self.sync_lines_scrolled_window.get_vadjustment()
+                value = adj.get_value()
+                sync_line.grab_focus()
+                adj.set_value(value)
 
     def on_sync_line_action(self, *_args) -> None:
         """Syncs selected `SyncLine` with current media stream timestamp"""
