@@ -351,7 +351,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_append_line_action(self, *_args) -> None:
         """Appends new `SyncLine` to `self.sync_lines`"""
         if self.navigation_view.get_visible_page() is self.sync_navigation_page:
-            self.sync_lines.append(SyncLine())
+            self.sync_lines.append(sync_line := SyncLine())
+            sync_line.connect("changed", sync_line.save_file_on_update)
 
     def on_remove_selected_line_action(self, *_args) -> None:
         """Removes selected `SyncLine` from `self.sync_lines`"""
@@ -372,7 +373,8 @@ class ChronographWindow(Adw.ApplicationWindow):
                     childs.append(child)
                 index = childs.index(shared.selected_line)
                 if index > 0:
-                    self.sync_lines.insert(SyncLine(), index)
+                    self.sync_lines.insert(sync_line := SyncLine(), index)
+                    sync_line.connect("changed", sync_line.save_file_on_update)
                 elif index == 0:
                     self.sync_lines.prepend(SyncLine())
 
@@ -384,7 +386,8 @@ class ChronographWindow(Adw.ApplicationWindow):
                 for child in self.sync_lines:
                     childs.append(child)
                 index = childs.index(shared.selected_line)
-                self.sync_lines.insert(SyncLine(), index + 1)
+                self.sync_lines.insert(sync_line := SyncLine(), index + 1)
+                sync_line.connect("changed", sync_line.save_file_on_update)
 
     def on_sync_line_action(self, *_args) -> None:
         """Syncs selected `SyncLine` with current media stream timestamp"""

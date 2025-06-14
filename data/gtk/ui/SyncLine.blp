@@ -3,7 +3,6 @@ using Adw 1;
 
 template $SyncLine : Adw.EntryRow {
   editable: true;
-  changed => $save_file_on_update();
   entry-activated => $add_line_on_enter();
 
   styles ["property"]

@@ -1,4 +1,5 @@
 import pathlib
+import re
 
 from gi.repository import Adw, Gtk  # type: ignore
 
@@ -61,18 +62,31 @@ class SyncLine(Adw.EntryRow):
         """
         shared.selected_line = event.get_widget()
 
-    @Gtk.Template.Callback()
     def save_file_on_update(self, *_args) -> None:
         """Saves lines from `chronograph.ChronographWindow.sync_lines` to file"""
         if shared.schema.get_boolean("auto-file-manipulation"):
-            lyrics = ""
+            lyrics_list = []
             for line in shared.win.sync_lines:
-                lyrics = lyrics + (line.get_text() + "\n")
-            lyrics = lyrics[:-1]
-            file = open(
-                str(pathlib.Path(shared.win.loaded_card._file.path).with_suffix(""))
-                + shared.schema.get_string("auto-file-format"),
+                lyrics_list.append(line.get_text() + "\n")
+            lyrics = "".join(lyrics_list)
+            with open(
+                pathlib.Path(shared.win.loaded_card._file.path).with_suffix(
+                    shared.schema.get_string("auto-file-format")
+                ),
+                "r",
+            ) as file:
+                metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
+                lyrics_unfiltered = file.read().splitlines()
+                for line in lyrics_unfiltered[:]:
+                    if not metatags_filterout.match(line):
+                        lyrics_unfiltered.remove(line)
+                _lyrics = "\n".join(lyrics_unfiltered)
+                if _lyrics.strip():
+                    lyrics = _lyrics + "\n" + lyrics
+            with open(
+                pathlib.Path(shared.win.loaded_card._file.path).with_suffix(
+                    shared.schema.get_string("auto-file-format")
+                ),
                 "w",
-            )
-            file.write(lyrics)
-            file.close()
+            ) as file:
+                file.write(lyrics)

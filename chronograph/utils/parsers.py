@@ -181,15 +181,22 @@ def file_parser(file: str) -> None:
     file : str
         File to parse
     """
-    file = open(file, "r")
-    list = file.read().splitlines()
-    childs = []
-    for child in shared.win.sync_lines:
-        childs.append(child)
+    metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
+    timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
+
+    with open(file, "r", encoding="utf-8") as f:
+        lines = f.read().splitlines()
+
+    filtered_lines = [line for line in lines if not metatags_filterout.match(line)]
+    normalized_lines = [
+        timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
+    ]
+
     shared.win.sync_lines.remove_all()
-    for i in range(len(list)):
-        shared.win.sync_lines.append(SyncLine())
-        shared.win.sync_lines.get_row_at_index(i).set_text(list[i])
+    for i, line in enumerate(normalized_lines):
+        shared.win.sync_lines.append(sync_line := SyncLine())
+        shared.win.sync_lines.get_row_at_index(i).set_text(line)
+        sync_line.connect("changed", sync_line.save_file_on_update)
 
 
 def string_parser(string: str) -> None:
