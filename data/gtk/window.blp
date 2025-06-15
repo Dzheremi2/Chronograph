@@ -126,7 +126,6 @@ Adw.Dialog quick_edit_dialog {
 
             Button quick_edit_copy_button {
               label: _("Copy to clipboard");
-              clicked => $copy_quick_editor_text();
 
               styles ["suggested-action"]
             }
@@ -213,7 +212,6 @@ Adw.Dialog lrclib_window {
                   ScrolledWindow lrclib_window_results_list_window {
                     vexpand: true;
                     ListBox lrclib_window_results_list {
-                      row-activated => $set_lyrics();
                     
                       styles [
                         'navigation-sidebar'
@@ -371,7 +369,6 @@ Adw.NavigationView lrclib_window_collapsed_navigation_view {
           vexpand: true;
           ListBox lrclib_window_collapsed_results_list {
             selection-mode: none;
-            row-activated => $set_lyrics();
 
             styles [
               'navigation-sidebar'
@@ -534,7 +531,6 @@ Adw.Dialog lrclib_manual_dialog {
 
               Button lrclib_manual_publish_button {
                 label: _("Publish");
-                clicked => $manual_publish();
 
                 styles ["pill", "suggested-action"]
               }
@@ -550,19 +546,14 @@ template $ChronographWindow : Adw.ApplicationWindow {
   title: _("Chronograph");
   width-request: 360;
   height-request: 100;
-  notify::default-width => $toggle_list_view();
 
   Adw.Breakpoint {
     condition ("max-width: 564px")
 
     setters {
       overlay_split_view.collapsed: true;
-      controls_box_shrinked.visible: true;
-      syncing_buttons_box.halign: center;
       lrclib_window_main_clamp.child: lrclib_window_collapsed_navigation_view;
       header_bar.show-title: false;
-      sync_page_metadata_editor_button.visible: false;
-      sync_page_metadata_editor_button_shrinked.visible: true;
     }
   }
 
@@ -636,7 +627,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                 ScrolledWindow sidebar_window {
                   ListBox sidebar {
-                    row-activated => $load_save();
+                    row-selected => $load_save();
 
                     styles ["navigation-sidebar"]
                   }
@@ -686,7 +677,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 Button clean_files_button {
                   icon-name: "clean-files-symbolic";
                   tooltip-text: _("Clean the library");
-                  clicked => $clean_library();
                 }
 
                 [end]
@@ -723,7 +713,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                   SearchEntry search_entry {
                     placeholder-text: _("Search");
                     hexpand: true;
-                    search-changed => $on_search_changed();
 
                     ShortcutController {
                       Shortcut {
@@ -758,300 +747,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
       }
     }
   }
-}
-
-Adw.NavigationPage sync_navigation_page {
-  title: _("Syncing");
-  hidden => $reset_sync_editor();
-
-  Adw.ToolbarView {
-    [top]
-    Adw.HeaderBar {
-      [end]
-      MenuButton {
-        icon-name: "app-menu-symbolic";
-        tooltip-text: _("App settings, info and utils");
-        menu-model: about_app;
-        primary: true;
-      }
-    }
-
-    [top]
-    Adw.Clamp {
-      maximum-size: 600;
-      orientation: horizontal;
-
-      Box {
-        orientation: horizontal;
-        spacing: 8;
-        margin-top: 12;
-        margin-start: 4;
-        margin-end: 4;
-
-        styles ["card"]
-
-        Image sync_page_cover {
-          icon-name: "note-placeholder";
-          pixel-size: 100;
-          overflow: hidden;
-
-          styles ["rounded"]
-        }
-
-        Box {
-          orientation: vertical;
-          vexpand: true;
-          spacing: 2;
-          margin-top: 8;
-          margin-end: 4;
-
-          Inscription sync_page_title {
-            text: "Unknown";
-            text-overflow: ellipsize_end;
-            hexpand: true;
-
-            styles ["heading"]
-          }
-
-          Inscription sync_page_artist {
-            text: "Unknown";
-            text-overflow: ellipsize_end;
-            hexpand: true;
-
-            styles ["heading"]
-          }
-
-          Box {
-            visible: bind controls_box_shrinked.visible bidirectional;
-            orientation: horizontal;
-            margin-top: 4;
-            spacing: 6;
-
-            ToggleButton toggle_repeat_button_shrinked {
-              tooltip-text: bind toggle_repeat_button.tooltip-text;
-              icon-name: bind toggle_repeat_button.icon-name;
-              active: bind toggle_repeat_button.active bidirectional;
-            }
-
-            Box sync_page_metadata_editor_button_shrinked_box {
-              Button sync_page_metadata_editor_button_shrinked {
-                tooltip-text: bind sync_page_metadata_editor_button.tooltip-text;
-                icon-name: bind sync_page_metadata_editor_button.icon-name;
-                clicked => $on_edit_song_metadata();
-              }
-            }
-
-            Button info_button_shrinked {
-              tooltip-text: bind info_button.tooltip-text;
-              icon-name: bind info_button.icon-name;
-              action-name: "win.show_file_info";
-            }
-          }
-
-          Box controls_box {
-            margin-top: 4;
-            margin-end: 8;
-            spacing: 4;
-            visible: bind controls_box_shrinked.visible inverted;
-
-            MediaControls controls {
-              hexpand: true;
-              visible: true;
-            }
-
-            ToggleButton toggle_repeat_button {
-              tooltip-text: _("Toggle song repeat");
-              icon-name: "toggle-repeat-symbolic";
-              active: false;
-              halign: center;
-              toggled => $toggle_repeat();
-            }
-          }
-        }
-      }
-    }
-
-    [top]
-    Adw.Clamp {
-      orientation: vertical;
-      maximum-size: 30;
-      margin-top: 4;
-
-      Adw.Clamp {
-        orientation: horizontal;
-        maximum-size: 600;
-
-        Box controls_box_shrinked {
-          orientation: horizontal;
-          visible: false;
-          margin-start: 4;
-          margin-end: 4;
-
-          Box {
-            margin-end: 8;
-            margin-start: 8;
-            spacing: 4;
-            valign: center;
-
-            MediaControls controls_shrinked {
-              hexpand: true;
-            }
-          }
-
-          styles ["card"]
-        }
-      }
-    }
-
-    [top]
-    Adw.Clamp {
-      margin-top: 4;
-      orientation: horizontal;
-      maximum-size: 600;
-
-      Box syncing_buttons_box {
-        orientation: horizontal;
-        valign: center;
-        spacing: 4;
-        margin-bottom: 4;
-
-        Button sync_line_button {
-          tooltip-text: _("Sync/Re-sync line");
-          icon-name: "sync-line-symbolic";
-          action-name: "win.sync_line";
-
-          styles [
-            "suggested-action",
-            "circular"
-          ]
-        }
-
-        Button replay_line_button {
-          tooltip-text: _("Replay selected line");
-          icon-name: "replay-line-symbolic";
-          action-name: "win.replay_line";
-
-          styles ["circular"]
-        }
-
-        Button rew100_button {
-          tooltip-text: _("Re-sync selected line 100ms back");
-          icon-name: "100ms-back-symbolic";
-          action-name: "win.100ms_rew";
-
-          styles ["circular"]
-        }
-
-        Button forw100_button {
-          tooltip-text: _("Re-sync selected line 100ms forward");
-          icon-name: "100ms-forw-symbolic";
-          action-name: "win.100ms_forw";
-
-          styles ["circular"]
-        }
-
-        MenuButton import_lyrics_button {
-          tooltip-text: _("Import from …");
-          icon-name: "import-from-symbolic";
-          menu-model: import_from;
-
-          styles [
-            "osd",
-            "circular"
-          ]
-        }
-
-        MenuButton export_lyrics_button {
-          tooltip-text: _("Export to …");
-          icon-name: "export-to-symbolic";
-          menu-model: export_to;
-
-          styles [
-            "osd",
-            "circular"
-          ]
-        }
-
-        Separator {
-          hexpand: true;
-          visible: bind controls_box_shrinked.visible inverted;
-
-          styles ["spacer"]
-        }
-
-        MenuButton line_actions_button {
-          tooltip-text: _("Actions with selected line");
-          icon-name: "line-actions-symbolic";
-          menu-model: line_actions;
-
-          styles [
-            "osd",
-            "circular"
-          ]
-        }
-
-        Box sync_page_metadata_editor_button_box {
-          Button sync_page_metadata_editor_button {
-            tooltip-text: _("Edit song metadata");
-            icon-name: "edit-metadata-symbolic";
-            clicked => $on_edit_song_metadata();
-
-            styles ["circular"]
-          }
-        }
-
-        Button info_button {
-          tooltip-text: _("About file");
-          icon-name: "info-button-symbolic";
-          visible: bind controls_box_shrinked.visible inverted;
-          action-name: "win.show_file_info";
-
-          styles ["circular"]
-        }
-      }
-    }
-
-    ScrolledWindow sync_lines_scrolled_window {
-      Adw.Clamp {
-        orientation: horizontal;
-        maximum-size: 600;
-
-        Box {
-          orientation: vertical;
-          spacing: 8;
-          hexpand: true;
-          margin-start: 4;
-          margin-end: 4;
-
-          ListBox sync_lines {
-            selection-mode: none;
-
-            styles ["boxed-list"]
-          }
-
-          Box add_line_button_box {
-            halign: end;
-
-            Button add_line_button {
-              action-name: "win.append_line";
-              Adw.ButtonContent {
-                label: _("Add line");
-                icon-name: "add-line-symbolic";
-              }
-
-              styles ["suggested-action"]
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-ListBox library_list {
-  styles ["navigation-sidebar"]
-  visible: true;
-  selection-mode: none;
 }
 
 ShortcutsWindow help_overlay {
@@ -1141,7 +836,6 @@ ShortcutsWindow help_overlay {
   }
 }
 
-
 menu open_source_menu {
   section {
     item (_("Directory"), "win.select_dir")
@@ -1162,37 +856,6 @@ menu sorting_menu {
       action: "app.sort_type";
       target: "z-a";
     }
-  }
-}
-
-menu import_from {
-  section {
-    label: _("Import from …");
-
-    item (_("File"), "win.import_from_file")
-    item (_("Clipboard"), "win.import_from_clipboard")
-    item ("LRClib", "win.import_from_lrclib")
-  }
-}
-
-menu export_to {
-  section {
-    label: _("Export to …");
-
-    item (_("File"), "win.export_to_file")
-    item (_("Clipboard"), "win.export_to_clipboard")
-    item ("LRClib", "win.export_to_lrclib")
-  }
-}
-
-menu line_actions {
-  section {
-    label: _("Actions with selected line");
-
-    item (_("Remove line"), "win.remove_selected_line")
-    item (_("Prepend line"), "win.prepend_selected_line")
-    item (_("Append line"), "win.append_selected_line")
-    item (_("Append line to end"), "win.append_line")
   }
 }
 

@@ -1,0 +1,151 @@
+from pathlib import Path
+from typing import Literal
+
+from gi.repository import Gio, GLib, Gtk
+
+from chronograph.main import ChronographApplication
+from chronograph.window import ChronographWindow
+
+
+class classproperty:  # pylint: disable=invalid-name
+    def __init__(self, fget):
+        self.fget = fget
+        self.fset = None
+
+    def __get__(self, instance, owner):
+        return self.fget(owner)
+
+    def __set__(self, instance, value):
+        if not self.fset:
+            raise AttributeError("Can't set attribute")
+        cls = type(instance) if instance else instance
+        self.fset(cls, value)
+
+    def setter(self, fset):
+        self.fset = fset
+        return self
+
+
+class Constants:
+    """Shared variables and constants for the application"""
+
+    APP_ID = "@APP_ID@"
+    VERSION = "@VERSION@"
+    PREFIX = "@PREFIX@"
+    CACHEV = int("@CACHEV@")
+
+    CFG_DIR = Path(GLib.get_user_config_dir())
+    DATA_DIR = Path(GLib.get_user_data_dir())
+
+    APP: ChronographApplication = None
+    WIN: ChronographWindow = None
+
+    CACHE_FILE = None
+    CACHE = None
+
+
+# pylint: disable=no-self-argument
+class Schema:
+    """Schema for the application settings"""
+
+    _instance: "Schema" = None
+
+    STATELESS = Gio.Settings.new(Constants.APP_ID)
+    STATEFULL = Gio.Settings.new(Constants.APP_ID + ".State")
+
+    def __new__(cls) -> "Schema":
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    @classmethod
+    def bind(
+        cls,
+        schema: Literal["STATELESS", "STATEFULL"],
+        key: str,
+        target: Gtk.Widget,
+        target_property: str,
+        flags: Gio.SettingsBindFlags,
+    ) -> None:
+        """Bind a setting to a target object's property"""
+        getattr(cls, schema.upper()).bind(key, target, target_property, flags)
+
+    @classproperty
+    def auto_file_manipulation(cls) -> bool:
+        return cls.STATELESS.get_boolean("auto-file-manipulation")
+
+    @auto_file_manipulation.setter
+    def auto_file_manipulation(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("auto-file-manipulation", value)
+
+    @classproperty
+    def auto_file_format(cls) -> str:
+        return cls.STATELESS.get_string("auto-file-format")
+
+    @auto_file_format.setter
+    def auto_file_format(cls, value: str) -> None:
+        cls.STATELESS.set_string("auto-file-format", value)
+
+    @classproperty
+    def reset_quick_editor(cls) -> bool:
+        return cls.STATELESS.get_boolean("reset-quick-editor")
+
+    @reset_quick_editor.setter
+    def reset_quick_editor(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("reset-quick-editor", value)
+
+    @classproperty
+    def save_session(cls) -> bool:
+        return cls.STATELESS.get_boolean("save-session")
+
+    @save_session.setter
+    def save_session(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("save-session", value)
+
+    @classproperty
+    def precise_milliseconds(cls) -> bool:
+        return cls.STATELESS.get_boolean("precise-milliseconds")
+
+    @precise_milliseconds.setter
+    def precise_milliseconds(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("precise-milliseconds", value)
+
+    @classproperty
+    def auto_list_view(cls) -> bool:
+        return cls.STATELESS.get_boolean("auto-list-view")
+
+    @auto_list_view.setter
+    def auto_list_view(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("auto-list-view", value)
+
+    @classproperty
+    def recursive_parsing(cls) -> bool:
+        return cls.STATELESS.get_boolean("recursive-parsing")
+
+    @recursive_parsing.setter
+    def recursive_parsing(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("recursive-parsing", value)
+
+    @classproperty
+    def follow_symlinks(cls) -> bool:
+        return cls.STATELESS.get_boolean("follow-symlinks")
+
+    @follow_symlinks.setter
+    def follow_symlinks(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("follow-symlinks", value)
+
+    @classproperty
+    def load_compressed_covers(cls) -> bool:
+        return cls.STATELESS.get_boolean("load-compressed-covers")
+
+    @load_compressed_covers.setter
+    def load_compressed_covers(cls, value: bool) -> None:
+        cls.STATELESS.set_boolean("load-compressed-covers", value)
+
+    @classproperty
+    def compress_level(cls) -> int:
+        return cls.STATELESS.get_int("compress-level")
+
+    @compress_level.setter
+    def compress_level(cls, value: int) -> None:
+        cls.STATELESS.set_int("compress-level", value)

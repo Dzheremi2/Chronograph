@@ -4,7 +4,7 @@ from typing import Union
 from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1
 from PIL import Image
 
-from chronograph import shared
+from chronograph.internal import Schema
 
 from .file import BaseFile
 
@@ -29,8 +29,8 @@ class FileID3(BaseFile):
         self.load_str_data()
 
     def compress_images(self) -> None:
-        if shared.schema.get_boolean("load-compressed-covers"):
-            quality = shared.schema.get_int("compress-level")
+        if Schema.load_compressed_covers:
+            quality = Schema.compress_level
             tags = self._mutagen_file.tags
             if not isinstance(tags, ID3):
                 return
@@ -63,9 +63,9 @@ class FileID3(BaseFile):
             if len(pictures) != 0:
                 self._cover = pictures[0].data
             if len(pictures) == 0:
-                self._cover = "icon"
+                self._cover = None
         else:
-            self._cover = "icon"
+            self._cover = None
 
     def load_str_data(self) -> None:
         """Sets all string data from tags. If data is unavailable, then sets `Unknоwn`"""

@@ -8,7 +8,7 @@ from mutagen.flac import FLAC, Picture
 from mutagen.flac import error as FLACError
 from PIL import Image
 
-from chronograph import shared
+from chronograph.internal import Schema
 
 from .file import BaseFile
 
@@ -18,7 +18,7 @@ tags_conjunction = {
     "TALB": ["_album", "album"],
 }
 
-
+# pylint: disable=attribute-defined-outside-init
 class FileVorbis(BaseFile):
     """A Vorbis (ogg, flac) compatible file class. Inherited from `BaseFile`
 
@@ -37,8 +37,8 @@ class FileVorbis(BaseFile):
         self.load_str_data()
 
     def compress_images(self) -> None:
-        if shared.schema.get_boolean("load-compressed-covers"):
-            quality = shared.schema.get_int("compress-level")
+        if Schema.load_compressed_covers:
+            quality = Schema.compress_level
             pic: Union[Picture, None] = None
 
             if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:
@@ -96,12 +96,13 @@ class FileVorbis(BaseFile):
                     continue
 
             if _data is None:
-                self._cover = "icon"
+                self._cover = None
             else:
                 self._cover = _data
         else:
-            self._cover = "icon"
+            self._cover = None
 
+    # pylint: disable=dangerous-default-value
     def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:
         """Loads title, artist and album for Vorbis media format
 
@@ -129,7 +130,7 @@ class FileVorbis(BaseFile):
                         setattr(self, f"_{tag}", text)
                     except KeyError:
                         setattr(self, f"_{tag}", "Unknown")
-        if self._title == "Unknown":
+        if self._title == "Unknown":  # pylint: disable=access-member-before-definition
             self._title = os.path.basename(self._path)
 
     def set_cover(self, img_path: Union[str, None]) -> None:
