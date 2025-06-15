@@ -1,3 +1,10 @@
+## 2.5.2
+<p>Bug fixes</p>
+<ul>
+<li>Now if .lrc file has metatags inside of it, they wouldn't be parsed and used in the viewer, but will still present in the file and wouldn't be erased on lyrics change</li>
+<li>Scroll position of the lyrics editor now not resetting when using Enter-press line appending</li>
+</ul>
+
 ## 2.5.1
 <p>New features</p>
 <ul>
