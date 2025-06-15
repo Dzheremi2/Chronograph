@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 14:41+0300\n"
+"POT-Creation-Date: 2025-06-15 11:50+0300\n"
 "PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: chronograph/window.py:622
+#: chronograph/window.py:630
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Ορισμένα από τα πεδία Τίτλος, Καλλιτέχνης ή/και Άλμπουμ είναι Άγνωστα!"
 
-#: chronograph/window.py:669
+#: chronograph/window.py:677
 msgid "Some of entries are empty"
 msgstr "Ορισμένες από τις καταχωρήσεις είναι κενές"
 
-#: chronograph/window.py:696
+#: chronograph/window.py:704
 msgid "Copied successfully"
 msgstr "Αντιγράφηκε επιτυχώς"
 
@@ -109,7 +109,7 @@ msgstr "Άγνωστος"
 msgid "Directory saved successfully"
 msgstr "Ο κατάλογος αποθηκεύτηκε με επιτυχία"
 
-#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
+#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
 msgid "Seems like not every line is synced"
 msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
 

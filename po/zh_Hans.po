@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 14:41+0300\n"
+"POT-Creation-Date: 2025-06-15 11:50+0300\n"
 "PO-Revision-Date: 2025-04-28 22:10+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -19,16 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: chronograph/window.py:622
+#: chronograph/window.py:630
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "标题、作者和/或专辑字段部分为未知！"
 
-#: chronograph/window.py:669
+#: chronograph/window.py:677
 #, fuzzy
 msgid "Some of entries are empty"
 msgstr "部分条目为空"
 
-#: chronograph/window.py:696
+#: chronograph/window.py:704
 msgid "Copied successfully"
 msgstr "已成功复制"
 
@@ -111,7 +111,7 @@ msgstr "未知"
 msgid "Directory saved successfully"
 msgstr "目录保存成功"
 
-#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
+#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
 msgid "Seems like not every line is synced"
 msgstr "似乎不是每一句歌词都是同步的"
 

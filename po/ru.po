@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 14:41+0300\n"
+"POT-Creation-Date: 2025-06-15 11:50+0300\n"
 "PO-Revision-Date: 2025-05-17 14:57+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -20,15 +20,15 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 48.0\n"
 
-#: chronograph/window.py:622
+#: chronograph/window.py:630
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Поля “Название”, “Исполнитель” и/или “Альбом” неизвестны!"
 
-#: chronograph/window.py:669
+#: chronograph/window.py:677
 msgid "Some of entries are empty"
 msgstr "Некоторые поля пусты"
 
-#: chronograph/window.py:696
+#: chronograph/window.py:704
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
@@ -110,7 +110,7 @@ msgstr "Неизвестно"
 msgid "Directory saved successfully"
 msgstr "Дериктория успешно сохранена"
 
-#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
+#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 

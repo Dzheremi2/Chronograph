@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 14:41+0300\n"
+"POT-Creation-Date: 2025-06-15 11:50+0300\n"
 "PO-Revision-Date: 2025-04-17 14:23+0000\n"
 "Last-Translator: \"Bharat Madho (Bharat)\" <madhobharat@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/chronograph/"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11.1-dev\n"
 
-#: chronograph/window.py:622
+#: chronograph/window.py:630
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr "Het titel-, artiest- en/of albumveld staat op ‘onbekend’!"
 
-#: chronograph/window.py:669
+#: chronograph/window.py:677
 msgid "Some of entries are empty"
 msgstr "Enkele items zijn blanco"
 
-#: chronograph/window.py:696
+#: chronograph/window.py:704
 msgid "Copied successfully"
 msgstr "Gekopieerd"
 
@@ -110,7 +110,7 @@ msgstr "Onbekend"
 msgid "Directory saved successfully"
 msgstr "De map is opgeslagen"
 
-#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
+#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
 msgid "Seems like not every line is synced"
 msgstr "Niet alle regels lijken gesynchroniseerd"
 

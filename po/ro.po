@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 14:41+0300\n"
+"POT-Creation-Date: 2025-06-15 11:50+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: chronograph/window.py:622
+#: chronograph/window.py:630
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
 msgstr ""
 
-#: chronograph/window.py:669
+#: chronograph/window.py:677
 msgid "Some of entries are empty"
 msgstr ""
 
-#: chronograph/window.py:696
+#: chronograph/window.py:704
 msgid "Copied successfully"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Directory saved successfully"
 msgstr ""
 
-#: chronograph/utils/parsers.py:230 chronograph/utils/parsers.py:234
+#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
 msgid "Seems like not every line is synced"
 msgstr ""
 
