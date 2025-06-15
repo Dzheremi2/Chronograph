@@ -1,4 +1,6 @@
-from typing import Union
+# pylint: disable=all
+
+from typing import Optional
 import mutagen
 
 from gi.repository import Gdk
@@ -26,7 +28,7 @@ class BaseFile:
     _title: str
     _artist: str
     _album: str
-    _cover: Union[bytes, str]
+    _cover: Optional[bytes]
     _mutagen_file: mutagen.FileType
     _duration: float
     _cover_updated: bool
@@ -35,7 +37,7 @@ class BaseFile:
 
     def save(self) -> None: ...
     def load_from_file(self, path: str) -> None: ...
-    def get_cover_texture(self) -> Union[Gdk.Texture, str]: ...
+    def get_cover_texture(self) -> Gdk.Texture: ...
     def load_str_data(self) -> None: ...
     def load_cover(self) -> None: ...
     def set_str_data(self) -> None: ...

@@ -1,0 +1,91 @@
+# pylint: disable=all
+
+from pathlib import Path
+from typing import Literal, TextIO
+
+from gi.repository import Gio, Gtk
+
+from chronograph.main import ChronographApplication
+from chronograph.window import ChronographWindow
+
+class classproperty:
+    def __init__(self, fget): ...
+    def __get__(self, instance, owner): ...
+    def __set__(self, instance, value): ...
+    def setter(self, fset): ...
+
+class Constants:
+    """Shared variables and constants for the application"""
+
+    APP_ID: str
+    VERSION: str
+    PREFIX: str
+    CACHEV: int
+
+    CFG_DIR: Path
+    DATA_DIR: Path
+
+    APP: ChronographApplication
+    WIN: ChronographWindow
+
+    CACHE_FILE: TextIO
+    CACHE: dict
+
+class Schema:
+    """Schema for the application settings"""
+
+    _instance: "Schema"
+
+    STATELESS: Gio.Settings
+    STATEFULL: Gio.Settings
+
+    def __new__(cls) -> "Schema": ...
+    @classmethod
+    def bind(
+        cls,
+        schema: Literal["STATELESS", "STATEFULL"],
+        key: str,
+        target: Gtk.Widget,
+        target_property: str,
+        flags: Gio.SettingsBindFlags,
+    ) -> None: ...
+    @classproperty
+    def auto_file_manipulation(cls) -> bool: ...
+    @auto_file_manipulation.setter
+    def auto_file_manipulation(cls, value: bool) -> None: ...
+    @classproperty
+    def auto_file_format(cls) -> str: ...
+    @auto_file_format.setter
+    def auto_file_format(cls, value: str) -> None: ...
+    @classproperty
+    def reset_quick_editor(cls) -> bool: ...
+    @reset_quick_editor.setter
+    def reset_quick_editor(cls, value: bool) -> None: ...
+    @classproperty
+    def save_session(cls) -> bool: ...
+    @save_session.setter
+    def save_session(cls, value: bool) -> None: ...
+    @classproperty
+    def precise_milliseconds(cls) -> bool: ...
+    @precise_milliseconds.setter
+    def precise_milliseconds(cls, value: bool) -> None: ...
+    @classproperty
+    def auto_list_view(cls) -> bool: ...
+    @auto_list_view.setter
+    def auto_list_view(cls, value: bool) -> None: ...
+    @classproperty
+    def recursive_parsing(cls) -> bool: ...
+    @recursive_parsing.setter
+    def recursive_parsing(cls, value: bool) -> None: ...
+    @classproperty
+    def follow_symlinks(cls) -> bool: ...
+    @follow_symlinks.setter
+    def follow_symlinks(cls, value: bool) -> None: ...
+    @classproperty
+    def load_compressed_covers(cls) -> bool: ...
+    @load_compressed_covers.setter
+    def load_compressed_covers(cls, value: bool) -> None: ...
+    @classproperty
+    def compress_level(cls) -> int: ...
+    @compress_level.setter
+    def compress_level(cls, value: int) -> None: ...

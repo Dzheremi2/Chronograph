@@ -32,7 +32,7 @@ install_data(
     [
     'main.py',
     'window.py',
-    configure_file(input: 'shared.py.in', output: 'shared.py', configuration: conf),
+    configure_file(input: 'internal.py.in', output: 'internal.py', configuration: conf),
   ],
   install_dir: moduledir,
 )

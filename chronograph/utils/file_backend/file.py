@@ -1,7 +1,9 @@
-from typing import Union
+from typing import Optional
 
 import mutagen
-from gi.repository import Gdk, GdkPixbuf, GLib  # type: ignore
+from gi.repository import Gdk, GdkPixbuf
+
+from chronograph.internal import Constants
 
 
 class BaseFile:
@@ -29,7 +31,7 @@ class BaseFile:
     _title: str = None
     _artist: str = None
     _album: str = None
-    _cover: Union[bytes, str] = None
+    _cover: Optional[bytes] = None
     _mutagen_file: mutagen.FileType = None
     _duration: float = None
     _cover_updated: bool = False
@@ -53,18 +55,18 @@ class BaseFile:
         self._mutagen_file = mutagen.File(path)
         try:
             self._duration = self._mutagen_file.info.length
-        except Exception:
+        except Exception:  # pylint: disable=broad-exception-caught
             pass
 
-    def get_cover_texture(self) -> Union[Gdk.Texture, str]:
+    def get_cover_texture(self) -> Gdk.Texture:
         """Prepares a Gdk.Texture for setting to SongCard.paintable
 
         Returns
         -------
-        Gdk.Texture | str
-            Gdk.Texture or 'icon' string if no cover
+        Gdk.Texture
+            Gdk.Texture or a placeholder texture if no cover is set
         """
-        if not self._cover == "icon":
+        if self._cover:
             loader = GdkPixbuf.PixbufLoader.new()
             loader.write(self._cover)
             loader.close()
@@ -73,8 +75,9 @@ class BaseFile:
             scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
             _texture = Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
             return _texture
-        else:
-            return "icon"
+        return Gdk.Texture.new_from_resource(
+            Constants.PREFIX + "/icons/scalable/actions/note-placeholder.svg"
+        )
 
     @property
     def title(self) -> str:

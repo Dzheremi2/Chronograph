@@ -2,10 +2,17 @@ from typing import Union
 
 import mutagen
 from gi.repository import Gdk
+from .file import BaseFile
 
-from chronograph.utils.file import BaseFile
+class FileID3(BaseFile):
+    """A ID3 compatible file class. Inherited from `BaseFile`
 
-class FileMP4(BaseFile):
+    Parameters
+    --------
+    path : str
+        A path to file for loading
+    """
+
     # Inherited from BaseFile
     _title: str
     _artist: str
@@ -17,7 +24,7 @@ class FileMP4(BaseFile):
     _path: str
     def save(self) -> None: ...
     def load_from_file(self, path: str) -> None: ...
-    def get_cover_texture(self) -> Union[Gdk.Texture, str]: ...
+    def get_cover_texture(self) -> Gdk.Texture: ...
     @property
     def title(self) -> str: ...
     @property
