@@ -189,7 +189,7 @@ class ChronographApplication(Adw.Application):
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
         if Schema.save_session and (
-            Schema.STATEFULL.get_string("opened-dir") != "None"
+            Schema.opened_dir != "None"
         ):
             Constants.CACHE["session"] = Schema.STATEFULL.get_string("opened-dir")[:-1]
         else:
@@ -205,7 +205,7 @@ class ChronographApplication(Adw.Application):
             allow_unicode=True,
         )
 
-        Schema.STATEFULL.set_string("opened-dir", "None")
+        Schema.opened_dir = "None"
 
     def create_actions(self, actions: set) -> None:
         """Creates actions for provided scope with provided accels

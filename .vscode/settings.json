@@ -6,6 +6,9 @@
         ".flatpak/**": true,
         "_build/**": true
     },
+    "files.associations": {
+        "*.py.in": "python",
+    },
     "search.followSymlinks": false,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",

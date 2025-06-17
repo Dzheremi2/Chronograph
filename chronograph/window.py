@@ -4,7 +4,6 @@
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc.)
-# TODO: Move Schema.STATEFULL values to classproperty access format
 
 import os
 from enum import Enum
@@ -360,13 +359,13 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
-                Schema.STATEFULL.set_string("opened-dir", "None")
+                Schema.opened_dir = "None"
             case WindowState.EMPTY_DIR:
                 self.library_scrolled_window.set_child(self.empty_directory)
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
-                Schema.STATEFULL.set_string("opened-dir", "None")
+                Schema.opened_dir = "None"
             case WindowState.LOADED_DIR:
                 # match Schema.STATEFULL.get_string("view"):
                 #     case "g":
@@ -382,7 +381,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.library_scrolled_window.set_child(self.library)
                 #     case "l":
                 #         self.library_scrolled_window.set_child(self.library_list)
-                Schema.STATEFULL.set_string("opened-dir", "None")
+                Schema.opened_dir = "None"
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)
             case None:

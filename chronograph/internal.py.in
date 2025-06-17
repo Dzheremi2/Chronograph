@@ -146,3 +146,51 @@ class Schema:
     @compress_level.setter
     def compress_level(cls, value: int) -> None:
         cls.STATELESS.set_int("compress-level", value)
+
+    @classproperty
+    def sorting(cls) -> str:
+        return cls.STATEFULL.get_string("sorting")
+
+    @sorting.setter
+    def sorting(cls, value: str) -> None:
+        cls.STATEFULL.set_string("sorting", value)
+
+    @classproperty
+    def view(cls) -> str:
+        return cls.STATEFULL.get_string("view")
+
+    @view.setter
+    def view(cls, value: str) -> None:
+        cls.STATEFULL.set_string("view", value)
+
+    @classproperty
+    def window_width(cls) -> int:
+        return cls.STATEFULL.get_int("window-width")
+
+    @window_width.setter
+    def window_width(cls, value: int) -> None:
+        cls.STATEFULL.set_int("window-width", value)
+
+    @classproperty
+    def window_height(cls) -> int:
+        return cls.STATEFULL.get_int("window-height")
+
+    @window_height.setter
+    def window_height(cls, value: int) -> None:
+        cls.STATEFULL.set_int("window-height", value)
+
+    @classproperty
+    def window_maximized(cls) -> bool:
+        return cls.STATEFULL.get_boolean("window-maximized")
+
+    @window_maximized.setter
+    def window_maximized(cls, value: bool) -> None:
+        cls.STATEFULL.set_boolean("window-maximized", value)
+
+    @classproperty
+    def opened_dir(cls) -> str:
+        return cls.STATEFULL.get_string("opened-dir")
+
+    @opened_dir.setter
+    def opened_dir(cls, value: str) -> None:
+        cls.STATEFULL.set_string("opened-dir", value)
