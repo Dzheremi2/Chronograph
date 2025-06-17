@@ -3,10 +3,7 @@
 from pathlib import Path
 from typing import Literal, TextIO
 
-from gi.repository import Gio, Gtk
-
-from chronograph.main import ChronographApplication
-from chronograph.window import ChronographWindow
+from gi.repository import Adw, Gio, Gtk
 
 class classproperty:
     def __init__(self, fget): ...
@@ -25,8 +22,8 @@ class Constants:
     CFG_DIR: Path
     DATA_DIR: Path
 
-    APP: ChronographApplication
-    WIN: ChronographWindow
+    APP: Adw.Application
+    WIN: Adw.ApplicationWindow
 
     CACHE_FILE: TextIO
     CACHE: dict

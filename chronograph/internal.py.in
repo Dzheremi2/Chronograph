@@ -1,10 +1,7 @@
 from pathlib import Path
 from typing import Literal
 
-from gi.repository import Gio, GLib, Gtk
-
-from chronograph.main import ChronographApplication
-from chronograph.window import ChronographWindow
+from gi.repository import Adw, Gio, GLib, Gtk
 
 
 class classproperty:  # pylint: disable=invalid-name
@@ -37,8 +34,8 @@ class Constants:
     CFG_DIR = Path(GLib.get_user_config_dir())
     DATA_DIR = Path(GLib.get_user_data_dir())
 
-    APP: ChronographApplication = None
-    WIN: ChronographWindow = None
+    APP: Adw.Application = None
+    WIN: Adw.ApplicationWindow = None
 
     CACHE_FILE = None
     CACHE = None

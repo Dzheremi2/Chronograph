@@ -1,11 +1,9 @@
-# FIXME: Remove redundant return boolean from chronograph.utils.parsers.parse_files
-# since parsing successfullness can be determined using just an empty tuple
-
 # TODO: Add GStreamer based player with music speed control
 # TODO: Reimplement syncing page as a separate class generatable for every song
+# TODO: Reimplement LRC support
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
-# TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc)
+# TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc.)
 # TODO: Move Schema.STATEFULL values to classproperty access format
 
 import os
@@ -195,9 +193,9 @@ class ChronographWindow(Adw.ApplicationWindow):
             song_card.get_parent().set_focusable(False)
 
         mutagen_files = parse_files(paths)
-        if not mutagen_files[1]:
+        if not mutagen_files:
             return False
-        for mutagen_file in mutagen_files[0]:
+        for mutagen_file in mutagen_files:
             if isinstance(mutagen_file, (FileID3, FileVorbis, FileMP4, FileUntaggable)):
                 GLib.idle_add(__songcard_idle, mutagen_file)
         self.open_source_button.set_icon_name("open-source-symbolic")
@@ -220,8 +218,8 @@ class ChronographWindow(Adw.ApplicationWindow):
                 if _dir is not None:
                     dir_path = _dir.get_path()
                     files = parse_files(parse_dir(dir_path))
-                    if files[1]:
-                        self.library.remove_all()
+                    if files:
+                        self.clean_library()
                         self.load_files(parse_dir(dir_path))
                         self.set_property("state", WindowState.LOADED_DIR)
                     else:
@@ -250,9 +248,9 @@ class ChronographWindow(Adw.ApplicationWindow):
                 ]
                 if files is not None:
                     mutagen_files = parse_files(tuple(files))
-                    if mutagen_files[1]:
+                    if mutagen_files:
                         if self.state == WindowState.LOADED_DIR:
-                            self.library.remove_all()
+                            self.clean_library()
                         self.load_files(tuple(files))
                         self.set_property("state", WindowState.LOADED_FILES)
                     else:
@@ -300,7 +298,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         files = value.get_files()
         if self.load_files(file.get_path() for file in files):
             if self.state == WindowState.LOADED_DIR:
-                self.library.remove_all()
+                self.clean_library()
             self.set_property("state", WindowState.LOADED_FILES)
         else:
             self.set_property("state", None)
@@ -338,6 +336,10 @@ class ChronographWindow(Adw.ApplicationWindow):
             Row containing the saved location to load
         """
         row.get_child().load()
+
+    def clean_library(self, *_args) -> None:
+        """Remove all `SongCard`s from the library"""
+        self.library.remove_all()
 
     ############### WindowState related methods ###############
     @GObject.Property()

@@ -12,7 +12,7 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 
 def parse_files(
     paths: tuple[str],
-) -> tuple[tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]], bool]:
+) -> tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]]:
     """Generates a tuple of mutagen files from a list of paths
 
     Parameters
@@ -22,8 +22,8 @@ def parse_files(
 
     Returns
     -------
-    tuple[tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]], bool]
-        Returns a tuple containing a tuple of mutagen files and a boolean indicating if any files were parsed
+    tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]]
+        Returns a tuple of mutagen files or an empty tuple if no files
     """
 
     mutagen_files = []
@@ -37,10 +37,7 @@ def parse_files(
         elif Path(path).suffix in (".aac", ".AAC"):
             mutagen_files.append(FileUntaggable(path))
 
-    if mutagen_files:
-        return (tuple(mutagen_files), True)
-
-    return ((), False)  # No files parsed, return empty tuple
+    return tuple(mutagen_files)
 
 
 def parse_dir(path: str) -> tuple[str]:
