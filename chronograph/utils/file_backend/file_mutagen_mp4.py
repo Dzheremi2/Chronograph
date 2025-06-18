@@ -1,10 +1,10 @@
 import io
-from typing import Union
+from typing import Optional
 
 from mutagen.mp4 import MP4Cover
 from PIL import Image
 
-from chronograph import shared
+from chronograph.internal import Schema
 
 from .file import BaseFile
 
@@ -14,7 +14,7 @@ tags_conjunction = {
     "TALB": ["_album", "\xa9alb"],
 }
 
-
+# pylint: disable=attribute-defined-outside-init
 class FileMP4(BaseFile):
     """A MPEG-4 compatible file class. Inherited from `BaseFile`
 
@@ -33,8 +33,8 @@ class FileMP4(BaseFile):
         self.load_str_data()
 
     def compress_images(self) -> None:
-        if shared.schema.get_boolean("load-compressed-covers"):
-            quality = shared.schema.get_int("compress-level")
+        if Schema.load_compressed_covers:
+            quality = Schema.compress_level
             tags = self._mutagen_file.tags
             if tags is None or "covr" not in tags:
                 return
@@ -60,7 +60,7 @@ class FileMP4(BaseFile):
             or not self._mutagen_file.tags["covr"]
             or self._mutagen_file.tags is None
         ):
-            self.cover = "icon"
+            self.cover = None
         else:
             picture = self._mutagen_file.tags["covr"][0]
             if picture != "EMPTY_COVER":
@@ -87,7 +87,7 @@ class FileMP4(BaseFile):
             except KeyError:
                 pass
 
-    def set_cover(self, img_path: Union[str, None]) -> None:
+    def set_cover(self, img_path: Optional[str]) -> None:
         """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
 
         Parameters

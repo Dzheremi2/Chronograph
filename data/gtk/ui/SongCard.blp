@@ -121,7 +121,6 @@ template $SongCard: Box {
           Button play_button {
             icon-name: "play-button-symbolic";
             tooltip-text: _("Sync");
-            clicked => $on_play_button_clicked();
 
             styles [
               "circular",
@@ -142,7 +141,7 @@ template $SongCard: Box {
           Button info_button {
             icon-name: "info-button-symbolic";
             tooltip-text: _("Show song info");
-            clicked => $gen_box_dialog();
+            clicked => $show_info();
 
             styles [
               "circular",
@@ -156,7 +155,6 @@ template $SongCard: Box {
         name: "cover_button";
         overflow: hidden;
         tooltip-text: _("Open syncing page");
-        clicked => $on_play_button_clicked();
 
         accessibility {
           labelled-by: title_label;
@@ -179,7 +177,6 @@ template $SongCard: Box {
           }
 
           Label title_label {
-            label: _("Title");
             ellipsize: end;
             hexpand: true;
             halign: start;
@@ -194,7 +191,6 @@ template $SongCard: Box {
           }
 
           Label artist_label {
-            label: _("Artist");
             ellipsize: end;
             hexpand: true;
             halign: start;
@@ -218,7 +214,6 @@ Adw.ActionRow list_view_row {
   use-markup: false;
   subtitle-lines: 1;
   title-lines: 1;
-  activated => $on_play_button_clicked();
 
   [prefix]
   Image cover_img_row {
@@ -248,7 +243,6 @@ Adw.ActionRow list_view_row {
       Button play_button_row {
         icon-name: "play-button-symbolic";
         tooltip-text: _("Sync");
-        clicked => $on_play_button_clicked();
 
         styles [
           "circular",
@@ -268,7 +262,6 @@ Adw.ActionRow list_view_row {
       Button info_button_row {
         icon-name: "info-button-symbolic";
         tooltip-text: _("Show song info");
-        clicked => $gen_box_dialog();
 
         styles [
           "circular"
