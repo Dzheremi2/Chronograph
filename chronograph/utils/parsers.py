@@ -1,4 +1,4 @@
-"""Different parsers the app"""
+"""Different parsers for the app"""
 
 from pathlib import Path
 from typing import Union

@@ -1,7 +1,7 @@
 import base64
 import io
 import os
-from typing import Union
+from typing import Optional, Union
 
 import magic
 from mutagen.flac import FLAC, Picture
@@ -133,7 +133,7 @@ class FileVorbis(BaseFile):
         if self._title == "Unknown":  # pylint: disable=access-member-before-definition
             self._title = os.path.basename(self._path)
 
-    def set_cover(self, img_path: Union[str, None]) -> None:
+    def set_cover(self, img_path: Optional[str]) -> None:
         """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
 
         Parameters

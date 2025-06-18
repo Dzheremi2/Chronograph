@@ -119,6 +119,10 @@ class BaseFile:
     def duration(self) -> int:
         return round(self._duration)
 
+    def compress_images(self) -> None:
+        """Should be implemented in file specific child classes"""
+        raise NotImplementedError
+
     def load_str_data(self) -> None:
         """Should be implemented in file specific child classes"""
         raise NotImplementedError
@@ -127,10 +131,10 @@ class BaseFile:
         """Should be implemented in file specific child classes"""
         raise NotImplementedError
 
-    def set_str_data(self) -> None:
+    def set_str_data(self, tag_name: str, new_val: str) -> None:
         """Should be implemented in file specific child classes"""
         raise NotImplementedError
 
-    def set_cover(self) -> None:
+    def set_cover(self, img_path: Optional[str]) -> None:
         """Should be implemented in file specific child classes"""
         raise NotImplementedError

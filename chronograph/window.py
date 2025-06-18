@@ -18,6 +18,7 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.parsers import parse_dir, parse_files
 
 mime_types = (
@@ -117,17 +118,31 @@ class ChronographWindow(Adw.ApplicationWindow):
     lrclib_manual_duration_entry: Adw.EntryRow = Gtk.Template.Child()
     lrclib_manual_publish_button: Gtk.Button = Gtk.Template.Child()
 
-    # sort_state: str = internal.state_schema.get_string("sorting")
+    sort_state: str = Schema.sorting
     # view_state: str = internal.state_schema.get_string("view")
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 
+        # Setting keybindings help overlay
+        self.set_help_overlay(self.help_overlay)
+
+        # Apply devel window decorations
+        if Constants.APP_ID.endswith(".Devel"):
+            self.add_css_class("devel")
+
+        # Create a WindowState property for automatic window UI state updates
         self._state: Optional[WindowState] = None
         self.connect("notify::state", self._state_changed)
 
+        # Connect the search entry to the search bar
         self.search_bar.connect_entry(self.search_entry)
 
+        # Set sort and filter functions for the library
+        self.library.set_sort_func(invalidate_sort)
+        self.library.set_filter_func(invalidate_filter)
+
+        # Drag'N'Drop setup
         self.drop_target = Gtk.DropTarget(
             actions=Gdk.DragAction.COPY,
             formats=Gdk.ContentFormats.new_for_gtype(Gdk.FileList),
@@ -138,15 +153,29 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.drop_target.connect("drop", self._on_drag_drop)
         self.add_controller(self.drop_target)
 
-        # FIXME: Delete this testing code
-        self.library_scrolled_window.set_child(self.no_source_opened)
-        self.left_buttons_revealer.set_reveal_child(True)
-        self.sidebar_window.set_child(self.sidebar)
+        # Building up the sidebar with saved locations
+        self.build_sidebar()
 
+        # If a directory was opened last time, load it
+        if Schema.opened_dir != "None":
+            files = parse_files(parse_dir(Schema.opened_dir))
+            if files:
+                self.load_files(tuple(files))
+                self.set_property("state", WindowState.LOADED_DIR)
+            else:
+                self.set_property("state", WindowState.EMPTY_DIR)
+        else:
+            self.set_property("state", WindowState.EMPTY)
+
+    def build_sidebar(self) -> None:
+        """Builds the sidebar with saved locations"""
+        self.sidebar.remove_all()
         for pin in Constants.CACHE["pins"]:
             self.sidebar.append(SavedLocation(pin["path"], pin["name"]))
-
-        # ENDFIXME:
+        if not self.sidebar.get_row_at_index(0):
+            self.sidebar_window.set_child(self.no_saves_found_status)
+        else:
+            self.sidebar_window.set_child(self.sidebar)
 
     def on_toggle_sidebar_action(self, *_args) -> None:
         """Toggle sidebar visibility"""
@@ -157,6 +186,9 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_toggle_search_action(self, *_args) -> None:
         """Toggles search field of `self`"""
+        if self.state in (WindowState.EMPTY, WindowState.EMPTY_DIR):
+            return
+
         if self.navigation_view.get_visible_page() == self.library_nav_page:
             search_bar = self.search_bar
             search_entry = self.search_entry
@@ -218,9 +250,8 @@ class ChronographWindow(Adw.ApplicationWindow):
                     dir_path = _dir.get_path()
                     files = parse_files(parse_dir(dir_path))
                     if files:
-                        self.clean_library()
-                        self.load_files(parse_dir(dir_path))
                         self.set_property("state", WindowState.LOADED_DIR)
+                        self.load_files(parse_dir(dir_path))
                     else:
                         self.set_property("state", WindowState.EMPTY_DIR)
             except GLib.GError:
@@ -248,12 +279,16 @@ class ChronographWindow(Adw.ApplicationWindow):
                 if files is not None:
                     mutagen_files = parse_files(tuple(files))
                     if mutagen_files:
-                        if self.state == WindowState.LOADED_DIR:
+                        if self.state in (
+                            WindowState.LOADED_DIR,
+                            WindowState.EMPTY_DIR,
+                            WindowState.EMPTY,
+                        ):
                             self.clean_library()
                         self.load_files(tuple(files))
                         self.set_property("state", WindowState.LOADED_FILES)
                     else:
-                        self.set_property("state", None)
+                        self.set_property("state", WindowState.EMPTY)
             except GLib.GError:
                 pass
             finally:
@@ -296,11 +331,15 @@ class ChronographWindow(Adw.ApplicationWindow):
     ) -> None:
         files = value.get_files()
         if self.load_files(file.get_path() for file in files):
-            if self.state == WindowState.LOADED_DIR:
+            if self.state in (
+                WindowState.LOADED_DIR,
+                WindowState.EMPTY_DIR,
+                WindowState.EMPTY,
+            ):
                 self.clean_library()
             self.set_property("state", WindowState.LOADED_FILES)
         else:
-            self.set_property("state", None)
+            self.set_property("state", WindowState.EMPTY)
         self._on_drag_leave()
 
     def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
@@ -334,11 +373,36 @@ class ChronographWindow(Adw.ApplicationWindow):
         row : Gtk.ListBoxRow
             Row containing the saved location to load
         """
-        row.get_child().load()
+        try:
+            row.get_child().load()
+        except AttributeError:
+            pass
 
     def clean_library(self, *_args) -> None:
         """Remove all `SongCard`s from the library"""
         self.library.remove_all()
+
+    @Gtk.Template.Callback()
+    def on_search_changed(self, *_args) -> None:
+        """Calls `self.library.filter_func` to filter the library based on the search entry text"""
+        self.library.invalidate_filter()
+
+    def on_sort_type_action(
+        self, action: Gio.SimpleAction, state: GLib.Variant
+    ) -> None:
+        """Changes the sorting state of the library in GSchema and updates the library
+
+        Parameters
+        ----------
+        action : Gio.SimpleAction
+            Action that was triggered
+        state : GLib.Variant
+            New state of the action ("a-z", "z-a")
+        """
+        action.set_state(state)
+        self.sort_state = str(state).strip("'")
+        self.library.invalidate_sort()
+        Schema.sorting = self.sort_state
 
     ############### WindowState related methods ###############
     @GObject.Property()
@@ -351,6 +415,12 @@ class ChronographWindow(Adw.ApplicationWindow):
         self._state = value
 
     def _state_changed(self, *_args) -> None:
+        def __select_saved_location() -> None:
+            for row in self.sidebar:  # pylint: disable=not-an-iterable
+                if row.get_child().path == Schema.opened_dir:
+                    self.sidebar.select_row(row)
+                    return
+
         state = self._state
         self.open_source_button.set_icon_name("open-source-symbolic")
         match state:
@@ -360,12 +430,16 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
                 Schema.opened_dir = "None"
+                self.sidebar.select_row(None)
+                self.clean_library()
             case WindowState.EMPTY_DIR:
                 self.library_scrolled_window.set_child(self.empty_directory)
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
                 Schema.opened_dir = "None"
+                self.clean_library()
+                __select_saved_location()
             case WindowState.LOADED_DIR:
                 # match Schema.STATEFULL.get_string("view"):
                 #     case "g":
@@ -375,6 +449,8 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.right_buttons_revealer.set_reveal_child(True)
                 self.left_buttons_revealer.set_reveal_child(True)
                 self.clean_files_button.set_visible(False)
+                self.clean_library()
+                __select_saved_location()
             case WindowState.LOADED_FILES:
                 # match shared.state_schema.get_string("view"):
                 #     case "g":
@@ -384,8 +460,4 @@ class ChronographWindow(Adw.ApplicationWindow):
                 Schema.opened_dir = "None"
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)
-            case None:
-                self.library_scrolled_window.set_child(self.no_source_opened)
-                self.right_buttons_revealer.set_reveal_child(False)
-                self.left_buttons_revealer.set_reveal_child(False)
-                self.clean_files_button.set_visible(False)
+                self.sidebar.select_row(None)

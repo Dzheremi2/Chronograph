@@ -1,5 +1,5 @@
 import io
-from typing import Union
+from typing import Optional
 
 from mutagen.mp4 import MP4Cover
 from PIL import Image
@@ -87,7 +87,7 @@ class FileMP4(BaseFile):
             except KeyError:
                 pass
 
-    def set_cover(self, img_path: Union[str, None]) -> None:
+    def set_cover(self, img_path: Optional[str]) -> None:
         """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
 
         Parameters

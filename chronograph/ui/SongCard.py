@@ -13,18 +13,65 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
-class SongCardInternals(GObject.Object):
-    __gtype_name__ = "SongCardInternals"
+@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/SongCard.ui")
+class SongCard(Gtk.Box):
+    __gtype_name__ = "SongCard"
+
+    buttons_revealer: Gtk.Revealer = gtc()
+    play_button: Gtk.Button = gtc()
+    metadata_editor_button: Gtk.Button = gtc()
+    info_button: Gtk.Button = gtc()
+    cover_button: Gtk.Button = gtc()
+    cover_img: Gtk.Image = gtc()
+    title_label: Gtk.Label = gtc()
+    artist_label: Gtk.Label = gtc()
 
     def __init__(
-        self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable]
-    ) -> "SongCardInternals":
-        super().__init__()
+        self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable], **kwargs
+    ) -> "SongCard":
+        super().__init__(**kwargs)
         self._file = file
-        self.set_property("title", self._file.title)
-        self.set_property("artist", self._file.artist)
-        self.set_property("album", self._file.album)
+        # self.set_property("title", self._file.title)
+        # self.set_property("artist", self._file.artist)
+        # self.set_property("album", self._file.album)
+        self.bind_property(
+            "title", self.title_label, "label", GObject.BindingFlags.SYNC_CREATE
+        )
+        self.bind_property(
+            "artist", self.artist_label, "label", GObject.BindingFlags.SYNC_CREATE
+        )
+        self.cover_img.set_from_paintable(self.cover)
+        self.bind_property(
+            "cover", self.cover_img, "paintable", GObject.BindingFlags.DEFAULT
+        )
 
+        self.event_controller_motion = Gtk.EventControllerMotion.new()
+        self.add_controller(self.event_controller_motion)
+        self.event_controller_motion.connect("enter", self._toggle_buttons)
+        self.event_controller_motion.connect("leave", self._toggle_buttons)
+
+        if isinstance(file, FileUntaggable):
+            self.metadata_editor_button.set_visible(False)
+
+    def _toggle_buttons(self, *_args) -> None:
+        self.buttons_revealer.set_reveal_child(
+            not self.buttons_revealer.get_reveal_child()
+        )
+
+    @Gtk.Template.Callback()
+    def show_info(self, *_args) -> None:
+        """Show song info dialog"""
+        BoxDialog(
+            C_("song info dialog", "About File"),
+            (
+                (_("Title"), self.title),
+                (_("Artist"), self.artist),
+                (_("Album"), self.album),
+                (_("Path"), self.path),
+            ),
+        ).present(Constants.WIN)
+
+    ############### Notifiable Properties ###############
     @GObject.Property(type=str, default=C_("song title placeholder", "Unknown"))
     def title(self) -> str:
         """Title of the song"""
@@ -65,59 +112,3 @@ class SongCardInternals(GObject.Object):
     def path(self) -> str:
         """Path to the loaded song"""
         return self._file.path
-
-
-@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/SongCard.ui")
-class SongCard(Gtk.Box):
-    __gtype_name__ = "SongCard"
-
-    buttons_revealer: Gtk.Revealer = gtc()
-    play_button: Gtk.Button = gtc()
-    metadata_editor_button: Gtk.Button = gtc()
-    info_button: Gtk.Button = gtc()
-    cover_button: Gtk.Button = gtc()
-    cover_img: Gtk.Image = gtc()
-    title_label: Gtk.Label = gtc()
-    artist_label: Gtk.Label = gtc()
-
-    def __init__(
-        self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable], **kwargs
-    ) -> "SongCard":
-        self._data: SongCardInternals = SongCardInternals(file)
-        super().__init__(**kwargs)
-        self._data.bind_property(
-            "title", self.title_label, "label", GObject.BindingFlags.SYNC_CREATE
-        )
-        self._data.bind_property(
-            "artist", self.artist_label, "label", GObject.BindingFlags.SYNC_CREATE
-        )
-        self.cover_img.set_from_paintable(self._data.cover)
-        self._data.bind_property(
-            "cover", self.cover_img, "paintable", GObject.BindingFlags.DEFAULT
-        )
-
-        event_controller_motion = Gtk.EventControllerMotion.new()
-        self.add_controller(event_controller_motion)
-        event_controller_motion.connect("enter", self._toggle_buttons)
-        event_controller_motion.connect("leave", self._toggle_buttons)
-
-        if isinstance(file, FileUntaggable):
-            self.metadata_editor_button.set_visible(False)
-
-    def _toggle_buttons(self, *_args) -> None:
-        self.buttons_revealer.set_reveal_child(
-            not self.buttons_revealer.get_reveal_child()
-        )
-
-    @Gtk.Template.Callback()
-    def show_info(self, *_args) -> None:
-        """Show song info dialog"""
-        BoxDialog(
-            C_("song info dialog", "About File"),
-            (
-                (_("Title"), self._data.title),
-                (_("Artist"), self._data.artist),
-                (_("Album"), self._data.album),
-                (_("Path"), self._data.path),
-            ),
-        ).present(Constants.WIN)

@@ -8,7 +8,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 # pylint: disable=wrong-import-position
-from gi.repository import Adw, Gdk, Gio, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from chronograph.internal import Constants, Schema
 from chronograph.window import ChronographWindow
@@ -88,17 +88,15 @@ class ChronographApplication(Adw.Application):
                 # fmt: on
             }
         )
-        # self.set_accels_for_action("win.show-help-overlay", ("<primary>question",))
+        self.set_accels_for_action("win.show-help-overlay", ("<primary>question",))
 
-        # sorting_action = Gio.SimpleAction.new_stateful(
-        #     "sort_type",
-        #     GLib.VariantType.new("s"),
-        #     sorting_mode := GLib.Variant(
-        #         "s", shared.state_schema.get_string("sorting")
-        #     ),
-        # )
-        # sorting_action.connect("activate", shared.win.on_sorting_type_action)
-        # self.add_action(sorting_action)
+        sorting_action = Gio.SimpleAction.new_stateful(
+            "sort_type",
+            GLib.VariantType.new("s"),
+            GLib.Variant("s", Schema.sorting),
+        )
+        sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
+        self.add_action(sorting_action)
 
         # view_action = Gio.SimpleAction.new_stateful(
         #     "view_type",
@@ -188,9 +186,7 @@ class ChronographApplication(Adw.Application):
         self.quit()
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
-        if Schema.save_session and (
-            Schema.opened_dir != "None"
-        ):
+        if Schema.save_session and (Schema.opened_dir != "None"):
             Constants.CACHE["session"] = Schema.STATEFULL.get_string("opened-dir")[:-1]
         else:
             Constants.CACHE["session"] = None

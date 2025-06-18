@@ -6,35 +6,6 @@ from chronograph.utils.parsers import parse_dir
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
-class SavedLocationInternals(GObject.Object):
-    """Internals for the SavedLocation class"""
-
-    __gtype_name__ = "SavedLocationInternals"
-
-    def __init__(self, path: str, name: str) -> None:
-        super().__init__()
-        self._path = path
-        self._name = name
-
-    @GObject.Property(type=str, default="")
-    def name(self) -> str:
-        """Title of the saved location"""
-        return self._name
-
-    @name.setter
-    def name(self, value: str) -> None:
-        self._name = value
-
-    @GObject.Property(type=str, default="")
-    def path(self) -> str:
-        """Path of the saved location"""
-        return self._path
-
-    @path.setter
-    def path(self, value: str) -> None:
-        self._path = value
-
-
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/SavedLocation.ui")
 class SavedLocation(Gtk.Box):
     __gtype_name__ = "SavedLocation"
@@ -46,17 +17,18 @@ class SavedLocation(Gtk.Box):
     deletion_alert_dialog: Adw.AlertDialog = gtc()
 
     def __init__(self, path: str, name: str) -> "SavedLocation":
-        self._data = SavedLocationInternals(path, name)
         super().__init__()
-        self._data.bind_property(
+        self._path = path
+        self._name = name
+        self.bind_property(
             "name", self.title, "label", GObject.BindingFlags.SYNC_CREATE
         )
         # pylint: disable=not-callable
-        self.set_tooltip_text(_("Path: {}").format(self._data.path))
-        self._data.connect(
+        self.set_tooltip_text(_("Path: {}").format(self.path))
+        self.connect(
             "notify::path",
             # Translators: Do not translate the curly braces, they are used for formatting
-            lambda *_: self.set_tooltip_text(_("Path: {}").format(self._data.path)),
+            lambda *_: self.set_tooltip_text(_("Path: {}").format(self.path)),
         )
         self.actions_popover.set_parent(self)
 
@@ -82,10 +54,31 @@ class SavedLocation(Gtk.Box):
 
     def load(self) -> None:
         """Loads the saved location"""
-        from chronograph.window import WindowState # pylint: disable=import-outside-toplevel
+        # pylint: disable=import-outside-toplevel
+        from chronograph.window import WindowState
+
         if Constants.WIN.state == WindowState.LOADED_DIR:
             Constants.WIN.clean_library()
-        if Constants.WIN.load_files(parse_dir(self._data.path)):
+        if Constants.WIN.load_files(parse_dir(self.path)):
             Constants.WIN.set_property("state", WindowState.LOADED_DIR)
         else:
             Constants.WIN.set_property("state", WindowState.EMPTY_DIR)
+
+    ############### Notifiable Properties ###############
+    @GObject.Property(type=str, default="")
+    def name(self) -> str:
+        """Title of the saved location"""
+        return self._name
+
+    @name.setter
+    def name(self, value: str) -> None:
+        self._name = value
+
+    @GObject.Property(type=str, default="")
+    def path(self) -> str:
+        """Path of the saved location"""
+        return self._path
+
+    @path.setter
+    def path(self, value: str) -> None:
+        self._path = value

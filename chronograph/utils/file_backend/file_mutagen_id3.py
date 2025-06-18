@@ -1,5 +1,5 @@
 import io
-from typing import Union
+from typing import Optional
 
 from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1
 from PIL import Image
@@ -88,7 +88,7 @@ class FileID3(BaseFile):
             except KeyError:
                 pass
 
-    def set_cover(self, img_path: Union[str, None]) -> None:
+    def set_cover(self, img_path: Optional[str]) -> None:
         """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
 
         Parameters

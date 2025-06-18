@@ -712,6 +712,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                   SearchEntry search_entry {
                     placeholder-text: _("Search");
+                    changed => $on_search_changed();
                     hexpand: true;
 
                     ShortcutController {
