@@ -120,7 +120,7 @@ class ChronographApplication(Adw.Application):
             "window-maximized", shared.win, "maximized", Gio.SettingsBindFlags.DEFAULT
         )
 
-        if (path := shared.cache["session"]) is not None and len(self.paths) == 0:
+        if shared.cache["session"] is not None and os.path.exists(path := shared.cache["session"]) and len(self.paths) == 0:
             dir_parser(path)
             del path
         elif len(self.paths) != 0:
