@@ -60,14 +60,21 @@ class SyncLine(Adw.EntryRow):
     def save_file_on_update(self, *_args) -> None:
         """Saves lines from `chronograph.ChronographWindow.sync_lines` to file"""
         if shared.schema.get_boolean("auto-file-manipulation"):
+            filename = pathlib.Path(shared.win.loaded_card._file.path).with_suffix(
+                shared.schema.get_string("auto-file-format")
+            )
+            if not filename.exists():
+                with open(
+                    filename,
+                    "w",
+                ) as _:
+                    pass
             lyrics_list = []
             for line in shared.win.sync_lines:
                 lyrics_list.append(line.get_text() + "\n")
             lyrics = "".join(lyrics_list)
             with open(
-                pathlib.Path(shared.win.loaded_card._file.path).with_suffix(
-                    shared.schema.get_string("auto-file-format")
-                ),
+                filename,
                 "r",
             ) as file:
                 metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
@@ -79,9 +86,7 @@ class SyncLine(Adw.EntryRow):
                 if _lyrics.strip():
                     lyrics = _lyrics + "\n" + lyrics
             with open(
-                pathlib.Path(shared.win.loaded_card._file.path).with_suffix(
-                    shared.schema.get_string("auto-file-format")
-                ),
+                filename,
                 "w",
             ) as file:
                 file.write(lyrics)
