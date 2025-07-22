@@ -8,27 +8,29 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-15 11:50+0300\n"
-"PO-Revision-Date: 2024-11-18 00:25+0300\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-07-22 14:05+0000\n"
+"Last-Translator: Mr Mati <mati7042@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/chronograph/"
+"chronograph/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: chronograph/window.py:630
 msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
+msgstr "Niektóre z pól Tytuł, Artysta i/lub Album są nieznane!"
 
 #: chronograph/window.py:677
 msgid "Some of entries are empty"
-msgstr ""
+msgstr "Niektóre z wpisów są puste"
 
 #: chronograph/window.py:704
 msgid "Copied successfully"
-msgstr ""
+msgstr "Skopiowano pomyślnie"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:151
@@ -48,22 +50,22 @@ msgstr ""
 #: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
 #: data/gtk/ui/SongCard.blp:76 data/gtk/ui/SongCard.blp:182
 msgid "Title"
-msgstr ""
+msgstr "Tytuł"
 
 #: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
 #: data/gtk/window.blp:188 data/gtk/window.blp:344 data/gtk/window.blp:517
 #: data/gtk/ui/SongCard.blp:80 data/gtk/ui/SongCard.blp:197
 msgid "Artist"
-msgstr ""
+msgstr "Artysta"
 
 #: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:525
 msgid "Duration"
-msgstr ""
+msgstr "Czas trwania"
 
 #: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
 #: data/gtk/window.blp:521 data/gtk/ui/SongCard.blp:84
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: chronograph/ui/LrclibTrack.py:12
 msgid "Is instrumental"
@@ -71,42 +73,42 @@ msgstr ""
 
 #: chronograph/ui/LrclibTrack.py:15
 msgid "Yes"
-msgstr ""
+msgstr "Tak"
 
 #: chronograph/ui/LrclibTrack.py:16
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: chronograph/ui/LrclibTrack.py:105
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "Brak zsynchronizowanego tekstu"
 
 #: chronograph/ui/LrclibTrack.py:117
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "Brak zwykłego tekstu"
 
 #: chronograph/ui/SavedLocation.py:6
 msgid "Path: "
-msgstr ""
+msgstr "Ścieżka: "
 
 #: chronograph/ui/SongCard.py:15
 msgid "About File"
-msgstr ""
+msgstr "O Pliku"
 
 #: chronograph/ui/SongCard.py:19
 msgid "Path"
-msgstr ""
+msgstr "Ścieżka"
 
 #: chronograph/ui/SongCard.py:252 chronograph/ui/SongCard.py:308
 #: chronograph/ui/SongCard.py:309 chronograph/ui/SongCard.py:317
 #: chronograph/ui/SongCard.py:324 chronograph/ui/SongCard.py:325
 #: chronograph/ui/SongCard.py:333
 msgid "Unknown"
-msgstr ""
+msgstr "NIeznany"
 
 #: chronograph/utils/caching.py:45
 msgid "Directory saved successfully"
-msgstr ""
+msgstr "Katalog zapisany pomyślnie"
 
 #: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
 msgid "Seems like not every line is synced"
@@ -114,28 +116,28 @@ msgstr ""
 
 #: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
 msgid "Published successfully: "
-msgstr ""
+msgstr "Opublikowano pomyślnie: "
 
 #: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
 msgid "Incorrect publish token: "
-msgstr ""
+msgstr "Błędny token publikacji: "
 
 #: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
 msgid "Unknown error occured: "
-msgstr ""
+msgstr "Wystąpił nieznany błąd: "
 
 #: chronograph/utils/publish.py:124 data/gtk/window.blp:536
 msgid "Publish"
-msgstr ""
+msgstr "Opublikuj"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
 msgid "No source selected yet"
-msgstr ""
+msgstr "Nie wybrano żadnego źródła"
 
 #: data/gtk/window.blp:7
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr ""
+msgstr "Wybierz katalog lub upuść pliki by je załadować"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -144,19 +146,19 @@ msgstr ""
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
-msgstr ""
+msgstr "Pusty katalog"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Ten katalog nie zawiera żadnych wspieranych formatów plików"
 
 #: data/gtk/window.blp:49 data/gtk/window.blp:54
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "Wyszukaj na LRClib według tytułu i artysty"
 
 #: data/gtk/window.blp:60 data/gtk/window.blp:66
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "Brak wyników dla tego żądania"
 
 #: data/gtk/window.blp:61 data/gtk/window.blp:67
 msgid "Try out another request, maybe there are mistakes in request text."
