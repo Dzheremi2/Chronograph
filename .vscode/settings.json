@@ -8,6 +8,7 @@
     },
     "files.associations": {
         "*.py.in": "python",
+        "chronograph.in": "python"
     },
     "search.followSymlinks": false,
     "[python]": {

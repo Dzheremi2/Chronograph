@@ -18,7 +18,7 @@
       <default>false</default>
     </key>
     <key name="precise-milliseconds" type="b">
-      <default>true</default>
+      <default>false</default>
     </key>
     <key name="auto-list-view" type="b">
       <default>false</default>
@@ -34,6 +34,13 @@
     </key>
     <key name="compress-level" type="i">
       <default>75</default>
+    </key>
+    <key name="default-format" type="s">
+      <!-- Will be extended when other formats will be available -->
+      <choices>
+        <choice value="lrc" />
+      </choices> 
+      <default>"lrc"</default>
     </key>
   </schema>
 

@@ -1,9 +1,10 @@
-# TODO: Add GStreamer based player with music speed control
+# DELAYED: Add GStreamer based player with music speed control
 # TODO: Reimplement syncing page as a separate class generatable for every song
 # TODO: Reimplement LRC support
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc.)
+# TODO: Implement logger
 
 import os
 from enum import Enum
@@ -12,8 +13,9 @@ from typing import Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.SavedLocation import SavedLocation
-from chronograph.ui.SongCard import SongCard
+from chronograph.ui.saved_location import SavedLocation
+from chronograph.ui.song_card import SongCard
+from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -403,6 +405,20 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sort_state = str(state).strip("'")
         self.library.invalidate_sort()
         Schema.sorting = self.sort_state
+
+    def enter_sync_mode(
+        self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
+    ) -> None:
+        """Enters sync mode for the given song card
+
+        Parameters
+        ----------
+        card : SongCard
+            Song card to enter sync mode for
+        """
+        if Schema.default_format == "lrc":
+            sync_nav_page = LRCSyncPage(card, file)
+            self.navigation_view.push(sync_nav_page)
 
     ############### WindowState related methods ###############
     @GObject.Property()

@@ -1,10 +1,10 @@
-from gettext import pgettext as C_
 from typing import Union
+from gettext import pgettext as C_
 
 from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.internal import Constants
-from chronograph.ui.BoxDialog import BoxDialog
+from chronograph.ui.box_dialog import BoxDialog
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -31,9 +31,6 @@ class SongCard(Gtk.Box):
     ) -> "SongCard":
         super().__init__(**kwargs)
         self._file = file
-        # self.set_property("title", self._file.title)
-        # self.set_property("artist", self._file.artist)
-        # self.set_property("album", self._file.album)
         self.bind_property(
             "title", self.title_label, "label", GObject.BindingFlags.SYNC_CREATE
         )
@@ -57,6 +54,10 @@ class SongCard(Gtk.Box):
         self.buttons_revealer.set_reveal_child(
             not self.buttons_revealer.get_reveal_child()
         )
+
+    @Gtk.Template.Callback()
+    def load(self, *_args) -> None:
+        Constants.WIN.enter_sync_mode(self, self._file)
 
     @Gtk.Template.Callback()
     def show_info(self, *_args) -> None:
@@ -99,7 +100,7 @@ class SongCard(Gtk.Box):
     def album(self, value: str) -> None:
         self._file.album = value
 
-    @GObject.Property()
+    @GObject.Property(type=Gdk.Texture)
     def cover(self) -> Gdk.Texture:
         """Cover of the song"""
         return self._file.get_cover_texture()

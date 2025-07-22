@@ -1,137 +1,15 @@
 using Gtk 4.0;
 using Adw 1;
 
-Adw.NavigationPage sync_navigation_page {
+template $LRCSyncPage : Adw.NavigationPage {
   title: _("Syncing");
 
   Adw.ToolbarView {
     [top]
-    Adw.HeaderBar {}
+    Adw.HeaderBar header_bar {}
 
     [top]
-    Adw.Clamp {
-      maximum-size: 600;
-      orientation: horizontal;
-
-      Box {
-        orientation: horizontal;
-        spacing: 8;
-        margin-top: 12;
-        margin-start: 4;
-        margin-end: 4;
-
-        styles ["card"]
-
-        Image sync_page_cover {
-          icon-name: "note-placeholder";
-          pixel-size: 100;
-          overflow: hidden;
-
-          styles ["rounded"]
-        }
-
-        Box {
-          orientation: vertical;
-          vexpand: true;
-          spacing: 2;
-          margin-top: 8;
-          margin-end: 4;
-
-          Inscription sync_page_title {
-            text: "Unknown";
-            text-overflow: ellipsize_end;
-            hexpand: true;
-
-            styles ["heading"]
-          }
-
-          Inscription sync_page_artist {
-            text: "Unknown";
-            text-overflow: ellipsize_end;
-            hexpand: true;
-
-            styles ["heading"]
-          }
-
-          Box {
-            visible: bind controls_box_shrinked.visible bidirectional;
-            orientation: horizontal;
-            margin-top: 4;
-            spacing: 6;
-
-            ToggleButton toggle_repeat_button_shrinked {
-              tooltip-text: bind toggle_repeat_button.tooltip-text;
-              icon-name: bind toggle_repeat_button.icon-name;
-              active: bind toggle_repeat_button.active bidirectional;
-            }
-
-            Box sync_page_metadata_editor_button_shrinked_box {
-              Button sync_page_metadata_editor_button_shrinked {
-                tooltip-text: bind sync_page_metadata_editor_button.tooltip-text;
-                icon-name: bind sync_page_metadata_editor_button.icon-name;
-              }
-            }
-
-            Button info_button_shrinked {
-              tooltip-text: bind info_button.tooltip-text;
-              icon-name: bind info_button.icon-name;
-              action-name: "win.show_file_info";
-            }
-          }
-
-          Box controls_box {
-            margin-top: 4;
-            margin-end: 8;
-            spacing: 4;
-            visible: bind controls_box_shrinked.visible inverted;
-
-            MediaControls controls {
-              hexpand: true;
-              visible: true;
-            }
-
-            ToggleButton toggle_repeat_button {
-              tooltip-text: _("Toggle song repeat");
-              icon-name: "toggle-repeat-symbolic";
-              active: false;
-              halign: center;
-            }
-          }
-        }
-      }
-    }
-
-    [top]
-    Adw.Clamp {
-      orientation: vertical;
-      maximum-size: 30;
-      margin-top: 4;
-
-      Adw.Clamp {
-        orientation: horizontal;
-        maximum-size: 600;
-
-        Box controls_box_shrinked {
-          orientation: horizontal;
-          visible: false;
-          margin-start: 4;
-          margin-end: 4;
-
-          Box {
-            margin-end: 8;
-            margin-start: 8;
-            spacing: 4;
-            valign: center;
-
-            MediaControls controls_shrinked {
-              hexpand: true;
-            }
-          }
-
-          styles ["card"]
-        }
-      }
-    }
+    Box player_container {}
 
     [top]
     Adw.Clamp {
@@ -148,7 +26,7 @@ Adw.NavigationPage sync_navigation_page {
         Button sync_line_button {
           tooltip-text: _("Sync/Re-sync line");
           icon-name: "sync-line-symbolic";
-          action-name: "win.sync_line";
+          action-name: "controls.sync";
 
           styles [
             "suggested-action",
@@ -159,7 +37,7 @@ Adw.NavigationPage sync_navigation_page {
         Button replay_line_button {
           tooltip-text: _("Replay selected line");
           icon-name: "replay-line-symbolic";
-          action-name: "win.replay_line";
+          action-name: "controls.rplay";
 
           styles ["circular"]
         }
@@ -167,7 +45,7 @@ Adw.NavigationPage sync_navigation_page {
         Button rew100_button {
           tooltip-text: _("Re-sync selected line 100ms back");
           icon-name: "100ms-back-symbolic";
-          action-name: "win.100ms_rew";
+          action-name: "controls.rew100";
 
           styles ["circular"]
         }
@@ -175,7 +53,7 @@ Adw.NavigationPage sync_navigation_page {
         Button forw100_button {
           tooltip-text: _("Re-sync selected line 100ms forward");
           icon-name: "100ms-forw-symbolic";
-          action-name: "win.100ms_forw";
+          action-name: "controls.forw100";
 
           styles ["circular"]
         }
@@ -204,7 +82,7 @@ Adw.NavigationPage sync_navigation_page {
 
         Separator {
           hexpand: true;
-          visible: bind controls_box_shrinked.visible inverted;
+          visible: true;
 
           styles ["spacer"]
         }
@@ -232,8 +110,7 @@ Adw.NavigationPage sync_navigation_page {
         Button info_button {
           tooltip-text: _("About file");
           icon-name: "info-button-symbolic";
-          visible: bind controls_box_shrinked.visible inverted;
-          action-name: "win.show_file_info";
+          action-name: "controls.file_info";
 
           styles ["circular"]
         }
@@ -262,7 +139,8 @@ Adw.NavigationPage sync_navigation_page {
             halign: end;
 
             Button add_line_button {
-              action-name: "win.append_line";
+              action-name: "line.append_end";
+
               Adw.ButtonContent {
                 label: _("Add line");
                 icon-name: "add-line-symbolic";
@@ -281,9 +159,9 @@ menu import_from {
   section {
     label: _("Import from …");
 
-    item (_("File"), "win.import_from_file")
-    item (_("Clipboard"), "win.import_from_clipboard")
-    item ("LRClib", "win.import_from_lrclib")
+    item (_("File"), "import.file")
+    item (_("Clipboard"), "import.clipboard")
+    item ("LRClib", "import.lrclib")
   }
 }
 
@@ -291,9 +169,9 @@ menu export_to {
   section {
     label: _("Export to …");
 
-    item (_("File"), "win.export_to_file")
-    item (_("Clipboard"), "win.export_to_clipboard")
-    item ("LRClib", "win.export_to_lrclib")
+    item (_("File"), "export.file")
+    item (_("Clipboard"), "export.clipboard")
+    item ("LRClib", "export.lrclib")
   }
 }
 
@@ -301,9 +179,9 @@ menu line_actions {
   section {
     label: _("Actions with selected line");
 
-    item (_("Remove line"), "win.remove_selected_line")
-    item (_("Prepend line"), "win.prepend_selected_line")
-    item (_("Append line"), "win.append_selected_line")
-    item (_("Append line to end"), "win.append_line")
+    item (_("Remove line"), "line.remove")
+    item (_("Prepend line"), "line.prepend")
+    item (_("Append line"), "line.append")
+    item (_("Append line to end"), "line.append_end")
   }
 }

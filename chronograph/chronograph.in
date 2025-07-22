@@ -1,4 +1,5 @@
 #!@PYTHON@
+# pylint: disable=all
 
 import os
 import sys

@@ -119,6 +119,10 @@ class BaseFile:
     def duration(self) -> int:
         return round(self._duration)
 
+    @property
+    def duration_ns(self) -> int:
+        return int(self._duration * 1_000_000_000) if self._duration else 0
+
     def compress_images(self) -> None:
         """Should be implemented in file specific child classes"""
         raise NotImplementedError

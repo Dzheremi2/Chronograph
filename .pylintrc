@@ -6,6 +6,7 @@ ignore=importers
 [MESSAGES CONTROL]
 
 disable=raw-checker-failed,
+        comparison-with-callable,
         bad-inline-option,
         locally-disabled,
         file-ignored,
@@ -47,7 +48,7 @@ max-line-length=88
 [BASIC]
 
 class-naming-style=PascalCase
-module-naming-style=any
+module-naming-style=snake_case
 function-naming-style=snake_case
 const-naming-style=UPPER_CASE
 method-naming-style=snake_case

@@ -121,6 +121,7 @@ template $SongCard: Box {
           Button play_button {
             icon-name: "play-button-symbolic";
             tooltip-text: _("Sync");
+            clicked => $load();
 
             styles [
               "circular",
@@ -155,6 +156,7 @@ template $SongCard: Box {
         name: "cover_button";
         overflow: hidden;
         tooltip-text: _("Open syncing page");
+        clicked => $load();
 
         accessibility {
           labelled-by: title_label;

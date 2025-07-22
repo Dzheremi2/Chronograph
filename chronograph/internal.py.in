@@ -67,6 +67,7 @@ class Schema:
         """Bind a setting to a target object's property"""
         getattr(cls, schema.upper()).bind(key, target, target_property, flags)
 
+    ############### STATELESS values ###############
     @classproperty
     def auto_file_manipulation(cls) -> bool:
         return cls.STATELESS.get_boolean("auto-file-manipulation")
@@ -147,6 +148,15 @@ class Schema:
     def compress_level(cls, value: int) -> None:
         cls.STATELESS.set_int("compress-level", value)
 
+    @classproperty
+    def default_format(cls) -> str:
+        return cls.STATELESS.get_string("default-format")
+
+    @default_format.setter
+    def default_format(cls, value: str) -> None:
+        cls.STATELESS.set_string("default-format", value)
+
+    ############### STATEFULL values ###############
     @classproperty
     def sorting(cls) -> str:
         return cls.STATEFULL.get_string("sorting")

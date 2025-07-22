@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Literal, TextIO
 
 from gi.repository import Gio, Gtk
-
 from main import ChronographApplication
 from window import ChronographWindow
 
@@ -49,6 +48,8 @@ class Schema:
         target_property: str,
         flags: Gio.SettingsBindFlags,
     ) -> None: ...
+
+    ############### STATELESS values ###############
     @classproperty
     def auto_file_manipulation(cls) -> bool: ...
     @auto_file_manipulation.setter
@@ -89,6 +90,12 @@ class Schema:
     def compress_level(cls) -> int: ...
     @compress_level.setter
     def compress_level(cls, value: int) -> None: ...
+    @classproperty
+    def default_format(cls) -> str: ...
+    @default_format.setter
+    def default_format(cls, value: str) -> None: ...
+
+    ############### STATEFULL values ###############
     @classproperty
     def sorting(cls) -> str: ...
     @sorting.setter
