@@ -18,7 +18,7 @@
       <default>false</default>
     </key>
     <key name="precise-milliseconds" type="b">
-      <default>true</default>
+      <default>false</default>
     </key>
     <key name="auto-list-view" type="b">
       <default>false</default>
