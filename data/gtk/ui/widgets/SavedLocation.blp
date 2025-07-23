@@ -36,8 +36,10 @@ Adw.AlertDialog rename_dialog {
   close-response: "not_rename";
   heading: _("Rename this Save");
   default-response: "not_rename";
+  response => $do_rename();
   extra-child: Gtk.Entry rename_entry {
     placeholder-text: _("Name");
+    changed => $on_rename_entry_changed();
   };
 
   responses [
@@ -50,6 +52,7 @@ Adw.AlertDialog deletion_alert_dialog {
   close-response: "cancel";
   heading: _("Delete this Save?");
   default-response: "cancel";
+  response => $on_deletion_alert_response();
 
   responses [
     cancel: _("Cancel"),
