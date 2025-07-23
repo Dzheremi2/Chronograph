@@ -58,14 +58,8 @@ class SavedLocation(Gtk.Box):
         from chronograph.window import WindowState
 
         if self.path != Schema.session:
-            if Constants.WIN.state == WindowState.LOADED_DIR:
-                Constants.WIN.clean_library()
-            if Constants.WIN.load_files(parse_dir(self.path)):
-                Constants.WIN.set_property("state", WindowState.LOADED_DIR)
-            else:
-                Constants.WIN.set_property("state", WindowState.EMPTY_DIR)
-                Schema.STATEFULL.set_string("session", self.path)
-                Constants.WIN.sidebar.select_row(self.get_parent())
+            Constants.WIN.open_directory(self.path)
+            Constants.WIN.sidebar.select_row(self.get_parent())
     ############### Notifiable Properties ###############
     @GObject.Property(type=str, default="")
     def name(self) -> str:

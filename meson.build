@@ -10,7 +10,7 @@ python = import('python')
 
 py_installation = python.find_installation('python3')
 
-cachev = 1
+cachev = 2
 python = import('python')
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 

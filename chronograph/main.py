@@ -11,7 +11,6 @@ gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.utils.parsers import parse_dir, parse_files
 from chronograph.window import ChronographWindow, WindowState
 
 
@@ -116,18 +115,14 @@ class ChronographApplication(Adw.Application):
         # else:
         #     shared.app.lookup_action("view_type").set_enabled(True)
 
-        if (path := Schema.session) != "None" and len(self.paths) == 0:
-            if not parse_files(parse_dir(path)):
-                Constants.WIN.set_property("state", WindowState.EMPTY_DIR)
-                Constants.WIN.present()
-                return
-            Constants.WIN.load_files(parse_dir(path))
-            Constants.WIN.set_property("state", WindowState.LOADED_DIR)
+        if (
+            (path := Schema.session) != "None"
+            and os.path.exists(Schema.session)
+            and len(self.paths) == 0
+        ):
+            Constants.WIN.open_directory(path)
         elif len(self.paths) != 0:
-            if Constants.WIN.load_files(self.paths):
-                Constants.WIN.set_property("state", WindowState.LOADED_FILES)
-            else:
-                Constants.WIN.set_property("state", WindowState.EMPTY)
+            Constants.WIN.open_files(self.paths)
         else:
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
@@ -212,12 +207,16 @@ def main(_version):
     """App entrypoint"""
     if not "cache.yaml" in os.listdir(Constants.DATA_DIR):
         file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+")
-        file.write("pins: []\nsession: null\ncache_version: 1")
+        file.write("pins: []\ncache_version: 2")
         file.close()
 
     Constants.CACHE_FILE = open(
         str(Constants.DATA_DIR) + "/cache.yaml", "r+", encoding="utf-8"
     )
     Constants.CACHE = yaml.safe_load(Constants.CACHE_FILE)
+
+    if "session" in Constants.CACHE:
+        Constants.CACHE.pop("session", None)
+        Constants.CACHE["cache_version"] = 2
     Constants.APP = app = ChronographApplication()
     return app.run(sys.argv)

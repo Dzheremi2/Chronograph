@@ -234,6 +234,35 @@ class ChronographWindow(Adw.ApplicationWindow):
             Schema.STATEFULL.set_string("session", path)
         return True
 
+    def open_directory(self, path: str) -> None:
+        """Open a directory and load its files, updating window state"""
+
+        files = parse_dir(path)
+        mutagen_files = parse_files(files)
+
+        self.clean_library()
+        Schema.STATEFULL.set_string("session", path)
+
+        self.add_dir_to_saves_button.set_visible(
+            path not in [pin["path"] for pin in Constants.CACHE["pins"]]
+        )
+
+        if mutagen_files:
+            self.load_files(files)
+            self.state = WindowState.LOADED_DIR
+        else:
+            self.state = WindowState.EMPTY_DIR
+
+    def open_files(self, paths: list[str]) -> None:
+        """Open provided files and update window state"""
+
+        self.clean_library()
+        if self.load_files(tuple(paths)):
+            self.state = WindowState.LOADED_FILES
+        else:
+            self.state = WindowState.EMPTY
+        Schema.STATEFULL.set_string("session", "None")
+
     @Gtk.Template.Callback()
     def clean_files_button_clicked(self, *_args) -> None:
         self.clean_library()
@@ -255,13 +284,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 _dir = file_dialog.select_folder_finish(result)
                 if _dir is not None:
                     dir_path = _dir.get_path()
-                    files = parse_files(parse_dir(dir_path))
-                    if files:
-                        self.set_property("state", WindowState.LOADED_DIR)
-                        self.load_files(parse_dir(dir_path))
-                    else:
-                        self.set_property("state", WindowState.EMPTY_DIR)
-                    Schema.STATEFULL.set_string("session", dir_path)
+                    self.open_directory(dir_path)
             except GLib.GError:
                 pass
             finally:
@@ -285,18 +308,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     file.get_path() for file in file_dialog.open_multiple_finish(result)
                 ]
                 if files is not None:
-                    mutagen_files = parse_files(tuple(files))
-                    if mutagen_files:
-                        if self.state in (
-                            WindowState.LOADED_DIR,
-                            WindowState.EMPTY_DIR,
-                            WindowState.EMPTY,
-                        ):
-                            self.clean_library()
-                        self.load_files(tuple(files))
-                        self.set_property("state", WindowState.LOADED_FILES)
-                    else:
-                        self.set_property("state", WindowState.EMPTY)
+                    self.open_files(files)
             except GLib.GError:
                 pass
             finally:
@@ -337,17 +349,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     def _on_drag_drop(
         self, _drop_target: Gtk.DropTarget, value: GObject.Value, *_args
     ) -> None:
-        files = value.get_files()
-        if self.load_files(file.get_path() for file in files):
-            if self.state in (
-                WindowState.LOADED_DIR,
-                WindowState.EMPTY_DIR,
-                WindowState.EMPTY,
-            ):
-                self.clean_library()
-            self.set_property("state", WindowState.LOADED_FILES)
-        else:
-            self.set_property("state", WindowState.EMPTY)
+        files = [file.get_path() for file in value.get_files()]
+        self.open_files(files)
         self._on_drag_leave()
 
     def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
@@ -400,13 +403,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Re-parses the current directory in the library"""
         if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
             if Schema.session != "None":
-                files = parse_files(parse_dir(Schema.session))
-                if files:
-                    self.clean_library()
-                    self.load_files(parse_dir(Schema.session))
-                    self.set_property("state", WindowState.LOADED_DIR)
-                else:
-                    self.set_property("state", WindowState.EMPTY_DIR)
+                self.open_directory(Schema.session)
             else:
                 self.set_property("state", WindowState.EMPTY)
 
@@ -419,13 +416,6 @@ class ChronographWindow(Adw.ApplicationWindow):
                 if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
                     Constants.CACHE["pins"].append(
                         {"path": dir_path, "name": os.path.basename(dir_path)}
-                    )
-                    self.sidebar.select_row(
-                        self.sidebar.get_row_at_index(
-                            [pin["path"] for pin in Constants.CACHE["pins"]].index(
-                                dir_path
-                            )
-                        )
                     )
                     self.add_dir_to_saves_button.set_visible(False)
                     self.build_sidebar()
