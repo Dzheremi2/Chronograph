@@ -677,6 +677,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 Button clean_files_button {
                   icon-name: "clean-files-symbolic";
                   tooltip-text: _("Clean the library");
+                  clicked => $clean_files_button_clicked();
                 }
 
                 [end]

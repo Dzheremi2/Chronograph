@@ -1,11 +1,12 @@
 """Sync page for LRC format syncing"""
 
 import re
+from pathlib import Path
 from typing import Union
 
-from gi.repository import Adw, Gio, GObject, Gtk
+from gi.repository import Adw, Gdk, Gio, GObject, Gtk, Pango
 
-from chronograph.internal import Constants
+from chronograph.internal import Constants, Schema
 from chronograph.ui.playerui import PlayerUI
 from chronograph.ui.song_card import SongCard
 from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
@@ -15,6 +16,8 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+
+PANGO_HIGHLIGHTER = Pango.AttrList().from_string("0 -1 weight ultrabold")
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/LRCSyncPage.ui")
@@ -38,10 +41,12 @@ class LRCSyncPage(Adw.NavigationPage):
         )
         self._player_ui = PlayerUI(file, card)
         self._player = self._player_ui._player
+        self._player.connect("notify::timestamp", self._on_timestamp_changed)
         self.player_container.append(self._player_ui)
 
         self._setup_actions()
 
+    ############### Line Actions ###############
     def _append_end_line(self, *_args) -> None:
         self.sync_lines.append(LRCSyncLine())
 
@@ -72,6 +77,9 @@ class LRCSyncPage(Adw.NavigationPage):
             self.sync_lines.remove(self.selected_line)
             self.selected_line = None
 
+    ###############
+
+    ############### Sync Actions ###############
     def _sync(self, *_args) -> None:
         if self.selected_line:
             mcs = self._player.get_timestamp()
@@ -110,13 +118,128 @@ class LRCSyncPage(Adw.NavigationPage):
         )
         self._player.seek(mcs)
 
+    ###############
+
+    ############### Import Actions ###############
+    def _import_clipboard(self, *_args) -> None:
+
+        def __on_clipboard_parsed(
+            _clipboard, result: Gio.Task, clipboard: Gdk.Clipboard
+        ) -> None:
+            data = clipboard.read_text_finish(result)
+            lines = data.splitlines()
+            self.sync_lines.remove_all()
+            for _, line in enumerate(lines):
+                self.sync_lines.append(LRCSyncLine(line))
+
+        clipboard = Gdk.Display().get_default().get_clipboard()
+        clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
+
+    def _import_file(self, *_args) -> None:
+        metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
+        timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
+
+        def __on_selected_lyrics_file(
+            file_dialog: Gtk.FileDialog, result: Gio.Task
+        ) -> None:
+            path = file_dialog.open_finish(result).get_path()
+            with open(path, "r", encoding="utf-8") as file:
+                lines = file.read().splitlines()
+
+            filtered_lines = [
+                line for line in lines if not metatags_filterout.match(line)
+            ]
+            normalized_lines = [
+                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
+            ]
+
+            self.sync_lines.remove_all()
+            for _, line in enumerate(normalized_lines):
+                self.sync_lines.append(LRCSyncLine(line))
+
+        dialog = Gtk.FileDialog(
+            default_filter=Gtk.FileFilter(mime_types=["text/plain"])
+        )
+        dialog.open(Constants.WIN, None, __on_selected_lyrics_file)
+
+    ###############
+
+    ############### Export Actions ###############
+
+    def _export_clipboard(self, *_args) -> None:
+        string = ""
+        for line in self.sync_lines:  # pylint: disable=not-an-iterable
+            string += line.get_text() + "\n"
+        string = string.strip()
+        clipboard = Gdk.Display().get_default().get_clipboard()
+        clipboard.set(string)
+        Constants.WIN.show_toast(_("Lyrics exported to clipboard"), timeout=3)
+
+    def _export_file(self, *_args) -> None:
+
+        def __on_export_file_selected(
+            file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
+        ) -> None:
+            filepath = file_dialog.save_finish(result).get_path()
+            with open(filepath, "w") as f:
+                f.write(lyrics)
+
+            Constants.WIN.show_toast(
+                _("Lyrics exported to file"),
+                button_label=_("Show"),
+                button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
+                    f"file://{Path(filepath).parent}"
+                ),
+            )
+
+        lyrics = ""
+        for line in self.sync_lines:  # pylint: disable=not-an-iterable
+            lyrics += line.get_text() + "\n"
+        dialog = Gtk.FileDialog(
+            initial_name=Path(self._file.path).stem + Schema.auto_file_format
+        )
+        dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
+
+    ###############
+
+    def _on_timestamp_changed(self, media_stream: Gtk.MediaStream, *_args) -> None:
+        try:
+            lines: list[LRCSyncLine] = []
+            timestamps: list[int] = []
+            for line in self.sync_lines:  # pylint: disable=not-an-iterable
+                line.set_attributes(None)
+                try:
+                    timing = timestamp_to_mcs(line.get_text())
+                    lines.append(line)
+                    timestamps.append(timing)
+                except ValueError:
+                    break
+
+            if not timestamps:
+                return
+
+            timestamp = media_stream.get_timestamp()
+            if timestamp < timestamps[0]:
+                lines[0].set_attributes(PANGO_HIGHLIGHTER)
+                return
+            for i in range(len(timestamps) - 1):
+                if timestamps[i] <= timestamp < timestamps[i + 1]:
+                    lines[i].set_attributes(PANGO_HIGHLIGHTER)
+                    return
+            if timestamp >= timestamps[-1]:
+                lines[-1].set_attributes(PANGO_HIGHLIGHTER)
+        except IndexError:
+            pass
+
     # pylint: disable=too-many-locals, too-many-statements
     def _setup_actions(self) -> None:
         # Import actions
         _actions = Gio.SimpleActionGroup.new()
         _i_lrclib = Gio.SimpleAction.new("lrclib", None)
         _i_file = Gio.SimpleAction.new("file", None)
+        _i_file.connect("activate", self._import_file)
         _i_clipboard = Gio.SimpleAction.new("clipboard", None)
+        _i_clipboard.connect("activate", self._import_clipboard)
         _actions.add_action(_i_lrclib)
         _actions.add_action(_i_file)
         _actions.add_action(_i_clipboard)
@@ -126,7 +249,9 @@ class LRCSyncPage(Adw.NavigationPage):
         _actions = Gio.SimpleActionGroup.new()
         _e_lrclib = Gio.SimpleAction.new("lrclib", None)
         _e_file = Gio.SimpleAction.new("file", None)
+        _e_file.connect("activate", self._export_file)
         _e_clipboard = Gio.SimpleAction.new("clipboard", None)
+        _e_clipboard.connect("activate", self._export_clipboard)
         _actions.add_action(_e_lrclib)
         _actions.add_action(_e_file)
         _actions.add_action(_e_clipboard)

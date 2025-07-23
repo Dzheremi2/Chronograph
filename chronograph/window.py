@@ -8,7 +8,7 @@
 
 import os
 from enum import Enum
-from typing import Optional, Union
+from typing import Callable, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
@@ -234,6 +234,11 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.open_source_button.set_icon_name("open-source-symbolic")
         return True
 
+    @Gtk.Template.Callback()
+    def clean_files_button_clicked(self, *_args) -> None:
+        self.clean_library()
+        self.state = WindowState.EMPTY
+
     ############### Actions for opening files and directories ###############
     def on_select_dir_action(self, *_args) -> None:
         """Selects a directory to open in the library"""
@@ -420,9 +425,35 @@ class ChronographWindow(Adw.ApplicationWindow):
             sync_nav_page = LRCSyncPage(card, file)
             self.navigation_view.push(sync_nav_page)
 
+    def show_toast(
+        self,
+        msg: str,
+        timeout: int = 5,
+        button_label: str = None,
+        button_callback: Callable = None,
+    ) -> None:
+        """Shows a toast with the given message and optional button
+
+        Parameters
+        ----------
+        msg : str
+            Message to show in the toast
+        timeout : int, optional
+            Timeout for the toast in seconds, defaults to 5
+        button_label : str, optional
+            Label for the button, if any
+        button_callback : Callable, optional
+            Callback for the button, if any
+        """
+        toast = Adw.Toast(title=msg, timeout=timeout)
+        if button_label and button_callback:
+            toast.set_button_label(button_label)
+            toast.connect("button-clicked", button_callback)
+        self.toast_overlay.add_toast(toast)
+
     ############### WindowState related methods ###############
     @GObject.Property()
-    def state(self) -> WindowState:
+    def state(self) -> WindowState:  # pylint: disable=method-hidden
         """Current state of the window"""
         return self._state
 
@@ -457,6 +488,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.clean_library()
                 __select_saved_location()
             case WindowState.LOADED_DIR:
+                # TODO:
                 # match Schema.STATEFULL.get_string("view"):
                 #     case "g":
                 self.library_scrolled_window.set_child(self.library)
