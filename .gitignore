@@ -16,4 +16,3 @@ po/qa.po
 io.github.dzheremi2.lrcmake-gtk.flatpak
 *.pyc
 io.github.dzheremi2.lrcmake_gtk.Devel.flatpak
-/chronograph/utils/miscellaneous.py

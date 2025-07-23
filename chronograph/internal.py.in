@@ -72,146 +72,72 @@ class Schema:
     def auto_file_manipulation(cls) -> bool:
         return cls.STATELESS.get_boolean("auto-file-manipulation")
 
-    @auto_file_manipulation.setter
-    def auto_file_manipulation(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("auto-file-manipulation", value)
-
     @classproperty
     def auto_file_format(cls) -> str:
         return cls.STATELESS.get_string("auto-file-format")
-
-    @auto_file_format.setter
-    def auto_file_format(cls, value: str) -> None:
-        cls.STATELESS.set_string("auto-file-format", value)
 
     @classproperty
     def reset_quick_editor(cls) -> bool:
         return cls.STATELESS.get_boolean("reset-quick-editor")
 
-    @reset_quick_editor.setter
-    def reset_quick_editor(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("reset-quick-editor", value)
-
     @classproperty
     def save_session(cls) -> bool:
         return cls.STATELESS.get_boolean("save-session")
-
-    @save_session.setter
-    def save_session(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("save-session", value)
 
     @classproperty
     def precise_milliseconds(cls) -> bool:
         return cls.STATELESS.get_boolean("precise-milliseconds")
 
-    @precise_milliseconds.setter
-    def precise_milliseconds(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("precise-milliseconds", value)
-
     @classproperty
     def auto_list_view(cls) -> bool:
         return cls.STATELESS.get_boolean("auto-list-view")
-
-    @auto_list_view.setter
-    def auto_list_view(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("auto-list-view", value)
 
     @classproperty
     def recursive_parsing(cls) -> bool:
         return cls.STATELESS.get_boolean("recursive-parsing")
 
-    @recursive_parsing.setter
-    def recursive_parsing(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("recursive-parsing", value)
-
     @classproperty
     def follow_symlinks(cls) -> bool:
         return cls.STATELESS.get_boolean("follow-symlinks")
-
-    @follow_symlinks.setter
-    def follow_symlinks(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("follow-symlinks", value)
 
     @classproperty
     def load_compressed_covers(cls) -> bool:
         return cls.STATELESS.get_boolean("load-compressed-covers")
 
-    @load_compressed_covers.setter
-    def load_compressed_covers(cls, value: bool) -> None:
-        cls.STATELESS.set_boolean("load-compressed-covers", value)
-
     @classproperty
     def compress_level(cls) -> int:
         return cls.STATELESS.get_int("compress-level")
-
-    @compress_level.setter
-    def compress_level(cls, value: int) -> None:
-        cls.STATELESS.set_int("compress-level", value)
 
     @classproperty
     def default_format(cls) -> str:
         return cls.STATELESS.get_string("default-format")
 
-    @default_format.setter
-    def default_format(cls, value: str) -> None:
-        cls.STATELESS.set_string("default-format", value)
-
     @classproperty
     def autosave_throttling(cls) -> int:
         return cls.STATELESS.get_int("autosave-throttling")
-
-    @autosave_throttling.setter
-    def autosave_throttling(cls, value: int) -> None:
-        if 1 <= value <= 10:
-            cls.STATELESS.set_int("autosave-throttling", value)
-        else:
-            raise ValueError("Autosave throttling must be between 1 and 10 seconds")
 
     ############### STATEFULL values ###############
     @classproperty
     def sorting(cls) -> str:
         return cls.STATEFULL.get_string("sorting")
 
-    @sorting.setter
-    def sorting(cls, value: str) -> None:
-        cls.STATEFULL.set_string("sorting", value)
-
     @classproperty
     def view(cls) -> str:
         return cls.STATEFULL.get_string("view")
-
-    @view.setter
-    def view(cls, value: str) -> None:
-        cls.STATEFULL.set_string("view", value)
 
     @classproperty
     def window_width(cls) -> int:
         return cls.STATEFULL.get_int("window-width")
 
-    @window_width.setter
-    def window_width(cls, value: int) -> None:
-        cls.STATEFULL.set_int("window-width", value)
-
     @classproperty
     def window_height(cls) -> int:
         return cls.STATEFULL.get_int("window-height")
-
-    @window_height.setter
-    def window_height(cls, value: int) -> None:
-        cls.STATEFULL.set_int("window-height", value)
 
     @classproperty
     def window_maximized(cls) -> bool:
         return cls.STATEFULL.get_boolean("window-maximized")
 
-    @window_maximized.setter
-    def window_maximized(cls, value: bool) -> None:
-        cls.STATEFULL.set_boolean("window-maximized", value)
-
     @classproperty
-    def opened_dir(cls) -> str:
-        return cls.STATEFULL.get_string("opened-dir")
+    def session(cls) -> str:
+        return cls.STATEFULL.get_string("session")
 
-    @opened_dir.setter
-    def opened_dir(cls, value: str) -> None:
-        cls.STATEFULL.set_string("opened-dir", value)

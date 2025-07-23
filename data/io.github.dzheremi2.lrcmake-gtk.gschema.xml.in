@@ -73,7 +73,7 @@
     <key name="window-maximized" type="b">
       <default>false</default>
     </key>
-    <key name="opened-dir" type="s">
+    <key name="session" type="s">
       <default>"None"</default>
     </key>
   </schema>

@@ -14,14 +14,15 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.preferences import ChronographPreferences
+from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.widgets.saved_location import SavedLocation
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
+from chronograph.utils.miscellaneous import get_common_directory
 from chronograph.utils.parsers import parse_dir, parse_files
 
 mime_types = (
@@ -159,17 +160,6 @@ class ChronographWindow(Adw.ApplicationWindow):
         # Building up the sidebar with saved locations
         self.build_sidebar()
 
-        # If a directory was opened last time, load it
-        if Schema.opened_dir != "None":
-            files = parse_files(parse_dir(Schema.opened_dir))
-            if files:
-                self.load_files(tuple(files))
-                self.set_property("state", WindowState.LOADED_DIR)
-            else:
-                self.set_property("state", WindowState.EMPTY_DIR)
-        else:
-            self.set_property("state", WindowState.EMPTY)
-
     def build_sidebar(self) -> None:
         """Builds the sidebar with saved locations"""
         self.sidebar.remove_all()
@@ -240,6 +230,8 @@ class ChronographWindow(Adw.ApplicationWindow):
             if isinstance(mutagen_file, (FileID3, FileVorbis, FileMP4, FileUntaggable)):
                 GLib.idle_add(__songcard_idle, mutagen_file)
         self.open_source_button.set_icon_name("open-source-symbolic")
+        if path := get_common_directory(paths):
+            Schema.STATEFULL.set_string("session", path)
         return True
 
     @Gtk.Template.Callback()
@@ -269,6 +261,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                         self.load_files(parse_dir(dir_path))
                     else:
                         self.set_property("state", WindowState.EMPTY_DIR)
+                    Schema.STATEFULL.set_string("session", dir_path)
             except GLib.GError:
                 pass
             finally:
@@ -402,6 +395,41 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Calls `self.library.filter_func` to filter the library based on the search entry text"""
         self.library.invalidate_filter()
 
+    @Gtk.Template.Callback()
+    def on_reparse_dir_button_clicked(self, *_args) -> None:
+        """Re-parses the current directory in the library"""
+        if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
+            if Schema.session != "None":
+                files = parse_files(parse_dir(Schema.session))
+                if files:
+                    self.clean_library()
+                    self.load_files(parse_dir(Schema.session))
+                    self.set_property("state", WindowState.LOADED_DIR)
+                else:
+                    self.set_property("state", WindowState.EMPTY_DIR)
+            else:
+                self.set_property("state", WindowState.EMPTY)
+
+    @Gtk.Template.Callback()
+    def on_add_dir_to_saves_button_clicked(self, *_args) -> None:
+        """Adds the current directory to the saved locations in the sidebar"""
+        if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
+            if Schema.session != "None":
+                dir_path = Schema.session
+                if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
+                    Constants.CACHE["pins"].append(
+                        {"path": dir_path, "name": os.path.basename(dir_path)}
+                    )
+                    self.sidebar.select_row(
+                        self.sidebar.get_row_at_index(
+                            [pin["path"] for pin in Constants.CACHE["pins"]].index(
+                                dir_path
+                            )
+                        )
+                    )
+                    self.add_dir_to_saves_button.set_visible(False)
+                    self.build_sidebar()
+
     def on_sort_type_action(
         self, action: Gio.SimpleAction, state: GLib.Variant
     ) -> None:
@@ -417,7 +445,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         action.set_state(state)
         self.sort_state = str(state).strip("'")
         self.library.invalidate_sort()
-        Schema.sorting = self.sort_state
+        Schema.STATEFULL.set_string("sorting", self.sort_state)
 
     def enter_sync_mode(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
@@ -472,7 +500,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def _state_changed(self, *_args) -> None:
         def __select_saved_location() -> None:
             for row in self.sidebar:  # pylint: disable=not-an-iterable
-                if row.get_child().path == Schema.opened_dir:
+                if row.get_child().path == Schema.session:
                     self.sidebar.select_row(row)
                     return
 
@@ -484,15 +512,14 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
-                Schema.opened_dir = "None"
+                Schema.STATEFULL.set_string("session", "None")
                 self.sidebar.select_row(None)
                 self.clean_library()
             case WindowState.EMPTY_DIR:
                 self.library_scrolled_window.set_child(self.empty_directory)
-                self.right_buttons_revealer.set_reveal_child(False)
+                self.right_buttons_revealer.set_reveal_child(True)
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
-                Schema.opened_dir = "None"
                 self.clean_library()
                 __select_saved_location()
             case WindowState.LOADED_DIR:
@@ -513,7 +540,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.library_scrolled_window.set_child(self.library)
                 #     case "l":
                 #         self.library_scrolled_window.set_child(self.library_list)
-                Schema.opened_dir = "None"
+                Schema.STATEFULL.set_string("session", "None")
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)
                 self.sidebar.select_row(None)

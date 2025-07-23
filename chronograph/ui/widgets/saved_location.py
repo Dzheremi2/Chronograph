@@ -1,6 +1,6 @@
 from gi.repository import Adw, GObject, Gtk
 
-from chronograph.internal import Constants
+from chronograph.internal import Constants, Schema
 from chronograph.utils.parsers import parse_dir
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -57,13 +57,15 @@ class SavedLocation(Gtk.Box):
         # pylint: disable=import-outside-toplevel
         from chronograph.window import WindowState
 
-        if Constants.WIN.state == WindowState.LOADED_DIR:
-            Constants.WIN.clean_library()
-        if Constants.WIN.load_files(parse_dir(self.path)):
-            Constants.WIN.set_property("state", WindowState.LOADED_DIR)
-        else:
-            Constants.WIN.set_property("state", WindowState.EMPTY_DIR)
-
+        if self.path != Schema.session:
+            if Constants.WIN.state == WindowState.LOADED_DIR:
+                Constants.WIN.clean_library()
+            if Constants.WIN.load_files(parse_dir(self.path)):
+                Constants.WIN.set_property("state", WindowState.LOADED_DIR)
+            else:
+                Constants.WIN.set_property("state", WindowState.EMPTY_DIR)
+                Schema.STATEFULL.set_string("session", self.path)
+                Constants.WIN.sidebar.select_row(self.get_parent())
     ############### Notifiable Properties ###############
     @GObject.Property(type=str, default="")
     def name(self) -> str:

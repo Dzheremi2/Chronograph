@@ -7,11 +7,12 @@ import yaml
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-# pylint: disable=wrong-import-position
+# pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.window import ChronographWindow
+from chronograph.utils.parsers import parse_dir, parse_files
+from chronograph.window import ChronographWindow, WindowState
 
 
 class ChronographApplication(Adw.Application):
@@ -26,7 +27,7 @@ class ChronographApplication(Adw.Application):
         theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
         theme.add_resource_path(Constants.PREFIX + "/data/icons")
         self.paths = []
-        # self.connect("open", self.on_open)
+        self.connect("open", self.on_open)
 
     def on_open(self, _app, files: list, *_args) -> None:
         """Implicates an ability to open files within the app from file manager
@@ -110,21 +111,25 @@ class ChronographApplication(Adw.Application):
             Gio.SettingsBindFlags.DEFAULT,
         )
 
-        # if (path := shared.cache["session"]) is not None and len(self.paths) == 0:
-        #     dir_parser(path)
-        #     del path
-        # elif len(self.paths) != 0:
-        #     if parse_files(self.paths):
-        #         shared.win.state = WindowState.LOADED_FILES
-        #     else:
-        #         shared.win.state = WindowState.EMPTY
-        # else:
-        #     shared.win.state = WindowState.EMPTY
-
         # if shared.schema.get_boolean("auto-list-view"):
         #     shared.app.lookup_action("view_type").set_enabled(False)
         # else:
         #     shared.app.lookup_action("view_type").set_enabled(True)
+
+        if (path := Schema.session) != "None" and len(self.paths) == 0:
+            if not parse_files(parse_dir(path)):
+                Constants.WIN.set_property("state", WindowState.EMPTY_DIR)
+                Constants.WIN.present()
+                return
+            Constants.WIN.load_files(parse_dir(path))
+            Constants.WIN.set_property("state", WindowState.LOADED_DIR)
+        elif len(self.paths) != 0:
+            if Constants.WIN.load_files(self.paths):
+                Constants.WIN.set_property("state", WindowState.LOADED_FILES)
+            else:
+                Constants.WIN.set_property("state", WindowState.EMPTY)
+        else:
+            Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
 
@@ -168,10 +173,8 @@ class ChronographApplication(Adw.Application):
         self.quit()
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
-        if Schema.save_session and (Schema.opened_dir != "None"):
-            Constants.CACHE["session"] = Schema.STATEFULL.get_string("opened-dir")[:-1]
-        else:
-            Constants.CACHE["session"] = None
+        if not Schema.save_session:
+            Schema.STATEFULL.set_string("session", "None")
 
         Constants.CACHE_FILE.seek(0)
         Constants.CACHE_FILE.truncate(0)
@@ -182,8 +185,6 @@ class ChronographApplication(Adw.Application):
             encoding=None,
             allow_unicode=True,
         )
-
-        Schema.opened_dir = "None"
 
     def create_actions(self, actions: set) -> None:
         """Creates actions for provided scope with provided accels

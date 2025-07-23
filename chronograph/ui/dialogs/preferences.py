@@ -112,9 +112,9 @@ class ChronographPreferences(Adw.PreferencesDialog):
         """Updates `shared.schema` with new preferred file format"""
         selected = self.auto_file_manipulation_format.get_selected()
         if selected == 0:
-            Schema.auto_file_format = ".lrc"
+            Schema.STATELESS.set_string("auto-file-format", ".lrc")
         elif selected == 1:
-            Schema.auto_file_format = ".txt"
+            Schema.STATELESS.set_string("auto-file-format", ".txt")
 
     def _set_view_switcher_inactive(self, *_args) -> None:
         if self.automatic_list_view_switch.get_active():

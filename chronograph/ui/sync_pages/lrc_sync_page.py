@@ -28,7 +28,7 @@ class LRCSyncPage(Adw.NavigationPage):
     player_container: Gtk.Box = gtc()
     sync_lines_scrolled_window: Gtk.ScrolledWindow = gtc()
     sync_lines: Gtk.ListBox = gtc()
-    selected_line = None
+    selected_line: Optional["LRCSyncLine"] = None
 
     _autosave_timeout_id: Optional[int] = None
 
@@ -52,6 +52,24 @@ class LRCSyncPage(Adw.NavigationPage):
         self._close_rq_handler_id = Constants.WIN.connect(
             "close-request", self._on_app_close
         )
+
+        # Automatically load the lyrics file if it exists
+        if Schema.auto_file_manipulation and self._autosave_path.exists():
+            metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
+            timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
+            with open(self._autosave_path, "r", encoding="utf-8") as f:
+                lines = f.read().splitlines()
+
+            filtered_lines = [
+                line for line in lines if not metatags_filterout.match(line)
+            ]
+            normalized_lines = [
+                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
+            ]
+
+            self.sync_lines.remove_all()
+            for line in normalized_lines:
+                self.sync_lines.append(LRCSyncLine(line))
 
         self._setup_actions()
 

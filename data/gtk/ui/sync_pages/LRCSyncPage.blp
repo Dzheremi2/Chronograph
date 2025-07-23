@@ -9,7 +9,9 @@ template $LRCSyncPage : Adw.NavigationPage {
     Adw.HeaderBar header_bar {}
 
     [top]
-    Box player_container {}
+    Box player_container {
+      margin-top: 12;
+    }
 
     [top]
     Adw.Clamp {
@@ -22,6 +24,8 @@ template $LRCSyncPage : Adw.NavigationPage {
         valign: center;
         spacing: 4;
         margin-bottom: 4;
+        margin-start: 4;
+        margin-end: 4;
 
         Button sync_line_button {
           tooltip-text: _("Sync/Re-sync line");
