@@ -1,13 +1,13 @@
 blueprints = custom_target('blueprints',
   input: files(
     'gtk/window.blp',
-    'gtk/ui/SongCard.blp',
-    'gtk/ui/BoxDialog.blp',
-    'gtk/ui/LrclibTrack.blp',
-    'gtk/ui/Preferences.blp',
-    'gtk/ui/SavedLocation.blp',
-    'gtk/ui/PlayerUI.blp',
-    'gtk/ui/LRCSyncPage.blp'
+    'gtk/ui/widgets/SongCard.blp',
+    'gtk/ui/dialogs/BoxDialog.blp',
+    'gtk/ui/widgets/LrclibTrack.blp',
+    'gtk/ui/dialogs/Preferences.blp',
+    'gtk/ui/widgets/SavedLocation.blp',
+    'gtk/ui/widgets/Player.blp',
+    'gtk/ui/sync_pages/LRCSyncPage.blp'
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

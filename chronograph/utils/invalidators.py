@@ -5,7 +5,7 @@ from typing import Union
 from gi.repository import Gtk
 
 from chronograph.internal import Constants
-from chronograph.ui.song_card import SongCard
+from chronograph.ui.widgets.song_card import SongCard
 
 
 def invalidate_sort(

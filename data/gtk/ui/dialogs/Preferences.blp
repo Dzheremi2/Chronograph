@@ -66,6 +66,12 @@ template $ChronographPreferences : Adw.PreferencesDialog {
           subtitle: _("File format for auto manipulation");
           model: formats;
         }
+
+        Adw.SpinRow autosave_throttling_spin {
+          title: _("Autosave interval");
+          subtitle: _("Autosave interval after lyrics syncing inactivity");
+          adjustment: autosave_throttling_adjustment;
+        }
       }
     }
   }
@@ -83,4 +89,11 @@ Adjustment compress_level_adjustment {
   upper: 95;
   value: 75;
   step-increment: 5;
+}
+
+Adjustment autosave_throttling_adjustment {
+  lower: 1;
+  upper: 10;
+  value: 5;
+  step-increment: 1;
 }

@@ -3,13 +3,13 @@
   <gresource prefix="@PREFIX@">
     <file preprocess="xml-stripblanks">@APP_ID@.metainfo.xml</file>
     <file preprocess="xml-stripblanks">gtk/window.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/SongCard.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/BoxDialog.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/LrclibTrack.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/Preferences.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/SavedLocation.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/PlayerUI.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/LRCSyncPage.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/SongCard.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/dialogs/BoxDialog.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/LrclibTrack.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/dialogs/Preferences.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/Player.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
     <file alias="style.css">gtk/css/style.css</file>
     <file alias="style-dark.css">gtk/css/style-dark.css</file>
   </gresource>

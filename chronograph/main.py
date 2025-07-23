@@ -64,10 +64,7 @@ class ChronographApplication(Adw.Application):
                 ("toggle_search", ("<primary>f",), Constants.WIN),
                 ("select_dir", ("<primary><shift>o",), Constants.WIN),
                 ("select_files", ("<primary>o",), Constants.WIN),
-                # ("search_lrclib", (), shared.win),
-                # ("import_lyrics_lrclib_synced", (), shared.win),
-                # ("import_lyrics_lrclib_plain", (), shared.win),
-                # ("show_preferences", ("<primary>comma",), shared.win),
+                ("show_preferences", ("<primary>comma",), Constants.WIN),
                 # ("open_quick_editor", (), shared.win),
                 ("about",),
                 # fmt: on
@@ -83,13 +80,13 @@ class ChronographApplication(Adw.Application):
         sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
         self.add_action(sorting_action)
 
-        # view_action = Gio.SimpleAction.new_stateful(
-        #     "view_type",
-        #     GLib.VariantType.new("s"),
-        #     view_mode := GLib.Variant("s", shared.state_schema.get_string("view")),
-        # )
+        view_action = Gio.SimpleAction.new_stateful(
+            "view_type",
+            GLib.VariantType.new("s"),
+            GLib.Variant("s", Schema.view),
+        )
         # view_action.connect("activate", shared.win.on_view_type_action)
-        # self.add_action(view_action)
+        self.add_action(view_action)
 
         Schema.bind(
             "STATEFULL",

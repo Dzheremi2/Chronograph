@@ -6,7 +6,7 @@ from chronograph.utils.parsers import parse_dir
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
-@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/SavedLocation.ui")
+@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/SavedLocation.ui")
 class SavedLocation(Gtk.Box):
     __gtype_name__ = "SavedLocation"
 

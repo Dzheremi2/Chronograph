@@ -55,7 +55,7 @@ class BaseFile:
         self._mutagen_file = mutagen.File(path)
         try:
             self._duration = self._mutagen_file.info.length
-        except Exception:  # pylint: disable=broad-exception-caught
+        except Exception:
             pass
 
     def get_cover_texture(self) -> Gdk.Texture:

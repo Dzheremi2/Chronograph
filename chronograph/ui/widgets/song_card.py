@@ -4,7 +4,7 @@ from gettext import pgettext as C_
 from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.internal import Constants
-from chronograph.ui.box_dialog import BoxDialog
+from chronograph.ui.dialogs.box_dialog import BoxDialog
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -13,7 +13,7 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
-@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/SongCard.ui")
+@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/SongCard.ui")
 class SongCard(Gtk.Box):
     __gtype_name__ = "SongCard"
 

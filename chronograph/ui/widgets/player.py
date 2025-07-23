@@ -3,7 +3,7 @@ from typing import Union
 from gi.repository import Adw, GObject, Gtk
 
 from chronograph.internal import Constants
-from chronograph.ui.song_card import SongCard
+from chronograph.ui.widgets.song_card import SongCard
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -12,9 +12,9 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
-@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/PlayerUI.ui")
-class PlayerUI(Adw.BreakpointBin):
-    __gtype_name__ = "PlayerUI"
+@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/Player.ui")
+class Player(Adw.BreakpointBin):
+    __gtype_name__ = "Player"
 
     main_clamp: Adw.Clamp = gtc()
     sync_page_cover: Gtk.Image = gtc()
@@ -31,7 +31,7 @@ class PlayerUI(Adw.BreakpointBin):
         file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable],
         card: SongCard,
         max_width: int = 600,
-    ) -> "PlayerUI":
+    ) -> "Player":
         super().__init__()
         self._player = Gtk.MediaFile.new_for_filename(card.path)
         # self._player.connect("notify::timestamp", self._on_timestamp_updated)

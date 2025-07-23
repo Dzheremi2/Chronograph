@@ -2,13 +2,13 @@
 
 import re
 from pathlib import Path
-from typing import Union
+from typing import Literal, Optional, Union
 
-from gi.repository import Adw, Gdk, Gio, GObject, Gtk, Pango
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.playerui import PlayerUI
-from chronograph.ui.song_card import SongCard
+from chronograph.ui.widgets.player import Player
+from chronograph.ui.widgets.song_card import SongCard
 from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
@@ -20,7 +20,7 @@ gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 PANGO_HIGHLIGHTER = Pango.AttrList().from_string("0 -1 weight ultrabold")
 
 
-@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/LRCSyncPage.ui")
+@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/sync_pages/LRCSyncPage.ui")
 class LRCSyncPage(Adw.NavigationPage):
     __gtype_name__ = "LRCSyncPage"
 
@@ -29,6 +29,8 @@ class LRCSyncPage(Adw.NavigationPage):
     sync_lines_scrolled_window: Gtk.ScrolledWindow = gtc()
     sync_lines: Gtk.ListBox = gtc()
     selected_line = None
+
+    _autosave_timeout_id: Optional[int] = None
 
     def __init__(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
@@ -39,10 +41,17 @@ class LRCSyncPage(Adw.NavigationPage):
         self._card.bind_property(
             "title", self, "title", GObject.BindingFlags.SYNC_CREATE
         )
-        self._player_ui = PlayerUI(file, card)
-        self._player = self._player_ui._player
+        self._player_widget = Player(file, card)
+        self._player = self._player_widget._player
         self._player.connect("notify::timestamp", self._on_timestamp_changed)
-        self.player_container.append(self._player_ui)
+        self.player_container.append(self._player_widget)
+
+        self._autosave_path = Path(self._file.path).with_suffix(Schema.auto_file_format)
+
+        self.connect("hidden", self._on_page_closed)
+        self._close_rq_handler_id = Constants.WIN.connect(
+            "close-request", self._on_app_close
+        )
 
         self._setup_actions()
 
@@ -231,6 +240,43 @@ class LRCSyncPage(Adw.NavigationPage):
         except IndexError:
             pass
 
+    ############### Autosave Actions ###############
+
+    def reset_timer(self) -> None:
+        if self._autosave_timeout_id:
+            GLib.source_remove(self._autosave_timeout_id)
+        if Schema.auto_file_manipulation:
+            self._autosave_timeout_id = GLib.timeout_add(
+                Schema.autosave_throttling * 1000, self._autosave
+            )
+
+    def _autosave(self) -> Literal[False]:
+        if Schema.auto_file_manipulation:
+            try:
+                with open(self._autosave_path, "w", encoding="utf-8") as f:
+                    for line in self.sync_lines:  # pylint: disable=not-an-iterable
+                        f.write(line.get_text() + "\n")
+            except Exception as e:
+                print(f"Autosave failed: {e}") # TODO: Log this
+            self._autosave_timeout_id = None
+        return False
+
+    def _on_page_closed(self, *_args):
+        Constants.WIN.disconnect(self._close_rq_handler_id)
+        if self._autosave_timeout_id:
+            GLib.source_remove(self._autosave_timeout_id)
+        if Schema.auto_file_manipulation:
+            self._autosave()
+
+    def _on_app_close(self, *_):
+        if self._autosave_timeout_id:
+            GLib.source_remove(self._autosave_timeout_id)
+        if Schema.auto_file_manipulation:
+            self._autosave()
+        return False
+
+    ###############
+
     # pylint: disable=too-many-locals, too-many-statements
     def _setup_actions(self) -> None:
         # Import actions
@@ -355,13 +401,14 @@ class LRCSyncLine(Adw.EntryRow):
         self.focus_controller.connect("enter", self._on_selected)
         self.add_controller(self.focus_controller)
         self.connect("entry-activated", self.add_line_on_enter)
+        self.connect("changed", self._reset_timer)
 
         for item in self.get_child():
             for _item in item:
                 if isinstance(_item, Gtk.Text):
                     self.text_field = _item
                     break
-        self.text_field.connect("backspace", self.remove_line_on_backspace)
+        self.text_field.connect("backspace", self._remove_line_on_backspace)
 
     def _on_selected(self, *_args) -> None:
         self.get_ancestor(LRCSyncPage).selected_line = self
@@ -370,7 +417,10 @@ class LRCSyncLine(Adw.EntryRow):
         """Add a new line when Enter is pressed"""
         self.get_ancestor(LRCSyncPage).append_line()
 
-    def remove_line_on_backspace(self, text: Gtk.Text) -> None:
+    def _reset_timer(self, *_args) -> None:
+        self.get_ancestor(LRCSyncPage).reset_timer()
+
+    def _remove_line_on_backspace(self, text: Gtk.Text) -> None:
         if text.get_text_length() == 0:
             page: LRCSyncPage = self.get_ancestor(LRCSyncPage)
             lines = []

@@ -11,6 +11,11 @@
       </choices>
       <default>".lrc"</default>
     </key>
+    <key name="autosave-throttling" type="i">
+      <range min="1" max="10" />
+      <summary>Autosave throttling interval in seconds</summary>
+      <default>5</default>
+    </key>
     <key name="reset-quick-editor" type="b">
       <default>true</default>
     </key>

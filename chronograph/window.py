@@ -13,8 +13,9 @@ from typing import Callable, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.saved_location import SavedLocation
-from chronograph.ui.song_card import SongCard
+from chronograph.ui.dialogs.preferences import ChronographPreferences
+from chronograph.ui.widgets.saved_location import SavedLocation
+from chronograph.ui.widgets.song_card import SongCard
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
@@ -174,6 +175,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sidebar.remove_all()
         for pin in Constants.CACHE["pins"]:
             self.sidebar.append(SavedLocation(pin["path"], pin["name"]))
+        # TODO: remove useless item amount check. Use `placeholder` property of listbox instead
         if not self.sidebar.get_row_at_index(0):
             self.sidebar_window.set_child(self.no_saves_found_status)
         else:
@@ -203,6 +205,12 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.set_focus(search_entry)
 
         search_entry.set_text("")
+
+    def on_show_preferences_action(self, *_args) -> None:
+        """Shows the preferences dialog"""
+        if not ChronographPreferences.opened:
+            preferences = ChronographPreferences()
+            preferences.present(self)
 
     def load_files(self, paths: tuple[str]) -> bool:
         """Loads files into the library

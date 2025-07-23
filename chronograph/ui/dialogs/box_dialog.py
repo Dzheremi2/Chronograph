@@ -2,7 +2,7 @@ from gi.repository import Adw, Gtk  # type: ignore
 
 from chronograph.internal import Constants
 
-@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/BoxDialog.ui")
+@Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/BoxDialog.ui")
 class BoxDialog(Adw.Dialog):
     """Dialog with lines of `Adw.ActionRow(s)` with provided content
 

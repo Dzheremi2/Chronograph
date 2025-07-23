@@ -156,6 +156,17 @@ class Schema:
     def default_format(cls, value: str) -> None:
         cls.STATELESS.set_string("default-format", value)
 
+    @classproperty
+    def autosave_throttling(cls) -> int:
+        return cls.STATELESS.get_int("autosave-throttling")
+
+    @autosave_throttling.setter
+    def autosave_throttling(cls, value: int) -> None:
+        if 1 <= value <= 10:
+            cls.STATELESS.set_int("autosave-throttling", value)
+        else:
+            raise ValueError("Autosave throttling must be between 1 and 10 seconds")
+
     ############### STATEFULL values ###############
     @classproperty
     def sorting(cls) -> str:
