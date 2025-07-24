@@ -1,5 +1,5 @@
-from typing import Union
 from gettext import pgettext as C_
+from typing import Union
 
 from gi.repository import Gdk, GObject, Gtk
 
@@ -113,3 +113,8 @@ class SongCard(Gtk.Box):
     def path(self) -> str:
         """Path to the loaded song"""
         return self._file.path
+
+    @property
+    def duration(self) -> int:
+        """Duration of the song in seconds"""
+        return self._file.duration

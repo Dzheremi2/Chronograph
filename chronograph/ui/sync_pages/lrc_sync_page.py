@@ -1,9 +1,13 @@
 """Sync page for LRC format syncing"""
 
+import hashlib
 import re
+import threading
+from binascii import unhexlify
 from pathlib import Path
 from typing import Literal, Optional, Union
 
+import requests
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
@@ -26,6 +30,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
     header_bar: Adw.HeaderBar = gtc()
     player_container: Gtk.Box = gtc()
+    export_lyrics_button: Gtk.MenuButton = gtc()
     sync_lines_scrolled_window: Gtk.ScrolledWindow = gtc()
     sync_lines: Gtk.ListBox = gtc()
     selected_line: Optional["LRCSyncLine"] = None
@@ -192,6 +197,7 @@ class LRCSyncPage(Adw.NavigationPage):
     # pylint: disable=import-outside-toplevel
     def _import_lrclib(self, *_args) -> None:
         from chronograph.ui.dialogs.lrclib import LRClib
+
         lrclib_dialog = LRClib()
         lrclib_dialog.present(Constants.WIN)
 
@@ -281,7 +287,7 @@ class LRCSyncPage(Adw.NavigationPage):
                     for line in self.sync_lines:  # pylint: disable=not-an-iterable
                         f.write(line.get_text() + "\n")
             except Exception as e:
-                print(f"Autosave failed: {e}") # TODO: Log this
+                print(f"Autosave failed: {e}")  # TODO: Log this
             self._autosave_timeout_id = None
         return False
 
@@ -301,7 +307,154 @@ class LRCSyncPage(Adw.NavigationPage):
 
     ###############
 
-    # pylint: disable=too-many-locals, too-many-statements
+    ############### Publisher ###############
+
+    def _publish(
+        self, __, ___, title: str, artist: str, album: str, duration: str, lyrics: str
+    ) -> None:
+
+        def _verify_nonce(result: int, target: int) -> bool:
+            if len(result) != len(target):
+                return False
+
+            for index, res in enumerate(result):
+                if res > target[index]:
+                    return False
+                if res < target[index]:
+                    break
+
+            return True
+
+        def _solve_challenge(prefix: str, target_hex: str) -> str:
+            target = unhexlify(target_hex.upper())
+            nonce = 0
+
+            while True:
+                input_data = f"{prefix}{nonce}".encode()
+                hashed = hashlib.sha256(input_data).digest()
+
+                if _verify_nonce(hashed, target):
+                    break
+                nonce += 1
+
+            return str(nonce)
+
+        def _make_plain_lyrics(lyrics: str) -> str:
+            pattern = r"\[.*?\] "
+            lyrics = lyrics.splitlines()
+            plain_lyrics = []
+            for line in lyrics:
+                plain_lyrics.append(re.sub(pattern, "", line))
+            return "\n".join(plain_lyrics[:-1])
+
+        def _do_publish(
+            title: str, artist: str, album: str, duration: str, lyrics: str
+        ) -> None:
+            _err = None
+            try:
+                challenge_data = requests.post(
+                    url="https://lrclib.net/api/request-challenge", timeout=10
+                )
+            except requests.exceptions.ConnectionError as e:
+                Constants.WIN.show_toast(_("Failed to connect to LRClib.net"))
+                _err = e
+            except requests.exceptions.Timeout as e:
+                Constants.WIN.show_toast(_("Connection to LRClib.net timed out"))
+                _err = e
+            except Exception as e:
+                Constants.WIN.show_toast(
+                    _("An error occurred while connecting to LRClib.net")
+                )
+                _err = e
+            finally:
+                if _err:
+                    print(_err)  # TODO: Log this
+                    self.export_lyrics_button.set_sensitive(True)
+                    self.export_lyrics_button.set_icon_name("export-to-symbolic")
+                    return  # pylint: disable=return-in-finally, lost-exception
+
+            challenge_data = challenge_data.json()
+            nonce = _solve_challenge(
+                prefix=challenge_data["prefix"], target_hex=challenge_data["target"]
+            )
+            # TODO: Log X-Publish-Token
+
+            _err = None
+            try:
+                response: requests.Response = requests.post(
+                    url="https://lrclib.net/api/publish",
+                    headers={
+                        "X-Publish-Token": f"{challenge_data['prefix']}:{nonce}",
+                        "Content-Type": "application/json",
+                    },
+                    params={"keep_headers": "true"},
+                    json={
+                        "trackName": title,
+                        "artistName": artist,
+                        "albumName": album,
+                        "duration": duration,
+                        "plainLyrics": _make_plain_lyrics(lyrics),
+                        "syncedLyrics": lyrics,
+                    },
+                    timeout=10,
+                )
+            except requests.exceptions.ConnectionError as e:
+                Constants.WIN.show_toast(_("Failed to connect to LRClib.net"))
+                _err = e
+            except requests.exceptions.Timeout as e:
+                Constants.WIN.show_toast(_("Connection to LRClib.net timed out"))
+                _err = e
+            except Exception as e:
+                Constants.WIN.show_toast(
+                    _("An error occurred while connecting to LRClib.net")
+                )
+                _err = e
+            finally:
+                self.export_lyrics_button.set_sensitive(True)
+                self.export_lyrics_button.set_icon_name("export-to-symbolic")
+                if _err:
+                    print(_err)  # TODO: Log this
+                    return  # pylint: disable=return-in-finally, lost-exception
+
+            # TODO: Log all this
+            if response.status_code == 201:
+                Constants.WIN.show_toast(
+                    _("Published successfully: {}").format(str(response.status_code)),
+                )
+            elif response.status_code == 400:
+                Constants.WIN.show_toast(
+                    _("Incorrect publish token: {}").format(str(response.status_code)),
+                )
+            else:
+                Constants.WIN.show_toast(
+                    _("Unknown error occured: {}").format(str(response.status_code)),
+                )
+
+        if not all((title, artist, album, duration, lyrics)):
+
+            def _reason() -> None:
+                Adw.AlertDialog(
+                    heading=_("Unable to publish lyrics"),
+                    body=_(
+                        "To publish lyrics the track must have a title, artist, album and lyrics fields set"
+                    ),
+                ).present(Constants.WIN)
+
+            Constants.WIN.show_toast(
+                _("Cannot publish empty lyrics"),
+                button_label=_("Why?"),
+                button_callback=_reason,
+            )
+            return
+        self.export_lyrics_button.set_sensitive(False)
+        self.export_lyrics_button.set_child(Adw.Spinner())
+        threading.Thread(
+            target=_do_publish,
+            args=(title, artist, album, duration, lyrics),
+            daemon=True,
+        ).start()
+
+    # pylint: disable=too-many-locals, too-many-statements, not-an-iterable
     def _setup_actions(self) -> None:
         # Import actions
         _actions = Gio.SimpleActionGroup.new()
@@ -319,6 +472,15 @@ class LRCSyncPage(Adw.NavigationPage):
         # Export actions
         _actions = Gio.SimpleActionGroup.new()
         _e_lrclib = Gio.SimpleAction.new("lrclib", None)
+        _e_lrclib.connect(
+            "activate",
+            self._publish,
+            self._card.title,
+            self._card.artist,
+            self._card.album,
+            self._card.duration,
+            "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"),
+        )
         _e_file = Gio.SimpleAction.new("file", None)
         _e_file.connect("activate", self._export_file)
         _e_clipboard = Gio.SimpleAction.new("clipboard", None)

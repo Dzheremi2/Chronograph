@@ -64,10 +64,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     # Status pages
     no_source_opened: Adw.StatusPage = Gtk.Template.Child()
     empty_directory: Adw.StatusPage = Gtk.Template.Child()
-    search_lrclib_status_page: Adw.StatusPage = Gtk.Template.Child()
-    search_lrclib_collapsed_status_page: Adw.StatusPage = Gtk.Template.Child()
-    lrclib_window_nothing_found_status: Adw.StatusPage = Gtk.Template.Child()
-    lrclib_window_collapsed_nothing_found_status: Adw.StatusPage = Gtk.Template.Child()
     no_saves_found_status: Adw.StatusPage = Gtk.Template.Child()
 
     # Library view widgets
@@ -97,34 +93,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     quick_edit_text_view: Gtk.TextView = Gtk.Template.Child()
     quick_edit_copy_button: Gtk.Button = Gtk.Template.Child()
 
-    # LRClib window dialog widgets
-    lrclib_window: Adw.Dialog = Gtk.Template.Child()
-    lrclib_window_toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
-    lrclib_window_main_clamp: Adw.Clamp = Gtk.Template.Child()
-    lrclib_window_title_entry: Gtk.Entry = Gtk.Template.Child()
-    lrclib_window_artist_entry: Gtk.Entry = Gtk.Template.Child()
-    lrclib_window_results_list_window: Gtk.ScrolledWindow = Gtk.Template.Child()
-    lrclib_window_results_list: Gtk.ListBox = Gtk.Template.Child()
-    lrclib_window_synced_lyrics_text_view: Gtk.TextView = Gtk.Template.Child()
-    lrclib_window_plain_lyrics_text_view: Gtk.TextView = Gtk.Template.Child()
-    lrclib_window_collapsed_navigation_view: Adw.NavigationView = Gtk.Template.Child()
-    lrclib_window_collapsed_lyrics_page: Adw.NavigationPage = Gtk.Template.Child()
-    lrclib_window_collapsed_results_list_window: Gtk.ScrolledWindow = (
-        Gtk.Template.Child()
-    )
-    lrclib_window_collapsed_results_list: Gtk.ListBox = Gtk.Template.Child()
-
-    # Lrclib manual publishing dialog
-    lrclib_manual_dialog: Adw.Dialog = Gtk.Template.Child()
-    lrclib_manual_toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
-    lrclib_manual_title_entry: Adw.EntryRow = Gtk.Template.Child()
-    lrclib_manual_artist_entry: Adw.EntryRow = Gtk.Template.Child()
-    lrclib_manual_album_entry: Adw.EntryRow = Gtk.Template.Child()
-    lrclib_manual_duration_entry: Adw.EntryRow = Gtk.Template.Child()
-    lrclib_manual_publish_button: Gtk.Button = Gtk.Template.Child()
-
     sort_state: str = Schema.sorting
-    # view_state: str = internal.state_schema.get_string("view")
+    view_state: str = Schema.STATEFULL.get_string("view")
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
