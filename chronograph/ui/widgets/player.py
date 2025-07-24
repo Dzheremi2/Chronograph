@@ -10,6 +10,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/Player.ui")
@@ -67,3 +68,4 @@ class Player(Adw.BreakpointBin):
     @Gtk.Template.Callback()
     def on_repeat_button_toggled(self, button: Gtk.ToggleButton) -> None:
         self._player.set_loop(button.get_active())
+        logger.debug("MediaStream loop was set to: %s", button.get_active())

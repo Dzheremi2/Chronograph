@@ -20,6 +20,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 PANGO_HIGHLIGHTER = Pango.AttrList().from_string("0 -1 weight ultrabold")
 
@@ -87,6 +88,7 @@ class LRCSyncPage(Adw.NavigationPage):
     ############### Line Actions ###############
     def _append_end_line(self, *_args) -> None:
         self.sync_lines.append(LRCSyncLine())
+        logger.debug("New line appended to the end of the sync lines")
 
     def append_line(self, *_args) -> None:
         if self.selected_line:
@@ -97,6 +99,9 @@ class LRCSyncPage(Adw.NavigationPage):
                     value = adj.get_value()
                     sync_line.grab_focus()
                     adj.set_value(value)
+                    logger.debug(
+                        "New line appended to selected line(%s)", self.selected_line
+                    )
                     return
 
     def _prepend_line(self, *_args) -> None:
@@ -105,14 +110,20 @@ class LRCSyncPage(Adw.NavigationPage):
                 if line == self.selected_line:
                     try:
                         self.sync_lines.insert(LRCSyncLine(), index)
+                        logger.debug(
+                            "New line prepended to selected line(%s)",
+                            self.selected_line,
+                        )
                         return
                     except IndexError:
                         self.sync_lines.prepend(LRCSyncLine())
+                        logger.debug("New line prepended to the list start")
                         return
 
     def _remove_line(self, *_args) -> None:
         if self.selected_line:
             self.sync_lines.remove(self.selected_line)
+            logger.debug("Selected line(%s) removed", self.selected_line)
             self.selected_line = None
 
     ###############
@@ -130,6 +141,7 @@ class LRCSyncPage(Adw.NavigationPage):
                 self.selected_line.set_text(
                     re.sub(pattern, replacement, self.selected_line.get_text())
                 )
+            logger.debug("Line was synced with timestamp: %s", timestamp)
 
             for index, line in enumerate(self.sync_lines):
                 if line == self.selected_line:
@@ -140,6 +152,7 @@ class LRCSyncPage(Adw.NavigationPage):
     def _replay(self, *_args) -> None:
         mcs = timestamp_to_mcs(self.selected_line.get_text())
         self._player.seek(mcs)
+        logger.debug("Replayed lines at timing: %s", mcs_to_timestamp(mcs))
 
     def _seek100(self, _action, _param, mcs_seek: int) -> None:
         pattern = re.compile(r"\[([^\[\]]+)\] ")
@@ -155,6 +168,12 @@ class LRCSyncPage(Adw.NavigationPage):
             re.sub(pattern, replacement, self.selected_line.get_text())
         )
         self._player.seek(mcs)
+        logger.debug(
+            "Line(%s) was seeked %sms to %s",
+            self.selected_line,
+            mcs_seek // 1000,
+            timestamp,
+        )
 
     ###############
 
@@ -169,6 +188,7 @@ class LRCSyncPage(Adw.NavigationPage):
             self.sync_lines.remove_all()
             for _, line in enumerate(lines):
                 self.sync_lines.append(LRCSyncLine(line))
+            logger.info("Imported lyrics from clipboard")
 
         clipboard = Gdk.Display().get_default().get_clipboard()
         clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
@@ -194,6 +214,7 @@ class LRCSyncPage(Adw.NavigationPage):
             self.sync_lines.remove_all()
             for _, line in enumerate(normalized_lines):
                 self.sync_lines.append(LRCSyncLine(line))
+            logger.info("Imported lyrics from file")
 
         dialog = Gtk.FileDialog(
             default_filter=Gtk.FileFilter(mime_types=["text/plain"])
@@ -206,6 +227,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
         lrclib_dialog = LRClib()
         lrclib_dialog.present(Constants.WIN)
+        logger.debug("LRClib import dialog shown")
 
     ###############
 
@@ -218,6 +240,7 @@ class LRCSyncPage(Adw.NavigationPage):
         string = string.strip()
         clipboard = Gdk.Display().get_default().get_clipboard()
         clipboard.set(string)
+        logger.info("Lyrics exported to clipboard")
         Constants.WIN.show_toast(_("Lyrics exported to clipboard"), timeout=3)
 
     def _export_file(self, *_args) -> None:
@@ -228,6 +251,7 @@ class LRCSyncPage(Adw.NavigationPage):
             filepath = file_dialog.save_finish(result).get_path()
             with open(filepath, "w") as f:
                 f.write(lyrics)
+            logger.info("Lyrics exported to file: '%s'", filepath)
 
             Constants.WIN.show_toast(
                 _("Lyrics exported to file"),
@@ -292,8 +316,9 @@ class LRCSyncPage(Adw.NavigationPage):
                 with open(self._autosave_path, "w", encoding="utf-8") as f:
                     for line in self.sync_lines:  # pylint: disable=not-an-iterable
                         f.write(line.get_text() + "\n")
+                    logger.debug("Lyrics autosaved successfully")
             except Exception as e:
-                print(f"Autosave failed: {e}")  # TODO: Log this
+                logger.warning("Autosave failed: %s", e)
             self._autosave_timeout_id = None
         return False
 
@@ -302,12 +327,14 @@ class LRCSyncPage(Adw.NavigationPage):
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
         if Schema.auto_file_manipulation:
+            logger.debug("Page closed, saving lyrics")
             self._autosave()
 
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
         if Schema.auto_file_manipulation:
+            logger.debug("App closed, saving lyrics")
             self._autosave()
         return False
 
@@ -374,7 +401,7 @@ class LRCSyncPage(Adw.NavigationPage):
                 _err = e
             finally:
                 if _err:
-                    print(_err)  # TODO: Log this
+                    logger.warning("Publishing failed: %s", _err)
                     self.export_lyrics_button.set_sensitive(True)
                     self.export_lyrics_button.set_icon_name("export-to-symbolic")
                     return  # pylint: disable=return-in-finally, lost-exception
@@ -383,7 +410,7 @@ class LRCSyncPage(Adw.NavigationPage):
             nonce = _solve_challenge(
                 prefix=challenge_data["prefix"], target_hex=challenge_data["target"]
             )
-            # TODO: Log X-Publish-Token
+            logger.info("X-Publish-Token: %s", f"{challenge_data["prefix"]}:{nonce}")
 
             _err = None
             try:
@@ -419,10 +446,10 @@ class LRCSyncPage(Adw.NavigationPage):
                 self.export_lyrics_button.set_sensitive(True)
                 self.export_lyrics_button.set_icon_name("export-to-symbolic")
                 if _err:
-                    print(_err)  # TODO: Log this
+                    logger.warning("Publishing failed: %s", _err)
                     return  # pylint: disable=return-in-finally, lost-exception
 
-            # TODO: Log all this
+            logger.info("Publishing status code: %s", response.status_code)
             if response.status_code == 201:
                 Constants.WIN.show_toast(
                     _("Published successfully: {}").format(str(response.status_code)),
@@ -611,6 +638,7 @@ class LRCSyncLine(Adw.EntryRow):
     def add_line_on_enter(self, *_args) -> None:
         """Add a new line when Enter is pressed"""
         self.get_ancestor(LRCSyncPage).append_line()
+        logger.debug("A new lines added underneath of self(%s)", self)
 
     def _reset_timer(self, *_args) -> None:
         self.get_ancestor(LRCSyncPage).reset_timer()
@@ -625,3 +653,4 @@ class LRCSyncLine(Adw.EntryRow):
             page.sync_lines.remove(self)
             if (row := page.sync_lines.get_row_at_index(index - 1)) is not None:
                 row.grab_focus()
+            logger.debug("self(%s) was removed from sync_lines", self)

@@ -12,6 +12,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/SongCard.ui")
@@ -96,10 +97,14 @@ class SongCard(Gtk.Box):
                 (_("Path"), self.path),
             ),
         ).present(Constants.WIN)
+        logger.debug(
+            "File info dialog for '%s -- %s' was shown", self.title, self.artist
+        )
 
     @Gtk.Template.Callback()
     def open_metadata_editor(self, *_args) -> None:
         """Open metadata editor dialog"""
+        logger.debug("Opening metadata editor for '%s -- %s'", self.title, self.artist)
         MetadataEditor(self).present(Constants.WIN)
 
     def save(self) -> None:

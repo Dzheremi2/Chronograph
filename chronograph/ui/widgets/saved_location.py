@@ -4,6 +4,7 @@ from gi.repository import Adw, Gio, GObject, Gtk
 from chronograph.internal import Constants, Schema
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/SavedLocation.ui")
@@ -80,6 +81,7 @@ class SavedLocation(Gtk.Box):
             sort_keys=False,
             encoding=None,
         )
+        logger.info("'%s' was removed from saves", self.name)
         Constants.WIN.build_sidebar()
 
     def rename_save(self, *_args) -> None:
@@ -123,6 +125,11 @@ class SavedLocation(Gtk.Box):
                         alert_dialog.get_extra_child().get_buffer().get_text()
                     )
                     break
+            logger.info(
+                "'%s' was renamed to '%s'",
+                self.name,
+                alert_dialog.get_extra_child().get_buffer().get_text(),
+            )
             self.title.set_label(alert_dialog.get_extra_child().get_buffer().get_text())
             Constants.CACHE_FILE.seek(0)
             Constants.CACHE_FILE.truncate(0)

@@ -1,24 +1,27 @@
-from gi.repository import Adw, Gtk, Gio
+from gi.repository import Adw, Gio, Gtk
 
 from chronograph.internal import Constants, Schema
+
+gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/Preferences.ui")
 class ChronographPreferences(Adw.PreferencesDialog):
     __gtype_name__ = "ChronographPreferences"
 
-    reset_quick_edit_switch: Adw.SwitchRow = Gtk.Template.Child()
-    auto_file_manipulation_switch: Adw.ExpanderRow = Gtk.Template.Child()
-    auto_file_manipulation_format: Adw.ComboRow = Gtk.Template.Child()
-    autosave_throttling_adjustment: Gtk.Adjustment = Gtk.Template.Child()
-    save_session_on_quit_switch: Adw.SwitchRow = Gtk.Template.Child()
-    precise_milliseconds_switch: Adw.SwitchRow = Gtk.Template.Child()
-    automatic_list_view_switch: Adw.SwitchRow = Gtk.Template.Child()
-    recursive_parsing_switch: Adw.ExpanderRow = Gtk.Template.Child()
-    follow_symlinks_switch: Adw.SwitchRow = Gtk.Template.Child()
-    load_compressed_covers_switch: Adw.ExpanderRow = Gtk.Template.Child()
-    compress_level_spin: Adw.SpinRow = Gtk.Template.Child()
-    compress_level_adjustment: Gtk.Adjustment = Gtk.Template.Child()
+    reset_quick_edit_switch: Adw.SwitchRow = gtc()
+    auto_file_manipulation_switch: Adw.ExpanderRow = gtc()
+    auto_file_manipulation_format: Adw.ComboRow = gtc()
+    autosave_throttling_adjustment: Gtk.Adjustment = gtc()
+    save_session_on_quit_switch: Adw.SwitchRow = gtc()
+    precise_milliseconds_switch: Adw.SwitchRow = gtc()
+    automatic_list_view_switch: Adw.SwitchRow = gtc()
+    recursive_parsing_switch: Adw.ExpanderRow = gtc()
+    follow_symlinks_switch: Adw.SwitchRow = gtc()
+    load_compressed_covers_switch: Adw.ExpanderRow = gtc()
+    compress_level_spin: Adw.SpinRow = gtc()
+    compress_level_adjustment: Gtk.Adjustment = gtc()
+    enable_debug_logging_switch: Adw.SwitchRow = gtc()
 
     opened: bool = False
 
@@ -30,7 +33,9 @@ class ChronographPreferences(Adw.PreferencesDialog):
         self.auto_file_manipulation_format.connect(
             "notify::selected", self._update_auto_file_format_schema
         )
-        self.automatic_list_view_switch.connect("notify::active", self._set_view_switcher_inactive)
+        self.automatic_list_view_switch.connect(
+            "notify::active", self._set_view_switcher_inactive
+        )
 
         Schema.bind(
             "STATELESS",
@@ -100,6 +105,13 @@ class ChronographPreferences(Adw.PreferencesDialog):
             "autosave-throttling",
             self.autosave_throttling_adjustment,
             "value",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        Schema.bind(
+            "STATELESS",
+            "use-debug-log",
+            self.enable_debug_logging_switch,
+            "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
 

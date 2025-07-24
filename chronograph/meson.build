@@ -32,6 +32,7 @@ install_data(
     [
     'main.py',
     'window.py',
+    'logger.py',
     configure_file(input: 'internal.py.in', output: 'internal.py', configuration: conf),
   ],
   install_dir: moduledir,

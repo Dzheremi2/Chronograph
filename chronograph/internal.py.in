@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from typing import Literal
 
@@ -33,6 +34,7 @@ class Constants:
 
     CFG_DIR = Path(GLib.get_user_config_dir())
     DATA_DIR = Path(GLib.get_user_data_dir())
+    CACHE_DIR = Path(GLib.get_user_cache_dir())
 
     APP: Adw.Application = None
     WIN: Adw.ApplicationWindow = None
@@ -43,6 +45,7 @@ class Constants:
 
     CACHE_FILE = None
     CACHE = None
+    LOGGER: logging.Logger = logging.getLogger()
 
 
 # pylint: disable=no-self-argument
@@ -119,6 +122,10 @@ class Schema:
     @classproperty
     def autosave_throttling(cls) -> int:
         return cls.STATELESS.get_int("autosave-throttling")
+
+    @classproperty
+    def use_debug_log(cls) -> bool:
+        return cls.STATELESS.get_boolean("use-debug-log")
 
     ############### STATEFULL values ###############
     @classproperty

@@ -11,8 +11,10 @@ gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from chronograph.internal import Constants, Schema
+from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
 
+logger = Constants.LOGGER
 
 class ChronographApplication(Adw.Application):
     """Application class"""
@@ -45,6 +47,7 @@ class ChronographApplication(Adw.Application):
                     pass
                 else:
                     self.paths.append(path)
+        logger.info("Requesting opening for files:\n%s", "\n".join(self.paths))
         self.do_activate()
 
     def do_activate(self) -> None:  # pylint: disable=arguments-differ
@@ -55,6 +58,7 @@ class ChronographApplication(Adw.Application):
             Constants.WIN = win = ChronographWindow(application=self)
         else:
             Constants.WIN = win
+        logger.debug("Window was created")
 
         self.create_actions(
             {
@@ -120,16 +124,26 @@ class ChronographApplication(Adw.Application):
             and os.path.exists(Schema.session)
             and len(self.paths) == 0
         ):
+            logger.info("Loading last opened session: '%s'", path)
             Constants.WIN.open_directory(path)
         elif len(self.paths) != 0:
+            logger.info("Opening requested files")
             Constants.WIN.open_files(self.paths)
         else:
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
+        logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:
         """Shows About App dialog"""
+
+        def _get_debug_info() -> str:
+            if os.path.exists(os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")):
+                with open(os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")) as f:
+                    return f.read()
+            return "No log availble yet"
+
         dialog = Adw.AboutDialog.new_from_appdata(
             Constants.PREFIX + "/" + Constants.APP_ID + ".metainfo.xml",
             Constants.VERSION,
@@ -160,8 +174,12 @@ class ChronographApplication(Adw.Application):
             _("Build your own dictionary"),
         )
 
+        dialog.set_debug_info(_get_debug_info())
+        dialog.set_debug_info_filename("chronograph.log")
+
         if Constants.PREFIX.endswith("Devel"):
             dialog.set_version("Devel")
+        logger.debug("Showing about dialog")
         dialog.present(Constants.WIN)
 
     def on_quit_action(self, *_args) -> None:
@@ -169,6 +187,7 @@ class ChronographApplication(Adw.Application):
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
         if not Schema.save_session:
+            logger.info("Resetting session")
             Schema.STATEFULL.set_string("session", "None")
 
         Constants.CACHE_FILE.seek(0)
@@ -180,6 +199,8 @@ class ChronographApplication(Adw.Application):
             encoding=None,
             allow_unicode=True,
         )
+        logger.info("Cache saved")
+        logger.info("App was closed")
 
     def create_actions(self, actions: set) -> None:
         """Creates actions for provided scope with provided accels
@@ -201,11 +222,15 @@ class ChronographApplication(Adw.Application):
                     action[1],
                 )
             scope.add_action(simple_action)
+            logger.debug("Created action for %s with accels %s", action[0], action[1] if action[1:2] else None)
 
 
 def main(_version):
     """App entrypoint"""
+    init_logger()
+    logger.info("Launching application")
     if not "cache.yaml" in os.listdir(Constants.DATA_DIR):
+        logger.info("The cache file does not exist, creating")
         file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+")
         file.write("pins: []\ncache_version: 2")
         file.close()
@@ -214,6 +239,7 @@ def main(_version):
         str(Constants.DATA_DIR) + "/cache.yaml", "r+", encoding="utf-8"
     )
     Constants.CACHE = yaml.safe_load(Constants.CACHE_FILE)
+    logger.info("Cache loaded successfully")
 
     if "session" in Constants.CACHE:
         Constants.CACHE.pop("session", None)

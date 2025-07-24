@@ -1,5 +1,6 @@
 # pylint: disable=all
 
+import logging
 from pathlib import Path
 from typing import Literal, TextIO
 
@@ -23,6 +24,7 @@ class Constants:
 
     CFG_DIR: Path
     DATA_DIR: Path
+    CACHE_DIR: Path
 
     APP: ChronographApplication
     WIN: ChronographWindow
@@ -31,6 +33,7 @@ class Constants:
 
     CACHE_FILE: TextIO
     CACHE: dict
+    LOGGER: logging.Logger
 
 class Schema:
     """Schema for the application settings"""
@@ -76,6 +79,8 @@ class Schema:
     def default_format(cls) -> str: ...
     @classproperty
     def autosave_throttling(cls) -> int: ...
+    @classproperty
+    def use_debug_log(cls) -> bool: ...
 
     ############### STATEFULL values ###############
     @classproperty

@@ -2,8 +2,6 @@
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement different syncing pages variants for different syncing formats (eLRC, TTML, etc.)
-# TODO: Implement logger
-# TODO: Reimplement List View mode
 
 import os
 from enum import Enum
@@ -25,6 +23,7 @@ from chronograph.utils.miscellaneous import get_common_directory
 from chronograph.utils.parsers import parse_dir, parse_files
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 MIME_TYPES = (
     "audio/mpeg",
@@ -98,6 +97,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
+        logger.debug("Creating window")
 
         self.library_list = Gtk.ListBox(
             css_classes=("navigation-sidebar",), selection_mode=Gtk.SelectionMode.NONE
@@ -108,6 +108,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
         # Apply devel window decorations
         if Constants.APP_ID.endswith(".Devel"):
+            logger.debug("Devel detected, enabling devel window decorations")
             self.add_css_class("devel")
 
         # Create a WindowState property for automatic window UI state updates
@@ -139,6 +140,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def build_sidebar(self) -> None:
         """Builds the sidebar with saved locations"""
+        logger.debug("Building the sidebar")
         self.sidebar.remove_all()
         for pin in Constants.CACHE["pins"]:
             self.sidebar.append(SavedLocation(pin["path"], pin["name"]))
@@ -146,6 +148,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_toggle_sidebar_action(self, *_args) -> None:
         """Toggle sidebar visibility"""
+        logger.debug("Toggling sidebar")
         if self.navigation_view.get_visible_page() is self.library_nav_page:
             self.overlay_split_view.set_show_sidebar(
                 not self.overlay_split_view.get_show_sidebar()
@@ -168,12 +171,14 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.set_focus(search_entry)
 
         search_entry.set_text("")
+        logger.debug("Search toggled")
 
     def on_show_preferences_action(self, *_args) -> None:
         """Shows the preferences dialog"""
         if not ChronographPreferences.opened:
             preferences = ChronographPreferences()
             preferences.present(self)
+            logger.debug("Showing preferences")
 
     def load_files(self, paths: tuple[str]) -> bool:
         """Loads files into the library
@@ -196,6 +201,11 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.library.append(song_card)
             self.library_list.append(song_card.get_list_mode())
             song_card.get_parent().set_focusable(False)
+            logger.debug(
+                "SongCard for song '%s -- %s' was added",
+                song_card.title,
+                song_card.artist,
+            )
 
         mutagen_files = parse_files(paths)
         if not mutagen_files:
@@ -210,6 +220,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def open_directory(self, path: str) -> None:
         """Open a directory and load its files, updating window state"""
+        logger.info("Opening '%s' direcotry", path)
 
         files = parse_dir(path)
         mutagen_files = parse_files(files)
@@ -229,7 +240,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def open_files(self, paths: list[str]) -> None:
         """Open provided files and update window state"""
-
+        logger.info("Opening files:\n%s", "\n".join(paths))
         self.clean_library()
         if self.load_files(tuple(paths)):
             self.state = WindowState.LOADED_FILES
@@ -241,12 +252,14 @@ class ChronographWindow(Adw.ApplicationWindow):
     def clean_files_button_clicked(self, *_args) -> None:
         self.clean_library()
         self.state = WindowState.EMPTY
+        logger.info("Library cleaned")
 
     ############### Actions for opening files and directories ###############
     def on_select_dir_action(self, *_args) -> None:
         """Selects a directory to open in the library"""
 
         def __select_dir() -> None:
+            logger.debug("Showing directory selection dialog")
             dialog = Gtk.FileDialog(
                 default_filter=Gtk.FileFilter(mime_types=["inode/directory"])
             )
@@ -270,6 +283,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Selects files to open in the library"""
 
         def __select_files(*_args) -> None:
+            logger.debug("Showing files selection dialog")
             dialog = Gtk.FileDialog(
                 default_filter=Gtk.FileFilter(mime_types=MIME_TYPES)
             )
@@ -306,6 +320,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def _on_drag_enter(self, *_args) -> None:
         if self.navigation_view.get_visible_page() == self.library_nav_page:
+            logger.debug("Showing DND area")
             self.dnd_area_revealer.set_visible(True)
             self.dnd_area_revealer.set_reveal_child(True)
             self.dnd_area_revealer.set_can_target(True)
@@ -313,10 +328,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.drop_target.reject()
 
     def _on_drag_leave(self, *_args) -> None:
-        self.dnd_area_revealer.set_reveal_child(False)
-        self.dnd_area_revealer.set_can_target(False)
-
-    def _on_drag_leave(self, *_args) -> None:
+        logger.debug("Hiding DND area")
         self.dnd_area_revealer.set_reveal_child(False)
         self.dnd_area_revealer.set_can_target(False)
 
@@ -324,6 +336,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self, _drop_target: Gtk.DropTarget, value: GObject.Value, *_args
     ) -> None:
         files = [file.get_path() for file in value.get_files()]
+        logger.info("DND recieved files: %s\n", "\n".join(files))
         self.open_files(files)
         self._on_drag_leave()
 
@@ -339,6 +352,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             for file in files:
                 path = file.get_path()
                 if os.path.isdir(path):
+                    logger.warning("'%s' is a directory, rejecting DND", path)
                     self.drop_target.reject()
                     self._on_drag_leave()
 
@@ -359,12 +373,14 @@ class ChronographWindow(Adw.ApplicationWindow):
             Row containing the saved location to load
         """
         try:
+            logger.info("Loading save '%s'", row.get_child().name)
             row.get_child().load()
         except AttributeError:
             pass
 
     def clean_library(self, *_args) -> None:
         """Remove all `SongCard`s from the library"""
+        logger.info("Removing all cards from library")
         self.library.remove_all()
         self.library_list.remove_all()
 
@@ -378,6 +394,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_reparse_dir_button_clicked(self, *_args) -> None:
         """Re-parses the current directory in the library"""
         if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
+            logger.debug("Re-parsing current directory")
             if Schema.session != "None":
                 self.open_directory(Schema.session)
             else:
@@ -393,6 +410,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     Constants.CACHE["pins"].append(
                         {"path": dir_path, "name": os.path.basename(dir_path)}
                     )
+                    logger.info("'%s' was added to Saves", dir_path)
                     self.add_dir_to_saves_button.set_visible(False)
                     self.build_sidebar()
 
@@ -402,6 +420,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Opens the quick editor dialog"""
         if Schema.reset_quick_editor:
             self.quick_edit_text_view.set_buffer(Gtk.TextBuffer.new())
+        logger.debug("Showing quick editor")
         self.quick_edit_dialog.present(self)
 
     @Gtk.Template.Callback()
@@ -414,6 +433,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         )
         clipboard = Gdk.Display().get_default().get_clipboard()
         clipboard.set(text)
+        logger.info("Quick Editor text copied")
         self.quck_editor_toast_overlay.add_toast(
             Adw.Toast(title=_("Copied successfully"))
         )
@@ -436,6 +456,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sort_state = str(state).strip("'")
         self.library.invalidate_sort()
         self.library_list.invalidate_sort()
+        logger.debug("Sort state set to: %s", self.sort_state)
         Schema.STATEFULL.set_string("sorting", self.sort_state)
 
     def on_view_type_action(
@@ -457,6 +478,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.library_scrolled_window.set_child(self.library)
             case "l":
                 self.library_scrolled_window.set_child(self.library_list)
+        logger.debug("View type set to: %s", self.view_state)
         Schema.STATEFULL.set_string("view", self.view_state)
 
     def enter_sync_mode(
@@ -470,6 +492,11 @@ class ChronographWindow(Adw.ApplicationWindow):
             Song card to enter sync mode for
         """
         if Schema.default_format == "lrc":
+            logger.info(
+                "Entering sync mode for '%s -- %s' in LRC syncing format",
+                card.title,
+                card.artist,
+            )
             sync_nav_page = LRCSyncPage(card, file)
             self.navigation_view.push(sync_nav_page)
 
@@ -498,6 +525,12 @@ class ChronographWindow(Adw.ApplicationWindow):
             toast.set_button_label(button_label)
             toast.connect("button-clicked", button_callback)
         self.toast_overlay.add_toast(toast)
+        logger.debug(
+            "Shown toast with:\nmsg: %s\nbutton_label: %s\ntimeout: %s",
+            msg,
+            button_label,
+            timeout,
+        )
 
     @Gtk.Template.Callback()
     def toggle_list_view(self, *_args) -> None:
@@ -533,10 +566,13 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def _state_changed(self, *_args) -> None:
         def __select_saved_location() -> None:
-            for row in self.sidebar:  # pylint: disable=not-an-iterable
-                if row.get_child().path == Schema.session:
-                    self.sidebar.select_row(row)
-                    return
+            try:
+                for row in self.sidebar:  # pylint: disable=not-an-iterable
+                    if row.get_child().path == Schema.session:
+                        self.sidebar.select_row(row)
+                        return
+            except AttributeError:
+                pass
 
         state = self._state
         self.open_source_button.set_icon_name("open-source-symbolic")
@@ -577,3 +613,4 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)
                 self.sidebar.select_row(None)
+        logger.debug("Window state was set to: %s", self.state)

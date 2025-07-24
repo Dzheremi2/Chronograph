@@ -8,6 +8,7 @@ from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.widgets.lrclib_track import LRClibTrack
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/LRClib.ui")
@@ -57,6 +58,12 @@ class LRClib(Adw.Dialog):
             if len(rq_result) > 0:
                 self.lrctracks_list_box.remove_all()
                 for item in rq_result:
+                    logger.debug(
+                        "Adding '%s -- %s / %s' to result list",
+                        item["trackName"],
+                        item["artistName"],
+                        item["albumName"],
+                    )
                     self.lrctracks_list_box.append(
                         LRClibTrack(
                             title=item["trackName"],
@@ -87,6 +94,7 @@ class LRClib(Adw.Dialog):
 
         def _do_request() -> None:
             self.search_button.set_sensitive(False)
+            _err = None
             try:
                 request: requests.Response = requests.get(
                     url="https://lrclib.net/api/search",
@@ -107,7 +115,7 @@ class LRClib(Adw.Dialog):
                     ),
                     "chr-no-internet-connection-symbolic",
                 )
-                print(e)  # TODO: Log this
+                _err = e
                 return
             except requests.exceptions.Timeout as e:
                 GLib.idle_add(
@@ -118,7 +126,7 @@ class LRClib(Adw.Dialog):
                     ),
                     "chr-connection-timeout-symbolic",
                 )
-                print(e)  # TODO: Log this
+                _err = e
                 return
             except Exception as e:
                 GLib.idle_add(
@@ -129,16 +137,24 @@ class LRClib(Adw.Dialog):
                     ),
                     "chr-error-occured-symbolic.svg",
                 )
-                print(e)  # TODO: Log this
+                _err = e
                 return
             finally:
                 self.search_button.set_sensitive(True)
+                if _err:
+                    logger.warning(
+                        "Unable to fetch available lyrics for {title: %s, artist: %s}: %s",
+                        self.title_entry.get_text().strip(),
+                        self.artist_entry.get_text().strip(),
+                        _err,
+                    )
 
         threading.Thread(target=_do_request, daemon=True).start()
 
     # pylint: disable=import-outside-toplevel
     def _import_synced(self, *_args) -> None:
         from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+
         if text := self.synced_text_view.get_buffer().get_text(
             self.synced_text_view.get_buffer().get_start_iter(),
             self.synced_text_view.get_buffer().get_end_iter(),
@@ -152,9 +168,11 @@ class LRClib(Adw.Dialog):
                 for _, line in enumerate(text.splitlines()):
                     page.sync_lines.append(LRCSyncLine(line))
             self.close()
+            logger.debug("Imported synced lyrics")
 
     def _import_plain(self, *_args) -> None:
         from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+
         if text := self.plain_text_view.get_buffer().get_text(
             self.plain_text_view.get_buffer().get_start_iter(),
             self.plain_text_view.get_buffer().get_end_iter(),
@@ -168,6 +186,7 @@ class LRClib(Adw.Dialog):
                 for _, line in enumerate(text.splitlines()):
                     page.sync_lines.append(LRCSyncLine(line))
             self.close()
+            logger.debug("Imported plain lyrics")
 
     @Gtk.Template.Callback()
     def on_breakpoint(self, *_args) -> None:
@@ -205,3 +224,6 @@ class LRClib(Adw.Dialog):
 
         if self.collapsed_bin.get_child() == self.lyrics_box:
             self.nav_view.push(self.collapsed_lyrics_nav_page)
+        logger.debug(
+            "Lyrics for '%s' were loaded to TextViews", row.get_child().get_tooltip_text()
+        )

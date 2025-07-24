@@ -40,6 +40,9 @@
     <key name="compress-level" type="i">
       <default>75</default>
     </key>
+    <key name="use-debug-log" type="b">
+      <default>false</default>
+    </key>
     <key name="default-format" type="s">
       <!-- Will be extended when other formats will be available -->
       <choices>

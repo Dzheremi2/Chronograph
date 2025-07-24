@@ -74,6 +74,16 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         }
       }
     }
+
+    Adw.PreferencesGroup {
+      title: _("Debug");
+
+      Adw.SwitchRow enable_debug_logging_switch {
+        title: _("Enable Debug logging profile");
+        subtitle: _("Expands logging information for debug purposes");
+        tooltip-text: _("NEEDS RESTART");
+      }
+    }
   }
 }
 

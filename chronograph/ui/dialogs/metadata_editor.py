@@ -5,6 +5,7 @@ from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 from chronograph.internal import Constants
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 
 @Gtk.Template.from_resource(Constants.PREFIX + "/gtk/ui/dialogs/MetadataEditor.ui")
@@ -45,6 +46,7 @@ class MetadataEditor(Adw.Dialog):
     def on_cancel_clicked(self, *_args) -> None:
         """Handle cancel button click"""
         self.close()
+        logger.debug("Metadata Editor(%s) closed", self)
 
     @Gtk.Template.Callback()
     def save(self, *_args) -> None:
@@ -55,15 +57,39 @@ class MetadataEditor(Adw.Dialog):
             self._card.cover_img.set_from_paintable(self._card.cover)
             pspec = self._card.__class__.find_property("cover")
             self._card.emit("notify::cover", pspec)
+            logger.info(
+                "Cover for '%s -- %s / %s' was saved",
+                self._card.title,
+                self._card.artist,
+                self._card.album,
+            )
         if self.title_row.get_text() != self._card.title and self.title_row.get_text():
             self._card.title = self.title_row.get_text()
+            logger.info(
+                "Title for '%s -- %s / %s' was saved",
+                self._card.title,
+                self._card.artist,
+                self._card.album,
+            )
         if (
             self.artist_row.get_text() != self._card.artist
             and self.artist_row.get_text()
         ):
             self._card.artist = self.artist_row.get_text()
+            logger.info(
+                "Artist for '%s -- %s / %s' was saved",
+                self._card.title,
+                self._card.artist,
+                self._card.album,
+            )
         if self.album_row.get_text() != self._card.album and self.album_row.get_text():
             self._card.album = self.album_row.get_text()
+            logger.info(
+                "Album for '%s -- %s / %s' was saved",
+                self._card.title,
+                self._card.artist,
+                self._card.album,
+            )
         self._card.save()
         self.close()
 
@@ -75,6 +101,7 @@ class MetadataEditor(Adw.Dialog):
             self.cover_image.set_from_paintable(
                 Gdk.Texture.new_from_filename(self._new_cover_path)
             )
+            logger.debug("Queuing cover changing to '%s' image", self._new_cover_path)
 
         dialog = Gtk.FileDialog(
             default_filter=Gtk.FileFilter(mime_types=["image/png", "image/jpeg"])
@@ -85,3 +112,9 @@ class MetadataEditor(Adw.Dialog):
         self._is_cover_changed = True
         self._new_cover_path = None
         self.cover_image.set_from_paintable(Constants.COVER_PLACEHOLDER)
+        logger.debug(
+            "Queuing cover removing for '%s -- %s / %s'",
+            self._card.title,
+            self._card.artist,
+            self._card.album,
+        )
