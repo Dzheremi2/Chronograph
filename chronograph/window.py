@@ -1,8 +1,7 @@
 # DELAYED: Add GStreamer based player with music speed control
-# TODO: Reimplement syncing page as a separate class generatable for every song
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
-# TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc.)
+# TODO: Implement different syncing pages variants for different syncing formats (eLRC, TTML, etc.)
 # TODO: Implement logger
 # TODO: Reimplement List View mode
 
@@ -100,6 +99,10 @@ class ChronographWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 
+        self.library_list = Gtk.ListBox(
+            css_classes=("navigation-sidebar",), selection_mode=Gtk.SelectionMode.NONE
+        )
+
         # Setting keybindings help overlay
         self.set_help_overlay(self.help_overlay)
 
@@ -117,6 +120,8 @@ class ChronographWindow(Adw.ApplicationWindow):
         # Set sort and filter functions for the library
         self.library.set_sort_func(invalidate_sort)
         self.library.set_filter_func(invalidate_filter)
+        self.library_list.set_sort_func(invalidate_sort)
+        self.library_list.set_filter_func(invalidate_filter)
 
         # Drag'N'Drop setup
         self.drop_target = Gtk.DropTarget(
@@ -137,11 +142,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.sidebar.remove_all()
         for pin in Constants.CACHE["pins"]:
             self.sidebar.append(SavedLocation(pin["path"], pin["name"]))
-        # TODO: remove useless item amount check. Use `placeholder` property of listbox instead
-        if not self.sidebar.get_row_at_index(0):
-            self.sidebar_window.set_child(self.no_saves_found_status)
-        else:
-            self.sidebar_window.set_child(self.sidebar)
+        self.sidebar.set_placeholder(self.no_saves_found_status)
 
     def on_toggle_sidebar_action(self, *_args) -> None:
         """Toggle sidebar visibility"""
@@ -193,6 +194,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         ) -> None:
             song_card = SongCard(file)
             self.library.append(song_card)
+            self.library_list.append(song_card.get_list_mode())
             song_card.get_parent().set_focusable(False)
 
         mutagen_files = parse_files(paths)
@@ -364,11 +366,13 @@ class ChronographWindow(Adw.ApplicationWindow):
     def clean_library(self, *_args) -> None:
         """Remove all `SongCard`s from the library"""
         self.library.remove_all()
+        self.library_list.remove_all()
 
     @Gtk.Template.Callback()
     def on_search_changed(self, *_args) -> None:
         """Calls `self.library.filter_func` to filter the library based on the search entry text"""
         self.library.invalidate_filter()
+        self.library_list.invalidate_filter()
 
     @Gtk.Template.Callback()
     def on_reparse_dir_button_clicked(self, *_args) -> None:
@@ -431,7 +435,29 @@ class ChronographWindow(Adw.ApplicationWindow):
         action.set_state(state)
         self.sort_state = str(state).strip("'")
         self.library.invalidate_sort()
+        self.library_list.invalidate_sort()
         Schema.STATEFULL.set_string("sorting", self.sort_state)
+
+    def on_view_type_action(
+        self, action: Gio.SimpleAction, state: GLib.Variant
+    ) -> None:
+        """Sets view type state for `self.library_list` and invalidates sorting
+
+        Parameters
+        ----------
+        action : Gio.SimpleAction
+            Action which triggered this function
+        state : GLib.Variant
+            Current view type state
+        """
+        action.set_state(state)
+        self.view_state = str(state).strip("'")
+        match self.view_state:
+            case "g":
+                self.library_scrolled_window.set_child(self.library)
+            case "l":
+                self.library_scrolled_window.set_child(self.library_list)
+        Schema.STATEFULL.set_string("view", self.view_state)
 
     def enter_sync_mode(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
@@ -473,6 +499,28 @@ class ChronographWindow(Adw.ApplicationWindow):
             toast.connect("button-clicked", button_callback)
         self.toast_overlay.add_toast(toast)
 
+    @Gtk.Template.Callback()
+    def toggle_list_view(self, *_args) -> None:
+        if Schema.auto_list_view and (
+            self.library_scrolled_window.get_child().get_child()
+            != self.no_source_opened
+            and self.library_scrolled_window.get_child().get_child()
+            != self.empty_directory
+            and self.is_visible()
+        ):
+            if self.get_width() <= 564:
+                self.library_scrolled_window.set_child(self.library_list)
+                Schema.STATEFULL.set_string("view", "l")
+                Constants.APP.lookup_action("view_type").set_state(
+                    GLib.Variant.new_string("l")
+                )
+            else:
+                self.library_scrolled_window.set_child(self.library)
+                Schema.STATEFULL.set_string("view", "g")
+                Constants.APP.lookup_action("view_type").set_state(
+                    GLib.Variant.new_string("g")
+                )
+
     ############### WindowState related methods ###############
     @GObject.Property()
     def state(self) -> WindowState:  # pylint: disable=method-hidden
@@ -509,23 +557,22 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.clean_library()
                 __select_saved_location()
             case WindowState.LOADED_DIR:
-                # TODO:
-                # match Schema.STATEFULL.get_string("view"):
-                #     case "g":
-                self.library_scrolled_window.set_child(self.library)
-                #     case "l":
-                #         self.library_scrolled_window.set_child(self.library_list)
+                match Schema.view:
+                    case "g":
+                        self.library_scrolled_window.set_child(self.library)
+                    case "l":
+                        self.library_scrolled_window.set_child(self.library_list)
                 self.right_buttons_revealer.set_reveal_child(True)
                 self.left_buttons_revealer.set_reveal_child(True)
                 self.clean_files_button.set_visible(False)
                 self.clean_library()
                 __select_saved_location()
             case WindowState.LOADED_FILES:
-                # match shared.state_schema.get_string("view"):
-                #     case "g":
-                self.library_scrolled_window.set_child(self.library)
-                #     case "l":
-                #         self.library_scrolled_window.set_child(self.library_list)
+                match Schema.view:
+                    case "g":
+                        self.library_scrolled_window.set_child(self.library)
+                    case "l":
+                        self.library_scrolled_window.set_child(self.library_list)
                 Schema.STATEFULL.set_string("session", "None")
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)

@@ -50,6 +50,8 @@ class LRCSyncPage(Adw.NavigationPage):
         self.sync_page_metadata_editor_button.connect(
             "clicked", self._card.open_metadata_editor
         )
+        if isinstance(self._card._file, FileUntaggable):
+            self.sync_page_metadata_editor_button.set_visible(False)
         self._player_widget = Player(file, card)
         self._player = self._player_widget._player
         self._player.connect("notify::timestamp", self._on_timestamp_changed)

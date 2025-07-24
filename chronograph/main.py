@@ -85,7 +85,7 @@ class ChronographApplication(Adw.Application):
             GLib.VariantType.new("s"),
             GLib.Variant("s", Schema.view),
         )
-        # view_action.connect("activate", shared.win.on_view_type_action)
+        view_action.connect("activate", Constants.WIN.on_view_type_action)
         self.add_action(view_action)
 
         Schema.bind(
@@ -110,10 +110,10 @@ class ChronographApplication(Adw.Application):
             Gio.SettingsBindFlags.DEFAULT,
         )
 
-        # if shared.schema.get_boolean("auto-list-view"):
-        #     shared.app.lookup_action("view_type").set_enabled(False)
-        # else:
-        #     shared.app.lookup_action("view_type").set_enabled(True)
+        if Schema.auto_list_view:
+            self.lookup_action("view_type").set_enabled(False)
+        else:
+            self.lookup_action("view_type").set_enabled(True)
 
         if (
             (path := Schema.session) != "None"

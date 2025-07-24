@@ -1,7 +1,7 @@
 from gettext import pgettext as C_
 from typing import Union
 
-from gi.repository import Gdk, GObject, Gtk
+from gi.repository import Adw, Gdk, GObject, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.dialogs.box_dialog import BoxDialog
@@ -27,6 +27,11 @@ class SongCard(Gtk.Box):
     title_label: Gtk.Label = gtc()
     artist_label: Gtk.Label = gtc()
 
+    list_view_row: Adw.ActionRow = gtc()
+    cover_img_row: Gtk.Image = gtc()
+    buttons_revealer_row: Gtk.Revealer = gtc()
+    row_metadata_editor_button: Gtk.Button = gtc()
+
     def __init__(
         self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable], **kwargs
     ) -> "SongCard":
@@ -36,24 +41,43 @@ class SongCard(Gtk.Box):
             "title", self.title_label, "label", GObject.BindingFlags.SYNC_CREATE
         )
         self.bind_property(
+            "title", self.list_view_row, "title", GObject.BindingFlags.SYNC_CREATE
+        )
+        self.bind_property(
             "artist", self.artist_label, "label", GObject.BindingFlags.SYNC_CREATE
+        )
+        self.bind_property(
+            "artist", self.list_view_row, "subtitle", GObject.BindingFlags.SYNC_CREATE
         )
         self.cover_img.set_from_paintable(self.cover)
         self.bind_property(
             "cover", self.cover_img, "paintable", GObject.BindingFlags.DEFAULT
+        )
+        self.bind_property(
+            "cover", self.cover_img_row, "paintable", GObject.BindingFlags.SYNC_CREATE
         )
 
         self.event_controller_motion = Gtk.EventControllerMotion.new()
         self.add_controller(self.event_controller_motion)
         self.event_controller_motion.connect("enter", self._toggle_buttons)
         self.event_controller_motion.connect("leave", self._toggle_buttons)
+        event_controller_motion_row = Gtk.EventControllerMotion.new()
+        self.list_view_row.add_controller(event_controller_motion_row)
+        event_controller_motion_row.connect("enter", self._toggle_buttons_row)
+        event_controller_motion_row.connect("leave", self._toggle_buttons_row)
 
         if isinstance(file, FileUntaggable):
             self.metadata_editor_button.set_visible(False)
+            self.row_metadata_editor_button.set_visible(False)
 
     def _toggle_buttons(self, *_args) -> None:
         self.buttons_revealer.set_reveal_child(
             not self.buttons_revealer.get_reveal_child()
+        )
+
+    def _toggle_buttons_row(self, *_args) -> None:
+        self.buttons_revealer_row.set_visible(
+            not self.buttons_revealer_row.get_visible()
         )
 
     @Gtk.Template.Callback()
@@ -81,6 +105,16 @@ class SongCard(Gtk.Box):
     def save(self) -> None:
         """Save changes to the file"""
         self._file.save()
+
+    def get_list_mode(self) -> Adw.ActionRow:
+        return self.list_view_row
+
+    def get_title(self) -> str:
+        return self.title
+
+    # A workaround for unificating invalidate_filter functions
+    def get_subtitle(self) -> str:
+        return self.artist
 
     ############### Notifiable Properties ###############
     @GObject.Property(type=str, default=C_("song title placeholder", "Unknown"))

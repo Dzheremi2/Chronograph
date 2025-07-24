@@ -2,7 +2,7 @@
 
 from typing import Union
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from chronograph.internal import Constants
 from chronograph.ui.widgets.song_card import SongCard
@@ -26,19 +26,19 @@ def invalidate_sort(
     int
         `-1` if `child1` should be before `child2`, `1` if `child1` should be after `child2`
     """
-    child1: SongCard
-    child2: SongCard
-    if not isinstance(child1, Gtk.ListBoxRow) or not isinstance(
-        child2, Gtk.FlowBoxChild
-    ):
-        child1, child2 = child1.get_child(), child2.get_child()
+    child1: Union[SongCard, Adw.ActionRow]
+    child2: Union[SongCard, Adw.ActionRow]
+    if isinstance(child1, Gtk.FlowBoxChild):
+        child1 = child1.get_child()
+    if isinstance(child2, Gtk.FlowBoxChild):
+        child2 = child2.get_child()
     order = None
     if Constants.WIN.sort_state == "a-z":
         order = False
     elif Constants.WIN.sort_state == "z-a":
         order = True
 
-    return ((child1.title > child2.title) ^ order) * 2 - 1
+    return ((child1.get_title() > child2.get_title()) ^ order) * 2 - 1
 
 
 def invalidate_filter(child: Union[Gtk.ListBoxRow, Gtk.FlowBoxChild]) -> bool:
@@ -54,13 +54,13 @@ def invalidate_filter(child: Union[Gtk.ListBoxRow, Gtk.FlowBoxChild]) -> bool:
     bool
         `True` if the child should be visible, `False` otherwise
     """
-    child: SongCard
-    if not isinstance(child, Gtk.ListBoxRow) or not isinstance(child, Gtk.FlowBoxChild):
+    child: Union[SongCard, Adw.ActionRow]
+    if isinstance(child, Gtk.FlowBoxChild):
         child = child.get_child()
     try:
         text = Constants.WIN.search_entry.get_text().lower()
         filtered = text != "" and not (
-            text in child.title.lower() or text in child.artist.lower()
+            text in child.get_title().lower() or text in child.get_subtitle().lower()
         )
         return not filtered
     except AttributeError:

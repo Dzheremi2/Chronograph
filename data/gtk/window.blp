@@ -119,6 +119,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
   title: _("Chronograph");
   width-request: 362;
   height-request: 100;
+  notify::default-width => $toggle_list_view();
 
   Adw.Breakpoint {
     condition ("max-width: 564px")
