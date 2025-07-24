@@ -1,6 +1,5 @@
 # DELAYED: Add GStreamer based player with music speed control
 # TODO: Reimplement syncing page as a separate class generatable for every song
-# TODO: Reimplement LRC support
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc.)
@@ -25,6 +24,8 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.miscellaneous import get_common_directory
 from chronograph.utils.parsers import parse_dir, parse_files
+
+gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 MIME_TYPES = (
     "audio/mpeg",
@@ -62,36 +63,36 @@ class ChronographWindow(Adw.ApplicationWindow):
     __gtype_name__ = "ChronographWindow"
 
     # Status pages
-    no_source_opened: Adw.StatusPage = Gtk.Template.Child()
-    empty_directory: Adw.StatusPage = Gtk.Template.Child()
-    no_saves_found_status: Adw.StatusPage = Gtk.Template.Child()
+    no_source_opened: Adw.StatusPage = gtc()
+    empty_directory: Adw.StatusPage = gtc()
+    no_saves_found_status: Adw.StatusPage = gtc()
 
     # Library view widgets
-    help_overlay: Gtk.ShortcutsWindow = Gtk.Template.Child()
-    dnd_area_revealer: Gtk.Revealer = Gtk.Template.Child()
-    toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
-    navigation_view: Adw.NavigationView = Gtk.Template.Child()
-    library_nav_page: Adw.NavigationPage = Gtk.Template.Child()
-    overlay_split_view: Adw.OverlaySplitView = Gtk.Template.Child()
-    sidebar_window: Gtk.ScrolledWindow = Gtk.Template.Child()
-    sidebar: Gtk.ListBox = Gtk.Template.Child()
-    open_source_button: Gtk.MenuButton = Gtk.Template.Child()
-    left_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
-    search_bar: Gtk.SearchBar = Gtk.Template.Child()
-    search_entry: Gtk.SearchEntry = Gtk.Template.Child()
-    right_buttons_revealer: Gtk.Revealer = Gtk.Template.Child()
-    reparse_dir_button: Gtk.Button = Gtk.Template.Child()
-    add_dir_to_saves_button: Gtk.Button = Gtk.Template.Child()
-    clean_files_button: Gtk.Button = Gtk.Template.Child()
-    library_overlay: Gtk.Overlay = Gtk.Template.Child()
-    library_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
-    library: Gtk.FlowBox = Gtk.Template.Child()
+    help_overlay: Gtk.ShortcutsWindow = gtc()
+    dnd_area_revealer: Gtk.Revealer = gtc()
+    toast_overlay: Adw.ToastOverlay = gtc()
+    navigation_view: Adw.NavigationView = gtc()
+    library_nav_page: Adw.NavigationPage = gtc()
+    overlay_split_view: Adw.OverlaySplitView = gtc()
+    sidebar_window: Gtk.ScrolledWindow = gtc()
+    sidebar: Gtk.ListBox = gtc()
+    open_source_button: Gtk.MenuButton = gtc()
+    left_buttons_revealer: Gtk.Revealer = gtc()
+    search_bar: Gtk.SearchBar = gtc()
+    search_entry: Gtk.SearchEntry = gtc()
+    right_buttons_revealer: Gtk.Revealer = gtc()
+    reparse_dir_button: Gtk.Button = gtc()
+    add_dir_to_saves_button: Gtk.Button = gtc()
+    clean_files_button: Gtk.Button = gtc()
+    library_overlay: Gtk.Overlay = gtc()
+    library_scrolled_window: Gtk.ScrolledWindow = gtc()
+    library: Gtk.FlowBox = gtc()
 
     # Quick Editor
-    quick_edit_dialog: Adw.Dialog = Gtk.Template.Child()
-    quck_editor_toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
-    quick_edit_text_view: Gtk.TextView = Gtk.Template.Child()
-    quick_edit_copy_button: Gtk.Button = Gtk.Template.Child()
+    quick_edit_dialog: Adw.Dialog = gtc()
+    quck_editor_toast_overlay: Adw.ToastOverlay = gtc()
+    quick_edit_text_view: Gtk.TextView = gtc()
+    quick_edit_copy_button: Gtk.Button = gtc()
 
     sort_state: str = Schema.sorting
     view_state: str = Schema.STATEFULL.get_string("view")
@@ -390,6 +391,30 @@ class ChronographWindow(Adw.ApplicationWindow):
                     )
                     self.add_dir_to_saves_button.set_visible(False)
                     self.build_sidebar()
+
+    ################# Quick Editor ###############
+
+    def on_open_quick_editor_action(self, *_args) -> None:
+        """Opens the quick editor dialog"""
+        if Schema.reset_quick_editor:
+            self.quick_edit_text_view.set_buffer(Gtk.TextBuffer.new())
+        self.quick_edit_dialog.present(self)
+
+    @Gtk.Template.Callback()
+    def copy_quick_editor_text(self, *_args) -> None:
+        """Exports `self.quick_editor` text to clipboard"""
+        text = self.quick_edit_text_view.get_buffer().get_text(
+            start=self.quick_edit_text_view.get_buffer().get_start_iter(),
+            end=self.quick_edit_text_view.get_buffer().get_end_iter(),
+            include_hidden_chars=False,
+        )
+        clipboard = Gdk.Display().get_default().get_clipboard()
+        clipboard.set(text)
+        self.quck_editor_toast_overlay.add_toast(
+            Adw.Toast(title=_("Copied successfully"))
+        )
+
+    #################
 
     def on_sort_type_action(
         self, action: Gio.SimpleAction, state: GLib.Variant

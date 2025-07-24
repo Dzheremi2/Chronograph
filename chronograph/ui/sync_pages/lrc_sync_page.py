@@ -454,6 +454,8 @@ class LRCSyncPage(Adw.NavigationPage):
             daemon=True,
         ).start()
 
+    ###############
+
     # pylint: disable=too-many-locals, too-many-statements, not-an-iterable
     def _setup_actions(self) -> None:
         # Import actions

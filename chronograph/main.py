@@ -65,7 +65,7 @@ class ChronographApplication(Adw.Application):
                 ("select_dir", ("<primary><shift>o",), Constants.WIN),
                 ("select_files", ("<primary>o",), Constants.WIN),
                 ("show_preferences", ("<primary>comma",), Constants.WIN),
-                # ("open_quick_editor", (), shared.win),
+                ("open_quick_editor", (), Constants.WIN),
                 ("about",),
                 # fmt: on
             }

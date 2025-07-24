@@ -104,73 +104,9 @@ Adw.Dialog quick_edit_dialog {
 
             Button quick_edit_copy_button {
               label: _("Copy to clipboard");
+              clicked => $copy_quick_editor_text();
 
               styles ["suggested-action"]
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-Adw.Dialog lrclib_manual_dialog {
-  content-height: 350;
-  content-width: 400;
-  
-  Adw.ToastOverlay lrclib_manual_toast_overlay {
-    margin-top: 8;
-    margin-start: 8;
-    margin-end: 8;
-    margin-bottom: 8;
-
-    Adw.Clamp {
-      orientation: horizontal;
-      maximum-size: 400;
-      tightening-threshold: 400;
-
-      Adw.Clamp {
-        orientation: vertical;
-        maximum-size: 350;
-        tightening-threshold: 350;
-
-        Adw.ToolbarView {
-          [top]
-          Adw.HeaderBar {}
-
-          Box {
-            orientation: vertical;
-            spacing: 8;
-
-            ListBox {
-              Adw.EntryRow lrclib_manual_title_entry {
-                title: _("Title");
-              }
-
-              Adw.EntryRow lrclib_manual_artist_entry {
-                title: _("Artist");
-              }
-
-              Adw.EntryRow lrclib_manual_album_entry {
-                title: _("Album");
-              }
-
-              Adw.EntryRow lrclib_manual_duration_entry {
-                title: _("Duration");
-                input-purpose: digits;
-              }
-
-              styles ["boxed-list"]
-            }
-
-            Box {
-              halign: center;
-
-              Button lrclib_manual_publish_button {
-                label: _("Publish");
-
-                styles ["pill", "suggested-action"]
-              }
             }
           }
         }
