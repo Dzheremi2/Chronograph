@@ -7,6 +7,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/BoxDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/LRClibTrack.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/Preferences.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/dialogs/MetadataEditor.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/LRClib.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/Player.ui</file>

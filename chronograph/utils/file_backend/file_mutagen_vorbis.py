@@ -173,11 +173,11 @@ class FileVorbis(BaseFile):
         else:
             if isinstance(self._mutagen_file, FLAC):
                 self._mutagen_file.clear_pictures()
-                self._cover = "icon"
+                self._cover = None
 
             if "metadata_block_picture" in self._mutagen_file:
                 self._mutagen_file["metadata_block_picture"] = []
-                self._cover = "icon"
+                self._cover = None
 
     def set_str_data(self, tag_name: str, new_val: str) -> None:
         """Sets string tags to provided value

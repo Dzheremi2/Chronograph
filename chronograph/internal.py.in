@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Literal
 
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 
 class classproperty:  # pylint: disable=invalid-name
@@ -36,6 +36,10 @@ class Constants:
 
     APP: Adw.Application = None
     WIN: Adw.ApplicationWindow = None
+
+    COVER_PLACEHOLDER: Gdk.Texture = Gdk.Texture.new_from_resource(
+        PREFIX + "/icons/scalable/actions/note-placeholder.svg"
+    )
 
     CACHE_FILE = None
     CACHE = None
@@ -140,4 +144,3 @@ class Schema:
     @classproperty
     def session(cls) -> str:
         return cls.STATEFULL.get_string("session")
-

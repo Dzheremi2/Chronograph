@@ -115,7 +115,7 @@ class FileMP4(BaseFile):
                     del self._mutagen_file.tags["covr"]
                 else:
                     self._mutagen_file.add_tags()
-            self.cover = "icon"
+            self.cover = None
 
     def set_str_data(self, tag_name: str, new_val: str) -> None:
         """Sets string tags to provided value

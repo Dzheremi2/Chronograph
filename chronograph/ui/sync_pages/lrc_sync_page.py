@@ -31,6 +31,7 @@ class LRCSyncPage(Adw.NavigationPage):
     header_bar: Adw.HeaderBar = gtc()
     player_container: Gtk.Box = gtc()
     export_lyrics_button: Gtk.MenuButton = gtc()
+    sync_page_metadata_editor_button: Gtk.Button = gtc()
     sync_lines_scrolled_window: Gtk.ScrolledWindow = gtc()
     sync_lines: Gtk.ListBox = gtc()
     selected_line: Optional["LRCSyncLine"] = None
@@ -45,6 +46,9 @@ class LRCSyncPage(Adw.NavigationPage):
         self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
         self._card.bind_property(
             "title", self, "title", GObject.BindingFlags.SYNC_CREATE
+        )
+        self.sync_page_metadata_editor_button.connect(
+            "clicked", self._card.open_metadata_editor
         )
         self._player_widget = Player(file, card)
         self._player = self._player_widget._player

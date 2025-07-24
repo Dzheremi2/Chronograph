@@ -121,7 +121,7 @@ class FileID3(BaseFile):
                     if tag.startswith("APIC"):
                         del self._mutagen_file.tags[tag]
 
-            self._cover = "icon"
+            self._cover = None
 
     def set_str_data(self, tag_name: str, new_val: str) -> None:
         """Sets string tags to provided value

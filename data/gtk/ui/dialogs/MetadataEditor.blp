@@ -1,0 +1,109 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $MetadataEditor : Adw.Dialog {
+  content-height: 300;
+  content-width: 300;
+  
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      [start]
+      Button {
+        label: _("Cancel");
+        clicked => $on_cancel_clicked();
+      }
+
+      [end]
+      Button {
+        label: _("Apply");
+        clicked => $save();
+        styles ["suggested-action"]
+      }
+    }
+
+    Adw.Clamp {
+      orientation: horizontal;
+      maximum-size: 300;
+      tightening-threshold: 300;
+
+      Adw.Clamp {
+        orientation: vertical;
+        maximum-size: 300;
+        tightening-threshold: 300;
+
+        Box {
+          margin-bottom: 12;
+          margin-start: 12;
+          margin-end: 12;
+          orientation: vertical;
+          spacing: 8;
+          hexpand: true;
+
+          Adw.Clamp {
+            orientation: horizontal;
+            maximum-size: 160;
+
+            MenuButton {
+              tooltip-text: _("Change cover");
+              overflow: hidden;
+              has-frame: false;
+              menu-model: cover_action;
+
+              Box {
+                orientation: vertical;
+
+                Image cover_image {
+                  width-request: 160;
+                  height-request: 160;
+                  hexpand: true;
+                  vexpand: true;
+                  overflow: hidden;
+                  icon-name: "note-placeholder";
+                  pixel-size: 160;
+
+                  styles ["rounded"]
+                }
+              }
+            }
+          }
+
+          ListBox {
+            selection-mode: none;
+
+            Adw.EntryRow title_row {
+              title: _("Title");
+            }
+
+            Adw.EntryRow artist_row {
+              title: _("Artist");
+            }
+
+            Adw.EntryRow album_row {
+              title: _("Album");
+            }
+
+            styles ["boxed-list"]
+          }
+        }
+      }
+    }
+  }
+}
+
+menu cover_action {
+  section {
+    item {
+      label: _("Set cover");
+      action: "cover.change";
+    }
+
+    item {
+      label: _("Remove cover");
+      action: "cover.remove";
+    }
+  }
+}

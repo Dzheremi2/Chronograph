@@ -6,6 +6,7 @@ blueprints = custom_target('blueprints',
     'gtk/ui/dialogs/LRClib.blp',
     'gtk/ui/widgets/LRClibTrack.blp',
     'gtk/ui/dialogs/Preferences.blp',
+    'gtk/ui/dialogs/MetadataEditor.blp',
     'gtk/ui/widgets/SavedLocation.blp',
     'gtk/ui/widgets/Player.blp',
     'gtk/ui/sync_pages/LRCSyncPage.blp'

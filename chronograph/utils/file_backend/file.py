@@ -75,9 +75,7 @@ class BaseFile:
             scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
             _texture = Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
             return _texture
-        return Gdk.Texture.new_from_resource(
-            Constants.PREFIX + "/icons/scalable/actions/note-placeholder.svg"
-        )
+        return Constants.COVER_PLACEHOLDER
 
     @property
     def title(self) -> str:

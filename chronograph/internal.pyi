@@ -3,7 +3,7 @@
 from pathlib import Path
 from typing import Literal, TextIO
 
-from gi.repository import Gio, Gtk
+from gi.repository import Gdk, Gio, Gtk
 from main import ChronographApplication
 from window import ChronographWindow
 
@@ -26,6 +26,8 @@ class Constants:
 
     APP: ChronographApplication
     WIN: ChronographWindow
+
+    COVER_PLACEHOLDER: Gdk.Texture
 
     CACHE_FILE: TextIO
     CACHE: dict

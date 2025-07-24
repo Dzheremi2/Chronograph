@@ -5,6 +5,7 @@ from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.dialogs.box_dialog import BoxDialog
+from chronograph.ui.dialogs.metadata_editor import MetadataEditor
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -72,6 +73,15 @@ class SongCard(Gtk.Box):
             ),
         ).present(Constants.WIN)
 
+    @Gtk.Template.Callback()
+    def open_metadata_editor(self, *_args) -> None:
+        """Open metadata editor dialog"""
+        MetadataEditor(self).present(Constants.WIN)
+
+    def save(self) -> None:
+        """Save changes to the file"""
+        self._file.save()
+
     ############### Notifiable Properties ###############
     @GObject.Property(type=str, default=C_("song title placeholder", "Unknown"))
     def title(self) -> str:
@@ -80,7 +90,8 @@ class SongCard(Gtk.Box):
 
     @title.setter
     def title(self, value: str) -> None:
-        self._file.title = value
+        self._file.set_str_data("TIT2", value)
+        self.title_label.set_label(value)
 
     @GObject.Property(type=str, default=C_("song artist placeholder", "Unknown"))
     def artist(self) -> str:
@@ -89,7 +100,8 @@ class SongCard(Gtk.Box):
 
     @artist.setter
     def artist(self, value: str) -> None:
-        self._file.artist = value
+        self._file.set_str_data("TPE1", value)
+        self.artist_label.set_label(value)
 
     @GObject.Property(type=str, default=C_("song album placeholder", "Unknown"))
     def album(self) -> str:
@@ -98,16 +110,12 @@ class SongCard(Gtk.Box):
 
     @album.setter
     def album(self, value: str) -> None:
-        self._file.album = value
+        self._file.set_str_data("TALB", value)
 
     @GObject.Property(type=Gdk.Texture)
     def cover(self) -> Gdk.Texture:
         """Cover of the song"""
         return self._file.get_cover_texture()
-
-    @cover.setter
-    def cover(self, path: str) -> None:
-        self._file.set_cover(path)
 
     @GObject.Property(type=str)
     def path(self) -> str:
