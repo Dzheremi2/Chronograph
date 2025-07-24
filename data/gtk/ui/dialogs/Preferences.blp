@@ -1,0 +1,109 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $ChronographPreferences : Adw.PreferencesDialog {
+  Adw.PreferencesPage {
+    title: _("General");
+    icon-name: "home-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Behavior");
+
+      Adw.SwitchRow reset_quick_edit_switch {
+        title: _("Reset quick edit dialog on close");
+        subtitle: _("Choose, if quick edit dialog text should be cleaned after exit or not");
+      }
+
+      Adw.SwitchRow save_session_on_quit_switch {
+        title: _("Save session on app close");
+        subtitle: _("Re-opens last opened directory on the next startup");
+      }
+
+      Adw.SwitchRow automatic_list_view_switch {
+        title: _("Automatically toggle List View mode");
+        subtitle: _("Automatically toggles List View mode when display size is not big enough");
+      }
+
+      Adw.ExpanderRow load_compressed_covers_switch {
+        title: _("Display compressed covers");
+        subtitle: _("May slightly reduce memory consumption.\nThis does not affect actual images stored within files");
+        show-enable-switch: true;
+
+        Adw.SpinRow compress_level_spin {
+          title: _("Quality level");
+          subtitle: _("The higher value, the higher cover quality");
+          adjustment: compress_level_adjustment;
+        }
+      }
+
+      Adw.ExpanderRow recursive_parsing_switch {
+        show-enable-switch: true;
+        title: _("Parse directories recursively");
+        subtitle: _("Scans provided directory for supported files recursively");
+
+        Adw.SwitchRow follow_symlinks_switch {
+          title: _("Follow symlinks");
+          subtitle: _("If a directory has symlinks to other directories, they would be parsed too\nMay cause excessive memory consumption and looping if it has looped symlinks");
+        }
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Sync Page");
+
+      Adw.SwitchRow precise_milliseconds_switch {
+        title: _("Use precise milliseconds");
+        subtitle: _("Use 3-digit milliseconds instead of 2-digit");
+      }
+
+      Adw.ExpanderRow auto_file_manipulation_switch {
+        title: _("Auto file manipulation");
+        subtitle: _("Automatically creates and updates files when any of lyrics lines changed");
+        show-enable-switch: true;
+
+        Adw.ComboRow auto_file_manipulation_format {
+          title: _("File format");
+          subtitle: _("File format for auto manipulation");
+          model: formats;
+        }
+
+        Adw.SpinRow autosave_throttling_spin {
+          title: _("Autosave interval");
+          subtitle: _("Autosave interval after lyrics syncing inactivity");
+          adjustment: autosave_throttling_adjustment;
+        }
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Debug");
+
+      Adw.SwitchRow enable_debug_logging_switch {
+        title: _("Enable Debug logging profile");
+        subtitle: _("Expands logging information for debug purposes");
+        tooltip-text: _("NEEDS RESTART");
+      }
+    }
+  }
+}
+
+StringList formats {
+  strings [
+    ".lrc",
+    ".txt"
+  ]
+}
+
+Adjustment compress_level_adjustment {
+  lower: 1;
+  upper: 95;
+  value: 75;
+  step-increment: 5;
+}
+
+Adjustment autosave_throttling_adjustment {
+  lower: 1;
+  upper: 10;
+  value: 5;
+  step-increment: 1;
+}

@@ -1,0 +1,153 @@
+import logging
+from pathlib import Path
+from typing import Literal
+
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk
+
+
+class classproperty:  # pylint: disable=invalid-name
+    def __init__(self, fget):
+        self.fget = fget
+        self.fset = None
+
+    def __get__(self, instance, owner):
+        return self.fget(owner)
+
+    def __set__(self, instance, value):
+        if not self.fset:
+            raise AttributeError("Can't set attribute")
+        cls = type(instance) if instance else instance
+        self.fset(cls, value)
+
+    def setter(self, fset):
+        self.fset = fset
+        return self
+
+
+class Constants:
+    """Shared variables and constants for the application"""
+
+    APP_ID = "@APP_ID@"
+    VERSION = "@VERSION@"
+    PREFIX = "@PREFIX@"
+    CACHEV = int("@CACHEV@")
+
+    CFG_DIR = Path(GLib.get_user_config_dir())
+    DATA_DIR = Path(GLib.get_user_data_dir())
+    CACHE_DIR = Path(GLib.get_user_cache_dir())
+
+    APP: Adw.Application = None
+    WIN: Adw.ApplicationWindow = None
+
+    COVER_PLACEHOLDER: Gdk.Texture = Gdk.Texture.new_from_resource(
+        PREFIX + "/icons/scalable/actions/note-placeholder.svg"
+    )
+
+    CACHE_FILE = None
+    CACHE = None
+    LOGGER: logging.Logger = logging.getLogger()
+
+
+# pylint: disable=no-self-argument
+class Schema:
+    """Schema for the application settings"""
+
+    _instance: "Schema" = None
+
+    STATELESS = Gio.Settings.new(Constants.APP_ID)
+    STATEFULL = Gio.Settings.new(Constants.APP_ID + ".State")
+
+    def __new__(cls) -> "Schema":
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    @classmethod
+    def bind(
+        cls,
+        schema: Literal["STATELESS", "STATEFULL"],
+        key: str,
+        target: Gtk.Widget,
+        target_property: str,
+        flags: Gio.SettingsBindFlags,
+    ) -> None:
+        """Bind a setting to a target object's property"""
+        getattr(cls, schema.upper()).bind(key, target, target_property, flags)
+
+    ############### STATELESS values ###############
+    @classproperty
+    def auto_file_manipulation(cls) -> bool:
+        return cls.STATELESS.get_boolean("auto-file-manipulation")
+
+    @classproperty
+    def auto_file_format(cls) -> str:
+        return cls.STATELESS.get_string("auto-file-format")
+
+    @classproperty
+    def reset_quick_editor(cls) -> bool:
+        return cls.STATELESS.get_boolean("reset-quick-editor")
+
+    @classproperty
+    def save_session(cls) -> bool:
+        return cls.STATELESS.get_boolean("save-session")
+
+    @classproperty
+    def precise_milliseconds(cls) -> bool:
+        return cls.STATELESS.get_boolean("precise-milliseconds")
+
+    @classproperty
+    def auto_list_view(cls) -> bool:
+        return cls.STATELESS.get_boolean("auto-list-view")
+
+    @classproperty
+    def recursive_parsing(cls) -> bool:
+        return cls.STATELESS.get_boolean("recursive-parsing")
+
+    @classproperty
+    def follow_symlinks(cls) -> bool:
+        return cls.STATELESS.get_boolean("follow-symlinks")
+
+    @classproperty
+    def load_compressed_covers(cls) -> bool:
+        return cls.STATELESS.get_boolean("load-compressed-covers")
+
+    @classproperty
+    def compress_level(cls) -> int:
+        return cls.STATELESS.get_int("compress-level")
+
+    @classproperty
+    def default_format(cls) -> str:
+        return cls.STATELESS.get_string("default-format")
+
+    @classproperty
+    def autosave_throttling(cls) -> int:
+        return cls.STATELESS.get_int("autosave-throttling")
+
+    @classproperty
+    def use_debug_log(cls) -> bool:
+        return cls.STATELESS.get_boolean("use-debug-log")
+
+    ############### STATEFULL values ###############
+    @classproperty
+    def sorting(cls) -> str:
+        return cls.STATEFULL.get_string("sorting")
+
+    @classproperty
+    def view(cls) -> str:
+        return cls.STATEFULL.get_string("view")
+
+    @classproperty
+    def window_width(cls) -> int:
+        return cls.STATEFULL.get_int("window-width")
+
+    @classproperty
+    def window_height(cls) -> int:
+        return cls.STATEFULL.get_int("window-height")
+
+    @classproperty
+    def window_maximized(cls) -> bool:
+        return cls.STATEFULL.get_boolean("window-maximized")
+
+    @classproperty
+    def session(cls) -> str:
+        return cls.STATEFULL.get_string("session")

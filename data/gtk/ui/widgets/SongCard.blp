@@ -1,0 +1,188 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $SongCard: Box {
+  orientation: vertical;
+  halign: center;
+  valign: start;
+
+  styles [
+    "card"
+  ]
+
+  Adw.Clamp {
+    maximum-size: 160;
+    unit: px;
+
+    Overlay {
+      [overlay]
+      Revealer buttons_revealer {
+        transition-type: slide_down;
+        valign: start;
+        halign: center;
+        transition-duration: 100;
+
+        Box {
+          orientation: horizontal;
+          margin-top: 8;
+          spacing: 6;
+
+          Button play_button {
+            icon-name: "play-button-symbolic";
+            tooltip-text: _("Sync");
+            clicked => $load();
+
+            styles [
+              "circular",
+              "suggested-action"
+            ]
+          }
+
+          Button metadata_editor_button {
+            icon-name: "edit-metadata-symbolic";
+            tooltip-text: _("Edit song metadata");
+            clicked => $open_metadata_editor();
+
+            styles [
+              "circular",
+              "osd"
+            ]
+          }
+
+          Button info_button {
+            icon-name: "info-button-symbolic";
+            tooltip-text: _("Show song info");
+            clicked => $show_info();
+
+            styles [
+              "circular",
+              "osd"
+            ]
+          }
+        }
+      }
+
+      Button cover_button {
+        name: "cover_button";
+        overflow: hidden;
+        tooltip-text: _("Open syncing page");
+        clicked => $load();
+
+        accessibility {
+          labelled-by: title_label;
+        }
+
+        Box {
+          orientation: vertical;
+
+          Image cover_img {
+            name: "cover";
+            width-request: 160;
+            height-request: 160;
+            hexpand: true;
+            vexpand: true;
+            overflow: hidden;
+            icon-name: "note-placeholder";
+            pixel-size: 160;
+            
+            styles ["rounded"]
+          }
+
+          Label title_label {
+            ellipsize: end;
+            hexpand: true;
+            halign: start;
+            margin-top: 4;
+            margin-start: 8;
+            margin-end: 8;
+            use-markup: false;
+
+            styles [
+              "heading"
+            ]
+          }
+
+          Label artist_label {
+            ellipsize: end;
+            hexpand: true;
+            halign: start;
+            margin-bottom: 4;
+            margin-start: 8;
+            margin-end: 8;
+            use-markup: false;
+          }
+        }
+
+        styles [
+          "card"
+        ]
+      }
+    }
+  }
+}
+
+Adw.ActionRow list_view_row {
+  activatable: true;
+  use-markup: false;
+  subtitle-lines: 1;
+  title-lines: 1;
+  activated => $load();
+
+  [prefix]
+  Image cover_img_row {
+    name: "list_view_row_cover";
+    overflow: hidden;
+    margin-top: 4;
+    margin-bottom: 4;
+    width-request: 40;
+    height-request: 40;
+    pixel-size: 40;
+    icon-name: "note-placeholder";
+  }
+
+  [suffix]
+  Box {
+    orientation: vertical;
+    hexpand: false;
+    valign: center;
+
+    Box buttons_revealer_row {
+      margin-top: 8;
+      margin-bottom: 8;
+      orientation: horizontal;
+      spacing: 6;
+      visible: false;
+
+      Button {
+        icon-name: "play-button-symbolic";
+        tooltip-text: _("Sync");
+        clicked => $load();
+
+        styles [
+          "circular",
+          "suggested-action"
+        ]
+      }
+
+      Button row_metadata_editor_button {
+        icon-name: "edit-metadata-symbolic";
+        tooltip-text: _("Edit song metadata");
+        clicked => $open_metadata_editor();
+
+        styles [
+          "circular"
+        ]
+      }
+
+      Button {
+        icon-name: "info-button-symbolic";
+        tooltip-text: _("Show song info");
+        clicked => $show_info();
+
+        styles [
+          "circular"
+        ]
+      }
+    }
+  }
+}

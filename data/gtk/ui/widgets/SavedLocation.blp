@@ -1,0 +1,68 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $SavedLocation: Box {
+  orientation: horizontal;
+  margin-start: 8;
+  margin-top: 4;
+  margin-end: 4;
+  margin-bottom: 4;
+  spacing: 8;
+  height-request: 34;
+
+  Image {
+    icon-name: "open-source-symbolic";
+  }
+
+  Label title {
+    halign: start;
+    label: "LRClib";
+    ellipsize: end;
+    use-markup: false;
+    hexpand: true;
+
+    styles [
+      'heading'
+    ]
+  }
+}
+
+PopoverMenu actions_popover {
+  position: bottom;
+  menu-model: actions_menu;
+}
+
+Adw.AlertDialog rename_dialog {
+  close-response: "not_rename";
+  heading: _("Rename this Save");
+  default-response: "not_rename";
+  response => $do_rename();
+  extra-child: Gtk.Entry rename_entry {
+    placeholder-text: _("Name");
+    changed => $on_rename_entry_changed();
+  };
+
+  responses [
+    not_rename: _("Cancel"),
+    rename: _("Rename") suggested,
+  ]
+}
+
+Adw.AlertDialog deletion_alert_dialog {
+  close-response: "cancel";
+  heading: _("Delete this Save?");
+  default-response: "cancel";
+  response => $on_deletion_alert_response();
+
+  responses [
+    cancel: _("Cancel"),
+    delete: _("Delete") destructive,
+  ]
+}
+
+menu actions_menu {
+  section {
+    item (_("Rename"), "sv.rename")
+    item (_("Delete"), "sv.delete")
+  }
+}

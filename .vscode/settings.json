@@ -6,6 +6,10 @@
         ".flatpak/**": true,
         "_build/**": true
     },
+    "files.associations": {
+        "*.py.in": "python",
+        "chronograph.in": "python"
+    },
     "search.followSymlinks": false,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
@@ -19,10 +23,9 @@
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "none"
     },
-    "pylint.args": [
-        "--disabled"
-    ],
+    "python.analysis.autoImportCompletions": true,
     "autoDocstring.docstringFormat": "numpy",
+    "pylint.enabled": true,
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "_build",
     "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"

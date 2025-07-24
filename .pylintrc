@@ -1,0 +1,60 @@
+[MAIN]
+
+ignore=importers
+
+
+[MESSAGES CONTROL]
+
+disable=raw-checker-failed,
+        comparison-with-callable,
+        too-many-instance-attributes,
+        useless-parent-delegation,
+        bad-inline-option,
+        locally-disabled,
+        too-many-branches,
+        broad-exception-caught,
+        file-ignored,
+        suppressed-message,
+        useless-suppression,
+        deprecated-pragma,
+        use-symbolic-message-instead,
+        too-few-public-methods,
+        missing-function-docstring,
+        missing-class-docstring,
+        missing-module-docstring,
+        relative-beyond-top-level,
+        import-error,
+        no-name-in-module,
+        unspecified-encoding,
+        consider-using-with,
+        too-many-arguments,
+        too-many-positional-arguments,
+        line-too-long,
+        no-member, # Some kind of workaround, since after updating pygobject stubs Pylint uses this message even if class HAS this member
+        no-value-for-parameter # Some kind of workaround, since after updating pygobject stubs Pylint uses this message in situations when it shouldn't
+
+
+[TYPECHECK]
+
+ignored-classes=Child
+
+
+[VARIABLES]
+
+additional-builtins=_
+
+
+[FORMAT]
+
+max-line-length=88
+
+
+[BASIC]
+
+class-naming-style=PascalCase
+module-naming-style=snake_case
+function-naming-style=snake_case
+const-naming-style=UPPER_CASE
+method-naming-style=snake_case
+variable-naming-style=snake_case
+include-naming-hint=yes

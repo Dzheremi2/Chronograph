@@ -11,6 +11,11 @@
       </choices>
       <default>".lrc"</default>
     </key>
+    <key name="autosave-throttling" type="i">
+      <range min="1" max="10" />
+      <summary>Autosave throttling interval in seconds</summary>
+      <default>5</default>
+    </key>
     <key name="reset-quick-editor" type="b">
       <default>true</default>
     </key>
@@ -34,6 +39,16 @@
     </key>
     <key name="compress-level" type="i">
       <default>75</default>
+    </key>
+    <key name="use-debug-log" type="b">
+      <default>false</default>
+    </key>
+    <key name="default-format" type="s">
+      <!-- Will be extended when other formats will be available -->
+      <choices>
+        <choice value="lrc" />
+      </choices> 
+      <default>"lrc"</default>
     </key>
   </schema>
 
@@ -61,7 +76,7 @@
     <key name="window-maximized" type="b">
       <default>false</default>
     </key>
-    <key name="opened-dir" type="s">
+    <key name="session" type="s">
       <default>"None"</default>
     </key>
   </schema>
