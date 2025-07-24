@@ -1,0 +1,229 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $LRClib : Adw.Dialog {
+  content-height: 600;
+  content-width: 800;
+  width-request: 1;
+  height-request: 1;
+
+  Adw.Breakpoint {
+    condition ("max-width: 500sp")
+
+    setters {
+      lrctracks_list_box.selection-mode: none;
+    }
+
+    apply => $on_breakpoint();
+    unapply => $on_breakpoint();
+  }
+
+  Adw.ToastOverlay toast_overlay {
+    Adw.Clamp {
+      orientation: horizontal;
+      tightening-threshold: 800;
+      maximum-size: 800;
+
+      Adw.Clamp {
+        orientation: vertical;
+        tightening-threshold: 600;
+        maximum-size: 600;
+
+        Adw.NavigationView nav_view {
+          Adw.NavigationPage {
+            title: "LRClib";
+
+            Adw.ToolbarView {
+              [top]
+              Adw.HeaderBar {}
+
+              Box main_box {
+                margin-start: 8;
+                margin-end: 8;
+                margin-bottom: 8;
+                margin-top: 4;
+                spacing: 2;
+                orientation: horizontal;
+                homogeneous: true;
+
+                Box {
+                  orientation: vertical;
+                  spacing: 12;
+
+                  Box {
+                    margin-start: 8;
+                    margin-top: 8;
+                    margin-end: 8;
+                    spacing: 4;
+                    orientation: vertical;
+
+                    Entry title_entry {
+                      placeholder-text: _("Title");
+                    }
+
+                    Entry artist_entry {
+                      placeholder-text: _("Artist");
+                    }
+
+                    Box {
+                      orientation: horizontal;
+                      margin-top: 4;
+
+                      Button search_button {
+                        tooltip-text: _("Search LRClib for provided title and artist");
+                        action-name: "lrclib.search";
+
+                        Adw.ButtonContent {
+                          icon-name: "search-symbolic";
+                          label: _("Search");
+                        }
+
+                        styles ["suggested-action"]
+                      }
+
+
+                    }
+                  }
+
+                  Separator {}
+
+                  ScrolledWindow lrctracks_scrolled_window {
+                    vexpand: true;
+
+                    ListBox lrctracks_list_box {
+                      selection-mode: single;
+                      row-activated => $on_track_load();
+
+                      styles ["navigation-sidebar"]
+                    }
+                  }
+
+                  styles ["card"]
+                }
+
+                Box lyrics_box {
+                  visible: true;
+                  orientation: vertical;
+
+                  Adw.InlineViewSwitcher {
+                    margin-top: 8;
+                    halign: center;
+                    stack: lyrics_stack;
+                  }
+
+                  Adw.ViewStack lyrics_stack {
+                    enable-transitions: true;
+
+                    Adw.ViewStackPage {
+                      name: "synced";
+                      title: _("Synced");
+
+                      child: Box {
+                        margin-top: 8;
+                        margin-bottom: 8;
+                        margin-start: 8;
+                        margin-end: 8;
+
+                        ScrolledWindow {
+                          TextView synced_text_view {
+                            editable: false;
+                            left-margin: 4;
+                            top-margin: 4;
+                            hexpand: true;
+                            vexpand: true;
+                            wrap-mode: word_char;
+
+                            styles ["rounded-frame"]
+                          }
+                        }
+                      };
+                    }
+
+                    Adw.ViewStackPage {
+                      name: "plain";
+                      title: _("Plain");
+
+                      child: Box {
+                        margin-bottom: 8;
+                        margin-end: 8;
+                        margin-start: 8;
+                        margin-top: 8;
+
+                        ScrolledWindow {
+                          TextView plain_text_view {
+                            left-margin: 4;
+                            top-margin: 4;
+                            hexpand: true;
+                            vexpand: true;
+                            wrap-mode: word_char;
+
+                            styles ["rounded-frame"]
+                          }
+                        }
+                      };
+                    }
+                  }
+
+                  Box {
+                    margin-bottom: 8;
+                    margin-end: 8;
+                    halign: end;
+
+                    Adw.SplitButton {
+                      tooltip-text: _("Synced lyrics are used by default, to use plain, select 'Use plain' from submenu");
+                      menu-model: use_lyrics_menu;
+                      action-name: "lrclib.import_synced";
+
+                      Adw.ButtonContent {
+                        icon-name: "import-from-symbolic";
+                        label: _("Use");
+                      }
+
+                      styles ["suggested-action"]
+                    }
+                  }
+
+                  styles ["card"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+Adw.NavigationPage collapsed_lyrics_nav_page {
+  title: "LRClib";
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {}
+
+    Adw.Bin collapsed_bin {
+      margin-start: 8;
+      margin-end: 8;
+      margin-bottom: 8;
+      margin-top: 4;
+    }
+  }
+}
+
+menu use_lyrics_menu {
+  section {
+    item (_("Use plain"), "lrclib.import_plain")
+    item (_("Use synced"), "lrclib.import_synced")
+  }
+}
+
+Adw.StatusPage nothing_found_status_page {
+  icon-name: "nothing-found-symbolic";
+  title: _("Nothing was found for this request");
+  description: _("Try out another request, maybe there are mistakes in request text.");
+}
+
+Adw.StatusPage search_lrclib_status_page {
+  title: _("Search on LRClib by title and artist names");
+  icon-name: "search-symbolic";
+}

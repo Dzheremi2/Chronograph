@@ -8,6 +8,7 @@ ignore=importers
 disable=raw-checker-failed,
         comparison-with-callable,
         too-many-instance-attributes,
+        useless-parent-delegation,
         bad-inline-option,
         locally-disabled,
         broad-exception-caught,

@@ -5,6 +5,7 @@
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement different syncing pages variants for different syncing formats (LRC, eLRC, TTML, etc.)
 # TODO: Implement logger
+# TODO: Reimplement List View mode
 
 import os
 from enum import Enum
@@ -25,7 +26,7 @@ from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.miscellaneous import get_common_directory
 from chronograph.utils.parsers import parse_dir, parse_files
 
-mime_types = (
+MIME_TYPES = (
     "audio/mpeg",
     "audio/aac",
     "audio/ogg",
@@ -297,7 +298,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
         def __select_files(*_args) -> None:
             dialog = Gtk.FileDialog(
-                default_filter=Gtk.FileFilter(mime_types=mime_types)
+                default_filter=Gtk.FileFilter(mime_types=MIME_TYPES)
             )
             self.open_source_button.set_child(Adw.Spinner())
             dialog.open_multiple(self, None, __on_select_files)

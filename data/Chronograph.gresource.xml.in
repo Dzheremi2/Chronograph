@@ -5,8 +5,9 @@
     <file preprocess="xml-stripblanks">gtk/window.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SongCard.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/BoxDialog.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/widgets/LrclibTrack.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/LRClibTrack.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/Preferences.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/dialogs/LRClib.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/Player.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
@@ -42,6 +43,9 @@
     <file alias="dnd-area-symbolic.svg">icons/icons/symbolic/dnd-area-symbolic.svg</file>
     <file alias="chr-cogged-wheel-symbolic.svg">icons/icons/symbolic/chr-cogged-wheel-symbolic.svg</file>
     <file alias="chr-pause-symbolic.svg">icons/icons/symbolic/chr-pause-symbolic.svg</file>
+    <file alias="chr-no-internet-connection-symbolic.svg">icons/icons/symbolic/chr-no-internet-connection-symbolic.svg</file>
+    <file alias="chr-connection-timeout-symbolic.svg">icons/icons/symbolic/chr-connection-timeout-symbolic.svg</file>
+    <file alias="chr-error-occured-symbolic.svg">icons/icons/symbolic/chr-error-occured-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

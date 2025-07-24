@@ -189,6 +189,12 @@ class LRCSyncPage(Adw.NavigationPage):
         )
         dialog.open(Constants.WIN, None, __on_selected_lyrics_file)
 
+    # pylint: disable=import-outside-toplevel
+    def _import_lrclib(self, *_args) -> None:
+        from chronograph.ui.dialogs.lrclib import LRClib
+        lrclib_dialog = LRClib()
+        lrclib_dialog.present(Constants.WIN)
+
     ###############
 
     ############### Export Actions ###############
@@ -300,6 +306,7 @@ class LRCSyncPage(Adw.NavigationPage):
         # Import actions
         _actions = Gio.SimpleActionGroup.new()
         _i_lrclib = Gio.SimpleAction.new("lrclib", None)
+        _i_lrclib.connect("activate", self._import_lrclib)
         _i_file = Gio.SimpleAction.new("file", None)
         _i_file.connect("activate", self._import_file)
         _i_clipboard = Gio.SimpleAction.new("clipboard", None)
