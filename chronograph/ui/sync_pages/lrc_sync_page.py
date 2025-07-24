@@ -85,6 +85,22 @@ class LRCSyncPage(Adw.NavigationPage):
 
         self._setup_actions()
 
+    def is_all_lines_synced(self) -> bool:
+        """Determines if all lines have timestamp
+
+        Returns
+        -------
+        bool
+            If all lines have timestamp
+        """
+        # pylint: disable=not-an-iterable
+        text = "\n".join([line.get_text() for line in self.sync_lines])
+        timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2}]")
+        for line in text.strip().splitlines():
+            if not timestamp_pattern.search(line):
+                return False
+        return True
+
     ############### Line Actions ###############
     def _append_end_line(self, *_args) -> None:
         self.sync_lines.append(LRCSyncLine())
@@ -289,7 +305,6 @@ class LRCSyncPage(Adw.NavigationPage):
 
             timestamp = media_stream.get_timestamp()
             if timestamp < timestamps[0]:
-                lines[0].set_attributes(PANGO_HIGHLIGHTER)
                 return
             for i in range(len(timestamps) - 1):
                 if timestamps[i] <= timestamp < timestamps[i + 1]:
@@ -329,6 +344,7 @@ class LRCSyncPage(Adw.NavigationPage):
         if Schema.auto_file_manipulation:
             logger.debug("Page closed, saving lyrics")
             self._autosave()
+        self._player.stream_ended()
 
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:
@@ -452,15 +468,15 @@ class LRCSyncPage(Adw.NavigationPage):
             logger.info("Publishing status code: %s", response.status_code)
             if response.status_code == 201:
                 Constants.WIN.show_toast(
-                    _("Published successfully: {}").format(str(response.status_code)),
+                    _("Published successfully: {code}").format(code=str(response.status_code)),
                 )
             elif response.status_code == 400:
                 Constants.WIN.show_toast(
-                    _("Incorrect publish token: {}").format(str(response.status_code)),
+                    _("Incorrect publish token: {code}").format(code=str(response.status_code)),
                 )
             else:
                 Constants.WIN.show_toast(
-                    _("Unknown error occured: {}").format(str(response.status_code)),
+                    _("Unknown error occured: {code}").format(code=str(response.status_code)),
                 )
 
         if not all((title, artist, album, duration, lyrics)):
@@ -477,6 +493,11 @@ class LRCSyncPage(Adw.NavigationPage):
                 _("Cannot publish empty lyrics"),
                 button_label=_("Why?"),
                 button_callback=_reason,
+            )
+            return
+        if not self.is_all_lines_synced():
+            Constants.WIN.show_toast(
+                _("Seems like not every line is synced"),
             )
             return
         self.export_lyrics_button.set_sensitive(False)
@@ -638,7 +659,7 @@ class LRCSyncLine(Adw.EntryRow):
     def add_line_on_enter(self, *_args) -> None:
         """Add a new line when Enter is pressed"""
         self.get_ancestor(LRCSyncPage).append_line()
-        logger.debug("A new lines added underneath of self(%s)", self)
+        logger.debug("A new line added underneath of %s", self)
 
     def _reset_timer(self, *_args) -> None:
         self.get_ancestor(LRCSyncPage).reset_timer()
@@ -653,4 +674,4 @@ class LRCSyncLine(Adw.EntryRow):
             page.sync_lines.remove(self)
             if (row := page.sync_lines.get_row_at_index(index - 1)) is not None:
                 row.grab_focus()
-            logger.debug("self(%s) was removed from sync_lines", self)
+            logger.debug("Line(%s) was removed from sync_lines", self)

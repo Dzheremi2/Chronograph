@@ -83,6 +83,19 @@
   </screenshots>
 
   <releases>
+    <release version="3.0" date="2025-07-27">
+      <description translate="no">
+        <p>The App was rewritten for better performance and easier features implementation</p>
+        <p>New features</p>
+        <ul>
+          <li>Added logging and debugging imformation to the About dialog</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>]
+          <li>Precise milliseconds are now disabled by default</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.5.2" date="2025-06-15">
       <description translate="no">
         <p>Bug fixes</p>

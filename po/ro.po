@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-15 11:50+0300\n"
+"POT-Creation-Date: 2025-07-24 23:40+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,114 +18,189 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: chronograph/window.py:630
-msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr ""
-
-#: chronograph/window.py:677
-msgid "Some of entries are empty"
-msgstr ""
-
-#: chronograph/window.py:704
+#: chronograph/window.py:438
 msgid "Copied successfully"
 msgstr ""
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:151
+#: chronograph/main.py:156
 msgid "translator-credits"
 msgstr ""
 
-#: chronograph/main.py:159
+#: chronograph/main.py:164
 msgid "Inspiration"
 msgstr ""
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:169
+#: chronograph/main.py:174
 msgid "Build your own dictionary"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
-#: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
-#: data/gtk/ui/SongCard.blp:76 data/gtk/ui/SongCard.blp:182
-msgid "Title"
+#: chronograph/ui/dialogs/lrclib.py:112
+msgid "Connection Error"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
-#: data/gtk/window.blp:188 data/gtk/window.blp:344 data/gtk/window.blp:517
-#: data/gtk/ui/SongCard.blp:80 data/gtk/ui/SongCard.blp:197
-msgid "Artist"
+#: chronograph/ui/dialogs/lrclib.py:114
+msgid ""
+"Failed to connect to the LRC library server. Please check your internet "
+"connection and try again"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:525
-msgid "Duration"
+#: chronograph/ui/dialogs/lrclib.py:123
+msgid "Timeout Error"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
-#: data/gtk/window.blp:521 data/gtk/ui/SongCard.blp:84
-msgid "Album"
+#: chronograph/ui/dialogs/lrclib.py:125
+msgid "The request to the LRC library server timed out. Please try again later"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:12
-msgid "Is instrumental"
+#: chronograph/ui/dialogs/lrclib.py:134
+msgid "Something went wrong"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:15
-msgid "Yes"
+#: chronograph/ui/dialogs/lrclib.py:136
+msgid ""
+"An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:16
-msgid "No"
-msgstr ""
-
-#: chronograph/ui/LrclibTrack.py:105
+#: chronograph/ui/dialogs/lrclib.py:218
 msgid "No synced lyrics available"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:117
+#: chronograph/ui/dialogs/lrclib.py:223
 msgid "No plain lyrics available"
 msgstr ""
 
-#: chronograph/ui/SavedLocation.py:6
-msgid "Path: "
+#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+msgid "Lyrics exported to clipboard"
 msgstr ""
 
-#: chronograph/ui/SongCard.py:15
-msgid "About File"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/SongCard.py:19
-msgid "Path"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+msgid "Show"
 msgstr ""
 
-#: chronograph/ui/SongCard.py:252 chronograph/ui/SongCard.py:308
-#: chronograph/ui/SongCard.py:309 chronograph/ui/SongCard.py:317
-#: chronograph/ui/SongCard.py:324 chronograph/ui/SongCard.py:325
-#: chronograph/ui/SongCard.py:333
-msgid "Unknown"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:408
+#: chronograph/ui/sync_pages/lrc_sync_page.py:451
+msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/utils/caching.py:45
-msgid "Directory saved successfully"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:411
+#: chronograph/ui/sync_pages/lrc_sync_page.py:454
+msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+msgid "An error occurred while connecting to LRClib.net"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#, python-brace-format
+msgid "Published successfully: {code}"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#, python-brace-format
+msgid "Incorrect publish token: {code}"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:479
+#, python-brace-format
+msgid "Unknown error occured: {code}"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+msgid "Unable to publish lyrics"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:488
+msgid ""
+"To publish lyrics the track must have a title, artist, album and lyrics "
+"fields set"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:493
+msgid "Cannot publish empty lyrics"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+msgid "Why?"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Seems like not every line is synced"
 msgstr ""
 
-#: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
-msgid "Published successfully: "
+#: chronograph/ui/widgets/song_card.py:92
+msgctxt "song info dialog"
+msgid "About File"
 msgstr ""
 
-#: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
-msgid "Incorrect publish token: "
+#: chronograph/ui/widgets/song_card.py:94
+#: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
+#: data/gtk/ui/dialogs/MetadataEditor.blp:78
+msgid "Title"
 msgstr ""
 
-#: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
-msgid "Unknown error occured: "
+#: chronograph/ui/widgets/song_card.py:95
+#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
+#: data/gtk/ui/dialogs/MetadataEditor.blp:82
+msgid "Artist"
 msgstr ""
 
-#: chronograph/utils/publish.py:124 data/gtk/window.blp:536
-msgid "Publish"
+#: chronograph/ui/widgets/song_card.py:96
+#: chronograph/ui/widgets/lrclib_track.py:13
+#: data/gtk/ui/dialogs/MetadataEditor.blp:86
+msgid "Album"
+msgstr ""
+
+#: chronograph/ui/widgets/song_card.py:97
+msgid "Path"
+msgstr ""
+
+#: chronograph/ui/widgets/song_card.py:124
+#: chronograph/ui/widgets/song_card.py:127
+msgctxt "song title placeholder"
+msgid "Unknown"
+msgstr ""
+
+#: chronograph/ui/widgets/song_card.py:134
+#: chronograph/ui/widgets/song_card.py:137
+msgctxt "song artist placeholder"
+msgid "Unknown"
+msgstr ""
+
+#: chronograph/ui/widgets/song_card.py:144
+#: chronograph/ui/widgets/song_card.py:147
+msgctxt "song album placeholder"
+msgid "Unknown"
+msgstr ""
+
+#. pylint: disable=not-callable
+#. Translators: Do not translate the curly braces, they are used for formatting
+#: chronograph/ui/widgets/saved_location.py:28
+#: chronograph/ui/widgets/saved_location.py:32
+msgid "Path: {}"
+msgstr ""
+
+#: chronograph/ui/widgets/lrclib_track.py:12
+msgid "Duration"
+msgstr ""
+
+#: chronograph/ui/widgets/lrclib_track.py:14
+msgid "Is instrumental"
+msgstr ""
+
+#: chronograph/ui/widgets/lrclib_track.py:17
+msgid "Yes"
+msgstr ""
+
+#: chronograph/ui/widgets/lrclib_track.py:18
+msgid "No"
 msgstr ""
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
@@ -150,420 +225,452 @@ msgstr ""
 msgid "This directory doesn't have any supported music files"
 msgstr ""
 
-#: data/gtk/window.blp:49 data/gtk/window.blp:54
-msgid "Search on LRClib by title and artist names"
-msgstr ""
-
-#: data/gtk/window.blp:60 data/gtk/window.blp:66
-msgid "Nothing was found for this request"
-msgstr ""
-
-#: data/gtk/window.blp:61 data/gtk/window.blp:67
-msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
-
-#: data/gtk/window.blp:71
+#: data/gtk/window.blp:49
 msgid "No saves found yet"
 msgstr ""
 
-#: data/gtk/window.blp:73
+#: data/gtk/window.blp:51
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:103 data/gtk/window.blp:1242
+#: data/gtk/window.blp:81 data/gtk/window.blp:475
 msgid "Quick Editor"
 msgstr ""
 
-#: data/gtk/window.blp:128
+#: data/gtk/window.blp:106
 msgid "Copy to clipboard"
 msgstr ""
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:353
-msgid "Search LRClib for provided title and artist"
-msgstr ""
-
-#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:724
-msgid "Search"
-msgstr ""
-
-#: data/gtk/window.blp:243 data/gtk/window.blp:408
-msgid "Synced"
-msgstr ""
-
-#: data/gtk/window.blp:268 data/gtk/window.blp:434
-msgid "Plain"
-msgstr ""
-
-#: data/gtk/window.blp:297 data/gtk/window.blp:464
-msgid ""
-"Synced lyrics are used by default, to use plain, select 'Use plain' from "
-"submenu"
-msgstr ""
-
-#: data/gtk/window.blp:303 data/gtk/window.blp:470
-msgid "Use"
-msgstr ""
-
-#: data/gtk/window.blp:550 data/gtk/window.blp:617
+#: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr ""
 
-#: data/gtk/window.blp:603
+#: data/gtk/window.blp:167
 msgid "Drop files here to open them"
 msgstr ""
 
-#: data/gtk/window.blp:624
+#: data/gtk/window.blp:188
 msgid "Saves"
 msgstr ""
 
-#: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1093
+#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:365
 msgid "Toggle sidebar"
 msgstr ""
 
-#: data/gtk/window.blp:660
+#: data/gtk/window.blp:224
 msgid "Select a directory or open a file"
 msgstr ""
 
-#: data/gtk/window.blp:672 data/gtk/window.blp:1073
+#: data/gtk/window.blp:236 data/gtk/window.blp:345
 msgid "Toggle search"
 msgstr ""
 
-#: data/gtk/window.blp:680 data/gtk/window.blp:773
+#: data/gtk/window.blp:244
 msgid "App settings, info and utils"
 msgstr ""
 
-#: data/gtk/window.blp:688
+#: data/gtk/window.blp:252
 msgid "Clean the library"
 msgstr ""
 
-#: data/gtk/window.blp:703
+#: data/gtk/window.blp:267
 msgid "Re-parse current directory"
 msgstr ""
 
-#: data/gtk/window.blp:708
+#: data/gtk/window.blp:273
 msgid "Add current directory to saves"
 msgstr ""
 
-#: data/gtk/window.blp:764
-msgid "Syncing"
+#: data/gtk/window.blp:290 data/gtk/ui/dialogs/LRClib.blp:78
+msgid "Search"
 msgstr ""
 
-#: data/gtk/window.blp:863
-msgid "Toggle song repeat"
-msgstr ""
-
-#: data/gtk/window.blp:919
-msgid "Sync/Re-sync line"
-msgstr ""
-
-#: data/gtk/window.blp:930 data/gtk/window.blp:1107
-msgid "Replay selected line"
-msgstr ""
-
-#: data/gtk/window.blp:938
-msgid "Re-sync selected line 100ms back"
-msgstr ""
-
-#: data/gtk/window.blp:946
-msgid "Re-sync selected line 100ms forward"
-msgstr ""
-
-#: data/gtk/window.blp:954 data/gtk/window.blp:1170
-msgid "Import from …"
-msgstr ""
-
-#: data/gtk/window.blp:965 data/gtk/window.blp:1180
-msgid "Export to …"
-msgstr ""
-
-#: data/gtk/window.blp:983 data/gtk/window.blp:1190
-msgid "Actions with selected line"
-msgstr ""
-
-#: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
-#: data/gtk/ui/SongCard.blp:261
-msgid "Edit song metadata"
-msgstr ""
-
-#: data/gtk/window.blp:1004
-msgid "About file"
-msgstr ""
-
-#: data/gtk/window.blp:1038
-msgid "Add line"
-msgstr ""
-
-#: data/gtk/window.blp:1061
+#: data/gtk/window.blp:333
 msgid "Shortcuts"
 msgstr ""
 
-#: data/gtk/window.blp:1065 data/gtk/ui/Preferences.blp:6
+#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
 msgid "General"
 msgstr ""
 
-#: data/gtk/window.blp:1068
+#: data/gtk/window.blp:340
 msgid "Quit"
 msgstr ""
 
-#: data/gtk/window.blp:1078
+#: data/gtk/window.blp:350
 msgid "Select directory"
 msgstr ""
 
-#: data/gtk/window.blp:1083
+#: data/gtk/window.blp:355
 msgid "Select files"
 msgstr ""
 
-#: data/gtk/window.blp:1088 data/gtk/window.blp:1247
+#: data/gtk/window.blp:360 data/gtk/window.blp:480
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:1099
+#: data/gtk/window.blp:371
 msgid "Sync mode"
 msgstr ""
 
-#: data/gtk/window.blp:1102
+#: data/gtk/window.blp:374
 msgid "Sync/Re-sync"
 msgstr ""
 
-#: data/gtk/window.blp:1112
+#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+msgid "Replay selected line"
+msgstr ""
+
+#: data/gtk/window.blp:384
 msgid "Remove selected line"
 msgstr ""
 
-#: data/gtk/window.blp:1117
+#: data/gtk/window.blp:389
 msgid "Prepend line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:1122
+#: data/gtk/window.blp:394
 msgid "Append line to selected"
 msgstr ""
 
-#: data/gtk/window.blp:1127 data/gtk/window.blp:1195
+#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:189
 msgid "Append line to end"
 msgstr ""
 
-#: data/gtk/window.blp:1132
+#: data/gtk/window.blp:404
 msgid "Re-sync 100ms back"
 msgstr ""
 
-#: data/gtk/window.blp:1137
+#: data/gtk/window.blp:409
 msgid "Re-sync 100ms forward"
 msgstr ""
 
-#: data/gtk/window.blp:1147
+#: data/gtk/window.blp:418
 msgid "Directory"
 msgstr ""
 
-#: data/gtk/window.blp:1148
+#: data/gtk/window.blp:419
 msgid "Files"
 msgstr ""
 
-#: data/gtk/window.blp:1155 data/gtk/window.blp:1212
+#: data/gtk/window.blp:426 data/gtk/window.blp:445
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:1161 data/gtk/window.blp:1218
+#: data/gtk/window.blp:432 data/gtk/window.blp:451
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:1172 data/gtk/window.blp:1182
-msgid "File"
-msgstr ""
-
-#: data/gtk/window.blp:1173 data/gtk/window.blp:1183
-msgid "Clipboard"
-msgstr ""
-
-#: data/gtk/window.blp:1192
-msgid "Remove line"
-msgstr ""
-
-#: data/gtk/window.blp:1193
-msgid "Prepend line"
-msgstr ""
-
-#: data/gtk/window.blp:1194
-msgid "Append line"
-msgstr ""
-
-#: data/gtk/window.blp:1201
-msgid "Use plain"
-msgstr ""
-
-#: data/gtk/window.blp:1202
-msgid "Use synced"
-msgstr ""
-
-#: data/gtk/window.blp:1209
+#: data/gtk/window.blp:442
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:1225
+#: data/gtk/window.blp:458
 msgid "View"
 msgstr ""
 
-#: data/gtk/window.blp:1228
+#: data/gtk/window.blp:461
 msgid "Grid"
 msgstr ""
 
-#: data/gtk/window.blp:1234
+#: data/gtk/window.blp:467
 msgid "List"
 msgstr ""
 
-#: data/gtk/window.blp:1246
+#: data/gtk/window.blp:479
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:1248
+#: data/gtk/window.blp:481
 msgid "About"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:10
+#: data/gtk/ui/dialogs/LRClib.blp:73
+msgid "Search LRClib for provided title and artist"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:119
+msgid "Synced"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:144
+msgid "Plain"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:173
+msgid ""
+"Synced lyrics are used by default, to use plain, select 'Use plain' from "
+"submenu"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:179
+msgid "Use"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:215
+msgid "Use plain"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:216
+msgid "Use synced"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:222
+msgid "Nothing was found for this request"
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:223
+msgid "Try out another request, maybe there are mistakes in request text."
+msgstr ""
+
+#: data/gtk/ui/dialogs/LRClib.blp:227
+msgid "Search on LRClib by title and artist names"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/widgets/SavedLocation.blp:46
+#: data/gtk/ui/widgets/SavedLocation.blp:58
+msgid "Cancel"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:22
+msgid "Apply"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:51
+msgid "Change cover"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:100
+msgid "Set cover"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+msgid "Remove cover"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:10
 msgid "Behavior"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:13
+#: data/gtk/ui/dialogs/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:14
+#: data/gtk/ui/dialogs/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:18
+#: data/gtk/ui/dialogs/Preferences.blp:18
 msgid "Save session on app close"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:19
+#: data/gtk/ui/dialogs/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:23
+#: data/gtk/ui/dialogs/Preferences.blp:23
 msgid "Automatically toggle List View mode"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:24
+#: data/gtk/ui/dialogs/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:28
+#: data/gtk/ui/dialogs/Preferences.blp:28
 msgid "Display compressed covers"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:29
+#: data/gtk/ui/dialogs/Preferences.blp:29
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/dialogs/Preferences.blp:33
 msgid "Quality level"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:34
+#: data/gtk/ui/dialogs/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:41
+#: data/gtk/ui/dialogs/Preferences.blp:41
 msgid "Parse directories recursively"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/dialogs/Preferences.blp:42
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:45
+#: data/gtk/ui/dialogs/Preferences.blp:45
 msgid "Follow symlinks"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:46
+#: data/gtk/ui/dialogs/Preferences.blp:46
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:52
+#: data/gtk/ui/dialogs/Preferences.blp:52
 msgid "Sync Page"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:55
+#: data/gtk/ui/dialogs/Preferences.blp:55
 msgid "Use precise milliseconds"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:56
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:60
+#: data/gtk/ui/dialogs/Preferences.blp:60
 msgid "Auto file manipulation"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:61
+#: data/gtk/ui/dialogs/Preferences.blp:61
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:65
+#: data/gtk/ui/dialogs/Preferences.blp:65
 msgid "File format"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:66
+#: data/gtk/ui/dialogs/Preferences.blp:66
 msgid "File format for auto manipulation"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:37
+#: data/gtk/ui/dialogs/Preferences.blp:71
+msgid "Autosave interval"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:72
+msgid "Autosave interval after lyrics syncing inactivity"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:79
+msgid "Debug"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:82
+msgid "Enable Debug logging profile"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:83
+msgid "Expands logging information for debug purposes"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:84
+msgid "NEEDS RESTART"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
+msgid "Syncing"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:31
+msgid "Sync/Re-sync line"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+msgid "Re-sync selected line 100ms back"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
+msgid "Re-sync selected line 100ms forward"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:164
+msgid "Import from …"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:77
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
+msgid "Export to …"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+msgid "Actions with selected line"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
+#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
+msgid "Edit song metadata"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+msgid "About file"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
+msgid "Add line"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:166
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
+msgid "File"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:167
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
+msgid "Clipboard"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:186
+msgid "Remove line"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:187
+msgid "Prepend line"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:188
+msgid "Append line"
+msgstr ""
+
+#: data/gtk/ui/widgets/SavedLocation.blp:37
 msgid "Rename this Save"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:40
+#: data/gtk/ui/widgets/SavedLocation.blp:41
 msgid "Name"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
-#: data/gtk/ui/SongCard.blp:16
-msgid "Cancel"
-msgstr ""
-
-#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
+#: data/gtk/ui/widgets/SavedLocation.blp:47
+#: data/gtk/ui/widgets/SavedLocation.blp:65
 msgid "Rename"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:53
+#: data/gtk/ui/widgets/SavedLocation.blp:53
 msgid "Delete this Save?"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+#: data/gtk/ui/widgets/SavedLocation.blp:59
+#: data/gtk/ui/widgets/SavedLocation.blp:66
 msgid "Delete"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:21
-msgid "Apply"
-msgstr ""
-
-#: data/gtk/ui/SongCard.blp:49
-msgid "Change cover"
-msgstr ""
-
-#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
 msgid "Sync"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
+#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
 msgid "Show song info"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:158
+#: data/gtk/ui/widgets/SongCard.blp:68
 msgid "Open syncing page"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:284
-msgid "Set cover"
-msgstr ""
-
-#: data/gtk/ui/SongCard.blp:289
-msgid "Remove cover"
+#: data/gtk/ui/widgets/Player.blp:100
+msgid "Toggle song repeat"
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8

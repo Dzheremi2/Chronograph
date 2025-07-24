@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-15 11:50+0300\n"
+"POT-Creation-Date: 2025-07-24 23:40+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/lrcmake/"
@@ -19,116 +19,197 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:630
-msgid "Some of Title, Artist and/or Album fields are Unknown!"
-msgstr "தலைப்பு, கலைஞர் மற்றும்/அல்லது தொகுப்பில் சில தெரியவில்லை!"
-
-#: chronograph/window.py:677
-msgid "Some of entries are empty"
-msgstr "சில உள்ளீடுகள் காலியாக உள்ளன"
-
-#: chronograph/window.py:704
+#: chronograph/window.py:438
 msgid "Copied successfully"
 msgstr "வெற்றிகரமாக நகலெடுக்கப்பட்டது"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:151
+#: chronograph/main.py:156
 msgid "translator-credits"
 msgstr "தமிழ்நேரம்"
 
-#: chronograph/main.py:159
+#: chronograph/main.py:164
 #, fuzzy
 msgid "Inspiration"
 msgstr "காலம்"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:169
+#: chronograph/main.py:174
 msgid "Build your own dictionary"
 msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:8 chronograph/ui/SongCard.py:16
-#: data/gtk/window.blp:184 data/gtk/window.blp:339 data/gtk/window.blp:513
-#: data/gtk/ui/SongCard.blp:76 data/gtk/ui/SongCard.blp:182
-msgid "Title"
-msgstr "தலைப்பு"
+#: chronograph/ui/dialogs/lrclib.py:112
+msgid "Connection Error"
+msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:9 chronograph/ui/SongCard.py:17
-#: data/gtk/window.blp:188 data/gtk/window.blp:344 data/gtk/window.blp:517
-#: data/gtk/ui/SongCard.blp:80 data/gtk/ui/SongCard.blp:197
-msgid "Artist"
-msgstr "கலைஞர்"
+#: chronograph/ui/dialogs/lrclib.py:114
+msgid ""
+"Failed to connect to the LRC library server. Please check your internet "
+"connection and try again"
+msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:10 data/gtk/window.blp:525
-msgid "Duration"
-msgstr "காலம்"
+#: chronograph/ui/dialogs/lrclib.py:123
+msgid "Timeout Error"
+msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:11 chronograph/ui/SongCard.py:18
-#: data/gtk/window.blp:521 data/gtk/ui/SongCard.blp:84
-msgid "Album"
-msgstr "ஆல்பம்"
+#: chronograph/ui/dialogs/lrclib.py:125
+msgid "The request to the LRC library server timed out. Please try again later"
+msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:12
-msgid "Is instrumental"
-msgstr "கருவியாகும்"
+#: chronograph/ui/dialogs/lrclib.py:134
+msgid "Something went wrong"
+msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:15
-msgid "Yes"
-msgstr "ஆம்"
+#: chronograph/ui/dialogs/lrclib.py:136
+msgid ""
+"An unknown error occurred while trying to connect to the LRC library server"
+msgstr ""
 
-#: chronograph/ui/LrclibTrack.py:16
-msgid "No"
-msgstr "இல்லை"
-
-#: chronograph/ui/LrclibTrack.py:105
+#: chronograph/ui/dialogs/lrclib.py:218
 msgid "No synced lyrics available"
 msgstr "ஒத்திசைக்கப்பட்ட வரிகள் எதுவும் கிடைக்கவில்லை"
 
-#: chronograph/ui/LrclibTrack.py:117
+#: chronograph/ui/dialogs/lrclib.py:223
 msgid "No plain lyrics available"
 msgstr "வெற்று வரிகள் எதுவும் கிடைக்கவில்லை"
 
-#: chronograph/ui/SavedLocation.py:6
-msgid "Path: "
-msgstr "பாதை: "
+#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+#, fuzzy
+msgid "Lyrics exported to clipboard"
+msgstr "இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
 
-#: chronograph/ui/SongCard.py:15
-msgid "About File"
-msgstr "கோப்பு பற்றி"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+msgid "Lyrics exported to file"
+msgstr ""
 
-#: chronograph/ui/SongCard.py:19
-msgid "Path"
-msgstr "பாதை"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+msgid "Show"
+msgstr ""
 
-#: chronograph/ui/SongCard.py:252 chronograph/ui/SongCard.py:308
-#: chronograph/ui/SongCard.py:309 chronograph/ui/SongCard.py:317
-#: chronograph/ui/SongCard.py:324 chronograph/ui/SongCard.py:325
-#: chronograph/ui/SongCard.py:333
-msgid "Unknown"
-msgstr "தெரியாத"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:408
+#: chronograph/ui/sync_pages/lrc_sync_page.py:451
+msgid "Failed to connect to LRClib.net"
+msgstr ""
 
-#: chronograph/utils/caching.py:45
-msgid "Directory saved successfully"
-msgstr "அடைவு வெற்றிகரமாக சேமிக்கப்பட்டது"
+#: chronograph/ui/sync_pages/lrc_sync_page.py:411
+#: chronograph/ui/sync_pages/lrc_sync_page.py:454
+msgid "Connection to LRClib.net timed out"
+msgstr ""
 
-#: chronograph/utils/parsers.py:237 chronograph/utils/parsers.py:241
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+msgid "An error occurred while connecting to LRClib.net"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#, fuzzy, python-brace-format
+msgid "Published successfully: {code}"
+msgstr "வெற்றிகரமாக வெளியிடப்பட்டது: "
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#, fuzzy, python-brace-format
+msgid "Incorrect publish token: {code}"
+msgstr "தவறான வெளியீட்டு டோக்கன்: "
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:479
+#, fuzzy, python-brace-format
+msgid "Unknown error occured: {code}"
+msgstr "அறியப்படாத பிழை ஏற்பட்டது: "
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+msgid "Unable to publish lyrics"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:488
+msgid ""
+"To publish lyrics the track must have a title, artist, album and lyrics "
+"fields set"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:493
+msgid "Cannot publish empty lyrics"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+msgid "Why?"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Seems like not every line is synced"
 msgstr "ஒவ்வொரு வரியும் ஒத்திசைக்கப்படவில்லை என்று தெரிகிறது"
 
-#: chronograph/utils/publish.py:98 chronograph/utils/publish.py:102
-msgid "Published successfully: "
-msgstr "வெற்றிகரமாக வெளியிடப்பட்டது: "
+#: chronograph/ui/widgets/song_card.py:92
+#, fuzzy
+msgctxt "song info dialog"
+msgid "About File"
+msgstr "கோப்பு பற்றி"
 
-#: chronograph/utils/publish.py:107 chronograph/utils/publish.py:111
-msgid "Incorrect publish token: "
-msgstr "தவறான வெளியீட்டு டோக்கன்: "
+#: chronograph/ui/widgets/song_card.py:94
+#: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
+#: data/gtk/ui/dialogs/MetadataEditor.blp:78
+msgid "Title"
+msgstr "தலைப்பு"
 
-#: chronograph/utils/publish.py:116 chronograph/utils/publish.py:120
-msgid "Unknown error occured: "
-msgstr "அறியப்படாத பிழை ஏற்பட்டது: "
+#: chronograph/ui/widgets/song_card.py:95
+#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
+#: data/gtk/ui/dialogs/MetadataEditor.blp:82
+msgid "Artist"
+msgstr "கலைஞர்"
 
-#: chronograph/utils/publish.py:124 data/gtk/window.blp:536
-msgid "Publish"
-msgstr "பதிப்பிடு"
+#: chronograph/ui/widgets/song_card.py:96
+#: chronograph/ui/widgets/lrclib_track.py:13
+#: data/gtk/ui/dialogs/MetadataEditor.blp:86
+msgid "Album"
+msgstr "ஆல்பம்"
+
+#: chronograph/ui/widgets/song_card.py:97
+msgid "Path"
+msgstr "பாதை"
+
+#: chronograph/ui/widgets/song_card.py:124
+#: chronograph/ui/widgets/song_card.py:127
+#, fuzzy
+msgctxt "song title placeholder"
+msgid "Unknown"
+msgstr "தெரியாத"
+
+#: chronograph/ui/widgets/song_card.py:134
+#: chronograph/ui/widgets/song_card.py:137
+#, fuzzy
+msgctxt "song artist placeholder"
+msgid "Unknown"
+msgstr "தெரியாத"
+
+#: chronograph/ui/widgets/song_card.py:144
+#: chronograph/ui/widgets/song_card.py:147
+#, fuzzy
+msgctxt "song album placeholder"
+msgid "Unknown"
+msgstr "தெரியாத"
+
+#. pylint: disable=not-callable
+#. Translators: Do not translate the curly braces, they are used for formatting
+#: chronograph/ui/widgets/saved_location.py:28
+#: chronograph/ui/widgets/saved_location.py:32
+#, fuzzy
+msgid "Path: {}"
+msgstr "பாதை: "
+
+#: chronograph/ui/widgets/lrclib_track.py:12
+msgid "Duration"
+msgstr "காலம்"
+
+#: chronograph/ui/widgets/lrclib_track.py:14
+msgid "Is instrumental"
+msgstr "கருவியாகும்"
+
+#: chronograph/ui/widgets/lrclib_track.py:17
+msgid "Yes"
+msgstr "ஆம்"
+
+#: chronograph/ui/widgets/lrclib_track.py:18
+msgid "No"
+msgstr "இல்லை"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -152,51 +233,183 @@ msgstr "ஏதுமில்லா கோப்பகம்"
 msgid "This directory doesn't have any supported music files"
 msgstr "இந்தக் கோப்பகத்தில் ஆதரிக்கப்படும் இசைக் கோப்புகள் எதுவும் இல்லை"
 
-#: data/gtk/window.blp:49 data/gtk/window.blp:54
-msgid "Search on LRClib by title and artist names"
-msgstr "தலைப்பு மற்றும் கலைஞர் பெயர்கள் மூலம் LRCLIB இல் தேடுங்கள்"
-
-#: data/gtk/window.blp:60 data/gtk/window.blp:66
-msgid "Nothing was found for this request"
-msgstr "இந்த கோரிக்கைக்கு எதுவும் கிடைக்கவில்லை"
-
-#: data/gtk/window.blp:61 data/gtk/window.blp:67
-msgid "Try out another request, maybe there are mistakes in request text."
-msgstr "மற்றொரு கோரிக்கையை முயற்சிக்கவும், கோரிக்கை உரையில் தவறுகள் இருக்கலாம்."
-
-#: data/gtk/window.blp:71
+#: data/gtk/window.blp:49
 msgid "No saves found yet"
 msgstr "சேமிப்புகள் எதுவும் இன்னும் காணப்படவில்லை"
 
-#: data/gtk/window.blp:73
+#: data/gtk/window.blp:51
 msgid "Press pin button to add current directory to the saves"
 msgstr "சேமிப்புகளில் தற்போதைய கோப்பகத்தைச் சேர்க்க முள் பொத்தானை அழுத்தவும்"
 
-#: data/gtk/window.blp:103 data/gtk/window.blp:1242
+#: data/gtk/window.blp:81 data/gtk/window.blp:475
 msgid "Quick Editor"
 msgstr "விரைவான ஆசிரியர்"
 
-#: data/gtk/window.blp:128
+#: data/gtk/window.blp:106
+#, fuzzy
 msgid "Copy to clipboard"
-msgstr "இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
+msgstr "இடைநிலைப் பலகை"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:353
-msgid "Search LRClib for provided title and artist"
-msgstr "வழங்கப்பட்ட தலைப்பு மற்றும் கலைஞருக்காக LRCLIB ஐத் தேடுங்கள்"
+#: data/gtk/window.blp:119 data/gtk/window.blp:181
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
+#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
+msgid "Chronograph"
+msgstr "கால வரைபடம்"
 
-#: data/gtk/window.blp:201 data/gtk/window.blp:358 data/gtk/window.blp:724
+#: data/gtk/window.blp:167
+msgid "Drop files here to open them"
+msgstr "கோப்புகளைத் திறக்க இங்கே விடுங்கள்"
+
+#: data/gtk/window.blp:188
+msgid "Saves"
+msgstr "சேமிக்கிறது"
+
+#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:365
+msgid "Toggle sidebar"
+msgstr "பக்கப்பட்டியை மாற்றவும்"
+
+#: data/gtk/window.blp:224
+msgid "Select a directory or open a file"
+msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும் அல்லது ஒரு கோப்பைத் திறக்கவும்"
+
+#: data/gtk/window.blp:236 data/gtk/window.blp:345
+msgid "Toggle search"
+msgstr "தேடலை மாற்றவும்"
+
+#: data/gtk/window.blp:244
+msgid "App settings, info and utils"
+msgstr "பயன்பாட்டு அமைப்புகள், செய்தி மற்றும் பயன்பாடுகள்"
+
+#: data/gtk/window.blp:252
+#, fuzzy
+msgid "Clean the library"
+msgstr "நூலகம் துடை"
+
+#: data/gtk/window.blp:267
+msgid "Re-parse current directory"
+msgstr "தற்போதைய கோப்பகத்தை மீண்டும் அலசுங்கள்"
+
+#: data/gtk/window.blp:273
+msgid "Add current directory to saves"
+msgstr "சேமிப்புகளுக்கு தற்போதைய கோப்பகத்தைச் சேர்க்கவும்"
+
+#: data/gtk/window.blp:290 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
 msgstr "தேடல்"
 
-#: data/gtk/window.blp:243 data/gtk/window.blp:408
+#: data/gtk/window.blp:333
+msgid "Shortcuts"
+msgstr "குறுக்குவழிகள்"
+
+#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
+msgid "General"
+msgstr "பொது"
+
+#: data/gtk/window.blp:340
+msgid "Quit"
+msgstr "வெளியேறு"
+
+#: data/gtk/window.blp:350
+msgid "Select directory"
+msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
+
+#: data/gtk/window.blp:355
+msgid "Select files"
+msgstr "கோப்புகளைத் தேர்ந்தெடு"
+
+#: data/gtk/window.blp:360 data/gtk/window.blp:480
+msgid "Keybindings"
+msgstr "விசைப்பலகைகள்"
+
+#: data/gtk/window.blp:371
+msgid "Sync mode"
+msgstr "ஒத்திசைவு பயன்முறை"
+
+#: data/gtk/window.blp:374
+msgid "Sync/Re-sync"
+msgstr "ஒத்திசைவு/மறு ஒத்திசைவு"
+
+#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+msgid "Replay selected line"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை மீண்டும் இயக்கவும்"
+
+#: data/gtk/window.blp:384
+msgid "Remove selected line"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை அகற்று"
+
+#: data/gtk/window.blp:389
+msgid "Prepend line to selected"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரிக்கு வரியைத் தயாரிக்கவும்"
+
+#: data/gtk/window.blp:394
+msgid "Append line to selected"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரி சேர்க்கவும்"
+
+#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:189
+msgid "Append line to end"
+msgstr "முடிவுக்கு வரியைச் சேர்க்கவும்"
+
+#: data/gtk/window.blp:404
+msgid "Re-sync 100ms back"
+msgstr "100 மீட்டர் பின்னால் மீண்டும் ஒத்திசைக்கவும்"
+
+#: data/gtk/window.blp:409
+msgid "Re-sync 100ms forward"
+msgstr "100ms முன்னோக்கி மீண்டும் ஒத்திசைக்கவும்"
+
+#: data/gtk/window.blp:418
+msgid "Directory"
+msgstr "அடைவு"
+
+#: data/gtk/window.blp:419
+msgid "Files"
+msgstr "கோப்புகள்"
+
+#: data/gtk/window.blp:426 data/gtk/window.blp:445
+msgid "A-Z"
+msgstr "A-z"
+
+#: data/gtk/window.blp:432 data/gtk/window.blp:451
+msgid "Z-A"
+msgstr "Z-A."
+
+#: data/gtk/window.blp:442
+msgid "Sort"
+msgstr "வரிசைப்படுத்து"
+
+#: data/gtk/window.blp:458
+msgid "View"
+msgstr "நோக்கு"
+
+#: data/gtk/window.blp:461
+msgid "Grid"
+msgstr "பின்னல்"
+
+#: data/gtk/window.blp:467
+msgid "List"
+msgstr "பட்டியல்"
+
+#: data/gtk/window.blp:479
+msgid "Preferences"
+msgstr "விருப்பத்தேர்வுகள்"
+
+#: data/gtk/window.blp:481
+msgid "About"
+msgstr "பற்றி"
+
+#: data/gtk/ui/dialogs/LRClib.blp:73
+msgid "Search LRClib for provided title and artist"
+msgstr "வழங்கப்பட்ட தலைப்பு மற்றும் கலைஞருக்காக LRCLIB ஐத் தேடுங்கள்"
+
+#: data/gtk/ui/dialogs/LRClib.blp:119
 msgid "Synced"
 msgstr "ஒத்திசைக்கப்பட்டது"
 
-#: data/gtk/window.blp:268 data/gtk/window.blp:434
+#: data/gtk/ui/dialogs/LRClib.blp:144
 msgid "Plain"
 msgstr "வெற்று"
 
-#: data/gtk/window.blp:297 data/gtk/window.blp:464
+#: data/gtk/ui/dialogs/LRClib.blp:173
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
@@ -204,376 +417,277 @@ msgstr ""
 "ஒத்திசைக்கப்பட்ட வரிகள் இயல்பாகவே பயன்படுத்தப்படுகின்றன, வெற்று பயன்படுத்த, "
 "துணைமெனுவிலிருந்து 'ப்ளைன் பயன்பாடு' என்பதைத் தேர்ந்தெடுக்கவும்"
 
-#: data/gtk/window.blp:303 data/gtk/window.blp:470
+#: data/gtk/ui/dialogs/LRClib.blp:179
 msgid "Use"
 msgstr "பயன்படுத்தவும்"
 
-#: data/gtk/window.blp:550 data/gtk/window.blp:617
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
-#: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
-msgid "Chronograph"
-msgstr "கால வரைபடம்"
-
-#: data/gtk/window.blp:603
-msgid "Drop files here to open them"
-msgstr "கோப்புகளைத் திறக்க இங்கே விடுங்கள்"
-
-#: data/gtk/window.blp:624
-msgid "Saves"
-msgstr "சேமிக்கிறது"
-
-#: data/gtk/window.blp:632 data/gtk/window.blp:653 data/gtk/window.blp:1093
-msgid "Toggle sidebar"
-msgstr "பக்கப்பட்டியை மாற்றவும்"
-
-#: data/gtk/window.blp:660
-msgid "Select a directory or open a file"
-msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும் அல்லது ஒரு கோப்பைத் திறக்கவும்"
-
-#: data/gtk/window.blp:672 data/gtk/window.blp:1073
-msgid "Toggle search"
-msgstr "தேடலை மாற்றவும்"
-
-#: data/gtk/window.blp:680 data/gtk/window.blp:773
-msgid "App settings, info and utils"
-msgstr "பயன்பாட்டு அமைப்புகள், செய்தி மற்றும் பயன்பாடுகள்"
-
-#: data/gtk/window.blp:688
-#, fuzzy
-msgid "Clean the library"
-msgstr "நூலகம் துடை"
-
-#: data/gtk/window.blp:703
-msgid "Re-parse current directory"
-msgstr "தற்போதைய கோப்பகத்தை மீண்டும் அலசுங்கள்"
-
-#: data/gtk/window.blp:708
-msgid "Add current directory to saves"
-msgstr "சேமிப்புகளுக்கு தற்போதைய கோப்பகத்தைச் சேர்க்கவும்"
-
-#: data/gtk/window.blp:764
-msgid "Syncing"
-msgstr "ஒத்திசைகிறது"
-
-#: data/gtk/window.blp:863
-msgid "Toggle song repeat"
-msgstr "பாடல் மறுபடியும் மாற்று"
-
-#: data/gtk/window.blp:919
-msgid "Sync/Re-sync line"
-msgstr "ஒத்திசைவு/மறு ஒத்திசைவு வரி"
-
-#: data/gtk/window.blp:930 data/gtk/window.blp:1107
-msgid "Replay selected line"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை மீண்டும் இயக்கவும்"
-
-#: data/gtk/window.blp:938
-msgid "Re-sync selected line 100ms back"
-msgstr "மீண்டும் ஒத்திசைவு தேர்ந்தெடுக்கப்பட்ட வரி 100 மீட்டர் பின்னால்"
-
-#: data/gtk/window.blp:946
-msgid "Re-sync selected line 100ms forward"
-msgstr "மீண்டும் ஒத்திசைவு தேர்ந்தெடுக்கப்பட்ட வரி 100ms முன்னோக்கி"
-
-#: data/gtk/window.blp:954 data/gtk/window.blp:1170
-msgid "Import from …"
-msgstr "இருந்து இறக்குமதி…"
-
-#: data/gtk/window.blp:965 data/gtk/window.blp:1180
-msgid "Export to …"
-msgstr "ஏற்றுமதி…"
-
-#: data/gtk/window.blp:983 data/gtk/window.blp:1190
-msgid "Actions with selected line"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரியுடன் செயல்கள்"
-
-#: data/gtk/window.blp:995 data/gtk/ui/SongCard.blp:134
-#: data/gtk/ui/SongCard.blp:261
-msgid "Edit song metadata"
-msgstr "பாடல் மெட்டாடேட்டாவைத் திருத்தவும்"
-
-#: data/gtk/window.blp:1004
-msgid "About file"
-msgstr "கோப்பு பற்றி"
-
-#: data/gtk/window.blp:1038
-msgid "Add line"
-msgstr "வரி சேர்"
-
-#: data/gtk/window.blp:1061
-msgid "Shortcuts"
-msgstr "குறுக்குவழிகள்"
-
-#: data/gtk/window.blp:1065 data/gtk/ui/Preferences.blp:6
-msgid "General"
-msgstr "பொது"
-
-#: data/gtk/window.blp:1068
-msgid "Quit"
-msgstr "வெளியேறு"
-
-#: data/gtk/window.blp:1078
-msgid "Select directory"
-msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
-
-#: data/gtk/window.blp:1083
-msgid "Select files"
-msgstr "கோப்புகளைத் தேர்ந்தெடு"
-
-#: data/gtk/window.blp:1088 data/gtk/window.blp:1247
-msgid "Keybindings"
-msgstr "விசைப்பலகைகள்"
-
-#: data/gtk/window.blp:1099
-msgid "Sync mode"
-msgstr "ஒத்திசைவு பயன்முறை"
-
-#: data/gtk/window.blp:1102
-msgid "Sync/Re-sync"
-msgstr "ஒத்திசைவு/மறு ஒத்திசைவு"
-
-#: data/gtk/window.blp:1112
-msgid "Remove selected line"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை அகற்று"
-
-#: data/gtk/window.blp:1117
-msgid "Prepend line to selected"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரிக்கு வரியைத் தயாரிக்கவும்"
-
-#: data/gtk/window.blp:1122
-msgid "Append line to selected"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரி சேர்க்கவும்"
-
-#: data/gtk/window.blp:1127 data/gtk/window.blp:1195
-msgid "Append line to end"
-msgstr "முடிவுக்கு வரியைச் சேர்க்கவும்"
-
-#: data/gtk/window.blp:1132
-msgid "Re-sync 100ms back"
-msgstr "100 மீட்டர் பின்னால் மீண்டும் ஒத்திசைக்கவும்"
-
-#: data/gtk/window.blp:1137
-msgid "Re-sync 100ms forward"
-msgstr "100ms முன்னோக்கி மீண்டும் ஒத்திசைக்கவும்"
-
-#: data/gtk/window.blp:1147
-msgid "Directory"
-msgstr "அடைவு"
-
-#: data/gtk/window.blp:1148
-msgid "Files"
-msgstr "கோப்புகள்"
-
-#: data/gtk/window.blp:1155 data/gtk/window.blp:1212
-msgid "A-Z"
-msgstr "A-z"
-
-#: data/gtk/window.blp:1161 data/gtk/window.blp:1218
-msgid "Z-A"
-msgstr "Z-A."
-
-#: data/gtk/window.blp:1172 data/gtk/window.blp:1182
-msgid "File"
-msgstr "கோப்பு"
-
-#: data/gtk/window.blp:1173 data/gtk/window.blp:1183
-msgid "Clipboard"
-msgstr "இடைநிலைப் பலகை"
-
-#: data/gtk/window.blp:1192
-msgid "Remove line"
-msgstr "வரியை அகற்று"
-
-#: data/gtk/window.blp:1193
-msgid "Prepend line"
-msgstr "வரி ஆயத்தம் செய்யுங்கள்"
-
-#: data/gtk/window.blp:1194
-msgid "Append line"
-msgstr "வரி பின்சேர்"
-
-#: data/gtk/window.blp:1201
+#: data/gtk/ui/dialogs/LRClib.blp:215
 msgid "Use plain"
 msgstr "வெற்று பயன்படுத்தவும்"
 
-#: data/gtk/window.blp:1202
+#: data/gtk/ui/dialogs/LRClib.blp:216
 msgid "Use synced"
 msgstr "ஒத்திசைக்கப்பட்ட பயன்படுத்தவும்"
 
-#: data/gtk/window.blp:1209
-msgid "Sort"
-msgstr "வரிசைப்படுத்து"
+#: data/gtk/ui/dialogs/LRClib.blp:222
+msgid "Nothing was found for this request"
+msgstr "இந்த கோரிக்கைக்கு எதுவும் கிடைக்கவில்லை"
 
-#: data/gtk/window.blp:1225
-msgid "View"
-msgstr "நோக்கு"
+#: data/gtk/ui/dialogs/LRClib.blp:223
+msgid "Try out another request, maybe there are mistakes in request text."
+msgstr "மற்றொரு கோரிக்கையை முயற்சிக்கவும், கோரிக்கை உரையில் தவறுகள் இருக்கலாம்."
 
-#: data/gtk/window.blp:1228
-msgid "Grid"
-msgstr "பின்னல்"
+#: data/gtk/ui/dialogs/LRClib.blp:227
+msgid "Search on LRClib by title and artist names"
+msgstr "தலைப்பு மற்றும் கலைஞர் பெயர்கள் மூலம் LRCLIB இல் தேடுங்கள்"
 
-#: data/gtk/window.blp:1234
-msgid "List"
-msgstr "பட்டியல்"
+#: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/widgets/SavedLocation.blp:46
+#: data/gtk/ui/widgets/SavedLocation.blp:58
+msgid "Cancel"
+msgstr "ரத்துசெய்"
 
-#: data/gtk/window.blp:1246
-msgid "Preferences"
-msgstr "விருப்பத்தேர்வுகள்"
+#: data/gtk/ui/dialogs/MetadataEditor.blp:22
+msgid "Apply"
+msgstr "இடு"
 
-#: data/gtk/window.blp:1248
-msgid "About"
-msgstr "பற்றி"
+#: data/gtk/ui/dialogs/MetadataEditor.blp:51
+msgid "Change cover"
+msgstr "கவர் மாற்றவும்"
 
-#: data/gtk/ui/Preferences.blp:10
+#: data/gtk/ui/dialogs/MetadataEditor.blp:100
+msgid "Set cover"
+msgstr "கவர் அமைக்கவும்"
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+msgid "Remove cover"
+msgstr "அட்டையை அகற்று"
+
+#: data/gtk/ui/dialogs/Preferences.blp:10
 msgid "Behavior"
 msgstr "நடத்தை"
 
-#: data/gtk/ui/Preferences.blp:13
+#: data/gtk/ui/dialogs/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
 msgstr "நெருக்கமான திருத்து உரையாடலை மீட்டமைக்கவும்"
 
-#: data/gtk/ui/Preferences.blp:14
+#: data/gtk/ui/dialogs/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
 "தேர்வுசெய்த பிறகு விரைவான திருத்து உரையாடல் உரையை தூய்மை செய்ய வேண்டுமா இல்லையா "
 "என்பதைத் தேர்வுசெய்க"
 
-#: data/gtk/ui/Preferences.blp:18
+#: data/gtk/ui/dialogs/Preferences.blp:18
 msgid "Save session on app close"
 msgstr "பயன்பாட்டில் அமர்வை சேமிக்கவும்"
 
-#: data/gtk/ui/Preferences.blp:19
+#: data/gtk/ui/dialogs/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
 msgstr "அடுத்த தொடக்கத்தில் கடைசியாக திறந்த கோப்பகத்தை மீண்டும் இயக்குகிறது"
 
-#: data/gtk/ui/Preferences.blp:23
+#: data/gtk/ui/dialogs/Preferences.blp:23
 msgid "Automatically toggle List View mode"
 msgstr "பட்டியல் காட்சிப் பயன்முறையைத் தானாக நிலைமாற்று"
 
-#: data/gtk/ui/Preferences.blp:24
+#: data/gtk/ui/dialogs/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
 "காட்சி அளவு போதுமானதாக இல்லாதபோது பட்டியல் காட்சி பயன்முறையை தானாகவே மாற்றுகிறது"
 
-#: data/gtk/ui/Preferences.blp:28
+#: data/gtk/ui/dialogs/Preferences.blp:28
 msgid "Display compressed covers"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:29
+#: data/gtk/ui/dialogs/Preferences.blp:29
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:33
+#: data/gtk/ui/dialogs/Preferences.blp:33
 msgid "Quality level"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:34
+#: data/gtk/ui/dialogs/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:41
+#: data/gtk/ui/dialogs/Preferences.blp:41
 msgid "Parse directories recursively"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:42
+#: data/gtk/ui/dialogs/Preferences.blp:42
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:45
+#: data/gtk/ui/dialogs/Preferences.blp:45
 msgid "Follow symlinks"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:46
+#: data/gtk/ui/dialogs/Preferences.blp:46
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
 
-#: data/gtk/ui/Preferences.blp:52
+#: data/gtk/ui/dialogs/Preferences.blp:52
 msgid "Sync Page"
 msgstr "ஒத்திசைவு பக்கம்"
 
-#: data/gtk/ui/Preferences.blp:55
+#: data/gtk/ui/dialogs/Preferences.blp:55
 msgid "Use precise milliseconds"
 msgstr "துல்லியமான மில்லி நொடிகளைப் பயன்படுத்து"
 
-#: data/gtk/ui/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:56
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "2-இலக்கத்திற்குப் பதிலாக 3-இலக்க மில்லி விநாடிகளைப் பயன்படுத்து"
 
-#: data/gtk/ui/Preferences.blp:60
+#: data/gtk/ui/dialogs/Preferences.blp:60
 msgid "Auto file manipulation"
 msgstr "ஆட்டோ கோப்பு கையாளுதல்"
 
-#: data/gtk/ui/Preferences.blp:61
+#: data/gtk/ui/dialogs/Preferences.blp:61
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "எந்தவொரு பாடல் வரிகளும் மாறும்போது கோப்புகளை தானாக உருவாக்கி புதுப்பிக்கும்"
 
-#: data/gtk/ui/Preferences.blp:65
+#: data/gtk/ui/dialogs/Preferences.blp:65
 msgid "File format"
 msgstr "கோப்பு வடிவம்"
 
-#: data/gtk/ui/Preferences.blp:66
+#: data/gtk/ui/dialogs/Preferences.blp:66
 msgid "File format for auto manipulation"
 msgstr "ஆட்டோ கையாளுதலுக்கான கோப்பு வடிவம்"
 
-#: data/gtk/ui/SavedLocation.blp:37
+#: data/gtk/ui/dialogs/Preferences.blp:71
+msgid "Autosave interval"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:72
+msgid "Autosave interval after lyrics syncing inactivity"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:79
+msgid "Debug"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:82
+msgid "Enable Debug logging profile"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:83
+msgid "Expands logging information for debug purposes"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:84
+msgid "NEEDS RESTART"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
+msgid "Syncing"
+msgstr "ஒத்திசைகிறது"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:31
+msgid "Sync/Re-sync line"
+msgstr "ஒத்திசைவு/மறு ஒத்திசைவு வரி"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+msgid "Re-sync selected line 100ms back"
+msgstr "மீண்டும் ஒத்திசைவு தேர்ந்தெடுக்கப்பட்ட வரி 100 மீட்டர் பின்னால்"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
+msgid "Re-sync selected line 100ms forward"
+msgstr "மீண்டும் ஒத்திசைவு தேர்ந்தெடுக்கப்பட்ட வரி 100ms முன்னோக்கி"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:164
+msgid "Import from …"
+msgstr "இருந்து இறக்குமதி…"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:77
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
+msgid "Export to …"
+msgstr "ஏற்றுமதி…"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+msgid "Actions with selected line"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரியுடன் செயல்கள்"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
+#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
+msgid "Edit song metadata"
+msgstr "பாடல் மெட்டாடேட்டாவைத் திருத்தவும்"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+msgid "About file"
+msgstr "கோப்பு பற்றி"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
+msgid "Add line"
+msgstr "வரி சேர்"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:166
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
+msgid "File"
+msgstr "கோப்பு"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:167
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
+msgid "Clipboard"
+msgstr "இடைநிலைப் பலகை"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:186
+msgid "Remove line"
+msgstr "வரியை அகற்று"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:187
+msgid "Prepend line"
+msgstr "வரி ஆயத்தம் செய்யுங்கள்"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:188
+msgid "Append line"
+msgstr "வரி பின்சேர்"
+
+#: data/gtk/ui/widgets/SavedLocation.blp:37
 #, fuzzy
 msgid "Rename this Save"
 msgstr "சேமிப்பிலிருந்து இதை அகற்றவும்"
 
-#: data/gtk/ui/SavedLocation.blp:40
+#: data/gtk/ui/widgets/SavedLocation.blp:41
 msgid "Name"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:46 data/gtk/ui/SavedLocation.blp:58
-#: data/gtk/ui/SongCard.blp:16
-msgid "Cancel"
-msgstr "ரத்துசெய்"
-
-#: data/gtk/ui/SavedLocation.blp:47 data/gtk/ui/SavedLocation.blp:65
+#: data/gtk/ui/widgets/SavedLocation.blp:47
+#: data/gtk/ui/widgets/SavedLocation.blp:65
 msgid "Rename"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:53
+#: data/gtk/ui/widgets/SavedLocation.blp:53
 msgid "Delete this Save?"
 msgstr ""
 
-#: data/gtk/ui/SavedLocation.blp:59 data/gtk/ui/SavedLocation.blp:66
+#: data/gtk/ui/widgets/SavedLocation.blp:59
+#: data/gtk/ui/widgets/SavedLocation.blp:66
 msgid "Delete"
 msgstr ""
 
-#: data/gtk/ui/SongCard.blp:21
-msgid "Apply"
-msgstr "இடு"
-
-#: data/gtk/ui/SongCard.blp:49
-msgid "Change cover"
-msgstr "கவர் மாற்றவும்"
-
-#: data/gtk/ui/SongCard.blp:123 data/gtk/ui/SongCard.blp:250
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
 msgid "Sync"
 msgstr "ஒத்திசைவு"
 
-#: data/gtk/ui/SongCard.blp:144 data/gtk/ui/SongCard.blp:270
+#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
 msgid "Show song info"
 msgstr "பாடல் தகவலைக் காட்டு"
 
-#: data/gtk/ui/SongCard.blp:158
+#: data/gtk/ui/widgets/SongCard.blp:68
 msgid "Open syncing page"
 msgstr "ஒத்திசைவு பக்கத்தைத் திறக்கவும்"
 
-#: data/gtk/ui/SongCard.blp:284
-msgid "Set cover"
-msgstr "கவர் அமைக்கவும்"
-
-#: data/gtk/ui/SongCard.blp:289
-msgid "Remove cover"
-msgstr "அட்டையை அகற்று"
+#: data/gtk/ui/widgets/Player.blp:100
+msgid "Toggle song repeat"
+msgstr "பாடல் மறுபடியும் மாற்று"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
@@ -622,6 +736,18 @@ msgstr "Lrclib இறக்குமதி உரையாடல்"
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
 "பாடல் வரிகள்; இணையம்; பாடல்கள்; பலூடகம்; ஊடகம்; எல்ஆர்எல்ஐபி; இசை; ஒத்திசைத்தல்; காலவரிசை;"
+
+#~ msgid "Some of Title, Artist and/or Album fields are Unknown!"
+#~ msgstr "தலைப்பு, கலைஞர் மற்றும்/அல்லது தொகுப்பில் சில தெரியவில்லை!"
+
+#~ msgid "Some of entries are empty"
+#~ msgstr "சில உள்ளீடுகள் காலியாக உள்ளன"
+
+#~ msgid "Directory saved successfully"
+#~ msgstr "அடைவு வெற்றிகரமாக சேமிக்கப்பட்டது"
+
+#~ msgid "Publish"
+#~ msgstr "பதிப்பிடு"
 
 #~ msgid "Delete name to remove"
 #~ msgstr "அகற்ற பெயரை நீக்கு"

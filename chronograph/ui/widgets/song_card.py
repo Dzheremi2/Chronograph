@@ -121,7 +121,6 @@ class SongCard(Gtk.Box):
     def get_subtitle(self) -> str:
         return self.artist
 
-    ############### Notifiable Properties ###############
     @GObject.Property(type=str, default=C_("song title placeholder", "Unknown"))
     def title(self) -> str:
         """Title of the song"""
