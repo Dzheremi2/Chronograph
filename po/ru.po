@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 23:40+0300\n"
-"PO-Revision-Date: 2025-07-25 03:03+0000\n"
+"PO-Revision-Date: 2025-07-25 21:07+0000\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/ru/>\n"
@@ -77,9 +77,8 @@ msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:260
-#, fuzzy
 msgid "Lyrics exported to clipboard"
-msgstr "Скопировать в буфер обмена"
+msgstr "Текст экспортирован в буфер обмена"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:273
 msgid "Lyrics exported to file"
@@ -105,19 +104,19 @@ msgid "An error occurred while connecting to LRClib.net"
 msgstr "Произошла ошибка при подключении к LRClib.net"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Published successfully: {code}"
-msgstr "Успешно опубликовано: "
+msgstr "Успешно опубликовано: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:475
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr "Неверный публичный токен: "
+msgstr "Неверный публичный токен: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:479
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Произошла неизвестная ошибка: "
+msgstr "Произошла неизвестная ошибка: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "Unable to publish lyrics"
@@ -144,7 +143,6 @@ msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
 #: chronograph/ui/widgets/song_card.py:92
-#, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Сведения о файле"
@@ -173,32 +171,28 @@ msgstr "Путь"
 
 #: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/song_card.py:127
-#, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Неизвестно"
 
 #: chronograph/ui/widgets/song_card.py:134
 #: chronograph/ui/widgets/song_card.py:137
-#, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
-msgstr "Неизвестно"
+msgstr "Неизвестен"
 
 #: chronograph/ui/widgets/song_card.py:144
 #: chronograph/ui/widgets/song_card.py:147
-#, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
-msgstr "Неизвестно"
+msgstr "Неизвестен"
 
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:28
 #: chronograph/ui/widgets/saved_location.py:32
-#, fuzzy
 msgid "Path: {}"
-msgstr "Путь: "
+msgstr "Путь: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
@@ -252,9 +246,8 @@ msgid "Quick Editor"
 msgstr "Быстрое форматирование"
 
 #: data/gtk/window.blp:106
-#, fuzzy
 msgid "Copy to clipboard"
-msgstr "Буфер обмена"
+msgstr "Скопировать в буфер обмена"
 
 #: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
