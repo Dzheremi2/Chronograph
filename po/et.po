@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 23:40+0300\n"
-"PO-Revision-Date: 2025-05-18 11:40+0000\n"
-"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
+"PO-Revision-Date: 2025-07-25 21:07+0000\n"
+"Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
 "Language: et\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: chronograph/window.py:438
 msgid "Copied successfully"
@@ -39,7 +39,7 @@ msgstr "Loo oma sõnastik"
 
 #: chronograph/ui/dialogs/lrclib.py:112
 msgid "Connection Error"
-msgstr ""
+msgstr "Ühenduse viga"
 
 #: chronograph/ui/dialogs/lrclib.py:114
 msgid ""
@@ -73,17 +73,16 @@ msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:260
-#, fuzzy
 msgid "Lyrics exported to clipboard"
-msgstr "Kopeeri lõikelauale"
+msgstr "Laulusõnad on eksporditud lõikelauale"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:273
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Laulusõnad on eksporditud faili"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 msgid "Show"
-msgstr ""
+msgstr "Näita"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #: chronograph/ui/sync_pages/lrc_sync_page.py:451
@@ -101,19 +100,19 @@ msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Published successfully: {code}"
-msgstr "Avaldamine õnnestus: "
+msgstr "Avaldamine õnnestus: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:475
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr "Vigane avaldamise tunnusluba: "
+msgstr "Vigane avaldamise tunnusluba: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:479
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Tekkis tundmatu viga: "
+msgstr "Tekkis tundmatu viga: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "Unable to publish lyrics"
@@ -127,18 +126,17 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:493
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Tühje laulusõnu ei saa avaldada"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Why?"
-msgstr ""
+msgstr "Miks?"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
 #: chronograph/ui/widgets/song_card.py:92
-#, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Faili teave"
@@ -167,21 +165,18 @@ msgstr "Asukoht"
 
 #: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/song_card.py:127
-#, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Tundmatu"
 
 #: chronograph/ui/widgets/song_card.py:134
 #: chronograph/ui/widgets/song_card.py:137
-#, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Tundmatu"
 
 #: chronograph/ui/widgets/song_card.py:144
 #: chronograph/ui/widgets/song_card.py:147
-#, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Tundmatu"
@@ -190,9 +185,8 @@ msgstr "Tundmatu"
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:28
 #: chronograph/ui/widgets/saved_location.py:32
-#, fuzzy
 msgid "Path: {}"
-msgstr "Asukoht: "
+msgstr "Asukoht: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
@@ -247,9 +241,8 @@ msgid "Quick Editor"
 msgstr "Kiirtoimeti"
 
 #: data/gtk/window.blp:106
-#, fuzzy
 msgid "Copy to clipboard"
-msgstr "Lõikelaud"
+msgstr "Kopeeri lõikelauale"
 
 #: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
