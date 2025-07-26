@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 23:40+0300\n"
-"PO-Revision-Date: 2025-07-26 18:13+0000\n"
+"PO-Revision-Date: 2025-07-27 01:15+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/hu/>\n"
@@ -35,7 +35,7 @@ msgstr "Inspiráció"
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:174
 msgid "Build your own dictionary"
-msgstr "Build your own dictionary"
+msgstr "Állítsd össze a saját szótáradat"
 
 #: chronograph/ui/dialogs/lrclib.py:112
 msgid "Connection Error"
