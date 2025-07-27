@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 23:40+0300\n"
-"PO-Revision-Date: 2025-05-17 14:57+0300\n"
+"PO-Revision-Date: 2025-07-25 21:07+0000\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
-"Language-Team: Russian\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/chronograph/"
+"chronograph/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: chronograph/window.py:438
 msgid "Copied successfully"
@@ -40,30 +41,32 @@ msgstr "Создайте свой собственный словарь"
 
 #: chronograph/ui/dialogs/lrclib.py:112
 msgid "Connection Error"
-msgstr ""
+msgstr "Ошибка соединения"
 
 #: chronograph/ui/dialogs/lrclib.py:114
 msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
 msgstr ""
+"Не удалось подключиться к серверу. Проверьте подключение к интернету и "
+"повторите попытку"
 
 #: chronograph/ui/dialogs/lrclib.py:123
 msgid "Timeout Error"
-msgstr ""
+msgstr "Превышено время ожидания"
 
 #: chronograph/ui/dialogs/lrclib.py:125
 msgid "The request to the LRC library server timed out. Please try again later"
-msgstr ""
+msgstr "Превышено время ожидания ответа от сервера. Попробуйте еще раз позже"
 
 #: chronograph/ui/dialogs/lrclib.py:134
 msgid "Something went wrong"
-msgstr ""
+msgstr "Что-то пошло не так"
 
 #: chronograph/ui/dialogs/lrclib.py:136
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
-msgstr ""
+msgstr "Произошла неизвестная ошибка при попытке подключения к серверу"
 
 #: chronograph/ui/dialogs/lrclib.py:218
 msgid "No synced lyrics available"
@@ -74,72 +77,72 @@ msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:260
-#, fuzzy
 msgid "Lyrics exported to clipboard"
-msgstr "Скопировать в буфер обмена"
+msgstr "Текст экспортирован в буфер обмена"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:273
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Текст экспортирован в файл"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #: chronograph/ui/sync_pages/lrc_sync_page.py:451
 msgid "Failed to connect to LRClib.net"
-msgstr ""
+msgstr "Не удалось подключиться к LRClib.net"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:411
 #: chronograph/ui/sync_pages/lrc_sync_page.py:454
 msgid "Connection to LRClib.net timed out"
-msgstr ""
+msgstr "Время ожидания подключения к LRClib.net истекло"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #: chronograph/ui/sync_pages/lrc_sync_page.py:458
 msgid "An error occurred while connecting to LRClib.net"
-msgstr ""
+msgstr "Произошла ошибка при подключении к LRClib.net"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Published successfully: {code}"
-msgstr "Успешно опубликовано: "
+msgstr "Успешно опубликовано: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:475
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr "Неверный публичный токен: "
+msgstr "Неверный публичный токен: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:479
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Произошла неизвестная ошибка: "
+msgstr "Произошла неизвестная ошибка: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "Unable to publish lyrics"
-msgstr ""
+msgstr "Невозможно опубликовать текст"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
+"Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
+"«Альбом» и синхронизировать слова"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:493
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Невозможно опубликовать пустой текст"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Why?"
-msgstr ""
+msgstr "Почему?"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
 #: chronograph/ui/widgets/song_card.py:92
-#, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Сведения о файле"
@@ -168,32 +171,28 @@ msgstr "Путь"
 
 #: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/song_card.py:127
-#, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Неизвестно"
 
 #: chronograph/ui/widgets/song_card.py:134
 #: chronograph/ui/widgets/song_card.py:137
-#, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
-msgstr "Неизвестно"
+msgstr "Неизвестен"
 
 #: chronograph/ui/widgets/song_card.py:144
 #: chronograph/ui/widgets/song_card.py:147
-#, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
-msgstr "Неизвестно"
+msgstr "Неизвестен"
 
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:28
 #: chronograph/ui/widgets/saved_location.py:32
-#, fuzzy
 msgid "Path: {}"
-msgstr "Путь: "
+msgstr "Путь: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
@@ -247,9 +246,8 @@ msgid "Quick Editor"
 msgstr "Быстрое форматирование"
 
 #: data/gtk/window.blp:106
-#, fuzzy
 msgid "Copy to clipboard"
-msgstr "Буфер обмена"
+msgstr "Скопировать в буфер обмена"
 
 #: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
@@ -567,27 +565,27 @@ msgstr "Формат файла для автоманипуляции"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid "Autosave interval"
-msgstr ""
+msgstr "Интервал автосохранения"
 
 #: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Autosave interval after lyrics syncing inactivity"
-msgstr ""
+msgstr "Интервал автосохранения при бездействии синхронизации"
 
 #: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Debug"
-msgstr ""
+msgstr "Отладка"
 
 #: data/gtk/ui/dialogs/Preferences.blp:82
 msgid "Enable Debug logging profile"
-msgstr ""
+msgstr "Включить отладочный профиль журналирования"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Expands logging information for debug purposes"
-msgstr ""
+msgstr "Расширяет информацию журнала для отладки"
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "ТРЕБУЕТСЯ ПЕРЕЗАПУСК"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 msgid "Syncing"

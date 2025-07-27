@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 23:40+0300\n"
-"PO-Revision-Date: 2025-03-15 08:47+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
-"Language-Team: Portuguese <https://hosted.weblate.org/projects/lrcmake/"
+"PO-Revision-Date: 2025-07-25 21:07+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: chronograph/window.py:438
 msgid "Copied successfully"
@@ -29,41 +29,45 @@ msgid "translator-credits"
 msgstr "ssantos"
 
 #: chronograph/main.py:164
-#, fuzzy
 msgid "Inspiration"
-msgstr "Duração"
+msgstr "Inspiração"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:174
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Construa o seu próprio dicionário"
 
 #: chronograph/ui/dialogs/lrclib.py:112
 msgid "Connection Error"
-msgstr ""
+msgstr "Erro de conexão"
 
 #: chronograph/ui/dialogs/lrclib.py:114
 msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
 msgstr ""
+"Falha ao conectar ao servidor de biblioteca LRC. Por favor, verifique a sua "
+"conexão de internet e tente novamente"
 
 #: chronograph/ui/dialogs/lrclib.py:123
 msgid "Timeout Error"
-msgstr ""
+msgstr "Erro de tempo esgotado"
 
 #: chronograph/ui/dialogs/lrclib.py:125
 msgid "The request to the LRC library server timed out. Please try again later"
 msgstr ""
+"O tempo da solicitação para o servidor de biblioteca LRC esgotou. Por favor, "
+"tente novamente mais tarde"
 
 #: chronograph/ui/dialogs/lrclib.py:134
 msgid "Something went wrong"
-msgstr ""
+msgstr "Algo correu mal"
 
 #: chronograph/ui/dialogs/lrclib.py:136
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
+"Um erro desconhecido ocorreu ao tentar conectar ao servidor de biblioteca LRC"
 
 #: chronograph/ui/dialogs/lrclib.py:218
 msgid "No synced lyrics available"
@@ -80,26 +84,26 @@ msgstr "Cópia para a área de transferência"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:273
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Letras exportadas para o ficheiro"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 msgid "Show"
-msgstr ""
+msgstr "Exibir"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #: chronograph/ui/sync_pages/lrc_sync_page.py:451
 msgid "Failed to connect to LRClib.net"
-msgstr ""
+msgstr "Falha ao conectar ao LRClib.net"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:411
 #: chronograph/ui/sync_pages/lrc_sync_page.py:454
 msgid "Connection to LRClib.net timed out"
-msgstr ""
+msgstr "Tempo de conexão ao LRClib.net esgotado"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #: chronograph/ui/sync_pages/lrc_sync_page.py:458
 msgid "An error occurred while connecting to LRClib.net"
-msgstr ""
+msgstr "Um erro ocorreu ao conectar ao LRClib.net"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
 #, fuzzy, python-brace-format
@@ -118,21 +122,23 @@ msgstr "Ocorreu um erro desconhecido: "
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "Unable to publish lyrics"
-msgstr ""
+msgstr "Incapaz de publicar letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
+"Para publicar letras, a faixa deve ter campos de um título artista, álbum e "
+"letras definidos"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:493
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Não é possível publicar letras vazias"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Why?"
-msgstr ""
+msgstr "Porquê?"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Seems like not every line is synced"
@@ -168,21 +174,18 @@ msgstr "Caminho"
 
 #: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/song_card.py:127
-#, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #: chronograph/ui/widgets/song_card.py:134
 #: chronograph/ui/widgets/song_card.py:137
-#, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #: chronograph/ui/widgets/song_card.py:144
 #: chronograph/ui/widgets/song_card.py:147
-#, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Desconhecido"
@@ -191,9 +194,8 @@ msgstr "Desconhecido"
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:28
 #: chronograph/ui/widgets/saved_location.py:32
-#, fuzzy
 msgid "Path: {}"
-msgstr "Caminho: "
+msgstr "Caminho: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
@@ -217,9 +219,8 @@ msgid "No source selected yet"
 msgstr "Nenhuma fonte selecionada ainda"
 
 #: data/gtk/window.blp:7
-#, fuzzy
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr "Selecione um diretório ou abra um ficheiro"
+msgstr "Selecione um diretório ou arraste e solte ficheiros para carregá-los"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
@@ -259,7 +260,7 @@ msgstr "Cronógrafo"
 
 #: data/gtk/window.blp:167
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Solte ficheiros aqui para abri-los"
 
 #: data/gtk/window.blp:188
 msgid "Saves"
@@ -282,9 +283,8 @@ msgid "App settings, info and utils"
 msgstr "Configurações, informações e utilitários de apps"
 
 #: data/gtk/window.blp:252
-#, fuzzy
 msgid "Clean the library"
-msgstr "Biblioteca"
+msgstr "Limpar a biblioteca"
 
 #: data/gtk/window.blp:267
 msgid "Re-parse current directory"
@@ -315,9 +315,8 @@ msgid "Select directory"
 msgstr "Selecione diretório"
 
 #: data/gtk/window.blp:355
-#, fuzzy
 msgid "Select files"
-msgstr "Selecione diretório"
+msgstr "Selecione ficheiros"
 
 #: data/gtk/window.blp:360 data/gtk/window.blp:480
 msgid "Keybindings"
@@ -364,9 +363,8 @@ msgid "Directory"
 msgstr "Diretório"
 
 #: data/gtk/window.blp:419
-#, fuzzy
 msgid "Files"
-msgstr "Ficheiro"
+msgstr "Ficheiros"
 
 #: data/gtk/window.blp:426 data/gtk/window.blp:445
 msgid "A-Z"
@@ -502,39 +500,47 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:28
 msgid "Display compressed covers"
-msgstr ""
+msgstr "Mostrar capas comprimidas"
 
 #: data/gtk/ui/dialogs/Preferences.blp:29
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
+"Pode reduzir ligeiramente o consumo de memória.\n"
+"Isso não afeta imagens reais armazenadas em ficheiros"
 
 #: data/gtk/ui/dialogs/Preferences.blp:33
 msgid "Quality level"
-msgstr ""
+msgstr "Nível de qualidade"
 
 #: data/gtk/ui/dialogs/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
-msgstr ""
+msgstr "Quanto maior for o valor, maior será a qualidade da capa"
 
 #: data/gtk/ui/dialogs/Preferences.blp:41
 msgid "Parse directories recursively"
-msgstr ""
+msgstr "Analisar diretórios de forma recursiva"
 
 #: data/gtk/ui/dialogs/Preferences.blp:42
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
+"Examina recursivamente o diretório fornecido em busca de ficheiros "
+"compatíveis"
 
 #: data/gtk/ui/dialogs/Preferences.blp:45
 msgid "Follow symlinks"
-msgstr ""
+msgstr "Seguir ligações simbólicas"
 
 #: data/gtk/ui/dialogs/Preferences.blp:46
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
+"Se um diretório tiver ligações simbólicas para outros diretórios, eles "
+"também serão analisados\n"
+"Pode causar consumo excessivo de memória e looping se houver ligações "
+"simbólicas em loop"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
 msgid "Sync Page"
@@ -569,27 +575,27 @@ msgstr "Formato de ficheiro para manipulação automática"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid "Autosave interval"
-msgstr ""
+msgstr "Intervalo de gravação automática"
 
 #: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Autosave interval after lyrics syncing inactivity"
-msgstr ""
+msgstr "Intervalo de gravação automática após inatividade de sincronizar letras"
 
 #: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Debug"
-msgstr ""
+msgstr "Depuração"
 
 #: data/gtk/ui/dialogs/Preferences.blp:82
 msgid "Enable Debug logging profile"
-msgstr ""
+msgstr "Ativar perfil de registo de depuração"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Expands logging information for debug purposes"
-msgstr ""
+msgstr "Expande informações de registo para fins de depuração"
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "REQUER REINICIALIZAÇÃO"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 msgid "Syncing"
@@ -658,27 +664,26 @@ msgid "Append line"
 msgstr "Anexar a linha"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:37
-#, fuzzy
 msgid "Rename this Save"
-msgstr "Remova isto das gravações"
+msgstr "Renomear esta gravação"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:41
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:47
 #: data/gtk/ui/widgets/SavedLocation.blp:65
 msgid "Rename"
-msgstr ""
+msgstr "Renomear"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:53
 msgid "Delete this Save?"
-msgstr ""
+msgstr "Apagar este gravação?"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:59
 #: data/gtk/ui/widgets/SavedLocation.blp:66
 msgid "Delete"
-msgstr ""
+msgstr "Apagar"
 
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
 msgid "Sync"
@@ -702,15 +707,15 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Sincronizar letras das suas músicas amadas"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
-"Esta app ajuda-o a contribuir para o grande banco de dados de letras "
-"sincronizadas com a bela interface GTK4 e LibAdwaita. Ele suporta música nos "
-"formatos ogg, flac, mp3 e wav"
+"Esta aplicação ajuda a contribuir com o grande banco de dados de letras de "
+"música sincronizadas com uma bela interface GTK4 e LibAdwaita. Ele suporta "
+"músicas nos formatos ogg, flac, mp3, m4a, wav, opus e aac (funcionalidade "
+"reduzida)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
@@ -719,9 +724,8 @@ msgstr "Biblioteca"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
-#, fuzzy
 msgid "Library in List View mode"
-msgstr "Alternar automaticamente o modo de exibição de lista"
+msgstr "Biblioteca em modo de exibição de lista"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
@@ -740,9 +744,10 @@ msgstr "Caixa de diálogo de importação LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;multimídia;média;música;sincronização;"
+msgstr ""
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;multimédia;média;música;sincronização;"
+""
 
 #~ msgid "Some of Title, Artist and/or Album fields are Unknown!"
 #~ msgstr "Alguns campos Título, Artista e/ou Álbum são Desconhecidos!"

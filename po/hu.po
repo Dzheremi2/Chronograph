@@ -8,674 +8,694 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 23:40+0300\n"
-"PO-Revision-Date: 2024-11-18 00:25+0300\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-07-27 01:15+0000\n"
+"Last-Translator: rdbende <rdbende@proton.me>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
+"chronograph/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: chronograph/window.py:438
 msgid "Copied successfully"
-msgstr ""
+msgstr "Sikeresen másolva"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:156
 msgid "translator-credits"
-msgstr ""
+msgstr "Benedek Dévényi <rdbende@proton.me>"
 
 #: chronograph/main.py:164
 msgid "Inspiration"
-msgstr ""
+msgstr "Inspiráció"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:174
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Állítsd össze a saját szótáradat"
 
 #: chronograph/ui/dialogs/lrclib.py:112
 msgid "Connection Error"
-msgstr ""
+msgstr "Kapcsolati hiba"
 
 #: chronograph/ui/dialogs/lrclib.py:114
 msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
 msgstr ""
+"Nem sikerült csatlakozni az LRC könyvtár szerveréhez. Ellenőrizd az "
+"internetkapcsolatot, és próbáld újra"
 
 #: chronograph/ui/dialogs/lrclib.py:123
 msgid "Timeout Error"
-msgstr ""
+msgstr "Időkorlát hiba"
 
 #: chronograph/ui/dialogs/lrclib.py:125
 msgid "The request to the LRC library server timed out. Please try again later"
 msgstr ""
+"Az LRC könyvtár szerveréhez intézett lekérés időtúllépés miatt megszakadt. "
+"Próbálkozz újra később"
 
 #: chronograph/ui/dialogs/lrclib.py:134
 msgid "Something went wrong"
-msgstr ""
+msgstr "Valami nem stimmel"
 
 #: chronograph/ui/dialogs/lrclib.py:136
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
+"Ismeretlen hiba történt az LRC könyvtár szerveréhez való csatlakozás során"
 
 #: chronograph/ui/dialogs/lrclib.py:218
 msgid "No synced lyrics available"
-msgstr ""
+msgstr "Nincs elérhető szinkronizált dalszöveg"
 
 #: chronograph/ui/dialogs/lrclib.py:223
 msgid "No plain lyrics available"
-msgstr ""
+msgstr "Nincs elérhető egyszerű dalszöveg"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:260
 msgid "Lyrics exported to clipboard"
-msgstr ""
+msgstr "Dalszöveg másolva a vágólapra"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:273
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Dalszöveg mentve fájlba"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 msgid "Show"
-msgstr ""
+msgstr "Mutatás"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #: chronograph/ui/sync_pages/lrc_sync_page.py:451
 msgid "Failed to connect to LRClib.net"
-msgstr ""
+msgstr "Nem sikerült csatlakozni az LRClib.net szerverhez"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:411
 #: chronograph/ui/sync_pages/lrc_sync_page.py:454
 msgid "Connection to LRClib.net timed out"
-msgstr ""
+msgstr "Kapcsolódás az LRClib.net szerverhez időtúllépés miatt megszakadt"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #: chronograph/ui/sync_pages/lrc_sync_page.py:458
 msgid "An error occurred while connecting to LRClib.net"
-msgstr ""
+msgstr "Hiba történt az LRClib.net serverhez való csatlakozás során"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
 #, python-brace-format
 msgid "Published successfully: {code}"
-msgstr ""
+msgstr "Sikeresen közzétéve: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:475
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr ""
+msgstr "Érvénytelen közzétételi token: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:479
 #, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr ""
+msgstr "Ismeretlen hiba történt: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "Unable to publish lyrics"
-msgstr ""
+msgstr "A dalszöveg közzététele sikertelen"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
+"A dalszövegek közzétételéhez a számnak rendelkeznie kell cím, előadól, album "
+"és dalszöveg mezőkkel"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:493
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Üres dalszövegeket nem lehet közzétenni"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Why?"
-msgstr ""
+msgstr "Miért?"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Seems like not every line is synced"
-msgstr ""
+msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
 
 #: chronograph/ui/widgets/song_card.py:92
 msgctxt "song info dialog"
 msgid "About File"
-msgstr ""
+msgstr "Fájl adatai"
 
 #: chronograph/ui/widgets/song_card.py:94
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:78
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 #: chronograph/ui/widgets/song_card.py:95
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
 #: data/gtk/ui/dialogs/MetadataEditor.blp:82
 msgid "Artist"
-msgstr ""
+msgstr "Előadó"
 
 #: chronograph/ui/widgets/song_card.py:96
 #: chronograph/ui/widgets/lrclib_track.py:13
 #: data/gtk/ui/dialogs/MetadataEditor.blp:86
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: chronograph/ui/widgets/song_card.py:97
 msgid "Path"
-msgstr ""
+msgstr "Elérési út"
 
 #: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/song_card.py:127
 msgctxt "song title placeholder"
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: chronograph/ui/widgets/song_card.py:134
 #: chronograph/ui/widgets/song_card.py:137
 msgctxt "song artist placeholder"
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: chronograph/ui/widgets/song_card.py:144
 #: chronograph/ui/widgets/song_card.py:147
 msgctxt "song album placeholder"
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:28
 #: chronograph/ui/widgets/saved_location.py:32
 msgid "Path: {}"
-msgstr ""
+msgstr "Elérési út: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
-msgstr ""
+msgstr "Hossz"
 
 #: chronograph/ui/widgets/lrclib_track.py:14
 msgid "Is instrumental"
-msgstr ""
+msgstr "Instrumentális"
 
 #: chronograph/ui/widgets/lrclib_track.py:17
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #: chronograph/ui/widgets/lrclib_track.py:18
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
 msgid "No source selected yet"
-msgstr ""
+msgstr "Nincs forrás kiválasztva"
 
 #: data/gtk/window.blp:7
 msgid "Select a directory or Drag-N-Drop files to load them"
-msgstr ""
+msgstr "Válassz egy mappát, vagy ejts ide fájlokat a betöltéshez"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr ""
+msgstr "Forrás megnyitása"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
-msgstr ""
+msgstr "Üres mappa"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Ebben a mappában nincsen támogatott hangfájl"
 
 #: data/gtk/window.blp:49
 msgid "No saves found yet"
-msgstr ""
+msgstr "Még nincs egy mentés sem"
 
 #: data/gtk/window.blp:51
 msgid "Press pin button to add current directory to the saves"
-msgstr ""
+msgstr "Használd a kitűzés gombot a jelenlegi mappa mentésekhez adásához"
 
 #: data/gtk/window.blp:81 data/gtk/window.blp:475
 msgid "Quick Editor"
-msgstr ""
+msgstr "Gyorsszerkesztő"
 
 #: data/gtk/window.blp:106
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Másolás"
 
 #: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
-msgstr ""
+msgstr "Chronograph"
 
 #: data/gtk/window.blp:167
 msgid "Drop files here to open them"
-msgstr ""
+msgstr "Ejts ide fájlokat a megnyitáshoz"
 
 #: data/gtk/window.blp:188
 msgid "Saves"
-msgstr ""
+msgstr "Mentések"
 
 #: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:365
 msgid "Toggle sidebar"
-msgstr ""
+msgstr "Oldalsáv"
 
 #: data/gtk/window.blp:224
 msgid "Select a directory or open a file"
-msgstr ""
+msgstr "Mappa vagy fájl megnyitása"
 
 #: data/gtk/window.blp:236 data/gtk/window.blp:345
 msgid "Toggle search"
-msgstr ""
+msgstr "Keresés"
 
 #: data/gtk/window.blp:244
 msgid "App settings, info and utils"
-msgstr ""
+msgstr "Menü megnyitása"
 
 #: data/gtk/window.blp:252
 msgid "Clean the library"
-msgstr ""
+msgstr "Könyvtár törlése"
 
 #: data/gtk/window.blp:267
 msgid "Re-parse current directory"
-msgstr ""
+msgstr "Jelenlegi mappa újratöltése"
 
 #: data/gtk/window.blp:273
 msgid "Add current directory to saves"
-msgstr ""
+msgstr "Jelenlegi mappa hozzáadása a mentésekhez"
 
 #: data/gtk/window.blp:290 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
-msgstr ""
+msgstr "Keresés"
 
 #: data/gtk/window.blp:333
 msgid "Shortcuts"
-msgstr ""
+msgstr "Gyorsbillentyűk"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
 msgid "General"
-msgstr ""
+msgstr "Általános"
 
 #: data/gtk/window.blp:340
 msgid "Quit"
-msgstr ""
+msgstr "Kilépés"
 
 #: data/gtk/window.blp:350
 msgid "Select directory"
-msgstr ""
+msgstr "Mappa kiválasztása"
 
 #: data/gtk/window.blp:355
 msgid "Select files"
-msgstr ""
+msgstr "Fájlok kiválasztása"
 
 #: data/gtk/window.blp:360 data/gtk/window.blp:480
 msgid "Keybindings"
-msgstr ""
+msgstr "Gyorsbillentyűk megnyitása"
 
 #: data/gtk/window.blp:371
 msgid "Sync mode"
-msgstr ""
+msgstr "Szinkronizált szerkesztés"
 
 #: data/gtk/window.blp:374
 msgid "Sync/Re-sync"
-msgstr ""
+msgstr "Szinkronizálás"
 
 #: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
 msgid "Replay selected line"
-msgstr ""
+msgstr "Kijelölt sor újrajátszása"
 
 #: data/gtk/window.blp:384
 msgid "Remove selected line"
-msgstr ""
+msgstr "Kijelölt sor törlése"
 
 #: data/gtk/window.blp:389
 msgid "Prepend line to selected"
-msgstr ""
+msgstr "Sor beszúrása a kijelölt elé"
 
 #: data/gtk/window.blp:394
 msgid "Append line to selected"
-msgstr ""
+msgstr "Sor beszúrása a kijelölt mögé"
 
 #: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:189
 msgid "Append line to end"
-msgstr ""
+msgstr "Sor hozzáadása a végén"
 
 #: data/gtk/window.blp:404
 msgid "Re-sync 100ms back"
-msgstr ""
+msgstr "Szinkronizálás 100ms-mal vissza"
 
 #: data/gtk/window.blp:409
 msgid "Re-sync 100ms forward"
-msgstr ""
+msgstr "Szinkronizálás 100ms-mal előre"
 
 #: data/gtk/window.blp:418
 msgid "Directory"
-msgstr ""
+msgstr "Mappa"
 
 #: data/gtk/window.blp:419
 msgid "Files"
-msgstr ""
+msgstr "Fájlok"
 
 #: data/gtk/window.blp:426 data/gtk/window.blp:445
 msgid "A-Z"
-msgstr ""
+msgstr "A-Z"
 
 #: data/gtk/window.blp:432 data/gtk/window.blp:451
 msgid "Z-A"
-msgstr ""
+msgstr "Z-A"
 
 #: data/gtk/window.blp:442
 msgid "Sort"
-msgstr ""
+msgstr "Rendezés"
 
 #: data/gtk/window.blp:458
 msgid "View"
-msgstr ""
+msgstr "Nézet"
 
 #: data/gtk/window.blp:461
 msgid "Grid"
-msgstr ""
+msgstr "Rács"
 
 #: data/gtk/window.blp:467
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: data/gtk/window.blp:479
 msgid "Preferences"
-msgstr ""
+msgstr "Beállítások"
 
 #: data/gtk/window.blp:481
 msgid "About"
-msgstr ""
+msgstr "A Chronograph névjegye"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
-msgstr ""
+msgstr "Keresés cím és előadó alapján"
 
 #: data/gtk/ui/dialogs/LRClib.blp:119
 msgid "Synced"
-msgstr ""
+msgstr "Szinkronizált"
 
 #: data/gtk/ui/dialogs/LRClib.blp:144
 msgid "Plain"
-msgstr ""
+msgstr "Egyszerű"
 
 #: data/gtk/ui/dialogs/LRClib.blp:173
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
 msgstr ""
+"Alapból a szinkronizált dalszöveg kerül felhasználásra. Az egyszerű szöveg "
+"hasznűlatához válaszd az „Egyszerű dalszöveg” opciót az almenüből"
 
 #: data/gtk/ui/dialogs/LRClib.blp:179
 msgid "Use"
-msgstr ""
+msgstr "Felhasználás"
 
 #: data/gtk/ui/dialogs/LRClib.blp:215
 msgid "Use plain"
-msgstr ""
+msgstr "Egyszerű dalszöveg"
 
 #: data/gtk/ui/dialogs/LRClib.blp:216
 msgid "Use synced"
-msgstr ""
+msgstr "Szinkronizált dalszöveg"
 
 #: data/gtk/ui/dialogs/LRClib.blp:222
 msgid "Nothing was found for this request"
-msgstr ""
+msgstr "Nincs találat"
 
 #: data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Try out another request, maybe there are mistakes in request text."
-msgstr ""
+msgstr "Probálkozz másképp. Lehet, hogy elírás van a keresésben."
 
 #: data/gtk/ui/dialogs/LRClib.blp:227
 msgid "Search on LRClib by title and artist names"
-msgstr ""
+msgstr "Keresés cím és előadó alapján az LRCliben"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/widgets/SavedLocation.blp:46
 #: data/gtk/ui/widgets/SavedLocation.blp:58
 msgid "Cancel"
-msgstr ""
+msgstr "Mégsem"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
-msgstr ""
+msgstr "Alkalmazás"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:51
 msgid "Change cover"
-msgstr ""
+msgstr "Borító megváltoztatása"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:100
 msgid "Set cover"
-msgstr ""
+msgstr "Borító kiválasztása"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Remove cover"
-msgstr ""
+msgstr "Borító eltávolítása"
 
 #: data/gtk/ui/dialogs/Preferences.blp:10
 msgid "Behavior"
-msgstr ""
+msgstr "Viselkedés"
 
 #: data/gtk/ui/dialogs/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
-msgstr ""
+msgstr "Gyorsszerkesztő törlése bezáráskor"
 
 #: data/gtk/ui/dialogs/Preferences.blp:14
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
+"Válaszd ki, hogy a gyorsszerkesztő ablak tartalma bezárásakor törlődjön-e"
 
 #: data/gtk/ui/dialogs/Preferences.blp:18
 msgid "Save session on app close"
-msgstr ""
+msgstr "Munkamenet mentése az alkalmazás bezárásakor"
 
 #: data/gtk/ui/dialogs/Preferences.blp:19
 msgid "Re-opens last opened directory on the next startup"
-msgstr ""
+msgstr "A következő indításkor megnyitja az utoljára megnyitott mappát"
 
 #: data/gtk/ui/dialogs/Preferences.blp:23
 msgid "Automatically toggle List View mode"
-msgstr ""
+msgstr "Listanézet automatikus váltása"
 
 #: data/gtk/ui/dialogs/Preferences.blp:24
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
-msgstr ""
+msgstr "Automatikusan átvált listanézetre, ha a kijelző nem elég nagy"
 
 #: data/gtk/ui/dialogs/Preferences.blp:28
 msgid "Display compressed covers"
-msgstr ""
+msgstr "Tömörített borítók megjelenítése"
 
 #: data/gtk/ui/dialogs/Preferences.blp:29
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
+"Némileg csökkentheti a memóriahasználatot.\n"
+"A fájlokban tárolt képekre nincs hatással"
 
 #: data/gtk/ui/dialogs/Preferences.blp:33
 msgid "Quality level"
-msgstr ""
+msgstr "Minőség"
 
 #: data/gtk/ui/dialogs/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
-msgstr ""
+msgstr "Magasabb szám magasabb minőséget jelent"
 
 #: data/gtk/ui/dialogs/Preferences.blp:41
 msgid "Parse directories recursively"
-msgstr ""
+msgstr "Mappák betöltése rekurzívan"
 
 #: data/gtk/ui/dialogs/Preferences.blp:42
 msgid "Scans provided directory for supported files recursively"
-msgstr ""
+msgstr "Rekurzívan keres támogatott fájlok után a megadott mappában"
 
 #: data/gtk/ui/dialogs/Preferences.blp:45
 msgid "Follow symlinks"
-msgstr ""
+msgstr "Szimbolikus linkek követése"
 
 #: data/gtk/ui/dialogs/Preferences.blp:46
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
+"Ha egy könyvtár szimbolikus linkeket tartalmaz más könyvtárakra, azok is "
+"betöltésre kerülnek.\n"
+"Túlzott memóriafogyasztást és hurkot okozhat, ha hurkos szimbolikus linkeket "
+"talál"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
 msgid "Sync Page"
-msgstr ""
+msgstr "Szinkronizálás nézet"
 
 #: data/gtk/ui/dialogs/Preferences.blp:55
 msgid "Use precise milliseconds"
-msgstr ""
+msgstr "Precízebb ezredmásodpercek"
 
 #: data/gtk/ui/dialogs/Preferences.blp:56
 msgid "Use 3-digit milliseconds instead of 2-digit"
-msgstr ""
+msgstr "3 számjegy használata 2 helyett"
 
 #: data/gtk/ui/dialogs/Preferences.blp:60
 msgid "Auto file manipulation"
-msgstr ""
+msgstr "Fájlok automatikus mentése"
 
 #: data/gtk/ui/dialogs/Preferences.blp:61
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
+"Automatikusan létrehozza és frissíti a fájlokat, ha bármelyik dalszövegsor "
+"megváltozik"
 
 #: data/gtk/ui/dialogs/Preferences.blp:65
 msgid "File format"
-msgstr ""
+msgstr "Fájlformátum"
 
 #: data/gtk/ui/dialogs/Preferences.blp:66
 msgid "File format for auto manipulation"
-msgstr ""
+msgstr "Automatikusan mentett fájlok formátuma"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid "Autosave interval"
-msgstr ""
+msgstr "Automatikus mentés időköze"
 
 #: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Autosave interval after lyrics syncing inactivity"
-msgstr ""
+msgstr "Automatikus mentés időköze az utolsó aktivitás után"
 
 #: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Debug"
-msgstr ""
+msgstr "Hibakeresés"
 
 #: data/gtk/ui/dialogs/Preferences.blp:82
 msgid "Enable Debug logging profile"
-msgstr ""
+msgstr "Hibakeresési naplózási profil engedélyezése"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Expands logging information for debug purposes"
-msgstr ""
+msgstr "A hibakeresés céljából bővíti a naplózott információkat"
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "ÚJRAINDÍTÁS SZÜKSÉGES"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 msgid "Syncing"
-msgstr ""
+msgstr "Szinkronizálás"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:31
 msgid "Sync/Re-sync line"
-msgstr ""
+msgstr "Sor szinkronizálása"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 msgid "Re-sync selected line 100ms back"
-msgstr ""
+msgstr "Kijelölt sor újraszinkronizálása 100ms-mal vissza"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
 msgid "Re-sync selected line 100ms forward"
-msgstr ""
+msgstr "Kijelölt sor újraszinkronizálása 100ms-mal előre"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:164
 msgid "Import from …"
-msgstr ""
+msgstr "Betöltés…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:77
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
 msgid "Export to …"
-msgstr ""
+msgstr "Exportálás…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
 msgid "Actions with selected line"
-msgstr ""
+msgstr "Műveletek a kijelölt sorral"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
 #: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
 msgid "Edit song metadata"
-msgstr ""
+msgstr "Szám metaadatainak szerkesztése"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
 msgid "About file"
-msgstr ""
+msgstr "Fájl adatai"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
 msgid "Add line"
-msgstr ""
+msgstr "Sor hozzáadása"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:166
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
 msgid "File"
-msgstr ""
+msgstr "Fájl"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:167
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
 msgid "Clipboard"
-msgstr ""
+msgstr "Vágólap"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:186
 msgid "Remove line"
-msgstr ""
+msgstr "Sor törlése"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:187
 msgid "Prepend line"
-msgstr ""
+msgstr "Sor beszúrása korábbra"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:188
 msgid "Append line"
-msgstr ""
+msgstr "Sor beszúrása későbbre"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:37
 msgid "Rename this Save"
-msgstr ""
+msgstr "Mentés átnevezése"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:41
 msgid "Name"
-msgstr ""
+msgstr "Név"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:47
 #: data/gtk/ui/widgets/SavedLocation.blp:65
 msgid "Rename"
-msgstr ""
+msgstr "Átnevezés"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:53
 msgid "Delete this Save?"
-msgstr ""
+msgstr "Törlöd ezt a mentést?"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:59
 #: data/gtk/ui/widgets/SavedLocation.blp:66
 msgid "Delete"
-msgstr ""
+msgstr "Törlés"
 
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
 msgid "Sync"
-msgstr ""
+msgstr "Szinkronizálás"
 
 #: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
 msgid "Show song info"
-msgstr ""
+msgstr "Szám adatainak megjelenítése"
 
 #: data/gtk/ui/widgets/SongCard.blp:68
 msgid "Open syncing page"
-msgstr ""
+msgstr "Szinkronizálási nézet megnyitása"
 
 #: data/gtk/ui/widgets/Player.blp:100
 msgid "Toggle song repeat"
-msgstr ""
+msgstr "Ismétlés"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
-msgstr ""
+msgstr "Szinkronizáld kedvenc dalaid szövegét"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
 msgid ""
@@ -683,33 +703,39 @@ msgid ""
 "beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
 "mp3, m4a, wav, opus and aac (reduced functionality) formats"
 msgstr ""
+"Ennek az alkalmazásnak segítségével Te is hozzájárulhatsz szinkronizált "
+"dalszövegek hatalmas adatbázisához, gyönyörű GTK4 és libadwaita felülettel. "
+"Támogatja az ogg, flac, mp3, m4a, wav, opus és aac (korlátozott "
+"funkcionalitással) formátumokat."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
 msgid "Library"
-msgstr ""
+msgstr "Könyvtár"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
 msgid "Library in List View mode"
-msgstr ""
+msgstr "Könyvtár listanézetben"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
 msgid "Lyrics syncing page"
-msgstr ""
+msgstr "Dalszöveg szinkronizálási nézet"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
 msgid "Lyrics syncing page on smaller display"
-msgstr ""
+msgstr "Dalszöveg szinkronizálási nézet kisebb kijelzőn"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
 msgid "LRClib import dialog"
-msgstr ""
+msgstr "LRClib importálási ablak"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
+"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;dalszöveg;számok;dalok;média;multimédia;zene;szinkronizálás;kronográf;"
+""
