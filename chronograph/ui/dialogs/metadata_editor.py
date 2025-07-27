@@ -22,12 +22,8 @@ class MetadataEditor(Adw.Dialog):
         self._is_cover_changed: bool = False
         self._new_cover_path: Optional[str] = ""
         self._card = card
-        self._card.bind_property(
-            "title", self.title_row, "text", GObject.BindingFlags.SYNC_CREATE
-        )
-        self._card.bind_property(
-            "artist", self.artist_row, "text", GObject.BindingFlags.SYNC_CREATE
-        )
+        self.title_row.set_text(self._card.title)
+        self.artist_row.set_text(self._card.artist)
         self._card.bind_property(
             "cover", self.cover_image, "paintable", GObject.BindingFlags.SYNC_CREATE
         )
@@ -59,17 +55,17 @@ class MetadataEditor(Adw.Dialog):
             self._card.emit("notify::cover", pspec)
             logger.info(
                 "Cover for '%s -- %s / %s' was saved",
-                self._card.title,
-                self._card.artist,
-                self._card.album,
+                self._card.title_display,
+                self._card.artist_display,
+                self._card.album_display,
             )
         if self.title_row.get_text() != self._card.title and self.title_row.get_text():
             self._card.title = self.title_row.get_text()
             logger.info(
                 "Title for '%s -- %s / %s' was saved",
-                self._card.title,
-                self._card.artist,
-                self._card.album,
+                self._card.title_display,
+                self._card.artist_display,
+                self._card.album_display,
             )
         if (
             self.artist_row.get_text() != self._card.artist
@@ -78,17 +74,17 @@ class MetadataEditor(Adw.Dialog):
             self._card.artist = self.artist_row.get_text()
             logger.info(
                 "Artist for '%s -- %s / %s' was saved",
-                self._card.title,
-                self._card.artist,
-                self._card.album,
+                self._card.title_display,
+                self._card.artist_display,
+                self._card.album_display,
             )
         if self.album_row.get_text() != self._card.album and self.album_row.get_text():
             self._card.album = self.album_row.get_text()
             logger.info(
                 "Album for '%s -- %s / %s' was saved",
-                self._card.title,
-                self._card.artist,
-                self._card.album,
+                self._card.title_display,
+                self._card.artist_display,
+                self._card.album_display,
             )
         self._card.save()
         self.close()
@@ -114,7 +110,7 @@ class MetadataEditor(Adw.Dialog):
         self.cover_image.set_from_paintable(Constants.COVER_PLACEHOLDER)
         logger.debug(
             "Queuing cover removing for '%s -- %s / %s'",
-            self._card.title,
-            self._card.artist,
-            self._card.album,
+            self._card.title_display,
+            self._card.artist_display,
+            self._card.album_display,
         )

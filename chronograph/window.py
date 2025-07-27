@@ -5,6 +5,7 @@
 
 import os
 from enum import Enum
+from pathlib import Path
 from typing import Callable, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
@@ -142,6 +143,9 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Builds the sidebar with saved locations"""
         logger.debug("Building the sidebar")
         self.sidebar.remove_all()
+        Constants.CACHE["pins"] = [
+            pin for pin in Constants.CACHE["pins"] if Path(pin["path"]).exists()
+        ]
         for pin in Constants.CACHE["pins"]:
             self.sidebar.append(SavedLocation(pin["path"], pin["name"]))
         self.sidebar.set_placeholder(self.no_saves_found_status)
@@ -203,8 +207,8 @@ class ChronographWindow(Adw.ApplicationWindow):
             song_card.get_parent().set_focusable(False)
             logger.debug(
                 "SongCard for song '%s -- %s' was added",
-                song_card.title,
-                song_card.artist,
+                song_card.title_display,
+                song_card.artist_display,
             )
 
         mutagen_files = parse_files(paths)

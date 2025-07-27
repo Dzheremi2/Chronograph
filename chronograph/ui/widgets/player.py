@@ -43,10 +43,16 @@ class Player(Adw.BreakpointBin):
         self.main_clamp.set_tightening_threshold(max_width)
 
         self._card.bind_property(
-            "title", self.title_inscr, "text", GObject.BindingFlags.SYNC_CREATE
+            "title_display",
+            self.title_inscr,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self._card.bind_property(
-            "artist", self.artist_inscr, "text", GObject.BindingFlags.SYNC_CREATE
+            "artist_display",
+            self.artist_inscr,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self._card.bind_property(
             "cover",

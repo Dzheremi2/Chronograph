@@ -94,6 +94,11 @@
         <ul>]
           <li>Precise milliseconds are now disabled by default</li>
         </ul>
+        <p>Translations</p>
+        <ul>
+          <li>Added Hungarian translation</li>
+          <li>Translations update</li>
+        </ul>
       </description>
     </release>
     <release version="2.5.2" date="2025-06-15">

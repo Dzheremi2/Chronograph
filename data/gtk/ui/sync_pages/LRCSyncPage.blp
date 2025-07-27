@@ -6,7 +6,15 @@ template $LRCSyncPage : Adw.NavigationPage {
 
   Adw.ToolbarView {
     [top]
-    Adw.HeaderBar header_bar {}
+    Adw.HeaderBar header_bar {
+      [end]
+      MenuButton {
+        icon-name: "app-menu-symbolic";
+        tooltip-text: _("App settings, info and utils");
+        menu-model: about_app;
+        primary: true;
+      }
+    }
 
     [top]
     Box player_container {
@@ -187,5 +195,51 @@ menu line_actions {
     item (_("Prepend line"), "line.prepend")
     item (_("Append line"), "line.append")
     item (_("Append line to end"), "line.append_end")
+  }
+}
+
+menu about_app {
+  section {
+    submenu {
+      label: _("Sort");
+
+      item {
+        label: _("A-Z");
+        action: "app.sort_type";
+        target: "a-z";
+      }
+
+      item {
+        label: _("Z-A");
+        action: "app.sort_type";
+        target: "z-a";
+      }
+    }
+
+    submenu {
+      label: _("View");
+
+      item {
+        label: _("Grid");
+        action: "app.view_type";
+        target: "g";
+      }
+
+      item {
+        label: _("List");
+        action: "app.view_type";
+        target: "l";
+      }
+    }
+  }
+
+  section {
+    item (_("Quick Editor"), "win.open_quick_editor")
+  }
+
+  section {
+    item (_("Preferences"), "win.show_preferences")
+    item (_("Keybindings"), "win.show-help-overlay")
+    item (_("About"), "app.about")
   }
 }

@@ -95,7 +95,7 @@ class LRCSyncPage(Adw.NavigationPage):
         """
         # pylint: disable=not-an-iterable
         text = "\n".join([line.get_text() for line in self.sync_lines])
-        timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2}]")
+        timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2,3}]")
         for line in text.strip().splitlines():
             if not timestamp_pattern.search(line):
                 return False
@@ -358,9 +358,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
     ############### Publisher ###############
 
-    def _publish(
-        self, __, ___, title: str, artist: str, album: str, duration: str, lyrics: str
-    ) -> None:
+    def _publish(self, __, ___, card: SongCard) -> None:
 
         def _verify_nonce(result: int, target: int) -> bool:
             if len(result) != len(target):
@@ -468,26 +466,41 @@ class LRCSyncPage(Adw.NavigationPage):
             logger.info("Publishing status code: %s", response.status_code)
             if response.status_code == 201:
                 Constants.WIN.show_toast(
-                    _("Published successfully: {code}").format(code=str(response.status_code)),
+                    _("Published successfully: {code}").format(
+                        code=str(response.status_code)
+                    ),
                 )
             elif response.status_code == 400:
                 Constants.WIN.show_toast(
-                    _("Incorrect publish token: {code}").format(code=str(response.status_code)),
+                    _("Incorrect publish token: {code}").format(
+                        code=str(response.status_code)
+                    ),
                 )
             else:
                 Constants.WIN.show_toast(
-                    _("Unknown error occured: {code}").format(code=str(response.status_code)),
+                    _("Unknown error occured: {code}").format(
+                        code=str(response.status_code)
+                    ),
                 )
 
+        title = card.title
+        artist = card.artist
+        album = card.album
+        duration = card.duration
+        lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
         if not all((title, artist, album, duration, lyrics)):
 
-            def _reason() -> None:
-                Adw.AlertDialog(
+            def _reason(*_args) -> None:
+                _alert = Adw.AlertDialog(
                     heading=_("Unable to publish lyrics"),
                     body=_(
                         "To publish lyrics the track must have a title, artist, album and lyrics fields set"
                     ),
-                ).present(Constants.WIN)
+                    default_response="close",
+                    close_response="close",
+                )
+                _alert.add_response("close", _("Close"))
+                _alert.present(Constants.WIN)
 
             Constants.WIN.show_toast(
                 _("Cannot publish empty lyrics"),
@@ -528,15 +541,7 @@ class LRCSyncPage(Adw.NavigationPage):
         # Export actions
         _actions = Gio.SimpleActionGroup.new()
         _e_lrclib = Gio.SimpleAction.new("lrclib", None)
-        _e_lrclib.connect(
-            "activate",
-            self._publish,
-            self._card.title,
-            self._card.artist,
-            self._card.album,
-            self._card.duration,
-            "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"),
-        )
+        _e_lrclib.connect("activate", self._publish, self._card)
         _e_file = Gio.SimpleAction.new("file", None)
         _e_file.connect("activate", self._export_file)
         _e_clipboard = Gio.SimpleAction.new("clipboard", None)

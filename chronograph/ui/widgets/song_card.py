@@ -39,16 +39,28 @@ class SongCard(Gtk.Box):
         super().__init__(**kwargs)
         self._file = file
         self.bind_property(
-            "title", self.title_label, "label", GObject.BindingFlags.SYNC_CREATE
+            "title_display",
+            self.title_label,
+            "label",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self.bind_property(
-            "title", self.list_view_row, "title", GObject.BindingFlags.SYNC_CREATE
+            "title_display",
+            self.list_view_row,
+            "title",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self.bind_property(
-            "artist", self.artist_label, "label", GObject.BindingFlags.SYNC_CREATE
+            "artist_display",
+            self.artist_label,
+            "label",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self.bind_property(
-            "artist", self.list_view_row, "subtitle", GObject.BindingFlags.SYNC_CREATE
+            "artist_display",
+            self.list_view_row,
+            "subtitle",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self.cover_img.set_from_paintable(self.cover)
         self.bind_property(
@@ -91,20 +103,26 @@ class SongCard(Gtk.Box):
         BoxDialog(
             C_("song info dialog", "About File"),
             (
-                (_("Title"), self.title),
-                (_("Artist"), self.artist),
-                (_("Album"), self.album),
+                (_("Title"), self.title_display),
+                (_("Artist"), self.artist_display),
+                (_("Album"), self.album_display),
                 (_("Path"), self.path),
             ),
         ).present(Constants.WIN)
         logger.debug(
-            "File info dialog for '%s -- %s' was shown", self.title, self.artist
+            "File info dialog for '%s -- %s' was shown",
+            self.title_display,
+            self.artist_display,
         )
 
     @Gtk.Template.Callback()
     def open_metadata_editor(self, *_args) -> None:
         """Open metadata editor dialog"""
-        logger.debug("Opening metadata editor for '%s -- %s'", self.title, self.artist)
+        logger.debug(
+            "Opening metadata editor for '%s -- %s'",
+            self.title_display,
+            self.artist_display,
+        )
         MetadataEditor(self).present(Constants.WIN)
 
     def save(self) -> None:
@@ -115,40 +133,53 @@ class SongCard(Gtk.Box):
         return self.list_view_row
 
     def get_title(self) -> str:
-        return self.title
+        return self.title_display
 
     # A workaround for unificating invalidate_filter functions
     def get_subtitle(self) -> str:
-        return self.artist
+        return self.artist_display
 
-    @GObject.Property(type=str, default=C_("song title placeholder", "Unknown"))
+    @GObject.Property(type=str, default="")
     def title(self) -> str:
         """Title of the song"""
-        return self._file.title or C_("song title placeholder", "Unknown")
+        return self._file.title or ""
 
     @title.setter
     def title(self, value: str) -> None:
-        self._file.set_str_data("TIT2", value)
-        self.title_label.set_label(value)
+        self._file.set_str_data("TIT2", value or "")
+        self.notify("title_display")
 
-    @GObject.Property(type=str, default=C_("song artist placeholder", "Unknown"))
+    @GObject.Property(type=str, default="")
     def artist(self) -> str:
         """Artist of the song"""
-        return self._file.artist or C_("song artist placeholder", "Unknown")
+        return self._file.artist or ""
 
     @artist.setter
     def artist(self, value: str) -> None:
-        self._file.set_str_data("TPE1", value)
-        self.artist_label.set_label(value)
+        self._file.set_str_data("TPE1", value or "")
+        self.notify("artist_display")
 
-    @GObject.Property(type=str, default=C_("song album placeholder", "Unknown"))
+    @GObject.Property(type=str, default="")
     def album(self) -> str:
         """Album of the song"""
-        return self._file.album or C_("song album placeholder", "Unknown")
+        return self._file.album or ""
 
     @album.setter
     def album(self, value: str) -> None:
-        self._file.set_str_data("TALB", value)
+        self._file.set_str_data("TALB", value or "")
+        self.notify("album_display")
+
+    @GObject.Property(type=str, default=C_("song title placeholder", "Unknown"))
+    def title_display(self) -> str:
+        return self.title or C_("song title placeholder", "Unknown")
+
+    @GObject.Property(type=str, default=C_("song artist placeholder", "Unknown"))
+    def artist_display(self) -> str:
+        return self.artist or C_("song artist placeholder", "Unknown")
+
+    @GObject.Property(type=str, default=C_("song album placeholder", "Unknown"))
+    def album_display(self) -> str:
+        return self.album or C_("song album placeholder", "Unknown")
 
     @GObject.Property(type=Gdk.Texture)
     def cover(self) -> Gdk.Texture:
