@@ -91,7 +91,7 @@
           <li>Added logging and debugging imformation to the About dialog</li>
         </ul>
         <p>Bug fixes</p>
-        <ul>]
+        <ul>
           <li>Precise milliseconds are now disabled by default</li>
         </ul>
         <p>Translations</p>

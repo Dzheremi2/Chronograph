@@ -1,3 +1,19 @@
+## 3.0
+<p>The App was rewritten for better performance and easier features implementation</p>
+<p>New features</p>
+<ul>
+    <li>Added logging and debugging imformation to the About dialog</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+    <li>Precise milliseconds are now disabled by default</li>
+</ul>
+<p>Translations</p>
+<ul>
+    <li>Added Hungarian translation</li>
+    <li>Translations update</li>
+</ul>
+
 ## 2.5.2
 <p>Bug fixes</p>
 <ul>
