@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-24 23:40+0300\n"
+"POT-Creation-Date: 2025-07-27 10:31+0300\n"
 "PO-Revision-Date: 2025-07-25 12:04+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim5@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: chronograph/window.py:438
+#: chronograph/window.py:442
 msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
@@ -90,22 +90,22 @@ msgstr "Текст пісні експортовано у файл пісні"
 msgid "Show"
 msgstr "Показати"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:408
-#: chronograph/ui/sync_pages/lrc_sync_page.py:451
+#: chronograph/ui/sync_pages/lrc_sync_page.py:406
+#: chronograph/ui/sync_pages/lrc_sync_page.py:449
 msgid "Failed to connect to LRClib.net"
 msgstr "Не вдалося підключитися до LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:411
-#: chronograph/ui/sync_pages/lrc_sync_page.py:454
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:452
 msgid "Connection to LRClib.net timed out"
 msgstr "Час очікування з'єднання з LRClib.net минув"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:415
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Сталася помилка під час підключення до LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:469
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успішно опубліковано: {code}"
@@ -115,16 +115,16 @@ msgstr "Успішно опубліковано: {code}"
 msgid "Incorrect publish token: {code}"
 msgstr "Неправильний токен публікації: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:479
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Сталася невідома помилка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+#: chronograph/ui/sync_pages/lrc_sync_page.py:495
 msgid "Unable to publish lyrics"
 msgstr "Неможливо опублікувати текст пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:488
+#: chronograph/ui/sync_pages/lrc_sync_page.py:497
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -132,59 +132,63 @@ msgstr ""
 "Щоб опублікувати текст пісні, для неї необхідно встановити поля назви, "
 "виконавця, альбому та тексту пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:493
+#: chronograph/ui/sync_pages/lrc_sync_page.py:502
+msgid "Close"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:506
 msgid "Cannot publish empty lyrics"
 msgstr "Не можна публікувати порожні тексти пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:507
 msgid "Why?"
 msgstr "Чому?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/ui/widgets/song_card.py:92
+#: chronograph/ui/widgets/song_card.py:104
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Про Файл"
 
-#: chronograph/ui/widgets/song_card.py:94
+#: chronograph/ui/widgets/song_card.py:106
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:78
 msgid "Title"
 msgstr "Назва"
 
-#: chronograph/ui/widgets/song_card.py:95
+#: chronograph/ui/widgets/song_card.py:107
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
 #: data/gtk/ui/dialogs/MetadataEditor.blp:82
 msgid "Artist"
 msgstr "Виконавець"
 
-#: chronograph/ui/widgets/song_card.py:96
+#: chronograph/ui/widgets/song_card.py:108
 #: chronograph/ui/widgets/lrclib_track.py:13
 #: data/gtk/ui/dialogs/MetadataEditor.blp:86
 msgid "Album"
 msgstr "Альбом"
 
-#: chronograph/ui/widgets/song_card.py:97
+#: chronograph/ui/widgets/song_card.py:109
 msgid "Path"
 msgstr "Шлях"
 
-#: chronograph/ui/widgets/song_card.py:124
-#: chronograph/ui/widgets/song_card.py:127
+#: chronograph/ui/widgets/song_card.py:172
+#: chronograph/ui/widgets/song_card.py:174
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: chronograph/ui/widgets/song_card.py:134
-#: chronograph/ui/widgets/song_card.py:137
+#: chronograph/ui/widgets/song_card.py:176
+#: chronograph/ui/widgets/song_card.py:178
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: chronograph/ui/widgets/song_card.py:144
-#: chronograph/ui/widgets/song_card.py:147
+#: chronograph/ui/widgets/song_card.py:180
+#: chronograph/ui/widgets/song_card.py:182
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Невідомий"
@@ -244,6 +248,7 @@ msgstr ""
 "Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
 
 #: data/gtk/window.blp:81 data/gtk/window.blp:475
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:237
 msgid "Quick Editor"
 msgstr "Швидкий редактор"
 
@@ -277,7 +282,7 @@ msgstr "Обрати теки або відкрити файл"
 msgid "Toggle search"
 msgstr "Увімкнути пошук"
 
-#: data/gtk/window.blp:244
+#: data/gtk/window.blp:244 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr "Налаштування додатку, інформація та інструментарій"
 
@@ -318,6 +323,7 @@ msgid "Select files"
 msgstr "Виберіть файли"
 
 #: data/gtk/window.blp:360 data/gtk/window.blp:480
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:242
 msgid "Keybindings"
 msgstr "Клавіатурні скорочення"
 
@@ -329,7 +335,7 @@ msgstr "Режим синхронізації"
 msgid "Sync/Re-sync"
 msgstr "Синхронізувати/десинхронізувати"
 
-#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 msgid "Replay selected line"
 msgstr "Повторно програти рядок"
 
@@ -345,7 +351,7 @@ msgstr "Вставити рядок вище обраного"
 msgid "Append line to selected"
 msgstr "Вставити строку нижче обраного"
 
-#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:189
+#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
 msgid "Append line to end"
 msgstr "Вставити строку до кінця"
 
@@ -366,34 +372,36 @@ msgid "Files"
 msgstr "Файли"
 
 #: data/gtk/window.blp:426 data/gtk/window.blp:445
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:207
 msgid "A-Z"
 msgstr "А-Я"
 
 #: data/gtk/window.blp:432 data/gtk/window.blp:451
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:213
 msgid "Z-A"
 msgstr "Я-А"
 
-#: data/gtk/window.blp:442
+#: data/gtk/window.blp:442 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
 msgid "Sort"
 msgstr "Сортувати"
 
-#: data/gtk/window.blp:458
+#: data/gtk/window.blp:458 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
 msgid "View"
 msgstr "Переглянути"
 
-#: data/gtk/window.blp:461
+#: data/gtk/window.blp:461 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
 msgid "Grid"
 msgstr "Сітка"
 
-#: data/gtk/window.blp:467
+#: data/gtk/window.blp:467 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
 msgid "List"
 msgstr "Список"
 
-#: data/gtk/window.blp:479
+#: data/gtk/window.blp:479 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: data/gtk/window.blp:481
+#: data/gtk/window.blp:481 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
 msgid "About"
 msgstr "Про додаток"
 
@@ -598,65 +606,65 @@ msgstr "ПОТРЕБУЄ ПЕРЕЗАПУСКУ"
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:31
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 msgid "Sync/Re-sync line"
 msgstr "Синхронізувати/десинхронізувати рядок"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
 msgid "Re-sync selected line 100ms back"
 msgstr "Десинхронізувати обраний рядок на 100мс назад"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
 msgid "Re-sync selected line 100ms forward"
 msgstr "Десинхронізувати обраний рядок на 100мс вперед"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:164
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:74
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Import from …"
 msgstr "Імпорт з…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:77
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
 msgid "Export to …"
 msgstr "Експорт до…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:103
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:192
 msgid "Actions with selected line"
 msgstr "Дії з обраним рядком"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
 #: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
 msgid "Edit song metadata"
 msgstr "Редагувати метадані пісні"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
 msgid "About file"
 msgstr "Про файл"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
 msgid "Add line"
 msgstr "Додайте лінію"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:166
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
 msgid "File"
 msgstr "Файл"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:167
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:185
 msgid "Clipboard"
 msgstr "Буфер обміну"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:186
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:194
 msgid "Remove line"
 msgstr "Видалити рядок"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:187
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:195
 msgid "Prepend line"
 msgstr "Додати рядок вище"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:188
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
 msgid "Append line"
 msgstr "Додати рядок нижче"
 

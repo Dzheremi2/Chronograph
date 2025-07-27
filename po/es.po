@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-24 23:40+0300\n"
+"POT-Creation-Date: 2025-07-27 10:31+0300\n"
 "PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: \"Emilio S.\" <emism.translations@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/chronograph/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:438
+#: chronograph/window.py:442
 msgid "Copied successfully"
 msgstr "Copiado correctamente"
 
@@ -86,22 +86,22 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:408
-#: chronograph/ui/sync_pages/lrc_sync_page.py:451
+#: chronograph/ui/sync_pages/lrc_sync_page.py:406
+#: chronograph/ui/sync_pages/lrc_sync_page.py:449
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:411
-#: chronograph/ui/sync_pages/lrc_sync_page.py:454
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:452
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:415
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:469
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Publicado correctamente: "
@@ -111,77 +111,81 @@ msgstr "Publicado correctamente: "
 msgid "Incorrect publish token: {code}"
 msgstr "Testigo de publicación incorrecto: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:479
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ha ocurrido un error desconocido: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+#: chronograph/ui/sync_pages/lrc_sync_page.py:495
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:488
+#: chronograph/ui/sync_pages/lrc_sync_page.py:497
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:493
+#: chronograph/ui/sync_pages/lrc_sync_page.py:502
+msgid "Close"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:506
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:507
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid "Seems like not every line is synced"
 msgstr "Parece que no todas las líneas están sincronizadas"
 
-#: chronograph/ui/widgets/song_card.py:92
+#: chronograph/ui/widgets/song_card.py:104
 #, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Acerca del archivo"
 
-#: chronograph/ui/widgets/song_card.py:94
+#: chronograph/ui/widgets/song_card.py:106
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:78
 msgid "Title"
 msgstr "Título"
 
-#: chronograph/ui/widgets/song_card.py:95
+#: chronograph/ui/widgets/song_card.py:107
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
 #: data/gtk/ui/dialogs/MetadataEditor.blp:82
 msgid "Artist"
 msgstr "Artista"
 
-#: chronograph/ui/widgets/song_card.py:96
+#: chronograph/ui/widgets/song_card.py:108
 #: chronograph/ui/widgets/lrclib_track.py:13
 #: data/gtk/ui/dialogs/MetadataEditor.blp:86
 msgid "Album"
 msgstr "Álbum"
 
-#: chronograph/ui/widgets/song_card.py:97
+#: chronograph/ui/widgets/song_card.py:109
 msgid "Path"
 msgstr "Ruta"
 
-#: chronograph/ui/widgets/song_card.py:124
-#: chronograph/ui/widgets/song_card.py:127
+#: chronograph/ui/widgets/song_card.py:172
+#: chronograph/ui/widgets/song_card.py:174
 #, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: chronograph/ui/widgets/song_card.py:134
-#: chronograph/ui/widgets/song_card.py:137
+#: chronograph/ui/widgets/song_card.py:176
+#: chronograph/ui/widgets/song_card.py:178
 #, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: chronograph/ui/widgets/song_card.py:144
-#: chronograph/ui/widgets/song_card.py:147
+#: chronograph/ui/widgets/song_card.py:180
+#: chronograph/ui/widgets/song_card.py:182
 #, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
@@ -244,6 +248,7 @@ msgid "Press pin button to add current directory to the saves"
 msgstr "Pulse el botón pin para añadir el directorio actual a los guardados"
 
 #: data/gtk/window.blp:81 data/gtk/window.blp:475
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:237
 msgid "Quick Editor"
 msgstr "Editor rápido"
 
@@ -278,7 +283,7 @@ msgstr "Seleccionar una carpeta o abrir un archivo"
 msgid "Toggle search"
 msgstr "Conmutar la búsqueda"
 
-#: data/gtk/window.blp:244
+#: data/gtk/window.blp:244 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr "Ajustes, información y utilidades de la aplicación"
 
@@ -322,6 +327,7 @@ msgid "Select files"
 msgstr "Seleccionar directorio"
 
 #: data/gtk/window.blp:360 data/gtk/window.blp:480
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:242
 msgid "Keybindings"
 msgstr "Combinaciones de teclas"
 
@@ -333,7 +339,7 @@ msgstr "Modo de sincronización"
 msgid "Sync/Re-sync"
 msgstr "Re/Sincronizar"
 
-#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 msgid "Replay selected line"
 msgstr "Repetir la línea seleccionada"
 
@@ -349,7 +355,7 @@ msgstr "Anteponer línea a la seleccionada"
 msgid "Append line to selected"
 msgstr "Anexar línea a la seleccionada"
 
-#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:189
+#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
 msgid "Append line to end"
 msgstr "Anexar línea al final"
 
@@ -371,34 +377,36 @@ msgid "Files"
 msgstr "Archivo"
 
 #: data/gtk/window.blp:426 data/gtk/window.blp:445
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:207
 msgid "A-Z"
 msgstr "A-Z"
 
 #: data/gtk/window.blp:432 data/gtk/window.blp:451
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:213
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:442
+#: data/gtk/window.blp:442 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:458
+#: data/gtk/window.blp:458 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
 msgid "View"
 msgstr ""
 
-#: data/gtk/window.blp:461
+#: data/gtk/window.blp:461 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
 msgid "Grid"
 msgstr ""
 
-#: data/gtk/window.blp:467
+#: data/gtk/window.blp:467 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
 msgid "List"
 msgstr ""
 
-#: data/gtk/window.blp:479
+#: data/gtk/window.blp:479 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: data/gtk/window.blp:481
+#: data/gtk/window.blp:481 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
 msgid "About"
 msgstr "Acerca de"
 
@@ -596,65 +604,65 @@ msgstr ""
 msgid "Syncing"
 msgstr "Sincronizando"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:31
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 msgid "Sync/Re-sync line"
 msgstr "Línea de re/sincronización"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
 msgid "Re-sync selected line 100ms back"
 msgstr "Resincronización de la línea seleccionada 100ms atrás"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
 msgid "Re-sync selected line 100ms forward"
 msgstr "Resincronización de la línea seleccionada 100ms adelante"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:164
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:74
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Import from …"
 msgstr "Importar desde…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:77
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
 msgid "Export to …"
 msgstr "Exportar a…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:103
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:192
 msgid "Actions with selected line"
 msgstr "Acciones con la línea seleccionada"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
 #: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
 msgid "Edit song metadata"
 msgstr "Editar los metadatos de las canciones"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
 msgid "About file"
 msgstr "Acerca del archivo"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
 msgid "Add line"
 msgstr "Añadir línea"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:166
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
 msgid "File"
 msgstr "Archivo"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:167
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:185
 msgid "Clipboard"
 msgstr "Portapapeles"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:186
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:194
 msgid "Remove line"
 msgstr "Eliminar línea"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:187
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:195
 msgid "Prepend line"
 msgstr "Anteponer línea"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:188
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
 msgid "Append line"
 msgstr "Anexar línea"
 

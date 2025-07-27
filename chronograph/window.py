@@ -224,7 +224,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def open_directory(self, path: str) -> None:
         """Open a directory and load its files, updating window state"""
-        logger.info("Opening '%s' direcotry", path)
+        logger.info("Opening '%s' directory", path)
 
         files = parse_dir(path)
         mutagen_files = parse_files(files)
