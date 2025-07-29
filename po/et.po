@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-27 10:31+0300\n"
-"PO-Revision-Date: 2025-07-25 21:07+0000\n"
+"PO-Revision-Date: 2025-07-29 19:13+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -46,23 +46,25 @@ msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
 msgstr ""
+"Ei õnnestunud luua ühendust LRC serveriga, Palun kontrolli, kas sinu "
+"nutiseadme internetiühendus toimib ja proovi uuesti"
 
 #: chronograph/ui/dialogs/lrclib.py:123
 msgid "Timeout Error"
-msgstr ""
+msgstr "Päringu aegumine"
 
 #: chronograph/ui/dialogs/lrclib.py:125
 msgid "The request to the LRC library server timed out. Please try again later"
-msgstr ""
+msgstr "Päring LRC-serverisse aegus. Palun proovi hiljem uuesti"
 
 #: chronograph/ui/dialogs/lrclib.py:134
 msgid "Something went wrong"
-msgstr ""
+msgstr "Midagi läks valesti"
 
 #: chronograph/ui/dialogs/lrclib.py:136
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
-msgstr ""
+msgstr "LRC-serveriga ühenduse loomisel tekkis tundmatu viga"
 
 #: chronograph/ui/dialogs/lrclib.py:218
 msgid "No synced lyrics available"
@@ -87,17 +89,17 @@ msgstr "Näita"
 #: chronograph/ui/sync_pages/lrc_sync_page.py:406
 #: chronograph/ui/sync_pages/lrc_sync_page.py:449
 msgid "Failed to connect to LRClib.net"
-msgstr ""
+msgstr "Ühendamine LRClib.net serveriga ei õnnestunud"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:409
 #: chronograph/ui/sync_pages/lrc_sync_page.py:452
 msgid "Connection to LRClib.net timed out"
-msgstr ""
+msgstr "Ühendus LRClib.net serveriga aegus"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:413
 #: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "An error occurred while connecting to LRClib.net"
-msgstr ""
+msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:469
 #, python-brace-format
@@ -116,17 +118,19 @@ msgstr "Tekkis tundmatu viga: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:495
 msgid "Unable to publish lyrics"
-msgstr ""
+msgstr "Laulusõnade avaldamine ei õnnestu"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:497
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
+"Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
+"väljad olema täidetud"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:502
 msgid "Close"
-msgstr ""
+msgstr "Sulge"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:506
 msgid "Cannot publish empty lyrics"
@@ -569,27 +573,29 @@ msgstr "Failivorming automaatseks muutmiseks"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid "Autosave interval"
-msgstr ""
+msgstr "Automaatse salvestamise välp"
 
 #: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
+"Automaatse salvestamise välp, kui laulusõnade sünkroonimine pole olnud "
+"aktiivne"
 
 #: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Debug"
-msgstr ""
+msgstr "Veaotsing"
 
 #: data/gtk/ui/dialogs/Preferences.blp:82
 msgid "Enable Debug logging profile"
-msgstr ""
+msgstr "Lülita veaotsinguks vajalik silumisprofiil sisse"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Expands logging information for debug purposes"
-msgstr ""
+msgstr "Järgnevaga on kasutamisel tavalisest üksikasjalikum logimine"
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "VAJAB RAKENDUSE UUESTI KÄIVITAMIST"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 msgid "Syncing"
