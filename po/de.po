@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-27 10:31+0300\n"
-"PO-Revision-Date: 2025-05-01 06:01+0000\n"
-"Last-Translator: Aircraft192 <finnwiggers2006@gmail.com>\n"
+"PO-Revision-Date: 2025-08-02 17:02+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: chronograph/window.py:442
 msgid "Copied successfully"
@@ -29,9 +29,8 @@ msgid "translator-credits"
 msgstr "Ettore Atalan"
 
 #: chronograph/main.py:164
-#, fuzzy
 msgid "Inspiration"
-msgstr "Dauer"
+msgstr "Inspiration"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:174
@@ -40,7 +39,7 @@ msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:112
 msgid "Connection Error"
-msgstr ""
+msgstr "Verbindungsfehler"
 
 #: chronograph/ui/dialogs/lrclib.py:114
 msgid ""
@@ -50,7 +49,7 @@ msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:123
 msgid "Timeout Error"
-msgstr ""
+msgstr "Zeitüberschreitungsfehler"
 
 #: chronograph/ui/dialogs/lrclib.py:125
 msgid "The request to the LRC library server timed out. Please try again later"
@@ -58,7 +57,7 @@ msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:134
 msgid "Something went wrong"
-msgstr ""
+msgstr "Irgendetwas ist schiefgelaufen"
 
 #: chronograph/ui/dialogs/lrclib.py:136
 msgid ""
@@ -84,7 +83,7 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 msgid "Show"
-msgstr ""
+msgstr "Anzeigen"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:406
 #: chronograph/ui/sync_pages/lrc_sync_page.py:449
@@ -102,19 +101,19 @@ msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:469
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Published successfully: {code}"
-msgstr "Erfolgreich veröffentlicht: "
+msgstr "Erfolgreich veröffentlicht: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:475
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr "Falsches Veröffentlichungs-Token: "
+msgstr "Falsches Veröffentlichungs-Token: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:481
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Unbekannter Fehler aufgetreten: "
+msgstr "Unbekannter Fehler aufgetreten: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:495
 msgid "Unable to publish lyrics"
@@ -128,7 +127,7 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:502
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:506
 msgid "Cannot publish empty lyrics"
@@ -136,14 +135,13 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:507
 msgid "Why?"
-msgstr ""
+msgstr "Warum?"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid "Seems like not every line is synced"
 msgstr "Es scheint, dass nicht jede Zeile synchronisiert ist"
 
 #: chronograph/ui/widgets/song_card.py:104
-#, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Über Datei"
@@ -172,21 +170,18 @@ msgstr "Pfad"
 
 #: chronograph/ui/widgets/song_card.py:172
 #: chronograph/ui/widgets/song_card.py:174
-#, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Unbekannt"
 
 #: chronograph/ui/widgets/song_card.py:176
 #: chronograph/ui/widgets/song_card.py:178
-#, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Unbekannt"
 
 #: chronograph/ui/widgets/song_card.py:180
 #: chronograph/ui/widgets/song_card.py:182
-#, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -195,9 +190,8 @@ msgstr "Unbekannt"
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:28
 #: chronograph/ui/widgets/saved_location.py:32
-#, fuzzy
 msgid "Path: {}"
-msgstr "Pfad: "
+msgstr "Pfad: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
@@ -251,9 +245,8 @@ msgid "Quick Editor"
 msgstr "Schnelleditor"
 
 #: data/gtk/window.blp:106
-#, fuzzy
 msgid "Copy to clipboard"
-msgstr "Zwischenablage"
+msgstr "In die Zwischenablage kopieren"
 
 #: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
@@ -286,9 +279,8 @@ msgid "App settings, info and utils"
 msgstr "App-Einstellungen, Infos und Hilfsmittel"
 
 #: data/gtk/window.blp:252
-#, fuzzy
 msgid "Clean the library"
-msgstr "Bibliothek"
+msgstr "Bibliothek bereinigen"
 
 #: data/gtk/window.blp:267
 msgid "Re-parse current directory"
@@ -518,7 +510,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:33
 msgid "Quality level"
-msgstr ""
+msgstr "Qualitätsstufe"
 
 #: data/gtk/ui/dialogs/Preferences.blp:34
 msgid "The higher value, the higher cover quality"
@@ -575,7 +567,7 @@ msgstr "Dateiformat für die automatische Bearbeitung"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid "Autosave interval"
-msgstr ""
+msgstr "Intervall für automatisches Speichern"
 
 #: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Autosave interval after lyrics syncing inactivity"
@@ -595,7 +587,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "ERFORDERT NEUSTART"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 msgid "Syncing"
