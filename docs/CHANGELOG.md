@@ -1,3 +1,11 @@
+## 3.0.1
+<p>Apologies for all Ukrainian app users. Previously, Ukrainian language was not available cause of misspelled langcode (UA instead of UK)</p>
+<p>Translations</p>
+<ul>
+    <li>Fixed Ukrainian translation</li>
+    <li>Translations update</li>
+</ul>
+
 ## 3.0
 <p>The App was rewritten for better performance and easier features implementation</p>
 <p>New features</p>

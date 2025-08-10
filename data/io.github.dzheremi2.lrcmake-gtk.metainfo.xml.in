@@ -83,6 +83,16 @@
   </screenshots>
 
   <releases>
+    <release version="3.0.1" date="2025-08-10">
+      <description translate="no">
+        <p>Apologies for all Ukrainian app users. Previously, Ukrainian language was not available cause of misspelled langcode (UA instead of UK)</p>
+        <p>Translations</p>
+        <ul>
+          <li>Fixed Ukrainian translation</li>
+          <li>Translations update</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.0" date="2025-07-27">
       <description translate="no">
         <p>The App was rewritten for better performance and easier features implementation</p>
