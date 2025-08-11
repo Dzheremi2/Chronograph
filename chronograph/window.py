@@ -93,8 +93,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     quick_edit_text_view: Gtk.TextView = gtc()
     quick_edit_copy_button: Gtk.Button = gtc()
 
-    sort_state: str = Schema.sorting
-    view_state: str = Schema.STATEFULL.get_string("view")
+    sort_state: str = Schema.get_sorting()
+    view_state: str = Schema.get_view()
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
@@ -219,7 +219,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 GLib.idle_add(__songcard_idle, mutagen_file)
         self.open_source_button.set_icon_name("open-source-symbolic")
         if path := get_common_directory(paths):
-            Schema.STATEFULL.set_string("session", path)
+            Schema.set_session(path)
         return True
 
     def open_directory(self, path: str) -> None:
@@ -230,7 +230,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         mutagen_files = parse_files(files)
 
         self.clean_library()
-        Schema.STATEFULL.set_string("session", path)
+        Schema.set_session(path)
 
         self.add_dir_to_saves_button.set_visible(
             path not in [pin["path"] for pin in Constants.CACHE["pins"]]
@@ -250,7 +250,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.state = WindowState.LOADED_FILES
         else:
             self.state = WindowState.EMPTY
-        Schema.STATEFULL.set_string("session", "None")
+        Schema.set_session("None")
 
     @Gtk.Template.Callback()
     def clean_files_button_clicked(self, *_args) -> None:
@@ -399,8 +399,8 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Re-parses the current directory in the library"""
         if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
             logger.debug("Re-parsing current directory")
-            if Schema.session != "None":
-                self.open_directory(Schema.session)
+            if Schema.get_session() != "None":
+                self.open_directory(Schema.get_session())
             else:
                 self.set_property("state", WindowState.EMPTY)
 
@@ -408,8 +408,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_add_dir_to_saves_button_clicked(self, *_args) -> None:
         """Adds the current directory to the saved locations in the sidebar"""
         if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
-            if Schema.session != "None":
-                dir_path = Schema.session
+            if Schema.get_session() != "None":
+                dir_path = Schema.get_session()
                 if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
                     Constants.CACHE["pins"].append(
                         {"path": dir_path, "name": os.path.basename(dir_path)}
@@ -422,7 +422,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_open_quick_editor_action(self, *_args) -> None:
         """Opens the quick editor dialog"""
-        if Schema.reset_quick_editor:
+        if Schema.get_reset_quick_editor():
             self.quick_edit_text_view.set_buffer(Gtk.TextBuffer.new())
         logger.debug("Showing quick editor")
         self.quick_edit_dialog.present(self)
@@ -461,7 +461,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.library.invalidate_sort()
         self.library_list.invalidate_sort()
         logger.debug("Sort state set to: %s", self.sort_state)
-        Schema.STATEFULL.set_string("sorting", self.sort_state)
+        Schema.set_sorting(self.sort_state)
 
     def on_view_type_action(
         self, action: Gio.SimpleAction, state: GLib.Variant
@@ -483,7 +483,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             case "l":
                 self.library_scrolled_window.set_child(self.library_list)
         logger.debug("View type set to: %s", self.view_state)
-        Schema.STATEFULL.set_string("view", self.view_state)
+        Schema.set_view(self.view_state)
 
     def enter_sync_mode(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
@@ -495,7 +495,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         card : SongCard
             Song card to enter sync mode for
         """
-        if Schema.default_format == "lrc":
+        if Schema.get_default_format() == "lrc":
             logger.info(
                 "Entering sync mode for '%s -- %s' in LRC syncing format",
                 card.title,
@@ -538,7 +538,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def toggle_list_view(self, *_args) -> None:
-        if Schema.auto_list_view and (
+        if Schema.get_auto_list_view() and (
             self.library_scrolled_window.get_child().get_child()
             != self.no_source_opened
             and self.library_scrolled_window.get_child().get_child()
@@ -547,13 +547,13 @@ class ChronographWindow(Adw.ApplicationWindow):
         ):
             if self.get_width() <= 564:
                 self.library_scrolled_window.set_child(self.library_list)
-                Schema.STATEFULL.set_string("view", "l")
+                Schema.set_view("l")
                 Constants.APP.lookup_action("view_type").set_state(
                     GLib.Variant.new_string("l")
                 )
             else:
                 self.library_scrolled_window.set_child(self.library)
-                Schema.STATEFULL.set_string("view", "g")
+                Schema.set_view("g")
                 Constants.APP.lookup_action("view_type").set_state(
                     GLib.Variant.new_string("g")
                 )
@@ -572,7 +572,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         def __select_saved_location() -> None:
             try:
                 for row in self.sidebar:  # pylint: disable=not-an-iterable
-                    if row.get_child().path == Schema.session:
+                    if row.get_child().path == Schema.get_session():
                         self.sidebar.select_row(row)
                         return
             except AttributeError:
@@ -586,7 +586,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.left_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(False)
-                Schema.STATEFULL.set_string("session", "None")
+                Schema.set_session("None")
                 self.sidebar.select_row(None)
                 self.clean_library()
             case WindowState.EMPTY_DIR:
@@ -597,7 +597,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.clean_library()
                 __select_saved_location()
             case WindowState.LOADED_DIR:
-                match Schema.view:
+                match Schema.get_view():
                     case "g":
                         self.library_scrolled_window.set_child(self.library)
                     case "l":
@@ -608,12 +608,12 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self.clean_library()
                 __select_saved_location()
             case WindowState.LOADED_FILES:
-                match Schema.view:
+                match Schema.get_view():
                     case "g":
                         self.library_scrolled_window.set_child(self.library)
                     case "l":
                         self.library_scrolled_window.set_child(self.library_list)
-                Schema.STATEFULL.set_string("session", "None")
+                Schema.set_session("None")
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)
                 self.sidebar.select_row(None)

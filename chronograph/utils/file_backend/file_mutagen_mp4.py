@@ -33,8 +33,8 @@ class FileMP4(BaseFile):
         self.load_str_data()
 
     def compress_images(self) -> None:
-        if Schema.load_compressed_covers:
-            quality = Schema.compress_level
+        if Schema.get_load_compressed_covers():
+            quality = Schema.get_compress_level()
             tags = self._mutagen_file.tags
             if tags is None or "covr" not in tags:
                 return

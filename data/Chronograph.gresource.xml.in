@@ -15,6 +15,11 @@
     <file alias="style.css">gtk/css/style.css</file>
     <file alias="style-dark.css">gtk/css/style-dark.css</file>
   </gresource>
+  <!-- Resources (YAMLs, JSONs, etc.) -->
+   <gresource prefix="@PREFIX@/resources/">
+    <file alias="internals.yaml">resources/internals.yaml</file>
+    <file alias="schema.yaml">resources/schema.yaml</file>
+   </gresource>
   <!-- Icons -->
   <gresource prefix="@PREFIX@/icons/scalable/actions/">
     <file alias="io.github.dzheremi2.lexi.svg">icons/hicolor/scalable/apps/io.github.dzheremi2.lexi.svg</file>

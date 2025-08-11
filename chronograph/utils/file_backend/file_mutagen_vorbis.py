@@ -37,8 +37,8 @@ class FileVorbis(BaseFile):
         self.load_str_data()
 
     def compress_images(self) -> None:
-        if Schema.load_compressed_covers:
-            quality = Schema.compress_level
+        if Schema.get_load_compressed_covers():
+            quality = Schema.get_compress_level()
             pic: Union[Picture, None] = None
 
             if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:

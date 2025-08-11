@@ -1,0 +1,83 @@
+auto-file-manipulation:
+  type: bool
+  default: true
+
+auto-file-format:
+  type: str
+  enum: [.lrc, .txt]
+  default: .lrc
+
+autosave-throttling:
+  type: int
+  min: 1
+  max: 10
+  default: 5
+
+reset-quick-editor:
+  type: bool
+  default: true
+
+save-session:
+  type: bool
+  default: false
+
+precise-milliseconds:
+  type: bool
+  default: false
+
+auto-list-view:
+  type: bool
+  default: false
+
+recursive-parsing:
+  type: bool
+  default: false
+
+follow-symlinks:
+  type: bool
+  default: false
+
+load-compressed-covers:
+  type: bool
+  default: false
+
+compress-level:
+  type: int
+  min: 1
+  max: 95
+  default: 75
+
+use-debug-log:
+  type: bool
+  default: false
+
+default-format:
+  type: str
+  enum: [lrc]
+  default: lrc
+
+sorting:
+  type: str
+  enum: [a-z, z-a]
+  default: a-z
+
+view:
+  type: str
+  enum: [g, l]
+  default: g
+
+window-width:
+  type: int
+  default: 700
+
+window-height:
+  type: int
+  default: 600
+
+window-maximized:
+  type: bool
+  default: false
+
+session:
+  type: str
+  default: None

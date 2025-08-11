@@ -8,7 +8,7 @@ from chronograph.internal import Schema
 def mcs_to_timestamp(mcs: int) -> str:
     """Convert microseconds to timestamp format"""
     ms = mcs // 1000  # get milliseconds
-    match Schema.precise_milliseconds:
+    match Schema.get_precise_milliseconds():
         case True:
             return f"[{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{ms % 1000:03d}] "
         case False:

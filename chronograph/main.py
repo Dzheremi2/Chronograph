@@ -16,6 +16,7 @@ from chronograph.window import ChronographWindow, WindowState
 
 logger = Constants.LOGGER
 
+
 class ChronographApplication(Adw.Application):
     """Application class"""
 
@@ -79,7 +80,7 @@ class ChronographApplication(Adw.Application):
         sorting_action = Gio.SimpleAction.new_stateful(
             "sort_type",
             GLib.VariantType.new("s"),
-            GLib.Variant("s", Schema.sorting),
+            GLib.Variant("s", Schema.get_sorting()),
         )
         sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
         self.add_action(sorting_action)
@@ -87,41 +88,35 @@ class ChronographApplication(Adw.Application):
         view_action = Gio.SimpleAction.new_stateful(
             "view_type",
             GLib.VariantType.new("s"),
-            GLib.Variant("s", Schema.view),
+            GLib.Variant("s", Schema.get_view()),
         )
         view_action.connect("activate", Constants.WIN.on_view_type_action)
         self.add_action(view_action)
 
         Schema.bind(
-            "STATEFULL",
             "window-width",
             Constants.WIN,
-            "default-width",
-            Gio.SettingsBindFlags.DEFAULT,
+            "default-width"
         )
         Schema.bind(
-            "STATEFULL",
             "window-height",
             Constants.WIN,
             "default-height",
-            Gio.SettingsBindFlags.DEFAULT,
         )
         Schema.bind(
-            "STATEFULL",
             "window-maximized",
             Constants.WIN,
             "maximized",
-            Gio.SettingsBindFlags.DEFAULT,
         )
 
-        if Schema.auto_list_view:
+        if Schema.get_auto_list_view():
             self.lookup_action("view_type").set_enabled(False)
         else:
             self.lookup_action("view_type").set_enabled(True)
 
         if (
-            (path := Schema.session) != "None"
-            and os.path.exists(Schema.session)
+            (path := Schema.get_session()) != "None"
+            and os.path.exists(Schema.get_session())
             and len(self.paths) == 0
         ):
             logger.info("Loading last opened session: '%s'", path)
@@ -139,8 +134,16 @@ class ChronographApplication(Adw.Application):
         """Shows About App dialog"""
 
         def _get_debug_info() -> str:
-            if os.path.exists(os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")):
-                with open(os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")) as f:
+            if os.path.exists(
+                os.path.join(
+                    Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log"
+                )
+            ):
+                with open(
+                    os.path.join(
+                        Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log"
+                    )
+                ) as f:
                     return f.read()
             return "No log availble yet"
 
@@ -186,9 +189,9 @@ class ChronographApplication(Adw.Application):
         self.quit()
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
-        if not Schema.save_session:
+        if not Schema.get_save_session():
             logger.info("Resetting session")
-            Schema.STATEFULL.set_string("session", "None")
+            Schema.set_session("None")
 
         Constants.CACHE_FILE.seek(0)
         Constants.CACHE_FILE.truncate(0)
@@ -222,7 +225,11 @@ class ChronographApplication(Adw.Application):
                     action[1],
                 )
             scope.add_action(simple_action)
-            logger.debug("Created action for %s with accels %s", action[0], action[1] if action[1:2] else None)
+            logger.debug(
+                "Created action for %s with accels %s",
+                action[0],
+                action[1] if action[1:2] else None,
+            )
 
 
 def main(_version):

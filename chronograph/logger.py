@@ -34,7 +34,7 @@ def init_logger() -> None:
     root_logger = logging.getLogger()
     root_logger.setLevel(
         logging.DEBUG
-        if Constants.APP_ID.endswith("Devel") or Schema.use_debug_log
+        if Constants.APP_ID.endswith("Devel") or Schema.get_use_debug_log()
         else logging.INFO
     )
     root_logger.addHandler(handler)

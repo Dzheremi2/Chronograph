@@ -58,7 +58,9 @@ class LRCSyncPage(Adw.NavigationPage):
         self._player.connect("notify::timestamp", self._on_timestamp_changed)
         self.player_container.append(self._player_widget)
 
-        self._autosave_path = Path(self._file.path).with_suffix(Schema.auto_file_format)
+        self._autosave_path = Path(self._file.path).with_suffix(
+            Schema.get_auto_file_format()
+        )
 
         self.connect("hidden", self._on_page_closed)
         self._close_rq_handler_id = Constants.WIN.connect(
@@ -66,7 +68,7 @@ class LRCSyncPage(Adw.NavigationPage):
         )
 
         # Automatically load the lyrics file if it exists
-        if Schema.auto_file_manipulation and self._autosave_path.exists():
+        if Schema.get_auto_file_manipulation() and self._autosave_path.exists():
             metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
             timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
             with open(self._autosave_path, "r", encoding="utf-8") as f:
@@ -281,7 +283,7 @@ class LRCSyncPage(Adw.NavigationPage):
         for line in self.sync_lines:  # pylint: disable=not-an-iterable
             lyrics += line.get_text() + "\n"
         dialog = Gtk.FileDialog(
-            initial_name=Path(self._file.path).stem + Schema.auto_file_format
+            initial_name=Path(self._file.path).stem + Schema.get_auto_file_format()
         )
         dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
 
@@ -320,13 +322,13 @@ class LRCSyncPage(Adw.NavigationPage):
     def reset_timer(self) -> None:
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.auto_file_manipulation:
+        if Schema.get_auto_file_manipulation():
             self._autosave_timeout_id = GLib.timeout_add(
-                Schema.autosave_throttling * 1000, self._autosave
+                Schema.get_autosave_throttling() * 1000, self._autosave
             )
 
     def _autosave(self) -> Literal[False]:
-        if Schema.auto_file_manipulation:
+        if Schema.get_auto_file_manipulation():
             try:
                 with open(self._autosave_path, "w", encoding="utf-8") as f:
                     for line in self.sync_lines:  # pylint: disable=not-an-iterable
@@ -341,7 +343,7 @@ class LRCSyncPage(Adw.NavigationPage):
         Constants.WIN.disconnect(self._close_rq_handler_id)
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.auto_file_manipulation:
+        if Schema.get_auto_file_manipulation():
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         self._player.stream_ended()
@@ -349,7 +351,7 @@ class LRCSyncPage(Adw.NavigationPage):
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.auto_file_manipulation:
+        if Schema.get_auto_file_manipulation():
             logger.debug("App closed, saving lyrics")
             self._autosave()
         return False
