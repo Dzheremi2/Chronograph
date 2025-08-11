@@ -9,7 +9,8 @@ blueprints = custom_target('blueprints',
     'gtk/ui/dialogs/MetadataEditor.blp',
     'gtk/ui/widgets/SavedLocation.blp',
     'gtk/ui/widgets/Player.blp',
-    'gtk/ui/sync_pages/LRCSyncPage.blp'
+    'gtk/ui/sync_pages/LRCSyncPage.blp',
+    'gtk/ui/widgets/wbw/WordWidget.blp'
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

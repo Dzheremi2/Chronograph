@@ -1,3 +1,5 @@
+from typing import Iterator
+
 from gi.repository import Gio, GObject
 
 from chronograph.utils.wbw.elrc_parser import eLRCParser
@@ -41,3 +43,7 @@ class LyricsModel(GObject.Object):
     def previous(self) -> None:
         if self.cindex - 1 >= 0:
             self.set_current(self.cindex - 1)
+
+    def __iter__(self) -> Iterator:
+        for i in range(self.lines.get_n_items()):
+            yield self.lines.get_item(i)

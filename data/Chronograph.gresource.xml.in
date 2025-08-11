@@ -12,6 +12,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/Player.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widegts/wbw/WordWidget.ui</file>
     <file alias="style.css">gtk/css/style.css</file>
     <file alias="style-dark.css">gtk/css/style-dark.css</file>
   </gresource>
