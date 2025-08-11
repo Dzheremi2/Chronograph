@@ -1,3 +1,5 @@
+"""Tokens for Line and Word"""
+
 from dataclasses import dataclass
 from typing import Optional
 
@@ -7,9 +9,6 @@ class WordToken:
     word: str
     time: Optional[int] = None
     timestamp: Optional[str] = None
-
-    def __repr__(self) -> str:
-        return self.word
 
     def __str__(self) -> str:
         return self.word
@@ -28,9 +27,6 @@ class LineToken:
     line: str
     time: Optional[int] = None
     timestamp: Optional[str] = None
-
-    def __repr__(self) -> str:
-        return self.line
 
     def __str__(self) -> str:
         return self.line

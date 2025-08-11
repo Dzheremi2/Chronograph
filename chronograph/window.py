@@ -1,7 +1,6 @@
 # DELAYED: Add GStreamer based player with music speed control
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
-# TODO: Implement different syncing pages variants for different syncing formats (eLRC, TTML, etc.)
 
 import os
 from enum import Enum

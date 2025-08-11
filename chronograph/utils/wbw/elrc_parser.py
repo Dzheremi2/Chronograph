@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from typing import Optional
 
-from chronograph.utils.wbw.data import LineToken, WordToken
+from chronograph.utils.wbw.tokens import LineToken, WordToken
 
 
 # pylint: disable=invalid-name
@@ -27,13 +27,13 @@ class eLRCParser:
         return (int(m) * 60 + int(s)) * 1000 + whole_ms
 
     @staticmethod
-    def parse_lines(file: Path) -> tuple[LineToken]:
+    def parse_lines(data: Path | str) -> tuple[LineToken, ...]:
         """Generates a tuple of Separate `LineToken`s dataclasses
 
         Parameters
         ----------
-        file : Path
-            Path to a file
+        data : Path | str
+            Path to a file or a string with all lyrics
 
         Returns
         -------
@@ -49,7 +49,10 @@ class eLRCParser:
             # normalize whitespaces
             return " ".join(string.split())
 
-        lines = file.read_text(encoding="utf-8").splitlines()
+        if isinstance(data, Path):
+            lines = data.read_text(encoding="utf-8").splitlines()
+        else:
+            lines = data.splitlines()
         out: list[LineToken] = []
 
         for raw_line in lines:
@@ -69,7 +72,7 @@ class eLRCParser:
         return tuple(out)
 
     @staticmethod
-    def parse_words(line: LineToken | str) -> tuple[WordToken]:
+    def parse_words(line: LineToken | str) -> tuple[WordToken, ...]:
         """Generates a tuple of `WordToken`s dataclasses
 
         Parameters
