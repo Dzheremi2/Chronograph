@@ -19,6 +19,7 @@
    <gresource prefix="@PREFIX@/resources/">
     <file alias="internals.yaml">resources/internals.yaml</file>
     <file alias="schema.yaml">resources/schema.yaml</file>
+    <file alias="actions/lrc_sync_page_actions.yaml">resources/actions/lrc_sync_page_actions.yaml</file>
    </gresource>
   <!-- Icons -->
   <gresource prefix="@PREFIX@/icons/scalable/actions/">

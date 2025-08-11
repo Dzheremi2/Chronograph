@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Literal, Optional, Union
 
 import requests
+from dgutils.actions import Actions
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
@@ -26,6 +27,7 @@ PANGO_HIGHLIGHTER = Pango.AttrList().from_string("0 -1 weight ultrabold")
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/sync_pages/LRCSyncPage.ui")
+@Actions.from_schema(Constants.PREFIX + "/resources/actions/lrc_sync_page_actions.yaml")
 class LRCSyncPage(Adw.NavigationPage):
     __gtype_name__ = "LRCSyncPage"
 
@@ -85,7 +87,7 @@ class LRCSyncPage(Adw.NavigationPage):
             for line in normalized_lines:
                 self.sync_lines.append(LRCSyncLine(line))
 
-        self._setup_actions()
+        # self._setup_actions()
 
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
@@ -489,6 +491,7 @@ class LRCSyncPage(Adw.NavigationPage):
         artist = card.artist
         album = card.album
         duration = card.duration
+        # pylint: disable=not-an-iterable
         lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
         if not all((title, artist, album, duration, lyrics)):
 
@@ -524,121 +527,6 @@ class LRCSyncPage(Adw.NavigationPage):
         ).start()
 
     ###############
-
-    # pylint: disable=too-many-locals, too-many-statements, not-an-iterable
-    def _setup_actions(self) -> None:
-        # Import actions
-        _actions = Gio.SimpleActionGroup.new()
-        _i_lrclib = Gio.SimpleAction.new("lrclib", None)
-        _i_lrclib.connect("activate", self._import_lrclib)
-        _i_file = Gio.SimpleAction.new("file", None)
-        _i_file.connect("activate", self._import_file)
-        _i_clipboard = Gio.SimpleAction.new("clipboard", None)
-        _i_clipboard.connect("activate", self._import_clipboard)
-        _actions.add_action(_i_lrclib)
-        _actions.add_action(_i_file)
-        _actions.add_action(_i_clipboard)
-        self.insert_action_group("import", _actions)
-
-        # Export actions
-        _actions = Gio.SimpleActionGroup.new()
-        _e_lrclib = Gio.SimpleAction.new("lrclib", None)
-        _e_lrclib.connect("activate", self._publish, self._card)
-        _e_file = Gio.SimpleAction.new("file", None)
-        _e_file.connect("activate", self._export_file)
-        _e_clipboard = Gio.SimpleAction.new("clipboard", None)
-        _e_clipboard.connect("activate", self._export_clipboard)
-        _actions.add_action(_e_lrclib)
-        _actions.add_action(_e_file)
-        _actions.add_action(_e_clipboard)
-        self.insert_action_group("export", _actions)
-
-        # Syncing actions
-        _actions = Gio.SimpleActionGroup.new()
-        _c_sync = Gio.SimpleAction.new("sync", None)
-        _c_sync.connect("activate", self._sync)
-        _c_rew100 = Gio.SimpleAction.new("rew100", None)
-        _c_rew100.connect("activate", self._seek100, -100000)
-        _c_forw100 = Gio.SimpleAction.new("forw100", None)
-        _c_forw100.connect("activate", self._seek100, 100000)
-        _c_rplay = Gio.SimpleAction.new("rplay", None)
-        _c_rplay.connect("activate", self._replay)
-        _c_file_info = Gio.SimpleAction.new("file_info", None)
-        _c_file_info.connect("activate", self._card.show_info)
-        _actions.add_action(_c_sync)
-        _actions.add_action(_c_rew100)
-        _actions.add_action(_c_forw100)
-        _actions.add_action(_c_rplay)
-        _actions.add_action(_c_file_info)
-        self.insert_action_group("controls", _actions)
-        shortcut_controller = Gtk.ShortcutController()
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>Return"),
-                action=Gtk.NamedAction.new("controls.sync"),
-            )
-        )
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>minus"),
-                action=Gtk.NamedAction.new("controls.rew100"),
-            )
-        )
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>equal"),
-                action=Gtk.NamedAction.new("controls.forw100"),
-            )
-        )
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>z"),
-                action=Gtk.NamedAction.new("controls.rplay"),
-            )
-        )
-        self.add_controller(shortcut_controller)
-
-        # Lines actions
-        _actions = Gio.SimpleActionGroup.new()
-        _l_append = Gio.SimpleAction.new("append", None)
-        _l_append.connect("activate", self.append_line)
-        _l_remove = Gio.SimpleAction.new("remove", None)
-        _l_remove.connect("activate", self._remove_line)
-        _l_prepend = Gio.SimpleAction.new("prepend", None)
-        _l_prepend.connect("activate", self._prepend_line)
-        _l_append_end = Gio.SimpleAction.new("append_end", None)
-        _l_append_end.connect("activate", self._append_end_line)
-        _actions.add_action(_l_append)
-        _actions.add_action(_l_remove)
-        _actions.add_action(_l_prepend)
-        _actions.add_action(_l_append_end)
-        self.insert_action_group("line", _actions)
-        shortcut_controller = Gtk.ShortcutController()
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt><primary>a"),
-                action=Gtk.NamedAction.new("line.append_end"),
-            )
-        )
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>r"),
-                action=Gtk.NamedAction.new("line.remove"),
-            )
-        )
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>a"),
-                action=Gtk.NamedAction.new("line.append"),
-            )
-        )
-        shortcut_controller.add_shortcut(
-            Gtk.Shortcut.new(
-                trigger=Gtk.ShortcutTrigger.parse_string("<Alt>p"),
-                action=Gtk.NamedAction.new("line.prepend"),
-            )
-        )
-        self.add_controller(shortcut_controller)
 
 
 class LRCSyncLine(Adw.EntryRow):

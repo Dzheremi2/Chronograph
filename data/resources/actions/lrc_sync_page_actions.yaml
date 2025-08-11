@@ -1,0 +1,49 @@
+groups:
+  import:
+    - name: lrclib
+      callback: _import_lrclib
+    - name: file
+      callback: _import_file
+    - name: clipboard
+      callback: _import_clipboard
+
+  export:
+    - name: lrclib
+      callback: _publish
+      with_args: ["self._card"]
+    - name: file
+      callback: _export_file
+    - name: clipboard
+      callback: _export_clipboard
+
+  controls:
+    - name: sync
+      callback: _sync
+      shortcut: "<Alt>Return"
+    - name: rew100
+      callback: _seek100
+      with_args: [-100000]
+      shortcut: "<Alt>minus"
+    - name: forw100
+      callback: _seek100
+      with_args: [100000]
+      shortcut: "<Alt>equal"
+    - name: rplay
+      callback: _replay
+      shortcut: "<Alt>z"
+    - name: file_info
+      callback: _card.show_info
+
+  line:
+    - name: append
+      callback: append_line
+      shortcut: "<Alt>a"
+    - name: remove
+      callback: _remove_line
+      shortcut: "<Alt>r"
+    - name: prepend
+      callback: _prepend_line
+      shortcut: "<Alt>p"
+    - name: append_end
+      callback: _append_end_line
+      shortcut: "<Alt><primary>a"
