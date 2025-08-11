@@ -22,7 +22,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.miscellaneous import get_common_directory
-from chronograph.utils.parsers import parse_dir, parse_files
+from chronograph.utils.file_parsers import parse_dir, parse_files
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER

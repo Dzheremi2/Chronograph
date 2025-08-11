@@ -5,6 +5,7 @@ import gi
 import yaml
 from dgutils.decorators import singleton
 
+
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
@@ -232,6 +233,7 @@ class ChronographApplication(Adw.Application):
 
 def main(_version):
     """App entrypoint"""
+    # eLRCParser.parse_words(eLRCParser.parse_lines(Path("/home/dzheremi/Repos/Chronograph/elrc.lrc"))[0])
     init_logger()
     logger.info("Launching application")
     if not "cache.yaml" in os.listdir(Constants.DATA_DIR):
