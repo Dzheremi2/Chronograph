@@ -3,6 +3,7 @@ import sys
 
 import gi
 import yaml
+from dgutils.decorators import singleton
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -17,6 +18,7 @@ from chronograph.window import ChronographWindow, WindowState
 logger = Constants.LOGGER
 
 
+@singleton
 class ChronographApplication(Adw.Application):
     """Application class"""
 
@@ -93,11 +95,7 @@ class ChronographApplication(Adw.Application):
         view_action.connect("activate", Constants.WIN.on_view_type_action)
         self.add_action(view_action)
 
-        Schema.bind(
-            "window-width",
-            Constants.WIN,
-            "default-width"
-        )
+        Schema.bind("window-width", Constants.WIN, "default-width")
         Schema.bind(
             "window-height",
             Constants.WIN,

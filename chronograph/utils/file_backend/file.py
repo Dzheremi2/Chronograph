@@ -1,11 +1,13 @@
 from typing import Optional
 
 import mutagen
+from dgutils.decorators import baseclass
 from gi.repository import Gdk, GdkPixbuf
 
 from chronograph.internal import Constants
 
 
+@baseclass
 class BaseFile:
     """A base class for mutagen filetypes classes
 

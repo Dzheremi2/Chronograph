@@ -7,6 +7,7 @@ import os
 from enum import Enum
 from pathlib import Path
 from typing import Callable, Optional, Union
+from dgutils.decorators import singleton
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
@@ -55,6 +56,7 @@ class WindowState(Enum):
 
 
 # pylint: disable=inconsistent-return-statements, comparison-with-callable
+@singleton
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/window.ui")
 class ChronographWindow(Adw.ApplicationWindow):
     """App window class"""

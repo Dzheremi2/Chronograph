@@ -1,6 +1,7 @@
 from .file import BaseFile
 
 
+# pylint: disable=abstract-method
 class FileUntaggable(BaseFile):
     __gtype_name__ = "FileUntaggable"
 
