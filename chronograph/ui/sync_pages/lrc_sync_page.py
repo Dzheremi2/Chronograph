@@ -87,8 +87,6 @@ class LRCSyncPage(Adw.NavigationPage):
             for line in normalized_lines:
                 self.sync_lines.append(LRCSyncLine(line))
 
-        # self._setup_actions()
-
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
 
