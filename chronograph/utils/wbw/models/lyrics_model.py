@@ -13,9 +13,7 @@ class LyricsModel(GObject.Object):
         "cindex_changed": (GObject.SignalFlags.RUN_FIRST, None, (int, int)),
     }
 
-    lines: Gio.ListStore = GObject.Property(
-        type=Gio.ListStore, flags=GObject.ParamFlags.READABLE
-    )
+    lines: Gio.ListStore = GObject.Property(type=Gio.ListStore)
     cindex: int = GObject.Property(type=int, default=-1)
     position_ms: int = GObject.Property(type=int, default=-1)
 

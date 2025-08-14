@@ -6,8 +6,8 @@ import os
 from enum import Enum
 from pathlib import Path
 from typing import Callable, Optional, Union
-from dgutils.decorators import singleton
 
+from dgutils.decorators import singleton
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -19,9 +19,9 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.miscellaneous import get_common_directory
-from chronograph.utils.file_parsers import parse_dir, parse_files
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER

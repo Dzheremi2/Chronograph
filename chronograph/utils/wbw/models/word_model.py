@@ -7,10 +7,12 @@ from chronograph.utils.wbw.tokens import WordToken
 class WordModel(GObject.Object):
     __gtype_name__ = "WordModel"
 
-    word = GObject.Property(type=str, default="", flags=GObject.ParamFlags.READABLE)
-    time = GObject.Property(type=int, default=-1)
-    timestamp = GObject.Property(type=str, default="")
-    synced = GObject.Property(type=bool, default=False)
+    word: str = GObject.Property(type=str, default="")
+    time: int = GObject.Property(type=int, default=-1)
+    timestamp: str = GObject.Property(type=str, default="")
+    synced: bool = GObject.Property(type=bool, default=False)
+    active: bool = GObject.Property(type=bool, default=False)
+    highlighted: bool = GObject.Property(type=bool, default=False)
 
     def __init__(self, word: WordToken) -> "WordModel":
         try:
@@ -25,6 +27,8 @@ class WordModel(GObject.Object):
             time=ms,
             timestamp=word.timestamp or "",
             synced=synced,
+            active=False,
+            highlighted=False
         )
 
         self.connect("notify::time", self._on_time_changed)

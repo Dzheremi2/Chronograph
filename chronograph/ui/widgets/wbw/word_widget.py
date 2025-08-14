@@ -23,9 +23,15 @@ class WordWidget(Adw.Bin):
         self.model.bind_property(
             "timestamp", self.timestamp_label, "label", GObject.BindingFlags.SYNC_CREATE
         )
+        self._set_in_current_line(self.model, None)
+        self._on_is_highlighted_changed(self.model, None)
         self.model.connect("notify::synced", self._on_synced_changed)
+        self.model.connect("notify::active", self._set_in_current_line)
+        self.model.connect("notify::highlighted", self._on_is_highlighted_changed)
+        if self.model.time != -1:
+            self.model.set_property("synced", True)
 
-    def _on_synced_changed(self, obj: WordModel) -> None:
+    def _on_synced_changed(self, obj: WordModel, _arg) -> None:
         is_synced = obj.synced
         if is_synced:
             self.word_label.add_css_class("synced-text")
@@ -36,15 +42,16 @@ class WordWidget(Adw.Bin):
             self.timestamp_label.remove_css_class("synced-text")
             self.sync_higlight_box.remove_css_class("synced-card")
 
-    def set_highlighted(self, is_highlighted: bool) -> None:
-        """Changes state of highlighting of `self` by adding or removing border
-
-        Parameters
-        ----------
-        is_highlighted : bool
-            Is border shown
-        """
-        if is_highlighted:
+    def _on_is_highlighted_changed(self, model: WordModel, _arg):
+        if model.highlighted:
             self.sync_higlight_box.add_css_class("word-frame")
         else:
             self.sync_higlight_box.remove_css_class("word-frame")
+
+    def _set_in_current_line(self, model: WordModel, _arg) -> None:
+        if model.active:
+            self.word_label.remove_css_class("dimmed")
+            self.timestamp_label.remove_css_class("dimmed")
+        else:
+            self.word_label.add_css_class("dimmed")
+            self.timestamp_label.add_css_class("dimmed")

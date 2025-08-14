@@ -1,10 +1,14 @@
 import os
 import sys
+from pathlib import Path
 
 import gi
 import yaml
 from dgutils.decorators import singleton
 
+from chronograph.ui.widgets.wbw.line_widget import LineWidget
+from chronograph.utils.wbw.elrc_parser import eLRCParser
+from chronograph.utils.wbw.models.line_model import LineModel
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -12,6 +16,7 @@ gi.require_version("Adw", "1")
 # pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
+# pylint: disable=ungrouped-imports
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
@@ -127,6 +132,15 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
+        win.library_scrolled_window.set_child(
+            LineWidget(
+                LineModel(
+                    eLRCParser.parse_lines(
+                        Path("/home/dzheremi/Repos/Chronograph/elrc.lrc")
+                    )[0]
+                )
+            )
+        ) # testing LineWidget
         logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:
