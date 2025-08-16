@@ -379,8 +379,9 @@ class ChronographWindow(Adw.ApplicationWindow):
             Row containing the saved location to load
         """
         try:
-            logger.info("Loading save '%s'", row.get_child().name)
-            row.get_child().load()
+            if row.get_child().path[:-1] != Schema.get_session():
+                logger.info("Loading save '%s'", row.get_child().name)
+                row.get_child().load()
         except AttributeError:
             pass
 

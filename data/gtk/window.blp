@@ -200,7 +200,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                 ScrolledWindow sidebar_window {
                   ListBox sidebar {
-                    row-selected => $load_save();
+                    row-activated => $load_save();
 
                     styles ["navigation-sidebar"]
                   }
