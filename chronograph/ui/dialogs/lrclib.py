@@ -34,7 +34,7 @@ class LRClib(Adw.Dialog):
     collapsed_lyrics_nav_page: Adw.NavigationPage = gtc()
     collapsed_bin: Adw.Bin = gtc()
 
-    def __init__(self) -> "LRClib":
+    def __init__(self) -> None:
         super().__init__()
 
         self.lrctracks_list_box.set_placeholder(self.search_lrclib_status_page)
@@ -151,7 +151,6 @@ class LRClib(Adw.Dialog):
 
         threading.Thread(target=_do_request, daemon=True).start()
 
-    # pylint: disable=import-outside-toplevel
     def _import_synced(self, *_args) -> None:
         from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
 
@@ -225,5 +224,6 @@ class LRClib(Adw.Dialog):
         if self.collapsed_bin.get_child() == self.lyrics_box:
             self.nav_view.push(self.collapsed_lyrics_nav_page)
         logger.debug(
-            "Lyrics for '%s' were loaded to TextViews", row.get_child().get_tooltip_text()
+            "Lyrics for '%s' were loaded to TextViews",
+            row.get_child().get_tooltip_text(),
         )

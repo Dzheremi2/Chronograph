@@ -5,12 +5,15 @@ import gi
 import yaml
 from dgutils.decorators import singleton
 
+from chronograph.utils.wbw.models.lyrics_model import LyricsModel
+
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 # pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
+# pylint: disable=ungrouped-imports
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
@@ -126,6 +129,10 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
+        # with open("/home/dzheremi/Repos/Chronograph/elrc.lrc") as f:
+        #     win.library_scrolled_window.set_child(
+        #         LyricsModel(f.read()).widget
+        #     )  # testing LyricsWidget
         logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:
@@ -232,6 +239,7 @@ class ChronographApplication(Adw.Application):
 
 def main(_version):
     """App entrypoint"""
+    # eLRCParser.parse_words(eLRCParser.parse_lines(Path("/home/dzheremi/Repos/Chronograph/elrc.lrc"))[0])
     init_logger()
     logger.info("Launching application")
     if not "cache.yaml" in os.listdir(Constants.DATA_DIR):

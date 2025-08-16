@@ -17,6 +17,20 @@
 	opacity: 0.85;
 }
 
+.word-frame {
+  border: 4px solid var(--accent-bg-color);
+  border-radius: 12px;
+  padding: 6px;
+}
+
+.synced-card {
+  background-color: #37713f;
+}
+
+.synced-text {
+  color: #ffffff;
+}
+
 
 #list_view_row_cover {
     border-radius: 6px;

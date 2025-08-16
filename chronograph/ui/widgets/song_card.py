@@ -35,7 +35,7 @@ class SongCard(Gtk.Box):
 
     def __init__(
         self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable], **kwargs
-    ) -> "SongCard":
+    ) -> None:
         super().__init__(**kwargs)
         self._file = file
         self.bind_property(

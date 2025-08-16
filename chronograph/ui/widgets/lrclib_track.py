@@ -32,7 +32,7 @@ class LRClibTrack(Gtk.Box):
         tooltip: tuple,
         synced: Optional[str] = "",
         plain: Optional[str] = "",
-    ) -> "LRClibTrack":
+    ) -> None:
         super().__init__()
         self.title_label.set_text(title)
         self.artist_label.set_text(artist)

@@ -25,7 +25,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
 
     opened: bool = False
 
-    def __init__(self) -> "ChronographPreferences":
+    def __init__(self) -> None:
         super().__init__()
 
         self.__class__.opened = True
