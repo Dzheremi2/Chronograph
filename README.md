@@ -1,3 +1,6 @@
+>[!IMPORTANT]
+>Chronograph is currently getting a new eLRC format support for Word-by-Word synchronization. To track this update progress, go to [#50 Pull Request](https://github.com/Dzheremi2/Chronograph/pull/50)
+
 <div align="center">
 
 <img src="data/icons/hicolor/scalable/apps/io.github.dzheremi2.lrcmake-gtk.svg" width="128" height="128">
