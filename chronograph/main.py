@@ -5,8 +5,6 @@ import gi
 import yaml
 from dgutils.decorators import singleton
 
-from chronograph.utils.wbw.models.lyrics_model import LyricsModel
-
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 

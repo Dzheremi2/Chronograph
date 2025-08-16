@@ -1,4 +1,4 @@
-from typing import Iterator
+from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
 
@@ -9,6 +9,10 @@ from chronograph.utils.wbw.tokens import LineToken
 
 class LineModel(GObject.Object):
     __gtype_name__ = "LineModel"
+
+    __gsignals__ = {
+        "cindex-changed": (GObject.SignalFlags.RUN_FIRST, None, (int, int)),
+    }
 
     text = GObject.Property(type=str, default="")
     line = GObject.Property(type=str, default="")
@@ -44,7 +48,9 @@ class LineModel(GObject.Object):
         if index == self.cindex:
             return
         if 0 <= index < self.words.get_n_items():
+            old = self.cindex
             self.set_property("cindex", index)
+            self.emit("cindex-changed", old, index)
             for word in self:
                 word.set_property("highlighted", False)
             self.words.get_item(self.cindex).set_property("highlighted", True)
@@ -52,14 +58,10 @@ class LineModel(GObject.Object):
     def next(self) -> None:
         if self.cindex + 1 < self.words.get_n_items():
             self.set_current(self.cindex + 1)
-            self.words.get_item(self.cindex).set_property("highlighted", False)
-            self.words.get_item(self.cindex + 1).set_property("highlighted", True)
 
     def previous(self) -> None:
         if self.cindex - 1 >= 0:
             self.set_current(self.cindex - 1)
-            self.words.get_item(self.cindex).set_property("highlighted", False)
-            self.words.get_item(self.cindex - 1).set_property("highlighted", True)
         else:
             for word in self:
                 word.set_property("highlighted", False)
@@ -75,6 +77,25 @@ class LineModel(GObject.Object):
         for word in self:
             word.set_property("active", is_current_line)
 
+    def get_latest_unsynced(self) -> Optional[tuple[WordModel, int]]:
+        """Returns the last word and its index if not all words were synchronized. `None` if all words are synced
+
+        Returns
+        -------
+        Optional[tuple[WordModel, int]]
+        """
+
+        for word in self:
+            word: WordModel
+            if word.time == -1:
+                return word, self.words.find(word)
+        return None
+
     def __iter__(self) -> Iterator:
         for i in range(self.words.get_n_items()):
             yield self.words.get_item(i)
+
+    def __getitem__(self, index) -> WordModel:
+        if (item := self.words.get_item(index)) is not None:
+            return item
+        raise IndexError("List index out of range")

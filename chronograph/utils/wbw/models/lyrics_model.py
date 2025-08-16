@@ -1,4 +1,4 @@
-from typing import Iterator
+from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
 
@@ -10,7 +10,7 @@ class LyricsModel(GObject.Object):
     __gtype_name__ = "LyricsModel"
 
     __gsignals__ = {
-        "cindex_changed": (GObject.SignalFlags.RUN_FIRST, None, (int, int)),
+        "cindex-changed": (GObject.SignalFlags.RUN_FIRST, None, (int, int)),
     }
 
     lines: Gio.ListStore = GObject.Property(type=Gio.ListStore)
@@ -19,6 +19,7 @@ class LyricsModel(GObject.Object):
 
     def __init__(self, lyrics: str) -> None:
         from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget
+
         super().__init__()
         store: Gio.ListStore = Gio.ListStore.new(item_type=LineModel)
         for line in eLRCParser.parse_lines(lyrics):
@@ -35,7 +36,7 @@ class LyricsModel(GObject.Object):
         if 0 <= index < self.lines.get_n_items():
             old = self.cindex
             self.set_property("cindex", index)
-            self.emit("cindex_changed", old, index)
+            self.emit("cindex-changed", old, index)
 
     def next(self) -> None:
         if self.cindex + 1 < self.lines.get_n_items():
@@ -45,9 +46,25 @@ class LyricsModel(GObject.Object):
         if self.cindex - 1 >= 0:
             self.set_current(self.cindex - 1)
 
+    def get_latest_unsynced(self) -> Optional[tuple[LineModel, int]]:
+        """Returns the last line and its index if not all of its words have been synchronized. `None` if all lines are synced
+
+        Returns
+        -------
+        Optional[tuple[LineModel, int]]
+        """
+
+        for line in self:
+            line: LineModel
+            if line.get_latest_unsynced() is not None:
+                return line, self.lines.find(line)[1]
+        return None
+
     def __iter__(self) -> Iterator:
         for i in range(self.lines.get_n_items()):
             yield self.lines.get_item(i)
 
     def __getitem__(self, index) -> LineModel:
-        return self.lines.get_item(index)
+        if (item := self.lines.get_item(index)) is not None:
+            return item
+        raise IndexError("List index out of range")

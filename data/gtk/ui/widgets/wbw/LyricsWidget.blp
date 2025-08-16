@@ -9,21 +9,36 @@ template $LyricsWidget : Adw.Bin {
     halign: center;
 
     Box {
-      spacing: 12;
       orientation: vertical;
 
       Box first_line_box {}
-      Separator {
-        vexpand: true;
 
-        styles ["spacer"]
+      Adw.Clamp {
+        orientation: vertical;
+        maximum-size: 16;
+        tightening-threshold: 16;
+
+        child: Separator {
+          vexpand: true;
+
+          styles ["spacer"]
+        };
       }
+
       Box second_line_box {}
-      Separator {
-        vexpand: true;
 
-        styles ["spacer"]
+      Adw.Clamp {
+        orientation: vertical;
+        maximum-size: 16;
+        tightening-threshold: 16;
+
+        child: Separator {
+          vexpand: true;
+
+          styles ["spacer"]
+        };
       }
+
       Box third_line_box {}
     }
   }
