@@ -129,10 +129,10 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
-        with open("/home/dzheremi/Repos/Chronograph/elrc.lrc") as f:
-            win.library_scrolled_window.set_child(
-                LyricsModel(f.read()).widget
-            )  # testing LyricsWidget
+        # with open("/home/dzheremi/Repos/Chronograph/elrc.lrc") as f:
+        #     win.library_scrolled_window.set_child(
+        #         LyricsModel(f.read()).widget
+        #     )  # testing LyricsWidget
         logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:
