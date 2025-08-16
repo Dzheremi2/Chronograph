@@ -17,7 +17,9 @@ class LineModel(GObject.Object):
     cindex: int = GObject.Property(type=int, default=-1)
     words = GObject.Property(type=Gio.ListStore)
 
-    def __init__(self, line: LineToken) -> "LineModel":
+    def __init__(self, line: LineToken) -> None:
+        from chronograph.ui.widgets.wbw.line_widget import LineWidget
+
         try:
             ms = int(line)
         except TypeError:
@@ -35,6 +37,8 @@ class LineModel(GObject.Object):
             model = WordModel(word)
             store.append(model)
         self.set_property("words", store)
+
+        self.widget = LineWidget(self)
 
     def set_current(self, index: int) -> None:
         if index == self.cindex:

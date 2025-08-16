@@ -1,0 +1,30 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $LyricsWidget : Adw.Bin {
+  Adw.Clamp {
+    orientation: vertical;
+    vexpand: true;
+    hexpand: true;
+    halign: center;
+
+    Box {
+      spacing: 12;
+      orientation: vertical;
+
+      Box first_line_box {}
+      Separator {
+        vexpand: true;
+
+        styles ["spacer"]
+      }
+      Box second_line_box {}
+      Separator {
+        vexpand: true;
+
+        styles ["spacer"]
+      }
+      Box third_line_box {}
+    }
+  }
+}

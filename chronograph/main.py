@@ -1,14 +1,11 @@
 import os
 import sys
-from pathlib import Path
 
 import gi
 import yaml
 from dgutils.decorators import singleton
 
-from chronograph.ui.widgets.wbw.line_widget import LineWidget
-from chronograph.utils.wbw.elrc_parser import eLRCParser
-from chronograph.utils.wbw.models.line_model import LineModel
+from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -132,15 +129,10 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
-        win.library_scrolled_window.set_child(
-            LineWidget(
-                LineModel(
-                    eLRCParser.parse_lines(
-                        Path("/home/dzheremi/Repos/Chronograph/elrc.lrc")
-                    )[0]
-                )
-            )
-        ) # testing LineWidget
+        with open("/home/dzheremi/Repos/Chronograph/elrc.lrc") as f:
+            win.library_scrolled_window.set_child(
+                LyricsModel(f.read()).widget
+            )  # testing LyricsWidget
         logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:

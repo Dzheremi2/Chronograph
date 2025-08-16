@@ -14,7 +14,8 @@ class WordModel(GObject.Object):
     active: bool = GObject.Property(type=bool, default=False)
     highlighted: bool = GObject.Property(type=bool, default=False)
 
-    def __init__(self, word: WordToken) -> "WordModel":
+    def __init__(self, word: WordToken) -> None:
+        from chronograph.ui.widgets.wbw.word_widget import WordWidget
         try:
             ms = int(word)
             synced = True
@@ -28,10 +29,12 @@ class WordModel(GObject.Object):
             timestamp=word.timestamp or "",
             synced=synced,
             active=False,
-            highlighted=False
+            highlighted=False,
         )
 
         self.connect("notify::time", self._on_time_changed)
+
+        self.widget = WordWidget(self)
 
     def _on_time_changed(self, *_args) -> None:
         ms = self.time

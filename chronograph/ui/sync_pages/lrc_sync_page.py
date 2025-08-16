@@ -43,7 +43,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
     def __init__(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
-    ) -> "LRCSyncPage":
+    ) -> None:
         super().__init__()
         self._card: SongCard = card
         self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
@@ -239,7 +239,6 @@ class LRCSyncPage(Adw.NavigationPage):
         )
         dialog.open(Constants.WIN, None, __on_selected_lyrics_file)
 
-    # pylint: disable=import-outside-toplevel
     def _import_lrclib(self, *_args) -> None:
         from chronograph.ui.dialogs.lrclib import LRClib
 
@@ -530,7 +529,7 @@ class LRCSyncPage(Adw.NavigationPage):
 class LRCSyncLine(Adw.EntryRow):
     __gtype_name__ = "LRCSyncLine"
 
-    def __init__(self, text: str = "") -> "LRCSyncLine":
+    def __init__(self, text: str = "") -> None:
         super().__init__(editable=True, text=text)
         self.add_css_class("property")
         self.focus_controller = Gtk.EventControllerFocus()

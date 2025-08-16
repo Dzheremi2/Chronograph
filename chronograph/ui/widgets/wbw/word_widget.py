@@ -14,22 +14,22 @@ class WordWidget(Adw.Bin):
     timestamp_label: Gtk.Label = gtc()
     word_label: Gtk.Label = gtc()
 
-    def __init__(self, model: WordModel) -> "WordWidget":
+    def __init__(self, word: WordModel) -> None:
         super().__init__()
-        self.model = model
-        self.model.bind_property(
+        self.word = word
+        self.word.bind_property(
             "word", self.word_label, "label", GObject.BindingFlags.SYNC_CREATE
         )
-        self.model.bind_property(
+        self.word.bind_property(
             "timestamp", self.timestamp_label, "label", GObject.BindingFlags.SYNC_CREATE
         )
-        self._set_in_current_line(self.model, None)
-        self._on_is_highlighted_changed(self.model, None)
-        self.model.connect("notify::synced", self._on_synced_changed)
-        self.model.connect("notify::active", self._set_in_current_line)
-        self.model.connect("notify::highlighted", self._on_is_highlighted_changed)
-        if self.model.time != -1:
-            self.model.set_property("synced", True)
+        self._set_in_current_line(self.word, None)
+        self._on_is_highlighted_changed(self.word, None)
+        self.word.connect("notify::synced", self._on_synced_changed)
+        self.word.connect("notify::active", self._set_in_current_line)
+        self.word.connect("notify::highlighted", self._on_is_highlighted_changed)
+        if self.word.time != -1:
+            self.word.set_property("synced", True)
 
     def _on_synced_changed(self, obj: WordModel, _arg) -> None:
         is_synced = obj.synced
