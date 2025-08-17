@@ -76,6 +76,7 @@ class WBWSyncPage(Adw.NavigationPage):
         self.insert_action_group("root", group)
 
         self.modes.connect("notify::visible-child", self._page_visibility)
+        self.connect("hidden", self._on_page_closed)
 
         # TODO: Implement TTML
         # Set initial label for format selector button
@@ -101,6 +102,9 @@ class WBWSyncPage(Adw.NavigationPage):
             buffer = Gtk.TextBuffer()
             buffer.set_text("\n".join(normalized_lines))
             self.edit_view_text_view.set_buffer(buffer)
+
+    def _on_page_closed(self, *_args) -> None:
+        self._player.stream_ended()
 
     def _page_visibility(self, stack: Adw.ViewStack, _pspec) -> None:
         page: Adw.ViewStackPage = stack.get_page(stack.get_visible_child())
