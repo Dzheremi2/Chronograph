@@ -1,0 +1,24 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WordWidget: Adw.Bin {
+  CenterBox sync_higlight_box {
+    orientation: vertical;
+    height-request: 60;
+
+    center-widget: Box {
+      orientation: vertical;
+      spacing: 4;
+      margin-start: 5;
+      margin-end: 5;
+      Label timestamp_label {
+        styles ["caption"]
+      }
+      
+      Label word_label {
+        styles ["title-1"]
+      }
+    };
+    styles ["card"]
+  }
+}

@@ -17,7 +17,7 @@ class MetadataEditor(Adw.Dialog):
     artist_row: Adw.EntryRow = gtc()
     album_row: Adw.EntryRow = gtc()
 
-    def __init__(self, card) -> "MetadataEditor":
+    def __init__(self, card) -> None:
         super().__init__()
         self._is_cover_changed: bool = False
         self._new_cover_path: Optional[str] = ""

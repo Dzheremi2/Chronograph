@@ -49,7 +49,28 @@ template $ChronographPreferences : Adw.PreferencesDialog {
     }
 
     Adw.PreferencesGroup {
-      title: _("Sync Page");
+      title: _("Debug");
+
+      Adw.SwitchRow enable_debug_logging_switch {
+        title: _("Enable Debug logging profile");
+        subtitle: _("Expands logging information for debug purposes");
+        tooltip-text: _("NEEDS RESTART");
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Syncing");
+    icon-name: "sync-line-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("General");
+
+      Adw.ComboRow syncing_type_combo_row {
+        title: _("Syncing type");
+        subtitle: _("Defines the default workflow of syncing process. It may be either Line-by-Line, or Word-by-Word\nWORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES");
+        model: sync_types;
+      }
 
       Adw.SwitchRow precise_milliseconds_switch {
         title: _("Use precise milliseconds");
@@ -74,16 +95,6 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         }
       }
     }
-
-    Adw.PreferencesGroup {
-      title: _("Debug");
-
-      Adw.SwitchRow enable_debug_logging_switch {
-        title: _("Enable Debug logging profile");
-        subtitle: _("Expands logging information for debug purposes");
-        tooltip-text: _("NEEDS RESTART");
-      }
-    }
   }
 }
 
@@ -91,6 +102,13 @@ StringList formats {
   strings [
     ".lrc",
     ".txt"
+  ]
+}
+
+StringList sync_types {
+  strings [
+    _("Line-by-Line"),
+    _("Word-by-Word")
   ]
 }
 

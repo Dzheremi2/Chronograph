@@ -11,6 +11,7 @@ gi.require_version("Adw", "1")
 # pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
+# pylint: disable=ungrouped-imports
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
@@ -126,6 +127,10 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
+        # with open("/home/dzheremi/Repos/Chronograph/elrc.lrc") as f:
+        #     win.library_scrolled_window.set_child(
+        #         LyricsModel(f.read()).widget
+        #     )  # testing LyricsWidget
         logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:

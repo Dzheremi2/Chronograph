@@ -1,0 +1,46 @@
+groups:
+  import:
+    - name: lrclib
+      callback: _import_lrclib
+    - name: file
+      callback: _import_file
+    - name: clipboard
+      callback: _import_clipboard
+
+  export:
+    - name: file
+      callback: _export_file
+    - name: clipboard
+      callback: _export_clipboard
+
+  controls:
+    - name: sync
+      callback: _sync
+      shortcut: "<Alt>Return"
+    - name: rew100
+      callback: _seek100
+      with_args: [-100000]
+      shortcut: "<Alt>minus"
+    - name: forw100
+      callback: _seek100
+      with_args: [100000]
+      shortcut: "<Alt>equal"
+    - name: rplay
+      callback: _replay
+      shortcut: "<Alt>z"
+    - name: file_info
+      callback: _card.show_info
+
+  navigation:
+    - name: prev
+      callback: _nav_prev
+      shortcut: "<Alt>Left"
+    - name: next
+      callback: _nav_next
+      shortcut: "<Alt>Right"
+    - name: up
+      callback: _nav_up
+      shortcut: "<Alt>Up"
+    - name: down
+      callback: _nav_down
+      shortcut: "<Alt>Down"

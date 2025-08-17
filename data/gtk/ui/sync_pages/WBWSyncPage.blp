@@ -1,0 +1,262 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WBWSyncPage : Adw.NavigationPage {
+  title: _("Syncing");
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar header_bar {
+      [end]
+      MenuButton {
+        icon-name: "app-menu-symbolic";
+        tooltip-text: _("App settings, info and utils");
+        menu-model: about_app;
+        primary: true;
+      }
+
+      // [end]
+      // MenuButton format_menu_button {
+      //   menu-model: formats;
+      // }
+    }
+
+    [top]
+    Box player_container {
+      margin-top: 12;
+    }
+
+    [top]
+    Adw.Clamp {
+      margin-top: 4;
+      orientation: horizontal;
+      maximum-size: 600;
+
+      Box syncing_buttons_box {
+        orientation: horizontal;
+        valign: center;
+        spacing: 4;
+        margin-bottom: 4;
+        margin-start: 4;
+        margin-end: 4;
+
+        Button sync_line_button {
+          tooltip-text: _("Sync/Re-sync line");
+          icon-name: "sync-line-symbolic";
+          action-name: "controls.sync";
+
+          styles [
+            "suggested-action",
+            "circular"
+          ]
+        }
+
+        Button replay_line_button {
+          tooltip-text: _("Replay selected line");
+          icon-name: "replay-line-symbolic";
+          action-name: "controls.rplay";
+
+          styles ["circular"]
+        }
+
+        Button rew100_button {
+          tooltip-text: _("Re-sync selected line 100ms back");
+          icon-name: "100ms-back-symbolic";
+          action-name: "controls.rew100";
+
+          styles ["circular"]
+        }
+
+        Button forw100_button {
+          tooltip-text: _("Re-sync selected line 100ms forward");
+          icon-name: "100ms-forw-symbolic";
+          action-name: "controls.forw100";
+
+          styles ["circular"]
+        }
+
+        MenuButton import_lyrics_button {
+          tooltip-text: _("Import from …");
+          icon-name: "import-from-symbolic";
+          menu-model: import_from;
+
+          styles [
+            "osd",
+            "circular"
+          ]
+        }
+
+        MenuButton export_lyrics_button {
+          tooltip-text: _("Export to …");
+          icon-name: "export-to-symbolic";
+          menu-model: export_to;
+
+          styles [
+            "osd",
+            "circular"
+          ]
+        }
+
+        Separator {
+          hexpand: true;
+          visible: true;
+
+          styles ["spacer"]
+        }
+
+        Box sync_page_metadata_editor_button_box {
+          Button sync_page_metadata_editor_button {
+            tooltip-text: _("Edit song metadata");
+            icon-name: "edit-metadata-symbolic";
+
+            styles ["circular"]
+          }
+        }
+
+        Button info_button {
+          tooltip-text: _("About file");
+          icon-name: "info-button-symbolic";
+          action-name: "controls.file_info";
+
+          styles ["circular"]
+        }
+      }
+    }
+
+    Box {
+      orientation: vertical;
+
+      Box {
+        orientation: horizontal;
+        halign: center;
+        margin-start: 4;
+        margin-end: 4;
+
+        Adw.InlineViewSwitcher {
+          margin-bottom: 8;
+          halign: center;
+          stack: modes;
+          homogeneous: true;
+
+          styles ["round"]
+        }
+      }
+
+      Adw.ViewStack modes {
+        enable-transitions: true;
+
+        Adw.ViewStackPage edit_view_stack_page {
+          title: _("Edit");
+
+          child: Adw.Clamp {
+            orientation: horizontal;
+            maximum-size: 600;
+
+            Frame {
+              margin-bottom: 4;
+
+              ScrolledWindow {
+                TextView edit_view_text_view {
+                  editable: true;
+                  left-margin: 4;
+                  top-margin: 4;
+                  margin-bottom: 4;
+                  hexpand: true;
+                  vexpand: true;
+                  wrap-mode: word_char;
+
+                  styles ["rounded-frame"]
+                }
+              }
+            }
+          };
+        }
+
+        Adw.ViewStackPage sync_view_stack_page {
+          title: _("Sync");
+          child: Adw.Bin lyrics_layout_container {};
+        }
+      }
+    }
+  }
+}
+
+menu import_from {
+  section {
+    label: _("Import from …");
+
+    item (_("File"), "import.file")
+    item (_("Clipboard"), "import.clipboard")
+    item (_("LRClib"), "import.lrclib")
+  }
+}
+
+menu export_to {
+  section {
+    label: _("Export to …");
+
+    item (_("File"), "export.file")
+    item (_("Clipboard"), "export.clipboard")
+  }
+}
+
+menu about_app {
+  section {
+    submenu {
+      label: _("Sort");
+
+      item {
+        label: _("A-Z");
+        action: "app.sort_type";
+        target: "a-z";
+      }
+
+      item {
+        label: _("Z-A");
+        action: "app.sort_type";
+        target: "z-a";
+      }
+    }
+
+    submenu {
+      label: _("View");
+
+      item {
+        label: _("Grid");
+        action: "app.view_type";
+        target: "g";
+      }
+
+      item {
+        label: _("List");
+        action: "app.view_type";
+        target: "l";
+      }
+    }
+  }
+
+  section {
+    item (_("Quick Editor"), "win.open_quick_editor")
+  }
+
+  section {
+    item (_("Preferences"), "win.show_preferences")
+    item (_("Keybindings"), "win.show-help-overlay")
+    item (_("About"), "app.about")
+  }
+}
+
+menu formats {
+  section {
+    item {
+      label: "eLRC";
+      action: "root.format";
+      target: "elrc";
+    }
+    item {
+      label: "TTML";
+      action: "root.format";
+      target: "ttml";
+    }
+  }
+}

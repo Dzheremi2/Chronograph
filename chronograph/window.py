@@ -1,28 +1,28 @@
 # DELAYED: Add GStreamer based player with music speed control
 # TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
-# TODO: Implement different syncing pages variants for different syncing formats (eLRC, TTML, etc.)
 
 import os
 from enum import Enum
 from pathlib import Path
 from typing import Callable, Optional, Union
-from dgutils.decorators import singleton
 
+from dgutils.decorators import singleton
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.preferences import ChronographPreferences
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.saved_location import SavedLocation
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.miscellaneous import get_common_directory
-from chronograph.utils.parsers import parse_dir, parse_files
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -505,6 +505,9 @@ class ChronographWindow(Adw.ApplicationWindow):
                 card.artist,
             )
             sync_nav_page = LRCSyncPage(card, file)
+            self.navigation_view.push(sync_nav_page)
+        elif Schema.get_default_format() == "wbw":
+            sync_nav_page = WBWSyncPage(card, file)
             self.navigation_view.push(sync_nav_page)
 
     def show_toast(

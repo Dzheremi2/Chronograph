@@ -17,7 +17,7 @@ class SavedLocation(Gtk.Box):
     rename_entry: Gtk.Entry = gtc()
     deletion_alert_dialog: Adw.AlertDialog = gtc()
 
-    def __init__(self, path: str, name: str) -> "SavedLocation":
+    def __init__(self, path: str, name: str) -> None:
         super().__init__()
         self._path = path
         self._name = name

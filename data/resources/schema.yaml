@@ -53,7 +53,7 @@ use-debug-log:
 
 default-format:
   type: str
-  enum: [lrc]
+  enum: [lrc, wbw]
   default: lrc
 
 sorting:

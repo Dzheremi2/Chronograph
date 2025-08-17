@@ -32,10 +32,9 @@ class Player(Adw.BreakpointBin):
         file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable],
         card: SongCard,
         max_width: int = 600,
-    ) -> "Player":
+    ) -> None:
         super().__init__()
         self._player = Gtk.MediaFile.new_for_filename(card.path)
-        # self._player.connect("notify::timestamp", self._on_timestamp_updated)
         self.media_controls.set_media_stream(self._player)
         self._file = file
         self._card = card
