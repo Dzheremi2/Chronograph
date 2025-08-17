@@ -1,6 +1,7 @@
 """Word-by-Word syncing page"""
 
 import re
+from pathlib import Path
 from typing import Optional, Union
 
 from dgutils.actions import Actions
@@ -14,6 +15,7 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -33,8 +35,6 @@ class WBWSyncPage(Adw.NavigationPage):
     edit_view_text_view: Gtk.TextView = gtc()
     sync_view_stack_page: Adw.ViewStackPage = gtc()
     lyrics_layout_container: Adw.Bin = gtc()
-    review_view_stack_page: Adw.ViewStackPage = gtc()
-    review_layout_container: Adw.Bin = gtc()
 
     _selected_format: str = Schema.get_default_format()
     _lyrics_model: LyricsModel
@@ -121,6 +121,15 @@ class WBWSyncPage(Adw.NavigationPage):
                     )
                 )
 
+        if (
+            prev_page == self.sync_view_stack_page
+            and new_page == self.edit_view_stack_page
+        ):
+            lyrics = eLRCParser.create_lyrics_elrc(self._lyrics_model.get_tokens())
+            buffer = Gtk.TextBuffer()
+            buffer.set_text(lyrics)
+            self.edit_view_text_view.set_buffer(buffer)
+
     def _on_format_changed(self, _action, param: GLib.Variant) -> None:
         if param.get_string() == "elrc":
             self._selected_format = "wbw"
@@ -178,6 +187,61 @@ class WBWSyncPage(Adw.NavigationPage):
 
         clipboard = Gdk.Display().get_default().get_clipboard()
         clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
+
+    ###############
+
+    ############### Export Actions ###############
+    def _export_file(self, *_args) -> None:
+
+        def __on_export_file_selected(
+            file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
+        ) -> None:
+            filepath = file_dialog.save_finish(result).get_path()
+            with open(filepath, "w") as f:
+                f.write(lyrics)
+            logger.info("Lyrics exported to file: '%s'", filepath)
+
+            Constants.WIN.show_toast(
+                _("Lyrics exported to file"),
+                button_label=_("Show"),
+                button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
+                    f"file://{Path(filepath).parent}"
+                ),
+            )
+
+        if self._current_page == self.edit_view_stack_page:
+            lyrics = self.edit_view_text_view.get_buffer().get_text(
+                self.edit_view_text_view.get_buffer().get_start_iter(),
+                self.edit_view_text_view.get_buffer().get_end_iter(),
+                False,
+            )
+        else:
+            if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
+                lyrics = eLRCParser.create_lyrics_elrc(self._lyrics_model.get_tokens())
+            else:
+                lyrics = ""
+
+        dialog = Gtk.FileDialog(
+            initial_name=Path(self._file.path).stem + Schema.get_auto_file_format()
+        )
+        dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
+
+    def _export_clipboard(self, *_args) -> None:
+        if self._current_page == self.edit_view_stack_page:
+            lyrics = self.edit_view_text_view.get_buffer().get_text(
+                self.edit_view_text_view.get_buffer().get_start_iter(),
+                self.edit_view_text_view.get_buffer().get_end_iter(),
+                False,
+            )
+        else:
+            if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
+                lyrics = eLRCParser.create_lyrics_elrc(self._lyrics_model.get_tokens())
+            else:
+                lyrics = ""
+        clipboard = Gdk.Display().get_default().get_clipboard()
+        clipboard.set(lyrics)
+        logger.info("Lyrics exported to clipboard")
+        Constants.WIN.show_toast(_("Lyrics exported to clipboard"), timeout=3)
 
     ###############
 

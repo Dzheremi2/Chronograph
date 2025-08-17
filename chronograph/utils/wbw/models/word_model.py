@@ -16,6 +16,7 @@ class WordModel(GObject.Object):
 
     def __init__(self, word: WordToken) -> None:
         from chronograph.ui.widgets.wbw.word_widget import WordWidget
+
         try:
             ms = int(word)
             synced = True
@@ -50,3 +51,6 @@ class WordModel(GObject.Object):
             ]
         self.set_property("timestamp", timestamp)
         self.set_property("synced", True)
+
+    def restore_token(self) -> WordToken:
+        return WordToken(self.word, self.time, self.timestamp)

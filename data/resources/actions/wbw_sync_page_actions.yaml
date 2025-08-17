@@ -7,11 +7,11 @@ groups:
     - name: clipboard
       callback: _import_clipboard
 
-  # export:
-  #   - name: file
-  #     callback: _export_file
-  #   - name: clipboard
-  #     callback: _export_clipboard
+  export:
+    - name: file
+      callback: _export_file
+    - name: clipboard
+      callback: _export_clipboard
 
   controls:
     - name: sync

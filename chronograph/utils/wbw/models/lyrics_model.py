@@ -5,6 +5,7 @@ from gi.repository import Gio, GObject
 from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.line_model import LineModel
 from chronograph.utils.wbw.models.word_model import WordModel
+from chronograph.utils.wbw.tokens import WordToken
 
 
 class LyricsModel(GObject.Object):
@@ -88,6 +89,17 @@ class LyricsModel(GObject.Object):
 
     def get_current_word(self) -> WordModel:
         return self.get_current_line().get_current_word()
+
+    def get_tokens(self) -> tuple[tuple[WordToken, ...], ...]:
+        lines = []
+        for line_model in self:
+            line_model: LineModel
+            line = []
+            for word in line_model:
+                word: WordModel
+                line.append(word.restore_token())
+            lines.append(line)
+        return tuple(lines)
 
     def _on_eol(self, _obj, direction: bool) -> None:
         if direction:

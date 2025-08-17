@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 from typing import Optional
 
+from chronograph.internal import Schema
 from chronograph.utils.wbw.models.word_model import WordModel
 from chronograph.utils.wbw.tokens import LineToken, WordToken
 
@@ -18,6 +19,7 @@ class eLRCParser:
     TOKEN = re.compile(
         r"(?:<(?P<m>\d{2}):(?P<s>\d{2})(?:\.(?P<ms>\d{2,3}))?>\s*)?(?P<word>[^\s<>]+)"
     )
+    TIMESTAMP = re.compile(r"^\d{2}:\d{2}(?:\.\d{2,3})?$")
 
     _SPACER = "\u00a0"
 
@@ -25,7 +27,7 @@ class eLRCParser:
         raise TypeError(f"{cls.__name__} may not be implemented")
 
     @staticmethod
-    def is_spacer(word: WordToken | WordModel) -> bool:
+    def _is_spacer(word: WordToken | WordModel) -> bool:
         return word.word == eLRCParser._SPACER * 20
 
     @staticmethod
@@ -128,3 +130,59 @@ class eLRCParser:
             tokens.append(WordToken(eLRCParser._SPACER * 20, line_time, line_ts))
 
         return tuple(tokens)
+
+    @staticmethod
+    def _format_timestamp_ms(ms: int, *, precise: bool = True) -> str:
+        m = ms // 60000
+        s = (ms % 60000) // 1000
+        sub = ms % 1000
+        return (
+            f"{m:02d}:{s:02d}.{sub:03d}"
+            if precise
+            else f"{m:02d}:{s:02d}.{str(sub).zfill(3)[:-1]}"
+        )
+
+    @staticmethod
+    def _pick_timestamp_str(token: WordToken) -> Optional[str]:
+        if token.timestamp and eLRCParser.TIMESTAMP.match(token.timestamp):
+            return token.timestamp
+        if token.time is not None and token.time >= 0:
+            return eLRCParser._format_timestamp_ms(
+                token.time, precise=Schema.get_precise_milliseconds()
+            )
+        return None
+
+    @staticmethod
+    def create_lyrics_elrc(lines: tuple[tuple["WordToken", ...], ...]) -> str:
+        out_lines: list[str] = []
+
+        for line_tokens in lines:
+            if not line_tokens:
+                out_lines.append("")
+                continue
+
+            first = line_tokens[0]
+            line_timestamp = eLRCParser._pick_timestamp_str(first)
+
+            chunks: list[str] = []
+            visible_count = 0
+            for token in line_tokens:
+                word = token.word
+                if eLRCParser._is_spacer(token):
+                    continue
+                visible_count += 1
+                timestamp = eLRCParser._pick_timestamp_str(token)
+                if timestamp:
+                    chunks.append(f"<{timestamp}> {word}")
+                else:
+                    chunks.append(word)
+
+            if visible_count > 0:
+                if line_timestamp:
+                    out_lines.append(f"[{line_timestamp}] " + " ".join(chunks))
+                else:
+                    out_lines.append(" ".join(chunks))
+            else:
+                out_lines.append(f"[{line_timestamp}]" if line_timestamp else "")
+
+        return "\n".join(out_lines)

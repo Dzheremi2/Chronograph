@@ -104,6 +104,9 @@ class LineModel(GObject.Object):
     def get_current_word(self) -> WordModel:
         return self[self.cindex]
 
+    def restore_token(self) -> LineToken:
+        return LineToken(self.text, self.line, self.time, self.timestamp)
+
     def __iter__(self) -> Iterator:
         for i in range(self.words.get_n_items()):
             yield self.words.get_item(i)
