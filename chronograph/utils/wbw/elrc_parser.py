@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 from typing import Optional
 
+from chronograph.utils.wbw.models.word_model import WordModel
 from chronograph.utils.wbw.tokens import LineToken, WordToken
 
 
@@ -18,8 +19,14 @@ class eLRCParser:
         r"(?:<(?P<m>\d{2}):(?P<s>\d{2})(?:\.(?P<ms>\d{2,3}))?>\s*)?(?P<word>[^\s<>]+)"
     )
 
+    _SPACER = "\u00a0"
+
     def __new__(cls, *args, **kwargs):
         raise TypeError(f"{cls.__name__} may not be implemented")
+
+    @staticmethod
+    def is_spacer(word: WordToken | WordModel) -> bool:
+        return word.word == eLRCParser._SPACER * 20
 
     @staticmethod
     def _ms_from_parts(m: str, s: str, ms: Optional[str]) -> int:
@@ -107,5 +114,17 @@ class eLRCParser:
                 tokens.append(WordToken(word, total_ms, timestamp_str))
             else:
                 tokens.append(WordToken(word))
+
+        if not tokens:
+            line_time: Optional[int] = None
+            line_ts: Optional[str] = None
+            if hasattr(line, "time"):
+                try:
+                    line_time = int(line)
+                except Exception:
+                    line_time = None
+                line_ts = getattr(line, "timestamp", None) or None
+
+            tokens.append(WordToken(eLRCParser._SPACER * 20, line_time, line_ts))
 
         return tuple(tokens)

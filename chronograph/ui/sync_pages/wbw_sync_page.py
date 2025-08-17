@@ -189,7 +189,7 @@ class WBWSyncPage(Adw.NavigationPage):
         ms = mcs // 1000
         current_word.set_property("time", ms)
         logger.debug(
-            "Word %s was synced with timestamp: %s",
+            "Word “%s” was synced with timestamp %s",
             current_word.word,
             mcs_to_timestamp(mcs),
         )
