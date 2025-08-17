@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-17 18:47+0300\n"
-"PO-Revision-Date: 2025-07-27 14:06+0000\n"
-"Last-Translator: Максим Горпиніч <gorpinicmaksim5@gmail.com>\n"
+"PO-Revision-Date: 2025-08-17 22:02+0000\n"
+"Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
-"Language: ua\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -152,13 +152,12 @@ msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:139
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Прості слова пісні не доступні"
+msgstr "Немає текстів пісень"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:141
 msgid "You've not provided any lyrics for synchronization"
-msgstr ""
+msgstr "Ви не надали жодного тексту пісні для синхронізації"
 
 #: chronograph/ui/widgets/song_card.py:104
 msgctxt "song info dialog"
@@ -352,9 +351,8 @@ msgid "Sync/Re-sync"
 msgstr "Синхронізувати/десинхронізувати"
 
 #: data/gtk/window.blp:379
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Повторно програти рядок"
+msgstr "Відтворити вибраний рядок/слово"
 
 #: data/gtk/window.blp:384
 msgid "Re-sync 100ms back"
@@ -365,9 +363,8 @@ msgid "Re-sync 100ms forward"
 msgstr "Повторна синхронізація на 100 мс вперед"
 
 #: data/gtk/window.blp:394
-#, fuzzy
 msgid "Line-by-Line line actions"
-msgstr "Дії рядків"
+msgstr "Дії з рядками по рядках"
 
 #: data/gtk/window.blp:397
 msgid "Remove selected line"
@@ -387,23 +384,23 @@ msgstr "Вставити строку до кінця"
 
 #: data/gtk/window.blp:418
 msgid "Word-by-Word navigation"
-msgstr ""
+msgstr "Пословна навігація"
 
 #: data/gtk/window.blp:421
 msgid "One word back"
-msgstr ""
+msgstr "Одне слово назад"
 
 #: data/gtk/window.blp:426
 msgid "One word next"
-msgstr ""
+msgstr "Одне слово далі"
 
 #: data/gtk/window.blp:431
 msgid "One line up"
-msgstr ""
+msgstr "Один рядок вгору"
 
 #: data/gtk/window.blp:436
 msgid "One line down"
-msgstr ""
+msgstr "Один рядок вниз"
 
 #: data/gtk/window.blp:446
 msgid "Directory"
@@ -620,9 +617,8 @@ msgid "Syncing"
 msgstr "Синхронізація"
 
 #: data/gtk/ui/dialogs/Preferences.blp:70
-#, fuzzy
 msgid "Syncing type"
-msgstr "Синхронізація"
+msgstr "Тип синхронізації"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid ""
@@ -630,6 +626,9 @@ msgid ""
 "Line, or Word-by-Word\n"
 "WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
 msgstr ""
+"Визначає робочий процес синхронізації за замовчуванням. Це може бути рядок "
+"за рядком або слово за словом.\n"
+"СЛОВО ЗА СЛОВОМ НЕ ПІДТРИМУЄТЬСЯ НА МОБІЛЬНИХ ПРИСТРОЯХ"
 
 #: data/gtk/ui/dialogs/Preferences.blp:76
 msgid "Use precise milliseconds"
@@ -668,11 +667,11 @@ msgstr "Інтервал автозбереження після бездіял�
 
 #: data/gtk/ui/dialogs/Preferences.blp:110
 msgid "Line-by-Line"
-msgstr ""
+msgstr "Рядок за рядком"
 
 #: data/gtk/ui/dialogs/Preferences.blp:111
 msgid "Word-by-Word"
-msgstr ""
+msgstr "Слово за словом"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:44
@@ -756,7 +755,7 @@ msgstr "Додати рядок нижче"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
 msgid "Edit"
-msgstr ""
+msgstr "Редагувати"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:176
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
