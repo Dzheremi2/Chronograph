@@ -376,28 +376,8 @@ ShortcutsWindow help_overlay {
       }
 
       ShortcutsShortcut {
-        title: _("Replay selected line");
+        title: _("Replay selected line/word");
         accelerator: "<Alt>z";
-      }
-
-      ShortcutsShortcut {
-        title: _("Remove selected line");
-        accelerator: "<Alt>r";
-      }
-
-      ShortcutsShortcut {
-        title: _("Prepend line to selected");
-        accelerator: "<Alt>p";
-      }
-
-      ShortcutsShortcut {
-        title: _("Append line to selected");
-        accelerator: "<Alt>a";
-      }
-
-      ShortcutsShortcut {
-        title: _("Append line to end");
-        accelerator: "<Alt><primary>a";
       }
 
       ShortcutsShortcut {
@@ -408,6 +388,54 @@ ShortcutsWindow help_overlay {
       ShortcutsShortcut {
         title: _("Re-sync 100ms forward");
         accelerator: "<Alt>equal";
+      }
+
+      ShortcutsGroup {
+        title: _("Line-by-Line line actions");
+
+        ShortcutsShortcut {
+          title: _("Remove selected line");
+          accelerator: "<Alt>r";
+        }
+
+        ShortcutsShortcut {
+          title: _("Prepend line to selected");
+          accelerator: "<Alt>p";
+        }
+
+        ShortcutsShortcut {
+          title: _("Append line to selected");
+          accelerator: "<Alt>a";
+        }
+
+        ShortcutsShortcut {
+          title: _("Append line to end");
+          accelerator: "<Alt><primary>a";
+        }
+      }
+
+      ShortcutsGroup {
+        title: _("Word-by-Word navigation");
+
+        ShortcutsShortcut {
+          title: _("One word back");
+          accelerator: "<Alt>Left";
+        }
+
+        ShortcutsShortcut {
+          title: _("One word next");
+          accelerator: "<Alt>Right";
+        }
+
+        ShortcutsShortcut {
+          title: _("One line up");
+          accelerator: "<Alt>Up";
+        }
+
+        ShortcutsShortcut {
+          title: _("One line down");
+          accelerator: "<Alt>Down";
+        }
       }
     }
   }

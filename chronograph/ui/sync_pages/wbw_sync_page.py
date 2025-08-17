@@ -27,7 +27,7 @@ logger = Constants.LOGGER
 class WBWSyncPage(Adw.NavigationPage):
     __gtype_name__ = "WBWSyncPage"
 
-    format_menu_button: Gtk.MenuButton = gtc()
+    # format_menu_button: Gtk.MenuButton = gtc() TODO: Implement TTML
     player_container: Gtk.Box = gtc()
     sync_page_metadata_editor_button: Gtk.Button = gtc()
     modes: Adw.ViewStack = gtc()
@@ -36,7 +36,7 @@ class WBWSyncPage(Adw.NavigationPage):
     sync_view_stack_page: Adw.ViewStackPage = gtc()
     lyrics_layout_container: Adw.Bin = gtc()
 
-    _selected_format: str = Schema.get_default_format()
+    # _selected_format: str = "elrc" TODO: Implement TTML
     _lyrics_model: LyricsModel
 
     def __init__(
@@ -71,17 +71,18 @@ class WBWSyncPage(Adw.NavigationPage):
         # TODO: Implement param support to DGutils Actions module
         group = Gio.SimpleActionGroup.new()
         act = Gio.SimpleAction.new("format", GLib.VariantType.new("s"))
-        act.connect("activate", self._on_format_changed)
+        # act.connect("activate", self._on_format_changed) TODO: Implement TTML
         group.add_action(act)
         self.insert_action_group("root", group)
 
         self.modes.connect("notify::visible-child", self._page_visibility)
 
+        # TODO: Implement TTML
         # Set initial label for format selector button
-        if self._selected_format == "wbw":
-            self.format_menu_button.set_label("eLRC")
-        elif self._selected_format == "ttml":
-            self.format_menu_button.set_label("TTML")
+        # if self._selected_format == "elrc":
+        #     self.format_menu_button.set_label("eLRC")
+        # elif self._selected_format == "ttml":
+        #     self.format_menu_button.set_label("TTML")
 
         # Automatically load the lyrics file if it exists
         if Schema.get_auto_file_manipulation() and self._autosave_path.exists():
@@ -152,13 +153,14 @@ class WBWSyncPage(Adw.NavigationPage):
             buffer.set_text(lyrics)
             self.edit_view_text_view.set_buffer(buffer)
 
-    def _on_format_changed(self, _action, param: GLib.Variant) -> None:
-        if param.get_string() == "elrc":
-            self._selected_format = "wbw"
-            self.format_menu_button.set_label("eLRC")
-        elif param.get_string() == "ttml":
-            self._selected_format = "ttml"
-            self.format_menu_button.set_label("TTML")
+    # TODO: Implement TTML
+    # def _on_format_changed(self, _action, param: GLib.Variant) -> None:
+    #     if param.get_string() == "elrc":
+    #         self._selected_format = "wbw"
+    #         self.format_menu_button.set_label("eLRC")
+    #     elif param.get_string() == "ttml":
+    #         self._selected_format = "ttml"
+    #         self.format_menu_button.set_label("TTML")
 
     ############### Import Actions ###############
     def _import_lrclib(self, *_args) -> None:
