@@ -64,6 +64,10 @@ class WBWSyncPage(Adw.NavigationPage):
         self._player = self._player_widget._player
         self.player_container.append(self._player_widget)
 
+        self._autosave_path = Path(self._file.path).with_suffix(
+            Schema.get_auto_file_format()
+        )
+
         # TODO: Implement param support to DGutils Actions module
         group = Gio.SimpleActionGroup.new()
         act = Gio.SimpleAction.new("format", GLib.VariantType.new("s"))
@@ -78,6 +82,24 @@ class WBWSyncPage(Adw.NavigationPage):
             self.format_menu_button.set_label("eLRC")
         elif self._selected_format == "ttml":
             self.format_menu_button.set_label("TTML")
+
+        # Automatically load the lyrics file if it exists
+        if Schema.get_auto_file_manipulation() and self._autosave_path.exists():
+            metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
+            timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
+            with open(self._autosave_path, "r", encoding="utf-8") as f:
+                lines = f.read().splitlines()
+
+            filtered_lines = [
+                line for line in lines if not metatags_filterout.match(line)
+            ]
+            normalized_lines = [
+                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
+            ]
+
+            buffer = Gtk.TextBuffer()
+            buffer.set_text("\n".join(normalized_lines))
+            self.edit_view_text_view.set_buffer(buffer)
 
     def _page_visibility(self, stack: Adw.ViewStack, _pspec) -> None:
         page: Adw.ViewStackPage = stack.get_page(stack.get_visible_child())
