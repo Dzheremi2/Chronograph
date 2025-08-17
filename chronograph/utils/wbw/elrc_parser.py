@@ -186,3 +186,14 @@ class eLRCParser:
                 out_lines.append(f"[{line_timestamp}]" if line_timestamp else "")
 
         return "\n".join(out_lines)
+
+    @staticmethod
+    def to_plain_lrc(data: Path | str) -> str:
+        lines = eLRCParser.parse_lines(data)
+        out: list[str] = []
+        for lt in lines:
+            if lt.timestamp:
+                out.append(f"[{lt.timestamp}]" + (f" {lt.text}" if lt.text else ""))
+            else:
+                out.append(lt.text)
+        return "\n".join(out)

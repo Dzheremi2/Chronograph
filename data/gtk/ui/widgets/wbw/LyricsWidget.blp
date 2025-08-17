@@ -10,8 +10,11 @@ template $LyricsWidget : Adw.Bin {
 
     Box {
       orientation: vertical;
+      halign: center;
 
-      Box first_line_box {}
+      Box first_line_box {
+        halign: center;
+      }
 
       Adw.Clamp {
         orientation: vertical;
@@ -25,7 +28,9 @@ template $LyricsWidget : Adw.Bin {
         };
       }
 
-      Box second_line_box {}
+      Box second_line_box {
+        halign: center;
+      }
 
       Adw.Clamp {
         orientation: vertical;
@@ -39,7 +44,9 @@ template $LyricsWidget : Adw.Bin {
         };
       }
 
-      Box third_line_box {}
+      Box third_line_box {
+        halign: center;
+      }
     }
   }
 }
