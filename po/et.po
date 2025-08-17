@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 10:31+0300\n"
+"POT-Creation-Date: 2025-08-17 18:47+0300\n"
 "PO-Revision-Date: 2025-07-29 19:13+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -19,29 +19,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: chronograph/window.py:442
+#: chronograph/window.py:445
 msgid "Copied successfully"
 msgstr "Kopeerimine õnnestus"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:156
+#: chronograph/main.py:162
 msgid "translator-credits"
 msgstr "Priit Jõerüüt 2025"
 
-#: chronograph/main.py:164
+#: chronograph/main.py:170
 msgid "Inspiration"
 msgstr "Inspiratsioon"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:174
+#: chronograph/main.py:180
 msgid "Build your own dictionary"
 msgstr "Loo oma sõnastik"
 
-#: chronograph/ui/dialogs/lrclib.py:112
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
 msgstr "Ühenduse viga"
 
-#: chronograph/ui/dialogs/lrclib.py:114
+#: chronograph/ui/dialogs/lrclib.py:115
 msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
@@ -49,78 +49,81 @@ msgstr ""
 "Ei õnnestunud luua ühendust LRC serveriga, Palun kontrolli, kas sinu "
 "nutiseadme internetiühendus toimib ja proovi uuesti"
 
-#: chronograph/ui/dialogs/lrclib.py:123
+#: chronograph/ui/dialogs/lrclib.py:124
 msgid "Timeout Error"
 msgstr "Päringu aegumine"
 
-#: chronograph/ui/dialogs/lrclib.py:125
+#: chronograph/ui/dialogs/lrclib.py:126
 msgid "The request to the LRC library server timed out. Please try again later"
 msgstr "Päring LRC-serverisse aegus. Palun proovi hiljem uuesti"
 
-#: chronograph/ui/dialogs/lrclib.py:134
+#: chronograph/ui/dialogs/lrclib.py:135
 msgid "Something went wrong"
 msgstr "Midagi läks valesti"
 
-#: chronograph/ui/dialogs/lrclib.py:136
+#: chronograph/ui/dialogs/lrclib.py:137
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr "LRC-serveriga ühenduse loomisel tekkis tundmatu viga"
 
-#: chronograph/ui/dialogs/lrclib.py:218
+#: chronograph/ui/dialogs/lrclib.py:232
 msgid "No synced lyrics available"
 msgstr "Sünkroniseeritud laulusõnad pole saadaval"
 
-#: chronograph/ui/dialogs/lrclib.py:223
+#: chronograph/ui/dialogs/lrclib.py:237
 msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+#: chronograph/ui/sync_pages/lrc_sync_page.py:261
+#: chronograph/ui/sync_pages/wbw_sync_page.py:268
 msgid "Lyrics exported to clipboard"
 msgstr "Laulusõnad on eksporditud lõikelauale"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/wbw_sync_page.py:229
 msgid "Lyrics exported to file"
 msgstr "Laulusõnad on eksporditud faili"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/lrc_sync_page.py:275
+#: chronograph/ui/sync_pages/wbw_sync_page.py:230
 msgid "Show"
 msgstr "Näita"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:406
-#: chronograph/ui/sync_pages/lrc_sync_page.py:449
+#: chronograph/ui/sync_pages/lrc_sync_page.py:407
+#: chronograph/ui/sync_pages/lrc_sync_page.py:450
 msgid "Failed to connect to LRClib.net"
 msgstr "Ühendamine LRClib.net serveriga ei õnnestunud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
-#: chronograph/ui/sync_pages/lrc_sync_page.py:452
+#: chronograph/ui/sync_pages/lrc_sync_page.py:410
+#: chronograph/ui/sync_pages/lrc_sync_page.py:453
 msgid "Connection to LRClib.net timed out"
 msgstr "Ühendus LRClib.net serveriga aegus"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
-#: chronograph/ui/sync_pages/lrc_sync_page.py:456
+#: chronograph/ui/sync_pages/lrc_sync_page.py:414
+#: chronograph/ui/sync_pages/lrc_sync_page.py:457
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:469
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Avaldamine õnnestus: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Vigane avaldamise tunnusluba: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Tekkis tundmatu viga: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:495
+#: chronograph/ui/sync_pages/lrc_sync_page.py:497
 msgid "Unable to publish lyrics"
 msgstr "Laulusõnade avaldamine ei õnnestu"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:497
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -128,21 +131,30 @@ msgstr ""
 "Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
 "väljad olema täidetud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:502
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Close"
 msgstr "Sulge"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:506
+#: chronograph/ui/sync_pages/lrc_sync_page.py:508
 msgid "Cannot publish empty lyrics"
 msgstr "Tühje laulusõnu ei saa avaldada"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:509
 msgid "Why?"
 msgstr "Miks?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:513
+#: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
+
+#: chronograph/ui/sync_pages/wbw_sync_page.py:139
+#, fuzzy
+msgid "No lyrics available"
+msgstr "Tavalisi laulusõnu pole saadaval"
+
+#: chronograph/ui/sync_pages/wbw_sync_page.py:141
+msgid "You've not provided any lyrics for synchronization"
+msgstr ""
 
 #: chronograph/ui/widgets/song_card.py:104
 msgctxt "song info dialog"
@@ -244,8 +256,9 @@ msgstr "Ühtegi lemmikut veel ei leidu"
 msgid "Press pin button to add current directory to the saves"
 msgstr "Vajutades nööpnõela ikooni, saad lisada kausta lemmikute hulka"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:475
+#: data/gtk/window.blp:81 data/gtk/window.blp:503
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:237
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:239
 msgid "Quick Editor"
 msgstr "Kiirtoimeti"
 
@@ -280,6 +293,7 @@ msgid "Toggle search"
 msgstr "Otsing sisse/välja"
 
 #: data/gtk/window.blp:244 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr "Rakenduse seadistused, teave ja tarvikud"
 
@@ -304,6 +318,7 @@ msgid "Shortcuts"
 msgstr "Kiirklahvid"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
+#: data/gtk/ui/dialogs/Preferences.blp:67
 msgid "General"
 msgstr "Üldised"
 
@@ -319,8 +334,9 @@ msgstr "Vali kaust"
 msgid "Select files"
 msgstr "Vali failid"
 
-#: data/gtk/window.blp:360 data/gtk/window.blp:480
+#: data/gtk/window.blp:360 data/gtk/window.blp:508
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:242
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:244
 msgid "Keybindings"
 msgstr "Klahvide seosed"
 
@@ -332,73 +348,106 @@ msgstr "Sünkroniseerimisrežiim"
 msgid "Sync/Re-sync"
 msgstr "Sünkroniseeri või sünkroniseeri uuesti"
 
-#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:50
-msgid "Replay selected line"
+#: data/gtk/window.blp:379
+#, fuzzy
+msgid "Replay selected line/word"
 msgstr "Esita valitud rida uuesti"
 
 #: data/gtk/window.blp:384
-msgid "Remove selected line"
-msgstr "Eemalda valitud laulurida"
-
-#: data/gtk/window.blp:389
-msgid "Prepend line to selected"
-msgstr "Lisa laulurida valiku ette"
-
-#: data/gtk/window.blp:394
-msgid "Append line to selected"
-msgstr "Lisa laulurida valiku järgi"
-
-#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
-msgid "Append line to end"
-msgstr "Lisa laulurida kõige lõppu"
-
-#: data/gtk/window.blp:404
 msgid "Re-sync 100ms back"
 msgstr "Sünkroniseeri 100 ms tahapoole"
 
-#: data/gtk/window.blp:409
+#: data/gtk/window.blp:389
 msgid "Re-sync 100ms forward"
 msgstr "Sünkroniseeri 100 ms ettepoole"
 
+#: data/gtk/window.blp:394
+msgid "Line-by-Line line actions"
+msgstr ""
+
+#: data/gtk/window.blp:397
+msgid "Remove selected line"
+msgstr "Eemalda valitud laulurida"
+
+#: data/gtk/window.blp:402
+msgid "Prepend line to selected"
+msgstr "Lisa laulurida valiku ette"
+
+#: data/gtk/window.blp:407
+msgid "Append line to selected"
+msgstr "Lisa laulurida valiku järgi"
+
+#: data/gtk/window.blp:412 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
+msgid "Append line to end"
+msgstr "Lisa laulurida kõige lõppu"
+
 #: data/gtk/window.blp:418
+msgid "Word-by-Word navigation"
+msgstr ""
+
+#: data/gtk/window.blp:421
+msgid "One word back"
+msgstr ""
+
+#: data/gtk/window.blp:426
+msgid "One word next"
+msgstr ""
+
+#: data/gtk/window.blp:431
+msgid "One line up"
+msgstr ""
+
+#: data/gtk/window.blp:436
+msgid "One line down"
+msgstr ""
+
+#: data/gtk/window.blp:446
 msgid "Directory"
 msgstr "Kaust"
 
-#: data/gtk/window.blp:419
+#: data/gtk/window.blp:447
 msgid "Files"
 msgstr "Failid"
 
-#: data/gtk/window.blp:426 data/gtk/window.blp:445
+#: data/gtk/window.blp:454 data/gtk/window.blp:473
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:207
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:209
 msgid "A-Z"
 msgstr "A-Z"
 
-#: data/gtk/window.blp:432 data/gtk/window.blp:451
+#: data/gtk/window.blp:460 data/gtk/window.blp:479
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:213
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:442 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
+#: data/gtk/window.blp:470 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:206
 msgid "Sort"
 msgstr "Järjesta"
 
-#: data/gtk/window.blp:458 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
+#: data/gtk/window.blp:486 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:222
 msgid "View"
 msgstr "Vaade"
 
-#: data/gtk/window.blp:461 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
+#: data/gtk/window.blp:489 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:225
 msgid "Grid"
 msgstr "Ruudustik"
 
-#: data/gtk/window.blp:467 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
+#: data/gtk/window.blp:495 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:231
 msgid "List"
 msgstr "Loend"
 
-#: data/gtk/window.blp:479 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
+#: data/gtk/window.blp:507 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:243
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: data/gtk/window.blp:481 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
+#: data/gtk/window.blp:509 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:245
 msgid "About"
 msgstr "Rakenduse teave"
 
@@ -543,83 +592,113 @@ msgstr ""
 "siis läheb ka otsing tsüklisse"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
-msgid "Sync Page"
-msgstr "Sünkroniseerimisvaade"
+msgid "Debug"
+msgstr "Veaotsing"
 
 #: data/gtk/ui/dialogs/Preferences.blp:55
+msgid "Enable Debug logging profile"
+msgstr "Lülita veaotsinguks vajalik silumisprofiil sisse"
+
+#: data/gtk/ui/dialogs/Preferences.blp:56
+msgid "Expands logging information for debug purposes"
+msgstr "Järgnevaga on kasutamisel tavalisest üksikasjalikum logimine"
+
+#: data/gtk/ui/dialogs/Preferences.blp:57
+msgid "NEEDS RESTART"
+msgstr "VAJAB RAKENDUSE UUESTI KÄIVITAMIST"
+
+#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
+msgid "Syncing"
+msgstr "Sünkroniseerin"
+
+#: data/gtk/ui/dialogs/Preferences.blp:70
+#, fuzzy
+msgid "Syncing type"
+msgstr "Sünkroniseerin"
+
+#: data/gtk/ui/dialogs/Preferences.blp:71
+msgid ""
+"Defines the default workflow of syncing process. It may be either Line-by-"
+"Line, or Word-by-Word\n"
+"WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:76
 msgid "Use precise milliseconds"
 msgstr "Kasuta täpseid millisekundeid"
 
-#: data/gtk/ui/dialogs/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:77
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Näita millisekundeid kahe koha asemel kolm kohta peale koma"
 
-#: data/gtk/ui/dialogs/Preferences.blp:60
+#: data/gtk/ui/dialogs/Preferences.blp:81
 msgid "Auto file manipulation"
 msgstr "Muuda laulusõnade faili automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:61
+#: data/gtk/ui/dialogs/Preferences.blp:82
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Kui laulusõnade rida muutub, siis loo ja uuenda faili automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:65
+#: data/gtk/ui/dialogs/Preferences.blp:86
 msgid "File format"
 msgstr "Failivorming"
 
-#: data/gtk/ui/dialogs/Preferences.blp:66
+#: data/gtk/ui/dialogs/Preferences.blp:87
 msgid "File format for auto manipulation"
 msgstr "Failivorming automaatseks muutmiseks"
 
-#: data/gtk/ui/dialogs/Preferences.blp:71
+#: data/gtk/ui/dialogs/Preferences.blp:92
 msgid "Autosave interval"
 msgstr "Automaatse salvestamise välp"
 
-#: data/gtk/ui/dialogs/Preferences.blp:72
+#: data/gtk/ui/dialogs/Preferences.blp:93
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 "Automaatse salvestamise välp, kui laulusõnade sünkroonimine pole olnud "
 "aktiivne"
 
-#: data/gtk/ui/dialogs/Preferences.blp:79
-msgid "Debug"
-msgstr "Veaotsing"
+#: data/gtk/ui/dialogs/Preferences.blp:110
+msgid "Line-by-Line"
+msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
-msgid "Enable Debug logging profile"
-msgstr "Lülita veaotsinguks vajalik silumisprofiil sisse"
-
-#: data/gtk/ui/dialogs/Preferences.blp:83
-msgid "Expands logging information for debug purposes"
-msgstr "Järgnevaga on kasutamisel tavalisest üksikasjalikum logimine"
-
-#: data/gtk/ui/dialogs/Preferences.blp:84
-msgid "NEEDS RESTART"
-msgstr "VAJAB RAKENDUSE UUESTI KÄIVITAMIST"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
-msgid "Syncing"
-msgstr "Sünkroniseerin"
+#: data/gtk/ui/dialogs/Preferences.blp:111
+msgid "Word-by-Word"
+msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:44
 msgid "Sync/Re-sync line"
 msgstr "Sünkroniseeri laulurida"
 
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
+msgid "Replay selected line"
+msgstr "Esita valitud rida uuesti"
+
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Re-sync selected line 100ms back"
 msgstr "Sünkroniseeri valitud rida 100 ms tahapoole"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:71
 msgid "Re-sync selected line 100ms forward"
 msgstr "Sünkroniseeri valitud rida 100 ms ettepoole"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:74
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:79
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:186
 msgid "Import from …"
 msgstr "Impordi…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:196
 msgid "Export to …"
 msgstr "Ekspordi…"
 
@@ -629,11 +708,13 @@ msgid "Actions with selected line"
 msgstr "Toimingud valitud reaga"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:109
 #: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
 msgid "Edit song metadata"
 msgstr "Muuda laulu metateavet"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
 msgid "About file"
 msgstr "Faili teave"
 
@@ -643,11 +724,15 @@ msgstr "Lisa laulurida"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:188
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:198
 msgid "File"
 msgstr "Fail"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:185
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:189
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:199
 msgid "Clipboard"
 msgstr "Lõikelaud"
 
@@ -662,6 +747,15 @@ msgstr "Lisa laulurea ette"
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
 msgid "Append line"
 msgstr "Lisa laulurea järgi"
+
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+msgid "Edit"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:176
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
+msgid "Sync"
+msgstr "Sünkroniseeri"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:37
 msgid "Rename this Save"
@@ -684,10 +778,6 @@ msgstr "Kas kustutame selle lemmiku?"
 #: data/gtk/ui/widgets/SavedLocation.blp:66
 msgid "Delete"
 msgstr "Kustuta"
-
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
-msgid "Sync"
-msgstr "Sünkroniseeri"
 
 #: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
 msgid "Show song info"
@@ -745,6 +835,9 @@ msgstr "Impordivaade LRClib teenusest"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;kronograaf;muusika;laulud;laulusõnad;laulutekstid;lüürika;multimeedia;meedia;"
+
+#~ msgid "Sync Page"
+#~ msgstr "Sünkroniseerimisvaade"
 
 #~ msgid "Some of Title, Artist and/or Album fields are Unknown!"
 #~ msgstr "Mõnede pealkirja, esitaja ja/või albumi väljade andmed pole teada!"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 10:31+0300\n"
+"POT-Creation-Date: 2025-08-17 18:47+0300\n"
 "PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -19,127 +19,139 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: chronograph/window.py:442
+#: chronograph/window.py:445
 msgid "Copied successfully"
 msgstr "Αντιγράφηκε επιτυχώς"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:156
+#: chronograph/main.py:162
 msgid "translator-credits"
 msgstr "Γιάννος Ασημακόπουλος 2025"
 
-#: chronograph/main.py:164
+#: chronograph/main.py:170
 msgid "Inspiration"
 msgstr "Έμπνευση"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:174
+#: chronograph/main.py:180
 msgid "Build your own dictionary"
 msgstr "Φτιάξτε το δικό σας λεξικό"
 
-#: chronograph/ui/dialogs/lrclib.py:112
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:114
+#: chronograph/ui/dialogs/lrclib.py:115
 msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:123
+#: chronograph/ui/dialogs/lrclib.py:124
 msgid "Timeout Error"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:125
+#: chronograph/ui/dialogs/lrclib.py:126
 msgid "The request to the LRC library server timed out. Please try again later"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:134
+#: chronograph/ui/dialogs/lrclib.py:135
 msgid "Something went wrong"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:136
+#: chronograph/ui/dialogs/lrclib.py:137
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:218
+#: chronograph/ui/dialogs/lrclib.py:232
 msgid "No synced lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι συγχρονισμένοι στίχοι"
 
-#: chronograph/ui/dialogs/lrclib.py:223
+#: chronograph/ui/dialogs/lrclib.py:237
 msgid "No plain lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+#: chronograph/ui/sync_pages/lrc_sync_page.py:261
+#: chronograph/ui/sync_pages/wbw_sync_page.py:268
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/wbw_sync_page.py:229
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/lrc_sync_page.py:275
+#: chronograph/ui/sync_pages/wbw_sync_page.py:230
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:406
-#: chronograph/ui/sync_pages/lrc_sync_page.py:449
+#: chronograph/ui/sync_pages/lrc_sync_page.py:407
+#: chronograph/ui/sync_pages/lrc_sync_page.py:450
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
-#: chronograph/ui/sync_pages/lrc_sync_page.py:452
+#: chronograph/ui/sync_pages/lrc_sync_page.py:410
+#: chronograph/ui/sync_pages/lrc_sync_page.py:453
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
-#: chronograph/ui/sync_pages/lrc_sync_page.py:456
+#: chronograph/ui/sync_pages/lrc_sync_page.py:414
+#: chronograph/ui/sync_pages/lrc_sync_page.py:457
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:469
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Δημοσιεύθηκε με επιτυχία: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Λανθασμένο διακριτικό δημοσίευσης: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:495
+#: chronograph/ui/sync_pages/lrc_sync_page.py:497
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:497
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:502
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:506
+#: chronograph/ui/sync_pages/lrc_sync_page.py:508
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:509
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:513
+#: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid "Seems like not every line is synced"
 msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
+
+#: chronograph/ui/sync_pages/wbw_sync_page.py:139
+#, fuzzy
+msgid "No lyrics available"
+msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
+
+#: chronograph/ui/sync_pages/wbw_sync_page.py:141
+msgid "You've not provided any lyrics for synchronization"
+msgstr ""
 
 #: chronograph/ui/widgets/song_card.py:104
 #, fuzzy
@@ -247,8 +259,9 @@ msgstr ""
 "Πατήστε το κουμπί pin για να προσθέσετε τον τρέχοντα κατάλογο στις "
 "αποθηκεύσεις"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:475
+#: data/gtk/window.blp:81 data/gtk/window.blp:503
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:237
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:239
 msgid "Quick Editor"
 msgstr "Γρήγορος επεξεργαστής"
 
@@ -284,6 +297,7 @@ msgid "Toggle search"
 msgstr "Εναλλαγή αναζήτησης"
 
 #: data/gtk/window.blp:244 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr "Ρυθμίσεις εφαρμογής, πληροφορίες και βοηθήματα"
 
@@ -308,6 +322,7 @@ msgid "Shortcuts"
 msgstr "Συντομεύσεις"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
+#: data/gtk/ui/dialogs/Preferences.blp:67
 msgid "General"
 msgstr "Γενικά"
 
@@ -323,8 +338,9 @@ msgstr "Επιλέξτε κατάλογο"
 msgid "Select files"
 msgstr "Επιλογή αρχείων"
 
-#: data/gtk/window.blp:360 data/gtk/window.blp:480
+#: data/gtk/window.blp:360 data/gtk/window.blp:508
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:242
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:244
 msgid "Keybindings"
 msgstr "Δεσμοί πλήκτρων"
 
@@ -336,73 +352,106 @@ msgstr "Λειτουργία συγχρονισμού"
 msgid "Sync/Re-sync"
 msgstr "Συγχρονισμός/επανασυγχρονισμός"
 
-#: data/gtk/window.blp:379 data/gtk/ui/sync_pages/LRCSyncPage.blp:50
-msgid "Replay selected line"
+#: data/gtk/window.blp:379
+#, fuzzy
+msgid "Replay selected line/word"
 msgstr "Επανάληψη επιλεγμένης γραμμής"
 
 #: data/gtk/window.blp:384
-msgid "Remove selected line"
-msgstr "Αφαίρεση επιλεγμένης γραμμής"
-
-#: data/gtk/window.blp:389
-msgid "Prepend line to selected"
-msgstr "Προσθήκη γραμμής στην επιλεγμένη"
-
-#: data/gtk/window.blp:394
-msgid "Append line to selected"
-msgstr "Προσάρτηση γραμμής στην επιλεγμένη"
-
-#: data/gtk/window.blp:399 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
-msgid "Append line to end"
-msgstr "Προσάρτηση γραμμής στο τέλος"
-
-#: data/gtk/window.blp:404
 msgid "Re-sync 100ms back"
 msgstr "Επανασυντονισμός 100ms πίσω"
 
-#: data/gtk/window.blp:409
+#: data/gtk/window.blp:389
 msgid "Re-sync 100ms forward"
 msgstr "Επανασυγχρονισμός 100ms προς τα εμπρός"
 
+#: data/gtk/window.blp:394
+msgid "Line-by-Line line actions"
+msgstr ""
+
+#: data/gtk/window.blp:397
+msgid "Remove selected line"
+msgstr "Αφαίρεση επιλεγμένης γραμμής"
+
+#: data/gtk/window.blp:402
+msgid "Prepend line to selected"
+msgstr "Προσθήκη γραμμής στην επιλεγμένη"
+
+#: data/gtk/window.blp:407
+msgid "Append line to selected"
+msgstr "Προσάρτηση γραμμής στην επιλεγμένη"
+
+#: data/gtk/window.blp:412 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
+msgid "Append line to end"
+msgstr "Προσάρτηση γραμμής στο τέλος"
+
 #: data/gtk/window.blp:418
+msgid "Word-by-Word navigation"
+msgstr ""
+
+#: data/gtk/window.blp:421
+msgid "One word back"
+msgstr ""
+
+#: data/gtk/window.blp:426
+msgid "One word next"
+msgstr ""
+
+#: data/gtk/window.blp:431
+msgid "One line up"
+msgstr ""
+
+#: data/gtk/window.blp:436
+msgid "One line down"
+msgstr ""
+
+#: data/gtk/window.blp:446
 msgid "Directory"
 msgstr "Κατάλογος"
 
-#: data/gtk/window.blp:419
+#: data/gtk/window.blp:447
 msgid "Files"
 msgstr "Αρχεία"
 
-#: data/gtk/window.blp:426 data/gtk/window.blp:445
+#: data/gtk/window.blp:454 data/gtk/window.blp:473
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:207
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:209
 msgid "A-Z"
 msgstr "Α-Ω"
 
-#: data/gtk/window.blp:432 data/gtk/window.blp:451
+#: data/gtk/window.blp:460 data/gtk/window.blp:479
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:213
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
 msgid "Z-A"
 msgstr "Ω-Α"
 
-#: data/gtk/window.blp:442 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
+#: data/gtk/window.blp:470 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:206
 msgid "Sort"
 msgstr "Ταξινόμηση"
 
-#: data/gtk/window.blp:458 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
+#: data/gtk/window.blp:486 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:222
 msgid "View"
 msgstr "Προβολή"
 
-#: data/gtk/window.blp:461 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
+#: data/gtk/window.blp:489 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:225
 msgid "Grid"
 msgstr "Πλέγμα"
 
-#: data/gtk/window.blp:467 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
+#: data/gtk/window.blp:495 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:231
 msgid "List"
 msgstr "Λίστα"
 
-#: data/gtk/window.blp:479 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
+#: data/gtk/window.blp:507 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:243
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: data/gtk/window.blp:481 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
+#: data/gtk/window.blp:509 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:245
 msgid "About"
 msgstr "Σχετικά με"
 
@@ -548,83 +597,113 @@ msgstr ""
 "συμβολικών συνδέσμων"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
-msgid "Sync Page"
-msgstr "Συντονισμός Σελίδας"
+msgid "Debug"
+msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:55
+msgid "Enable Debug logging profile"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:56
+msgid "Expands logging information for debug purposes"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:57
+msgid "NEEDS RESTART"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
+msgid "Syncing"
+msgstr "Γίνεται Συγχρονισμός"
+
+#: data/gtk/ui/dialogs/Preferences.blp:70
+#, fuzzy
+msgid "Syncing type"
+msgstr "Γίνεται Συγχρονισμός"
+
+#: data/gtk/ui/dialogs/Preferences.blp:71
+msgid ""
+"Defines the default workflow of syncing process. It may be either Line-by-"
+"Line, or Word-by-Word\n"
+"WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:76
 msgid "Use precise milliseconds"
 msgstr "Χρησιμοποιήστε ακριβή χιλιοστά του δευτερολέπτου"
 
-#: data/gtk/ui/dialogs/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:77
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Χρησιμοποιήστε τριψήφια χιλιοστά του δευτερολέπτου αντί για διψήφια"
 
-#: data/gtk/ui/dialogs/Preferences.blp:60
+#: data/gtk/ui/dialogs/Preferences.blp:81
 msgid "Auto file manipulation"
 msgstr "Αυτόματος χειρισμός αρχείων"
 
-#: data/gtk/ui/dialogs/Preferences.blp:61
+#: data/gtk/ui/dialogs/Preferences.blp:82
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Δημιουργεί αυτόματα και ενημερώνει τα αρχεία όταν αλλάζει κάποια από τις "
 "γραμμές στίχων"
 
-#: data/gtk/ui/dialogs/Preferences.blp:65
+#: data/gtk/ui/dialogs/Preferences.blp:86
 msgid "File format"
 msgstr "Μορφή αρχείου"
 
-#: data/gtk/ui/dialogs/Preferences.blp:66
+#: data/gtk/ui/dialogs/Preferences.blp:87
 msgid "File format for auto manipulation"
 msgstr "Μορφή αρχείου για αυτόματο χειρισμό"
 
-#: data/gtk/ui/dialogs/Preferences.blp:71
+#: data/gtk/ui/dialogs/Preferences.blp:92
 msgid "Autosave interval"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:72
+#: data/gtk/ui/dialogs/Preferences.blp:93
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:79
-msgid "Debug"
+#: data/gtk/ui/dialogs/Preferences.blp:110
+msgid "Line-by-Line"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
-msgid "Enable Debug logging profile"
+#: data/gtk/ui/dialogs/Preferences.blp:111
+msgid "Word-by-Word"
 msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:83
-msgid "Expands logging information for debug purposes"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:84
-msgid "NEEDS RESTART"
-msgstr ""
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
-msgid "Syncing"
-msgstr "Γίνεται Συγχρονισμός"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:44
 msgid "Sync/Re-sync line"
 msgstr "Γραμμή συγχρονισμού/επανασυγχρονισμού"
 
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
+msgid "Replay selected line"
+msgstr "Επανάληψη επιλεγμένης γραμμής"
+
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Re-sync selected line 100ms back"
 msgstr "Επανασυντονισμός επιλεγμένης γραμμής 100ms πίσω"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:71
 msgid "Re-sync selected line 100ms forward"
 msgstr "Επανασυγχρονισμός επιλεγμένης γραμμής 100ms προς τα εμπρός"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:74
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:79
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:186
 msgid "Import from …"
 msgstr "Εισαγωγή από …"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:196
 msgid "Export to …"
 msgstr "Εξαγωγή σε …"
 
@@ -634,11 +713,13 @@ msgid "Actions with selected line"
 msgstr "Ενέργειες με επιλεγμένη γραμμή"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:109
 #: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
 msgid "Edit song metadata"
 msgstr "Επεξεργασία μεταδεδομένων τραγουδιού"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
 msgid "About file"
 msgstr "Σχετικά με το αρχείο"
 
@@ -648,11 +729,15 @@ msgstr "Προσθήκη γραμμής"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:188
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:198
 msgid "File"
 msgstr "Αρχείο"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:185
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:189
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:199
 msgid "Clipboard"
 msgstr "Πρόχειρο"
 
@@ -667,6 +752,15 @@ msgstr "Αποσάρτηση γραμμή"
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
 msgid "Append line"
 msgstr "Προσάρτηση γραμμής"
+
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+msgid "Edit"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:176
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
+msgid "Sync"
+msgstr "Συγχρονισμός"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:37
 msgid "Rename this Save"
@@ -689,10 +783,6 @@ msgstr "Διαγραφή αυτής της Αποθήκευσης?"
 #: data/gtk/ui/widgets/SavedLocation.blp:66
 msgid "Delete"
 msgstr "Διαγραφή"
-
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
-msgid "Sync"
-msgstr "Συγχρονισμός"
 
 #: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
 msgid "Show song info"
@@ -751,6 +841,9 @@ msgstr "Διάλογος εισαγωγής LRClib"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;στίχοι;διαδίκτυο;τραγούδια;πολυμέσα;μέσα;lrclib;μουσική;συγχρονισμός;χρονογράφος;"
+
+#~ msgid "Sync Page"
+#~ msgstr "Συντονισμός Σελίδας"
 
 #~ msgid "Some of Title, Artist and/or Album fields are Unknown!"
 #~ msgstr ""

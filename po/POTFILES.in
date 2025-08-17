@@ -4,6 +4,7 @@ chronograph/window.py
 chronograph/main.py
 chronograph/ui/dialogs/lrclib.py
 chronograph/ui/sync_pages/lrc_sync_page.py
+chronograph/ui/sync_pages/wbw_sync_page.py
 chronograph/ui/widgets/song_card.py
 chronograph/ui/widgets/saved_location.py
 chronograph/ui/widgets/lrclib_track.py
@@ -12,6 +13,7 @@ data/gtk/ui/dialogs/LRClib.blp
 data/gtk/ui/dialogs/MetadataEditor.blp
 data/gtk/ui/dialogs/Preferences.blp
 data/gtk/ui/sync_pages/LRCSyncPage.blp
+data/gtk/ui/sync_pages/WBWSyncPage.blp
 data/gtk/ui/widgets/SavedLocation.blp
 data/gtk/ui/widgets/SongCard.blp
 data/gtk/ui/widgets/Player.blp
