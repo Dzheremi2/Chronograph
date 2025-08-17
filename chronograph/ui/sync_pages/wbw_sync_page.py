@@ -219,3 +219,20 @@ class WBWSyncPage(Adw.NavigationPage):
             mcs_seek // 1000,
             mcs_to_timestamp(mcs_new),
         )
+
+    ###############
+
+    ############### Navigation Actions ###############
+    def _nav_prev(self, *_args) -> None:
+        self._lyrics_model.get_current_line().previous()
+
+    def _nav_next(self, *_args) -> None:
+        self._lyrics_model.get_current_line().next()
+
+    def _nav_up(self, *_args) -> None:
+        self._lyrics_model.previous()
+
+    def _nav_down(self, *_args) -> None:
+        self._lyrics_model.next()
+
+    ###############

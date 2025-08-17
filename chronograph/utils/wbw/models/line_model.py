@@ -79,8 +79,13 @@ class LineModel(GObject.Object):
         """
         for word in self:
             word.set_property("active", is_current_line)
+
         if is_current_line:
-            self.set_current(0)
+            if self.cindex == -1 and self.words.get_n_items() > 0:
+                self.set_current(0)
+        else:
+            if self.cindex != -1:
+                self.set_current(-1)
 
     def get_latest_unsynced(self) -> Optional[tuple[WordModel, int]]:
         """Returns the last word and its index if not all words were synchronized. `None` if all words are synced

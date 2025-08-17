@@ -35,14 +35,31 @@ class LyricsModel(GObject.Object):
     def set_current(self, index: int) -> None:
         if index == self.cindex:
             return
+
+        if 0 <= self.cindex < self.lines.get_n_items():
+            old_line = self[self.cindex]
+            if hasattr(self, "_eol_handler"):
+                try:
+                    old_line.disconnect(self._eol_handler)
+                except (TypeError, RuntimeError):
+                    pass
+            old_line.set_is_current_line(False)
+            old_line.set_current(-1)
+
         if 0 <= index < self.lines.get_n_items():
             old = self.cindex
             self.set_property("cindex", index)
             self.emit("cindex-changed", old, index)
-            print("cindex-changed", old, index)
-            self._eol_handler = self[self.cindex].connect("end-of-line", self._on_eol)
+
+            new_line = self[self.cindex]
+            new_line.set_is_current_line(True)
+
+            if new_line.cindex == -1 and new_line.words.get_n_items() > 0:
+                new_line.set_current(0)
+
+            self._eol_handler = new_line.connect("end-of-line", self._on_eol)
         else:
-            pass
+            self.set_property("cindex", -1)
 
     def next(self) -> None:
         if self.cindex + 1 < self.lines.get_n_items():

@@ -30,3 +30,17 @@ groups:
       shortcut: "<Alt>z"
     - name: file_info
       callback: _card.show_info
+
+  navigation:
+    - name: prev
+      callback: _nav_prev
+      shortcut: "<Alt>Left"
+    - name: next
+      callback: _nav_next
+      shortcut: "<Alt>Right"
+    - name: up
+      callback: _nav_up
+      shortcut: "<Alt>Up"
+    - name: down
+      callback: _nav_down
+      shortcut: "<Alt>Down"
