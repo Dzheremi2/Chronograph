@@ -9,7 +9,6 @@ class LineWidget(Adw.WrapBox):
 
     def __init__(self, line: LineModel):
         super().__init__(wrap_policy=Adw.WrapPolicy.NATURAL, child_spacing=5, line_spacing=5)
-        self.add_css_class("dimmed")
 
         self.line = line
         for word in self.line:

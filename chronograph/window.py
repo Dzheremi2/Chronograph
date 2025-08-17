@@ -506,7 +506,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             )
             sync_nav_page = LRCSyncPage(card, file)
             self.navigation_view.push(sync_nav_page)
-        elif Schema.get_default_format() == "elrc":
+        elif Schema.get_default_format() == "wbw":
             sync_nav_page = WBWSyncPage(card, file)
             self.navigation_view.push(sync_nav_page)
 

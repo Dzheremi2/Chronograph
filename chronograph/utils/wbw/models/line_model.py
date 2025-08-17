@@ -12,6 +12,7 @@ class LineModel(GObject.Object):
 
     __gsignals__ = {
         "cindex-changed": (GObject.SignalFlags.RUN_FIRST, None, (int, int)),
+        "end-of-line": (GObject.SignalFlags.RUN_FIRST, None, (bool,)),
     }
 
     text = GObject.Property(type=str, default="")
@@ -19,7 +20,7 @@ class LineModel(GObject.Object):
     time = GObject.Property(type=int, default=-1)
     timestamp = GObject.Property(type=str, default="")
     cindex: int = GObject.Property(type=int, default=-1)
-    words = GObject.Property(type=Gio.ListStore)
+    words: Gio.ListStore = GObject.Property(type=Gio.ListStore)
 
     def __init__(self, line: LineToken) -> None:
         from chronograph.ui.widgets.wbw.line_widget import LineWidget
@@ -47,6 +48,7 @@ class LineModel(GObject.Object):
     def set_current(self, index: int) -> None:
         if index == self.cindex:
             return
+
         if 0 <= index < self.words.get_n_items():
             old = self.cindex
             self.set_property("cindex", index)
@@ -54,17 +56,18 @@ class LineModel(GObject.Object):
             for word in self:
                 word.set_property("highlighted", False)
             self.words.get_item(self.cindex).set_property("highlighted", True)
-
-    def next(self) -> None:
-        if self.cindex + 1 < self.words.get_n_items():
-            self.set_current(self.cindex + 1)
-
-    def previous(self) -> None:
-        if self.cindex - 1 >= 0:
-            self.set_current(self.cindex - 1)
         else:
+            # pylint: disable=superfluous-parens
+            self.emit("end-of-line", not (index < 0))
+            self.cindex = -1
             for word in self:
                 word.set_property("highlighted", False)
+
+    def next(self) -> None:
+        self.set_current(self.cindex + 1)
+
+    def previous(self) -> None:
+        self.set_current(self.cindex - 1)
 
     def set_is_current_line(self, is_current_line: bool) -> None:
         """Applied to all words to mark them as "in current line" or not.
@@ -76,6 +79,8 @@ class LineModel(GObject.Object):
         """
         for word in self:
             word.set_property("active", is_current_line)
+        if is_current_line:
+            self.set_current(0)
 
     def get_latest_unsynced(self) -> Optional[tuple[WordModel, int]]:
         """Returns the last word and its index if not all words were synchronized. `None` if all words are synced
@@ -88,8 +93,11 @@ class LineModel(GObject.Object):
         for word in self:
             word: WordModel
             if word.time == -1:
-                return word, self.words.find(word)
+                return word, self.words.find(word)[1]
         return None
+
+    def get_current_word(self) -> WordModel:
+        return self[self.cindex]
 
     def __iter__(self) -> Iterator:
         for i in range(self.words.get_n_items()):

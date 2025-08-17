@@ -1,13 +1,15 @@
 """Word-by-Word syncing page"""
 
+import re
 from typing import Optional, Union
 
 from dgutils.actions import Actions
-from gi.repository import Adw, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
 from chronograph.ui.widgets.player import Player
 from chronograph.ui.widgets.song_card import SongCard
+from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -15,10 +17,11 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+logger = Constants.LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/sync_pages/WBWSyncPage.ui")
-# @Actions.from_schema(Constants.PREFIX + "/resources/actions/wbw_sync_page_actions.yaml")
+@Actions.from_schema(Constants.PREFIX + "/resources/actions/wbw_sync_page_actions.yaml")
 class WBWSyncPage(Adw.NavigationPage):
     __gtype_name__ = "WBWSyncPage"
 
@@ -71,7 +74,7 @@ class WBWSyncPage(Adw.NavigationPage):
         self.modes.connect("notify::visible-child", self._page_visibility)
 
         # Set initial label for format selector button
-        if self._selected_format == "elrc":
+        if self._selected_format == "wbw":
             self.format_menu_button.set_label("eLRC")
         elif self._selected_format == "ttml":
             self.format_menu_button.set_label("TTML")
@@ -99,9 +102,14 @@ class WBWSyncPage(Adw.NavigationPage):
                     (model := LyricsModel(lyrics)).widget
                 )
                 self._lyrics_model = model
-                latest_unsynced = model.get_latest_unsynced()
-                if latest_unsynced is not None:
-                    model.set_current(latest_unsynced[1])
+                latest_unsynced_line = model.get_latest_unsynced()
+                if latest_unsynced_line is not None:
+                    latest_unsynced_word = latest_unsynced_line[0].get_latest_unsynced()
+                    model.set_current(latest_unsynced_line[1])
+                    if latest_unsynced_word is not None:
+                        latest_unsynced_line[0].set_current(latest_unsynced_word[1])
+                else:
+                    self._lyrics_model.set_current(0)
             else:
                 self.lyrics_layout_container.set_child(
                     Adw.StatusPage(
@@ -115,8 +123,99 @@ class WBWSyncPage(Adw.NavigationPage):
 
     def _on_format_changed(self, _action, param: GLib.Variant) -> None:
         if param.get_string() == "elrc":
-            self._selected_format = "elrc"
+            self._selected_format = "wbw"
             self.format_menu_button.set_label("eLRC")
         elif param.get_string() == "ttml":
             self._selected_format = "ttml"
             self.format_menu_button.set_label("TTML")
+
+    ############### Import Actions ###############
+    def _import_lrclib(self, *_args) -> None:
+        from chronograph.ui.dialogs.lrclib import LRClib
+
+        lrclib_dialog = LRClib()
+        lrclib_dialog.present(Constants.WIN)
+        logger.debug("LRClib import dialog shown")
+
+    def _import_file(self, *_args) -> None:
+        metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
+        timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
+
+        def __on_selected_lyrics_file(
+            file_dialog: Gtk.FileDialog, result: Gio.Task
+        ) -> None:
+            path = file_dialog.open_finish(result).get_path()
+            with open(path, "r", encoding="utf-8") as file:
+                lines = file.read().splitlines()
+
+            filtered_lines = [
+                line for line in lines if not metatags_filterout.match(line)
+            ]
+            normalized_lines = [
+                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
+            ]
+
+            buffer = Gtk.TextBuffer()
+            buffer.set_text("\n".join(normalized_lines).rstrip())
+            self.edit_view_text_view.set_buffer(buffer)
+            logger.info("Imported lyrics from file")
+
+        dialog = Gtk.FileDialog(
+            default_filter=Gtk.FileFilter(mime_types=["text/plain"])
+        )
+        dialog.open(Constants.WIN, None, __on_selected_lyrics_file)
+
+    def _import_clipboard(self, *_args) -> None:
+
+        def __on_clipboard_parsed(
+            _clipboard, result: Gio.Task, clipboard: Gdk.Clipboard
+        ) -> None:
+            data = clipboard.read_text_finish(result)
+            buffer = Gtk.TextBuffer()
+            buffer.set_text(data)
+            self.edit_view_text_view.set_buffer(buffer)
+            logger.info("Imported lyrics from clipboard")
+
+        clipboard = Gdk.Display().get_default().get_clipboard()
+        clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
+
+    ###############
+
+    ############### Sync Actions ###############
+    def _sync(self, *_args) -> None:
+        current_line = self._lyrics_model.get_current_line()
+        current_word = current_line.get_current_word()
+        mcs = self._player.get_timestamp()
+        ms = mcs // 1000
+        current_word.set_property("time", ms)
+        logger.debug(
+            "Word %s was synced with timestamp: %s",
+            current_word.word,
+            mcs_to_timestamp(mcs),
+        )
+        current_line.next()
+
+    def _replay(self, *_args) -> None:
+        current_line = self._lyrics_model.get_current_line()
+        current_word = current_line.get_current_word()
+        mcs = timestamp_to_mcs(
+            f"[{current_word.timestamp}]"
+        )  # I'm lazy to refactor this method, so `[]` were added :)
+        self._player.seek(mcs)
+        logger.debug("Replayed word at timing: %s", mcs_to_timestamp(mcs))
+
+    def _seek100(self, _action, _param, mcs_seek: int) -> None:
+        current_line = self._lyrics_model.get_current_line()
+        current_word = current_line.get_current_word()
+        ms = current_word.time
+        mcs = ms * 1000
+        mcs_new = mcs + mcs_seek
+        mcs_new = max(mcs_new, 0)
+        current_word.set_property("time", mcs_new // 1000)
+        self._player.seek(mcs_new)
+        logger.debug(
+            "Word(%s) was seeked %sms to %s",
+            current_word,
+            mcs_seek // 1000,
+            mcs_to_timestamp(mcs_new),
+        )

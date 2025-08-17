@@ -5,6 +5,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.lrclib_track import LRClibTrack
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -166,6 +167,13 @@ class LRClib(Adw.Dialog):
                 page.sync_lines.remove_all()
                 for _, line in enumerate(text.splitlines()):
                     page.sync_lines.append(LRCSyncLine(line))
+            elif isinstance(
+                (page := Constants.WIN.navigation_view.get_visible_page()), WBWSyncPage
+            ):
+                page: WBWSyncPage
+                buffer = Gtk.TextBuffer()
+                buffer.set_text(text)
+                page.edit_view_text_view.set_buffer(buffer)
             self.close()
             logger.debug("Imported synced lyrics")
 
@@ -184,6 +192,13 @@ class LRClib(Adw.Dialog):
                 page.sync_lines.remove_all()
                 for _, line in enumerate(text.splitlines()):
                     page.sync_lines.append(LRCSyncLine(line))
+            elif isinstance(
+                (page := Constants.WIN.navigation_view.get_visible_page()), WBWSyncPage
+            ):
+                page: WBWSyncPage
+                buffer = Gtk.TextBuffer()
+                buffer.set_text(text)
+                page.edit_view_text_view.set_buffer(buffer)
             self.close()
             logger.debug("Imported plain lyrics")
 

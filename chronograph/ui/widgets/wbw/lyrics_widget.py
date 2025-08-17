@@ -17,12 +17,6 @@ class LyricsWidget(Adw.Bin):
     def __init__(self, lyrics: LyricsModel) -> None:
         super().__init__()
         self.lyrics = lyrics
-        self.second_line_box.append(self.lyrics[0].widget)
-        try:
-            self.third_line_box.append(self.lyrics[1].widget)
-        except IndexError:
-            pass
-
         self.lyrics.connect("cindex-changed", self._on_index_changed)
 
     def _clean_all_boxes(self) -> None:
@@ -37,18 +31,18 @@ class LyricsWidget(Adw.Bin):
         self._clean_all_boxes()
         try:
             prev = lyrics_model[new - 1].widget
-            prev.add_css_class("dimmed")
+            prev.line.set_is_current_line(False)
             self.first_line_box.append(prev)
         except IndexError:
             pass
 
         curr = lyrics_model[new].widget
-        curr.remove_css_class("dimmed")
+        curr.line.set_is_current_line(True)
         self.second_line_box.append(curr)
 
         try:
             nxt = lyrics_model[new + 1].widget
-            nxt.add_css_class("dimmed")
+            nxt.line.set_is_current_line(False)
             self.third_line_box.append(nxt)
         except IndexError:
             pass
