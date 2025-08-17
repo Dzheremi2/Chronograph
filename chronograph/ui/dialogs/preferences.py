@@ -1,4 +1,4 @@
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants, Schema
 
@@ -22,6 +22,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
     compress_level_spin: Adw.SpinRow = gtc()
     compress_level_adjustment: Gtk.Adjustment = gtc()
     enable_debug_logging_switch: Adw.SwitchRow = gtc()
+    syncing_type_combo_row: Adw.ComboRow = gtc()
 
     opened: bool = False
 
@@ -35,6 +36,9 @@ class ChronographPreferences(Adw.PreferencesDialog):
         )
         self.automatic_list_view_switch.connect(
             "notify::active", self._set_view_switcher_inactive
+        )
+        self.syncing_type_combo_row.connect(
+            "notify::selected", self._update_sync_type_schema
         )
 
         Schema.bind(
@@ -98,13 +102,24 @@ class ChronographPreferences(Adw.PreferencesDialog):
         elif Schema.get_auto_file_format() == ".txt":
             self.auto_file_manipulation_format.set_selected(1)
 
+        if Schema.get_default_format() == "lrc":
+            self.syncing_type_combo_row.set_selected(0)
+        elif Schema.get_default_format() == "wbw":
+            self.syncing_type_combo_row.set_selected(1)
+
     def _update_auto_file_format_schema(self, *_args) -> None:
-        """Updates `shared.schema` with new preferred file format"""
         selected = self.auto_file_manipulation_format.get_selected()
         if selected == 0:
             Schema.set_auto_file_format(".lrc")
         elif selected == 1:
             Schema.set_auto_file_format(".txt")
+
+    def _update_sync_type_schema(self, *_args) -> None:
+        selected = self.syncing_type_combo_row.get_selected()
+        if selected == 0:
+            Schema.set_default_format("lrc")
+        elif selected == 1:
+            Schema.set_default_format("wbw")
 
     def _set_view_switcher_inactive(self, *_args) -> None:
         if self.automatic_list_view_switch.get_active():
@@ -113,11 +128,4 @@ class ChronographPreferences(Adw.PreferencesDialog):
             Constants.APP.lookup_action("view_type").set_enabled(True)
 
     def _set_opened(self, opened: bool) -> None:
-        """Controls possibility to open `self` only once at the time
-
-        Parameters
-        ----------
-        opened : bool
-            new `opened` value
-        """
         self.__class__.opened = opened
