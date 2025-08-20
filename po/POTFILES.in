@@ -3,6 +3,7 @@
 chronograph/window.py
 chronograph/main.py
 chronograph/ui/dialogs/lrclib.py
+chronograph/ui/dialogs/preferences.py
 chronograph/ui/sync_pages/lrc_sync_page.py
 chronograph/ui/sync_pages/wbw_sync_page.py
 chronograph/ui/widgets/song_card.py

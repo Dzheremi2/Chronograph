@@ -1,3 +1,5 @@
+from gettext import pgettext as C_
+
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -46,7 +48,8 @@ class ChronographPreferences(Adw.PreferencesDialog):
         # Add suffix to elrc_prefix_entry_row programatically since Adwaita doesn't
         # provide a `suffix` property for Adw.EntryRow
         button = Gtk.MenuButton(
-            icon_name="info-button-symbolic", tooltip_text=_("Help")
+            icon_name="info-button-symbolic",
+            tooltip_text=C_("button tooltip; noun", "Help"),
         )
         button.set_popover(
             Gtk.Popover(

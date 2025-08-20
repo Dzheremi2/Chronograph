@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-17 18:47+0300\n"
+"POT-Creation-Date: 2025-08-20 16:46+0300\n"
 "PO-Revision-Date: 2025-07-29 01:22+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
@@ -77,18 +77,27 @@ msgstr "Nincs elérhető szinkronizált dalszöveg"
 msgid "No plain lyrics available"
 msgstr "Nincs elérhető egyszerű dalszöveg"
 
+#: chronograph/ui/dialogs/preferences.py:52
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr ""
+
+#: chronograph/ui/dialogs/preferences.py:58
+msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+msgstr ""
+
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:268
+#: chronograph/ui/sync_pages/wbw_sync_page.py:286
 msgid "Lyrics exported to clipboard"
 msgstr "Dalszöveg másolva a vágólapra"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:229
+#: chronograph/ui/sync_pages/wbw_sync_page.py:247
 msgid "Lyrics exported to file"
 msgstr "Dalszöveg mentve fájlba"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:230
+#: chronograph/ui/sync_pages/wbw_sync_page.py:248
 msgid "Show"
 msgstr "Mutatás"
 
@@ -150,12 +159,12 @@ msgstr "Miért?"
 msgid "Seems like not every line is synced"
 msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:139
+#: chronograph/ui/sync_pages/wbw_sync_page.py:157
 #, fuzzy
 msgid "No lyrics available"
 msgstr "Nincs elérhető egyszerű dalszöveg"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:141
+#: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
@@ -659,12 +668,27 @@ msgstr "Automatikus mentés időköze"
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Automatikus mentés időköze az utolsó aktivitás után"
 
-#: data/gtk/ui/dialogs/Preferences.blp:110
-msgid "Line-by-Line"
+#: data/gtk/ui/dialogs/Preferences.blp:100
+#: data/gtk/ui/dialogs/Preferences.blp:124
+msgid "Word-by-Word"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:111
-msgid "Word-by-Word"
+#: data/gtk/ui/dialogs/Preferences.blp:103
+msgid "Save plain LRC too"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:104
+msgid ""
+"Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
+"set"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:108
+msgid "eLRC prefix"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:123
+msgid "Line-by-Line"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39

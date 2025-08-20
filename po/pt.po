@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-17 18:47+0300\n"
+"POT-Creation-Date: 2025-08-20 16:46+0300\n"
 "PO-Revision-Date: 2025-07-28 18:17+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/chronograph/"
@@ -77,19 +77,28 @@ msgstr "Não há letras sincronizadas disponíveis"
 msgid "No plain lyrics available"
 msgstr "Não há letras simples disponíveis"
 
+#: chronograph/ui/dialogs/preferences.py:52
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr ""
+
+#: chronograph/ui/dialogs/preferences.py:58
+msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+msgstr ""
+
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:268
+#: chronograph/ui/sync_pages/wbw_sync_page.py:286
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Cópia para a área de transferência"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:229
+#: chronograph/ui/sync_pages/wbw_sync_page.py:247
 msgid "Lyrics exported to file"
 msgstr "Letras exportadas para o ficheiro"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:230
+#: chronograph/ui/sync_pages/wbw_sync_page.py:248
 msgid "Show"
 msgstr "Exibir"
 
@@ -151,12 +160,12 @@ msgstr "Porquê?"
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:139
+#: chronograph/ui/sync_pages/wbw_sync_page.py:157
 #, fuzzy
 msgid "No lyrics available"
 msgstr "Não há letras simples disponíveis"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:141
+#: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
@@ -669,12 +678,27 @@ msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 "Intervalo de gravação automática após inatividade de sincronizar letras"
 
-#: data/gtk/ui/dialogs/Preferences.blp:110
-msgid "Line-by-Line"
+#: data/gtk/ui/dialogs/Preferences.blp:100
+#: data/gtk/ui/dialogs/Preferences.blp:124
+msgid "Word-by-Word"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:111
-msgid "Word-by-Word"
+#: data/gtk/ui/dialogs/Preferences.blp:103
+msgid "Save plain LRC too"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:104
+msgid ""
+"Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
+"set"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:108
+msgid "eLRC prefix"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:123
+msgid "Line-by-Line"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-17 18:47+0300\n"
-"PO-Revision-Date: 2025-08-17 18:46+0300\n"
+"POT-Creation-Date: 2025-08-20 16:46+0300\n"
+"PO-Revision-Date: 2025-08-20 16:43+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -75,18 +75,29 @@ msgstr "Нет синхронизированных слов"
 msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
+#: chronograph/ui/dialogs/preferences.py:52
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr "Помощь"
+
+#: chronograph/ui/dialogs/preferences.py:58
+msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+msgstr ""
+"Префикс, который который будут иметь eLRC файлы, чтобы не конфликтовать с "
+"обычными LRC файлами"
+
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:268
+#: chronograph/ui/sync_pages/wbw_sync_page.py:286
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:229
+#: chronograph/ui/sync_pages/wbw_sync_page.py:247
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:230
+#: chronograph/ui/sync_pages/wbw_sync_page.py:248
 msgid "Show"
 msgstr "Показать"
 
@@ -148,11 +159,11 @@ msgstr "Почему?"
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:139
+#: chronograph/ui/sync_pages/wbw_sync_page.py:157
 msgid "No lyrics available"
 msgstr "Нет текста песни"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:141
+#: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Вы не предоставили никаких слов для синхронизации"
 
@@ -657,13 +668,30 @@ msgstr "Интервал автосохранения"
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Интервал автосохранения при бездействии синхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:110
-msgid "Line-by-Line"
-msgstr "Построчный"
-
-#: data/gtk/ui/dialogs/Preferences.blp:111
+#: data/gtk/ui/dialogs/Preferences.blp:100
+#: data/gtk/ui/dialogs/Preferences.blp:124
 msgid "Word-by-Word"
 msgstr "Пословный"
+
+#: data/gtk/ui/dialogs/Preferences.blp:103
+msgid "Save plain LRC too"
+msgstr "Также сохранять обычный LRC"
+
+#: data/gtk/ui/dialogs/Preferences.blp:104
+msgid ""
+"Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
+"set"
+msgstr ""
+"Сохраняет обычный LRC файл вместе с файлом eLRC. Не будет работать если "
+"префикс eLRC не задан"
+
+#: data/gtk/ui/dialogs/Preferences.blp:108
+msgid "eLRC prefix"
+msgstr "Префикс eLRC"
+
+#: data/gtk/ui/dialogs/Preferences.blp:123
+msgid "Line-by-Line"
+msgstr "Построчный"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:44
