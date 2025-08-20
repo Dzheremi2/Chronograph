@@ -354,7 +354,6 @@ class WBWSyncPage(Adw.NavigationPage):
             self._autosave_timeout_id = GLib.timeout_add(
                 Schema.get_autosave_throttling() * 1000, self._autosave
             )
-            print("timer reset")
 
     def _autosave(self) -> Literal[False]:
         if Schema.get_auto_file_manipulation():
