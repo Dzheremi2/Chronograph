@@ -161,8 +161,9 @@ class WBWSyncPage(Adw.NavigationPage):
                         icon_name="nothing-found-symbolic",
                     )
                 )
+            self._autosave()
 
-        if (
+        elif (
             prev_page == self.sync_view_stack_page
             and new_page == self.edit_view_stack_page
         ):
@@ -170,6 +171,7 @@ class WBWSyncPage(Adw.NavigationPage):
             buffer = Gtk.TextBuffer()
             buffer.set_text(lyrics)
             self.edit_view_text_view.set_buffer(buffer)
+            self._autosave()
 
     # TODO: Implement TTML
     # def _on_format_changed(self, _action, param: GLib.Variant) -> None:
