@@ -23,6 +23,8 @@ class ChronographPreferences(Adw.PreferencesDialog):
     compress_level_adjustment: Gtk.Adjustment = gtc()
     enable_debug_logging_switch: Adw.SwitchRow = gtc()
     syncing_type_combo_row: Adw.ComboRow = gtc()
+    save_plain_lrc_also_switch_row: Adw.SwitchRow = gtc()
+    elrc_prefix_entry_row: Adw.EntryRow = gtc()
 
     opened: bool = False
 
@@ -40,6 +42,30 @@ class ChronographPreferences(Adw.PreferencesDialog):
         self.syncing_type_combo_row.connect(
             "notify::selected", self._update_sync_type_schema
         )
+
+        # Add suffix to elrc_prefix_entry_row programatically since Adwaita doesn't
+        # provide a `suffix` property for Adw.EntryRow
+        button = Gtk.MenuButton(
+            icon_name="info-button-symbolic", tooltip_text=_("Help")
+        )
+        button.set_popover(
+            Gtk.Popover(
+                child=Gtk.Label(
+                    label=_(
+                        "A prefix, eLRC files will have to not interfere with plain LRC ones"
+                    )
+                ),
+                position=Gtk.PositionType.TOP,
+            )
+        )
+        button.add_css_class("flat")
+        box = Gtk.Box(
+            orientation=Gtk.Orientation.VERTICAL,
+            valign=Gtk.Align.CENTER,
+            halign=Gtk.Align.CENTER,
+        )
+        box.append(button)
+        self.elrc_prefix_entry_row.add_suffix(box)
 
         Schema.bind(
             "auto-file-manipulation",
@@ -96,6 +122,10 @@ class ChronographPreferences(Adw.PreferencesDialog):
             self.enable_debug_logging_switch,
             "active",
         )
+        Schema.bind(
+            "save-lrc-along-elrc", self.save_plain_lrc_also_switch_row, "active"
+        )
+        Schema.bind("elrc-prefix", self.elrc_prefix_entry_row, "text")
 
         if Schema.get_auto_file_format() == ".lrc":
             self.auto_file_manipulation_format.set_selected(0)

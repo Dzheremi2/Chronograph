@@ -2,7 +2,7 @@
 
 import re
 from pathlib import Path
-from typing import Optional, Union
+from typing import Literal, Optional, Union
 
 from dgutils.actions import Actions
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
@@ -38,6 +38,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
     # _selected_format: str = "elrc" TODO: Implement TTML
     _lyrics_model: LyricsModel
+    _autosave_timeout_id: Optional[int] = None
 
     def __init__(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
@@ -64,8 +65,17 @@ class WBWSyncPage(Adw.NavigationPage):
         self._player = self._player_widget._player
         self.player_container.append(self._player_widget)
 
-        self._autosave_path = Path(self._file.path).with_suffix(
+        self._elrc_autosave_path = (
+            Path(self._file.path)
+            .with_name(Schema.get_elrc_prefix() + Path(self._file.path).name)
+            .with_suffix(Schema.get_auto_file_format())
+        )
+        self._lrc_autosave_path = Path(self._file.path).with_suffix(
             Schema.get_auto_file_format()
+        )
+
+        self._close_rq_handler_id = Constants.WIN.connect(
+            "close-request", self._on_app_close
         )
 
         # TODO: Implement param support to DGutils Actions module
@@ -86,11 +96,18 @@ class WBWSyncPage(Adw.NavigationPage):
         #     self.format_menu_button.set_label("TTML")
 
         # Automatically load the lyrics file if it exists
-        if Schema.get_auto_file_manipulation() and self._autosave_path.exists():
+        if Schema.get_auto_file_manipulation():
             metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
             timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
-            with open(self._autosave_path, "r", encoding="utf-8") as f:
-                lines = f.read().splitlines()
+
+            if self._elrc_autosave_path.exists():
+                with open(self._elrc_autosave_path, "r", encoding="utf-8") as f:
+                    lines = f.read().splitlines()
+            elif self._lrc_autosave_path.exists():
+                with open(self._lrc_autosave_path, "r", encoding="utf-8") as f:
+                    lines = f.read().splitlines()
+            else:
+                return
 
             filtered_lines = [
                 line for line in lines if not metatags_filterout.match(line)
@@ -102,9 +119,6 @@ class WBWSyncPage(Adw.NavigationPage):
             buffer = Gtk.TextBuffer()
             buffer.set_text("\n".join(normalized_lines))
             self.edit_view_text_view.set_buffer(buffer)
-
-    def _on_page_closed(self, *_args) -> None:
-        self._player.stream_ended()
 
     def _page_visibility(self, stack: Adw.ViewStack, _pspec) -> None:
         page: Adw.ViewStackPage = stack.get_page(stack.get_visible_child())
@@ -286,6 +300,7 @@ class WBWSyncPage(Adw.NavigationPage):
             mcs_to_timestamp(mcs),
         )
         current_line.next()
+        self.reset_timer()
 
     def _replay(self, *_args) -> None:
         current_line = self._lyrics_model.get_current_line()
@@ -311,6 +326,7 @@ class WBWSyncPage(Adw.NavigationPage):
             mcs_seek // 1000,
             mcs_to_timestamp(mcs_new),
         )
+        self.reset_timer()
 
     ###############
 
@@ -326,5 +342,86 @@ class WBWSyncPage(Adw.NavigationPage):
 
     def _nav_down(self, *_args) -> None:
         self._lyrics_model.next()
+
+    ###############
+
+    ############### Autosave Actions ###############
+
+    def reset_timer(self) -> None:
+        if self._autosave_timeout_id:
+            GLib.source_remove(self._autosave_timeout_id)
+        if Schema.get_auto_file_manipulation():
+            self._autosave_timeout_id = GLib.timeout_add(
+                Schema.get_autosave_throttling() * 1000, self._autosave
+            )
+            print("timer reset")
+
+    def _autosave(self) -> Literal[False]:
+        if Schema.get_auto_file_manipulation():
+            try:
+                with open(self._elrc_autosave_path, "w", encoding="utf-8") as f:
+                    if (
+                        self.modes.get_page(self.modes.get_visible_child())
+                        == self.edit_view_stack_page
+                    ):
+                        lyrics = self.edit_view_text_view.get_buffer().get_text(
+                            self.edit_view_text_view.get_buffer().get_start_iter(),
+                            self.edit_view_text_view.get_buffer().get_end_iter(),
+                            False,
+                        )
+                        f.write(lyrics)
+                        logger.debug("eLRC lyrics autosaved successfully")
+                    elif (
+                        self.modes.get_page(self.modes.get_visible_child())
+                        == self.sync_view_stack_page
+                    ):
+                        lyrics = eLRCParser.create_lyrics_elrc(
+                            self._lyrics_model.get_tokens()
+                        )
+                        f.write(lyrics)
+                        logger.debug("eLRC lyrics autosaved successfully")
+                if Schema.get_save_lrc_along_elrc() and (Schema.get_elrc_prefix() != ""):
+                    with open(self._lrc_autosave_path, "w", encoding="utf-8") as f:
+                        if (
+                            self.modes.get_page(self.modes.get_visible_child())
+                            == self.edit_view_stack_page
+                        ):
+                            lyrics = self.edit_view_text_view.get_buffer().get_text(
+                                self.edit_view_text_view.get_buffer().get_start_iter(),
+                                self.edit_view_text_view.get_buffer().get_end_iter(),
+                                False,
+                            )
+                            f.write(eLRCParser.to_plain_lrc(lyrics))
+                            logger.debug("LRC lyrics autosaved successfully")
+                        elif (
+                            self.modes.get_page(self.modes.get_visible_child())
+                            == self.sync_view_stack_page
+                        ):
+                            lyrics = eLRCParser.create_lyrics_elrc(
+                                self._lyrics_model.get_tokens()
+                            )
+                            f.write(eLRCParser.to_plain_lrc(lyrics))
+                            logger.debug("LRC lyrics autosaved successfully")
+            except Exception as e:
+                logger.warning("Autosave failed: %s", e)
+            self._autosave_timeout_id = None
+        return False
+
+    def _on_page_closed(self, *_args) -> None:
+        Constants.WIN.disconnect(self._close_rq_handler_id)
+        if self._autosave_timeout_id:
+            GLib.source_remove(self._autosave_timeout_id)
+        if Schema.get_auto_file_manipulation():
+            logger.debug("Page closed, saving lyrics")
+            self._autosave()
+        self._player.stream_ended()
+
+    def _on_app_close(self, *_) -> None:
+        if self._autosave_timeout_id:
+            GLib.source_remove(self._autosave_timeout_id)
+        if Schema.get_auto_file_manipulation():
+            logger.debug("App closed, saving lyrics")
+            self._autosave()
+        return False
 
     ###############

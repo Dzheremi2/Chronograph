@@ -95,6 +95,19 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         }
       }
     }
+
+    Adw.PreferencesGroup {
+      title: _("Word-by-Word");
+
+      Adw.SwitchRow save_plain_lrc_also_switch_row {
+        title: _("Save plain LRC too");
+        subtitle: _("Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't set");
+      }
+
+      Adw.EntryRow elrc_prefix_entry_row {
+        title: _("eLRC prefix");
+      }
+    }
   }
 }
 

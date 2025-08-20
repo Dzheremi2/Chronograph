@@ -8,10 +8,10 @@ auto-file-format:
   default: .lrc
 
 autosave-throttling:
-  type: int
-  min: 1
-  max: 10
-  default: 5
+  type: float
+  min: 1.0
+  max: 10.0
+  default: 5.0
 
 reset-quick-editor:
   type: bool
@@ -81,3 +81,11 @@ window-maximized:
 session:
   type: str
   default: None
+
+elrc-prefix:
+  type: str
+  default: elrc-
+
+save-lrc-along-elrc:
+  type: bool
+  default: true
