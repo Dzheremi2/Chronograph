@@ -86,7 +86,7 @@ class LRClib(Adw.Dialog):
 
         def _on_search_error(title: str, desc: str, icon: str) -> None:
             self.lrctracks_scrolled_window.set_child(
-                Adw.StatusPage.new(
+                Adw.StatusPage(
                     title=title,
                     description=desc,
                     icon_name=icon,
