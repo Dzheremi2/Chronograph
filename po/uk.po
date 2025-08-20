@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-20 16:46+0300\n"
-"PO-Revision-Date: 2025-08-17 22:02+0000\n"
+"PO-Revision-Date: 2025-08-20 20:01+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -81,11 +81,11 @@ msgstr "Прості слова пісні не доступні"
 #: chronograph/ui/dialogs/preferences.py:52
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Допомога"
 
 #: chronograph/ui/dialogs/preferences.py:58
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
-msgstr ""
+msgstr "Префікс, файли eLRC не повинні перешкоджати звичайним LRC-файлам"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
 #: chronograph/ui/sync_pages/wbw_sync_page.py:286
@@ -681,17 +681,19 @@ msgstr "Слово за словом"
 
 #: data/gtk/ui/dialogs/Preferences.blp:103
 msgid "Save plain LRC too"
-msgstr ""
+msgstr "Збережіть також звичайний LRC"
 
 #: data/gtk/ui/dialogs/Preferences.blp:104
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
+"Зберігає звичайний файл LRC разом із файлом eLRC. Не працюватиме, якщо "
+"префікс eLRC не встановлено"
 
 #: data/gtk/ui/dialogs/Preferences.blp:108
 msgid "eLRC prefix"
-msgstr ""
+msgstr "Префікс eLRC"
 
 #: data/gtk/ui/dialogs/Preferences.blp:123
 msgid "Line-by-Line"
