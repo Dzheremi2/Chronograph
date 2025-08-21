@@ -5,6 +5,7 @@ from chronograph.utils.wbw.tokens import WordToken
 
 
 class WordModel(GObject.Object):
+    """Model representing a single word."""
     __gtype_name__ = "WordModel"
 
     word: str = GObject.Property(type=str, default="")
@@ -15,6 +16,7 @@ class WordModel(GObject.Object):
     highlighted: bool = GObject.Property(type=bool, default=False)
 
     def __init__(self, word: WordToken) -> None:
+        """Create model from `WordToken`"""
         from chronograph.ui.widgets.wbw.word_widget import WordWidget
 
         try:
@@ -53,4 +55,5 @@ class WordModel(GObject.Object):
         self.set_property("synced", True)
 
     def restore_token(self) -> WordToken:
-        return WordToken(self.word, self.time, self.timestamp)
+        """Recreate `WordToken` from the model."""
+        return WordToken(self.word, time=self.time, timestamp=self.timestamp)

@@ -46,7 +46,7 @@ class eLRCParser:
 
         Returns
         -------
-        tuple[LineToken]
+        tuple[LineToken, ...]
             `LineToken`s dataclasses tuple
         """
 
@@ -74,7 +74,9 @@ class eLRCParser:
                     match.group("m"), match.group("s"), match.group("ms")
                 )
                 cleaned_text: str = _strip_all_timestamps(raw_line)
-                out.append(LineToken(cleaned_text, line, time_ms, timestamp_str))
+                out.append(
+                    LineToken(cleaned_text, line, time=time_ms, timestamp=timestamp_str)
+                )
             else:
                 cleaned_text: str = _strip_all_timestamps(raw_line)
                 out.append(LineToken(cleaned_text, line))
@@ -91,7 +93,7 @@ class eLRCParser:
 
         Returns
         -------
-        tuple[WordToken]
+        tuple[WordToken, ...]
             Tuple of `WordToken` dataclasses
         """
 
@@ -113,7 +115,7 @@ class eLRCParser:
             if m is not None:
                 timestamp_str = f"{m}:{s}.{ms}"
                 total_ms = eLRCParser._ms_from_parts(m, s, ms)
-                tokens.append(WordToken(word, total_ms, timestamp_str))
+                tokens.append(WordToken(word, time=total_ms, timestamp=timestamp_str))
             else:
                 tokens.append(WordToken(word))
 
@@ -127,7 +129,9 @@ class eLRCParser:
                     line_time = None
                 line_ts = getattr(line, "timestamp", None) or None
 
-            tokens.append(WordToken(eLRCParser._SPACER * 20, line_time, line_ts))
+            tokens.append(
+                WordToken(eLRCParser._SPACER * 20, time=line_time, timestamp=line_ts)
+            )
 
         return tuple(tokens)
 
@@ -154,6 +158,18 @@ class eLRCParser:
 
     @staticmethod
     def create_lyrics_elrc(lines: tuple[tuple["WordToken", ...], ...]) -> str:
+        """Creates a string containing eLRC formatted lyrics
+
+        Parameters
+        ----------
+        lines : tuple[tuple[WordToken, ...], ...]
+            Lines in format of tuple og tuples (lines) of `WordToken`s
+
+        Returns
+        -------
+        str
+            eLRC formatted lyrics
+        """
         out_lines: list[str] = []
 
         for line_tokens in lines:
@@ -189,6 +205,18 @@ class eLRCParser:
 
     @staticmethod
     def to_plain_lrc(data: Path | str) -> str:
+        """Converts a given eLRC lyrics to plain LRC
+
+        Parameters
+        ----------
+        data : Path | str
+            A Path to eLRC lyrics file or lyrics itself
+
+        Returns
+        -------
+        str
+            Converted eLRC to LRC
+        """
         lines = eLRCParser.parse_lines(data)
         out: list[str] = []
         for lt in lines:

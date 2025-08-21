@@ -8,6 +8,7 @@ from chronograph.utils.wbw.tokens import LineToken
 
 
 class LineModel(GObject.Object):
+    """Model representing a line of lyrics."""
     __gtype_name__ = "LineModel"
 
     __gsignals__ = {
@@ -23,6 +24,7 @@ class LineModel(GObject.Object):
     words: Gio.ListStore = GObject.Property(type=Gio.ListStore)
 
     def __init__(self, line: LineToken) -> None:
+        """Create model from `LineToken`"""
         from chronograph.ui.widgets.wbw.line_widget import LineWidget
 
         try:
@@ -46,6 +48,13 @@ class LineModel(GObject.Object):
         self.widget = LineWidget(self)
 
     def set_current(self, index: int) -> None:
+        """Set the current highlighted word index.
+        
+        Parameters
+        ----------
+        index : int
+            Index of the word to be highlighted
+        """
         if index == self.cindex:
             return
 
@@ -64,9 +73,11 @@ class LineModel(GObject.Object):
                 word.set_property("highlighted", False)
 
     def next(self) -> None:
+        """Advance to the next word."""
         self.set_current(self.cindex + 1)
 
     def previous(self) -> None:
+        """Move to the previous word."""
         self.set_current(self.cindex - 1)
 
     def set_is_current_line(self, is_current_line: bool) -> None:
@@ -102,16 +113,22 @@ class LineModel(GObject.Object):
         return None
 
     def get_current_word(self) -> WordModel:
+        """Return the currently highlighted word."""
         return self[self.cindex]
 
     def restore_token(self) -> LineToken:
-        return LineToken(self.text, self.line, self.time, self.timestamp)
+        """Recreate `LineToken` from the model."""
+        return LineToken(
+            self.text, self.line, time=self.time, timestamp=self.timestamp
+        )
 
     def __iter__(self) -> Iterator:
+        """Iterate through all words in the line."""
         for i in range(self.words.get_n_items()):
             yield self.words.get_item(i)
 
     def __getitem__(self, index) -> WordModel:
+        """Return word by index."""
         if (item := self.words.get_item(index)) is not None:
             return item
         raise IndexError("List index out of range")

@@ -142,3 +142,22 @@ class BaseFile:
     def set_cover(self, img_path: Optional[str]) -> None:
         """Should be implemented in file specific child classes"""
         raise NotImplementedError
+
+
+# pylint: disable=abstract-method
+class TaggableFile(BaseFile):
+    """Base class for files that support metadata editing.
+
+    Parameters
+    ----------
+    path : str
+        A path to file for loading
+    """
+
+    __gtype_name__ = "TaggableFile"
+
+    def __init__(self, path: str) -> None:
+        super().__init__(path)
+        self.compress_images()
+        self.load_cover()
+        self.load_str_data()

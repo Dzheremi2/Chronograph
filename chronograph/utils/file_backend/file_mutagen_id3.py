@@ -6,13 +6,13 @@ from PIL import Image
 
 from chronograph.internal import Schema
 
-from .file import BaseFile
+from .file import TaggableFile
 
 tags_conjunction = {"TIT2": "_title", "TPE1": "_artist", "TALB": "_album"}
 
 
-class FileID3(BaseFile):
-    """A ID3 compatible file class. Inherited from `BaseFile`
+class FileID3(TaggableFile):
+    """A ID3 compatible file class. Inherited from `TaggableFile`
 
     Parameters
     --------
@@ -21,12 +21,6 @@ class FileID3(BaseFile):
     """
 
     __gtype_name__ = "FileID3"
-
-    def __init__(self, path: str) -> None:
-        super().__init__(path)
-        self.compress_images()
-        self.load_cover()
-        self.load_str_data()
 
     def compress_images(self) -> None:
         if Schema.get_load_compressed_covers():

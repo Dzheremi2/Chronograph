@@ -10,7 +10,7 @@ from PIL import Image
 
 from chronograph.internal import Schema
 
-from .file import BaseFile
+from .file import TaggableFile
 
 tags_conjunction = {
     "TIT2": ["_title", "title"],
@@ -19,8 +19,8 @@ tags_conjunction = {
 }
 
 # pylint: disable=attribute-defined-outside-init
-class FileVorbis(BaseFile):
-    """A Vorbis (ogg, flac) compatible file class. Inherited from `BaseFile`
+class FileVorbis(TaggableFile):
+    """A Vorbis (ogg, flac) compatible file class. Inherited from `TaggableFile`
 
     Parameters
     --------
@@ -29,12 +29,6 @@ class FileVorbis(BaseFile):
     """
 
     __gtype_name__ = "FileVorbis"
-
-    def __init__(self, path: str) -> None:
-        super().__init__(path)
-        self.compress_images()
-        self.load_cover()
-        self.load_str_data()
 
     def compress_images(self) -> None:
         if Schema.get_load_compressed_covers():

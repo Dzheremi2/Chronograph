@@ -6,7 +6,7 @@ from PIL import Image
 
 from chronograph.internal import Schema
 
-from .file import BaseFile
+from .file import TaggableFile
 
 tags_conjunction = {
     "TIT2": ["_title", "\xa9nam"],
@@ -15,8 +15,8 @@ tags_conjunction = {
 }
 
 # pylint: disable=attribute-defined-outside-init
-class FileMP4(BaseFile):
-    """A MPEG-4 compatible file class. Inherited from `BaseFile`
+class FileMP4(TaggableFile):
+    """A MPEG-4 compatible file class. Inherited from `TaggableFile`
 
     Parameters
     ----------
@@ -25,12 +25,6 @@ class FileMP4(BaseFile):
     """
 
     __gtype_name__ = "FileMP4"
-
-    def __init__(self, path: str) -> None:
-        super().__init__(path)
-        self.compress_images()
-        self.load_cover()
-        self.load_str_data()
 
     def compress_images(self) -> None:
         if Schema.get_load_compressed_covers():
