@@ -41,8 +41,8 @@ flatpak install org.gnome.Sdk/x86_64/48 --system
 The code is formatted by [Black](https://github.com/psf/black) formatter. Imports are sorted by [isort](https://github.com/pycqa/isort).
 The main IDE for developing this project is VSCode. Extensions for both these are available on VSCode Marketplace. The current configuration is embedded within the repo (`.vscode/settings.json`)
 
-All new methods should be type hinted, static variables should be type hinted too. All methods should have docstrings in numpy docstring format ([extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) for automatic docstrings generation)
-After you're done with your feature or bug fix, please, don't forget to update corresponding `.pyi` files (if you're creating new `.py` files, don't forget to create corresponding `.pyi` files too)
+All new methods should be type hinted, static variables should be type hinted too. All public methods should have docstrings in numpy docstring format ([extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) for automatic docstrings generation)
+
 >[!NOTE]
 >If you're too lazy to do all these things, please, mention it in your pull request message for the maintainers to do this instead of you.
 

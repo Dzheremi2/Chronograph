@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 16:46+0300\n"
+"POT-Creation-Date: 2025-08-23 20:08+0300\n"
 "PO-Revision-Date: 2025-03-15 08:47+0000\n"
 "Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/lrcmake/"
@@ -83,18 +83,18 @@ msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:286
+#: chronograph/ui/sync_pages/wbw_sync_page.py:288
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Copia negli appunti"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:247
+#: chronograph/ui/sync_pages/wbw_sync_page.py:249
 msgid "Lyrics exported to file"
 msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:248
+#: chronograph/ui/sync_pages/wbw_sync_page.py:250
 msgid "Show"
 msgstr ""
 
@@ -831,38 +831,52 @@ msgstr "Sincronizza i testi delle tue canzoni preferite"
 #, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, "
-"mp3, m4a, wav, opus and aac (reduced functionality) formats"
+"beautiful GTK4 and LibAdwaita interface."
 msgstr ""
 "Questa app ti aiuta a contribuire al grande database di testi sincronizzati "
 "con la splendida interfaccia GTK4 e LibAdwaita. Supporta la musica nei "
 "formati ogg, flac, mp3 e wav"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:45
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:65
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:11
+msgid ""
+"It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced "
+"functionality) formats."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:12
+msgid ""
+"It also supports Word-by-Word syncing in eLRC format for true karaoke effect "
+"in supported players"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:47
 msgid "Library"
 msgstr "Libreria"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:49
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:69
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:51
+msgid "Lyrics syncing page"
+msgstr "Pagina di sincronizzazione dei testi"
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:55
+msgid "Word-by-Word syncing workflow"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:59
+msgid "Word-by-Word lyrics editor"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:63
+msgid "LRClib import dialog"
+msgstr "Finestra di dialogo di importazione LRClib"
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:67
 #, fuzzy
 msgid "Library in List View mode"
 msgstr "Attiva automaticamente la modalità visualizzazione elenco"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:53
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:73
-msgid "Lyrics syncing page"
-msgstr "Pagina di sincronizzazione dei testi"
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:57
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:77
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:71
 msgid "Lyrics syncing page on smaller display"
 msgstr "Pagina di sincronizzazione dei testi su display più piccoli"
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:61
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:81
-msgid "LRClib import dialog"
-msgstr "Finestra di dialogo di importazione LRClib"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10

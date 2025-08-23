@@ -21,7 +21,8 @@
 Chronograph is the app for syncing song lyrics by timestamps. 
 Chronograph supports `.ogg`, `.flac`, `.mp3`, `.m4a`, `.opus` and `.wav` media formats.
 Also it supports `.aac` format, but without metadata reading, editing and automatic publishing to the [LRClib](https://lrclib.net).
-You can import lyrics from Clipboard, File or from LRClib and export your lyrics to these destinations
+You can import lyrics from Clipboard, File or from LRClib and export your lyrics to these destinations.
+Chronograph also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players
 
 ### Installation
 <a href='https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk'>
@@ -73,5 +74,9 @@ All contribution instructions are described in [CONTRIBUTING.md](https://github.
 ![](docs/screenshots/syncCW.png)
 ![](docs/screenshots/lrclibB.png)
 ![](docs/screenshots/lrclibW.png)
+![](docs/screenshots/wbwsyncB.png)
+![](docs/screenshots/wbwsyncW.png)
+![](docs/screenshots/wbweditB.png)
+![](docs/screenshots/wbweditW.png)
 
 </div>

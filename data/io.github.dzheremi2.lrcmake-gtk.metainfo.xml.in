@@ -7,7 +7,9 @@
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
-    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced functionality) formats</p>
+    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface.</p>
+    <p>It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced functionality) formats.</p>
+    <p>It also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players</p>
   </description>
 
   <developer id="com.github">
@@ -45,44 +47,44 @@
       <caption>Library</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libLW.png</image>
-      <caption>Library in List View mode</caption>
-    </screenshot>
-    <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncW.png</image>
       <caption>Lyrics syncing page</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncCW.png</image>
-      <caption>Lyrics syncing page on smaller display</caption>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/wbwsyncW.png</image>
+      <caption>Word-by-Word syncing workflow</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/wbweditW.png</image>
+      <caption>Word-by-Word lyrics editor</caption>
     </screenshot>
     <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/lrclibW.png</image>
       <caption>LRClib import dialog</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libB.png</image>
-      <caption>Library</caption>
-    </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libLB.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libLW.png</image>
       <caption>Library in List View mode</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncB.png</image>
-      <caption>Lyrics syncing page</caption>
-    </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncCB.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncCW.png</image>
       <caption>Lyrics syncing page on smaller display</caption>
-    </screenshot>
-    <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/lrclibB.png</image>
-      <caption>LRClib import dialog</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="4.0" date="2025-08-24">
+      <description translate="no">
+        <p>A new eLRC format support!</p>
+        <p>Added support for advanced syncing Word-by-Word (WBW).</p>
+        <p>WBW syncing has 2 steps: Edit the lyrics you gonna sync and... sync them. Editing lyrics while syncing is not possible in WBW mode.</p>
+        <p>Unfortunately, LRClib does not have support for eLRC lyrics, so WBW lyrics aren't possible to upload to LRClib :(</p>
+        <p>Navigation in WBW syncing mode happens by using Alt+{arrow_keys}, so using WBW on mobile will be too overwhelming, so it's not recommended.</p>
+        <p>If the lyrics you've provided are partially synced then the app will start the synchronization from the first unsynced word.</p>
+        <p>Now there will be two types of files: eLRCs with eLRC prefix set up and plain .lrc</p>
+        <p>Don't forget to check Preferences after the update :)</p>
+      </description>
+    </release>
     <release version="3.0.1" date="2025-08-10">
       <description translate="no">
         <p>Apologies for all Ukrainian app users. Previously, Ukrainian language was not available cause of misspelled langcode (UA instead of UK)</p>
