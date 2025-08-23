@@ -34,6 +34,7 @@ conf.set('pkgdatadir', pkgdatadir)
 
 subdir('data')
 subdir('chronograph')
+install_subdir('dgutils', install_dir: pkgdatadir)
 subdir('po')
 
 gnome.post_install(
