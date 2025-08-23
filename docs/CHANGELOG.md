@@ -1,3 +1,13 @@
+## 4.0
+<p>A new eLRC format support!</p>
+<p>Added support for advanced syncing Word-by-Word (WBW).</p>
+<p>WBW syncing has 2 steps: Edit the lyrics you gonna sync and... sync them. Editing lyrics while syncing is not possible in WBW mode.</p>
+<p>Unfortunately, LRClib does not have support for eLRC lyrics, so WBW lyrics aren't possible to upload to LRClib :(</p>
+<p>Navigation in WBW syncing mode happens by using Alt+{arrow_keys}, so using WBW on mobile will be too overwhelming, so it's not recommended.</p>
+<p>If the lyrics you've provided are partially synced then the app will start the synchronization from the first unsynced word.</p>
+<p>Now there will be two types of files: eLRCs with eLRC prefix set up and plain .lrc</p>
+<p>Don't forget to check Preferences after the update :)</p>
+
 ## 3.0.1
 <p>Apologies for all Ukrainian app users. Previously, Ukrainian language was not available cause of misspelled langcode (UA instead of UK)</p>
 <p>Translations</p>
