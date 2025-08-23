@@ -79,4 +79,4 @@ All contribution instructions are described in [CONTRIBUTING.md](https://github.
 ![](docs/screenshots/wbweditB.png)
 ![](docs/screenshots/wbweditW.png)
 
-</div>
+</div> 
