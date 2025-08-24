@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-23 20:08+0300\n"
-"PO-Revision-Date: 2025-07-28 18:17+0000\n"
-"Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-08-24 23:02+0000\n"
+"Last-Translator: NukeSource <dede48076@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -78,7 +78,7 @@ msgstr ""
 #: chronograph/ui/dialogs/preferences.py:52
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Yardım"
 
 #: chronograph/ui/dialogs/preferences.py:58
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
@@ -98,7 +98,7 @@ msgstr ""
 #: chronograph/ui/sync_pages/lrc_sync_page.py:275
 #: chronograph/ui/sync_pages/wbw_sync_page.py:250
 msgid "Show"
-msgstr ""
+msgstr "Göster"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:407
 #: chronograph/ui/sync_pages/lrc_sync_page.py:450
@@ -116,19 +116,19 @@ msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:470
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Published successfully: {code}"
-msgstr "Başarıyla yayınlandı: "
+msgstr "Başarıyla yayınlandı: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:476
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr "Hatalı yayınlama tokeni: "
+msgstr "Hatalı yayınlama tokeni: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:482
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Bilinmeyen bir hata oluştu: "
+msgstr "Bilinmeyen bir hata oluştu: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:497
 msgid "Unable to publish lyrics"
@@ -150,11 +150,11 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:509
 msgid "Why?"
-msgstr ""
+msgstr "Neden?"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid "Seems like not every line is synced"
-msgstr "Her satır eşzamanlanmamış gibi gözüküyor!"
+msgstr "Her satır eşzamanlanmamış gibi gözüküyor"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:157
 #, fuzzy
@@ -237,9 +237,8 @@ msgstr "Hayır"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
-#, fuzzy
 msgid "No source selected yet"
-msgstr "Seçili satırı kaldır"
+msgstr "Henüz kaynak seçilmedi"
 
 #: data/gtk/window.blp:7
 #, fuzzy
@@ -248,18 +247,16 @@ msgstr "Bir dizin seçin veya bir dosya açın"
 
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
-#, fuzzy
 msgid "Open source"
-msgstr "Klasörü Aç"
+msgstr "Kaynağı aç"
 
 #: data/gtk/window.blp:28
-#, fuzzy
 msgid "Empty directory"
-msgstr "Bir dizin seçin veya bir dosya açın"
+msgstr "Boş dizin"
 
 #: data/gtk/window.blp:29
 msgid "This directory doesn't have any supported music files"
-msgstr ""
+msgstr "Bu dizinde desteklenen müzik dosyası bulunmamaktadır"
 
 #: data/gtk/window.blp:49
 msgid "No saves found yet"
@@ -276,15 +273,14 @@ msgid "Quick Editor"
 msgstr ""
 
 #: data/gtk/window.blp:106
-#, fuzzy
 msgid "Copy to clipboard"
-msgstr "Pano"
+msgstr "Panoya kopyala"
 
 #: data/gtk/window.blp:119 data/gtk/window.blp:181
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
-msgstr ""
+msgstr "Chronograph"
 
 #: data/gtk/window.blp:167
 msgid "Drop files here to open them"
@@ -292,7 +288,7 @@ msgstr "Dosyaları açmak için buraya bırakın"
 
 #: data/gtk/window.blp:188
 msgid "Saves"
-msgstr ""
+msgstr "Kayıtlar"
 
 #: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:365
 msgid "Toggle sidebar"
@@ -423,9 +419,8 @@ msgid "One line down"
 msgstr ""
 
 #: data/gtk/window.blp:446
-#, fuzzy
 msgid "Directory"
-msgstr "Bir dizin seçin veya bir dosya açın"
+msgstr "Dizin"
 
 #: data/gtk/window.blp:447
 #, fuzzy
@@ -724,17 +719,15 @@ msgstr "Senkronizasyonu 100ms ileri al"
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:79
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:186
-#, fuzzy
 msgid "Import from …"
-msgstr "Şuradan içeri aktar..."
+msgstr "Şuradan içeri aktar …"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:196
-#, fuzzy
 msgid "Export to …"
-msgstr "Şuraya aktar..."
+msgstr "Şuraya aktar …"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:103
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:192
@@ -860,9 +853,8 @@ msgid ""
 msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:47
-#, fuzzy
 msgid "Library"
-msgstr "Kütüphane görünümü"
+msgstr "Kütüphane"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:51
 #, fuzzy
@@ -871,7 +863,7 @@ msgstr "Şarkı sözlerini senkronize etme sayfası görünümü"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:55
 msgid "Word-by-Word syncing workflow"
-msgstr ""
+msgstr "Kelime kelime senkronizasyon iş akışı"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:59
 msgid "Word-by-Word lyrics editor"
@@ -879,7 +871,7 @@ msgstr ""
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:63
 msgid "LRClib import dialog"
-msgstr ""
+msgstr "LRClib içe aktarma iletişim kutusu"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:67
 msgid "Library in List View mode"
