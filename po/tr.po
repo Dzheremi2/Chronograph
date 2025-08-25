@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-23 20:08+0300\n"
-"PO-Revision-Date: 2025-08-24 23:02+0000\n"
+"PO-Revision-Date: 2025-08-25 17:02+0000\n"
 "Last-Translator: NukeSource <dede48076@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/tr/>\n"
@@ -38,11 +38,11 @@ msgstr "Uzunluk"
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:180
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Kendi sözlüğünü oluştur"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
-msgstr ""
+msgstr "Bağlantı Hatası"
 
 #: chronograph/ui/dialogs/lrclib.py:115
 msgid ""
@@ -52,7 +52,7 @@ msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:124
 msgid "Timeout Error"
-msgstr ""
+msgstr "Zaman Aşımı Hatası"
 
 #: chronograph/ui/dialogs/lrclib.py:126
 msgid "The request to the LRC library server timed out. Please try again later"
@@ -60,12 +60,13 @@ msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:135
 msgid "Something went wrong"
-msgstr ""
+msgstr "Bir şeyler ters gitti"
 
 #: chronograph/ui/dialogs/lrclib.py:137
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
+"LRC kütüphane sunucusuna bağlanmaya çalışırken bilinmeyen bir hata oluştu"
 
 #: chronograph/ui/dialogs/lrclib.py:232
 msgid "No synced lyrics available"
@@ -86,14 +87,13 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
 #: chronograph/ui/sync_pages/wbw_sync_page.py:288
-#, fuzzy
 msgid "Lyrics exported to clipboard"
-msgstr "Pano"
+msgstr "Şarkı sözleri panoya aktarıldı"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 #: chronograph/ui/sync_pages/wbw_sync_page.py:249
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Şarkı sözleri dosyaya aktarıldı"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:275
 #: chronograph/ui/sync_pages/wbw_sync_page.py:250
@@ -103,7 +103,7 @@ msgstr "Göster"
 #: chronograph/ui/sync_pages/lrc_sync_page.py:407
 #: chronograph/ui/sync_pages/lrc_sync_page.py:450
 msgid "Failed to connect to LRClib.net"
-msgstr ""
+msgstr "LRClib.net'e bağlanılamadı"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:410
 #: chronograph/ui/sync_pages/lrc_sync_page.py:453
@@ -157,16 +157,14 @@ msgid "Seems like not every line is synced"
 msgstr "Her satır eşzamanlanmamış gibi gözüküyor"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:157
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Eşzamanlı sözler mevcut değil"
+msgstr "Şarkı sözü mevcut değil"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
 #: chronograph/ui/widgets/song_card.py:104
-#, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Dosya Hakkında"
@@ -308,14 +306,12 @@ msgid "App settings, info and utils"
 msgstr ""
 
 #: data/gtk/window.blp:252
-#, fuzzy
 msgid "Clean the library"
-msgstr "Kütüphane görünümü"
+msgstr "Kütüphaneyi temizle"
 
 #: data/gtk/window.blp:267
-#, fuzzy
 msgid "Re-parse current directory"
-msgstr "Bir dizin seçin veya bir dosya açın"
+msgstr "Geçerli dizini yeniden ayrıştır"
 
 #: data/gtk/window.blp:273
 #, fuzzy
@@ -340,14 +336,12 @@ msgid "Quit"
 msgstr "Çıkış"
 
 #: data/gtk/window.blp:350
-#, fuzzy
 msgid "Select directory"
-msgstr "Bir dizin seçin veya bir dosya açın"
+msgstr "Dizin seçin"
 
 #: data/gtk/window.blp:355
-#, fuzzy
 msgid "Select files"
-msgstr "Bir dizin seçin veya bir dosya açın"
+msgstr "Dosyaları seçin"
 
 #: data/gtk/window.blp:360 data/gtk/window.blp:508
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:242
@@ -364,9 +358,8 @@ msgid "Sync/Re-sync"
 msgstr "Senkronize et/Senkronizasyonu geri al"
 
 #: data/gtk/window.blp:379
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Seçili satırı kaldır"
+msgstr "Seçili satırı/kelimeyi tekrar oynat"
 
 #: data/gtk/window.blp:384
 #, fuzzy
@@ -531,9 +524,8 @@ msgid "Set cover"
 msgstr ""
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
-#, fuzzy
 msgid "Remove cover"
-msgstr "Seçili satırı kaldır"
+msgstr "Kapağı kaldır"
 
 #: data/gtk/ui/dialogs/Preferences.blp:10
 msgid "Behavior"
@@ -619,9 +611,8 @@ msgstr ""
 #: data/gtk/ui/dialogs/Preferences.blp:63
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
-#, fuzzy
 msgid "Syncing"
-msgstr "Senkronize"
+msgstr "Senkronize ediliyor"
 
 #: data/gtk/ui/dialogs/Preferences.blp:70
 #, fuzzy
