@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-23 20:08+0300\n"
-"PO-Revision-Date: 2025-07-29 19:13+0000\n"
+"PO-Revision-Date: 2025-08-24 00:02+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -77,11 +77,12 @@ msgstr "Tavalisi laulusõnu pole saadaval"
 #: chronograph/ui/dialogs/preferences.py:52
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Abiteave"
 
 #: chronograph/ui/dialogs/preferences.py:58
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
+"eLRC failide eesliide, et nad ei läheks segamini tavaliste LRC failidega"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:261
 #: chronograph/ui/sync_pages/wbw_sync_page.py:288
@@ -157,13 +158,12 @@ msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:157
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Tavalisi laulusõnu pole saadaval"
+msgstr "Laulusõnu pole saadaval"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
-msgstr ""
+msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 
 #: chronograph/ui/widgets/song_card.py:104
 msgctxt "song info dialog"
@@ -358,9 +358,8 @@ msgid "Sync/Re-sync"
 msgstr "Sünkroniseeri või sünkroniseeri uuesti"
 
 #: data/gtk/window.blp:379
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Esita valitud rida uuesti"
+msgstr "Esita valitud rida/sõna uuesti"
 
 #: data/gtk/window.blp:384
 msgid "Re-sync 100ms back"
@@ -372,7 +371,7 @@ msgstr "Sünkroniseeri 100 ms ettepoole"
 
 #: data/gtk/window.blp:394
 msgid "Line-by-Line line actions"
-msgstr ""
+msgstr "Rida-realt tegevused"
 
 #: data/gtk/window.blp:397
 msgid "Remove selected line"
@@ -392,23 +391,23 @@ msgstr "Lisa laulurida kõige lõppu"
 
 #: data/gtk/window.blp:418
 msgid "Word-by-Word navigation"
-msgstr ""
+msgstr "Liikumine sõmahaaval"
 
 #: data/gtk/window.blp:421
 msgid "One word back"
-msgstr ""
+msgstr "Üks sõna tagasi"
 
 #: data/gtk/window.blp:426
 msgid "One word next"
-msgstr ""
+msgstr "Üks sõna edasi"
 
 #: data/gtk/window.blp:431
 msgid "One line up"
-msgstr ""
+msgstr "Üks rida üles"
 
 #: data/gtk/window.blp:436
 msgid "One line down"
-msgstr ""
+msgstr "Üks rida alla"
 
 #: data/gtk/window.blp:446
 msgid "Directory"
@@ -623,9 +622,8 @@ msgid "Syncing"
 msgstr "Sünkroniseerin"
 
 #: data/gtk/ui/dialogs/Preferences.blp:70
-#, fuzzy
 msgid "Syncing type"
-msgstr "Sünkroniseerin"
+msgstr "Sünkroonimise tüüp"
 
 #: data/gtk/ui/dialogs/Preferences.blp:71
 msgid ""
@@ -633,6 +631,8 @@ msgid ""
 "Line, or Word-by-Word\n"
 "WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
 msgstr ""
+"Määrab kas sõnahaaval või ridahaaval toimiv sünkroonimise vaikimisi töövoo.\n"
+"SÕNAHAAVAL ESITUS EI TOIMI MOBIILSETES NUTISEADMETES"
 
 #: data/gtk/ui/dialogs/Preferences.blp:76
 msgid "Use precise milliseconds"
@@ -672,25 +672,27 @@ msgstr ""
 #: data/gtk/ui/dialogs/Preferences.blp:100
 #: data/gtk/ui/dialogs/Preferences.blp:124
 msgid "Word-by-Word"
-msgstr ""
+msgstr "Sõnahaaval esitus"
 
 #: data/gtk/ui/dialogs/Preferences.blp:103
 msgid "Save plain LRC too"
-msgstr ""
+msgstr "Salvesta ka tavaline LRC-fail"
 
 #: data/gtk/ui/dialogs/Preferences.blp:104
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
+"Salvesta eLRC-faili kõrvale ka taavaline LRC-fail. Eelda, et eLRC-faili "
+"prefiks on määratud"
 
 #: data/gtk/ui/dialogs/Preferences.blp:108
 msgid "eLRC prefix"
-msgstr ""
+msgstr "eLRC prefiks"
 
 #: data/gtk/ui/dialogs/Preferences.blp:123
 msgid "Line-by-Line"
-msgstr ""
+msgstr "Rida-realt"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:44
@@ -774,7 +776,7 @@ msgstr "Lisa laulurea järgi"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
 msgid "Edit"
-msgstr ""
+msgstr "Muuda"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:176
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
@@ -821,26 +823,28 @@ msgid "Sync lyrics of your loved songs"
 msgstr "Sinu lemmiklaulude sõnad"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
 msgid ""
 "This app helps you to contribute to the large database of synced lyrics with "
 "beautiful GTK4 and LibAdwaita interface."
 msgstr ""
-"See GTK4 ja LibAdwaita kasutajaliidesega rakendus aitab sul täiendada suurt "
-"laulusõnade andmebaasi. Ta toetab ogg, flac, mp3, m4a, wav, opus ja aac "
-"(viimane on vähendatud funktsionaalsuses) vormingus laule"
+"See ilusa GTK4 ja LibAdwaita kasutajaliidesega rakendus aitab sul täiendada "
+"suurt laulusõnade andmebaasi."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:11
 msgid ""
 "It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced "
 "functionality) formats."
 msgstr ""
+"Ta toetab ogg, flac, mp3, m4a, wav, opus ja aac (viimane on vähendatud "
+"funktsionaalsuses) vormingus laule."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:12
 msgid ""
 "It also supports Word-by-Word syncing in eLRC format for true karaoke effect "
 "in supported players"
 msgstr ""
+"Lisaks on olemas sõnahaaval toimiv eLRC-vormingu tugi, mis võimaldab "
+"toetatud meediaesitajaid kasutada tavalise karaoke jaoks"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:47
 msgid "Library"
@@ -852,11 +856,11 @@ msgstr "Laulusõnade sünkroniseerimisvaade"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:55
 msgid "Word-by-Word syncing workflow"
-msgstr ""
+msgstr "Sõnahaaval esitatavate laulusõnade töövoog"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:59
 msgid "Word-by-Word lyrics editor"
-msgstr ""
+msgstr "Sõnahaaval esitatavate laulusõnade muutja"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:63
 msgid "LRClib import dialog"
