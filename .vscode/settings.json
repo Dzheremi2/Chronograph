@@ -19,6 +19,7 @@
             "source.organizeImports": "explicit"
         },
         "editor.rulers": [88],
+        "editor.tabSize": 4
     },
     "isort.args":["--profile", "black"],
     "python.analysis.diagnosticSeverityOverrides": {

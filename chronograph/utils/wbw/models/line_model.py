@@ -16,9 +16,9 @@ class LineModel(GObject.Object):
         "end-of-line": (GObject.SignalFlags.RUN_FIRST, None, (bool,)),
     }
 
-    text = GObject.Property(type=str, default="")
-    line = GObject.Property(type=str, default="")
-    time = GObject.Property(type=int, default=-1)
+    text: str = GObject.Property(type=str, default="")
+    line: str = GObject.Property(type=str, default="")
+    time: int = GObject.Property(type=int, default=-1)
     timestamp = GObject.Property(type=str, default="")
     cindex: int = GObject.Property(type=int, default=-1)
     words: Gio.ListStore = GObject.Property(type=Gio.ListStore)
@@ -122,7 +122,7 @@ class LineModel(GObject.Object):
             self.text, self.line, time=self.time, timestamp=self.timestamp
         )
 
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator[WordModel]:
         """Iterate through all words in the line."""
         for i in range(self.words.get_n_items()):
             yield self.words.get_item(i)

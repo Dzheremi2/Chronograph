@@ -107,7 +107,7 @@ class LyricsModel(GObject.Object):
         else:
             self.previous()
 
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator[LineModel]:
         for i in range(self.lines.get_n_items()):
             yield self.lines.get_item(i)
 

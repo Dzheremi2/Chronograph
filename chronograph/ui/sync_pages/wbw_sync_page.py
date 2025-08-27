@@ -4,7 +4,6 @@ import re
 from pathlib import Path
 from typing import Literal, Optional, Union
 
-from dgutils.actions import Actions
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -15,8 +14,10 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.lyrics_file_helper import LyricsFile
 from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
+from dgutils.actions import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -70,9 +71,11 @@ class WBWSyncPage(Adw.NavigationPage):
             .with_name(Schema.get_elrc_prefix() + Path(self._file.path).name)
             .with_suffix(Schema.get_auto_file_format())
         )
+        self._elrc_lyrics_file = LyricsFile(self._elrc_autosave_path)
         self._lrc_autosave_path = Path(self._file.path).with_suffix(
             Schema.get_auto_file_format()
         )
+        self._lrc_lyrics_file = LyricsFile(self._lrc_autosave_path)
 
         self._close_rq_handler_id = Constants.WIN.connect(
             "close-request", self._on_app_close
@@ -241,8 +244,7 @@ class WBWSyncPage(Adw.NavigationPage):
             file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
         ) -> None:
             filepath = file_dialog.save_finish(result).get_path()
-            with open(filepath, "w") as f:
-                f.write(lyrics)
+            LyricsFile(filepath).modify_lyrics(lyrics)
             logger.info("Lyrics exported to file: '%s'", filepath)
 
             Constants.WIN.show_toast(
@@ -360,51 +362,28 @@ class WBWSyncPage(Adw.NavigationPage):
     def _autosave(self) -> Literal[False]:
         if Schema.get_auto_file_manipulation():
             try:
-                with open(self._elrc_autosave_path, "w", encoding="utf-8") as f:
-                    if (
-                        self.modes.get_page(self.modes.get_visible_child())
-                        == self.edit_view_stack_page
-                    ):
-                        lyrics = self.edit_view_text_view.get_buffer().get_text(
-                            self.edit_view_text_view.get_buffer().get_start_iter(),
-                            self.edit_view_text_view.get_buffer().get_end_iter(),
-                            False,
-                        )
-                        f.write(lyrics)
-                        logger.debug("eLRC lyrics autosaved successfully")
-                    elif (
-                        self.modes.get_page(self.modes.get_visible_child())
-                        == self.sync_view_stack_page
-                    ):
-                        lyrics = eLRCParser.create_lyrics_elrc(
-                            self._lyrics_model.get_tokens()
-                        )
-                        f.write(lyrics)
-                        logger.debug("eLRC lyrics autosaved successfully")
-                if Schema.get_save_lrc_along_elrc() and (Schema.get_elrc_prefix() != ""):
-                    with open(self._lrc_autosave_path, "w", encoding="utf-8") as f:
-                        if (
-                            self.modes.get_page(self.modes.get_visible_child())
-                            == self.edit_view_stack_page
-                        ):
-                            lyrics = self.edit_view_text_view.get_buffer().get_text(
-                                self.edit_view_text_view.get_buffer().get_start_iter(),
-                                self.edit_view_text_view.get_buffer().get_end_iter(),
-                                False,
-                            )
-                            f.write(eLRCParser.to_plain_lrc(lyrics))
-                            logger.debug("LRC lyrics autosaved successfully")
-                        elif (
-                            self.modes.get_page(self.modes.get_visible_child())
-                            == self.sync_view_stack_page
-                        ):
-                            lyrics = eLRCParser.create_lyrics_elrc(
-                                self._lyrics_model.get_tokens()
-                            )
-                            f.write(eLRCParser.to_plain_lrc(lyrics))
-                            logger.debug("LRC lyrics autosaved successfully")
+                if (
+                    self.modes.get_page(self.modes.get_visible_child())
+                    == self.edit_view_stack_page
+                ):
+                    lyrics = self.edit_view_text_view.get_buffer().get_text(
+                        self.edit_view_text_view.get_buffer().get_start_iter(),
+                        self.edit_view_text_view.get_buffer().get_end_iter(),
+                        False,
+                    )
+                else:
+                    lyrics = eLRCParser.create_lyrics_elrc(
+                        self._lyrics_model.get_tokens()
+                    )
+                if Schema.get_save_lrc_along_elrc() and (
+                    Schema.get_elrc_prefix() != ""
+                ):
+                    self._lrc_lyrics_file.modify_lyrics(eLRCParser.to_plain_lrc(lyrics))
+                    logger.debug("LRC lyrics autosaved successfully")
+                self._elrc_lyrics_file.modify_lyrics(lyrics)
+                logger.debug("eLRC lyrics autosaved successfully")
             except Exception as e:
-                logger.warning("Autosave failed: %s", e)
+                logger.warning("Autosave failed: %s\n", e)
             self._autosave_timeout_id = None
         return False
 

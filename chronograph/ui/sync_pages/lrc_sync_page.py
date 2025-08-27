@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Literal, Optional, Union
 
 import requests
-from dgutils.actions import Actions
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
@@ -19,6 +18,8 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.lyrics_file_helper import LyricsFile
+from dgutils.actions import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -63,6 +64,7 @@ class LRCSyncPage(Adw.NavigationPage):
         self._autosave_path = Path(self._file.path).with_suffix(
             Schema.get_auto_file_format()
         )
+        self._lyrics_file = LyricsFile(self._autosave_path)
 
         self.connect("hidden", self._on_page_closed)
         self._close_rq_handler_id = Constants.WIN.connect(
@@ -266,8 +268,7 @@ class LRCSyncPage(Adw.NavigationPage):
             file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
         ) -> None:
             filepath = file_dialog.save_finish(result).get_path()
-            with open(filepath, "w") as f:
-                f.write(lyrics)
+            LyricsFile(filepath).modify_lyrics(lyrics)
             logger.info("Lyrics exported to file: '%s'", filepath)
 
             Constants.WIN.show_toast(
@@ -329,10 +330,10 @@ class LRCSyncPage(Adw.NavigationPage):
     def _autosave(self) -> Literal[False]:
         if Schema.get_auto_file_manipulation():
             try:
-                with open(self._autosave_path, "w", encoding="utf-8") as f:
-                    for line in self.sync_lines:  # pylint: disable=not-an-iterable
-                        f.write(line.get_text() + "\n")
-                    logger.debug("Lyrics autosaved successfully")
+                # pylint: disable=not-an-iterable
+                lyrics = [line.get_text() for line in self.sync_lines]
+                self._lyrics_file.modify_lyrics(lyrics)
+                logger.debug("Lyrics autosaved successfully")
             except Exception as e:
                 logger.warning("Autosave failed: %s", e)
             self._autosave_timeout_id = None

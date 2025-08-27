@@ -1,5 +1,4 @@
 # DELAYED: Add GStreamer based player with music speed control
-# TODO: Implement eLRC (Enchanted LRC) support
 # TODO: Implement TTML (Timed Text Markup Language) support
 
 import os
