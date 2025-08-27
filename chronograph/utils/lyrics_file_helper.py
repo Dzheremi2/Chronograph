@@ -13,6 +13,7 @@ class LyricsFile:
     """
 
     _TAG_PAIR_RE = re.compile(r"\[(?P<key>[A-Za-z][A-Za-z0-9_-]*):(?P<val>.*?)\]")
+    _TIMED_LINE_RE = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
 
     meta: dict
     lyrics: str
@@ -33,6 +34,12 @@ class LyricsFile:
                 continue
             out.append(line)
         return "\n".join(out).strip()
+
+    def get_normalized_lines(self) -> list[str]:
+        """Returns normalized lyrics with whitespaces after the timestamp"""
+        return [
+            self._TIMED_LINE_RE.sub(r"\1 \2", line) for line in self.lyrics.splitlines()
+        ]
 
     def _convert_length(self, lenght: Union[str, int]) -> Union[str, int]:
         if isinstance(lenght, str):

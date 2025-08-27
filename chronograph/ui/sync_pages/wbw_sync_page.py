@@ -2,6 +2,7 @@
 
 import re
 from pathlib import Path
+import traceback
 from typing import Literal, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
@@ -71,11 +72,9 @@ class WBWSyncPage(Adw.NavigationPage):
             .with_name(Schema.get_elrc_prefix() + Path(self._file.path).name)
             .with_suffix(Schema.get_auto_file_format())
         )
-        self._elrc_lyrics_file = LyricsFile(self._elrc_autosave_path)
         self._lrc_autosave_path = Path(self._file.path).with_suffix(
             Schema.get_auto_file_format()
         )
-        self._lrc_lyrics_file = LyricsFile(self._lrc_autosave_path)
 
         self._close_rq_handler_id = Constants.WIN.connect(
             "close-request", self._on_app_close
@@ -100,28 +99,19 @@ class WBWSyncPage(Adw.NavigationPage):
 
         # Automatically load the lyrics file if it exists
         if Schema.get_auto_file_manipulation():
-            metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
-            timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
-
+            lines: LyricsFile = None
             if self._elrc_autosave_path.exists():
-                with open(self._elrc_autosave_path, "r", encoding="utf-8") as f:
-                    lines = f.read().splitlines()
+                lines = LyricsFile(self._elrc_autosave_path).get_normalized_lines()
             elif self._lrc_autosave_path.exists():
-                with open(self._lrc_autosave_path, "r", encoding="utf-8") as f:
-                    lines = f.read().splitlines()
-            else:
-                return
+                lines = LyricsFile(self._lrc_autosave_path).get_normalized_lines()
 
-            filtered_lines = [
-                line for line in lines if not metatags_filterout.match(line)
-            ]
-            normalized_lines = [
-                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
-            ]
+            if lines is not None:
+                buffer = Gtk.TextBuffer()
+                buffer.set_text("\n".join(lines))
+                self.edit_view_text_view.set_buffer(buffer)
 
-            buffer = Gtk.TextBuffer()
-            buffer.set_text("\n".join(normalized_lines))
-            self.edit_view_text_view.set_buffer(buffer)
+        self._elrc_lyrics_file = LyricsFile(self._elrc_autosave_path)
+        self._lrc_lyrics_file = LyricsFile(self._lrc_autosave_path)
 
     def _page_visibility(self, stack: Adw.ViewStack, _pspec) -> None:
         page: Adw.ViewStackPage = stack.get_page(stack.get_visible_child())
@@ -382,8 +372,8 @@ class WBWSyncPage(Adw.NavigationPage):
                     logger.debug("LRC lyrics autosaved successfully")
                 self._elrc_lyrics_file.modify_lyrics(lyrics)
                 logger.debug("eLRC lyrics autosaved successfully")
-            except Exception as e:
-                logger.warning("Autosave failed: %s\n", e)
+            except Exception:
+                logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None
         return False
 

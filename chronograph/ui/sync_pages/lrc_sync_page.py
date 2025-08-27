@@ -5,6 +5,7 @@ import re
 import threading
 from binascii import unhexlify
 from pathlib import Path
+import traceback
 from typing import Literal, Optional, Union
 
 import requests
@@ -64,7 +65,6 @@ class LRCSyncPage(Adw.NavigationPage):
         self._autosave_path = Path(self._file.path).with_suffix(
             Schema.get_auto_file_format()
         )
-        self._lyrics_file = LyricsFile(self._autosave_path)
 
         self.connect("hidden", self._on_page_closed)
         self._close_rq_handler_id = Constants.WIN.connect(
@@ -73,21 +73,12 @@ class LRCSyncPage(Adw.NavigationPage):
 
         # Automatically load the lyrics file if it exists
         if Schema.get_auto_file_manipulation() and self._autosave_path.exists():
-            metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
-            timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
-            with open(self._autosave_path, "r", encoding="utf-8") as f:
-                lines = f.read().splitlines()
-
-            filtered_lines = [
-                line for line in lines if not metatags_filterout.match(line)
-            ]
-            normalized_lines = [
-                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
-            ]
-
+            lines = LyricsFile(self._autosave_path).get_normalized_lines()
             self.sync_lines.remove_all()
-            for line in normalized_lines:
+            for line in lines:
                 self.sync_lines.append(LRCSyncLine(line))
+
+        self._lyrics_file = LyricsFile(self._autosave_path)
 
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
@@ -332,10 +323,10 @@ class LRCSyncPage(Adw.NavigationPage):
             try:
                 # pylint: disable=not-an-iterable
                 lyrics = [line.get_text() for line in self.sync_lines]
-                self._lyrics_file.modify_lyrics(lyrics)
+                self._lyrics_file.modify_lyrics("\n".join(lyrics).strip())
                 logger.debug("Lyrics autosaved successfully")
-            except Exception as e:
-                logger.warning("Autosave failed: %s", e)
+            except Exception:
+                logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None
         return False
 

@@ -107,7 +107,6 @@ class LineModel(GObject.Object):
         """
 
         for word in self:
-            word: WordModel
             if word.time == -1:
                 return word, self.words.find(word)[1]
         return None

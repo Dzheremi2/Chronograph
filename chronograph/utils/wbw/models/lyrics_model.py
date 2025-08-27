@@ -79,7 +79,6 @@ class LyricsModel(GObject.Object):
         """
 
         for line in self:
-            line: LineModel
             if line.get_latest_unsynced() is not None:
                 return line, self.lines.find(line)[1]
         return None
@@ -93,10 +92,8 @@ class LyricsModel(GObject.Object):
     def get_tokens(self) -> tuple[tuple[WordToken, ...], ...]:
         lines = []
         for line_model in self:
-            line_model: LineModel
             line = []
             for word in line_model:
-                word: WordModel
                 line.append(word.restore_token())
             lines.append(line)
         return tuple(lines)

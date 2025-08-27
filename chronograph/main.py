@@ -4,8 +4,6 @@ import sys
 import gi
 import yaml
 
-from dgutils.decorators import singleton
-
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
@@ -16,6 +14,7 @@ from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
+from dgutils.decorators import singleton
 
 logger = Constants.LOGGER
 
