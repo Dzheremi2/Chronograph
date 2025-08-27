@@ -3,6 +3,7 @@ import sys
 
 import gi
 import yaml
+
 from dgutils.decorators import singleton
 
 gi.require_version("Gtk", "4.0")
@@ -127,10 +128,6 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
-        # with open("/home/dzheremi/Repos/Chronograph/elrc.lrc") as f:
-        #     win.library_scrolled_window.set_child(
-        #         LyricsModel(f.read()).widget
-        #     )  # testing LyricsWidget
         logger.debug("Window shown")
 
     def on_about_action(self, *_args) -> None:
@@ -182,6 +179,9 @@ class ChronographApplication(Adw.Application):
 
         dialog.set_debug_info(_get_debug_info())
         dialog.set_debug_info_filename("chronograph.log")
+        dialog.add_link(
+            _("Translate the App"), "https://hosted.weblate.org/engage/chronograph/"
+        )
 
         if Constants.PREFIX.endswith("Devel"):
             dialog.set_version("Devel")

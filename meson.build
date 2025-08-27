@@ -34,7 +34,7 @@ conf.set('pkgdatadir', pkgdatadir)
 
 subdir('data')
 subdir('chronograph')
-install_subdir('dgutils', install_dir: pkgdatadir)
+install_subdir('dgutils', install_dir: pkgdatadir) # TODO: Fix and remove
 subdir('po')
 
 gnome.post_install(
