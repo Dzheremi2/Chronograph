@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-23 20:08+0300\n"
-"PO-Revision-Date: 2025-08-25 17:02+0000\n"
+"PO-Revision-Date: 2025-08-28 15:02+0000\n"
 "Last-Translator: NukeSource <dede48076@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -142,7 +142,7 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:508
 msgid "Cannot publish empty lyrics"
