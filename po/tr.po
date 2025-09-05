@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-23 20:08+0300\n"
-"PO-Revision-Date: 2025-08-28 15:02+0000\n"
+"PO-Revision-Date: 2025-09-05 21:02+0000\n"
 "Last-Translator: NukeSource <dede48076@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-dev\n"
+"X-Generator: Weblate 5.13.1-rc\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -320,11 +320,11 @@ msgstr "Bir dizin seçin veya bir dosya açın"
 
 #: data/gtk/window.blp:290 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: data/gtk/window.blp:333
 msgid "Shortcuts"
-msgstr ""
+msgstr "Kısayollar"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
 #: data/gtk/ui/dialogs/Preferences.blp:67
@@ -397,11 +397,11 @@ msgstr ""
 
 #: data/gtk/window.blp:421
 msgid "One word back"
-msgstr ""
+msgstr "Bir kelime geri"
 
 #: data/gtk/window.blp:426
 msgid "One word next"
-msgstr ""
+msgstr "Bir kelime ileri"
 
 #: data/gtk/window.blp:431
 msgid "One line up"
@@ -424,18 +424,18 @@ msgstr "Dosya"
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:207
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:209
 msgid "A-Z"
-msgstr ""
+msgstr "A-Z"
 
 #: data/gtk/window.blp:460 data/gtk/window.blp:479
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:213
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
 msgid "Z-A"
-msgstr ""
+msgstr "Z-A"
 
 #: data/gtk/window.blp:470 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:206
 msgid "Sort"
-msgstr ""
+msgstr "Sırala"
 
 #: data/gtk/window.blp:486 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:222
@@ -445,7 +445,7 @@ msgstr ""
 #: data/gtk/window.blp:489 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:225
 msgid "Grid"
-msgstr ""
+msgstr "Izgara"
 
 #: data/gtk/window.blp:495 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:231
@@ -455,7 +455,7 @@ msgstr ""
 #: data/gtk/window.blp:507 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:243
 msgid "Preferences"
-msgstr ""
+msgstr "Tercihler"
 
 #: data/gtk/window.blp:509 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:245
@@ -464,7 +464,7 @@ msgstr "Hakkında"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
-msgstr ""
+msgstr "LRClib'de belirtilen başlık ve sanatçıyı arayın"
 
 #: data/gtk/ui/dialogs/LRClib.blp:119
 #, fuzzy
@@ -473,21 +473,23 @@ msgstr "Senkronize"
 
 #: data/gtk/ui/dialogs/LRClib.blp:144
 msgid "Plain"
-msgstr ""
+msgstr "Düz"
 
 #: data/gtk/ui/dialogs/LRClib.blp:173
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
 msgstr ""
+"Varsayılan olarak senkronize şarkı sözleri kullanılır, düz kullanmak için "
+"alt menüden 'Düz kullan' seçeneğini seçin"
 
 #: data/gtk/ui/dialogs/LRClib.blp:179
 msgid "Use"
-msgstr ""
+msgstr "Kullan"
 
 #: data/gtk/ui/dialogs/LRClib.blp:215
 msgid "Use plain"
-msgstr ""
+msgstr "Düz kullan"
 
 #: data/gtk/ui/dialogs/LRClib.blp:216
 msgid "Use synced"
@@ -513,15 +515,15 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
-msgstr ""
+msgstr "Uygula"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:51
 msgid "Change cover"
-msgstr ""
+msgstr "Kapağı değiştir"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:100
 msgid "Set cover"
-msgstr ""
+msgstr "Kapağı ayarla"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Remove cover"
@@ -529,7 +531,7 @@ msgstr "Kapağı kaldır"
 
 #: data/gtk/ui/dialogs/Preferences.blp:10
 msgid "Behavior"
-msgstr ""
+msgstr "Davranış"
 
 #: data/gtk/ui/dialogs/Preferences.blp:13
 msgid "Reset quick edit dialog on close"
