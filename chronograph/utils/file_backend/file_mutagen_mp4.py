@@ -5,6 +5,7 @@ from mutagen.mp4 import MP4Cover
 from PIL import Image
 
 from chronograph.internal import Schema
+from chronograph.utils.converter import lyrics_to_schema_preference
 
 from .file import TaggableFile
 
@@ -13,6 +14,7 @@ tags_conjunction = {
     "TPE1": ["_artist", "\xa9ART"],
     "TALB": ["_album", "\xa9alb"],
 }
+
 
 # pylint: disable=attribute-defined-outside-init
 class FileMP4(TaggableFile):
@@ -132,3 +134,13 @@ class FileMP4(TaggableFile):
 
         self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
         setattr(self, tags_conjunction[tag_name][0], new_val)
+
+    def embed_lyrics(self, lyrics: str):
+        if Schema.get_embed_lyrics():
+            if self._mutagen_file.tags is None:
+                self._mutagen_file.add_tags()
+
+            lyrics = lyrics_to_schema_preference(lyrics)
+
+            self._mutagen_file.tags["\xa9lyr"] = lyrics
+            self.save()

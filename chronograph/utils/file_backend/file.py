@@ -1,10 +1,10 @@
 from typing import Optional
 
 import mutagen
-from dgutils.decorators import baseclass
 from gi.repository import Gdk, GdkPixbuf
 
 from chronograph.internal import Constants
+from dgutils.decorators import baseclass
 
 
 @baseclass
@@ -124,23 +124,60 @@ class BaseFile:
         return int(self._duration * 1_000_000_000) if self._duration else 0
 
     def compress_images(self) -> None:
-        """Should be implemented in file specific child classes"""
+        """Makes the loaded MutagenFile instance to have compressed covers without saving to the file
+
+        Should be implemented in file specific child classes
+        """
         raise NotImplementedError
 
     def load_str_data(self) -> None:
-        """Should be implemented in file specific child classes"""
+        """Reads the string data from file and binds it to the instance
+
+        Should be implemented in file specific child classes"""
         raise NotImplementedError
 
     def load_cover(self) -> None:
-        """Should be implemented in file specific child classes"""
+        """Reads the cover from the file and binds it to the instance
+
+        Should be implemented in file specific child classes"""
         raise NotImplementedError
 
     def set_str_data(self, tag_name: str, new_val: str) -> None:
-        """Should be implemented in file specific child classes"""
+        """Sets the provided tag in ID3 format to the provided value
+
+        Parameters
+        ----------
+        tag_name : str
+            ID3 tag (must work in all realizations using TAGS_CONJUNCTION)
+        new_val : str
+            value to be set
+
+        Should be implemented in file specific child classes
+        """
         raise NotImplementedError
 
     def set_cover(self, img_path: Optional[str]) -> None:
-        """Should be implemented in file specific child classes"""
+        """Sets the cover of the instance to a provided image
+
+        Parameters
+        ----------
+        img_path : Optional[str]
+            /path/to/an/image
+
+        Should be implemented in file specific child classes
+        """
+        raise NotImplementedError
+
+    def embed_lyrics(self, lyrics: str) -> None:
+        """Embeds the lyrics to the corresponding tags in realization
+
+        Parameters
+        ----------
+        lyrics : str
+            lyrics
+
+        Should be implemented in file specific child classes
+        """
         raise NotImplementedError
 
 

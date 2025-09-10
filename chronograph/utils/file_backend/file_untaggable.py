@@ -9,3 +9,6 @@ class FileUntaggable(BaseFile):
         super().__init__(path)
 
         self.cover = None
+
+    def embed_lyrics(self, *_args):
+        pass

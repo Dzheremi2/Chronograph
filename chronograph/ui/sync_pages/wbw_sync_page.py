@@ -371,6 +371,7 @@ class WBWSyncPage(Adw.NavigationPage):
                     self._lrc_lyrics_file.modify_lyrics(eLRCParser.to_plain_lrc(lyrics))
                     logger.debug("LRC lyrics autosaved successfully")
                 self._elrc_lyrics_file.modify_lyrics(lyrics)
+                self._file.embed_lyrics(lyrics)
                 logger.debug("eLRC lyrics autosaved successfully")
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())

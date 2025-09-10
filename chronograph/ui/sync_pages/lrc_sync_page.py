@@ -3,9 +3,9 @@
 import hashlib
 import re
 import threading
+import traceback
 from binascii import unhexlify
 from pathlib import Path
-import traceback
 from typing import Literal, Optional, Union
 
 import requests
@@ -14,7 +14,11 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 from chronograph.internal import Constants, Schema
 from chronograph.ui.widgets.player import Player
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
+from chronograph.utils.converter import (
+    make_plain_lyrics,
+    mcs_to_timestamp,
+    timestamp_to_mcs,
+)
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -323,7 +327,9 @@ class LRCSyncPage(Adw.NavigationPage):
             try:
                 # pylint: disable=not-an-iterable
                 lyrics = [line.get_text() for line in self.sync_lines]
-                self._lyrics_file.modify_lyrics("\n".join(lyrics).strip())
+                lyrics = "\n".join(lyrics).strip()
+                self._lyrics_file.modify_lyrics(lyrics)
+                self._file.embed_lyrics(lyrics)
                 logger.debug("Lyrics autosaved successfully")
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
@@ -379,14 +385,6 @@ class LRCSyncPage(Adw.NavigationPage):
 
             return str(nonce)
 
-        def _make_plain_lyrics(lyrics: str) -> str:
-            pattern = r"\[.*?\] "
-            lyrics = lyrics.splitlines()
-            plain_lyrics = []
-            for line in lyrics:
-                plain_lyrics.append(re.sub(pattern, "", line))
-            return "\n".join(plain_lyrics[:-1])
-
         def _do_publish(
             title: str, artist: str, album: str, duration: str, lyrics: str
         ) -> None:
@@ -433,7 +431,7 @@ class LRCSyncPage(Adw.NavigationPage):
                         "artistName": artist,
                         "albumName": album,
                         "duration": duration,
-                        "plainLyrics": _make_plain_lyrics(lyrics),
+                        "plainLyrics": make_plain_lyrics(lyrics),
                         "syncedLyrics": lyrics,
                     },
                     timeout=10,

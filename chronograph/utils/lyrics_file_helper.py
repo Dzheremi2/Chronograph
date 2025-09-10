@@ -81,7 +81,7 @@ class LyricsFile:
         for tag, val in self.meta.items():
             if tag == "length":
                 str_length = self._convert_length(val)
-                out_tags.append(f"{tag}:{str_length}")
+                out_tags.append(f"[{tag}:{str_length}]")
                 continue
 
             if tag == "offset":
@@ -89,10 +89,10 @@ class LyricsFile:
                     str_offset = f"+{val}"
                 else:
                     str_offset = f"-{val}"
-                out_tags.append(f"{tag}:{str_offset}")
+                out_tags.append(f"[{tag}:{str_offset}]")
                 continue
 
-            out_tags.append(f"{tag}:{val}")
+            out_tags.append(f"[{tag}:{val}]")
 
         tags_str = "\n".join(out_tags)
         file_str = (tags_str + "\n" + self.lyrics).strip()

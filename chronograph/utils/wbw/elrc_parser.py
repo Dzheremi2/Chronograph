@@ -225,3 +225,24 @@ class eLRCParser:
             else:
                 out.append(lt.text)
         return "\n".join(out)
+
+    @staticmethod
+    def is_elrc(data: Path | str) -> bool:
+        """Check if provided lyrics contain eLRC formatting (per-word timestamps).
+
+        Parameters
+        ----------
+        data : Path | str
+            Path to a file or lyrics string
+
+        Returns
+        -------
+        bool
+            True if the lyrics contain per-word timestamps (<mm:ss(.ms)>), False otherwise.
+        """
+        if isinstance(data, Path):
+            text = data.read_text(encoding="utf-8")
+        else:
+            text = str(data)
+
+        return bool(eLRCParser.WORD_TIMESTAMP.search(text))

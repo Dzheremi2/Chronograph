@@ -89,3 +89,16 @@ elrc-prefix:
 save-lrc-along-elrc:
   type: bool
   default: true
+
+embed-lyrics:
+  type: bool
+  default: false
+
+embed-lyrics-default:
+  type: str
+  enum: [plain, lrc, elrc]
+  default: lrc
+
+use-individual-synced-tag-vorbis:
+  type: bool
+  default: true

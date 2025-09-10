@@ -1,6 +1,7 @@
 """Some functions without a specific grouping"""
 
 import os
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -24,3 +25,7 @@ def get_common_directory(paths: tuple[str]) -> Optional[str]:
         if not Path(p).is_relative_to(Path(common)):
             return None
     return common
+
+
+def is_lrc(text: str) -> bool:
+    return bool(re.search(r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]", text))

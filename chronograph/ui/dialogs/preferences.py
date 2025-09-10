@@ -1,5 +1,3 @@
-from gettext import pgettext as C_
-
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -12,7 +10,7 @@ class ChronographPreferences(Adw.PreferencesDialog):
     __gtype_name__ = "ChronographPreferences"
 
     reset_quick_edit_switch: Adw.SwitchRow = gtc()
-    auto_file_manipulation_switch: Adw.ExpanderRow = gtc()
+    auto_file_manipulation_switch: Adw.SwitchRow = gtc()
     auto_file_manipulation_format: Adw.ComboRow = gtc()
     autosave_throttling_adjustment: Gtk.Adjustment = gtc()
     save_session_on_quit_switch: Adw.SwitchRow = gtc()
@@ -27,6 +25,9 @@ class ChronographPreferences(Adw.PreferencesDialog):
     syncing_type_combo_row: Adw.ComboRow = gtc()
     save_plain_lrc_also_switch_row: Adw.SwitchRow = gtc()
     elrc_prefix_entry_row: Adw.EntryRow = gtc()
+    embed_lyrics_switch: Adw.ExpanderRow = gtc()
+    use_individual_synced_tag_vorbis_switch: Adw.SwitchRow = gtc()
+    embed_lyrics_default_toggle_group: Adw.ToggleGroup = gtc()
 
     opened: bool = False
 
@@ -45,35 +46,10 @@ class ChronographPreferences(Adw.PreferencesDialog):
             "notify::selected", self._update_sync_type_schema
         )
 
-        # Add suffix to elrc_prefix_entry_row programatically since Adwaita doesn't
-        # provide a `suffix` property for Adw.EntryRow
-        button = Gtk.MenuButton(
-            icon_name="info-button-symbolic",
-            tooltip_text=C_("button tooltip; noun", "Help"),
-        )
-        button.set_popover(
-            Gtk.Popover(
-                child=Gtk.Label(
-                    label=_(
-                        "A prefix, eLRC files will have to not interfere with plain LRC ones"
-                    )
-                ),
-                position=Gtk.PositionType.TOP,
-            )
-        )
-        button.add_css_class("flat")
-        box = Gtk.Box(
-            orientation=Gtk.Orientation.VERTICAL,
-            valign=Gtk.Align.CENTER,
-            halign=Gtk.Align.CENTER,
-        )
-        box.append(button)
-        self.elrc_prefix_entry_row.add_suffix(box)
-
         Schema.bind(
             "auto-file-manipulation",
             self.auto_file_manipulation_switch,
-            "enable-expansion",
+            "active",
         )
         Schema.bind(
             "reset-quick-editor",
@@ -128,7 +104,18 @@ class ChronographPreferences(Adw.PreferencesDialog):
         Schema.bind(
             "save-lrc-along-elrc", self.save_plain_lrc_also_switch_row, "active"
         )
+        Schema.bind(
+            "use-individual-synced-tag-vorbis",
+            self.use_individual_synced_tag_vorbis_switch,
+            "active",
+        )
+        Schema.bind(
+            "embed-lyrics-default",
+            self.embed_lyrics_default_toggle_group,
+            "active-name",
+        )
         Schema.bind("elrc-prefix", self.elrc_prefix_entry_row, "text")
+        Schema.bind("embed-lyrics", self.embed_lyrics_switch, "enable-expansion")
 
         if Schema.get_auto_file_format() == ".lrc":
             self.auto_file_manipulation_format.set_selected(0)

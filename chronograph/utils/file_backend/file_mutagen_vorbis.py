@@ -9,6 +9,8 @@ from mutagen.flac import error as FLACError
 from PIL import Image
 
 from chronograph.internal import Schema
+from chronograph.utils.converter import lyrics_to_schema_preference, make_plain_lyrics
+from chronograph.utils.wbw.elrc_parser import eLRCParser
 
 from .file import TaggableFile
 
@@ -17,6 +19,7 @@ tags_conjunction = {
     "TPE1": ["_artist", "artist"],
     "TALB": ["_album", "album"],
 }
+
 
 # pylint: disable=attribute-defined-outside-init
 class FileVorbis(TaggableFile):
@@ -194,3 +197,21 @@ class FileVorbis(TaggableFile):
         else:
             self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
         setattr(self, tags_conjunction[tag_name][0], new_val)
+
+    def embed_lyrics(self, lyrics: str):
+        if Schema.get_embed_lyrics():
+            lyrics = lyrics_to_schema_preference(lyrics)
+            if not Schema.get_use_individual_synced_tag_vorbis():
+                self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics
+            else:
+                if eLRCParser.is_elrc(lyrics):
+                    self._mutagen_file.tags["UNSYNCEDLYRICS"] = make_plain_lyrics(
+                        eLRCParser.to_plain_lrc(lyrics)
+                    )
+                else:
+                    self._mutagen_file.tags["UNSYNCEDLYRICS"] = make_plain_lyrics(
+                        lyrics
+                    )
+
+                self._mutagen_file.tags["LYRICS"] = lyrics
+            self.save()
