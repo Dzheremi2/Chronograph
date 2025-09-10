@@ -29,8 +29,8 @@ class FileMP4(TaggableFile):
     __gtype_name__ = "FileMP4"
 
     def compress_images(self) -> None:
-        if Schema.get_load_compressed_covers():
-            quality = Schema.get_compress_level()
+        if Schema.get("root.settings.general.compressed-covers.enabled"):
+            quality = Schema.get("root.settings.general.compressed-covers.level")
             tags = self._mutagen_file.tags
             if tags is None or "covr" not in tags:
                 return
@@ -136,7 +136,7 @@ class FileMP4(TaggableFile):
         setattr(self, tags_conjunction[tag_name][0], new_val)
 
     def embed_lyrics(self, lyrics: str):
-        if Schema.get_embed_lyrics():
+        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
             if self._mutagen_file.tags is None:
                 self._mutagen_file.add_tags()
 

@@ -1,5 +1,5 @@
 configure_file(
-    input: 'internals.yaml.in',
-    output: 'internals.yaml',
+    input: 'constants.yaml.in',
+    output: 'constants.yaml',
     configuration: conf
 )

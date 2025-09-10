@@ -1,104 +1,92 @@
-auto-file-manipulation:
-  type: bool
-  default: true
-
-auto-file-format:
-  type: str
-  enum: [.lrc, .txt]
-  default: .lrc
-
-autosave-throttling:
-  type: float
-  min: 1.0
-  max: 10.0
-  default: 5.0
-
-reset-quick-editor:
-  type: bool
-  default: true
-
-save-session:
-  type: bool
-  default: false
-
-precise-milliseconds:
-  type: bool
-  default: false
-
-auto-list-view:
-  type: bool
-  default: false
-
-recursive-parsing:
-  type: bool
-  default: false
-
-follow-symlinks:
-  type: bool
-  default: false
-
-load-compressed-covers:
-  type: bool
-  default: false
-
-compress-level:
-  type: int
-  min: 1
-  max: 95
-  default: 75
-
-use-debug-log:
-  type: bool
-  default: false
-
-default-format:
-  type: str
-  enum: [lrc, wbw]
-  default: lrc
-
-sorting:
-  type: str
-  enum: [a-z, z-a]
-  default: a-z
-
-view:
-  type: str
-  enum: [g, l]
-  default: g
-
-window-width:
-  type: int
-  default: 700
-
-window-height:
-  type: int
-  default: 600
-
-window-maximized:
-  type: bool
-  default: false
-
-session:
-  type: str
-  default: None
-
-elrc-prefix:
-  type: str
-  default: elrc-
-
-save-lrc-along-elrc:
-  type: bool
-  default: true
-
-embed-lyrics:
-  type: bool
-  default: false
-
-embed-lyrics-default:
-  type: str
-  enum: [plain, lrc, elrc]
-  default: lrc
-
-use-individual-synced-tag-vorbis:
-  type: bool
-  default: true
+root:
+  settings:
+    file-manipulation:
+      enabled:
+        type: bool
+        default: true
+      format:
+        type: str
+        enum: [.lrc, .txt]
+        default: .lrc
+      throttling:
+        type: float
+        min: 1.0
+        max: 10.0
+        default: 5.0
+      elrc-prefix:
+        type: str
+        default: eLRC-
+      lrc-along-elrc:
+        type: bool
+        default: true
+      embed-lyrics:
+        enabled:
+          type: bool
+          default: false
+        default:
+          type: str
+          enum: [plain, lrc, elrc]
+          default: lrc
+        vorbis:
+          type: bool
+          default: true
+    syncing:
+      sync-type:
+        type: str
+        enum: [lrc, wbw]
+        default: lrc
+      precise:
+        type: bool
+        default: false
+    general:
+      reset-quick-editor:
+        type: bool
+        default: true
+      save-session:
+        type: bool
+        default: false
+      auto-list-view:
+        type: bool
+        default: false
+      compressed-covers:
+        enabled:
+          type: bool
+          default: false
+        level:
+          type: int
+          min: 1
+          max: 95
+          default: 75
+      recursive-parsing:
+        enabled:
+          type: bool
+          default: false
+        follow-symlinks:
+          type: bool
+          default: false
+      debug-profile:
+        type: bool
+        default: false
+  state:
+    library:
+      sorting:
+        type: str
+        enum: [a-z, z-a]
+        default: a-z
+      view:
+        type: str
+        enum: [g, l]
+        default: g
+      session:
+        type: str
+        default: None
+    window:
+      height:
+        type: int
+        default: 600
+      width:
+        type: int
+        default: 700
+      maximized:
+        type: bool
+        default: false

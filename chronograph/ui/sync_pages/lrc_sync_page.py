@@ -24,7 +24,7 @@ from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics_file_helper import LyricsFile
-from dgutils.actions import Actions
+from dgutils import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -67,7 +67,7 @@ class LRCSyncPage(Adw.NavigationPage):
         self.player_container.append(self._player_widget)
 
         self._autosave_path = Path(self._file.path).with_suffix(
-            Schema.get_auto_file_format()
+            Schema.get("root.settings.file-manipulation.format")
         )
 
         self.connect("hidden", self._on_page_closed)
@@ -76,7 +76,7 @@ class LRCSyncPage(Adw.NavigationPage):
         )
 
         # Automatically load the lyrics file if it exists
-        if Schema.get_auto_file_manipulation() and self._autosave_path.exists():
+        if Schema.get("root.settings.file-manipulation.enabled") and self._autosave_path.exists():
             lines = LyricsFile(self._autosave_path).get_normalized_lines()
             self.sync_lines.remove_all()
             for line in lines:
@@ -278,7 +278,7 @@ class LRCSyncPage(Adw.NavigationPage):
         for line in self.sync_lines:  # pylint: disable=not-an-iterable
             lyrics += line.get_text() + "\n"
         dialog = Gtk.FileDialog(
-            initial_name=Path(self._file.path).stem + Schema.get_auto_file_format()
+            initial_name=Path(self._file.path).stem + Schema.get("root.settings.file-manipulation.format")
         )
         dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
 
@@ -317,13 +317,13 @@ class LRCSyncPage(Adw.NavigationPage):
     def reset_timer(self) -> None:
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             self._autosave_timeout_id = GLib.timeout_add(
-                Schema.get_autosave_throttling() * 1000, self._autosave
+                Schema.get_autosave_throttling("root.settings.file-manipulation.throttling") * 1000, self._autosave
             )
 
     def _autosave(self) -> Literal[False]:
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             try:
                 # pylint: disable=not-an-iterable
                 lyrics = [line.get_text() for line in self.sync_lines]
@@ -340,7 +340,7 @@ class LRCSyncPage(Adw.NavigationPage):
         Constants.WIN.disconnect(self._close_rq_handler_id)
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         self._player.stream_ended()
@@ -348,7 +348,7 @@ class LRCSyncPage(Adw.NavigationPage):
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("App closed, saving lyrics")
             self._autosave()
         return False

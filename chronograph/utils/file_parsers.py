@@ -44,8 +44,8 @@ def parse_dir(path: str) -> tuple[str]:
     path = Path(path)
     files = []
 
-    recursive = Schema.get_recursive_parsing()
-    follow_symlinks = Schema.get_follow_symlinks()
+    recursive = Schema.get("root.settings.general.recursive-parsing.enabled")
+    follow_symlinks = Schema.get("root.settings.general.recursive-parsing.follow-symlinks")
 
     if not recursive:
         files = [str(f) for f in path.iterdir() if f.is_file()]

@@ -38,7 +38,8 @@ def init_logger() -> None:
     root_logger = logging.getLogger()
     root_logger.setLevel(
         logging.DEBUG
-        if Constants.APP_ID.endswith("Devel") or Schema.get_use_debug_log()
+        if Constants.APP_ID.endswith("Devel")
+        or Schema.get("root.settings.general.debug-profile")
         else logging.INFO
     )
     root_logger.addHandler(file_handler)

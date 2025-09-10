@@ -152,7 +152,7 @@ class eLRCParser:
             return token.timestamp
         if token.time is not None and token.time >= 0:
             return eLRCParser._format_timestamp_ms(
-                token.time, precise=Schema.get_precise_milliseconds()
+                token.time, precise=Schema.get("root.settings.syncing.precise")
             )
         return None
 

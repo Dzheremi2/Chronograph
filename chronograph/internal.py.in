@@ -1,15 +1,15 @@
 import os
 from pathlib import Path
 
-from dgutils.project_shared import AbstractSchema, ProjectShared
 from gi.repository import GLib
+
+from dgutils import Constants
+from dgutils import Schema
 
 _PREFIX: str = "@PREFIX@"
 
-_prj = ProjectShared(
-    _PREFIX + "/resources/internals.yaml",
+Constants = Constants.from_resource(_PREFIX + "/resources/constants.yaml")
+Schema = Schema(
     _PREFIX + "/resources/schema.yaml",
     Path(os.path.join(GLib.get_user_config_dir(), "chronograph", "schema")),
 )
-Constants = _prj.Constants
-Schema: AbstractSchema = _prj.Schema

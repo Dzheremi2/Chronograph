@@ -34,8 +34,8 @@ class FileVorbis(TaggableFile):
     __gtype_name__ = "FileVorbis"
 
     def compress_images(self) -> None:
-        if Schema.get_load_compressed_covers():
-            quality = Schema.get_compress_level()
+        if Schema.get("root.settings.general.compressed-covers.enabled"):
+            quality = Schema.get("root.settings.general.compressed-covers.level")
             pic: Union[Picture, None] = None
 
             if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:
@@ -199,9 +199,9 @@ class FileVorbis(TaggableFile):
         setattr(self, tags_conjunction[tag_name][0], new_val)
 
     def embed_lyrics(self, lyrics: str):
-        if Schema.get_embed_lyrics():
+        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
             lyrics = lyrics_to_schema_preference(lyrics)
-            if not Schema.get_use_individual_synced_tag_vorbis():
+            if not Schema.get("root.settings.file-manipulation.embed-lyrics.vorbis"):
                 self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics
             else:
                 if eLRCParser.is_elrc(lyrics):

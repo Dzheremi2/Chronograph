@@ -1,7 +1,7 @@
 # pylint: disable=all
-from typing import Any
 
-from dgutils.project_shared import AbstractSchema
+from dgutils import Constants as Const
+from dgutils import Schema as Sch
 
-Schema: AbstractSchema
-Constants: Any
+Schema: Sch
+Constants: Const

@@ -45,7 +45,7 @@ class WordModel(GObject.Object):
             self.set_property("timestamp", "")
             self.set_property("synced", False)
             return
-        if Schema.get_precise_milliseconds():
+        if Schema.get("root.settings.syncing.precise"):
             timestamp = f"{ms // 60000:02d}:{(ms % 60000)//1000:02d}.{ms % 1000:03d}"
         else:
             timestamp = f"{ms // 60000:02d}:{(ms % 60000)//1000:02d}.{(ms % 1000):03d}"[

@@ -10,7 +10,7 @@ from chronograph.utils.wbw.elrc_parser import eLRCParser
 def mcs_to_timestamp(mcs: int) -> str:
     """Convert microseconds to timestamp format"""
     ms = mcs // 1000  # get milliseconds
-    match Schema.get_precise_milliseconds():
+    match Schema.get("root.settings.syncing.precise"):
         case True:
             return f"[{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{ms % 1000:03d}] "
         case False:
@@ -64,7 +64,7 @@ def make_plain_lyrics(lyrics: str) -> str:
 
 
 def lyrics_to_schema_preference(lyrics: str) -> str:
-    target: str = Schema.get_embed_lyrics_default()
+    target: str = Schema.get("root.settings.file-manipulation.embed-lyrics.default")
 
     if target == "elrc":
         if eLRCParser.is_elrc(lyrics):

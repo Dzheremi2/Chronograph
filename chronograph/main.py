@@ -83,7 +83,7 @@ class ChronographApplication(Adw.Application):
         sorting_action = Gio.SimpleAction.new_stateful(
             "sort_type",
             GLib.VariantType.new("s"),
-            GLib.Variant("s", Schema.get_sorting()),
+            GLib.Variant("s", Schema.get("root.state.library.sorting")),
         )
         sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
         self.add_action(sorting_action)
@@ -91,31 +91,31 @@ class ChronographApplication(Adw.Application):
         view_action = Gio.SimpleAction.new_stateful(
             "view_type",
             GLib.VariantType.new("s"),
-            GLib.Variant("s", Schema.get_view()),
+            GLib.Variant("s", Schema.get("root.state.library.view")),
         )
         view_action.connect("activate", Constants.WIN.on_view_type_action)
         self.add_action(view_action)
 
-        Schema.bind("window-width", Constants.WIN, "default-width")
+        Schema.bind("root.state.window.width", Constants.WIN, "default-width")
         Schema.bind(
-            "window-height",
+            "root.state.window.height",
             Constants.WIN,
             "default-height",
         )
         Schema.bind(
-            "window-maximized",
+            "root.state.window.maximized",
             Constants.WIN,
             "maximized",
         )
 
-        if Schema.get_auto_list_view():
+        if Schema.get("root.settings.general.auto-list-view"):
             self.lookup_action("view_type").set_enabled(False)
         else:
             self.lookup_action("view_type").set_enabled(True)
 
         if (
-            (path := Schema.get_session()) != "None"
-            and os.path.exists(Schema.get_session())
+            (path := Schema.get("root.state.library.session")) != "None"
+            and os.path.exists(Schema.get("root.state.library.session"))
             and len(self.paths) == 0
         ):
             logger.info("Loading last opened session: '%s'", path)
@@ -191,9 +191,9 @@ class ChronographApplication(Adw.Application):
         self.quit()
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
-        if not Schema.get_save_session():
+        if not Schema.get("root.settings.general.save-session"):
             logger.info("Resetting session")
-            Schema.set_session("None")
+            Schema.set("root.state.library.session", "None")
 
         Constants.CACHE_FILE.seek(0)
         Constants.CACHE_FILE.truncate(0)

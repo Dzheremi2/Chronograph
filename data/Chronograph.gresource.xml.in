@@ -20,7 +20,7 @@
   </gresource>
   <!-- Resources (YAMLs, JSONs, etc.) -->
    <gresource prefix="@PREFIX@/resources/">
-    <file alias="internals.yaml">resources/internals.yaml</file>
+    <file alias="constants.yaml">resources/constants.yaml</file>
     <file alias="schema.yaml">resources/schema.yaml</file>
     <file alias="actions/lrc_sync_page_actions.yaml">resources/actions/lrc_sync_page_actions.yaml</file>
     <file alias="actions/wbw_sync_page_actions.yaml">resources/actions/wbw_sync_page_actions.yaml</file>

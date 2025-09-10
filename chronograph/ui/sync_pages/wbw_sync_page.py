@@ -18,7 +18,7 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics_file_helper import LyricsFile
 from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
-from dgutils.actions import Actions
+from dgutils import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -69,11 +69,11 @@ class WBWSyncPage(Adw.NavigationPage):
 
         self._elrc_autosave_path = (
             Path(self._file.path)
-            .with_name(Schema.get_elrc_prefix() + Path(self._file.path).name)
-            .with_suffix(Schema.get_auto_file_format())
+            .with_name(Schema.get("root.settings.file-manipulation.elrc-prefix") + Path(self._file.path).name)
+            .with_suffix(Schema.get("root.settings.file-manipulation.format"))
         )
         self._lrc_autosave_path = Path(self._file.path).with_suffix(
-            Schema.get_auto_file_format()
+            Schema.get("root.settings.file-manipulation.format")
         )
 
         self._close_rq_handler_id = Constants.WIN.connect(
@@ -98,7 +98,7 @@ class WBWSyncPage(Adw.NavigationPage):
         #     self.format_menu_button.set_label("TTML")
 
         # Automatically load the lyrics file if it exists
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             lines: LyricsFile = None
             if self._elrc_autosave_path.exists():
                 lines = LyricsFile(self._elrc_autosave_path).get_normalized_lines()
@@ -258,7 +258,7 @@ class WBWSyncPage(Adw.NavigationPage):
                 lyrics = ""
 
         dialog = Gtk.FileDialog(
-            initial_name=Path(self._file.path).stem + Schema.get_auto_file_format()
+            initial_name=Path(self._file.path).stem + Schema.get("root.settings.file-manipulation.format")
         )
         dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
 
@@ -344,13 +344,13 @@ class WBWSyncPage(Adw.NavigationPage):
     def reset_timer(self) -> None:
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             self._autosave_timeout_id = GLib.timeout_add(
-                Schema.get_autosave_throttling() * 1000, self._autosave
+                Schema.get("root.settings.file-manipulation.throttling") * 1000, self._autosave
             )
 
     def _autosave(self) -> Literal[False]:
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             try:
                 if (
                     self.modes.get_page(self.modes.get_visible_child())
@@ -365,8 +365,8 @@ class WBWSyncPage(Adw.NavigationPage):
                     lyrics = eLRCParser.create_lyrics_elrc(
                         self._lyrics_model.get_tokens()
                     )
-                if Schema.get_save_lrc_along_elrc() and (
-                    Schema.get_elrc_prefix() != ""
+                if Schema.get("root.settings.file-manipulation.lrc-along-elrc") and (
+                    Schema.get("root.settings.file-manipulation.elrc-prefix") != ""
                 ):
                     self._lrc_lyrics_file.modify_lyrics(eLRCParser.to_plain_lrc(lyrics))
                     logger.debug("LRC lyrics autosaved successfully")
@@ -382,7 +382,7 @@ class WBWSyncPage(Adw.NavigationPage):
         Constants.WIN.disconnect(self._close_rq_handler_id)
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         self._player.stream_ended()
@@ -390,7 +390,7 @@ class WBWSyncPage(Adw.NavigationPage):
     def _on_app_close(self, *_) -> None:
         if self._autosave_timeout_id:
             GLib.source_remove(self._autosave_timeout_id)
-        if Schema.get_auto_file_manipulation():
+        if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("App closed, saving lyrics")
             self._autosave()
         return False
