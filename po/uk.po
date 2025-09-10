@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-23 20:08+0300\n"
+"POT-Creation-Date: 2025-09-10 18:19+0300\n"
 "PO-Revision-Date: 2025-08-24 00:02+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
@@ -25,18 +25,22 @@ msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:162
+#: chronograph/main.py:158
 msgid "translator-credits"
 msgstr "Максим Горпиніч"
 
-#: chronograph/main.py:170
+#: chronograph/main.py:166
 msgid "Inspiration"
 msgstr "Натхнення"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:180
+#: chronograph/main.py:176
 msgid "Build your own dictionary"
 msgstr "Створіть власний словник"
+
+#: chronograph/main.py:182
+msgid "Translate the App"
+msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
@@ -78,65 +82,56 @@ msgstr "Синхронізовані слова пісні не доступні
 msgid "No plain lyrics available"
 msgstr "Прості слова пісні не доступні"
 
-#: chronograph/ui/dialogs/preferences.py:52
-msgctxt "button tooltip; noun"
-msgid "Help"
-msgstr "Допомога"
-
-#: chronograph/ui/dialogs/preferences.py:58
-msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
-msgstr "Префікс, файли eLRC не повинні перешкоджати звичайним LRC-файлам"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:288
+#: chronograph/ui/sync_pages/lrc_sync_page.py:258
+#: chronograph/ui/sync_pages/wbw_sync_page.py:280
 msgid "Lyrics exported to clipboard"
 msgstr "Текст пісень експортовано в буфер обміну пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:249
+#: chronograph/ui/sync_pages/lrc_sync_page.py:270
+#: chronograph/ui/sync_pages/wbw_sync_page.py:241
 msgid "Lyrics exported to file"
 msgstr "Текст пісні експортовано у файл пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:250
+#: chronograph/ui/sync_pages/lrc_sync_page.py:271
+#: chronograph/ui/sync_pages/wbw_sync_page.py:242
 msgid "Show"
 msgstr "Показати"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:407
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:397
+#: chronograph/ui/sync_pages/lrc_sync_page.py:440
 msgid "Failed to connect to LRClib.net"
 msgstr "Не вдалося підключитися до LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:410
-#: chronograph/ui/sync_pages/lrc_sync_page.py:453
+#: chronograph/ui/sync_pages/lrc_sync_page.py:400
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Connection to LRClib.net timed out"
 msgstr "Час очікування з'єднання з LRClib.net минув"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:414
-#: chronograph/ui/sync_pages/lrc_sync_page.py:457
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Сталася помилка під час підключення до LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успішно опубліковано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неправильний токен публікації: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:482
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Сталася невідома помилка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:497
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Unable to publish lyrics"
 msgstr "Неможливо опублікувати текст пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -144,27 +139,27 @@ msgstr ""
 "Щоб опублікувати текст пісні, для неї необхідно встановити поля назви, "
 "виконавця, альбому та тексту пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Close"
 msgstr "Закрити"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:508
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 msgid "Cannot publish empty lyrics"
 msgstr "Не можна публікувати порожні тексти пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:509
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Why?"
 msgstr "Чому?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:157
+#: chronograph/ui/sync_pages/wbw_sync_page.py:150
 msgid "No lyrics available"
 msgstr "Немає текстів пісень"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:159
+#: chronograph/ui/sync_pages/wbw_sync_page.py:152
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Ви не надали жодного тексту пісні для синхронізації"
 
@@ -330,6 +325,7 @@ msgstr "Ярлики"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
 #: data/gtk/ui/dialogs/Preferences.blp:67
+#: data/gtk/ui/dialogs/Preferences.blp:94
 msgid "General"
 msgstr "Загальні"
 
@@ -469,7 +465,8 @@ msgstr "Шукати у LRClib по заданій назві та викона�
 msgid "Synced"
 msgstr "Синхронізовані"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
 msgstr "Прості"
 
@@ -647,43 +644,43 @@ msgstr "Використовуйте точні мілісекунди"
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Використовуйте 3-значні мілісекунди замість 2-значних"
 
-#: data/gtk/ui/dialogs/Preferences.blp:81
+#: data/gtk/ui/dialogs/Preferences.blp:83
+#, fuzzy
+msgid "File Manipulation"
+msgstr "Автоматична робота з файлами"
+
+#: data/gtk/ui/dialogs/Preferences.blp:88
 msgid "Auto file manipulation"
 msgstr "Автоматична робота з файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
+#: data/gtk/ui/dialogs/Preferences.blp:89
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Автоматично створювати та оновлювати файли коли будь-які рядки пісні "
 "змінюються"
 
-#: data/gtk/ui/dialogs/Preferences.blp:86
+#: data/gtk/ui/dialogs/Preferences.blp:97
 msgid "File format"
 msgstr "Формат файлу"
 
-#: data/gtk/ui/dialogs/Preferences.blp:87
+#: data/gtk/ui/dialogs/Preferences.blp:98
 msgid "File format for auto manipulation"
 msgstr "Формат файлу для автоматичних маніпуляцій"
 
-#: data/gtk/ui/dialogs/Preferences.blp:92
+#: data/gtk/ui/dialogs/Preferences.blp:104
 msgid "Autosave interval"
 msgstr "Інтервал автозбереження"
 
-#: data/gtk/ui/dialogs/Preferences.blp:93
+#: data/gtk/ui/dialogs/Preferences.blp:105
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Інтервал автозбереження після бездіяльності синхронізації тексту пісні"
 
-#: data/gtk/ui/dialogs/Preferences.blp:100
-#: data/gtk/ui/dialogs/Preferences.blp:124
-msgid "Word-by-Word"
-msgstr "Слово за словом"
-
-#: data/gtk/ui/dialogs/Preferences.blp:103
+#: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Save plain LRC too"
 msgstr "Збережіть також звичайний LRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:104
+#: data/gtk/ui/dialogs/Preferences.blp:116
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -691,13 +688,61 @@ msgstr ""
 "Зберігає звичайний файл LRC разом із файлом eLRC. Не працюватиме, якщо "
 "префікс eLRC не встановлено"
 
-#: data/gtk/ui/dialogs/Preferences.blp:108
+#: data/gtk/ui/dialogs/Preferences.blp:121
 msgid "eLRC prefix"
 msgstr "Префікс eLRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:123
+#: data/gtk/ui/dialogs/Preferences.blp:130
+#: data/gtk/ui/dialogs/Preferences.blp:188
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr "Допомога"
+
+#: data/gtk/ui/dialogs/Preferences.blp:133
+msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+msgstr "Префікс, файли eLRC не повинні перешкоджати звичайним LRC-файлам"
+
+#: data/gtk/ui/dialogs/Preferences.blp:143
+msgid "Lyrics embedding"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:146
+msgid "Embed lyrics within audio file"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:151
+msgid "Use individual synced lyrics tag in Vorbis files"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:152
+msgid ""
+"Enables writing synced lyrics into separate tag in Vorbis Comment capable "
+"files (ogg, flac, opus)"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:158
+msgid "Embed lyrics default format"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:159
+msgid "Brings lyrics to selected format before embedding"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:194
+msgid ""
+"The lyrics would be brought to selected format BEFORE the embedding starts.\n"
+"If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
+"be converted to LRC and then embedded the way you've selected (Vorbis)\n"
+"This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
 msgstr "Рядок за рядком"
+
+#: data/gtk/ui/dialogs/Preferences.blp:216
+msgid "Word-by-Word"
+msgstr "Слово за словом"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:44

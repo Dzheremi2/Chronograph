@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-23 20:08+0300\n"
+"POT-Creation-Date: 2025-09-10 18:19+0300\n"
 "PO-Revision-Date: 2025-08-24 00:02+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -24,18 +24,22 @@ msgid "Copied successfully"
 msgstr "Kopeerimine õnnestus"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:162
+#: chronograph/main.py:158
 msgid "translator-credits"
 msgstr "Priit Jõerüüt 2025"
 
-#: chronograph/main.py:170
+#: chronograph/main.py:166
 msgid "Inspiration"
 msgstr "Inspiratsioon"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:180
+#: chronograph/main.py:176
 msgid "Build your own dictionary"
 msgstr "Loo oma sõnastik"
+
+#: chronograph/main.py:182
+msgid "Translate the App"
+msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
@@ -74,66 +78,56 @@ msgstr "Sünkroniseeritud laulusõnad pole saadaval"
 msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
-#: chronograph/ui/dialogs/preferences.py:52
-msgctxt "button tooltip; noun"
-msgid "Help"
-msgstr "Abiteave"
-
-#: chronograph/ui/dialogs/preferences.py:58
-msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
-msgstr ""
-"eLRC failide eesliide, et nad ei läheks segamini tavaliste LRC failidega"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:288
+#: chronograph/ui/sync_pages/lrc_sync_page.py:258
+#: chronograph/ui/sync_pages/wbw_sync_page.py:280
 msgid "Lyrics exported to clipboard"
 msgstr "Laulusõnad on eksporditud lõikelauale"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:249
+#: chronograph/ui/sync_pages/lrc_sync_page.py:270
+#: chronograph/ui/sync_pages/wbw_sync_page.py:241
 msgid "Lyrics exported to file"
 msgstr "Laulusõnad on eksporditud faili"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:250
+#: chronograph/ui/sync_pages/lrc_sync_page.py:271
+#: chronograph/ui/sync_pages/wbw_sync_page.py:242
 msgid "Show"
 msgstr "Näita"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:407
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:397
+#: chronograph/ui/sync_pages/lrc_sync_page.py:440
 msgid "Failed to connect to LRClib.net"
 msgstr "Ühendamine LRClib.net serveriga ei õnnestunud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:410
-#: chronograph/ui/sync_pages/lrc_sync_page.py:453
+#: chronograph/ui/sync_pages/lrc_sync_page.py:400
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Connection to LRClib.net timed out"
 msgstr "Ühendus LRClib.net serveriga aegus"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:414
-#: chronograph/ui/sync_pages/lrc_sync_page.py:457
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Avaldamine õnnestus: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Vigane avaldamise tunnusluba: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:482
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Tekkis tundmatu viga: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:497
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Unable to publish lyrics"
 msgstr "Laulusõnade avaldamine ei õnnestu"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -141,27 +135,27 @@ msgstr ""
 "Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
 "väljad olema täidetud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Close"
 msgstr "Sulge"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:508
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 msgid "Cannot publish empty lyrics"
 msgstr "Tühje laulusõnu ei saa avaldada"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:509
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Why?"
 msgstr "Miks?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:157
+#: chronograph/ui/sync_pages/wbw_sync_page.py:150
 msgid "No lyrics available"
 msgstr "Laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:159
+#: chronograph/ui/sync_pages/wbw_sync_page.py:152
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 
@@ -328,6 +322,7 @@ msgstr "Kiirklahvid"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
 #: data/gtk/ui/dialogs/Preferences.blp:67
+#: data/gtk/ui/dialogs/Preferences.blp:94
 msgid "General"
 msgstr "Üldised"
 
@@ -467,7 +462,8 @@ msgstr "Otsi pealkirja ja esitaja nime põhjal LRClibi veebiteenusest"
 msgid "Synced"
 msgstr "Sünkroniseeritud"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
 msgstr "Tavaline"
 
@@ -642,43 +638,43 @@ msgstr "Kasuta täpseid millisekundeid"
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Näita millisekundeid kahe koha asemel kolm kohta peale koma"
 
-#: data/gtk/ui/dialogs/Preferences.blp:81
+#: data/gtk/ui/dialogs/Preferences.blp:83
+#, fuzzy
+msgid "File Manipulation"
+msgstr "Muuda laulusõnade faili automaatselt"
+
+#: data/gtk/ui/dialogs/Preferences.blp:88
 msgid "Auto file manipulation"
 msgstr "Muuda laulusõnade faili automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
+#: data/gtk/ui/dialogs/Preferences.blp:89
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Kui laulusõnade rida muutub, siis loo ja uuenda faili automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:86
+#: data/gtk/ui/dialogs/Preferences.blp:97
 msgid "File format"
 msgstr "Failivorming"
 
-#: data/gtk/ui/dialogs/Preferences.blp:87
+#: data/gtk/ui/dialogs/Preferences.blp:98
 msgid "File format for auto manipulation"
 msgstr "Failivorming automaatseks muutmiseks"
 
-#: data/gtk/ui/dialogs/Preferences.blp:92
+#: data/gtk/ui/dialogs/Preferences.blp:104
 msgid "Autosave interval"
 msgstr "Automaatse salvestamise välp"
 
-#: data/gtk/ui/dialogs/Preferences.blp:93
+#: data/gtk/ui/dialogs/Preferences.blp:105
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 "Automaatse salvestamise välp, kui laulusõnade sünkroonimine pole olnud "
 "aktiivne"
 
-#: data/gtk/ui/dialogs/Preferences.blp:100
-#: data/gtk/ui/dialogs/Preferences.blp:124
-msgid "Word-by-Word"
-msgstr "Sõnahaaval esitus"
-
-#: data/gtk/ui/dialogs/Preferences.blp:103
+#: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Save plain LRC too"
 msgstr "Salvesta ka tavaline LRC-fail"
 
-#: data/gtk/ui/dialogs/Preferences.blp:104
+#: data/gtk/ui/dialogs/Preferences.blp:116
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -686,13 +682,62 @@ msgstr ""
 "Salvesta eLRC-faili kõrvale ka taavaline LRC-fail. Eelda, et eLRC-faili "
 "prefiks on määratud"
 
-#: data/gtk/ui/dialogs/Preferences.blp:108
+#: data/gtk/ui/dialogs/Preferences.blp:121
 msgid "eLRC prefix"
 msgstr "eLRC prefiks"
 
-#: data/gtk/ui/dialogs/Preferences.blp:123
+#: data/gtk/ui/dialogs/Preferences.blp:130
+#: data/gtk/ui/dialogs/Preferences.blp:188
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr "Abiteave"
+
+#: data/gtk/ui/dialogs/Preferences.blp:133
+msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+msgstr ""
+"eLRC failide eesliide, et nad ei läheks segamini tavaliste LRC failidega"
+
+#: data/gtk/ui/dialogs/Preferences.blp:143
+msgid "Lyrics embedding"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:146
+msgid "Embed lyrics within audio file"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:151
+msgid "Use individual synced lyrics tag in Vorbis files"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:152
+msgid ""
+"Enables writing synced lyrics into separate tag in Vorbis Comment capable "
+"files (ogg, flac, opus)"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:158
+msgid "Embed lyrics default format"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:159
+msgid "Brings lyrics to selected format before embedding"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:194
+msgid ""
+"The lyrics would be brought to selected format BEFORE the embedding starts.\n"
+"If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
+"be converted to LRC and then embedded the way you've selected (Vorbis)\n"
+"This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
 msgstr "Rida-realt"
+
+#: data/gtk/ui/dialogs/Preferences.blp:216
+msgid "Word-by-Word"
+msgstr "Sõnahaaval esitus"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:44

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-23 20:08+0300\n"
+"POT-Creation-Date: 2025-09-10 18:19+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/lrcmake/"
@@ -24,18 +24,22 @@ msgid "Copied successfully"
 msgstr "வெற்றிகரமாக நகலெடுக்கப்பட்டது"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:162
+#: chronograph/main.py:158
 msgid "translator-credits"
 msgstr "தமிழ்நேரம்"
 
-#: chronograph/main.py:170
+#: chronograph/main.py:166
 #, fuzzy
 msgid "Inspiration"
 msgstr "காலம்"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:180
+#: chronograph/main.py:176
 msgid "Build your own dictionary"
+msgstr ""
+
+#: chronograph/main.py:182
+msgid "Translate the App"
 msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:113
@@ -73,93 +77,84 @@ msgstr "ஒத்திசைக்கப்பட்ட வரிகள் எ�
 msgid "No plain lyrics available"
 msgstr "வெற்று வரிகள் எதுவும் கிடைக்கவில்லை"
 
-#: chronograph/ui/dialogs/preferences.py:52
-msgctxt "button tooltip; noun"
-msgid "Help"
-msgstr ""
-
-#: chronograph/ui/dialogs/preferences.py:58
-msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
-msgstr ""
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:288
+#: chronograph/ui/sync_pages/lrc_sync_page.py:258
+#: chronograph/ui/sync_pages/wbw_sync_page.py:280
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:249
+#: chronograph/ui/sync_pages/lrc_sync_page.py:270
+#: chronograph/ui/sync_pages/wbw_sync_page.py:241
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:275
-#: chronograph/ui/sync_pages/wbw_sync_page.py:250
+#: chronograph/ui/sync_pages/lrc_sync_page.py:271
+#: chronograph/ui/sync_pages/wbw_sync_page.py:242
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:407
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:397
+#: chronograph/ui/sync_pages/lrc_sync_page.py:440
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:410
-#: chronograph/ui/sync_pages/lrc_sync_page.py:453
+#: chronograph/ui/sync_pages/lrc_sync_page.py:400
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:414
-#: chronograph/ui/sync_pages/lrc_sync_page.py:457
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "வெற்றிகரமாக வெளியிடப்பட்டது: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "தவறான வெளியீட்டு டோக்கன்: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:482
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "அறியப்படாத பிழை ஏற்பட்டது: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:497
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:508
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:509
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Seems like not every line is synced"
 msgstr "ஒவ்வொரு வரியும் ஒத்திசைக்கப்படவில்லை என்று தெரிகிறது"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:157
+#: chronograph/ui/sync_pages/wbw_sync_page.py:150
 #, fuzzy
 msgid "No lyrics available"
 msgstr "வெற்று வரிகள் எதுவும் கிடைக்கவில்லை"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:159
+#: chronograph/ui/sync_pages/wbw_sync_page.py:152
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
@@ -331,6 +326,7 @@ msgstr "குறுக்குவழிகள்"
 
 #: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
 #: data/gtk/ui/dialogs/Preferences.blp:67
+#: data/gtk/ui/dialogs/Preferences.blp:94
 msgid "General"
 msgstr "பொது"
 
@@ -471,7 +467,8 @@ msgstr "வழங்கப்பட்ட தலைப்பு மற்று�
 msgid "Synced"
 msgstr "ஒத்திசைக்கப்பட்டது"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
 msgstr "வெற்று"
 
@@ -639,52 +636,100 @@ msgstr "துல்லியமான மில்லி நொடிகளை�
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "2-இலக்கத்திற்குப் பதிலாக 3-இலக்க மில்லி விநாடிகளைப் பயன்படுத்து"
 
-#: data/gtk/ui/dialogs/Preferences.blp:81
+#: data/gtk/ui/dialogs/Preferences.blp:83
+#, fuzzy
+msgid "File Manipulation"
+msgstr "ஆட்டோ கோப்பு கையாளுதல்"
+
+#: data/gtk/ui/dialogs/Preferences.blp:88
 msgid "Auto file manipulation"
 msgstr "ஆட்டோ கோப்பு கையாளுதல்"
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
+#: data/gtk/ui/dialogs/Preferences.blp:89
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "எந்தவொரு பாடல் வரிகளும் மாறும்போது கோப்புகளை தானாக உருவாக்கி புதுப்பிக்கும்"
 
-#: data/gtk/ui/dialogs/Preferences.blp:86
+#: data/gtk/ui/dialogs/Preferences.blp:97
 msgid "File format"
 msgstr "கோப்பு வடிவம்"
 
-#: data/gtk/ui/dialogs/Preferences.blp:87
+#: data/gtk/ui/dialogs/Preferences.blp:98
 msgid "File format for auto manipulation"
 msgstr "ஆட்டோ கையாளுதலுக்கான கோப்பு வடிவம்"
 
-#: data/gtk/ui/dialogs/Preferences.blp:92
+#: data/gtk/ui/dialogs/Preferences.blp:104
 msgid "Autosave interval"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:93
+#: data/gtk/ui/dialogs/Preferences.blp:105
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:100
-#: data/gtk/ui/dialogs/Preferences.blp:124
-msgid "Word-by-Word"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:103
+#: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Save plain LRC too"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:104
+#: data/gtk/ui/dialogs/Preferences.blp:116
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:108
+#: data/gtk/ui/dialogs/Preferences.blp:121
 msgid "eLRC prefix"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:123
+#: data/gtk/ui/dialogs/Preferences.blp:130
+#: data/gtk/ui/dialogs/Preferences.blp:188
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:133
+msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:143
+msgid "Lyrics embedding"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:146
+msgid "Embed lyrics within audio file"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:151
+msgid "Use individual synced lyrics tag in Vorbis files"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:152
+msgid ""
+"Enables writing synced lyrics into separate tag in Vorbis Comment capable "
+"files (ogg, flac, opus)"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:158
+msgid "Embed lyrics default format"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:159
+msgid "Brings lyrics to selected format before embedding"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:194
+msgid ""
+"The lyrics would be brought to selected format BEFORE the embedding starts.\n"
+"If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
+"be converted to LRC and then embedded the way you've selected (Vorbis)\n"
+"This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:216
+msgid "Word-by-Word"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
