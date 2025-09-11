@@ -24,6 +24,7 @@
     <file alias="schema.yaml">resources/schema.yaml</file>
     <file alias="actions/lrc_sync_page_actions.yaml">resources/actions/lrc_sync_page_actions.yaml</file>
     <file alias="actions/wbw_sync_page_actions.yaml">resources/actions/wbw_sync_page_actions.yaml</file>
+    <file alias="actions/metadata_editor.yaml">resources/actions/metadata_editor.yaml</file>
    </gresource>
   <!-- Icons -->
   <gresource prefix="@PREFIX@/icons/scalable/actions/">
@@ -58,6 +59,7 @@
     <file alias="chr-connection-timeout-symbolic.svg">icons/icons/symbolic/chr-connection-timeout-symbolic.svg</file>
     <file alias="chr-error-occured-symbolic.svg">icons/icons/symbolic/chr-error-occured-symbolic.svg</file>
     <file alias="chr-file-symbolic.svg">icons/icons/symbolic/chr-file-symbolic.svg</file>
+    <file alias="chr-text-file-symbolic.svg">icons/icons/symbolic/chr-text-file-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

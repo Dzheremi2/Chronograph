@@ -10,5 +10,5 @@ class FileUntaggable(BaseFile):
 
         self.cover = None
 
-    def embed_lyrics(self, *_args):
+    def embed_lyrics(self, lyrics: str, *, force: bool = False):
         pass

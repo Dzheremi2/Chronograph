@@ -163,7 +163,7 @@ class eLRCParser:
         Parameters
         ----------
         lines : tuple[tuple[WordToken, ...], ...]
-            Lines in format of tuple og tuples (lines) of `WordToken`s
+            Lines in format of tuple of tuples (lines) of `WordToken`s
 
         Returns
         -------

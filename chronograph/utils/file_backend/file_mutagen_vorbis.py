@@ -198,8 +198,8 @@ class FileVorbis(TaggableFile):
             self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
         setattr(self, tags_conjunction[tag_name][0], new_val)
 
-    def embed_lyrics(self, lyrics: str):
-        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
+    def embed_lyrics(self, lyrics: str, *, force: bool = False) -> None:
+        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
             lyrics = lyrics_to_schema_preference(lyrics)
             if not Schema.get("root.settings.file-manipulation.embed-lyrics.vorbis"):
                 self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics

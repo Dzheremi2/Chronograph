@@ -23,7 +23,6 @@ class FileID3(TaggableFile):
 
     __gtype_name__ = "FileID3"
 
-
     def compress_images(self) -> None:
         if Schema.get("root.settings.general.compressed-covers.enabled"):
             quality = Schema.get("root.settings.general.compressed-covers.level")
@@ -149,8 +148,8 @@ class FileID3(TaggableFile):
                 self._mutagen_file.tags.add(TALB(text=[new_val]))
         setattr(self, tags_conjunction[tag_name], new_val)
 
-    def embed_lyrics(self, lyrics: str) -> None:
-        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
+    def embed_lyrics(self, lyrics: str, *, force: bool = False) -> None:
+        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
             lyrics = lyrics_to_schema_preference(lyrics)
             try:
                 self._mutagen_file.tags["USLT"].text = lyrics

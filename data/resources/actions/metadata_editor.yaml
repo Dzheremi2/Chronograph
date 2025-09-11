@@ -1,0 +1,6 @@
+groups:
+  cover:
+    - name: change
+      callback: _change_cover
+    - name: remove
+      callback: _remove_cover

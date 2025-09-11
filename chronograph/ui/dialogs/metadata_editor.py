@@ -3,12 +3,16 @@ from typing import Optional
 from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
 from chronograph.internal import Constants
+from chronograph.ui.widgets import song_card
+from chronograph.utils.wbw.elrc_parser import eLRCParser
+from dgutils import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
 
 
 @Gtk.Template.from_resource(Constants.PREFIX + "/gtk/ui/dialogs/MetadataEditor.ui")
+@Actions.from_schema(Constants.PREFIX + "/resources/actions/metadata_editor.yaml")
 class MetadataEditor(Adw.Dialog):
     __gtype_name__ = "MetadataEditor"
 
@@ -16,8 +20,12 @@ class MetadataEditor(Adw.Dialog):
     title_row: Adw.EntryRow = gtc()
     artist_row: Adw.EntryRow = gtc()
     album_row: Adw.EntryRow = gtc()
+    embed_lyrics_button: Gtk.Button = gtc()
 
-    def __init__(self, card) -> None:
+    def __init__(self, card: "song_card.SongCard") -> None:
+        from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+        from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+
         super().__init__()
         self._is_cover_changed: bool = False
         self._new_cover_path: Optional[str] = ""
@@ -29,20 +37,44 @@ class MetadataEditor(Adw.Dialog):
         )
         self.album_row.set_text(self._card.album)
 
-        _actions = Gio.SimpleActionGroup.new()
-        _change_action = Gio.SimpleAction.new("change", None)
-        _change_action.connect("activate", self._change_cover)
-        _remove_action = Gio.SimpleAction.new("remove", None)
-        _remove_action.connect("activate", self._remove_cover)
-        _actions.add_action(_change_action)
-        _actions.add_action(_remove_action)
-        self.insert_action_group("cover", _actions)
+        # Hide "Embed Lyrics" button if launched from library page
+        page = Constants.WIN.navigation_view.get_visible_page()
+        if not isinstance(page, (WBWSyncPage, LRCSyncPage)):
+            self.embed_lyrics_button.set_visible(False)
 
     @Gtk.Template.Callback()
     def on_cancel_clicked(self, *_args) -> None:
         """Handle cancel button click"""
         self.close()
         logger.debug("Metadata Editor(%s) closed", self)
+
+    @Gtk.Template.Callback()
+    def on_embed_lyrics_clicked(self, *_args) -> None:
+        """Embedding lyrics to the file on button click"""
+        from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+        from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+
+        # pylint: disable=protected-access
+        page = Constants.WIN.navigation_view.get_visible_page()
+        if isinstance(page, WBWSyncPage):
+            if (
+                page.modes.get_page(page.modes.get_visible_child())
+                == page.edit_view_stack_page
+            ):
+                lyrics = page.edit_view_text_view.get_buffer().get_text(
+                    page.edit_view_text_view.get_buffer().get_start_iter(),
+                    page.edit_view_text_view.get_buffer().get_end_iter(),
+                    False,
+                )
+            else:
+                lyrics = eLRCParser.create_lyrics_elrc(page._lyrics_model.get_tokens())
+            self._card._file.embed_lyrics(lyrics, force=True)
+        elif isinstance(page, LRCSyncPage):
+            lyrics = [line.get_text() for line in page.sync_lines]
+            lyrics = "\n".join(lyrics).strip()
+            self._card._file.embed_lyrics(lyrics, force=True)
+        else:
+            logger.debug("Prevented lyrics embedding from library page")
 
     @Gtk.Template.Callback()
     def save(self, *_args) -> None:

@@ -168,13 +168,15 @@ class BaseFile:
         """
         raise NotImplementedError
 
-    def embed_lyrics(self, lyrics: str) -> None:
+    def embed_lyrics(self, lyrics: str, *, force: bool = False) -> None:
         """Embeds the lyrics to the corresponding tags in realization
 
         Parameters
         ----------
         lyrics : str
             lyrics
+        force : bool, by default `False`
+            Allows to embed lyrics independently of schema settings
 
         Should be implemented in file specific child classes
         """
