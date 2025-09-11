@@ -59,7 +59,6 @@
     <file alias="chr-connection-timeout-symbolic.svg">icons/icons/symbolic/chr-connection-timeout-symbolic.svg</file>
     <file alias="chr-error-occured-symbolic.svg">icons/icons/symbolic/chr-error-occured-symbolic.svg</file>
     <file alias="chr-file-symbolic.svg">icons/icons/symbolic/chr-file-symbolic.svg</file>
-    <file alias="chr-text-file-symbolic.svg">icons/icons/symbolic/chr-text-file-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>
