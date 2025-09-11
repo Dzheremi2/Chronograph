@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-10 18:19+0300\n"
-"PO-Revision-Date: 2025-08-24 00:02+0000\n"
+"PO-Revision-Date: 2025-09-10 22:02+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -40,7 +40,7 @@ msgstr "Створіть власний словник"
 
 #: chronograph/main.py:182
 msgid "Translate the App"
-msgstr ""
+msgstr "Перекласти додаток"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
@@ -645,9 +645,8 @@ msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Використовуйте 3-значні мілісекунди замість 2-значних"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
-#, fuzzy
 msgid "File Manipulation"
-msgstr "Автоматична робота з файлами"
+msgstr "Маніпулювання файлами"
 
 #: data/gtk/ui/dialogs/Preferences.blp:88
 msgid "Auto file manipulation"
@@ -704,29 +703,32 @@ msgstr "Префікс, файли eLRC не повинні перешкоджа
 
 #: data/gtk/ui/dialogs/Preferences.blp:143
 msgid "Lyrics embedding"
-msgstr ""
+msgstr "Вбудовування текстів пісень"
 
 #: data/gtk/ui/dialogs/Preferences.blp:146
 msgid "Embed lyrics within audio file"
-msgstr ""
+msgstr "Вбудувати текст пісні в аудіофайл пісні"
 
 #: data/gtk/ui/dialogs/Preferences.blp:151
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr ""
+"Використовувати окремий тег синхронізованих текстів пісень у файлах Vorbis"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
 msgstr ""
+"Дозволяє записувати синхронізовані тексти пісень в окремий тег у файлах "
+"Vorbis з можливістю коментарів (ogg, flac, opus)"
 
 #: data/gtk/ui/dialogs/Preferences.blp:158
 msgid "Embed lyrics default format"
-msgstr ""
+msgstr "Вбудувати текст пісні у форматі за замовчуванням"
 
 #: data/gtk/ui/dialogs/Preferences.blp:159
 msgid "Brings lyrics to selected format before embedding"
-msgstr ""
+msgstr "Перетворює текст пісні у вибраний формат перед вбудовуванням"
 
 #: data/gtk/ui/dialogs/Preferences.blp:194
 msgid ""
@@ -735,6 +737,11 @@ msgid ""
 "be converted to LRC and then embedded the way you've selected (Vorbis)\n"
 "This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
+"Текст пісні буде перетворено у вибраний формат ПЕРЕД початком вбудовування.\n"
+"Якщо ви використовуєте, наприклад, eLRC, але формат за замовчуванням "
+"встановлено як LRC, то текст пісні буде перетворено у LRC, а потім вбудовано "
+"у вибраний вами формат (Vorbis).\n"
+"Це лише перетворює текст пісні у вибраний формат (eLRC -> LRC -> Plain)"
 
 #: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"

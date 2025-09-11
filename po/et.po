@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-10 18:19+0300\n"
-"PO-Revision-Date: 2025-08-24 00:02+0000\n"
+"PO-Revision-Date: 2025-09-11 10:29+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -39,7 +39,7 @@ msgstr "Loo oma sõnastik"
 
 #: chronograph/main.py:182
 msgid "Translate the App"
-msgstr ""
+msgstr "Tõlgi rakendust"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
@@ -639,9 +639,8 @@ msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Näita millisekundeid kahe koha asemel kolm kohta peale koma"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
-#, fuzzy
 msgid "File Manipulation"
-msgstr "Muuda laulusõnade faili automaatselt"
+msgstr "Failide muutmine"
 
 #: data/gtk/ui/dialogs/Preferences.blp:88
 msgid "Auto file manipulation"
@@ -699,29 +698,31 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:143
 msgid "Lyrics embedding"
-msgstr ""
+msgstr "Laulusõnade lõimimine"
 
 #: data/gtk/ui/dialogs/Preferences.blp:146
 msgid "Embed lyrics within audio file"
-msgstr ""
+msgstr "Lõimi laulusõnad helifaili"
 
 #: data/gtk/ui/dialogs/Preferences.blp:151
 msgid "Use individual synced lyrics tag in Vorbis files"
-msgstr ""
+msgstr "Kasuta Vorbise failides individuaalseid sünkroonitud laulusõnade silte"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
 msgstr ""
+"Võimaldab „Vorbis Comment“ spetsifikatsiooni järgivates failides (ogg, flac, "
+"opus) salvestada sünkroonitud laulusõnu eraldi siltidesse"
 
 #: data/gtk/ui/dialogs/Preferences.blp:158
 msgid "Embed lyrics default format"
-msgstr ""
+msgstr "Lõimitud laulusõnade vaikimisi vorming"
 
 #: data/gtk/ui/dialogs/Preferences.blp:159
 msgid "Brings lyrics to selected format before embedding"
-msgstr ""
+msgstr "Muudab laulusõnad enne lõimimist valitud vormingusse"
 
 #: data/gtk/ui/dialogs/Preferences.blp:194
 msgid ""
@@ -730,6 +731,12 @@ msgid ""
 "be converted to LRC and then embedded the way you've selected (Vorbis)\n"
 "This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
+"Laulusõnad teisendatakse valitud vormingusse ENNE lõimimise alustamist.\n"
+"Kui näiteks kasutad eLRC vormingut, aga vaikimisi vorming on LRC, siis "
+"laulusõnad teisendatakse LRC vormingusse enne lõimimist sinu valitud viisil "
+"(Vorbis)\n"
+"See on vaid varuvariant valitud vormingu kontekstis (eLRC -> LRC -> "
+"Tavatekst)"
 
 #: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
