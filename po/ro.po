@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 18:19+0300\n"
+"POT-Creation-Date: 2025-09-11 18:40+0300\n"
 "PO-Revision-Date: 2024-11-18 00:25+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -75,82 +75,82 @@ msgstr ""
 msgid "No plain lyrics available"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:258
-#: chronograph/ui/sync_pages/wbw_sync_page.py:280
+#: chronograph/ui/sync_pages/lrc_sync_page.py:261
+#: chronograph/ui/sync_pages/wbw_sync_page.py:288
 msgid "Lyrics exported to clipboard"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:270
-#: chronograph/ui/sync_pages/wbw_sync_page.py:241
+#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+#: chronograph/ui/sync_pages/wbw_sync_page.py:248
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:271
-#: chronograph/ui/sync_pages/wbw_sync_page.py:242
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/wbw_sync_page.py:249
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:397
-#: chronograph/ui/sync_pages/lrc_sync_page.py:440
+#: chronograph/ui/sync_pages/lrc_sync_page.py:402
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:400
-#: chronograph/ui/sync_pages/lrc_sync_page.py:443
+#: chronograph/ui/sync_pages/lrc_sync_page.py:405
+#: chronograph/ui/sync_pages/lrc_sync_page.py:448
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:452
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:465
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:492
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:489
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:498
+#: chronograph/ui/sync_pages/lrc_sync_page.py:503
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:505
+#: chronograph/ui/sync_pages/lrc_sync_page.py:510
 msgid "Seems like not every line is synced"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:150
+#: chronograph/ui/sync_pages/wbw_sync_page.py:157
 msgid "No lyrics available"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:152
+#: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
@@ -313,9 +313,9 @@ msgstr ""
 msgid "Shortcuts"
 msgstr ""
 
-#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
-#: data/gtk/ui/dialogs/Preferences.blp:67
-#: data/gtk/ui/dialogs/Preferences.blp:94
+#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/ui/dialogs/Preferences.blp:69
+#: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr ""
 
@@ -455,8 +455,8 @@ msgstr ""
 msgid "Synced"
 msgstr ""
 
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
-#: data/gtk/ui/dialogs/Preferences.blp:169
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:166
+#: data/gtk/ui/dialogs/Preferences.blp:168
 msgid "Plain"
 msgstr ""
 
@@ -504,186 +504,190 @@ msgstr ""
 msgid "Change cover"
 msgstr ""
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:100
-msgid "Set cover"
+#: data/gtk/ui/dialogs/MetadataEditor.blp:93
+msgid "Embed Lyrics"
 msgstr ""
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
+msgid "Set cover"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:110
 msgid "Remove cover"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:10
+#: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:13
+#: data/gtk/ui/dialogs/Preferences.blp:15
 msgid "Reset quick edit dialog on close"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:14
+#: data/gtk/ui/dialogs/Preferences.blp:16
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:18
+#: data/gtk/ui/dialogs/Preferences.blp:20
 msgid "Save session on app close"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:19
+#: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:23
+#: data/gtk/ui/dialogs/Preferences.blp:25
 msgid "Automatically toggle List View mode"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:24
+#: data/gtk/ui/dialogs/Preferences.blp:26
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:28
+#: data/gtk/ui/dialogs/Preferences.blp:30
 msgid "Display compressed covers"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:29
+#: data/gtk/ui/dialogs/Preferences.blp:31
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:33
+#: data/gtk/ui/dialogs/Preferences.blp:35
 msgid "Quality level"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:34
+#: data/gtk/ui/dialogs/Preferences.blp:36
 msgid "The higher value, the higher cover quality"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:41
+#: data/gtk/ui/dialogs/Preferences.blp:43
 msgid "Parse directories recursively"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:42
+#: data/gtk/ui/dialogs/Preferences.blp:44
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:45
+#: data/gtk/ui/dialogs/Preferences.blp:47
 msgid "Follow symlinks"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:46
+#: data/gtk/ui/dialogs/Preferences.blp:48
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:52
+#: data/gtk/ui/dialogs/Preferences.blp:54
 msgid "Debug"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:55
+#: data/gtk/ui/dialogs/Preferences.blp:57
 msgid "Enable Debug logging profile"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:58
 msgid "Expands logging information for debug purposes"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:57
+#: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "NEEDS RESTART"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/dialogs/Preferences.blp:65
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Syncing type"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:71
+#: data/gtk/ui/dialogs/Preferences.blp:73
 msgid ""
 "Defines the default workflow of syncing process. It may be either Line-by-"
 "Line, or Word-by-Word\n"
 "WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:76
+#: data/gtk/ui/dialogs/Preferences.blp:78
 msgid "Use precise milliseconds"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:77
+#: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:83
+#: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "File Manipulation"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:88
+#: data/gtk/ui/dialogs/Preferences.blp:90
 msgid "Auto file manipulation"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:89
+#: data/gtk/ui/dialogs/Preferences.blp:91
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:97
+#: data/gtk/ui/dialogs/Preferences.blp:100
 msgid "File format"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
+#: data/gtk/ui/dialogs/Preferences.blp:101
 msgid "File format for auto manipulation"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:104
+#: data/gtk/ui/dialogs/Preferences.blp:106
 msgid "Autosave interval"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:105
+#: data/gtk/ui/dialogs/Preferences.blp:107
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:115
+#: data/gtk/ui/dialogs/Preferences.blp:117
 msgid "Save plain LRC too"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:116
+#: data/gtk/ui/dialogs/Preferences.blp:118
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:121
+#: data/gtk/ui/dialogs/Preferences.blp:122
 msgid "eLRC prefix"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:130
-#: data/gtk/ui/dialogs/Preferences.blp:188
+#: data/gtk/ui/dialogs/Preferences.blp:131
+#: data/gtk/ui/dialogs/Preferences.blp:187
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:133
+#: data/gtk/ui/dialogs/Preferences.blp:134
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:143
+#: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Lyrics embedding"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:146
+#: data/gtk/ui/dialogs/Preferences.blp:148
 msgid "Embed lyrics within audio file"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:151
+#: data/gtk/ui/dialogs/Preferences.blp:152
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:153
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
@@ -697,7 +701,7 @@ msgstr ""
 msgid "Brings lyrics to selected format before embedding"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
+#: data/gtk/ui/dialogs/Preferences.blp:193
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -705,11 +709,11 @@ msgid ""
 "This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:215
+#: data/gtk/ui/dialogs/Preferences.blp:214
 msgid "Line-by-Line"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:216
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Word-by-Word"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 18:19+0300\n"
+"POT-Creation-Date: 2025-09-11 18:40+0300\n"
 "PO-Revision-Date: 2025-09-11 10:29+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -78,56 +78,56 @@ msgstr "Sünkroniseeritud laulusõnad pole saadaval"
 msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:258
-#: chronograph/ui/sync_pages/wbw_sync_page.py:280
+#: chronograph/ui/sync_pages/lrc_sync_page.py:261
+#: chronograph/ui/sync_pages/wbw_sync_page.py:288
 msgid "Lyrics exported to clipboard"
 msgstr "Laulusõnad on eksporditud lõikelauale"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:270
-#: chronograph/ui/sync_pages/wbw_sync_page.py:241
+#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+#: chronograph/ui/sync_pages/wbw_sync_page.py:248
 msgid "Lyrics exported to file"
 msgstr "Laulusõnad on eksporditud faili"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:271
-#: chronograph/ui/sync_pages/wbw_sync_page.py:242
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/wbw_sync_page.py:249
 msgid "Show"
 msgstr "Näita"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:397
-#: chronograph/ui/sync_pages/lrc_sync_page.py:440
+#: chronograph/ui/sync_pages/lrc_sync_page.py:402
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Failed to connect to LRClib.net"
 msgstr "Ühendamine LRClib.net serveriga ei õnnestunud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:400
-#: chronograph/ui/sync_pages/lrc_sync_page.py:443
+#: chronograph/ui/sync_pages/lrc_sync_page.py:405
+#: chronograph/ui/sync_pages/lrc_sync_page.py:448
 msgid "Connection to LRClib.net timed out"
 msgstr "Ühendus LRClib.net serveriga aegus"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:452
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:465
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Avaldamine õnnestus: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Vigane avaldamise tunnusluba: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Tekkis tundmatu viga: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:492
 msgid "Unable to publish lyrics"
 msgstr "Laulusõnade avaldamine ei õnnestu"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:489
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -135,27 +135,27 @@ msgstr ""
 "Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
 "väljad olema täidetud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Close"
 msgstr "Sulge"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:498
+#: chronograph/ui/sync_pages/lrc_sync_page.py:503
 msgid "Cannot publish empty lyrics"
 msgstr "Tühje laulusõnu ei saa avaldada"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Why?"
 msgstr "Miks?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:505
+#: chronograph/ui/sync_pages/lrc_sync_page.py:510
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:150
+#: chronograph/ui/sync_pages/wbw_sync_page.py:157
 msgid "No lyrics available"
 msgstr "Laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:152
+#: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 
@@ -320,9 +320,9 @@ msgstr "Otsi"
 msgid "Shortcuts"
 msgstr "Kiirklahvid"
 
-#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
-#: data/gtk/ui/dialogs/Preferences.blp:67
-#: data/gtk/ui/dialogs/Preferences.blp:94
+#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/ui/dialogs/Preferences.blp:69
+#: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "Üldised"
 
@@ -462,8 +462,8 @@ msgstr "Otsi pealkirja ja esitaja nime põhjal LRClibi veebiteenusest"
 msgid "Synced"
 msgstr "Sünkroniseeritud"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
-#: data/gtk/ui/dialogs/Preferences.blp:169
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:166
+#: data/gtk/ui/dialogs/Preferences.blp:168
 msgid "Plain"
 msgstr "Tavaline"
 
@@ -513,49 +513,53 @@ msgstr "Rakenda"
 msgid "Change cover"
 msgstr "Muuda kaanepilti"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:100
+#: data/gtk/ui/dialogs/MetadataEditor.blp:93
+msgid "Embed Lyrics"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Set cover"
 msgstr "Määra kaanepilt"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+#: data/gtk/ui/dialogs/MetadataEditor.blp:110
 msgid "Remove cover"
 msgstr "Eemalda kaanepilt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:10
+#: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
 msgstr "Käitumine"
 
-#: data/gtk/ui/dialogs/Preferences.blp:13
+#: data/gtk/ui/dialogs/Preferences.blp:15
 msgid "Reset quick edit dialog on close"
 msgstr "Sulgemisel tühjenda kiirmuutmise vaade"
 
-#: data/gtk/ui/dialogs/Preferences.blp:14
+#: data/gtk/ui/dialogs/Preferences.blp:16
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr "Vali, kas sulgemisel peaks tühjendama kiirmuutmise vaate"
 
-#: data/gtk/ui/dialogs/Preferences.blp:18
+#: data/gtk/ui/dialogs/Preferences.blp:20
 msgid "Save session on app close"
 msgstr "Rakenduse sulgemisel salvesta sessioon"
 
-#: data/gtk/ui/dialogs/Preferences.blp:19
+#: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
 msgstr "Järgmisel käivitamisel on viimati avatud kaust meeles"
 
-#: data/gtk/ui/dialogs/Preferences.blp:23
+#: data/gtk/ui/dialogs/Preferences.blp:25
 msgid "Automatically toggle List View mode"
 msgstr "Muuda loendivaadet automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:24
+#: data/gtk/ui/dialogs/Preferences.blp:26
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
 "Kui akna või ekraani mõõt pole piisav, siis muuda loendivaadet vastavalt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:28
+#: data/gtk/ui/dialogs/Preferences.blp:30
 msgid "Display compressed covers"
 msgstr "Näita kaanepilte pakituna"
 
-#: data/gtk/ui/dialogs/Preferences.blp:29
+#: data/gtk/ui/dialogs/Preferences.blp:31
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
@@ -563,29 +567,29 @@ msgstr ""
 "See võib natuke vähendada mälukasutust,\n"
 "kuid ei mõjuta tegelikke salvestatud kaanepilte"
 
-#: data/gtk/ui/dialogs/Preferences.blp:33
+#: data/gtk/ui/dialogs/Preferences.blp:35
 msgid "Quality level"
 msgstr "Pildikvaliteet"
 
-#: data/gtk/ui/dialogs/Preferences.blp:34
+#: data/gtk/ui/dialogs/Preferences.blp:36
 msgid "The higher value, the higher cover quality"
 msgstr "Mida suurem number, seda kvaliteetsem kaanepilt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:41
+#: data/gtk/ui/dialogs/Preferences.blp:43
 msgid "Parse directories recursively"
 msgstr "Töötle kaustu rekursiivselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:42
+#: data/gtk/ui/dialogs/Preferences.blp:44
 msgid "Scans provided directory for supported files recursively"
 msgstr ""
 "Sellega valikuga rakendus otsib toetatud faile etteantud kaustast ja tema "
 "kõikidest alamkaustadest"
 
-#: data/gtk/ui/dialogs/Preferences.blp:45
+#: data/gtk/ui/dialogs/Preferences.blp:47
 msgid "Follow symlinks"
 msgstr "Järgne sümbollinkidele"
 
-#: data/gtk/ui/dialogs/Preferences.blp:46
+#: data/gtk/ui/dialogs/Preferences.blp:48
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
@@ -595,33 +599,33 @@ msgstr ""
 "Võib ülemääraselt suurendada mälukasutust ja kui sümbollingid on tsüklis, "
 "siis läheb ka otsing tsüklisse"
 
-#: data/gtk/ui/dialogs/Preferences.blp:52
+#: data/gtk/ui/dialogs/Preferences.blp:54
 msgid "Debug"
 msgstr "Veaotsing"
 
-#: data/gtk/ui/dialogs/Preferences.blp:55
+#: data/gtk/ui/dialogs/Preferences.blp:57
 msgid "Enable Debug logging profile"
 msgstr "Lülita veaotsinguks vajalik silumisprofiil sisse"
 
-#: data/gtk/ui/dialogs/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:58
 msgid "Expands logging information for debug purposes"
 msgstr "Järgnevaga on kasutamisel tavalisest üksikasjalikum logimine"
 
-#: data/gtk/ui/dialogs/Preferences.blp:57
+#: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "NEEDS RESTART"
 msgstr "VAJAB RAKENDUSE UUESTI KÄIVITAMIST"
 
-#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/dialogs/Preferences.blp:65
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Sünkroniseerin"
 
-#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Syncing type"
 msgstr "Sünkroonimise tüüp"
 
-#: data/gtk/ui/dialogs/Preferences.blp:71
+#: data/gtk/ui/dialogs/Preferences.blp:73
 msgid ""
 "Defines the default workflow of syncing process. It may be either Line-by-"
 "Line, or Word-by-Word\n"
@@ -630,50 +634,50 @@ msgstr ""
 "Määrab kas sõnahaaval või ridahaaval toimiv sünkroonimise vaikimisi töövoo.\n"
 "SÕNAHAAVAL ESITUS EI TOIMI MOBIILSETES NUTISEADMETES"
 
-#: data/gtk/ui/dialogs/Preferences.blp:76
+#: data/gtk/ui/dialogs/Preferences.blp:78
 msgid "Use precise milliseconds"
 msgstr "Kasuta täpseid millisekundeid"
 
-#: data/gtk/ui/dialogs/Preferences.blp:77
+#: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Näita millisekundeid kahe koha asemel kolm kohta peale koma"
 
-#: data/gtk/ui/dialogs/Preferences.blp:83
+#: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "File Manipulation"
 msgstr "Failide muutmine"
 
-#: data/gtk/ui/dialogs/Preferences.blp:88
+#: data/gtk/ui/dialogs/Preferences.blp:90
 msgid "Auto file manipulation"
 msgstr "Muuda laulusõnade faili automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:89
+#: data/gtk/ui/dialogs/Preferences.blp:91
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Kui laulusõnade rida muutub, siis loo ja uuenda faili automaatselt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:97
+#: data/gtk/ui/dialogs/Preferences.blp:100
 msgid "File format"
 msgstr "Failivorming"
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
+#: data/gtk/ui/dialogs/Preferences.blp:101
 msgid "File format for auto manipulation"
 msgstr "Failivorming automaatseks muutmiseks"
 
-#: data/gtk/ui/dialogs/Preferences.blp:104
+#: data/gtk/ui/dialogs/Preferences.blp:106
 msgid "Autosave interval"
 msgstr "Automaatse salvestamise välp"
 
-#: data/gtk/ui/dialogs/Preferences.blp:105
+#: data/gtk/ui/dialogs/Preferences.blp:107
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 "Automaatse salvestamise välp, kui laulusõnade sünkroonimine pole olnud "
 "aktiivne"
 
-#: data/gtk/ui/dialogs/Preferences.blp:115
+#: data/gtk/ui/dialogs/Preferences.blp:117
 msgid "Save plain LRC too"
 msgstr "Salvesta ka tavaline LRC-fail"
 
-#: data/gtk/ui/dialogs/Preferences.blp:116
+#: data/gtk/ui/dialogs/Preferences.blp:118
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -681,34 +685,34 @@ msgstr ""
 "Salvesta eLRC-faili kõrvale ka taavaline LRC-fail. Eelda, et eLRC-faili "
 "prefiks on määratud"
 
-#: data/gtk/ui/dialogs/Preferences.blp:121
+#: data/gtk/ui/dialogs/Preferences.blp:122
 msgid "eLRC prefix"
 msgstr "eLRC prefiks"
 
-#: data/gtk/ui/dialogs/Preferences.blp:130
-#: data/gtk/ui/dialogs/Preferences.blp:188
+#: data/gtk/ui/dialogs/Preferences.blp:131
+#: data/gtk/ui/dialogs/Preferences.blp:187
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr "Abiteave"
 
-#: data/gtk/ui/dialogs/Preferences.blp:133
+#: data/gtk/ui/dialogs/Preferences.blp:134
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 "eLRC failide eesliide, et nad ei läheks segamini tavaliste LRC failidega"
 
-#: data/gtk/ui/dialogs/Preferences.blp:143
+#: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Lyrics embedding"
 msgstr "Laulusõnade lõimimine"
 
-#: data/gtk/ui/dialogs/Preferences.blp:146
+#: data/gtk/ui/dialogs/Preferences.blp:148
 msgid "Embed lyrics within audio file"
 msgstr "Lõimi laulusõnad helifaili"
 
-#: data/gtk/ui/dialogs/Preferences.blp:151
+#: data/gtk/ui/dialogs/Preferences.blp:152
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr "Kasuta Vorbise failides individuaalseid sünkroonitud laulusõnade silte"
 
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:153
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
@@ -724,7 +728,7 @@ msgstr "Lõimitud laulusõnade vaikimisi vorming"
 msgid "Brings lyrics to selected format before embedding"
 msgstr "Muudab laulusõnad enne lõimimist valitud vormingusse"
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
+#: data/gtk/ui/dialogs/Preferences.blp:193
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -738,11 +742,11 @@ msgstr ""
 "See on vaid varuvariant valitud vormingu kontekstis (eLRC -> LRC -> "
 "Tavatekst)"
 
-#: data/gtk/ui/dialogs/Preferences.blp:215
+#: data/gtk/ui/dialogs/Preferences.blp:214
 msgid "Line-by-Line"
 msgstr "Rida-realt"
 
-#: data/gtk/ui/dialogs/Preferences.blp:216
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Word-by-Word"
 msgstr "Sõnahaaval esitus"
 

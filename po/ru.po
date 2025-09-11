@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 18:19+0300\n"
-"PO-Revision-Date: 2025-09-10 18:20+0300\n"
+"POT-Creation-Date: 2025-09-11 18:40+0300\n"
+"PO-Revision-Date: 2025-09-11 18:41+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -79,56 +79,56 @@ msgstr "Нет синхронизированных слов"
 msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:258
-#: chronograph/ui/sync_pages/wbw_sync_page.py:280
+#: chronograph/ui/sync_pages/lrc_sync_page.py:261
+#: chronograph/ui/sync_pages/wbw_sync_page.py:288
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:270
-#: chronograph/ui/sync_pages/wbw_sync_page.py:241
+#: chronograph/ui/sync_pages/lrc_sync_page.py:273
+#: chronograph/ui/sync_pages/wbw_sync_page.py:248
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:271
-#: chronograph/ui/sync_pages/wbw_sync_page.py:242
+#: chronograph/ui/sync_pages/lrc_sync_page.py:274
+#: chronograph/ui/sync_pages/wbw_sync_page.py:249
 msgid "Show"
 msgstr "Показать"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:397
-#: chronograph/ui/sync_pages/lrc_sync_page.py:440
+#: chronograph/ui/sync_pages/lrc_sync_page.py:402
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Failed to connect to LRClib.net"
 msgstr "Не удалось подключиться к LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:400
-#: chronograph/ui/sync_pages/lrc_sync_page.py:443
+#: chronograph/ui/sync_pages/lrc_sync_page.py:405
+#: chronograph/ui/sync_pages/lrc_sync_page.py:448
 msgid "Connection to LRClib.net timed out"
 msgstr "Время ожидания подключения к LRClib.net истекло"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:452
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Произошла ошибка при подключении к LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:465
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успешно опубликовано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неверный публичный токен: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Произошла неизвестная ошибка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:492
 msgid "Unable to publish lyrics"
 msgstr "Невозможно опубликовать текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:489
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -136,27 +136,27 @@ msgstr ""
 "Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
 "«Альбом» и синхронизировать слова"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Close"
 msgstr "Закрыть"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:498
+#: chronograph/ui/sync_pages/lrc_sync_page.py:503
 msgid "Cannot publish empty lyrics"
 msgstr "Невозможно опубликовать пустой текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Why?"
 msgstr "Почему?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:505
+#: chronograph/ui/sync_pages/lrc_sync_page.py:510
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:150
+#: chronograph/ui/sync_pages/wbw_sync_page.py:157
 msgid "No lyrics available"
 msgstr "Нет текста песни"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:152
+#: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Вы не предоставили никаких слов для синхронизации"
 
@@ -320,9 +320,9 @@ msgstr "Искать"
 msgid "Shortcuts"
 msgstr "Сочетания клавиш"
 
-#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:6
-#: data/gtk/ui/dialogs/Preferences.blp:67
-#: data/gtk/ui/dialogs/Preferences.blp:94
+#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/ui/dialogs/Preferences.blp:69
+#: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "Основные"
 
@@ -462,8 +462,8 @@ msgstr "Искать на LRClib по указанным названию и и�
 msgid "Synced"
 msgstr "Синхронизированные"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
-#: data/gtk/ui/dialogs/Preferences.blp:169
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:166
+#: data/gtk/ui/dialogs/Preferences.blp:168
 msgid "Plain"
 msgstr "Простые"
 
@@ -513,50 +513,54 @@ msgstr "Применить"
 msgid "Change cover"
 msgstr "Сменить обложку"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:100
+#: data/gtk/ui/dialogs/MetadataEditor.blp:93
+msgid "Embed Lyrics"
+msgstr "Встроить слова"
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Set cover"
 msgstr "Установить обложку"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+#: data/gtk/ui/dialogs/MetadataEditor.blp:110
 msgid "Remove cover"
 msgstr "Удалить обложку"
 
-#: data/gtk/ui/dialogs/Preferences.blp:10
+#: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
 msgstr "Поведение"
 
-#: data/gtk/ui/dialogs/Preferences.blp:13
+#: data/gtk/ui/dialogs/Preferences.blp:15
 msgid "Reset quick edit dialog on close"
 msgstr "Сбрасывать диалог быстрого форматирования при закрытии"
 
-#: data/gtk/ui/dialogs/Preferences.blp:14
+#: data/gtk/ui/dialogs/Preferences.blp:16
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr ""
 "Выберите, следует ли очищать диалог бытсрого форматирования при выходе или "
 "нет"
 
-#: data/gtk/ui/dialogs/Preferences.blp:18
+#: data/gtk/ui/dialogs/Preferences.blp:20
 msgid "Save session on app close"
 msgstr "Сохранять сессию при выходе из приложения"
 
-#: data/gtk/ui/dialogs/Preferences.blp:19
+#: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
 msgstr "Открывает последнюю открытую директорию при следующем запуске"
 
-#: data/gtk/ui/dialogs/Preferences.blp:23
+#: data/gtk/ui/dialogs/Preferences.blp:25
 msgid "Automatically toggle List View mode"
 msgstr "Автоматически включать Режим Списка"
 
-#: data/gtk/ui/dialogs/Preferences.blp:24
+#: data/gtk/ui/dialogs/Preferences.blp:26
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr "Автоматически включает Режим Списка при недостаточном размере дисплея"
 
-#: data/gtk/ui/dialogs/Preferences.blp:28
+#: data/gtk/ui/dialogs/Preferences.blp:30
 msgid "Display compressed covers"
 msgstr "Отображать сжатые обложки"
 
-#: data/gtk/ui/dialogs/Preferences.blp:29
+#: data/gtk/ui/dialogs/Preferences.blp:31
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
@@ -564,27 +568,27 @@ msgstr ""
 "Может немного уменьшить потребление памяти.\n"
 "Не влияет на сами изображения, хранящиеся в файлах"
 
-#: data/gtk/ui/dialogs/Preferences.blp:33
+#: data/gtk/ui/dialogs/Preferences.blp:35
 msgid "Quality level"
 msgstr "Уровень качества"
 
-#: data/gtk/ui/dialogs/Preferences.blp:34
+#: data/gtk/ui/dialogs/Preferences.blp:36
 msgid "The higher value, the higher cover quality"
 msgstr "Чем выше значение, тем выше качество обложек"
 
-#: data/gtk/ui/dialogs/Preferences.blp:41
+#: data/gtk/ui/dialogs/Preferences.blp:43
 msgid "Parse directories recursively"
 msgstr "Сканировать директории рекурсивно"
 
-#: data/gtk/ui/dialogs/Preferences.blp:42
+#: data/gtk/ui/dialogs/Preferences.blp:44
 msgid "Scans provided directory for supported files recursively"
 msgstr "Сканирует директории на наличие поддерживаемых форматов рекурсивно"
 
-#: data/gtk/ui/dialogs/Preferences.blp:45
+#: data/gtk/ui/dialogs/Preferences.blp:47
 msgid "Follow symlinks"
 msgstr "Следовать по символическим ссылкам"
 
-#: data/gtk/ui/dialogs/Preferences.blp:46
+#: data/gtk/ui/dialogs/Preferences.blp:48
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
@@ -594,33 +598,33 @@ msgstr ""
 "Может вызвать повышенное потребление памяти и зацикливание, если есть "
 "зацикленные ссылки"
 
-#: data/gtk/ui/dialogs/Preferences.blp:52
+#: data/gtk/ui/dialogs/Preferences.blp:54
 msgid "Debug"
 msgstr "Отладка"
 
-#: data/gtk/ui/dialogs/Preferences.blp:55
+#: data/gtk/ui/dialogs/Preferences.blp:57
 msgid "Enable Debug logging profile"
 msgstr "Включить отладочный профиль журналирования"
 
-#: data/gtk/ui/dialogs/Preferences.blp:56
+#: data/gtk/ui/dialogs/Preferences.blp:58
 msgid "Expands logging information for debug purposes"
 msgstr "Расширяет информацию журнала для отладки"
 
-#: data/gtk/ui/dialogs/Preferences.blp:57
+#: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "NEEDS RESTART"
 msgstr "ТРЕБУЕТСЯ ПЕРЕЗАПУСК"
 
-#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/dialogs/Preferences.blp:65
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Синхронизация"
 
-#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:72
 msgid "Syncing type"
 msgstr "Тип синхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:71
+#: data/gtk/ui/dialogs/Preferences.blp:73
 msgid ""
 "Defines the default workflow of syncing process. It may be either Line-by-"
 "Line, or Word-by-Word\n"
@@ -630,48 +634,48 @@ msgstr ""
 "либо Пословным\n"
 "ПОСЛОВНЫЙ РЕЖИМ НЕ ПОДДЕРЖИВАЕТСЯ НА МОБИЛЬНЫХ УСТРОЙСТВАХ"
 
-#: data/gtk/ui/dialogs/Preferences.blp:76
+#: data/gtk/ui/dialogs/Preferences.blp:78
 msgid "Use precise milliseconds"
 msgstr "Использовать точные миллисекунды"
 
-#: data/gtk/ui/dialogs/Preferences.blp:77
+#: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Использовать 3-х значные миллисекунды вместо 2-х значных"
 
-#: data/gtk/ui/dialogs/Preferences.blp:83
+#: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "File Manipulation"
 msgstr "Манипулирование файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:88
+#: data/gtk/ui/dialogs/Preferences.blp:90
 msgid "Auto file manipulation"
 msgstr "Автоматическое манипулирование файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:89
+#: data/gtk/ui/dialogs/Preferences.blp:91
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Автоматически создаёт и обновляет файлы при изменении текста слов"
 
-#: data/gtk/ui/dialogs/Preferences.blp:97
+#: data/gtk/ui/dialogs/Preferences.blp:100
 msgid "File format"
 msgstr "Формат файла"
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
+#: data/gtk/ui/dialogs/Preferences.blp:101
 msgid "File format for auto manipulation"
 msgstr "Формат файла для автоманипуляции"
 
-#: data/gtk/ui/dialogs/Preferences.blp:104
+#: data/gtk/ui/dialogs/Preferences.blp:106
 msgid "Autosave interval"
 msgstr "Интервал автосохранения"
 
-#: data/gtk/ui/dialogs/Preferences.blp:105
+#: data/gtk/ui/dialogs/Preferences.blp:107
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Интервал автосохранения при бездействии синхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:115
+#: data/gtk/ui/dialogs/Preferences.blp:117
 msgid "Save plain LRC too"
 msgstr "Также сохранять обычный LRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:116
+#: data/gtk/ui/dialogs/Preferences.blp:118
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -679,35 +683,35 @@ msgstr ""
 "Сохраняет обычный LRC файл вместе с файлом eLRC. Не будет работать если "
 "префикс eLRC не задан"
 
-#: data/gtk/ui/dialogs/Preferences.blp:121
+#: data/gtk/ui/dialogs/Preferences.blp:122
 msgid "eLRC prefix"
 msgstr "Префикс eLRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:130
-#: data/gtk/ui/dialogs/Preferences.blp:188
+#: data/gtk/ui/dialogs/Preferences.blp:131
+#: data/gtk/ui/dialogs/Preferences.blp:187
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr "Помощь"
 
-#: data/gtk/ui/dialogs/Preferences.blp:133
+#: data/gtk/ui/dialogs/Preferences.blp:134
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 "Префикс, который который будут иметь eLRC файлы, чтобы не конфликтовать с "
 "обычными LRC файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:143
+#: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Lyrics embedding"
 msgstr "Встраивание слов"
 
-#: data/gtk/ui/dialogs/Preferences.blp:146
+#: data/gtk/ui/dialogs/Preferences.blp:148
 msgid "Embed lyrics within audio file"
 msgstr "Встраивать слова в аудио-файл"
 
-#: data/gtk/ui/dialogs/Preferences.blp:151
+#: data/gtk/ui/dialogs/Preferences.blp:152
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr "Использовать отдельный тег для синхронизированных слов в файлах Vorbis"
 
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:153
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
@@ -723,7 +727,7 @@ msgstr "Стандартный формат встраиваемых слов"
 msgid "Brings lyrics to selected format before embedding"
 msgstr "Приводит слова к выбранному формату пере встраиванием"
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
+#: data/gtk/ui/dialogs/Preferences.blp:193
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -735,11 +739,11 @@ msgstr ""
 "конвертированы в LRC и затем встроены выбранным способом (Vorbis)\n"
 "Слова только опускает слова по иерархии (eLRC -> LRC -> Обычные)"
 
-#: data/gtk/ui/dialogs/Preferences.blp:215
+#: data/gtk/ui/dialogs/Preferences.blp:214
 msgid "Line-by-Line"
 msgstr "Построчный"
 
-#: data/gtk/ui/dialogs/Preferences.blp:216
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Word-by-Word"
 msgstr "Пословный"
 
