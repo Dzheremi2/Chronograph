@@ -619,7 +619,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                         self.library_scrolled_window.set_child(self.library)
                     case "l":
                         self.library_scrolled_window.set_child(self.library_list)
-                Schema.set_session("root.state.library.session", "None")
+                Schema.set("root.state.library.session", "None")
                 self.right_buttons_revealer.set_reveal_child(False)
                 self.clean_files_button.set_visible(True)
                 self.sidebar.select_row(None)

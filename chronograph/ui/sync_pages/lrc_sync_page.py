@@ -76,7 +76,10 @@ class LRCSyncPage(Adw.NavigationPage):
         )
 
         # Automatically load the lyrics file if it exists
-        if Schema.get("root.settings.file-manipulation.enabled") and self._autosave_path.exists():
+        if (
+            Schema.get("root.settings.file-manipulation.enabled")
+            and self._autosave_path.exists()
+        ):
             lines = LyricsFile(self._autosave_path).get_normalized_lines()
             self.sync_lines.remove_all()
             for line in lines:
@@ -278,7 +281,8 @@ class LRCSyncPage(Adw.NavigationPage):
         for line in self.sync_lines:  # pylint: disable=not-an-iterable
             lyrics += line.get_text() + "\n"
         dialog = Gtk.FileDialog(
-            initial_name=Path(self._file.path).stem + Schema.get("root.settings.file-manipulation.format")
+            initial_name=Path(self._file.path).stem
+            + Schema.get("root.settings.file-manipulation.format")
         )
         dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
 
@@ -319,7 +323,8 @@ class LRCSyncPage(Adw.NavigationPage):
             GLib.source_remove(self._autosave_timeout_id)
         if Schema.get("root.settings.file-manipulation.enabled"):
             self._autosave_timeout_id = GLib.timeout_add(
-                Schema.get_autosave_throttling("root.settings.file-manipulation.throttling") * 1000, self._autosave
+                Schema.get("root.settings.file-manipulation.throttling") * 1000,
+                self._autosave,
             )
 
     def _autosave(self) -> Literal[False]:

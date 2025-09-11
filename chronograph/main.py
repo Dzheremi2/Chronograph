@@ -194,6 +194,7 @@ class ChronographApplication(Adw.Application):
         if not Schema.get("root.settings.general.save-session"):
             logger.info("Resetting session")
             Schema.set("root.state.library.session", "None")
+        Schema._save()  # pylint: disable=protected-access
 
         Constants.CACHE_FILE.seek(0)
         Constants.CACHE_FILE.truncate(0)

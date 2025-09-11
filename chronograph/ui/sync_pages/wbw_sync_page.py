@@ -1,8 +1,8 @@
 """Word-by-Word syncing page"""
 
 import re
-from pathlib import Path
 import traceback
+from pathlib import Path
 from typing import Literal, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
@@ -69,7 +69,14 @@ class WBWSyncPage(Adw.NavigationPage):
 
         self._elrc_autosave_path = (
             Path(self._file.path)
-            .with_name(Schema.get("root.settings.file-manipulation.elrc-prefix") + Path(self._file.path).name)
+            .with_name(
+                (
+                    Schema.get("root.settings.file-manipulation.elrc-prefix")
+                    if Schema.get("root.settings.file-manipulation.lrc-along-elrc")
+                    else ""
+                )
+                + Path(self._file.path).name
+            )
             .with_suffix(Schema.get("root.settings.file-manipulation.format"))
         )
         self._lrc_autosave_path = Path(self._file.path).with_suffix(
@@ -258,7 +265,8 @@ class WBWSyncPage(Adw.NavigationPage):
                 lyrics = ""
 
         dialog = Gtk.FileDialog(
-            initial_name=Path(self._file.path).stem + Schema.get("root.settings.file-manipulation.format")
+            initial_name=Path(self._file.path).stem
+            + Schema.get("root.settings.file-manipulation.format")
         )
         dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
 
@@ -346,7 +354,8 @@ class WBWSyncPage(Adw.NavigationPage):
             GLib.source_remove(self._autosave_timeout_id)
         if Schema.get("root.settings.file-manipulation.enabled"):
             self._autosave_timeout_id = GLib.timeout_add(
-                Schema.get("root.settings.file-manipulation.throttling") * 1000, self._autosave
+                Schema.get("root.settings.file-manipulation.throttling") * 1000,
+                self._autosave,
             )
 
     def _autosave(self) -> Literal[False]:

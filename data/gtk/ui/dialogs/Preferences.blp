@@ -94,34 +94,33 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
     Adw.PreferencesGroup {
       title: _("General");
+      sensitive: bind auto_file_manipulation_switch.active;
 
       Adw.ComboRow auto_file_manipulation_format {
         title: _("File format");
         subtitle: _("File format for auto manipulation");
         model: formats;
-        sensitive: bind auto_file_manipulation_switch.active;
       }
 
       Adw.SpinRow autosave_throttling_spin {
         title: _("Autosave interval");
         subtitle: _("Autosave interval after lyrics syncing inactivity");
         adjustment: autosave_throttling_adjustment;
-        sensitive: bind auto_file_manipulation_switch.active;
       }
     }
 
     Adw.PreferencesGroup {
       title: "eLRC";
+      sensitive: bind auto_file_manipulation_switch.active;
 
       Adw.SwitchRow save_plain_lrc_also_switch_row {
         title: _("Save plain LRC too");
         subtitle: _("Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't set");
-        sensitive: bind auto_file_manipulation_switch.active;
       }
 
       Adw.EntryRow elrc_prefix_entry_row {
         title: _("eLRC prefix");
-        sensitive: bind auto_file_manipulation_switch.active;
+        sensitive: bind save_plain_lrc_also_switch_row.active;
 
         [suffix]
         Gtk.MenuButton {
@@ -143,23 +142,21 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
     Adw.PreferencesGroup {
       title: _("Lyrics embedding");
+      sensitive: bind auto_file_manipulation_switch.active;
 
       Adw.ExpanderRow embed_lyrics_switch {
         title: _("Embed lyrics within audio file");
         show-enable-switch: true;
-        sensitive: bind auto_file_manipulation_switch.active;
 
         Adw.SwitchRow use_individual_synced_tag_vorbis_switch {
           title: _("Use individual synced lyrics tag in Vorbis files");
           subtitle: _("Enables writing synced lyrics into separate tag in Vorbis Comment capable files (ogg, flac, opus)");
-          sensitive: bind auto_file_manipulation_switch.active;
         }
       }
 
       Adw.ActionRow {
         title: _("Embed lyrics default format");
         subtitle: _("Brings lyrics to selected format before embedding");
-        sensitive: bind auto_file_manipulation_switch.active;
 
         [suffix]
         Adw.ToggleGroup embed_lyrics_default_toggle_group {
