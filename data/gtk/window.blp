@@ -242,7 +242,51 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 MenuButton {
                   icon-name: "app-menu-symbolic";
                   tooltip-text: _("App settings, info and utils");
-                  menu-model: about_app;
+                  menu-model: menu about_app {
+                    section {
+                      submenu {
+                        label: _("Sort");
+
+                        item {
+                          label: _("A-Z");
+                          action: "app.sort_type";
+                          target: "a-z";
+                        }
+
+                        item {
+                          label: _("Z-A");
+                          action: "app.sort_type";
+                          target: "z-a";
+                        }
+                      }
+
+                      submenu {
+                        label: _("View");
+
+                        item {
+                          label: _("Grid");
+                          action: "app.view_type";
+                          target: "g";
+                        }
+
+                        item {
+                          label: _("List");
+                          action: "app.view_type";
+                          target: "l";
+                        }
+                      }
+                    }
+
+                    section {
+                      item (_("Quick Editor"), "win.open_quick_editor")
+                    }
+
+                    section {
+                      item (_("Preferences"), "win.show_preferences")
+                      item (_("Keybindings"), "win.show-help-overlay")
+                      item (_("About"), "app.about")
+                    }
+                  };
                   primary: true;
                 }
 
@@ -445,67 +489,5 @@ menu open_source_menu {
   section {
     item (_("Directory"), "win.select_dir")
     item (_("Files"), "win.select_files")
-  }
-}
-
-menu sorting_menu {
-  section {
-    item {
-      label: _("A-Z");
-      action: "app.sort_type";
-      target: "a-z";
-    }
-
-    item {
-      label: _("Z-A");
-      action: "app.sort_type";
-      target: "z-a";
-    }
-  }
-}
-
-menu about_app {
-  section {
-    submenu {
-      label: _("Sort");
-
-      item {
-        label: _("A-Z");
-        action: "app.sort_type";
-        target: "a-z";
-      }
-
-      item {
-        label: _("Z-A");
-        action: "app.sort_type";
-        target: "z-a";
-      }
-    }
-
-    submenu {
-      label: _("View");
-
-      item {
-        label: _("Grid");
-        action: "app.view_type";
-        target: "g";
-      }
-
-      item {
-        label: _("List");
-        action: "app.view_type";
-        target: "l";
-      }
-    }
-  }
-
-  section {
-    item (_("Quick Editor"), "win.open_quick_editor")
-  }
-
-  section {
-    item (_("Preferences"), "win.show_preferences")
-    item (_("Keybindings"), "win.show-help-overlay")
-    item (_("About"), "app.about")
   }
 }

@@ -29,7 +29,12 @@ template $SavedLocation: Box {
 
 PopoverMenu actions_popover {
   position: bottom;
-  menu-model: actions_menu;
+  menu-model: menu actions_menu {
+    section {
+      item (_("Rename"), "sv.rename")
+      item (_("Delete"), "sv.delete")
+    }
+  };
 }
 
 Adw.AlertDialog rename_dialog {
@@ -58,11 +63,4 @@ Adw.AlertDialog deletion_alert_dialog {
     cancel: _("Cancel"),
     delete: _("Delete") destructive,
   ]
-}
-
-menu actions_menu {
-  section {
-    item (_("Rename"), "sv.rename")
-    item (_("Delete"), "sv.delete")
-  }
 }

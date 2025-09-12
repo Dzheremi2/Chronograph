@@ -171,7 +171,12 @@ template $LRClib : Adw.Dialog {
 
                     Adw.SplitButton {
                       tooltip-text: _("Synced lyrics are used by default, to use plain, select 'Use plain' from submenu");
-                      menu-model: use_lyrics_menu;
+                      menu-model: menu use_lyrics_menu {
+                        section {
+                          item (_("Use plain"), "lrclib.import_plain")
+                          item (_("Use synced"), "lrclib.import_synced")
+                        }
+                      };
                       action-name: "lrclib.import_synced";
 
                       Adw.ButtonContent {
@@ -207,13 +212,6 @@ Adw.NavigationPage collapsed_lyrics_nav_page {
       margin-bottom: 8;
       margin-top: 4;
     }
-  }
-}
-
-menu use_lyrics_menu {
-  section {
-    item (_("Use plain"), "lrclib.import_plain")
-    item (_("Use synced"), "lrclib.import_synced")
   }
 }
 
