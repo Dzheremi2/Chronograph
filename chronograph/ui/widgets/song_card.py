@@ -1,7 +1,8 @@
 from gettext import pgettext as C_
+from pathlib import Path
 from typing import Union
 
-from gi.repository import Adw, Gdk, GObject, Gtk
+from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.dialogs.box_dialog import BoxDialog
@@ -103,10 +104,26 @@ class SongCard(Gtk.Box):
         BoxDialog(
             C_("song info dialog", "About File"),
             (
-                (_("Title"), self.title_display),
-                (_("Artist"), self.artist_display),
-                (_("Album"), self.album_display),
-                (_("Path"), self.path),
+                {
+                    "title": _("Title"),
+                    "subtitle": self.title_display,
+                },
+                {
+                    "title": _("Artist"),
+                    "subtitle": self.artist_display,
+                },
+                {"title": _("Album"), "subtitle": self.album_display},
+                {
+                    "title": _("Path"),
+                    "subtitle": self.path,
+                    "action": {
+                        "icon": "open-source-symbolic",
+                        "tooltip": _("Show"),
+                        "callback": lambda _: Gio.AppInfo.launch_default_for_uri(
+                            f"file://{Path(self.path).parent}"
+                        ),
+                    },
+                },
             ),
         ).present(Constants.WIN)
         logger.debug(
