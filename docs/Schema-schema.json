@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/dgutils-app-schema.json",
+  "title": "DGutils App Schema Schema",
+  "type": "object",
+  "properties": {
+    "root": { "$ref": "#/$defs/group" }
+  },
+  "required": ["root"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "group": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/node" },
+      "description": "A group (namespace) of settings or nested groups."
+    },
+
+    "node": {
+      "oneOf": [
+        { "$ref": "#/$defs/leafRule" },
+        { "$ref": "#/$defs/group" }
+      ],
+      "description": "Either a leaf rule or a nested group."
+    },
+
+    "leafRule": {
+      "type": "object",
+      "description": "A single setting with validation rules.",
+      "properties": {
+        "type": { "enum": ["int", "float", "str", "bool"] },
+        "default": {},
+        "min":   { "type": "number", "description": "Only for int/float" },
+        "max":   { "type": "number", "description": "Only for int/float" },
+        "enum":  {
+          "type": "array",
+          "items": {},
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Only for str"
+        }
+      },
+      "required": ["type", "default"],
+      "additionalProperties": false,
+
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "int" } }, "required": ["type"] },
+          "then": {
+            "properties": {
+              "default": { "type": "integer" },
+              "min":     { "type": "integer" },
+              "max":     { "type": "integer" },
+              "enum":    false
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "float" } }, "required": ["type"] },
+          "then": {
+            "properties": {
+              "default": { "type": "number" },
+              "min":     { "type": "number" },
+              "max":     { "type": "number" },
+              "enum":    false
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "str" } }, "required": ["type"] },
+          "then": {
+            "properties": {
+              "default": { "type": "string" },
+              "enum": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "min": false,
+              "max": false
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "bool" } }, "required": ["type"] },
+          "then": {
+            "properties": {
+              "default": { "type": "boolean" },
+              "min": false,
+              "max": false,
+              "enum": false
+            }
+          }
+        }
+      ],
+
+      "examples": [
+        { "type": "int",   "default": 80,  "min": 0, "max": 100 },
+        { "type": "float", "default": 5.0, "min": 1.0, "max": 10.0 },
+        { "type": "str",   "default": "lrc", "enum": ["plain", "lrc", "elrc"] },
+        { "type": "bool",  "default": false }
+      ]
+    }
+  }
+}
