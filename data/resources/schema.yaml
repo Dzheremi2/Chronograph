@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../../docs/Schema-schema.json
+# yaml-language-server: $schema=../../docs/schemas/Schema-schema.json
 root:
   settings:
     file-manipulation:

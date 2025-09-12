@@ -9,8 +9,15 @@
     "files.associations": {
         "*.py.in": "python",
         "chronograph.in": "python",
-        "*.yaml.in": "yaml"
+        "*.yaml.in": "yaml",
+        "*.xml.in": "xml"
     },
+    "xml.fileAssociations": [
+        {
+            "pattern": "**/*.metainfo.xml*",
+            "systemId": "${workspaceFolder}/docs/schemas/appstream-metainfo.xsd"
+        }
+    ],
     "search.followSymlinks": false,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
