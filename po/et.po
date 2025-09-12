@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 18:40+0300\n"
-"PO-Revision-Date: 2025-09-11 10:29+0000\n"
+"PO-Revision-Date: 2025-09-11 22:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -515,7 +515,7 @@ msgstr "Muuda kaanepilti"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:93
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Lõimitud laulusõnad"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Set cover"

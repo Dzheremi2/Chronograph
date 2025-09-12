@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 18:40+0300\n"
-"PO-Revision-Date: 2025-09-10 22:02+0000\n"
+"PO-Revision-Date: 2025-09-11 22:01+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -518,7 +518,7 @@ msgstr "Змінити кришку"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:93
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Вбудувати текст пісні"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Set cover"
