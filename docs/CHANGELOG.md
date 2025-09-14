@@ -1,3 +1,24 @@
+## 4.1
+<p>New features</p>
+<ul>
+    <li>Added ability to embed lyrics to the audio file. It works automatically and manually (from the Sync Page)</li>
+    <li>Added "Show" button to the "Path" row in About File dialog</li>
+    <li>Preferences are now have searching ability</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+    <li>eLRC prefixed files now won't create if "Save LRC along eLRC" preference is disabled. Instead, eLRC lyrics will be written to just .lrc file</li>
+</ul>
+<p>Miscellaneous</p>
+<ul>
+    <li>Line in lyrics editor on Word-by-Word sync page are now not wrapping for better distinguish of line borders</li>
+    <li>The app preferences storing method changed... again. So your preferences will reset after the update. Please, consider to reconfigure the app preferences after the update. Sorry for that. Hope preferences schema won't change ever again :(</li>
+</ul>
+<p>Translation</p>
+<ul>
+    <li>Translations update</li>
+</ul>
+
 ## 4.0
 <p>A new eLRC format support!</p>
 <p>Added support for advanced syncing Word-by-Word (WBW).</p>

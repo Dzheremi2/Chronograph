@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-11 18:40+0300\n"
+"POT-Creation-Date: 2025-09-14 19:57+0300\n"
 "PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/chronograph/"
@@ -93,6 +93,7 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:274
 #: chronograph/ui/sync_pages/wbw_sync_page.py:249
+#: chronograph/ui/widgets/song_card.py:121
 msgid "Show"
 msgstr ""
 
@@ -161,50 +162,50 @@ msgstr "Pas de paroles disponibles"
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:104
+#: chronograph/ui/widgets/song_card.py:105
 #, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "À propos du fichier"
 
-#: chronograph/ui/widgets/song_card.py:106
+#: chronograph/ui/widgets/song_card.py:108
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
-#: data/gtk/ui/dialogs/MetadataEditor.blp:78
+#: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Titre"
 
-#: chronograph/ui/widgets/song_card.py:107
+#: chronograph/ui/widgets/song_card.py:112
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
-#: data/gtk/ui/dialogs/MetadataEditor.blp:82
+#: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Artiste"
 
-#: chronograph/ui/widgets/song_card.py:108
+#: chronograph/ui/widgets/song_card.py:115
 #: chronograph/ui/widgets/lrclib_track.py:13
-#: data/gtk/ui/dialogs/MetadataEditor.blp:86
+#: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Album"
 
-#: chronograph/ui/widgets/song_card.py:109
+#: chronograph/ui/widgets/song_card.py:117
 msgid "Path"
 msgstr "Chemin"
 
-#: chronograph/ui/widgets/song_card.py:172
-#: chronograph/ui/widgets/song_card.py:174
+#: chronograph/ui/widgets/song_card.py:189
+#: chronograph/ui/widgets/song_card.py:191
 #, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: chronograph/ui/widgets/song_card.py:176
-#: chronograph/ui/widgets/song_card.py:178
+#: chronograph/ui/widgets/song_card.py:193
+#: chronograph/ui/widgets/song_card.py:195
 #, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: chronograph/ui/widgets/song_card.py:180
-#: chronograph/ui/widgets/song_card.py:182
+#: chronograph/ui/widgets/song_card.py:197
+#: chronograph/ui/widgets/song_card.py:199
 #, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
@@ -265,9 +266,9 @@ msgstr "Aucun dossier épinglé"
 msgid "Press pin button to add current directory to the saves"
 msgstr "Appuyez sur le bouton pour épingler le dossier courant"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:503
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:237
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:239
+#: data/gtk/window.blp:81 data/gtk/window.blp:281
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:50
 msgid "Quick Editor"
 msgstr "Modification rapide"
 
@@ -290,7 +291,7 @@ msgstr "Déposez des fichiers ici pour les ouvrir"
 msgid "Saves"
 msgstr "Dossiers épinglés"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:365
+#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:409
 msgid "Toggle sidebar"
 msgstr "Afficher/Masquer la barre latérale"
 
@@ -298,7 +299,7 @@ msgstr "Afficher/Masquer la barre latérale"
 msgid "Select a directory or open a file"
 msgstr "Sélectionnez un dossier ou ouvrez un fichier"
 
-#: data/gtk/window.blp:236 data/gtk/window.blp:345
+#: data/gtk/window.blp:236 data/gtk/window.blp:389
 msgid "Toggle search"
 msgstr "Afficher/Masquer la recherche"
 
@@ -307,161 +308,159 @@ msgstr "Afficher/Masquer la recherche"
 msgid "App settings, info and utils"
 msgstr "Paramètres de l'application, infos et utilitaires"
 
-#: data/gtk/window.blp:252
+#: data/gtk/window.blp:248 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:17
+msgid "Sort"
+msgstr "Tri"
+
+#: data/gtk/window.blp:251 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:20
+msgid "A-Z"
+msgstr "A-Z"
+
+#: data/gtk/window.blp:257 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
+msgid "Z-A"
+msgstr "Z-A"
+
+#: data/gtk/window.blp:264 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
+msgid "View"
+msgstr "Affichage"
+
+#: data/gtk/window.blp:267 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
+msgid "Grid"
+msgstr "Grille"
+
+#: data/gtk/window.blp:273 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:42
+msgid "List"
+msgstr "Liste"
+
+#: data/gtk/window.blp:285 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:54
+msgid "Preferences"
+msgstr "Préférences"
+
+#: data/gtk/window.blp:286 data/gtk/window.blp:404
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
+msgid "Keybindings"
+msgstr "Raccourcis clavier"
+
+#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:56
+msgid "About"
+msgstr "À propos"
+
+#: data/gtk/window.blp:296
 msgid "Clean the library"
 msgstr "Effacer la bibliothèque"
 
-#: data/gtk/window.blp:267
+#: data/gtk/window.blp:311
 msgid "Re-parse current directory"
 msgstr "Réanalyser le dossier courant"
 
-#: data/gtk/window.blp:273
+#: data/gtk/window.blp:317
 msgid "Add current directory to saves"
 msgstr "Épingler le dossier courant"
 
-#: data/gtk/window.blp:290 data/gtk/ui/dialogs/LRClib.blp:78
+#: data/gtk/window.blp:334 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
 msgstr "Rechercher"
 
-#: data/gtk/window.blp:333
+#: data/gtk/window.blp:377
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: data/gtk/window.blp:337 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/window.blp:381 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:69
 #: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "Général"
 
-#: data/gtk/window.blp:340
+#: data/gtk/window.blp:384
 msgid "Quit"
 msgstr "Quitter"
 
-#: data/gtk/window.blp:350
+#: data/gtk/window.blp:394
 msgid "Select directory"
 msgstr "Sélectionner le dossier"
 
-#: data/gtk/window.blp:355
+#: data/gtk/window.blp:399
 msgid "Select files"
 msgstr "Sélectionner les fichiers"
 
-#: data/gtk/window.blp:360 data/gtk/window.blp:508
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:242
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:244
-msgid "Keybindings"
-msgstr "Raccourcis clavier"
-
-#: data/gtk/window.blp:371
+#: data/gtk/window.blp:415
 msgid "Sync mode"
 msgstr "Mode de synchronisation"
 
-#: data/gtk/window.blp:374
+#: data/gtk/window.blp:418
 msgid "Sync/Re-sync"
 msgstr "Synchroniser/Resynchroniser"
 
-#: data/gtk/window.blp:379
+#: data/gtk/window.blp:423
 #, fuzzy
 msgid "Replay selected line/word"
 msgstr "Rejouer la ligne sélectionnée"
 
-#: data/gtk/window.blp:384
+#: data/gtk/window.blp:428
 msgid "Re-sync 100ms back"
 msgstr "Resynchroniser 100 ms en arrière"
 
-#: data/gtk/window.blp:389
+#: data/gtk/window.blp:433
 msgid "Re-sync 100ms forward"
 msgstr "Resynchroniser 100 ms en avant"
 
-#: data/gtk/window.blp:394
+#: data/gtk/window.blp:438
 #, fuzzy
 msgid "Line-by-Line line actions"
 msgstr "Actions de ligne"
 
-#: data/gtk/window.blp:397
+#: data/gtk/window.blp:441
 msgid "Remove selected line"
 msgstr "Supprimer la ligne sélectionnée"
 
-#: data/gtk/window.blp:402
+#: data/gtk/window.blp:446
 msgid "Prepend line to selected"
 msgstr "Insérer une ligne avant"
 
-#: data/gtk/window.blp:407
+#: data/gtk/window.blp:451
 msgid "Append line to selected"
 msgstr "Insérer une ligne après"
 
-#: data/gtk/window.blp:412 data/gtk/ui/sync_pages/LRCSyncPage.blp:197
+#: data/gtk/window.blp:456 data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Append line to end"
 msgstr "Insérer une ligne à la fin"
 
-#: data/gtk/window.blp:418
+#: data/gtk/window.blp:462
 msgid "Word-by-Word navigation"
 msgstr ""
 
-#: data/gtk/window.blp:421
+#: data/gtk/window.blp:465
 msgid "One word back"
 msgstr ""
 
-#: data/gtk/window.blp:426
+#: data/gtk/window.blp:470
 msgid "One word next"
 msgstr ""
 
-#: data/gtk/window.blp:431
+#: data/gtk/window.blp:475
 msgid "One line up"
 msgstr ""
 
-#: data/gtk/window.blp:436
+#: data/gtk/window.blp:480
 msgid "One line down"
 msgstr ""
 
-#: data/gtk/window.blp:446
+#: data/gtk/window.blp:490
 msgid "Directory"
 msgstr "Dossier"
 
-#: data/gtk/window.blp:447
+#: data/gtk/window.blp:491
 msgid "Files"
 msgstr "Fichiers"
-
-#: data/gtk/window.blp:454 data/gtk/window.blp:473
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:207
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:209
-msgid "A-Z"
-msgstr "A-Z"
-
-#: data/gtk/window.blp:460 data/gtk/window.blp:479
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:213
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
-msgid "Z-A"
-msgstr "Z-A"
-
-#: data/gtk/window.blp:470 data/gtk/ui/sync_pages/LRCSyncPage.blp:204
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:206
-msgid "Sort"
-msgstr "Tri"
-
-#: data/gtk/window.blp:486 data/gtk/ui/sync_pages/LRCSyncPage.blp:220
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:222
-msgid "View"
-msgstr "Affichage"
-
-#: data/gtk/window.blp:489 data/gtk/ui/sync_pages/LRCSyncPage.blp:223
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:225
-msgid "Grid"
-msgstr "Grille"
-
-#: data/gtk/window.blp:495 data/gtk/ui/sync_pages/LRCSyncPage.blp:229
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:231
-msgid "List"
-msgstr "Liste"
-
-#: data/gtk/window.blp:507 data/gtk/ui/sync_pages/LRCSyncPage.blp:241
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:243
-msgid "Preferences"
-msgstr "Préférences"
-
-#: data/gtk/window.blp:509 data/gtk/ui/sync_pages/LRCSyncPage.blp:243
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:245
-msgid "About"
-msgstr "À propos"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
@@ -484,35 +483,35 @@ msgstr ""
 "Les paroles synchronisées sont utilisées par défaut, pour utiliser le texte "
 "brut, sélectionnez « Utiliser le texte brut     » dans le sous-menu"
 
-#: data/gtk/ui/dialogs/LRClib.blp:179
-msgid "Use"
-msgstr "Utiliser"
-
-#: data/gtk/ui/dialogs/LRClib.blp:215
+#: data/gtk/ui/dialogs/LRClib.blp:176
 msgid "Use plain"
 msgstr "Utiliser le texte brut"
 
-#: data/gtk/ui/dialogs/LRClib.blp:216
+#: data/gtk/ui/dialogs/LRClib.blp:177
 msgid "Use synced"
 msgstr "Utiliser les paroles synchronisées"
 
-#: data/gtk/ui/dialogs/LRClib.blp:222
+#: data/gtk/ui/dialogs/LRClib.blp:184
+msgid "Use"
+msgstr "Utiliser"
+
+#: data/gtk/ui/dialogs/LRClib.blp:220
 msgid "Nothing was found for this request"
 msgstr "Rien n'a été trouvé pour cette requête"
 
-#: data/gtk/ui/dialogs/LRClib.blp:223
+#: data/gtk/ui/dialogs/LRClib.blp:221
 msgid "Try out another request, maybe there are mistakes in request text."
 msgstr ""
 "Essayez une autre requête, peut-être qu'il y a des erreurs dans le texte de "
 "la requête."
 
-#: data/gtk/ui/dialogs/LRClib.blp:227
+#: data/gtk/ui/dialogs/LRClib.blp:225
 msgid "Search on LRClib by title and artist names"
 msgstr "Rechercher sur LRClib par titre et nom d'artiste"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
-#: data/gtk/ui/widgets/SavedLocation.blp:46
-#: data/gtk/ui/widgets/SavedLocation.blp:58
+#: data/gtk/ui/widgets/SavedLocation.blp:51
+#: data/gtk/ui/widgets/SavedLocation.blp:63
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -524,17 +523,17 @@ msgstr "Appliquer"
 msgid "Change cover"
 msgstr "Modifier la pochette"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:93
-msgid "Embed Lyrics"
-msgstr ""
-
-#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+#: data/gtk/ui/dialogs/MetadataEditor.blp:57
 msgid "Set cover"
 msgstr "Définir la pochette"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:110
+#: data/gtk/ui/dialogs/MetadataEditor.blp:62
 msgid "Remove cover"
 msgstr "Supprimer la pochette"
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+msgid "Embed Lyrics"
+msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
@@ -747,117 +746,117 @@ msgstr ""
 msgid "Word-by-Word"
 msgstr ""
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:39
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:44
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:83
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:101
 msgid "Sync/Re-sync line"
 msgstr "Synchroniser/Resynchroniser la ligne"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:94
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:112
 msgid "Replay selected line"
 msgstr "Rejouer la ligne sélectionnée"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:58
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:102
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:120
 msgid "Re-sync selected line 100ms back"
 msgstr "Resynchroniser la ligne sélectionnée 100 ms en arrière"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:66
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:71
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:110
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:128
 msgid "Re-sync selected line 100ms forward"
 msgstr "Resynchroniser la ligne sélectionnée 100 ms en avant"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:74
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:79
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:186
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:118
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:122
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:136
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:140
 msgid "Import from …"
 msgstr "Importer depuis…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:196
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:124
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:143
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:161
+msgid "File"
+msgstr "Fichier"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:125
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:144
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:143
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:162
+msgid "Clipboard"
+msgstr "Presse-papiers"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:137
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:141
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:155
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:159
 msgid "Export to …"
 msgstr "Exporter vers…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:103
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:192
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:163
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:167
 msgid "Actions with selected line"
 msgstr "Actions avec la ligne sélectionnée"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:109
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:169
+msgid "Remove line"
+msgstr "Supprimer la ligne"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:170
+msgid "Prepend line"
+msgstr "Insérer une ligne avant"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:171
+msgid "Append line"
+msgstr "Insérer une ligne après"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:181
 #: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
 msgid "Edit song metadata"
 msgstr "Modifier les métadonnées du morceau"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:192
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:189
 msgid "About file"
 msgstr "À propos du fichier"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:226
 msgid "Add line"
 msgstr "Ajouter une ligne"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:174
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:188
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:198
-msgid "File"
-msgstr "Fichier"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:185
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:189
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:199
-msgid "Clipboard"
-msgstr "Presse-papiers"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:194
-msgid "Remove line"
-msgstr "Supprimer la ligne"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:195
-msgid "Prepend line"
-msgstr "Insérer une ligne avant"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
-msgid "Append line"
-msgstr "Insérer une ligne après"
-
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:221
 msgid "Edit"
 msgstr ""
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:176
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:247
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
 msgid "Sync"
 msgstr "Synchroniser"
 
-#: data/gtk/ui/widgets/SavedLocation.blp:37
+#: data/gtk/ui/widgets/SavedLocation.blp:34
+#: data/gtk/ui/widgets/SavedLocation.blp:52
+msgid "Rename"
+msgstr "Renommer"
+
+#: data/gtk/ui/widgets/SavedLocation.blp:35
+#: data/gtk/ui/widgets/SavedLocation.blp:64
+msgid "Delete"
+msgstr "Supprimer"
+
+#: data/gtk/ui/widgets/SavedLocation.blp:42
 #, fuzzy
 msgid "Rename this Save"
 msgstr "Supprimer ce dossier épinglé ?"
 
-#: data/gtk/ui/widgets/SavedLocation.blp:41
+#: data/gtk/ui/widgets/SavedLocation.blp:46
 msgid "Name"
 msgstr ""
 
-#: data/gtk/ui/widgets/SavedLocation.blp:47
-#: data/gtk/ui/widgets/SavedLocation.blp:65
-msgid "Rename"
-msgstr "Renommer"
-
-#: data/gtk/ui/widgets/SavedLocation.blp:53
+#: data/gtk/ui/widgets/SavedLocation.blp:58
 msgid "Delete this Save?"
 msgstr "Supprimer ce dossier épinglé ?"
-
-#: data/gtk/ui/widgets/SavedLocation.blp:59
-#: data/gtk/ui/widgets/SavedLocation.blp:66
-msgid "Delete"
-msgstr "Supprimer"
 
 #: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
 msgid "Show song info"
