@@ -1,6 +1,6 @@
 [wrap-git]
 directory = blueprint-compiler
-url = https://gitlab.gnome.org/jwestman/blueprint-compiler.git
+url = https://github.com/GNOME/blueprint-compiler.git # Using GitHub mirror in cases of GNOME GitLab not responding
 revision = main
 depth = 1
 

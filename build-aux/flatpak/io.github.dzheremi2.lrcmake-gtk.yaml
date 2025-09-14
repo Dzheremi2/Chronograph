@@ -92,7 +92,7 @@ modules:
     buildsystem: meson
     sources:
       - type: git
-        url: https://gitlab.gnome.org/jwestman/blueprint-compiler
+        url: https://github.com/GNOME/blueprint-compiler.git # Using GitHub mirror in cases of GNOME GitLab not responding
         tag: v0.18.0
     cleanup:
       - "*"
