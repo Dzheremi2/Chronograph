@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 18:40+0300\n"
-"PO-Revision-Date: 2025-07-29 01:22+0000\n"
+"PO-Revision-Date: 2025-09-14 16:54+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: chronograph/window.py:445
 msgid "Copied successfully"
@@ -39,7 +39,7 @@ msgstr "Állítsd össze a saját szótáradat"
 
 #: chronograph/main.py:182
 msgid "Translate the App"
-msgstr ""
+msgstr "Segítség a fordításban"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Connection Error"
@@ -155,13 +155,12 @@ msgid "Seems like not every line is synced"
 msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:157
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Nincs elérhető egyszerű dalszöveg"
+msgstr "Nincs elérhető dalszöveg"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:159
 msgid "You've not provided any lyrics for synchronization"
-msgstr ""
+msgstr "Nem adtál meg dalszöveget a szinkronizációhoz"
 
 #: chronograph/ui/widgets/song_card.py:104
 msgctxt "song info dialog"
@@ -355,9 +354,8 @@ msgid "Sync/Re-sync"
 msgstr "Szinkronizálás"
 
 #: data/gtk/window.blp:379
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Kijelölt sor újrajátszása"
+msgstr "Kijelölt sor/szó újrajátszása"
 
 #: data/gtk/window.blp:384
 msgid "Re-sync 100ms back"
@@ -393,19 +391,19 @@ msgstr ""
 
 #: data/gtk/window.blp:421
 msgid "One word back"
-msgstr ""
+msgstr "Vissza egy szóval"
 
 #: data/gtk/window.blp:426
 msgid "One word next"
-msgstr ""
+msgstr "Előre egy szóval"
 
 #: data/gtk/window.blp:431
 msgid "One line up"
-msgstr ""
+msgstr "Fel egy sorral"
 
 #: data/gtk/window.blp:436
 msgid "One line down"
-msgstr ""
+msgstr "Le egy sorral"
 
 #: data/gtk/window.blp:446
 msgid "Directory"
@@ -518,7 +516,7 @@ msgstr "Borító megváltoztatása"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:93
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Dalszövegek beágyazása"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:105
 msgid "Set cover"
@@ -623,9 +621,8 @@ msgid "Syncing"
 msgstr "Szinkronizálás"
 
 #: data/gtk/ui/dialogs/Preferences.blp:72
-#, fuzzy
 msgid "Syncing type"
-msgstr "Szinkronizálás"
+msgstr "Szinkronizálás fajtája"
 
 #: data/gtk/ui/dialogs/Preferences.blp:73
 msgid ""
@@ -633,6 +630,9 @@ msgid ""
 "Line, or Word-by-Word\n"
 "WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
 msgstr ""
+"Megadja a dalszöveg szinkronizálásának alapértelmezett módját. Lehet sorról-"
+"sorra, vagy szóról-szóra.\n"
+"A SZÓRÓL-SZÓRA MÓDSZER NEM KOMPATIBILIS MOBIL ESZKÖZÖKKEL"
 
 #: data/gtk/ui/dialogs/Preferences.blp:78
 msgid "Use precise milliseconds"
@@ -643,9 +643,8 @@ msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "3 számjegy használata 2 helyett"
 
 #: data/gtk/ui/dialogs/Preferences.blp:85
-#, fuzzy
 msgid "File Manipulation"
-msgstr "Fájlok automatikus mentése"
+msgstr "Fájlszerkesztés"
 
 #: data/gtk/ui/dialogs/Preferences.blp:90
 msgid "Auto file manipulation"
@@ -676,45 +675,49 @@ msgstr "Automatikus mentés időköze az utolsó aktivitás után"
 
 #: data/gtk/ui/dialogs/Preferences.blp:117
 msgid "Save plain LRC too"
-msgstr ""
+msgstr "A sima LRC fájlt is mentse"
 
 #: data/gtk/ui/dialogs/Preferences.blp:118
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
+"Elmenti a sima LRC fájlt is az eLRC fájl mellett. Csak akkor működik, ha az "
+"eLRC előtag be van állítva"
 
 #: data/gtk/ui/dialogs/Preferences.blp:122
 msgid "eLRC prefix"
-msgstr ""
+msgstr "eLRC előtag"
 
 #: data/gtk/ui/dialogs/Preferences.blp:131
 #: data/gtk/ui/dialogs/Preferences.blp:187
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Súgó"
 
 #: data/gtk/ui/dialogs/Preferences.blp:134
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
-msgstr ""
+msgstr "Az eLRC fájlok előtagja, hogy ne zavarják a sima LRCket"
 
 #: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Lyrics embedding"
-msgstr ""
+msgstr "Dalszöveg beágyazás"
 
 #: data/gtk/ui/dialogs/Preferences.blp:148
 msgid "Embed lyrics within audio file"
-msgstr ""
+msgstr "Dalszövegek beágyazása az audio fájlokba"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
 msgid "Use individual synced lyrics tag in Vorbis files"
-msgstr ""
+msgstr "Önálló szinkronizált dalszöveg címke használata Vorbis fájlokban"
 
 #: data/gtk/ui/dialogs/Preferences.blp:153
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
 msgstr ""
+"Lehetővé teszi a szinkronizált dalszövegek külön címkébe történő írását a "
+"Vorbis Comment kompatibilis fájlokban (ogg, flac, opus)"
 
 #: data/gtk/ui/dialogs/Preferences.blp:158
 msgid "Embed lyrics default format"
