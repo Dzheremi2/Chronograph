@@ -60,6 +60,12 @@ class Player(Adw.BreakpointBin):
             GObject.BindingFlags.SYNC_CREATE,
         )
 
+    def _play(self, *_args) -> None:
+        if self._player.get_playing():
+            self._player.pause()
+        else:
+            self._player.play()
+
     @Gtk.Template.Callback()
     def on_breakpoint(self, *_args) -> None:
         """Changes the player slider position based on the breakpoint state"""

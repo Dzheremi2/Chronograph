@@ -30,6 +30,9 @@ groups:
       shortcut: "<Alt>z"
     - name: file_info
       callback: _card.show_info
+    - name: play_pause
+      callback: self._player_widget._play
+      shortcut: "<Alt>space"
 
   navigation:
     - name: prev
