@@ -1,0 +1,111 @@
+using Gtk 4.0;
+using Adw 1;
+
+
+Adw.ShortcutsDialog shortcuts_dialog {
+  Adw.ShortcutsSection {
+    title: _("General");
+
+    Adw.ShortcutsItem {
+      title: _("Quit");
+      action-name: "app.quit";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Toggle search");
+      action-name: "win.toggle_search";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Select directory");
+      action-name: "win.select_dir";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Select files");
+      action-name: "win.select_files";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Keybindings");
+      action-name: "win.show-help-overlay";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Toggle sidebar");
+      action-name: "win.toggle_sidebar";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: _("Sync mode");
+
+    Adw.ShortcutsItem {
+      title: _("Sync/Re-sync");
+      accelerator: "<Alt>Return";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Replay selected line/word");
+      accelerator: "<Alt>z";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Re-sync 100ms back");
+      accelerator: "<Alt>minus";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Re-sync 100ms forward");
+      accelerator: "<Alt>equal";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: _("Line-by-Line line actions");
+
+    Adw.ShortcutsItem {
+      title: _("Remove selected line");
+      accelerator: "<Alt>r";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Prepend line to selected");
+      accelerator: "<Alt>p";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Append line to selected");
+      accelerator: "<Alt>a";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Append line to end");
+      accelerator: "<Alt><primary>a";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: _("Word-by-Word navigation");
+
+    Adw.ShortcutsItem {
+      title: _("One word back");
+      accelerator: "<Alt>Left";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("One word next");
+      accelerator: "<Alt>Right";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("One line up");
+      accelerator: "<Alt>Up";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("One line down");
+      accelerator: "<Alt>Down";
+    }
+  }
+}

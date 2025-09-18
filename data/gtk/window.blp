@@ -283,7 +283,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                     section {
                       item (_("Preferences"), "win.show_preferences")
-                      item (_("Keybindings"), "win.show-help-overlay")
+                      item (_("Keybindings"), "app.shortcuts")
                       item (_("About"), "app.about")
                     }
                   };
@@ -364,121 +364,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
               }
             }
           }
-        }
-      }
-    }
-  }
-}
-
-ShortcutsWindow help_overlay {
-  modal: true;
-
-  ShortcutsSection {
-    section-name: _("Shortcuts");
-    max-height: 10;
-
-    ShortcutsGroup {
-      title: _("General");
-
-      ShortcutsShortcut {
-        title: _("Quit");
-        action-name: "app.quit";
-      }
-
-      ShortcutsShortcut {
-        title: _("Toggle search");
-        action-name: "win.toggle_search";
-      }
-
-      ShortcutsShortcut {
-        title: _("Select directory");
-        action-name: "win.select_dir";
-      }
-
-      ShortcutsShortcut {
-        title: _("Select files");
-        action-name: "win.select_files";
-      }
-
-      ShortcutsShortcut {
-        title: _("Keybindings");
-        action-name: "win.show-help-overlay";
-      }
-
-      ShortcutsShortcut {
-        title: _("Toggle sidebar");
-        action-name: "win.toggle_sidebar";
-      }
-    }
-
-    ShortcutsGroup {
-      title: _("Sync mode");
-
-      ShortcutsShortcut {
-        title: _("Sync/Re-sync");
-        accelerator: "<Alt>Return";
-      }
-
-      ShortcutsShortcut {
-        title: _("Replay selected line/word");
-        accelerator: "<Alt>z";
-      }
-
-      ShortcutsShortcut {
-        title: _("Re-sync 100ms back");
-        accelerator: "<Alt>minus";
-      }
-
-      ShortcutsShortcut {
-        title: _("Re-sync 100ms forward");
-        accelerator: "<Alt>equal";
-      }
-
-      ShortcutsGroup {
-        title: _("Line-by-Line line actions");
-
-        ShortcutsShortcut {
-          title: _("Remove selected line");
-          accelerator: "<Alt>r";
-        }
-
-        ShortcutsShortcut {
-          title: _("Prepend line to selected");
-          accelerator: "<Alt>p";
-        }
-
-        ShortcutsShortcut {
-          title: _("Append line to selected");
-          accelerator: "<Alt>a";
-        }
-
-        ShortcutsShortcut {
-          title: _("Append line to end");
-          accelerator: "<Alt><primary>a";
-        }
-      }
-
-      ShortcutsGroup {
-        title: _("Word-by-Word navigation");
-
-        ShortcutsShortcut {
-          title: _("One word back");
-          accelerator: "<Alt>Left";
-        }
-
-        ShortcutsShortcut {
-          title: _("One word next");
-          accelerator: "<Alt>Right";
-        }
-
-        ShortcutsShortcut {
-          title: _("One line up");
-          accelerator: "<Alt>Up";
-        }
-
-        ShortcutsShortcut {
-          title: _("One line down");
-          accelerator: "<Alt>Down";
         }
       }
     }

@@ -69,7 +69,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     no_saves_found_status: Adw.StatusPage = gtc()
 
     # Library view widgets
-    help_overlay: Gtk.ShortcutsWindow = gtc()
     dnd_area_revealer: Gtk.Revealer = gtc()
     toast_overlay: Adw.ToastOverlay = gtc()
     navigation_view: Adw.NavigationView = gtc()
@@ -105,9 +104,6 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.library_list = Gtk.ListBox(
             css_classes=("navigation-sidebar",), selection_mode=Gtk.SelectionMode.NONE
         )
-
-        # Setting keybindings help overlay
-        self.set_help_overlay(self.help_overlay)
 
         # Apply devel window decorations
         if Constants.APP_ID.endswith(".Devel"):

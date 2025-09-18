@@ -28,13 +28,13 @@ Another way to contribute to the app is internationalization. The app's using th
 In VSCode you can install [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) extension, select needed manifest (should be `build-aux/flatpak/io.github.dzheremi2.lrcmake_gtk.Devel.yaml`) and then use `Flatpak: Build` command from VSCode command palette.
 
 ##### Dependencies:
-org.gnome.Platform (v48)
+org.gnome.Platform (v49)
 ```shell
-flatpak install org.gnome.Platform/x86_64/48 --system
+flatpak install org.gnome.Platform/x86_64/49 --system
 ```
-org.gnome.Sdk (v48)
+org.gnome.Sdk (v49)
 ```shell
-flatpak install org.gnome.Sdk/x86_64/48 --system
+flatpak install org.gnome.Sdk/x86_64/49 --system
 ```
 
 ## Code Style

@@ -35,3 +35,10 @@
 #list_view_row_cover {
     border-radius: 6px;
 }
+
+flowboxchild:hover,
+flowboxchild:active {
+  background: none;
+  box-shadow: none;
+  outline: none;
+}
