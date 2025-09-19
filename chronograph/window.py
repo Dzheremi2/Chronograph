@@ -243,7 +243,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     def open_files(self, paths: list[str]) -> None:
         """Open provided files and update window state"""
         logger.info("Opening files:\n%s", "\n".join(paths))
-        self.clean_library()
+        if not self._state == WindowState.LOADED_FILES:
+            self.clean_library()
         if self.load_files(tuple(paths)):
             self.state = WindowState.LOADED_FILES
         else:
