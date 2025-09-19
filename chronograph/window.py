@@ -99,6 +99,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
+
         logger.debug("Creating window")
 
         self.library_list = Gtk.ListBox(
@@ -228,7 +229,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         mutagen_files = parse_files(files)
 
         self.clean_library()
-        Schema.set("root.state.library.session" ,path)
+        Schema.set("root.state.library.session", path)
 
         self.add_dir_to_saves_button.set_visible(
             path not in [pin["path"] for pin in Constants.CACHE["pins"]]
@@ -583,6 +584,15 @@ class ChronographWindow(Adw.ApplicationWindow):
 
         state = self._state
         self.open_source_button.set_icon_name("open-source-symbolic")
+
+        # Check for the "Add to Saves" button visibility
+        session_path = Schema.get("root.state.library.session") + "/"
+        if state in (WindowState.EMPTY_DIR, WindowState.LOADED_DIR):
+            if session_path in [pin["path"] for pin in Constants.CACHE["pins"]]:
+                self.add_dir_to_saves_button.set_visible(False)
+            else:
+                self.add_dir_to_saves_button.set_visible(True)
+
         match state:
             case WindowState.EMPTY:
                 self.library_scrolled_window.set_child(self.no_source_opened)
