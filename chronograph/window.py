@@ -410,10 +410,10 @@ class ChronographWindow(Adw.ApplicationWindow):
         """Adds the current directory to the saved locations in the sidebar"""
         if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
             if Schema.get("root.state.library.session") != "None":
-                dir_path = Schema.get("root.state.library.session")
+                dir_path = Schema.get("root.state.library.session") + "/"
                 if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
                     Constants.CACHE["pins"].append(
-                        {"path": dir_path, "name": os.path.basename(dir_path)}
+                        {"path": dir_path, "name": Path(dir_path).name}
                     )
                     logger.info("'%s' was added to Saves", dir_path)
                     self.add_dir_to_saves_button.set_visible(False)
@@ -576,12 +576,11 @@ class ChronographWindow(Adw.ApplicationWindow):
         def __select_saved_location() -> None:
             try:
                 for row in self.sidebar:  # pylint: disable=not-an-iterable
-                    if row.get_child().path == Schema.get("root.state.library.session"):
+                    if row.get_child().path == Schema.get("root.state.library.session") + "/":
                         self.sidebar.select_row(row)
                         return
             except AttributeError:
                 pass
-
         state = self._state
         self.open_source_button.set_icon_name("open-source-symbolic")
 
