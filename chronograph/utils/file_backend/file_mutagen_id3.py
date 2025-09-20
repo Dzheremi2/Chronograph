@@ -5,7 +5,7 @@ from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1, USLT
 from PIL import Image
 
 from chronograph.internal import Schema
-from chronograph.utils.converter import lyrics_to_schema_preference
+from chronograph.utils.lyrics import Lyrics, LyricsFormat
 
 from .file import TaggableFile
 
@@ -148,11 +148,19 @@ class FileID3(TaggableFile):
                 self._mutagen_file.tags.add(TALB(text=[new_val]))
         setattr(self, tags_conjunction[tag_name], new_val)
 
-    def embed_lyrics(self, lyrics: str, *, force: bool = False) -> None:
+    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False) -> None:
         if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
-            lyrics = lyrics_to_schema_preference(lyrics)
+            target_format = LyricsFormat[
+                Schema.get(
+                    "root.settings.file-manipulation.embed-lyrics.default"
+                ).upper()
+            ]
+            target_format = LyricsFormat.from_int(
+                min(target_format.value, lyrics.format.value)
+            )
+            text = lyrics.of_format(target_format)
             try:
-                self._mutagen_file.tags["USLT"].text = lyrics
+                self._mutagen_file.tags["USLT"].text = text
             except KeyError:
-                self._mutagen_file.tags.add(USLT(text=lyrics))
+                self._mutagen_file.tags.add(USLT(text=text))
             self.save()

@@ -14,15 +14,12 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 from chronograph.internal import Constants, Schema
 from chronograph.ui.widgets.player import Player
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.converter import (
-    make_plain_lyrics,
-    mcs_to_timestamp,
-    timestamp_to_mcs,
-)
+from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.lyrics import Lyrics, LyricsFormat
 from chronograph.utils.lyrics_file_helper import LyricsFile
 from dgutils import Actions
 
@@ -212,32 +209,21 @@ class LRCSyncPage(Adw.NavigationPage):
         clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
 
     def _import_file(self, *_args) -> None:
-        metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
-        timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
 
-        def __on_selected_lyrics_file(
+        def on_selected_lyrics_file(
             file_dialog: Gtk.FileDialog, result: Gio.Task
         ) -> None:
             path = file_dialog.open_finish(result).get_path()
-            with open(path, "r", encoding="utf-8") as file:
-                lines = file.read().splitlines()
-
-            filtered_lines = [
-                line for line in lines if not metatags_filterout.match(line)
-            ]
-            normalized_lines = [
-                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
-            ]
 
             self.sync_lines.remove_all()
-            for _, line in enumerate(normalized_lines):
+            for _, line in enumerate(LyricsFile(path).get_normalized_lines()):
                 self.sync_lines.append(LRCSyncLine(line))
             logger.info("Imported lyrics from file")
 
         dialog = Gtk.FileDialog(
             default_filter=Gtk.FileFilter(mime_types=["text/plain"])
         )
-        dialog.open(Constants.WIN, None, __on_selected_lyrics_file)
+        dialog.open(Constants.WIN, None, on_selected_lyrics_file)
 
     def _import_lrclib(self, *_args) -> None:
         from chronograph.ui.dialogs.lrclib import LRClib
@@ -262,7 +248,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
     def _export_file(self, *_args) -> None:
 
-        def __on_export_file_selected(
+        def on_export_file_selected(
             file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
         ) -> None:
             filepath = file_dialog.save_finish(result).get_path()
@@ -284,7 +270,7 @@ class LRCSyncPage(Adw.NavigationPage):
             initial_name=Path(self._file.path).stem
             + Schema.get("root.settings.file-manipulation.format")
         )
-        dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
+        dialog.save(Constants.WIN, None, on_export_file_selected, lyrics)
 
     ###############
 
@@ -332,10 +318,13 @@ class LRCSyncPage(Adw.NavigationPage):
             try:
                 # pylint: disable=not-an-iterable
                 lyrics = [line.get_text() for line in self.sync_lines]
-                lyrics = "\n".join(lyrics).strip()
-                self._lyrics_file.modify_lyrics(lyrics)
-                self._file.embed_lyrics(lyrics)
-                logger.debug("Lyrics autosaved successfully")
+                lyrics = Lyrics("\n".join(lyrics).strip())
+                if lyrics.format == LyricsFormat.LRC:
+                    self._lyrics_file.modify_lyrics(lyrics.lyrics)
+                    self._file.embed_lyrics(lyrics)
+                    logger.debug("Lyrics autosaved successfully")
+                else:
+                    logger.debug("Prevented overwriting LRC lyrics with Plain in LRC file")
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None
@@ -364,7 +353,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
     def _publish(self, __, ___, card: SongCard) -> None:
 
-        def _verify_nonce(result: int, target: int) -> bool:
+        def verify_nonce(result: int, target: int) -> bool:
             if len(result) != len(target):
                 return False
 
@@ -376,7 +365,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
             return True
 
-        def _solve_challenge(prefix: str, target_hex: str) -> str:
+        def solve_challenge(prefix: str, target_hex: str) -> str:
             target = unhexlify(target_hex.upper())
             nonce = 0
 
@@ -384,14 +373,14 @@ class LRCSyncPage(Adw.NavigationPage):
                 input_data = f"{prefix}{nonce}".encode()
                 hashed = hashlib.sha256(input_data).digest()
 
-                if _verify_nonce(hashed, target):
+                if verify_nonce(hashed, target):
                     break
                 nonce += 1
 
             return str(nonce)
 
-        def _do_publish(
-            title: str, artist: str, album: str, duration: str, lyrics: str
+        def do_publish(
+            title: str, artist: str, album: str, duration: str, lyrics: Lyrics
         ) -> None:
             _err = None
             try:
@@ -417,7 +406,7 @@ class LRCSyncPage(Adw.NavigationPage):
                     return  # pylint: disable=return-in-finally, lost-exception
 
             challenge_data = challenge_data.json()
-            nonce = _solve_challenge(
+            nonce = solve_challenge(
                 prefix=challenge_data["prefix"], target_hex=challenge_data["target"]
             )
             logger.info("X-Publish-Token: %s", f"{challenge_data["prefix"]}:{nonce}")
@@ -436,7 +425,7 @@ class LRCSyncPage(Adw.NavigationPage):
                         "artistName": artist,
                         "albumName": album,
                         "duration": duration,
-                        "plainLyrics": make_plain_lyrics(lyrics),
+                        "plainLyrics": lyrics.of_format(LyricsFormat.LRC),
                         "syncedLyrics": lyrics,
                     },
                     timeout=10,
@@ -484,10 +473,12 @@ class LRCSyncPage(Adw.NavigationPage):
         album = card.album
         duration = card.duration
         # pylint: disable=not-an-iterable
-        lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+        lyrics = Lyrics(
+            "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+        )
         if not all((title, artist, album, duration, lyrics)):
 
-            def _reason(*_args) -> None:
+            def reason(*_args) -> None:
                 _alert = Adw.AlertDialog(
                     heading=_("Unable to publish lyrics"),
                     body=_(
@@ -502,7 +493,7 @@ class LRCSyncPage(Adw.NavigationPage):
             Constants.WIN.show_toast(
                 _("Cannot publish empty lyrics"),
                 button_label=_("Why?"),
-                button_callback=_reason,
+                button_callback=reason,
             )
             return
         if not self.is_all_lines_synced():
@@ -513,7 +504,7 @@ class LRCSyncPage(Adw.NavigationPage):
         self.export_lyrics_button.set_sensitive(False)
         self.export_lyrics_button.set_child(Adw.Spinner())
         threading.Thread(
-            target=_do_publish,
+            target=do_publish,
             args=(title, artist, album, duration, lyrics),
             daemon=True,
         ).start()
@@ -540,13 +531,13 @@ class LRCSyncLine(Adw.EntryRow):
                     break
         self.text_field.connect("backspace", self._remove_line_on_backspace)
 
-    def _on_selected(self, *_args) -> None:
-        self.get_ancestor(LRCSyncPage).selected_line = self
-
     def add_line_on_enter(self, *_args) -> None:
         """Add a new line when Enter is pressed"""
         self.get_ancestor(LRCSyncPage).append_line()
         logger.debug("A new line added underneath of %s", self)
+
+    def _on_selected(self, *_args) -> None:
+        self.get_ancestor(LRCSyncPage).selected_line = self
 
     def _reset_timer(self, *_args) -> None:
         self.get_ancestor(LRCSyncPage).reset_timer()

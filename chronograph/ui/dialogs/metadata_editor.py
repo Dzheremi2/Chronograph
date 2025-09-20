@@ -4,7 +4,7 @@ from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.widgets import song_card
-from chronograph.utils.wbw.elrc_parser import eLRCParser
+from chronograph.utils.lyrics import Lyrics
 from dgutils import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -61,17 +61,19 @@ class MetadataEditor(Adw.Dialog):
                 page.modes.get_page(page.modes.get_visible_child())
                 == page.edit_view_stack_page
             ):
-                lyrics = page.edit_view_text_view.get_buffer().get_text(
-                    page.edit_view_text_view.get_buffer().get_start_iter(),
-                    page.edit_view_text_view.get_buffer().get_end_iter(),
-                    False,
+                lyrics = Lyrics(
+                    page.edit_view_text_view.get_buffer().get_text(
+                        page.edit_view_text_view.get_buffer().get_start_iter(),
+                        page.edit_view_text_view.get_buffer().get_end_iter(),
+                        False,
+                    )
                 )
             else:
-                lyrics = eLRCParser.create_lyrics_elrc(page._lyrics_model.get_tokens())
+                lyrics = Lyrics.from_tokens(page._lyrics_model.get_tokens())
             self._card._file.embed_lyrics(lyrics, force=True)
         elif isinstance(page, LRCSyncPage):
             lyrics = [line.get_text() for line in page.sync_lines]
-            lyrics = "\n".join(lyrics).strip()
+            lyrics = Lyrics("\n".join(lyrics).strip())
             self._card._file.embed_lyrics(lyrics, force=True)
         else:
             logger.debug("Prevented lyrics embedding from library page")

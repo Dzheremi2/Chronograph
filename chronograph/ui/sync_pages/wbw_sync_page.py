@@ -1,6 +1,5 @@
 """Word-by-Word syncing page"""
 
-import re
 import traceback
 from pathlib import Path
 from typing import Literal, Optional, Union
@@ -15,8 +14,8 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.lyrics import Lyrics, LyricsFormat, LyricsHierarchyConversion
 from chronograph.utils.lyrics_file_helper import LyricsFile
-from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
 
@@ -129,6 +128,7 @@ class WBWSyncPage(Adw.NavigationPage):
     def _on_page_switched(
         self, prev_page: Adw.ViewStackPage, new_page: Adw.ViewStackPage
     ) -> None:
+        self._autosave()
         if (
             prev_page == self.edit_view_stack_page
             and new_page == self.sync_view_stack_page
@@ -161,17 +161,15 @@ class WBWSyncPage(Adw.NavigationPage):
                         icon_name="nothing-found-symbolic",
                     )
                 )
-            self._autosave()
 
         elif (
             prev_page == self.sync_view_stack_page
             and new_page == self.edit_view_stack_page
         ):
-            lyrics = eLRCParser.create_lyrics_elrc(self._lyrics_model.get_tokens())
+            lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
             buffer = Gtk.TextBuffer()
             buffer.set_text(lyrics)
             self.edit_view_text_view.set_buffer(buffer)
-            self._autosave()
 
     # TODO: Implement TTML
     # def _on_format_changed(self, _action, param: GLib.Variant) -> None:
@@ -191,36 +189,25 @@ class WBWSyncPage(Adw.NavigationPage):
         logger.debug("LRClib import dialog shown")
 
     def _import_file(self, *_args) -> None:
-        metatags_filterout = re.compile(r"^\[\w+:[^\]]+\]$")
-        timed_line_pattern = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
 
-        def __on_selected_lyrics_file(
+        def on_selected_lyrics_file(
             file_dialog: Gtk.FileDialog, result: Gio.Task
         ) -> None:
             path = file_dialog.open_finish(result).get_path()
-            with open(path, "r", encoding="utf-8") as file:
-                lines = file.read().splitlines()
-
-            filtered_lines = [
-                line for line in lines if not metatags_filterout.match(line)
-            ]
-            normalized_lines = [
-                timed_line_pattern.sub(r"\1 \2", line) for line in filtered_lines
-            ]
 
             buffer = Gtk.TextBuffer()
-            buffer.set_text("\n".join(normalized_lines).rstrip())
+            buffer.set_text("\n".join(LyricsFile(path).get_normalized_lines()).rstrip())
             self.edit_view_text_view.set_buffer(buffer)
             logger.info("Imported lyrics from file")
 
         dialog = Gtk.FileDialog(
             default_filter=Gtk.FileFilter(mime_types=["text/plain"])
         )
-        dialog.open(Constants.WIN, None, __on_selected_lyrics_file)
+        dialog.open(Constants.WIN, None, on_selected_lyrics_file)
 
     def _import_clipboard(self, *_args) -> None:
 
-        def __on_clipboard_parsed(
+        def on_clipboard_parsed(
             _clipboard, result: Gio.Task, clipboard: Gdk.Clipboard
         ) -> None:
             data = clipboard.read_text_finish(result)
@@ -230,14 +217,14 @@ class WBWSyncPage(Adw.NavigationPage):
             logger.info("Imported lyrics from clipboard")
 
         clipboard = Gdk.Display().get_default().get_clipboard()
-        clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
+        clipboard.read_text_async(None, on_clipboard_parsed, user_data=clipboard)
 
     ###############
 
     ############### Export Actions ###############
     def _export_file(self, *_args) -> None:
 
-        def __on_export_file_selected(
+        def on_export_file_selected(
             file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
         ) -> None:
             filepath = file_dialog.save_finish(result).get_path()
@@ -260,7 +247,7 @@ class WBWSyncPage(Adw.NavigationPage):
             )
         else:
             if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-                lyrics = eLRCParser.create_lyrics_elrc(self._lyrics_model.get_tokens())
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
             else:
                 lyrics = ""
 
@@ -268,7 +255,7 @@ class WBWSyncPage(Adw.NavigationPage):
             initial_name=Path(self._file.path).stem
             + Schema.get("root.settings.file-manipulation.format")
         )
-        dialog.save(Constants.WIN, None, __on_export_file_selected, lyrics)
+        dialog.save(Constants.WIN, None, on_export_file_selected, lyrics)
 
     def _export_clipboard(self, *_args) -> None:
         if self._current_page == self.edit_view_stack_page:
@@ -279,7 +266,7 @@ class WBWSyncPage(Adw.NavigationPage):
             )
         else:
             if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-                lyrics = eLRCParser.create_lyrics_elrc(self._lyrics_model.get_tokens())
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
             else:
                 lyrics = ""
         clipboard = Gdk.Display().get_default().get_clipboard()
@@ -365,23 +352,35 @@ class WBWSyncPage(Adw.NavigationPage):
                     self.modes.get_page(self.modes.get_visible_child())
                     == self.edit_view_stack_page
                 ):
-                    lyrics = self.edit_view_text_view.get_buffer().get_text(
-                        self.edit_view_text_view.get_buffer().get_start_iter(),
-                        self.edit_view_text_view.get_buffer().get_end_iter(),
-                        False,
+                    lyrics = Lyrics(
+                        self.edit_view_text_view.get_buffer().get_text(
+                            self.edit_view_text_view.get_buffer().get_start_iter(),
+                            self.edit_view_text_view.get_buffer().get_end_iter(),
+                            False,
+                        )
                     )
                 else:
-                    lyrics = eLRCParser.create_lyrics_elrc(
-                        self._lyrics_model.get_tokens()
-                    )
+                    lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens())
                 if Schema.get("root.settings.file-manipulation.lrc-along-elrc") and (
                     Schema.get("root.settings.file-manipulation.elrc-prefix") != ""
                 ):
-                    self._lrc_lyrics_file.modify_lyrics(eLRCParser.to_plain_lrc(lyrics))
-                    logger.debug("LRC lyrics autosaved successfully")
-                self._elrc_lyrics_file.modify_lyrics(lyrics)
-                self._file.embed_lyrics(lyrics)
-                logger.debug("eLRC lyrics autosaved successfully")
+                    try:
+                        self._lrc_lyrics_file.modify_lyrics(
+                            lyrics.of_format(LyricsFormat.LRC)
+                        )
+                        logger.debug("LRC lyrics autosaved successfully")
+                    except LyricsHierarchyConversion:
+                        logger.debug("Prevented overwriting LRC lyrics with Plain in LRC file")
+                try:
+                    self._elrc_lyrics_file.modify_lyrics(
+                        lyrics.of_format(LyricsFormat.ELRC)
+                    )
+                    self._file.embed_lyrics(lyrics)
+                    logger.debug("eLRC lyrics autosaved successfully")
+                except LyricsHierarchyConversion:
+                    logger.debug(
+                        "Prevented overwriting eLRC lyrics with LRC or Plain in eLRC file"
+                    )
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None

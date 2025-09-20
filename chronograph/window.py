@@ -345,7 +345,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self._on_drag_leave()
 
     def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
-        def __verify_files_valid(drop: Gdk.Drop, task: Gio.Task, *_args) -> bool:
+        def verify_files_valid(drop: Gdk.Drop, task: Gio.Task, *_args) -> bool:
             try:
                 files = drop.read_value_finish(task).get_files()
             except GLib.GError:
@@ -360,7 +360,7 @@ class ChronographWindow(Adw.ApplicationWindow):
                     self.drop_target.reject()
                     self._on_drag_leave()
 
-        drop.read_value_async(Gdk.FileList, 0, None, __verify_files_valid)
+        drop.read_value_async(Gdk.FileList, 0, None, verify_files_valid)
         return True
 
     ##############################

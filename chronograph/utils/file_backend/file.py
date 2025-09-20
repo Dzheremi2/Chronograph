@@ -4,6 +4,7 @@ import mutagen
 from gi.repository import Gdk, GdkPixbuf
 
 from chronograph.internal import Constants
+from chronograph.utils.lyrics import Lyrics
 from dgutils.decorators import baseclass
 
 
@@ -168,7 +169,7 @@ class BaseFile:
         """
         raise NotImplementedError
 
-    def embed_lyrics(self, lyrics: str, *, force: bool = False) -> None:
+    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False) -> None:
         """Embeds the lyrics to the corresponding tags in realization
 
         Parameters
