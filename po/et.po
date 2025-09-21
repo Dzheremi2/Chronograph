@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-14 19:57+0300\n"
+"POT-Creation-Date: 2025-09-21 10:23+0300\n"
 "PO-Revision-Date: 2025-09-11 22:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:445
+#: chronograph/window.py:443
 msgid "Copied successfully"
 msgstr "Kopeerimine õnnestus"
 
@@ -284,7 +284,8 @@ msgstr "Avamiseks lohista failid siia"
 msgid "Saves"
 msgstr "Lemmikud"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:409
+#: data/gtk/window.blp:196 data/gtk/window.blp:217
+#: data/gtk/ui/shortcuts-dialog.blp:35
 msgid "Toggle sidebar"
 msgstr "Külgpaan sisse/välja"
 
@@ -292,7 +293,7 @@ msgstr "Külgpaan sisse/välja"
 msgid "Select a directory or open a file"
 msgstr "Vali kaust või ava fail"
 
-#: data/gtk/window.blp:236 data/gtk/window.blp:389
+#: data/gtk/window.blp:236 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr "Otsing sisse/välja"
 
@@ -336,7 +337,7 @@ msgstr "Loend"
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: data/gtk/window.blp:286 data/gtk/window.blp:404
+#: data/gtk/window.blp:286 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
@@ -363,95 +364,92 @@ msgstr "Lisa see kaust lemmikute hulka"
 msgid "Search"
 msgstr "Otsi"
 
-#: data/gtk/window.blp:377
-msgid "Shortcuts"
-msgstr "Kiirklahvid"
+#: data/gtk/window.blp:375
+msgid "Directory"
+msgstr "Kaust"
 
-#: data/gtk/window.blp:381 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/window.blp:376
+msgid "Files"
+msgstr "Failid"
+
+#: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:69
 #: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "Üldised"
 
-#: data/gtk/window.blp:384
+#: data/gtk/ui/shortcuts-dialog.blp:10
 msgid "Quit"
 msgstr "Välju"
 
-#: data/gtk/window.blp:394
+#: data/gtk/ui/shortcuts-dialog.blp:20
 msgid "Select directory"
 msgstr "Vali kaust"
 
-#: data/gtk/window.blp:399
+#: data/gtk/ui/shortcuts-dialog.blp:25
 msgid "Select files"
 msgstr "Vali failid"
 
-#: data/gtk/window.blp:415
+#: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
 msgstr "Sünkroniseerimisrežiim"
 
-#: data/gtk/window.blp:418
+#: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
 msgstr "Sünkroniseeri või sünkroniseeri uuesti"
 
-#: data/gtk/window.blp:423
+#: data/gtk/ui/shortcuts-dialog.blp:49
 msgid "Replay selected line/word"
 msgstr "Esita valitud rida/sõna uuesti"
 
-#: data/gtk/window.blp:428
+#: data/gtk/ui/shortcuts-dialog.blp:54
 msgid "Re-sync 100ms back"
 msgstr "Sünkroniseeri 100 ms tahapoole"
 
-#: data/gtk/window.blp:433
+#: data/gtk/ui/shortcuts-dialog.blp:59
 msgid "Re-sync 100ms forward"
 msgstr "Sünkroniseeri 100 ms ettepoole"
 
-#: data/gtk/window.blp:438
+#: data/gtk/ui/shortcuts-dialog.blp:65
 msgid "Line-by-Line line actions"
 msgstr "Rida-realt tegevused"
 
-#: data/gtk/window.blp:441
+#: data/gtk/ui/shortcuts-dialog.blp:68
 msgid "Remove selected line"
 msgstr "Eemalda valitud laulurida"
 
-#: data/gtk/window.blp:446
+#: data/gtk/ui/shortcuts-dialog.blp:73
 msgid "Prepend line to selected"
 msgstr "Lisa laulurida valiku ette"
 
-#: data/gtk/window.blp:451
+#: data/gtk/ui/shortcuts-dialog.blp:78
 msgid "Append line to selected"
 msgstr "Lisa laulurida valiku järgi"
 
-#: data/gtk/window.blp:456 data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/shortcuts-dialog.blp:83
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Append line to end"
 msgstr "Lisa laulurida kõige lõppu"
 
-#: data/gtk/window.blp:462
+#: data/gtk/ui/shortcuts-dialog.blp:89
 msgid "Word-by-Word navigation"
 msgstr "Liikumine sõmahaaval"
 
-#: data/gtk/window.blp:465
+#: data/gtk/ui/shortcuts-dialog.blp:92
 msgid "One word back"
 msgstr "Üks sõna tagasi"
 
-#: data/gtk/window.blp:470
+#: data/gtk/ui/shortcuts-dialog.blp:97
 msgid "One word next"
 msgstr "Üks sõna edasi"
 
-#: data/gtk/window.blp:475
+#: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One line up"
 msgstr "Üks rida üles"
 
-#: data/gtk/window.blp:480
+#: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One line down"
 msgstr "Üks rida alla"
-
-#: data/gtk/window.blp:490
-msgid "Directory"
-msgstr "Kaust"
-
-#: data/gtk/window.blp:491
-msgid "Files"
-msgstr "Failid"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
@@ -933,6 +931,9 @@ msgstr "Laulusõnade sünkroniseerimisvaade väikesel ekraanil"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;kronograaf;muusika;laulud;laulusõnad;laulutekstid;lüürika;multimeedia;meedia;"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Kiirklahvid"
 
 #~ msgid "Sync Page"
 #~ msgstr "Sünkroniseerimisvaade"

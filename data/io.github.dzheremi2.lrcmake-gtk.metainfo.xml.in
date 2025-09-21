@@ -73,6 +73,21 @@
   </screenshots>
 
   <releases>
+    <release version="4.2" date="2025-09-21">
+      <description translate="no">
+        <p>New features</p>
+        <ul>
+          <li>Migrate to GNOME Platform 49 </li>
+          <li>New shortcuts dialog from LibAdwaita 1.8</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>If you have files opened independently (not a directory) and Open/Drag-n-Drop new ones, the previous won't be removed</li>
+          <li>"Add to Saves" button now won't be visible if app startup with saved session</li>
+          <li>Saved Location now properly selecting on app startup with saved session</li>
+        </ul>
+      </description>
+    </release>
     <release version="4.1" date="2025-09-14">
       <description translate="no">
         <p>New features</p>

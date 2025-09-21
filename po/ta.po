@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-14 19:57+0300\n"
+"POT-Creation-Date: 2025-09-21 10:23+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/lrcmake/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:445
+#: chronograph/window.py:443
 msgid "Copied successfully"
 msgstr "வெற்றிகரமாக நகலெடுக்கப்பட்டது"
 
@@ -287,7 +287,8 @@ msgstr "கோப்புகளைத் திறக்க இங்கே வ
 msgid "Saves"
 msgstr "சேமிக்கிறது"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:409
+#: data/gtk/window.blp:196 data/gtk/window.blp:217
+#: data/gtk/ui/shortcuts-dialog.blp:35
 msgid "Toggle sidebar"
 msgstr "பக்கப்பட்டியை மாற்றவும்"
 
@@ -295,7 +296,7 @@ msgstr "பக்கப்பட்டியை மாற்றவும்"
 msgid "Select a directory or open a file"
 msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும் அல்லது ஒரு கோப்பைத் திறக்கவும்"
 
-#: data/gtk/window.blp:236 data/gtk/window.blp:389
+#: data/gtk/window.blp:236 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr "தேடலை மாற்றவும்"
 
@@ -339,7 +340,7 @@ msgstr "பட்டியல்"
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-#: data/gtk/window.blp:286 data/gtk/window.blp:404
+#: data/gtk/window.blp:286 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
@@ -367,96 +368,93 @@ msgstr "சேமிப்புகளுக்கு தற்போதைய �
 msgid "Search"
 msgstr "தேடல்"
 
-#: data/gtk/window.blp:377
-msgid "Shortcuts"
-msgstr "குறுக்குவழிகள்"
+#: data/gtk/window.blp:375
+msgid "Directory"
+msgstr "அடைவு"
 
-#: data/gtk/window.blp:381 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/window.blp:376
+msgid "Files"
+msgstr "கோப்புகள்"
+
+#: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:69
 #: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "பொது"
 
-#: data/gtk/window.blp:384
+#: data/gtk/ui/shortcuts-dialog.blp:10
 msgid "Quit"
 msgstr "வெளியேறு"
 
-#: data/gtk/window.blp:394
+#: data/gtk/ui/shortcuts-dialog.blp:20
 msgid "Select directory"
 msgstr "கோப்பகத்தைத் தேர்ந்தெடு"
 
-#: data/gtk/window.blp:399
+#: data/gtk/ui/shortcuts-dialog.blp:25
 msgid "Select files"
 msgstr "கோப்புகளைத் தேர்ந்தெடு"
 
-#: data/gtk/window.blp:415
+#: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
 msgstr "ஒத்திசைவு பயன்முறை"
 
-#: data/gtk/window.blp:418
+#: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
 msgstr "ஒத்திசைவு/மறு ஒத்திசைவு"
 
-#: data/gtk/window.blp:423
+#: data/gtk/ui/shortcuts-dialog.blp:49
 #, fuzzy
 msgid "Replay selected line/word"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை மீண்டும் இயக்கவும்"
 
-#: data/gtk/window.blp:428
+#: data/gtk/ui/shortcuts-dialog.blp:54
 msgid "Re-sync 100ms back"
 msgstr "100 மீட்டர் பின்னால் மீண்டும் ஒத்திசைக்கவும்"
 
-#: data/gtk/window.blp:433
+#: data/gtk/ui/shortcuts-dialog.blp:59
 msgid "Re-sync 100ms forward"
 msgstr "100ms முன்னோக்கி மீண்டும் ஒத்திசைக்கவும்"
 
-#: data/gtk/window.blp:438
+#: data/gtk/ui/shortcuts-dialog.blp:65
 msgid "Line-by-Line line actions"
 msgstr ""
 
-#: data/gtk/window.blp:441
+#: data/gtk/ui/shortcuts-dialog.blp:68
 msgid "Remove selected line"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரியை அகற்று"
 
-#: data/gtk/window.blp:446
+#: data/gtk/ui/shortcuts-dialog.blp:73
 msgid "Prepend line to selected"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரிக்கு வரியைத் தயாரிக்கவும்"
 
-#: data/gtk/window.blp:451
+#: data/gtk/ui/shortcuts-dialog.blp:78
 msgid "Append line to selected"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரி சேர்க்கவும்"
 
-#: data/gtk/window.blp:456 data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/shortcuts-dialog.blp:83
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Append line to end"
 msgstr "முடிவுக்கு வரியைச் சேர்க்கவும்"
 
-#: data/gtk/window.blp:462
+#: data/gtk/ui/shortcuts-dialog.blp:89
 msgid "Word-by-Word navigation"
 msgstr ""
 
-#: data/gtk/window.blp:465
+#: data/gtk/ui/shortcuts-dialog.blp:92
 msgid "One word back"
 msgstr ""
 
-#: data/gtk/window.blp:470
+#: data/gtk/ui/shortcuts-dialog.blp:97
 msgid "One word next"
 msgstr ""
 
-#: data/gtk/window.blp:475
+#: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One line up"
 msgstr ""
 
-#: data/gtk/window.blp:480
+#: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One line down"
 msgstr ""
-
-#: data/gtk/window.blp:490
-msgid "Directory"
-msgstr "அடைவு"
-
-#: data/gtk/window.blp:491
-msgid "Files"
-msgstr "கோப்புகள்"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
@@ -920,6 +918,9 @@ msgstr "சிறிய திரையில் பாடல் வரிகள
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
 "பாடல் வரிகள்; இணையம்; பாடல்கள்; பலூடகம்; ஊடகம்; எல்ஆர்எல்ஐபி; இசை; ஒத்திசைத்தல்; காலவரிசை;"
+
+#~ msgid "Shortcuts"
+#~ msgstr "குறுக்குவழிகள்"
 
 #~ msgid "Sync Page"
 #~ msgstr "ஒத்திசைவு பக்கம்"

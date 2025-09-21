@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-14 19:57+0300\n"
+"POT-Creation-Date: 2025-09-21 10:23+0300\n"
 "PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: chronograph/window.py:445
+#: chronograph/window.py:443
 msgid "Copied successfully"
 msgstr "Αντιγράφηκε επιτυχώς"
 
@@ -289,7 +289,8 @@ msgstr "Αποθέστε αρχεία εδώ για να τα ανοίξετε"
 msgid "Saves"
 msgstr "Αποθηκεύει"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:409
+#: data/gtk/window.blp:196 data/gtk/window.blp:217
+#: data/gtk/ui/shortcuts-dialog.blp:35
 msgid "Toggle sidebar"
 msgstr "Εναλλαγή πλαϊνής μπάρας"
 
@@ -297,7 +298,7 @@ msgstr "Εναλλαγή πλαϊνής μπάρας"
 msgid "Select a directory or open a file"
 msgstr "Επιλογή καταλόγου ή άνοιγμα αρχείου"
 
-#: data/gtk/window.blp:236 data/gtk/window.blp:389
+#: data/gtk/window.blp:236 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr "Εναλλαγή αναζήτησης"
 
@@ -341,7 +342,7 @@ msgstr "Λίστα"
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: data/gtk/window.blp:286 data/gtk/window.blp:404
+#: data/gtk/window.blp:286 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
@@ -368,96 +369,93 @@ msgstr "Προσθήκη τρέχοντος καταλόγου στις αποθ
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: data/gtk/window.blp:377
-msgid "Shortcuts"
-msgstr "Συντομεύσεις"
+#: data/gtk/window.blp:375
+msgid "Directory"
+msgstr "Κατάλογος"
 
-#: data/gtk/window.blp:381 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/window.blp:376
+msgid "Files"
+msgstr "Αρχεία"
+
+#: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:69
 #: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "Γενικά"
 
-#: data/gtk/window.blp:384
+#: data/gtk/ui/shortcuts-dialog.blp:10
 msgid "Quit"
 msgstr "Κλείστε το"
 
-#: data/gtk/window.blp:394
+#: data/gtk/ui/shortcuts-dialog.blp:20
 msgid "Select directory"
 msgstr "Επιλέξτε κατάλογο"
 
-#: data/gtk/window.blp:399
+#: data/gtk/ui/shortcuts-dialog.blp:25
 msgid "Select files"
 msgstr "Επιλογή αρχείων"
 
-#: data/gtk/window.blp:415
+#: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
 msgstr "Λειτουργία συγχρονισμού"
 
-#: data/gtk/window.blp:418
+#: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
 msgstr "Συγχρονισμός/επανασυγχρονισμός"
 
-#: data/gtk/window.blp:423
+#: data/gtk/ui/shortcuts-dialog.blp:49
 #, fuzzy
 msgid "Replay selected line/word"
 msgstr "Επανάληψη επιλεγμένης γραμμής"
 
-#: data/gtk/window.blp:428
+#: data/gtk/ui/shortcuts-dialog.blp:54
 msgid "Re-sync 100ms back"
 msgstr "Επανασυντονισμός 100ms πίσω"
 
-#: data/gtk/window.blp:433
+#: data/gtk/ui/shortcuts-dialog.blp:59
 msgid "Re-sync 100ms forward"
 msgstr "Επανασυγχρονισμός 100ms προς τα εμπρός"
 
-#: data/gtk/window.blp:438
+#: data/gtk/ui/shortcuts-dialog.blp:65
 msgid "Line-by-Line line actions"
 msgstr ""
 
-#: data/gtk/window.blp:441
+#: data/gtk/ui/shortcuts-dialog.blp:68
 msgid "Remove selected line"
 msgstr "Αφαίρεση επιλεγμένης γραμμής"
 
-#: data/gtk/window.blp:446
+#: data/gtk/ui/shortcuts-dialog.blp:73
 msgid "Prepend line to selected"
 msgstr "Προσθήκη γραμμής στην επιλεγμένη"
 
-#: data/gtk/window.blp:451
+#: data/gtk/ui/shortcuts-dialog.blp:78
 msgid "Append line to selected"
 msgstr "Προσάρτηση γραμμής στην επιλεγμένη"
 
-#: data/gtk/window.blp:456 data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/shortcuts-dialog.blp:83
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Append line to end"
 msgstr "Προσάρτηση γραμμής στο τέλος"
 
-#: data/gtk/window.blp:462
+#: data/gtk/ui/shortcuts-dialog.blp:89
 msgid "Word-by-Word navigation"
 msgstr ""
 
-#: data/gtk/window.blp:465
+#: data/gtk/ui/shortcuts-dialog.blp:92
 msgid "One word back"
 msgstr ""
 
-#: data/gtk/window.blp:470
+#: data/gtk/ui/shortcuts-dialog.blp:97
 msgid "One word next"
 msgstr ""
 
-#: data/gtk/window.blp:475
+#: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One line up"
 msgstr ""
 
-#: data/gtk/window.blp:480
+#: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One line down"
 msgstr ""
-
-#: data/gtk/window.blp:490
-msgid "Directory"
-msgstr "Κατάλογος"
-
-#: data/gtk/window.blp:491
-msgid "Files"
-msgstr "Αρχεία"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
@@ -928,6 +926,9 @@ msgstr "Σελίδα συγχρονισμού στίχων σε μικρότερ
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;στίχοι;διαδίκτυο;τραγούδια;πολυμέσα;μέσα;lrclib;μουσική;συγχρονισμός;χρονογράφος;"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Συντομεύσεις"
 
 #~ msgid "Sync Page"
 #~ msgstr "Συντονισμός Σελίδας"

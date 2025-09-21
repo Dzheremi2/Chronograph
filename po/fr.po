@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-14 19:57+0300\n"
+"POT-Creation-Date: 2025-09-21 10:23+0300\n"
 "PO-Revision-Date: 2025-04-14 19:03+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/chronograph/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: chronograph/window.py:445
+#: chronograph/window.py:443
 msgid "Copied successfully"
 msgstr "Copié avec succès"
 
@@ -291,7 +291,8 @@ msgstr "Déposez des fichiers ici pour les ouvrir"
 msgid "Saves"
 msgstr "Dossiers épinglés"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:217 data/gtk/window.blp:409
+#: data/gtk/window.blp:196 data/gtk/window.blp:217
+#: data/gtk/ui/shortcuts-dialog.blp:35
 msgid "Toggle sidebar"
 msgstr "Afficher/Masquer la barre latérale"
 
@@ -299,7 +300,7 @@ msgstr "Afficher/Masquer la barre latérale"
 msgid "Select a directory or open a file"
 msgstr "Sélectionnez un dossier ou ouvrez un fichier"
 
-#: data/gtk/window.blp:236 data/gtk/window.blp:389
+#: data/gtk/window.blp:236 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr "Afficher/Masquer la recherche"
 
@@ -343,7 +344,7 @@ msgstr "Liste"
 msgid "Preferences"
 msgstr "Préférences"
 
-#: data/gtk/window.blp:286 data/gtk/window.blp:404
+#: data/gtk/window.blp:286 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
@@ -370,97 +371,94 @@ msgstr "Épingler le dossier courant"
 msgid "Search"
 msgstr "Rechercher"
 
-#: data/gtk/window.blp:377
-msgid "Shortcuts"
-msgstr "Raccourcis"
+#: data/gtk/window.blp:375
+msgid "Directory"
+msgstr "Dossier"
 
-#: data/gtk/window.blp:381 data/gtk/ui/dialogs/Preferences.blp:8
+#: data/gtk/window.blp:376
+msgid "Files"
+msgstr "Fichiers"
+
+#: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:69
 #: data/gtk/ui/dialogs/Preferences.blp:96
 msgid "General"
 msgstr "Général"
 
-#: data/gtk/window.blp:384
+#: data/gtk/ui/shortcuts-dialog.blp:10
 msgid "Quit"
 msgstr "Quitter"
 
-#: data/gtk/window.blp:394
+#: data/gtk/ui/shortcuts-dialog.blp:20
 msgid "Select directory"
 msgstr "Sélectionner le dossier"
 
-#: data/gtk/window.blp:399
+#: data/gtk/ui/shortcuts-dialog.blp:25
 msgid "Select files"
 msgstr "Sélectionner les fichiers"
 
-#: data/gtk/window.blp:415
+#: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
 msgstr "Mode de synchronisation"
 
-#: data/gtk/window.blp:418
+#: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
 msgstr "Synchroniser/Resynchroniser"
 
-#: data/gtk/window.blp:423
+#: data/gtk/ui/shortcuts-dialog.blp:49
 #, fuzzy
 msgid "Replay selected line/word"
 msgstr "Rejouer la ligne sélectionnée"
 
-#: data/gtk/window.blp:428
+#: data/gtk/ui/shortcuts-dialog.blp:54
 msgid "Re-sync 100ms back"
 msgstr "Resynchroniser 100 ms en arrière"
 
-#: data/gtk/window.blp:433
+#: data/gtk/ui/shortcuts-dialog.blp:59
 msgid "Re-sync 100ms forward"
 msgstr "Resynchroniser 100 ms en avant"
 
-#: data/gtk/window.blp:438
+#: data/gtk/ui/shortcuts-dialog.blp:65
 #, fuzzy
 msgid "Line-by-Line line actions"
 msgstr "Actions de ligne"
 
-#: data/gtk/window.blp:441
+#: data/gtk/ui/shortcuts-dialog.blp:68
 msgid "Remove selected line"
 msgstr "Supprimer la ligne sélectionnée"
 
-#: data/gtk/window.blp:446
+#: data/gtk/ui/shortcuts-dialog.blp:73
 msgid "Prepend line to selected"
 msgstr "Insérer une ligne avant"
 
-#: data/gtk/window.blp:451
+#: data/gtk/ui/shortcuts-dialog.blp:78
 msgid "Append line to selected"
 msgstr "Insérer une ligne après"
 
-#: data/gtk/window.blp:456 data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/shortcuts-dialog.blp:83
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 msgid "Append line to end"
 msgstr "Insérer une ligne à la fin"
 
-#: data/gtk/window.blp:462
+#: data/gtk/ui/shortcuts-dialog.blp:89
 msgid "Word-by-Word navigation"
 msgstr ""
 
-#: data/gtk/window.blp:465
+#: data/gtk/ui/shortcuts-dialog.blp:92
 msgid "One word back"
 msgstr ""
 
-#: data/gtk/window.blp:470
+#: data/gtk/ui/shortcuts-dialog.blp:97
 msgid "One word next"
 msgstr ""
 
-#: data/gtk/window.blp:475
+#: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One line up"
 msgstr ""
 
-#: data/gtk/window.blp:480
+#: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One line down"
 msgstr ""
-
-#: data/gtk/window.blp:490
-msgid "Directory"
-msgstr "Dossier"
-
-#: data/gtk/window.blp:491
-msgid "Files"
-msgstr "Fichiers"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
@@ -930,6 +928,9 @@ msgstr "Page de synchronisation des paroles sur petit écran"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;paroles;chansons;morceaux;multimédia;musique;"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Raccourcis"
 
 #~ msgid "Sync Page"
 #~ msgstr "Synchroniser la page"

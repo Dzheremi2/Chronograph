@@ -10,6 +10,7 @@ chronograph/ui/widgets/song_card.py
 chronograph/ui/widgets/saved_location.py
 chronograph/ui/widgets/lrclib_track.py
 data/gtk/window.blp
+data/gtk/ui/shortcuts-dialog.blp
 data/gtk/ui/dialogs/LRClib.blp
 data/gtk/ui/dialogs/MetadataEditor.blp
 data/gtk/ui/dialogs/Preferences.blp
