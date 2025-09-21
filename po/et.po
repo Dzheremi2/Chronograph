@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-21 15:54+0300\n"
-"PO-Revision-Date: 2025-09-11 22:01+0000\n"
+"PO-Revision-Date: 2025-09-21 23:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -523,9 +523,8 @@ msgid "Embed Lyrics"
 msgstr "Lõimitud laulusõnad"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:114
-#, fuzzy
 msgid "Delete Lyrics"
-msgstr "Lõimitud laulusõnad"
+msgstr "Kustuta laulusõnad"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
