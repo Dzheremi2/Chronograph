@@ -44,5 +44,5 @@ class LyricsWidget(Adw.Bin):
             nxt = lyrics_model[new + 1].widget
             nxt.line.set_is_current_line(False)
             self.third_line_box.append(nxt)
-        except IndexError:
+        except (IndexError, AttributeError):
             pass

@@ -163,14 +163,12 @@ class LRClib(Adw.Dialog):
             if isinstance(
                 (page := Constants.WIN.navigation_view.get_visible_page()), LRCSyncPage
             ):
-                page: LRCSyncPage
                 page.sync_lines.remove_all()
                 for _, line in enumerate(text.splitlines()):
                     page.sync_lines.append(LRCSyncLine(line))
             elif isinstance(
                 (page := Constants.WIN.navigation_view.get_visible_page()), WBWSyncPage
             ):
-                page: WBWSyncPage
                 buffer = Gtk.TextBuffer()
                 buffer.set_text(text)
                 page.edit_view_text_view.set_buffer(buffer)

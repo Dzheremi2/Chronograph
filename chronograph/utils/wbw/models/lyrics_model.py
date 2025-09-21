@@ -2,9 +2,9 @@ from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
 
-from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.line_model import LineModel
 from chronograph.utils.wbw.models.word_model import WordModel
+from chronograph.utils.wbw.token_parser import TokenParser
 from chronograph.utils.wbw.tokens import WordToken
 
 
@@ -26,7 +26,7 @@ class LyricsModel(GObject.Object):
 
         super().__init__()
         store: Gio.ListStore = Gio.ListStore.new(item_type=LineModel)
-        for line in eLRCParser.parse_lines(lyrics):
+        for line in TokenParser.parse_lines(lyrics):
             model = LineModel(line)
             store.append(model)
         self.set_property("lines", store)

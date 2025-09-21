@@ -2,13 +2,14 @@ from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
 
-from chronograph.utils.wbw.elrc_parser import eLRCParser
 from chronograph.utils.wbw.models.word_model import WordModel
+from chronograph.utils.wbw.token_parser import TokenParser
 from chronograph.utils.wbw.tokens import LineToken
 
 
 class LineModel(GObject.Object):
     """Model representing a line of lyrics."""
+
     __gtype_name__ = "LineModel"
 
     __gsignals__ = {
@@ -40,7 +41,7 @@ class LineModel(GObject.Object):
         )
 
         store: Gio.ListStore = Gio.ListStore.new(item_type=WordModel)
-        for word in eLRCParser.parse_words(line):
+        for word in TokenParser.parse_words(line):
             model = WordModel(word)
             store.append(model)
         self.set_property("words", store)
@@ -49,7 +50,7 @@ class LineModel(GObject.Object):
 
     def set_current(self, index: int) -> None:
         """Set the current highlighted word index.
-        
+
         Parameters
         ----------
         index : int
@@ -117,9 +118,7 @@ class LineModel(GObject.Object):
 
     def restore_token(self) -> LineToken:
         """Recreate `LineToken` from the model."""
-        return LineToken(
-            self.text, self.line, time=self.time, timestamp=self.timestamp
-        )
+        return LineToken(self.text, self.line, time=self.time, timestamp=self.timestamp)
 
     def __iter__(self) -> Iterator[WordModel]:
         """Iterate through all words in the line."""
