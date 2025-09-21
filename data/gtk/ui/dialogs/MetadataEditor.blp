@@ -101,9 +101,21 @@ template $MetadataEditor : Adw.Dialog {
             styles ["boxed-list"]
           }
 
-          Button embed_lyrics_button {
-            label: _("Embed Lyrics");
-            clicked => $on_embed_lyrics_clicked();
+          Box lyrics_buttons_box {
+            orientation: vertical;
+            spacing: 4;
+
+            Button {
+              label: _("Embed Lyrics");
+              clicked => $on_embed_lyrics_clicked();
+            }
+
+            Button {
+              label: _("Delete Lyrics");
+              clicked => $on_delete_lyrics_clicked();
+
+              styles ["destructive-action"]
+            }
           }
         }
       }

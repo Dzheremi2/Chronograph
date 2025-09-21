@@ -1,7 +1,6 @@
 """Some functions without a specific grouping"""
 
 import os
-import re
 from pathlib import Path
 from typing import Optional
 

@@ -169,20 +169,19 @@ class BaseFile:
         """
         raise NotImplementedError
 
-    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False) -> None:
+    def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
         """Embeds the lyrics to the corresponding tags in realization
 
         Parameters
         ----------
-        lyrics : str
-            lyrics
+        lyrics : Optional[str]
+            lyrics, if `None` lyrics removed
         force : bool, by default `False`
             Allows to embed lyrics independently of schema settings
 
         Should be implemented in file specific child classes
         """
         raise NotImplementedError
-
 
 # pylint: disable=abstract-method
 class TaggableFile(BaseFile):

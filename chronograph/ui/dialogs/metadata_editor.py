@@ -20,7 +20,7 @@ class MetadataEditor(Adw.Dialog):
     title_row: Adw.EntryRow = gtc()
     artist_row: Adw.EntryRow = gtc()
     album_row: Adw.EntryRow = gtc()
-    embed_lyrics_button: Gtk.Button = gtc()
+    lyrics_buttons_box: Gtk.Box = gtc()
 
     def __init__(self, card: "song_card.SongCard") -> None:
         from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
@@ -40,7 +40,7 @@ class MetadataEditor(Adw.Dialog):
         # Hide "Embed Lyrics" button if launched from library page
         page = Constants.WIN.navigation_view.get_visible_page()
         if not isinstance(page, (WBWSyncPage, LRCSyncPage)):
-            self.embed_lyrics_button.set_visible(False)
+            self.lyrics_buttons_box.set_visible(False)
 
     @Gtk.Template.Callback()
     def on_cancel_clicked(self, *_args) -> None:
@@ -77,6 +77,10 @@ class MetadataEditor(Adw.Dialog):
             self._card._file.embed_lyrics(lyrics, force=True)
         else:
             logger.debug("Prevented lyrics embedding from library page")
+
+    @Gtk.Template.Callback()
+    def on_delete_lyrics_clicked(self, *_args) -> None:
+        self._card._file.embed_lyrics(None)  # pylint: disable=protected-access
 
     @Gtk.Template.Callback()
     def save(self, *_args) -> None:

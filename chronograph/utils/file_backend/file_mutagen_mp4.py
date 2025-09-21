@@ -135,20 +135,33 @@ class FileMP4(TaggableFile):
         self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
         setattr(self, tags_conjunction[tag_name][0], new_val)
 
-    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False) -> None:
-        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
-            if self._mutagen_file.tags is None:
-                self._mutagen_file.add_tags()
+    def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+        if lyrics is not None:
+            if (
+                Schema.get("root.settings.file-manipulation.embed-lyrics.enabled")
+                or force
+            ):
+                if self._mutagen_file.tags is None:
+                    self._mutagen_file.add_tags()
 
-            target_format = LyricsFormat[
-                Schema.get(
-                    "root.settings.file-manipulation.embed-lyrics.default"
-                ).upper()
-            ]
-            target_format = LyricsFormat.from_int(
-                min(target_format.value, lyrics.format.value)
-            )
-            text = lyrics.of_format(target_format)
+                target_format = LyricsFormat[
+                    Schema.get(
+                        "root.settings.file-manipulation.embed-lyrics.default"
+                    ).upper()
+                ]
+                target_format = LyricsFormat.from_int(
+                    min(target_format.value, lyrics.format.value)
+                )
+                text = lyrics.of_format(target_format)
 
-            self._mutagen_file.tags["\xa9lyr"] = text
-            self.save()
+                self._mutagen_file.tags["\xa9lyr"] = text
+                self.save()
+            return
+
+        try:
+            if self._mutagen_file.tags is not None:
+                del self._mutagen_file.tags["\xa9lyr"]
+        except KeyError:
+            pass
+
+        self.save()

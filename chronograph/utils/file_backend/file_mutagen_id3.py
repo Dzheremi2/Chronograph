@@ -148,19 +148,31 @@ class FileID3(TaggableFile):
                 self._mutagen_file.tags.add(TALB(text=[new_val]))
         setattr(self, tags_conjunction[tag_name], new_val)
 
-    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False) -> None:
-        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
-            target_format = LyricsFormat[
-                Schema.get(
-                    "root.settings.file-manipulation.embed-lyrics.default"
-                ).upper()
-            ]
-            target_format = LyricsFormat.from_int(
-                min(target_format.value, lyrics.format.value)
-            )
-            text = lyrics.of_format(target_format)
-            try:
-                self._mutagen_file.tags["USLT"].text = text
-            except KeyError:
-                self._mutagen_file.tags.add(USLT(text=text))
-            self.save()
+    def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+        if lyrics is not None:
+            if (
+                Schema.get("root.settings.file-manipulation.embed-lyrics.enabled")
+                or force
+            ):
+                target_format = LyricsFormat[
+                    Schema.get(
+                        "root.settings.file-manipulation.embed-lyrics.default"
+                    ).upper()
+                ]
+                target_format = LyricsFormat.from_int(
+                    min(target_format.value, lyrics.format.value)
+                )
+                text = lyrics.of_format(target_format)
+                try:
+                    self._mutagen_file.tags["USLT"].text = text
+                except KeyError:
+                    self._mutagen_file.tags.add(USLT(text=text))
+                self.save()
+            return
+
+        try:
+            del self._mutagen_file.tags["USLT"]
+        except KeyError:
+            pass
+
+        self.save()

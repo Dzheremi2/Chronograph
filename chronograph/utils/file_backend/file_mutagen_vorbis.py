@@ -197,23 +197,42 @@ class FileVorbis(TaggableFile):
             self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
         setattr(self, tags_conjunction[tag_name][0], new_val)
 
-    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False) -> None:
-        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
-            target_format = LyricsFormat[
-                Schema.get(
-                    "root.settings.file-manipulation.embed-lyrics.default"
-                ).upper()
-            ]
-            target_format = LyricsFormat.from_int(
-                min(target_format.value, lyrics.format.value)
-            )
-            text = lyrics.of_format(target_format)
-            if not Schema.get("root.settings.file-manipulation.embed-lyrics.vorbis"):
-                self._mutagen_file.tags["UNSYNCEDLYRICS"] = text
-            else:
-                self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics.of_format(
-                    LyricsFormat.PLAIN
+    def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+        if lyrics is not None:
+            if (
+                Schema.get("root.settings.file-manipulation.embed-lyrics.enabled")
+                or force
+            ):
+                target_format = LyricsFormat[
+                    Schema.get(
+                        "root.settings.file-manipulation.embed-lyrics.default"
+                    ).upper()
+                ]
+                target_format = LyricsFormat.from_int(
+                    min(target_format.value, lyrics.format.value)
                 )
+                text = lyrics.of_format(target_format)
+                if not Schema.get(
+                    "root.settings.file-manipulation.embed-lyrics.vorbis"
+                ):
+                    self._mutagen_file.tags["UNSYNCEDLYRICS"] = text
+                else:
+                    self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics.of_format(
+                        LyricsFormat.PLAIN
+                    )
 
-                self._mutagen_file.tags["LYRICS"] = text
-            self.save()
+                    self._mutagen_file.tags["LYRICS"] = text
+                self.save()
+            return
+
+        try:
+            del self._mutagen_file.tags["UNSYNCEDLYRICS"]
+        except KeyError:
+            pass
+
+        try:
+            del self._mutagen_file.tags["LYRICS"]
+        except KeyError:
+            pass
+
+        self.save()
