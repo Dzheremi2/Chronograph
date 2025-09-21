@@ -1,3 +1,15 @@
+## 4.2.1
+
+<p>New features</p>
+<ul>
+  <li>"Delete Lyrics" button added to Metadata Editor dialog</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+  <li>"Embed lyrics default format" toggle labels not ellipsizing anymore</li>
+  <li>Empty lyric files are now removing automatically</li>
+</ul>
+
 ## 4.2
 
 <p>New features</p>

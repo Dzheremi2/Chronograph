@@ -73,6 +73,19 @@
   </screenshots>
 
   <releases>
+    <release version="4.2.1" date="2025-09-21">
+      <description translate="no">
+        <p>New features</p>
+        <ul>
+          <li>"Delete Lyrics" button added to Metadata Editor dialog</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>"Embed lyrics default format" toggle labels not ellipsizing anymore</li>
+          <li>Empty lyric files are now removing automatically</li>
+        </ul>
+      </description>
+    </release>
     <release version="4.2" date="2025-09-21">
       <description translate="no">
         <p>New features</p>

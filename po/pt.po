@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-21 10:23+0300\n"
+"POT-Creation-Date: 2025-09-21 15:54+0300\n"
 "PO-Revision-Date: 2025-07-28 18:17+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/chronograph/"
@@ -73,66 +73,66 @@ msgid ""
 msgstr ""
 "Um erro desconhecido ocorreu ao tentar conectar ao servidor de biblioteca LRC"
 
-#: chronograph/ui/dialogs/lrclib.py:232
+#: chronograph/ui/dialogs/lrclib.py:230
 msgid "No synced lyrics available"
 msgstr "Não há letras sincronizadas disponíveis"
 
-#: chronograph/ui/dialogs/lrclib.py:237
+#: chronograph/ui/dialogs/lrclib.py:235
 msgid "No plain lyrics available"
 msgstr "Não há letras simples disponíveis"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:288
+#: chronograph/ui/sync_pages/lrc_sync_page.py:247
+#: chronograph/ui/sync_pages/wbw_sync_page.py:275
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Cópia para a área de transferência"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:273
-#: chronograph/ui/sync_pages/wbw_sync_page.py:248
+#: chronograph/ui/sync_pages/lrc_sync_page.py:259
+#: chronograph/ui/sync_pages/wbw_sync_page.py:235
 msgid "Lyrics exported to file"
 msgstr "Letras exportadas para o ficheiro"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:249
+#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+#: chronograph/ui/sync_pages/wbw_sync_page.py:236
 #: chronograph/ui/widgets/song_card.py:121
 msgid "Show"
 msgstr "Exibir"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:402
-#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+#: chronograph/ui/sync_pages/lrc_sync_page.py:395
+#: chronograph/ui/sync_pages/lrc_sync_page.py:438
 msgid "Failed to connect to LRClib.net"
 msgstr "Falha ao conectar ao LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:405
-#: chronograph/ui/sync_pages/lrc_sync_page.py:448
+#: chronograph/ui/sync_pages/lrc_sync_page.py:398
+#: chronograph/ui/sync_pages/lrc_sync_page.py:441
 msgid "Connection to LRClib.net timed out"
 msgstr "Tempo de conexão ao LRClib.net esgotado"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
-#: chronograph/ui/sync_pages/lrc_sync_page.py:452
+#: chronograph/ui/sync_pages/lrc_sync_page.py:402
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Um erro ocorreu ao conectar ao LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:465
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Publicado com sucesso: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:464
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ocorreu um erro desconhecido: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:492
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Unable to publish lyrics"
 msgstr "Incapaz de publicar letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -140,19 +140,19 @@ msgstr ""
 "Para publicar letras, a faixa deve ter campos de um título artista, álbum e "
 "letras definidos"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Close"
 msgstr "Fechar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:503
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 msgid "Cannot publish empty lyrics"
 msgstr "Não é possível publicar letras vazias"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Why?"
 msgstr "Porquê?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:510
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
@@ -465,8 +465,8 @@ msgstr "Pesquise lrclib pelo título e artista fornecido"
 msgid "Synced"
 msgstr "Sincronizado"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:166
-#: data/gtk/ui/dialogs/Preferences.blp:168
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
 msgstr "Simples"
 
@@ -525,9 +525,14 @@ msgstr "Capa do conjunto"
 msgid "Remove cover"
 msgstr "Remova a tampa"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+#: data/gtk/ui/dialogs/MetadataEditor.blp:109
 msgid "Embed Lyrics"
 msgstr ""
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:114
+#, fuzzy
+msgid "Delete Lyrics"
+msgstr "Apagar"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
@@ -696,7 +701,7 @@ msgid "eLRC prefix"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:131
-#: data/gtk/ui/dialogs/Preferences.blp:187
+#: data/gtk/ui/dialogs/Preferences.blp:188
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr ""
@@ -731,7 +736,7 @@ msgstr ""
 msgid "Brings lyrics to selected format before embedding"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:193
+#: data/gtk/ui/dialogs/Preferences.blp:194
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -739,11 +744,11 @@ msgid ""
 "This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:214
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:215
+#: data/gtk/ui/dialogs/Preferences.blp:216
 msgid "Word-by-Word"
 msgstr ""
 

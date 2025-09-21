@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-21 10:23+0300\n"
-"PO-Revision-Date: 2025-09-11 18:41+0300\n"
+"POT-Creation-Date: 2025-09-21 15:54+0300\n"
+"PO-Revision-Date: 2025-09-21 15:54+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Gtranslator 49.0\n"
 
 #: chronograph/window.py:443
 msgid "Copied successfully"
@@ -71,65 +71,65 @@ msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr "Произошла неизвестная ошибка при попытке подключения к серверу"
 
-#: chronograph/ui/dialogs/lrclib.py:232
+#: chronograph/ui/dialogs/lrclib.py:230
 msgid "No synced lyrics available"
 msgstr "Нет синхронизированных слов"
 
-#: chronograph/ui/dialogs/lrclib.py:237
+#: chronograph/ui/dialogs/lrclib.py:235
 msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:288
+#: chronograph/ui/sync_pages/lrc_sync_page.py:247
+#: chronograph/ui/sync_pages/wbw_sync_page.py:275
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:273
-#: chronograph/ui/sync_pages/wbw_sync_page.py:248
+#: chronograph/ui/sync_pages/lrc_sync_page.py:259
+#: chronograph/ui/sync_pages/wbw_sync_page.py:235
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:274
-#: chronograph/ui/sync_pages/wbw_sync_page.py:249
+#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+#: chronograph/ui/sync_pages/wbw_sync_page.py:236
 #: chronograph/ui/widgets/song_card.py:121
 msgid "Show"
 msgstr "Показать"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:402
-#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+#: chronograph/ui/sync_pages/lrc_sync_page.py:395
+#: chronograph/ui/sync_pages/lrc_sync_page.py:438
 msgid "Failed to connect to LRClib.net"
 msgstr "Не удалось подключиться к LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:405
-#: chronograph/ui/sync_pages/lrc_sync_page.py:448
+#: chronograph/ui/sync_pages/lrc_sync_page.py:398
+#: chronograph/ui/sync_pages/lrc_sync_page.py:441
 msgid "Connection to LRClib.net timed out"
 msgstr "Время ожидания подключения к LRClib.net истекло"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
-#: chronograph/ui/sync_pages/lrc_sync_page.py:452
+#: chronograph/ui/sync_pages/lrc_sync_page.py:402
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Произошла ошибка при подключении к LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:465
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успешно опубликовано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:464
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неверный публичный токен: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Произошла неизвестная ошибка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:492
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Unable to publish lyrics"
 msgstr "Невозможно опубликовать текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -137,19 +137,19 @@ msgstr ""
 "Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
 "«Альбом» и синхронизировать слова"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Close"
 msgstr "Закрыть"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:503
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 msgid "Cannot publish empty lyrics"
 msgstr "Невозможно опубликовать пустой текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 msgid "Why?"
 msgstr "Почему?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:510
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
@@ -459,8 +459,8 @@ msgstr "Искать на LRClib по указанным названию и и�
 msgid "Synced"
 msgstr "Синхронизированные"
 
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:166
-#: data/gtk/ui/dialogs/Preferences.blp:168
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
 msgstr "Простые"
 
@@ -518,9 +518,13 @@ msgstr "Установить обложку"
 msgid "Remove cover"
 msgstr "Удалить обложку"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:105
+#: data/gtk/ui/dialogs/MetadataEditor.blp:109
 msgid "Embed Lyrics"
 msgstr "Встроить слова"
+
+#: data/gtk/ui/dialogs/MetadataEditor.blp:114
+msgid "Delete Lyrics"
+msgstr "Удалить слова"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
@@ -685,7 +689,7 @@ msgid "eLRC prefix"
 msgstr "Префикс eLRC"
 
 #: data/gtk/ui/dialogs/Preferences.blp:131
-#: data/gtk/ui/dialogs/Preferences.blp:187
+#: data/gtk/ui/dialogs/Preferences.blp:188
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr "Помощь"
@@ -724,7 +728,7 @@ msgstr "Стандартный формат встраиваемых слов"
 msgid "Brings lyrics to selected format before embedding"
 msgstr "Приводит слова к выбранному формату пере встраиванием"
 
-#: data/gtk/ui/dialogs/Preferences.blp:193
+#: data/gtk/ui/dialogs/Preferences.blp:194
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -736,11 +740,11 @@ msgstr ""
 "конвертированы в LRC и затем встроены выбранным способом (Vorbis)\n"
 "Слова только опускает слова по иерархии (eLRC -> LRC -> Обычные)"
 
-#: data/gtk/ui/dialogs/Preferences.blp:214
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
 msgstr "Построчный"
 
-#: data/gtk/ui/dialogs/Preferences.blp:215
+#: data/gtk/ui/dialogs/Preferences.blp:216
 msgid "Word-by-Word"
 msgstr "Пословный"
 
