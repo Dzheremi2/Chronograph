@@ -394,6 +394,8 @@ class WBWSyncPage(Adw.NavigationPage):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         self._player.stream_ended()
+        self._lrc_lyrics_file.rm_empty()
+        self._elrc_lyrics_file.rm_empty()
 
     def _on_app_close(self, *_) -> None:
         if self._autosave_timeout_id:
@@ -401,6 +403,8 @@ class WBWSyncPage(Adw.NavigationPage):
         if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("App closed, saving lyrics")
             self._autosave()
+        self._lrc_lyrics_file.rm_empty()
+        self._elrc_lyrics_file.rm_empty()
         return False
 
     ###############

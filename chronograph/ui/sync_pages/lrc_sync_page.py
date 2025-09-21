@@ -324,7 +324,9 @@ class LRCSyncPage(Adw.NavigationPage):
                     self._file.embed_lyrics(lyrics)
                     logger.debug("Lyrics autosaved successfully")
                 else:
-                    logger.debug("Prevented overwriting LRC lyrics with Plain in LRC file")
+                    logger.debug(
+                        "Prevented overwriting LRC lyrics with Plain in LRC file"
+                    )
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None
@@ -338,6 +340,7 @@ class LRCSyncPage(Adw.NavigationPage):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         self._player.stream_ended()
+        self._lyrics_file.rm_empty()
 
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:
@@ -345,6 +348,7 @@ class LRCSyncPage(Adw.NavigationPage):
         if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("App closed, saving lyrics")
             self._autosave()
+        self._lyrics_file.rm_empty()
         return False
 
     ###############

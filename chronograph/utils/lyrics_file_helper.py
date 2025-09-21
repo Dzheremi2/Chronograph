@@ -67,8 +67,16 @@ class LyricsFile:
         lyrics : str
             Lyrics text (no matter LRC or eLRC)
         """
-        self.text.lyrics = lyrics
-        self.save()
+        if lyrics != "":
+            self.text.lyrics = lyrics
+            self.save()
+            return
+
+        self.path.unlink(missing_ok=True)
+
+    def rm_empty(self) -> None:
+        if self.path.read_text() == "":
+            self.path.unlink(missing_ok=True)
 
     def _strip_tags(self) -> Lyrics:
         out: list = []
