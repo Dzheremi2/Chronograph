@@ -3,7 +3,6 @@ from enum import Enum
 from typing import Literal, Optional
 
 from chronograph.internal import Schema
-from chronograph.utils.wbw.models.word_model import WordModel
 from chronograph.utils.wbw.token_parser import TokenParser
 from chronograph.utils.wbw.tokens import WordToken
 
@@ -53,13 +52,6 @@ class Lyrics:
         Text of lyrics
     """
 
-    LINE_TIMESTAMP = re.compile(
-        r"^\s*\[(?P<ts>(?P<m>\d{2}):(?P<s>\d{2})(?:\.(?P<ms>\d{2,3}))?)\]\s*"
-    )
-    WORD_TIMESTAMP = re.compile(r"\s*<\d{2}:\d{2}(?:\.\d{2,3})?>\s*")
-    TOKEN = re.compile(
-        r"(?:<(?P<m>\d{2}):(?P<s>\d{2})(?:\.(?P<ms>\d{2,3}))?>\s*)?(?P<word>[^\s<>]+)"
-    )
     TIMESTAMP = re.compile(r"^\d{2}:\d{2}(?:\.\d{2,3})?$")
 
     _SPACER = "\u00a0"
@@ -257,5 +249,5 @@ class Lyrics:
         )
 
     @staticmethod
-    def _is_spacer(word: WordToken | WordModel) -> bool:
+    def _is_spacer(word: WordToken) -> bool:
         return word.word == Lyrics._SPACER * 20
