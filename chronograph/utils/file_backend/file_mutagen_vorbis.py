@@ -77,7 +77,7 @@ class FileVorbis(TaggableFile):
             if self._mutagen_file.pictures[0].data is not None:
                 self._cover = self._mutagen_file.pictures[0].data
             else:
-                self._cover = "icon"
+                self._cover = None
         elif self._mutagen_file.get("metadata_block_picture", []):
             _data = None
             for base64_data in self._mutagen_file.get("metadata_block_picture", []):
