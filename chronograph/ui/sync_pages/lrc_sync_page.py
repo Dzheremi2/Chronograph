@@ -12,9 +12,9 @@ import requests
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
+from chronograph.ui.widgets.ui_player import UIPlayer
+from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -61,6 +61,7 @@ class LRCSyncPage(Adw.NavigationPage):
             self.sync_page_metadata_editor_button.set_visible(False)
         self._player_widget = UIPlayer(file, card)
         self.player_container.append(self._player_widget)
+        Player()._gst_player.connect("pos-upd", self._on_timestamp_changed)
 
         self._autosave_path = Path(self._file.path).with_suffix(
             Schema.get("root.settings.file-manipulation.format")
@@ -145,8 +146,9 @@ class LRCSyncPage(Adw.NavigationPage):
     ############### Sync Actions ###############
     def _sync(self, *_args) -> None:
         if self.selected_line:
-            mcs = self._player.get_timestamp()
-            timestamp = mcs_to_timestamp(mcs)
+            # pylint: disable=protected-access
+            ns = Player()._gst_player.props.position
+            timestamp = ns_to_timestamp(ns)
             pattern = re.compile(r"\[([^\[\]]+)\] ")
             if pattern.search(self.selected_line.get_text()) is None:
                 self.selected_line.set_text(timestamp + self.selected_line.get_text())
@@ -164,9 +166,9 @@ class LRCSyncPage(Adw.NavigationPage):
                         return
 
     def _replay(self, *_args) -> None:
-        mcs = timestamp_to_mcs(self.selected_line.get_text())
-        self._player.seek(mcs)
-        logger.debug("Replayed lines at timing: %s", mcs_to_timestamp(mcs))
+        ns = timestamp_to_ns(self.selected_line.get_text())
+        Player().seek(ns // 1_000_000)
+        logger.debug("Replayed lines at timing: %s", ns_to_timestamp(ns))
 
     def _seek100(self, _action, _param, mcs_seek: int) -> None:
         pattern = re.compile(r"\[([^\[\]]+)\] ")
@@ -174,14 +176,14 @@ class LRCSyncPage(Adw.NavigationPage):
         if match is None:
             return
         timestamp = match[0]
-        mcs = timestamp_to_mcs(timestamp) + mcs_seek
-        mcs = max(mcs, 0)
-        timestamp = mcs_to_timestamp(mcs)
+        ns = timestamp_to_ns(timestamp) + mcs_seek * 1_000
+        ns = max(ns, 0)
+        timestamp = ns_to_timestamp(ns)
         replacement = rf"{timestamp}"
         self.selected_line.set_text(
             re.sub(pattern, replacement, self.selected_line.get_text())
         )
-        self._player.seek(mcs)
+        Player().seek(ns // 1_000_000)
         logger.debug(
             "Line(%s) was seeked %sms to %s",
             self.selected_line,
@@ -273,14 +275,14 @@ class LRCSyncPage(Adw.NavigationPage):
 
     ###############
 
-    def _on_timestamp_changed(self, media_stream: Gtk.MediaStream, *_args) -> None:
+    def _on_timestamp_changed(self, _obj, pos: int) -> None:
         try:
             lines: list[LRCSyncLine] = []
             timestamps: list[int] = []
             for line in self.sync_lines:  # pylint: disable=not-an-iterable
                 line.set_attributes(None)
                 try:
-                    timing = timestamp_to_mcs(line.get_text())
+                    timing = timestamp_to_ns(line.get_text())
                     lines.append(line)
                     timestamps.append(timing)
                 except ValueError:
@@ -289,7 +291,8 @@ class LRCSyncPage(Adw.NavigationPage):
             if not timestamps:
                 return
 
-            timestamp = media_stream.get_timestamp()
+            # pylint: disable=protected-access
+            timestamp = pos
             if timestamp < timestamps[0]:
                 return
             for i in range(len(timestamps) - 1):

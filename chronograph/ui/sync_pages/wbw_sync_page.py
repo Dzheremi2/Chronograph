@@ -7,9 +7,9 @@ from typing import Literal, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
+from chronograph.ui.widgets.ui_player import UIPlayer
+from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
@@ -64,7 +64,6 @@ class WBWSyncPage(Adw.NavigationPage):
         if isinstance(self._card._file, FileUntaggable):
             self.sync_page_metadata_editor_button.set_visible(False)
         self._player_widget = UIPlayer(file, card)
-        self._player = self._player_widget._player
         self.player_container.append(self._player_widget)
 
         self._elrc_autosave_path = (
@@ -281,13 +280,13 @@ class WBWSyncPage(Adw.NavigationPage):
     def _sync(self, *_args) -> None:
         current_line = self._lyrics_model.get_current_line()
         current_word = current_line.get_current_word()
-        mcs = self._player.get_timestamp()
-        ms = mcs // 1000
+        ns = Player()._gst_player.props.position # pylint: disable=protected-access
+        ms = ns // 1_000_000
         current_word.set_property("time", ms)
         logger.debug(
             "Word “%s” was synced with timestamp %s",
             current_word.word,
-            mcs_to_timestamp(mcs),
+            ns_to_timestamp(ns),
         )
         current_line.next()
         self.reset_timer()
@@ -295,26 +294,26 @@ class WBWSyncPage(Adw.NavigationPage):
     def _replay(self, *_args) -> None:
         current_line = self._lyrics_model.get_current_line()
         current_word = current_line.get_current_word()
-        mcs = timestamp_to_mcs(
+        ns = timestamp_to_ns(
             f"[{current_word.timestamp}]"
         )  # I'm lazy to refactor this method, so `[]` were added :)
-        self._player.seek(mcs)
-        logger.debug("Replayed word at timing: %s", mcs_to_timestamp(mcs))
+        Player().seek(ns // 1_000_000)
+        logger.debug("Replayed word at timing: %s", ns_to_timestamp(ns))
 
     def _seek100(self, _action, _param, mcs_seek: int) -> None:
         current_line = self._lyrics_model.get_current_line()
         current_word = current_line.get_current_word()
         ms = current_word.time
-        mcs = ms * 1000
-        mcs_new = mcs + mcs_seek
-        mcs_new = max(mcs_new, 0)
-        current_word.set_property("time", mcs_new // 1000)
-        self._player.seek(mcs_new)
+        ns = ms * 1000
+        ns_new = ns + mcs_seek * 1_000
+        ns_new = max(ns_new, 0)
+        current_word.set_property("time", ns_new // 1000)
+        Player().seek(ns_new // 1_000_000)
         logger.debug(
             "Word(%s) was seeked %sms to %s",
             current_word,
             mcs_seek // 1000,
-            mcs_to_timestamp(mcs_new),
+            ns_to_timestamp(ns_new),
         )
         self.reset_timer()
 

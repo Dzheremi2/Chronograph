@@ -166,7 +166,7 @@ class UIPlayer(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_seekbar_value(self, _rng, _scrl, value: float) -> None:
-        Player().seek(value)
+        Player().seek(value * 1_000)
 
     @Gtk.Template.Callback()
     def on_breakpoint(self, *_args) -> None:

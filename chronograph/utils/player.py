@@ -1,4 +1,3 @@
-from enum import Enum, auto
 from pathlib import Path
 
 from gi.repository import GObject, Gst, GstPlay, Gtk
@@ -157,9 +156,9 @@ class Player(GObject.Object):
         Parameters
         ----------
         new_pos : int
-            Position in seconds
+            Position in milliseconds
         """
-        pos = new_pos * Gst.SECOND
+        pos = new_pos * Gst.MSECOND
         self._gst_player.pipeline.seek(
             self.rate,
             Gst.Format.TIME,
