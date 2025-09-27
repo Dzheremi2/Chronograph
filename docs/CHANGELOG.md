@@ -1,3 +1,11 @@
+## 4.2.2
+
+<p>Hotfix</p>
+<ul>
+  <li>Previously, LRClib publisher always ends with an error cause of programmatical error</li>
+  <li>FLAC files without album cover now correctly display cover placeholder</li>
+</ul>
+
 ## 4.2.1
 
 <p>New features</p>
