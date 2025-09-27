@@ -69,6 +69,17 @@ root:
         type: bool
         default: false
   state:
+    player:
+      volume:
+        type: int
+        min: 0
+        max: 200
+        default: 100
+      rate:
+        type: float
+        min: 0.1
+        max: 2.0
+        default: 1.0
     library:
       sorting:
         type: str

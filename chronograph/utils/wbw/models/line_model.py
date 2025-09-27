@@ -127,6 +127,9 @@ class LineModel(GObject.Object):
 
     def __getitem__(self, index) -> WordModel:
         """Return word by index."""
-        if (item := self.words.get_item(index)) is not None:
-            return item
-        raise IndexError("List index out of range")
+        try:
+            if (item := self.words.get_item(index)) is not None:
+                return item
+            raise IndexError("List index out of range")
+        except (IndexError, OverflowError) as e:
+            raise IndexError("List index out of range") from e

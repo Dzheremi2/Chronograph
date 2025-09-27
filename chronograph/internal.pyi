@@ -27,6 +27,7 @@ class _Constants:
     CACHE_DIR: Final[Path]
     COVER_PLACEHOLDER: Final[Gdk.Texture]
     LOGGER: Logger
+    PLAYER_LOGGER: Logger
 
 Constants: _Constants
 Schema: Sch

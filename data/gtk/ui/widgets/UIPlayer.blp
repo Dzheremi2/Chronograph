@@ -1,0 +1,235 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UIPlayer: Adw.BreakpointBin {
+  width-request: 1;
+  height-request: 1;
+  Adw.Breakpoint {
+    condition ("max-width: 500sp")
+
+    setters {
+      collapse_box.visible: true;
+      repeat_button.visible: false;
+      collapsed_buttons_box.visible: true;
+    }
+    
+    apply => $on_breakpoint();
+    unapply => $on_breakpoint();
+  }
+
+  Adw.Clamp main_clamp {
+    // maximum-size: {controlled by class}
+    // tightening-threshold: {controlled by class}
+    orientation: horizontal;
+
+    Box {
+      orientation: vertical;
+      spacing: 4;
+      margin-start: 4;
+      margin-end: 4;
+
+      Box {
+        orientation: horizontal;
+        spacing: 8;
+
+        styles [
+          "card",
+        ]
+
+        Image sync_page_cover {
+          icon-name: "note-placeholder";
+          pixel-size: 100;
+          overflow: hidden;
+
+          styles [
+            "rounded",
+          ]
+        }
+
+        Box non_collapse_box {
+          orientation: vertical;
+          vexpand: true;
+          spacing: 2;
+          margin-top: 8;
+          margin-end: 4;
+
+          Inscription title_inscr {
+            text: "Unknown";
+            text-overflow: ellipsize_end;
+            hexpand: true;
+
+            styles [
+              "heading",
+            ]
+          }
+
+          Inscription artist_inscr {
+            text: "Unknown";
+            text-overflow: ellipsize_end;
+            hexpand: true;
+
+            styles [
+              "heading",
+            ]
+          }
+
+          Box collapsed_buttons_box {
+            visible: false;
+            valign: center;
+            vexpand: true;
+
+            ToggleButton {
+              icon-name: "toggle-repeat-symbolic";
+              active: bind repeat_button.active bidirectional;
+              styles ["flat"]
+            }
+          }
+          
+          Box player_box {
+            hexpand: true;
+            margin-bottom: 4;
+            margin-end: 4;
+            margin-start: 4;
+            margin-top: 4;
+            spacing: 4;
+
+            Box {
+              orientation: horizontal;
+              spacing: 8;
+
+              Button toggle_play_button {
+                icon-name: "play-button-symbolic";
+                tooltip-text: _("Play/Pause");
+                clicked => $toggle_play();
+                styles ["flat"]
+              }
+
+              Box {
+                Label elapsed_time_label {
+                  label: "00:00";
+                  width-request: 50;
+                  width-chars: 5;
+                }
+
+                Scale seekbar {
+                  hexpand: true;
+                  change-value => $on_seekbar_value();
+
+                  adjustment: Adjustment position_adj {
+                    lower: 0;
+                    step-increment: 1;
+                    page-increment: 10;
+                  };
+                }
+
+                Label remaining_time_label {
+                  label: "--:--";
+                  width-chars: 6;
+                }
+              }
+
+              Box {
+                spacing: 2;
+
+                MenuButton {
+                  icon-name: "chr-playback-options-symbolic";
+                  tooltip-text: _("Playback settings");
+                  styles ["flat"]
+                  popover: Popover {
+                    Adw.Clamp {
+                      orientation: horizontal;
+                      maximum-size: 250;
+                      tightening-threshold: 250;
+
+                      Box {
+                        hexpand: true;
+                        width-request: 250;
+                        orientation: vertical;
+                        spacing: 6;
+
+                        Box {
+                          orientation: vertical;
+
+                          Box {
+                            Button volume_button {
+                              tooltip-text: _("Toggle mute");
+                              icon-name: "chr-vol-max-symbolic";
+                              styles ["flat"]
+                            }
+
+                            Scale {
+                              hexpand: true;
+                              adjustment: Adjustment volume_adj {
+                                lower: 0;
+                                upper: 200;
+                                value: 100;
+                                step-increment: 1;
+                                page-increment: 5;
+                              };
+                              change-value => $on_volume();
+                            }
+
+                            Label volume_label {
+                              width-request: 40;
+                              xalign: 0;
+                            }
+                          }
+
+                          Box {
+                            Button {
+                              icon-name: "chr-playback-rate-symbolic";
+                              focusable: false;
+                              styles ["no-hover", "flat"]
+                            }
+
+                            Scale {
+                              hexpand: true;
+                              adjustment: Adjustment rate_adj {
+                                lower: 0.1;
+                                upper: 2.0;
+                                value: 1.0;
+                                step-increment: 0.1;
+                                page-increment: 0.1;
+                              };
+                              change-value => $on_rate();
+                            }
+
+                            Label rate_label {
+                              width-request: 40;
+                              xalign: 0;
+                            }
+                          }
+                        }
+
+                        Button {
+                          label: _("Reset");
+                          margin-start: 8;
+                          margin-end: 8;
+                          clicked => $on_reset();
+                          styles ["destructive-action"]
+                        }
+                      }
+                    }
+                  };
+                }
+
+                ToggleButton repeat_button {
+                  icon-name: "toggle-repeat-symbolic";
+                  tooltip-text: _("Toggle song repeat");
+                  toggled => $on_repeat_button_toggled();
+                  styles ["flat"]
+                }
+              }
+            }
+          }
+        }
+      }
+
+      Box collapse_box {
+        visible: false;
+        
+        styles ["card"]
+      }
+    }
+  }
+}

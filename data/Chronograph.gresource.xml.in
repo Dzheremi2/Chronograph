@@ -10,7 +10,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/MetadataEditor.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/LRClib.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/widgets/Player.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/UIPlayer.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/WBWSyncPage.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/wbw/WordWidget.ui</file>
@@ -59,6 +59,12 @@
     <file alias="chr-connection-timeout-symbolic.svg">icons/icons/symbolic/chr-connection-timeout-symbolic.svg</file>
     <file alias="chr-error-occured-symbolic.svg">icons/icons/symbolic/chr-error-occured-symbolic.svg</file>
     <file alias="chr-file-symbolic.svg">icons/icons/symbolic/chr-file-symbolic.svg</file>
+    <file alias="chr-playback-options-symbolic.svg">icons/icons/symbolic/chr-playback-options-symbolic.svg</file>
+    <file alias="chr-vol-max-symbolic.svg">icons/icons/symbolic/chr-vol-max-symbolic.svg</file>
+    <file alias="chr-vol-middle-symbolic.svg">icons/icons/symbolic/chr-vol-middle-symbolic.svg</file>
+    <file alias="chr-vol-min-symbolic.svg">icons/icons/symbolic/chr-vol-min-symbolic.svg</file>
+    <file alias="chr-vol-mute-symbolic.svg">icons/icons/symbolic/chr-vol-mute-symbolic.svg</file>
+    <file alias="chr-playback-rate-symbolic.svg">icons/icons/symbolic/chr-playback-rate-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>
