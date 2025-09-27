@@ -429,8 +429,8 @@ class LRCSyncPage(Adw.NavigationPage):
                         "artistName": artist,
                         "albumName": album,
                         "duration": duration,
-                        "plainLyrics": lyrics.of_format(LyricsFormat.LRC),
-                        "syncedLyrics": lyrics,
+                        "plainLyrics": lyrics.of_format(LyricsFormat.PLAIN),
+                        "syncedLyrics": lyrics.of_format(LyricsFormat.LRC),
                     },
                     timeout=10,
                 )
