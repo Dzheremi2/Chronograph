@@ -94,18 +94,13 @@ class GstPlayer(GstPlay.Play):
 
 @singleton
 class Player(GObject.Object):
-    class Setting(Enum):
-        VOLUME = auto()
-        RATE = auto()
-        ALL = auto()
-
     __gtype_name__ = "Player"
 
     _cookie = 0
 
     playing: bool = GObject.Property(type=bool, default=False)
     volume: float = GObject.Property(type=float, default=1.0)
-    playback_rate: float = GObject.Property(type=float, default=1.0)
+    rate: float = GObject.Property(type=float, default=1.0)
     mute: bool = GObject.Property(type=bool, default=False)
     pos: int = GObject.Property(type=GObject.TYPE_INT64, default=0)
     duration: int = GObject.Property(type=GObject.TYPE_INT64, default=-1)
@@ -122,7 +117,7 @@ class Player(GObject.Object):
             "mute", self._gst_player, "mute", GObject.BindingFlags.SYNC_CREATE
         )
         self.bind_property(
-            "playback_rate", self._gst_player, "rate", GObject.BindingFlags.SYNC_CREATE
+            "rate", self._gst_player, "rate", GObject.BindingFlags.SYNC_CREATE
         )
         self._gst_player.connect("eos", self._on_eos)
         self._gst_player.connect(
@@ -156,23 +151,6 @@ class Player(GObject.Object):
             logger.debug("Application uninhibited")
             self._cookie = 0
 
-    def reset(self, setting: Setting) -> None:
-        """Resets a given setting
-
-        Parameters
-        ----------
-        setting : Setting
-            Savable settings VOLUME and RATE or ALL (both)
-        """
-        match setting:
-            # fmt: off
-            case Player.Setting.VOLUME: self.volume = 1.0
-            case Player.Setting.RATE: self.playback_rate = 1.0
-            case Player.Setting.ALL:
-                self.volume = 1.0
-                self.playback_rate = 1.0
-            # fmt: on
-
     def seek(self, new_pos: int) -> None:
         """Seeks the player to a new position
 
@@ -183,7 +161,7 @@ class Player(GObject.Object):
         """
         pos = new_pos * Gst.SECOND
         self._gst_player.pipeline.seek(
-            self.playback_rate,
+            self.rate,
             Gst.Format.TIME,
             Gst.SeekFlags.FLUSH,
             Gst.SeekType.SET,
@@ -201,7 +179,7 @@ class Player(GObject.Object):
 
     def _on_eos(self, *_args) -> None:
         vol = self.volume
-        rate = self.playback_rate
+        rate = self.rate
         self.seek(0)
         if not self.looped:
             self.set_property("playing", False)
@@ -210,7 +188,7 @@ class Player(GObject.Object):
         else:
             self._gst_player.play()
             self.set_property("volume", vol)
-            self.set_property("playback_rate", rate)
+            self.set_property("rate", rate)
 
     def _on_playing(self, *_args) -> None:
         self.inhibit(self.playing)

@@ -1,6 +1,5 @@
 import os
 import sys
-from pathlib import Path
 
 import gi
 import yaml
@@ -133,9 +132,9 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
+        Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
+        Player().set_property("rate", float(Schema.get("root.state.player.rate")))
         logger.debug("Window shown")
-
-        Player().set_property("playback_rate", 2.0)
 
     def on_about_action(self, *_args) -> None:
         """Shows About App dialog"""

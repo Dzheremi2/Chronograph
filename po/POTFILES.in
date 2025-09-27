@@ -9,6 +9,7 @@ chronograph/ui/sync_pages/wbw_sync_page.py
 chronograph/ui/widgets/song_card.py
 chronograph/ui/widgets/saved_location.py
 chronograph/ui/widgets/lrclib_track.py
+chronograph/ui/widgets/ui_player.py
 data/gtk/window.blp
 data/gtk/ui/shortcuts-dialog.blp
 data/gtk/ui/dialogs/LRClib.blp
@@ -18,6 +19,6 @@ data/gtk/ui/sync_pages/LRCSyncPage.blp
 data/gtk/ui/sync_pages/WBWSyncPage.blp
 data/gtk/ui/widgets/SavedLocation.blp
 data/gtk/ui/widgets/SongCard.blp
-data/gtk/ui/widgets/Player.blp
+data/gtk/ui/widgets/UIPlayer.blp
 data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in
 data/io.github.dzheremi2.lrcmake-gtk.desktop.in

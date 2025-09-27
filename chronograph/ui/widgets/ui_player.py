@@ -3,7 +3,7 @@ from typing import Union
 
 from gi.repository import Adw, GObject, Gst, Gtk
 
-from chronograph.internal import Constants
+from chronograph.internal import Constants, Schema
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
@@ -31,6 +31,7 @@ class UIPlayer(Adw.BreakpointBin):
     seekbar: Gtk.Scale = gtc()
     position_adj: Gtk.Adjustment = gtc()
     remaining_time_label: Gtk.Label = gtc()
+    volume_button: Gtk.Button = gtc()
     volume_adj: Gtk.Adjustment = gtc()
     volume_label: Gtk.Label = gtc()
     rate_adj: Gtk.Adjustment = gtc()
@@ -47,11 +48,27 @@ class UIPlayer(Adw.BreakpointBin):
     ) -> None:
         super().__init__()
         Player().set_file(Path(card.path))
+        vol = Player().volume * 100
+        self.on_volume(None, None, round(vol))
+        self.volume_label.set_label(_("{vol}%").format(vol=vol))
+        self.volume_adj.set_value(vol)
+        self.rate_adj.set_value(Player().rate)
+        self.rate_label.set_label(f"{Player().rate}x")
         Player().connect("notify::pos", self._on_pos_changed)
         Player().connect("notify::playing", self._on_playing_changed)
         Player().connect(
+            "notify::volume",
+            lambda *__: self.volume_label.set_label(
+                _("{vol}%").format(vol=int(Player().volume * 100))
+            ),
+        )
+        Player().connect(
             "notify::duration",
-            lambda *_: self.position_adj.set_upper(Player().duration / Gst.SECOND),
+            lambda *__: self.position_adj.set_upper(Player().duration / Gst.SECOND),
+        )
+        Player().connect(
+            "notify::rate",
+            lambda *__: self.rate_label.set_label(f"{Player().rate}x"),
         )
         Player()._gst_player.connect("seek-done", self._on_seek_done)
         self._file = file
@@ -115,6 +132,37 @@ class UIPlayer(Adw.BreakpointBin):
     def _on_seek_done(self, *_args) -> None:
         pos = Player()._gst_player.props.position  # pylint: disable=protected-access
         self.seekbar.set_value(pos / Gst.SECOND)
+
+    @Gtk.Template.Callback()
+    def on_volume(self, _, __, val: float) -> None:
+        self.volume_button.remove_css_class("destructive-action")
+        if 0.0 < val <= 33.0:
+            self.volume_button.set_icon_name("chr-vol-min-symbolic")
+        elif 33.0 < val <= 66.0:
+            self.volume_button.set_icon_name("chr-vol-middle-symbolic")
+        elif 66.0 < val <= 100.0:
+            self.volume_button.set_icon_name("chr-vol-max-symbolic")
+        elif 100.0 < val:
+            self.volume_button.set_icon_name("chr-vol-max-symbolic")
+            self.volume_button.add_css_class("destructive-action")
+        else:
+            self.volume_button.set_icon_name("chr-vol-mute-symbolic")
+        Player().set_property("volume", round(val) / 100)
+        Schema.set("root.state.player.volume", int(Player().volume * 100))
+
+    @Gtk.Template.Callback()
+    def on_rate(self, _, __, val: float) -> None:
+        Player().set_property("rate", round(val, 1))
+        Schema.set("root.state.player.rate", Player().rate)
+
+    @Gtk.Template.Callback()
+    def on_reset(self, *_args) -> None:
+        self.rate_adj.set_value(1.0)
+        Player().set_property("rate", 1.0)
+        Schema.set("root.state.player.rate", 1.0)
+        self.volume_adj.set_value(100.0)
+        Player().set_property("volume", 1.0)
+        Schema.set("root.state.player.volume", 100)
 
     @Gtk.Template.Callback()
     def on_seekbar_value(self, _rng, _scrl, value: float) -> None:

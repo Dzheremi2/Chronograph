@@ -151,7 +151,7 @@ template $UIPlayer: Adw.BreakpointBin {
                           orientation: vertical;
 
                           Box {
-                            Button {
+                            Button volume_button {
                               tooltip-text: _("Toggle mute");
                               icon-name: "chr-vol-max-symbolic";
                               styles ["flat"]
@@ -166,10 +166,10 @@ template $UIPlayer: Adw.BreakpointBin {
                                 step-increment: 1;
                                 page-increment: 5;
                               };
+                              change-value => $on_volume();
                             }
 
                             Label volume_label {
-                              label: _("200%");
                               width-request: 40;
                               xalign: 0;
                             }
@@ -191,11 +191,11 @@ template $UIPlayer: Adw.BreakpointBin {
                                 step-increment: 0.1;
                                 page-increment: 0.5;
                               };
+                              change-value => $on_rate();
                             }
 
                             Label rate_label {
                               width-request: 40;
-                              label: _("2.0");
                               xalign: 0;
                             }
                           }
@@ -205,6 +205,7 @@ template $UIPlayer: Adw.BreakpointBin {
                           label: _("Reset");
                           margin-start: 8;
                           margin-end: 8;
+                          clicked => $on_reset();
                           styles ["destructive-action"]
                         }
                       }
