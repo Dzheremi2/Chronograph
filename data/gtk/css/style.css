@@ -31,6 +31,12 @@
   color: #ffffff;
 }
 
+.no-hover:hover {
+  background: initial;
+  background-image: initial;
+  box-shadow: none;
+  color: initial;
+}
 
 #list_view_row_cover {
     border-radius: 6px;

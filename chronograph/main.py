@@ -1,14 +1,19 @@
 import os
 import sys
+from pathlib import Path
 
 import gi
 import yaml
 
+from chronograph.utils.player import Player
+
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
+gi.require_version("GstPlay", "1.0")
+gi.require_version("Gst", "1.0")
 
 # pylint: disable=wrong-import-position,wrong-import-order
-from gi.repository import Adw, Gdk, Gio, GLib, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
 # pylint: disable=ungrouped-imports
 from chronograph.internal import Constants, Schema
@@ -17,6 +22,7 @@ from chronograph.window import ChronographWindow, WindowState
 from dgutils.decorators import singleton
 
 logger = Constants.LOGGER
+Gst.init(None)
 
 
 @singleton
@@ -129,6 +135,8 @@ class ChronographApplication(Adw.Application):
         Constants.WIN.present()
         logger.debug("Window shown")
 
+        Player().set_property("playback_rate", 2.0)
+
     def on_about_action(self, *_args) -> None:
         """Shows About App dialog"""
 
@@ -191,6 +199,7 @@ class ChronographApplication(Adw.Application):
         self.quit()
 
     def do_shutdown(self):  # pylint: disable=arguments-differ
+        Player().stop()
         if not Schema.get("root.settings.general.save-session"):
             logger.info("Resetting session")
             Schema.set("root.state.library.session", "None")

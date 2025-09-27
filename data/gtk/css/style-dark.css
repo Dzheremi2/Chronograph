@@ -36,6 +36,13 @@
     border-radius: 6px;
 }
 
+.no-hover:hover {
+  background: initial;
+  background-image: initial;
+  box-shadow: none;
+  color: initial;
+}
+
 flowboxchild:hover,
 flowboxchild:active {
   background: none;

@@ -7,7 +7,7 @@ from typing import Literal, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.widgets.player import Player
+from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
@@ -16,6 +16,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics import Lyrics, LyricsFormat, LyricsHierarchyConversion
 from chronograph.utils.lyrics_file_helper import LyricsFile
+from chronograph.utils.player import Player
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
 
@@ -62,7 +63,7 @@ class WBWSyncPage(Adw.NavigationPage):
         )
         if isinstance(self._card._file, FileUntaggable):
             self.sync_page_metadata_editor_button.set_visible(False)
-        self._player_widget = Player(file, card)
+        self._player_widget = UIPlayer(file, card)
         self._player = self._player_widget._player
         self.player_container.append(self._player_widget)
 
@@ -370,7 +371,9 @@ class WBWSyncPage(Adw.NavigationPage):
                         )
                         logger.debug("LRC lyrics autosaved successfully")
                     except LyricsHierarchyConversion:
-                        logger.debug("Prevented overwriting LRC lyrics with Plain in LRC file")
+                        logger.debug(
+                            "Prevented overwriting LRC lyrics with Plain in LRC file"
+                        )
                 try:
                     self._elrc_lyrics_file.modify_lyrics(
                         lyrics.of_format(LyricsFormat.ELRC)
@@ -393,7 +396,7 @@ class WBWSyncPage(Adw.NavigationPage):
         if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
-        self._player.stream_ended()
+        Player().stop()
         self._lrc_lyrics_file.rm_empty()
         self._elrc_lyrics_file.rm_empty()
 

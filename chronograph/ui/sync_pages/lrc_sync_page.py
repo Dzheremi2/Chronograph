@@ -12,7 +12,7 @@ import requests
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.widgets.player import Player
+from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.utils.converter import mcs_to_timestamp, timestamp_to_mcs
 from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
@@ -21,6 +21,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics import Lyrics, LyricsFormat
 from chronograph.utils.lyrics_file_helper import LyricsFile
+from chronograph.utils.player import Player
 from dgutils import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -58,9 +59,7 @@ class LRCSyncPage(Adw.NavigationPage):
         )
         if isinstance(self._card._file, FileUntaggable):
             self.sync_page_metadata_editor_button.set_visible(False)
-        self._player_widget = Player(file, card)
-        self._player = self._player_widget._player
-        self._player.connect("notify::timestamp", self._on_timestamp_changed)
+        self._player_widget = UIPlayer(file, card)
         self.player_container.append(self._player_widget)
 
         self._autosave_path = Path(self._file.path).with_suffix(
@@ -339,7 +338,7 @@ class LRCSyncPage(Adw.NavigationPage):
         if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
-        self._player.stream_ended()
+        Player().stop()
         self._lyrics_file.rm_empty()
 
     def _on_app_close(self, *_):

@@ -35,20 +35,27 @@ def init_logger() -> None:
     console_handler.setLevel(logging.ERROR)
     console_handler.setFormatter(formatter)
 
-    root_logger = logging.getLogger()
-    root_logger.setLevel(
+    log_level = (
         logging.DEBUG
         if Constants.APP_ID.endswith("Devel")
         or Schema.get("root.settings.general.debug-profile")
         else logging.INFO
     )
-    root_logger.addHandler(file_handler)
-    root_logger.addHandler(console_handler)
+
+    app_logger = logging.getLogger("App")
+    app_logger.setLevel(log_level)
+    app_logger.addHandler(file_handler)
+    app_logger.addHandler(console_handler)
+
+    player_logger = logging.getLogger("GstPlayer")
+    player_logger.setLevel(log_level)
+    player_logger.addHandler(file_handler)
+    player_logger.addHandler(console_handler)
 
     logging.captureWarnings(True)
 
     def handle_exception(exc_type, exc_value, exc_traceback):
-        root_logger.error(
+        app_logger.error(
             "Unhandled exception",
             exc_info=(exc_type, exc_value, exc_traceback),
         )
