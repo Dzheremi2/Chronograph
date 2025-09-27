@@ -42,3 +42,13 @@ flowboxchild:active {
   box-shadow: none;
   outline: none;
 }
+
+@media (prefers-color-scheme: dark) {
+  .rounded-frame {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: #1d1d20;
+  }
+}

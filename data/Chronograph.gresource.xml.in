@@ -17,7 +17,6 @@
     <file preprocess="xml-stripblanks">gtk/ui/widgets/wbw/LyricsWidget.ui</file>
     <file alias="shortcuts-dialog.ui" preprocess="xml-stripblanks">gtk/ui/shortcuts-dialog.ui</file>
     <file alias="style.css">gtk/css/style.css</file>
-    <file alias="style-dark.css">gtk/css/style-dark.css</file>
   </gresource>
   <!-- Resources (YAMLs, JSONs, etc.) -->
    <gresource prefix="@PREFIX@/resources/">
