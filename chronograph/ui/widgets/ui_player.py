@@ -12,7 +12,6 @@ from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.player import Player
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
-logger = Constants.LOGGER
 player_logger = Constants.PLAYER_LOGGER
 
 
@@ -48,12 +47,18 @@ class UIPlayer(Adw.BreakpointBin):
     ) -> None:
         super().__init__()
         Player().set_file(Path(card.path))
-        vol = Player().volume * 100
-        self.on_volume(None, None, round(vol))
+
+        # Init Playback GUI setup
+        vol = int(Player().volume * 100)
+        self._on_volume(None, None, vol)
         self.volume_label.set_label(_("{vol}%").format(vol=vol))
         self.volume_adj.set_value(vol)
         self.rate_adj.set_value(Player().rate)
         self.rate_label.set_label(f"{Player().rate}x")
+        if Schema.get("root.state.player.mute"):
+            self.volume_button.set_icon_name("chr-vol-mute-symbolic")
+
+        # Playback UI Reactivity
         Player().connect("notify::pos", self._on_pos_changed)
         Player().connect("notify::playing", self._on_playing_changed)
         Player().connect(
@@ -71,6 +76,8 @@ class UIPlayer(Adw.BreakpointBin):
             lambda *__: self.rate_label.set_label(f"{Player().rate}x"),
         )
         Player()._gst_player.connect("seek-done", self._on_seek_done)
+
+        # Info UI reactivity
         self._file = file
         self._card = card
         self.main_clamp.set_maximum_size(max_width)
@@ -96,7 +103,7 @@ class UIPlayer(Adw.BreakpointBin):
         )
 
     @Gtk.Template.Callback()
-    def toggle_play(self, *_args) -> None:
+    def _toggle_play(self, *_args) -> None:
         if Player().playing:
             Player().set_property("playing", False)
         else:
@@ -134,29 +141,43 @@ class UIPlayer(Adw.BreakpointBin):
         self.seekbar.set_value(pos / Gst.SECOND)
 
     @Gtk.Template.Callback()
-    def on_volume(self, _, __, val: float) -> None:
+    def _on_volume(self, _, __, val: float) -> None:
         self.volume_button.remove_css_class("destructive-action")
         if 0.0 < val <= 33.0:
             self.volume_button.set_icon_name("chr-vol-min-symbolic")
         elif 33.0 < val <= 66.0:
             self.volume_button.set_icon_name("chr-vol-middle-symbolic")
-        elif 66.0 < val <= 100.0:
+        elif 66.0 < val < 101.0:
             self.volume_button.set_icon_name("chr-vol-max-symbolic")
-        elif 100.0 < val:
+        elif 101.0 <= val:
             self.volume_button.set_icon_name("chr-vol-max-symbolic")
             self.volume_button.add_css_class("destructive-action")
+        elif val < 0:
+            val = 0
         else:
             self.volume_button.set_icon_name("chr-vol-mute-symbolic")
+        if Player().mute:
+            Player().set_property("mute", False)
         Player().set_property("volume", round(val) / 100)
-        Schema.set("root.state.player.volume", int(Player().volume * 100))
 
     @Gtk.Template.Callback()
-    def on_rate(self, _, __, val: float) -> None:
-        Player().set_property("rate", round(val, 1))
-        Schema.set("root.state.player.rate", Player().rate)
+    def _on_rate(self, _, __, val: float) -> None:
+        Player().set_property("rate", max(0.1, round(val, 1)))
 
     @Gtk.Template.Callback()
-    def on_reset(self, *_args) -> None:
+    def _toggle_mute(self, *_args) -> None:
+        Player().set_property("mute", not Player().mute)
+        if Player().mute:
+            self.volume_button.set_icon_name("chr-vol-mute-symbolic")
+            self.volume_button.remove_css_class("destructive-action")
+            self.volume_adj.set_value(0)
+        else:
+            vol = Schema.get("root.state.player.volume")
+            self.volume_adj.set_value(vol)
+            self._on_volume(None, None, vol)
+
+    @Gtk.Template.Callback()
+    def _on_reset(self, *_args) -> None:
         self.rate_adj.set_value(1.0)
         Player().set_property("rate", 1.0)
         Schema.set("root.state.player.rate", 1.0)
@@ -165,12 +186,11 @@ class UIPlayer(Adw.BreakpointBin):
         Schema.set("root.state.player.volume", 100)
 
     @Gtk.Template.Callback()
-    def on_seekbar_value(self, _rng, _scrl, value: float) -> None:
+    def _on_seekbar_value(self, _rng, _scrl, value: float) -> None:
         Player().seek(value * 1_000)
 
     @Gtk.Template.Callback()
-    def on_breakpoint(self, *_args) -> None:
-        """Changes the player slider position based on the breakpoint state"""
+    def _on_breakpoint(self, *_args) -> None:
         if self.collapse_box.get_first_child() is None:
             self.non_collapse_box.remove(self.player_box)
             self.collapse_box.append(self.player_box)
@@ -179,6 +199,6 @@ class UIPlayer(Adw.BreakpointBin):
             self.non_collapse_box.append(self.player_box)
 
     @Gtk.Template.Callback()
-    def on_repeat_button_toggled(self, button: Gtk.ToggleButton) -> None:
+    def _on_repeat_button_toggled(self, button: Gtk.ToggleButton) -> None:
         Player().looped = button.get_active()
         player_logger.debug("Playback loop was set to: %s", button.get_active())

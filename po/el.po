@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-21 15:54+0300\n"
+"POT-Creation-Date: 2025-09-28 14:44+0300\n"
 "PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -19,25 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: chronograph/window.py:443
+#: chronograph/window.py:442
 msgid "Copied successfully"
 msgstr "Αντιγράφηκε επιτυχώς"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:158
+#: chronograph/main.py:165
 msgid "translator-credits"
 msgstr "Γιάννος Ασημακόπουλος 2025"
 
-#: chronograph/main.py:166
+#: chronograph/main.py:173
 msgid "Inspiration"
 msgstr "Έμπνευση"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:176
+#: chronograph/main.py:183
 msgid "Build your own dictionary"
 msgstr "Φτιάξτε το δικό σας λεξικό"
 
-#: chronograph/main.py:182
+#: chronograph/main.py:189
 msgid "Translate the App"
 msgstr ""
 
@@ -76,76 +76,76 @@ msgstr "Δεν υπάρχουν διαθέσιμοι συγχρονισμένο�
 msgid "No plain lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:247
+#: chronograph/ui/sync_pages/lrc_sync_page.py:248
 #: chronograph/ui/sync_pages/wbw_sync_page.py:275
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:259
+#: chronograph/ui/sync_pages/lrc_sync_page.py:260
 #: chronograph/ui/sync_pages/wbw_sync_page.py:235
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:260
+#: chronograph/ui/sync_pages/lrc_sync_page.py:261
 #: chronograph/ui/sync_pages/wbw_sync_page.py:236
 #: chronograph/ui/widgets/song_card.py:121
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:395
-#: chronograph/ui/sync_pages/lrc_sync_page.py:438
+#: chronograph/ui/sync_pages/lrc_sync_page.py:397
+#: chronograph/ui/sync_pages/lrc_sync_page.py:440
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:398
-#: chronograph/ui/sync_pages/lrc_sync_page.py:441
+#: chronograph/ui/sync_pages/lrc_sync_page.py:400
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:402
-#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Δημοσιεύθηκε με επιτυχία: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Λανθασμένο διακριτικό δημοσίευσης: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:489
+#: chronograph/ui/sync_pages/lrc_sync_page.py:491
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:496
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:498
+#: chronograph/ui/sync_pages/lrc_sync_page.py:500
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:501
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:505
+#: chronograph/ui/sync_pages/lrc_sync_page.py:507
 msgid "Seems like not every line is synced"
 msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
 
@@ -230,6 +230,12 @@ msgstr "Ναι"
 #: chronograph/ui/widgets/lrclib_track.py:18
 msgid "No"
 msgstr "Όχι"
+
+#: chronograph/ui/widgets/ui_player.py:54
+#: chronograph/ui/widgets/ui_player.py:67
+#, python-brace-format
+msgid "{vol}%"
+msgstr ""
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -867,7 +873,24 @@ msgstr "Εμφάνιση πληροφοριών τραγουδιού"
 msgid "Open syncing page"
 msgstr "Άνοιγμα σελίδας συγχρονισμού"
 
-#: data/gtk/ui/widgets/Player.blp:100
+#: data/gtk/ui/widgets/UIPlayer.blp:102
+msgid "Play/Pause"
+msgstr ""
+
+#: data/gtk/ui/widgets/UIPlayer.blp:136
+msgid "Playback settings"
+msgstr ""
+
+#: data/gtk/ui/widgets/UIPlayer.blp:155
+#, fuzzy
+msgid "Toggle mute"
+msgstr "Εναλλαγή αναζήτησης"
+
+#: data/gtk/ui/widgets/UIPlayer.blp:206
+msgid "Reset"
+msgstr ""
+
+#: data/gtk/ui/widgets/UIPlayer.blp:219
 msgid "Toggle song repeat"
 msgstr "Εναλλαγή επανάληψης τραγουδιού"
 

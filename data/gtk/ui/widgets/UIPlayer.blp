@@ -13,8 +13,8 @@ template $UIPlayer: Adw.BreakpointBin {
       collapsed_buttons_box.visible: true;
     }
     
-    apply => $on_breakpoint();
-    unapply => $on_breakpoint();
+    apply => $_on_breakpoint();
+    unapply => $_on_breakpoint();
   }
 
   Adw.Clamp main_clamp {
@@ -100,7 +100,7 @@ template $UIPlayer: Adw.BreakpointBin {
               Button toggle_play_button {
                 icon-name: "play-button-symbolic";
                 tooltip-text: _("Play/Pause");
-                clicked => $toggle_play();
+                clicked => $_toggle_play();
                 styles ["flat"]
               }
 
@@ -113,7 +113,7 @@ template $UIPlayer: Adw.BreakpointBin {
 
                 Scale seekbar {
                   hexpand: true;
-                  change-value => $on_seekbar_value();
+                  change-value => $_on_seekbar_value();
 
                   adjustment: Adjustment position_adj {
                     lower: 0;
@@ -154,6 +154,7 @@ template $UIPlayer: Adw.BreakpointBin {
                             Button volume_button {
                               tooltip-text: _("Toggle mute");
                               icon-name: "chr-vol-max-symbolic";
+                              clicked => $_toggle_mute();
                               styles ["flat"]
                             }
 
@@ -166,7 +167,7 @@ template $UIPlayer: Adw.BreakpointBin {
                                 step-increment: 1;
                                 page-increment: 5;
                               };
-                              change-value => $on_volume();
+                              change-value => $_on_volume();
                             }
 
                             Label volume_label {
@@ -189,9 +190,9 @@ template $UIPlayer: Adw.BreakpointBin {
                                 upper: 2.0;
                                 value: 1.0;
                                 step-increment: 0.1;
-                                page-increment: 0.1;
+                                page-increment: 0.2;
                               };
-                              change-value => $on_rate();
+                              change-value => $_on_rate();
                             }
 
                             Label rate_label {
@@ -205,7 +206,7 @@ template $UIPlayer: Adw.BreakpointBin {
                           label: _("Reset");
                           margin-start: 8;
                           margin-end: 8;
-                          clicked => $on_reset();
+                          clicked => $_on_reset();
                           styles ["destructive-action"]
                         }
                       }
@@ -216,7 +217,7 @@ template $UIPlayer: Adw.BreakpointBin {
                 ToggleButton repeat_button {
                   icon-name: "toggle-repeat-symbolic";
                   tooltip-text: _("Toggle song repeat");
-                  toggled => $on_repeat_button_toggled();
+                  toggled => $_on_repeat_button_toggled();
                   styles ["flat"]
                 }
               }

@@ -1,4 +1,3 @@
-# DELAYED: Add GStreamer based player with music speed control
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement LRC metatags support
 

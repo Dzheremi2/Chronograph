@@ -2,7 +2,7 @@ from pathlib import Path
 
 from gi.repository import GObject, Gst, GstPlay, Gtk
 
-from chronograph.internal import Constants
+from chronograph.internal import Constants, Schema
 from dgutils.decorators import singleton
 
 logger = Constants.PLAYER_LOGGER
@@ -118,6 +118,15 @@ class Player(GObject.Object):
         self.bind_property(
             "rate", self._gst_player, "rate", GObject.BindingFlags.SYNC_CREATE
         )
+        Schema.bind("root.state.player.mute", self, "mute")
+        Schema.bind(
+            "root.state.player.volume",
+            self,
+            "volume",
+            transform_to=lambda val: round(float(val / 100), 2),
+            transform_from=lambda val: int(val * 100)
+        )
+        Schema.bind("root.state.player.rate", self, "rate")
         self._gst_player.connect("eos", self._on_eos)
         self._gst_player.connect(
             "pos-upd", lambda _, pos: self.set_property("pos", pos)
