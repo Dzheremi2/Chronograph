@@ -1,5 +1,6 @@
 """Different parsers for the app"""
 
+import os
 from pathlib import Path
 from typing import Union
 
@@ -41,16 +42,23 @@ def parse_files(
 
 
 def parse_dir(path: str) -> tuple[str]:
-    path = Path(path)
+    path: Path = Path(path)
     files = []
 
     recursive = Schema.get("root.settings.general.recursive-parsing.enabled")
-    follow_symlinks = Schema.get("root.settings.general.recursive-parsing.follow-symlinks")
+    follow_symlinks = Schema.get(
+        "root.settings.general.recursive-parsing.follow-symlinks"
+    )
 
     if not recursive:
         files = [str(f) for f in path.iterdir() if f.is_file()]
     else:
-        for f in path.rglob("*"):
-            if f.is_file() or (follow_symlinks and f.is_symlink()):
-                files.append(str(f))
+        for dirpath, __, filenames in os.walk(str(path), followlinks=follow_symlinks):
+            current_dir_path = Path(dirpath)
+
+            for filename in filenames:
+                full_path = current_dir_path / filename
+
+                if full_path.is_file() or full_path.is_symlink():
+                    files.append(str(full_path))
     return tuple(files)
