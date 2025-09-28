@@ -80,6 +80,9 @@ root:
         min: 0.1
         max: 2.0
         default: 1.0
+      mute:
+        type: bool
+        default: false
     library:
       sorting:
         type: str
