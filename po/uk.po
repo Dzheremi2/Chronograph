@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 14:44+0300\n"
-"PO-Revision-Date: 2025-09-21 23:01+0000\n"
-"Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
+"POT-Creation-Date: 2025-09-21 15:54+0300\n"
+"PO-Revision-Date: 2025-09-28 11:47+0000\n"
+"Last-Translator: antiascii <two@envs.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
 "Language: uk\n"
@@ -250,7 +250,7 @@ msgstr "Виберіть каталог або перетягніть файли
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr "Відкритий код"
+msgstr "Відкрити джерело"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
@@ -291,7 +291,7 @@ msgstr "Перетягніть файли сюди, щоб відкрити їх
 
 #: data/gtk/window.blp:188
 msgid "Saves"
-msgstr "Зберігає"
+msgstr "Збереження"
 
 #: data/gtk/window.blp:196 data/gtk/window.blp:217
 #: data/gtk/ui/shortcuts-dialog.blp:35
@@ -551,7 +551,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
 msgid "Save session on app close"
-msgstr "Зберегти сеанс після закриття програми"
+msgstr "Зберігати сеанс при закритті програми"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
@@ -566,12 +566,11 @@ msgstr "Автоматично перемикати режим перегляд�
 msgid ""
 "Automatically toggles List View mode when display size is not big enough"
 msgstr ""
-"Автоматично перемикає режим перегляду списку, якщо розмір дисплея "
-"недостатньо великий"
+"Автоматично вмикає режим перегляду списком, якщо екран недостатньо великий"
 
 #: data/gtk/ui/dialogs/Preferences.blp:30
 msgid "Display compressed covers"
-msgstr "Стиснуті обкладинки для дисплеїв"
+msgstr "Показувати стиснуті обкладинки"
 
 #: data/gtk/ui/dialogs/Preferences.blp:31
 msgid ""
@@ -617,7 +616,7 @@ msgstr "Налагодження"
 
 #: data/gtk/ui/dialogs/Preferences.blp:57
 msgid "Enable Debug logging profile"
-msgstr "Увімкнути профіль журналювання налагодження"
+msgstr "Увімкнути рівень журналювання Debug"
 
 #: data/gtk/ui/dialogs/Preferences.blp:58
 msgid "Expands logging information for debug purposes"
@@ -649,7 +648,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:78
 msgid "Use precise milliseconds"
-msgstr "Використовуйте точні мілісекунди"
+msgstr "Використовувати точніші мілісекунди"
 
 #: data/gtk/ui/dialogs/Preferences.blp:79
 msgid "Use 3-digit milliseconds instead of 2-digit"
