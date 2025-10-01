@@ -10,7 +10,8 @@
         "*.py.in": "python",
         "chronograph.in": "python",
         "*.yaml.in": "yaml",
-        "*.xml.in": "xml"
+        "*.xml.in": "xml",
+        ".doap": "xml"
     },
     "xml.fileAssociations": [
         {

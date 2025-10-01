@@ -22,7 +22,7 @@
   <url type="translate">https://hosted.weblate.org/projects/chronograph/chronograph/</url>
   <url type="help">https://github.com/Dzheremi2/Chronograph/discussions</url>
   <url type="contact">https://github.com/Dzheremi2/Chronograph/discussions</url>
-  <url type="contribute">https://github.com/Dzheremi2/Chronograph/blob/master/CONTRIBUTING.md</url>
+  <url type="contribute">https://github.com/Dzheremi2/Chronograph/blob/devel/CONTRIBUTING.md</url>
 
   <translation type="gettext">Chronograph</translation>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
@@ -43,31 +43,31 @@
 
   <screenshots>
     <screenshot type="default" xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/libW.png</image>
       <caption>Library</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/syncW.png</image>
       <caption>Lyrics syncing page</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/wbwsyncW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/wbwsyncW.png</image>
       <caption>Word-by-Word syncing workflow</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/wbweditW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/wbweditW.png</image>
       <caption>Word-by-Word lyrics editor</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/lrclibW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/lrclibW.png</image>
       <caption>LRClib import dialog</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/libLW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/libLW.png</image>
       <caption>Library in List View mode</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/master/docs/screenshots/syncCW.png</image>
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/syncCW.png</image>
       <caption>Lyrics syncing page on smaller display</caption>
     </screenshot>
   </screenshots>

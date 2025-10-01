@@ -18,8 +18,6 @@ locale.textdomain('Chronograph')
 gettext.install('Chronograph', localedir)
 
 if __name__ == '__main__':
-    import gi
-
     from gi.repository import Gio
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'Chronograph.gresource'))
     resource._register()
