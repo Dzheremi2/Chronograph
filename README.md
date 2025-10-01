@@ -29,11 +29,24 @@ Chronograph also supports Word-by-Word syncing in eLRC format for true karaoke e
     <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/>
 </a>
 
-You can download app either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or by downloading and installing bundle from [latest release](https://github.com/Dzheremi2/Chronograph/releases/latest)
+You can download app either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or by downloading and installing bundle from the [latest release](https://github.com/Dzheremi2/Chronograph/releases/latest)
 
-##### *Devel builds*
+### Releases
 
-If you want to download a devel build, you can do it by downloading it from [Github Actions](https://github.com/Dzheremi2/Chronograph/actions) from Artifacts section
+Chronograph has three types of releases *stable*, *release candidates (beta)* and *devel (alpha)*
+
+#### Stable
+
+Stable releases are available on Sundays (if not a hotfix) if their develepment cycle has ended. Could be downloaded either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or via [GitHub Releases]((https://github.com/Dzheremi2/Chronograph/releases/latest))
+
+#### Release Candidate
+
+RCs are published before the stable release in sunday-awaiting time for users to be able to test them and report bugs before the release happens.
+Could be downloaded only on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/). RCs are marked as `Pre-release`
+
+#### Devel
+
+Devel build are formed for every commit on any branch except for `main`. These build are casts of the current development state, so treat them as *Alpha* releases
 
 >[!CAUTION]
 >Devel builds may be unstable or don't even launch. Use it at your own risk

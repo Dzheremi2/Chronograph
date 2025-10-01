@@ -5,7 +5,7 @@ on:
       - "*"
 
 concurrency:
-  group: publish
+  group: release
 
 jobs:
   publish-release:
