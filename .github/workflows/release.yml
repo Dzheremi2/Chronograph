@@ -1,10 +1,11 @@
-name: Build and Publish Release
+name: Publish Release
 on:
   push:
-    tags: "*"
+    tags: 
+      - "*"
 
 concurrency:
-  group: release-${{ github.sha }}
+  group: publish
 
 jobs:
   publish-release:
@@ -17,22 +18,34 @@ jobs:
       - name: Download workflow artifact
         uses: dawidd6/action-download-artifact@v9
         with:
-          workflow: ci.yml
+          workflow: build-release.yml
           commit: ${{ github.sha }}
 
       - name: Get release notes
         shell: python
         run: |
-          import re, textwrap
-          open_file = open("./data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in", "r", encoding="utf-8")
-          string = open_file.read()
-          open_file.close()
-          string = re.findall("<release.*>\s*<description.*>\n([\s\S]*?)\s*</description>\s*<\/release>", string)[0]
-          string = textwrap.dedent(string)
-          open_file = open("release_notes", "w", encoding="utf-8")
-          open_file.write(string)
-          open_file.write("\n\nSee [full changelog](https://github.com/Dzheremi2/Chronograph/blob/master/docs/CHANGELOG.md) for previous releases changes")
-          open_file.close()
+          import re, textwrap, sys
+          try:
+              with open("./docs/CHANGELOG.md", "r", encoding="utf-8") as f:
+                  changelog_content = f.read()
+          except FileNotFoundError:
+              print("Error: docs/CHANGELOG.md not found.", file=sys.stderr)
+              sys.exit(1)
+          pattern = re.compile(
+              r'^##\s*\d+\.\d+\.?\d*(?:\-rc\d*)?\s*\n'
+              r'([\s\S]*?)'
+              r'(?=^##\s*\d+\.\d+|\Z)',
+              re.MULTILINE
+          )
+          match = pattern.search(changelog_content)
+          if not match:
+              print("Error: Could not extract release notes. Check CHANGELOG format.", file=sys.stderr)
+              sys.exit(1)
+          notes = match.group(1)
+          notes = textwrap.dedent(notes).strip()
+          with open("release_notes", "w", encoding="utf-8") as f:
+              f.write(notes)
+              f.write("\n\nSee [full changelog](https://github.com/Dzheremi2/Chronograph/blob/main/docs/CHANGELOG.md) for previous releases changes")
 
       - name: Get tag name
         id: get_tag_name
@@ -52,3 +65,4 @@ jobs:
           fail_on_unmatched_files: true
           tag_name: ${{ steps.get_tag_name.outputs.tag_name }}
           body_path: release_notes
+          prerelease: ${{ contains(steps.get_tag_name.outputs.tag_name, '-rc') }}

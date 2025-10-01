@@ -1,0 +1,36 @@
+name: Devel Bundle
+on:
+  push:
+    branches:
+      - "**"
+      - "!main"
+  pull_request:
+    branches:
+      - "**"
+
+concurrency:
+  group: devel
+
+jobs:
+  flatpak-devel:
+    name: Flatpak Devel
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
+      options: --privileged
+    strategy:
+      matrix:
+        variant:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.variant.runner }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Flatpak Builder
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.4
+        with:
+          bundle: io.github.dzheremi2.lrcmake_gtk.Devel.flatpak
+          manifest-path: build-aux/flatpak/io.github.dzheremi2.lrcmake_gtk.Devel.yaml
+          arch: ${{ matrix.variant.arch }}

@@ -3,7 +3,7 @@ name: Auto Label Issues
 on:
   push:
     branches:
-      - master
+      - "devel"
 
 jobs:
   label_issues:
