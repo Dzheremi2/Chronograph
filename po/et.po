@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-28 14:44+0300\n"
-"PO-Revision-Date: 2025-09-21 23:01+0000\n"
+"PO-Revision-Date: 2025-09-30 02:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -232,7 +232,7 @@ msgstr "Ei"
 #: chronograph/ui/widgets/ui_player.py:67
 #, python-brace-format
 msgid "{vol}%"
-msgstr ""
+msgstr "{vol}%"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -878,20 +878,19 @@ msgstr "Ava sünkroniseerimisvaade"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:102
 msgid "Play/Pause"
-msgstr ""
+msgstr "Esita/Peata esitus"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:136
 msgid "Playback settings"
-msgstr ""
+msgstr "Taasesituse seadistused"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:155
-#, fuzzy
 msgid "Toggle mute"
-msgstr "Otsing sisse/välja"
+msgstr "Lülita summutamine sisse/välja"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:206
 msgid "Reset"
-msgstr ""
+msgstr "Lähtesta"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:219
 msgid "Toggle song repeat"
