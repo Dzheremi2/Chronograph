@@ -6,7 +6,7 @@
 [flathub-url]: https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk
 [installs-img]: https://img.shields.io/flathub/downloads/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&color=gree&logo=flathub
 
-[![GitHub Release](https://img.shields.io/github/v/release/Dzheremi2/Chronograph?style=for-the-badge&color=000B3C&logo=github)](https://github.com/Dzheremi2/Chronograph/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/Dzheremi2/Chronograph?include_prereleases&style=for-the-badge&color=000B3C&logo=github)](https://github.com/Dzheremi2/Chronograph/releases/)
 <a href="https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk"><img alt="Flathub Version" src="https://img.shields.io/flathub/v/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&logo=flathub&color=lightblue"></a>
 [![Installs][installs-img]][flathub-url]
 [![Weblate project translated](https://img.shields.io/weblate/progress/chronograph?style=for-the-badge&logo=weblate&logoColor=white&logoSize=auto&color=magenta&cacheSeconds=600)](https://hosted.weblate.org/projects/lrcmake/chronograph/)
