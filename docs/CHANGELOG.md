@@ -1,3 +1,16 @@
+## 5.0-rc1
+
+<p>New features</p>
+<ul>
+  <li>New GStreamer based player</li>
+  <li>Advanced volume control with state saving</li>
+  <li>Playback rate control. Useful for syncing quickly sung songs</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+  <li>Fixed symlinks respective media files parsing</li>
+</ul>
+
 ## 4.2.2
 
 <p>Hotfix</p>
