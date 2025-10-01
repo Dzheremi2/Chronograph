@@ -191,6 +191,9 @@ class ChronographApplication(Adw.Application):
 
         if Constants.PREFIX.endswith("Devel"):
             dialog.set_version("Devel")
+        elif "-rc" in Constants.VERSION:
+            dialog.set_version(Constants.VERSION)
+
         logger.debug("Showing about dialog")
         dialog.present(Constants.WIN)
 
