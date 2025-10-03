@@ -352,6 +352,25 @@ class ChronographWindow(Adw.ApplicationWindow):
                 self._on_drag_leave()
                 return False
 
+            if not any(
+                (
+                    Path(file.get_path()).suffix
+                    in [
+                        ".ogg",
+                        ".flac",
+                        ".opus",
+                        ".mp3",
+                        ".wav",
+                        ".m4a",
+                        ".aac",
+                        ".AAC",
+                    ]
+                )
+                for file in files
+            ):
+                self.drop_target.reject()
+                self._on_drag_leave()
+
             for file in files:
                 path = file.get_path()
                 if os.path.isdir(path):
