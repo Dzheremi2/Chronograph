@@ -20,7 +20,7 @@ from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics import Lyrics, LyricsFormat
-from chronograph.utils.lyrics_file_helper import LyricsFile
+from chronograph.utils.lyrics import LyricsFile
 from chronograph.utils.player import Player
 from dgutils import Actions
 

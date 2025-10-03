@@ -1,10 +1,16 @@
+"""Lyrics handling utilities module"""
 import re
 from enum import Enum
-from typing import Literal, Optional
+from pathlib import Path
+from typing import Any, Literal, Optional, Union
 
-from chronograph.internal import Schema
+from gi.repository import Gio, GLib, GObject
+
+from chronograph.internal import Constants, Schema
 from chronograph.utils.wbw.token_parser import TokenParser
 from chronograph.utils.wbw.tokens import WordToken
+
+logger = Constants.LOGGER
 
 
 class LyricsHierarchyConversion(Exception):
@@ -30,6 +36,7 @@ class LyricsFormat(Enum):
         LRC -> 1
         ELRC -> 2
     """
+
     PLAIN = 0
     LRC = 1
     ELRC = 2
@@ -42,7 +49,6 @@ class LyricsFormat(Enum):
         raise TypeError(f"Provided ID of {member_id} is out of scope of LyricsFormat")
 
 
-
 class Lyrics:
     """A lyrics representing class with useful methods.
 
@@ -53,7 +59,7 @@ class Lyrics:
     """
 
     TIMESTAMP = re.compile(r"^\d{2}:\d{2}(?:\.\d{2,3})?$")
-
+    _TIMED_LINE_RE = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
     _SPACER = "\u00a0"
 
     def __init__(self, text: str) -> None:
@@ -182,6 +188,13 @@ class Lyrics:
             if target == LyricsFormat.PLAIN:
                 return self._to_plain_from_elrc()
 
+    def get_normalized_lines(self) -> list[str]:
+        """Returns normalized lyrics with whitespaces after the timestamp"""
+        return [
+            self._TIMED_LINE_RE.sub(r"\1 \2", line)
+            for line in self._lyrics.splitlines()
+        ]
+
     def _detect_format(self) -> LyricsFormat:
         if re.search(
             r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]\s*<\d{2}:\d{2}(?:\.\d{2,3})?>",
@@ -251,3 +264,150 @@ class Lyrics:
     @staticmethod
     def _is_spacer(word: WordToken) -> bool:
         return word.word == Lyrics._SPACER * 20
+
+
+class LyricsFile(GObject.Object):
+    __gtype_name__ = "LyricsFile"
+    __gsignals__ = {
+        "file-changed": (GObject.SignalFlags.RUN_FIRST, None, ()),
+    }
+
+    _TAG_PAIR_RE = re.compile(r"\[(?P<key>[A-Za-z][A-Za-z0-9_-]*):(?P<val>.*?)\]")
+    _TIMED_LINE_RE = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
+
+    meta: dict
+    text: Lyrics
+
+    def __init__(self, path: Path):
+        self.path = path
+        self._file_watcher = Gio.File.new_for_path(str(path)).monitor_file(
+            Gio.FileMonitorFlags.NONE, None
+        )
+        self._file_watcher.connect("changed", self._on_file_changed)
+        if not path.exists():
+            with open(self.path, "w"):
+                pass
+        self.meta = self._parse_meta(self.path.read_text())
+        self.text = self._strip_tags(self.path.read_text())
+
+    def save(self) -> None:
+        """Saves the metatags and lyrics of the LRC to file"""
+        self.path.write_text(self._construct_file())
+
+    def modify_lyrics(self, lyrics: str) -> None:
+        """Sets the lyrics of the file to a provided text
+
+        Parameters
+        ----------
+        lyrics : str
+            Lyrics text (no matter LRC or eLRC)
+        """
+        if lyrics != "":
+            self.text.lyrics = lyrics
+            self.save()
+            return
+
+        self.path.unlink(missing_ok=True)
+
+    def rm_empty(self) -> None:
+        if self.path.read_text() == "":
+            self.path.unlink(missing_ok=True)
+
+    def _convert_length(self, lenght: Union[str, int]) -> Union[str, int]:
+        if isinstance(lenght, str):
+            lenght = lenght.strip()
+            mm, ss = lenght.split(":")
+            return (int(mm) * 60) + int(ss)
+
+        if isinstance(lenght, int):
+            mm, ss = divmod(lenght, 60)
+            return f"{mm:02d}:{ss:02d}"
+
+        raise TypeError("Only str and int are supported")
+
+    def _parse_meta(self, text: str) -> dict[str, Any]:
+        out: dict[str, Any] = {}
+
+        for line in text:
+            for tag in self._TAG_PAIR_RE.finditer(line):
+                key = tag.group("key").strip().lower()
+                val = tag.group("val").strip()
+
+                if key == "offset":
+                    try:
+                        val = int(val)
+                    except ValueError:
+                        pass
+                elif key == "length":
+                    try:
+                        val = self._convert_length(val)
+                    except Exception:
+                        pass
+
+                out[key] = val
+
+        return out
+
+    def _strip_tags(self, text: str) -> Lyrics:
+        out: list = []
+        for line in text:
+            line = line.strip()
+            if self._TAG_PAIR_RE.match(line):
+                continue
+            out.append(line)
+        return Lyrics("\n".join(out).strip())
+
+    def _on_file_changed(
+        self, _monitor, file: Gio.File, _other_file, event_type: Gio.FileMonitorEvent
+    ) -> None:
+        if event_type == Gio.FileMonitorEvent.CHANGED:
+            _err = False
+            try:
+                success, content, _etag = file.load_contents(None)
+
+                if success:
+                    text = content.decode("utf-8")
+                else:
+                    logger.error(
+                        "Something went wrong while decoding Gio.File(%s) during change",
+                        file.get_path(),
+                    )
+                    _err = True
+            except GLib.Error as e:
+                logger.error(
+                    "I/O error accured while reading Gio.File(%s): %s",
+                    file.get_path(),
+                    str(e),
+                )
+                _err = True
+            except Exception as e:
+                logger.error("Unexpected error occured: %s", str(e))
+                _err = True
+
+            # pylint: disable=possibly-used-before-assignment
+            if not _err:
+                self.meta = self._parse_meta(text)
+                self.text = self._strip_tags(text)
+                self.emit("file-changed")
+
+    def _construct_file(self) -> str:
+        out_tags: list[str] = []
+        for tag, val in self.meta.items():
+            if tag == "length":
+                str_length = self._convert_length(val)
+                out_tags.append(f"[{tag}:{str_length}]")
+                continue
+
+            if tag == "offset":
+                if val >= 0:
+                    str_offset = f"+{val}"
+                else:
+                    str_offset = f"-{val}"
+                out_tags.append(f"[{tag}:{str_offset}]")
+                continue
+
+            out_tags.append(f"[{tag}:{val}]")
+
+        tags_str = "\n".join(out_tags)
+        file_str = (tags_str + "\n" + self.text.lyrics).strip()
+        return file_str

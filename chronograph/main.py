@@ -132,7 +132,9 @@ class ChronographApplication(Adw.Application):
             Constants.WIN.set_property("state", WindowState.EMPTY)
 
         Constants.WIN.present()
-        Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
+        Player().set_property(
+            "volume", float(Schema.get("root.state.player.volume") / 100)
+        )
         Player().set_property("rate", float(Schema.get("root.state.player.rate")))
         logger.debug("Window shown")
 
