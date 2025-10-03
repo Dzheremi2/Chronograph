@@ -3,7 +3,7 @@ from typing import Any, Optional, Union
 
 from gi.repository import GObject
 
-from chronograph.internal import Schema
+from chronograph.internal import Constants, Schema
 from chronograph.utils.lyrics.lyrics_format import LyricsFormat
 from chronograph.utils.wbw.token_parser import TokenParser
 from chronograph.utils.wbw.tokens import WordToken
@@ -56,7 +56,12 @@ class Lyrics(GObject.Object):
         super().__init__()
         self._meta = self._parse_meta(text)
         self._text = self._strip_meta(text)
-        self._format = self._detect_format()
+        self._detect_format()
+
+        Constants.APP.connect(
+            "shutdown",
+            lambda *__: self.emit("save-triggered", self._construct_file_text()),
+        )
 
     def __bool__(self) -> bool:
         return bool(self._text.strip())
@@ -265,7 +270,7 @@ class Lyrics(GObject.Object):
         file_str = (tags_str + "\n" + self._text).strip()
         return file_str
 
-    def _detect_format(self) -> LyricsFormat:
+    def _detect_format(self) -> None:
         if self._text != "":
             if re.search(
                 r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]\s*<\d{2}:\d{2}(?:\.\d{2,3})?>",
@@ -278,8 +283,8 @@ class Lyrics(GObject.Object):
                 fmt = LyricsFormat.PLAIN
         else:
             fmt = LyricsFormat.NONE
+        self._format = fmt
         self.emit("format-changed", fmt.value)
-        return fmt
 
     @property
     def text(self) -> str:
@@ -288,6 +293,7 @@ class Lyrics(GObject.Object):
     @text.setter
     def text(self, new_text: str) -> None:
         self._text = new_text
+        self._detect_format()
 
     @property
     def format(self) -> LyricsFormat:

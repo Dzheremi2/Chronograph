@@ -65,13 +65,13 @@ button.pill.small {
 }
 
 /* Lyrics format chips for SongCard */
-button.lyrics.plain,
 button.lyrics.lrc,
 button.lyrics.elrc {
   color: var(--lyrics-text-bg-dark);
 }
 
 button.lyrics.plain {
+  color: var(--lyrics-text-bg-light);
   background-color: #cd9309;
 }
 

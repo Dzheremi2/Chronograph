@@ -49,6 +49,7 @@ class LRCSyncPage(Adw.NavigationPage):
     ) -> None:
         super().__init__()
         self._card: SongCard = card
+        self._lyrics_file = card._lyrics_file
         self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
         self._card.bind_property(
             "title", self, "title", GObject.BindingFlags.SYNC_CREATE
@@ -62,10 +63,6 @@ class LRCSyncPage(Adw.NavigationPage):
         self.player_container.append(self._player_widget)
         Player()._gst_player.connect("pos-upd", self._on_timestamp_changed)
 
-        self._autosave_path = Path(self._file.path).with_suffix(
-            Schema.get("root.settings.file-manipulation.format")
-        )
-
         self.connect("hidden", self._on_page_closed)
         self._close_rq_handler_id = Constants.WIN.connect(
             "close-request", self._on_app_close
@@ -74,14 +71,12 @@ class LRCSyncPage(Adw.NavigationPage):
         # Automatically load the lyrics file if it exists
         if (
             Schema.get("root.settings.file-manipulation.enabled")
-            and self._autosave_path.exists()
+            and self._lyrics_file.lrc_lyrics.text != ""
         ):
-            lines = self._card._lyrics_file.lyrics.get_normalized_lines()
+            lines = self._lyrics_file.lrc_lyrics.get_normalized_lines()
             self.sync_lines.remove_all()
             for line in lines:
                 self.sync_lines.append(LRCSyncLine(line))
-
-        self._lyrics_file = self._card._lyrics_file
 
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
@@ -319,15 +314,10 @@ class LRCSyncPage(Adw.NavigationPage):
             try:
                 # pylint: disable=not-an-iterable
                 lyrics = [line.get_text() for line in self.sync_lines]
-                lyrics = Lyrics("\n".join(lyrics).strip())
-                if lyrics.format == LyricsFormat.LRC:
-                    self._lyrics_file.modify_lyrics(lyrics.text)
-                    self._file.embed_lyrics(lyrics)
-                    logger.debug("Lyrics autosaved successfully")
-                else:
-                    logger.debug(
-                        "Prevented overwriting LRC lyrics with Plain in LRC file"
-                    )
+                self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
+                self._lyrics_file.lrc_lyrics.save()
+                self._file.embed_lyrics(self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None)
+                logger.debug("Lyrics autosaved successfully")
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None
@@ -341,7 +331,6 @@ class LRCSyncPage(Adw.NavigationPage):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         Player().stop()
-        self._lyrics_file.rm_empty()
 
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:
@@ -349,7 +338,6 @@ class LRCSyncPage(Adw.NavigationPage):
         if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("App closed, saving lyrics")
             self._autosave()
-        self._lyrics_file.rm_empty()
         return False
 
     ###############

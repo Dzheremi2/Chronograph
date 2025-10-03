@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from gi.repository import GObject
+from gi.repository import Gio, GObject
 
 from chronograph.internal import Schema
 from chronograph.utils.lyrics.lyrics import Lyrics
@@ -50,28 +50,27 @@ class LyricsFile(GObject.Object):
         Schema.connect("changed", self._construct_paths)
 
         # Setup Lyrics instances for each lyrics format
-        if (path := Path(self.elrc_path)).exists(): 
-            self.elrc_lyrics = Lyrics(path.read_text())
-        else:
-            self.elrc_lyrics = Lyrics("")
+        self.elrc_lyrics = Lyrics(
+            Path(self.elrc_path).read_text() if Path(self.elrc_path).exists() else ""
+        )
         self.elrc_lyrics.connect("save-triggered", self._save_lyrics)
-        if (path := Path(self.lrc_path)).exists():
-            self.lrc_lyrics = Lyrics(path.read_text())
-        else:
-            self.lrc_lyrics = Lyrics("")
+        self.lrc_lyrics = Lyrics(
+            Path(self.lrc_path).read_text() if Path(self.lrc_path).exists() else ""
+        )
         self.lrc_lyrics.connect("save-triggered", self._save_lyrics)
 
-        self.set_property("highest-format", self._determine_highgest_format())
+        # Determine highest available lyrics format between eLRC and LRC files
+        self.set_property("highest-format", self._determine_highest_format())
         self.elrc_lyrics.connect(
             "format-changed",
             lambda *_args: self.set_property(
-                "highest_format", self._determine_highgest_format()
+                "highest_format", self._determine_highest_format()
             ),
         )
         self.lrc_lyrics.connect(
             "format-changed",
             lambda *_args: self.set_property(
-                "highest_format", self._determine_highgest_format()
+                "highest_format", self._determine_highest_format()
             ),
         )
 
@@ -82,6 +81,13 @@ class LyricsFile(GObject.Object):
         # Rename lyrics files on their paths change
         self.connect("notify::elrc-path", self._rename_file)
         self.connect("notify::lrc-path", self._rename_file)
+
+        # Setup file monitors
+        self._elrc_file_monitor: Gio.FileMonitor = None
+        self._elrc_file_monitor_id: int = None
+        self._lrc_file_monitor: Gio.FileMonitor = None
+        self._lrc_file_monitor_id: int = None
+        self._setup_file_monitors()
 
     def _construct_paths(self, _schema, schema_path: str, _value) -> None:
         if schema_path in (
@@ -98,7 +104,10 @@ class LyricsFile(GObject.Object):
             self.set_property("lrc_path", str(lrc_path))
             self.set_property("elrc_path", str(elrc_path))
 
-    def _determine_highgest_format(self) -> int:
+            # recreate monitors because paths changed
+            self._setup_file_monitors()
+
+    def _determine_highest_format(self) -> int:
         format_path_elrc = self.elrc_lyrics.format
         format_path_lrc = self.lrc_lyrics.format
         return max(format_path_elrc.value, format_path_lrc.value)
@@ -140,12 +149,72 @@ class LyricsFile(GObject.Object):
             )
 
     def _save_lyrics(self, lyrics: Lyrics, file_content: str) -> None:
-        """Save lyrics to the corresponding file based on the lyrics format."""
-        if lyrics is self.elrc_lyrics:
-            path = Path(self.elrc_path)
-            path.write_text(file_content)
-        elif lyrics is self.lrc_lyrics:
-            path = Path(self.lrc_path)
+        if lyrics not in (self.elrc_lyrics, self.lrc_lyrics):
+            raise ValueError("Unknown lyrics instance provided for saving.")
+
+        path = Path(self.elrc_path if lyrics is self.elrc_lyrics else self.lrc_path)
+        if file_content:
             path.write_text(file_content)
         else:
-            raise ValueError("Unknown lyrics instance provided for saving.")
+            path.unlink(missing_ok=True)
+
+    def _on_gio_file_event(
+        self,
+        _file_monitor,
+        file: Gio.File,
+        _other_file,
+        event_type: Gio.FileMonitorEvent,
+    ) -> None:
+        if event_type == Gio.FileMonitorEvent.DELETED:
+            if file.get_path() == self.elrc_path:
+                self.elrc_lyrics.text = ""
+            elif file.get_path() == self.lrc_path:
+                self.lrc_lyrics.text = ""
+            self.set_property("highest-format", self._determine_highest_format())
+        elif event_type == Gio.FileMonitorEvent.CHANGED:
+            if file.get_path() == self.elrc_path:
+                self.elrc_lyrics.text = (
+                    Path(self.elrc_path).read_text()
+                    if Path(self.elrc_path).exists()
+                    else ""
+                )
+            elif file.get_path() == self.lrc_path:
+                self.lrc_lyrics.text = (
+                    Path(self.lrc_path).read_text()
+                    if Path(self.lrc_path).exists()
+                    else ""
+                )
+            self.set_property("highest-format", self._determine_highest_format())
+
+    def _setup_file_monitors(self) -> None:
+        # Disconnect previous monitors if any
+        if getattr(self, "_elrc_file_monitor", None) is not None:
+            try:
+                self._elrc_file_monitor.disconnect(self._elrc_file_monitor_id)
+            except Exception:
+                pass
+            self._elrc_file_monitor = None
+            self._elrc_file_monitor_id = None
+
+        if getattr(self, "_lrc_file_monitor", None) is not None:
+            try:
+                self._lrc_file_monitor.disconnect(self._lrc_file_monitor_id)
+            except Exception:
+                pass
+            self._lrc_file_monitor = None
+            self._lrc_file_monitor_id = None
+
+        # Create new monitors and keep references on self
+        elrc_gio_file = Gio.File.new_for_path(self.elrc_path)
+        lrc_gio_file = Gio.File.new_for_path(self.lrc_path)
+        elrc_file_monitor = elrc_gio_file.monitor_file(Gio.FileMonitorFlags.NONE, None)
+        lrc_file_monitor = lrc_gio_file.monitor_file(Gio.FileMonitorFlags.NONE, None)
+
+        self._elrc_file_monitor = elrc_file_monitor
+        self._elrc_file_monitor_id = elrc_file_monitor.connect(
+            "changed", self._on_gio_file_event
+        )
+        self._lrc_file_monitor = lrc_file_monitor
+        self._lrc_file_monitor_id = lrc_file_monitor.connect(
+            "changed", self._on_gio_file_event
+        )
