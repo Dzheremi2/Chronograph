@@ -48,6 +48,7 @@ class Lyrics(GObject.Object):
     _TIMED_LINE_RE = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
     _TAG_PAIR_RE = re.compile(r"\[(?P<key>[A-Za-z][A-Za-z0-9_-]*):(?P<val>.*?)\]")
     _TIMESTAMP = re.compile(r"^\d{2}:\d{2}(?:\.\d{2,3})?$")
+    _SPACER = "\u00a0"
 
     _meta: dict
     _text: str
