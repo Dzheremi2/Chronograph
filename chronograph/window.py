@@ -20,6 +20,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
+from chronograph.utils.lyrics import LyricsFile
 from chronograph.utils.miscellaneous import get_common_directory
 from dgutils.decorators import singleton
 
@@ -196,10 +197,10 @@ class ChronographWindow(Adw.ApplicationWindow):
             Returns True if files were loaded
         """
 
-        def __songcard_idle(
+        def songcard_idle(
             file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],
         ) -> None:
-            song_card = SongCard(file)
+            song_card = SongCard(file, LyricsFile(Path(file.path)))
             self.library.append(song_card)
             self.library_list.append(song_card.get_list_mode())
             song_card.get_parent().set_focusable(False)
@@ -214,7 +215,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             return False
         for mutagen_file in mutagen_files:
             if isinstance(mutagen_file, (FileID3, FileVorbis, FileMP4, FileUntaggable)):
-                GLib.idle_add(__songcard_idle, mutagen_file)
+                GLib.idle_add(songcard_idle, mutagen_file)
         self.open_source_button.set_icon_name("open-source-symbolic")
         if path := get_common_directory(paths):
             Schema.set("root.state.library.session", path)
@@ -575,11 +576,15 @@ class ChronographWindow(Adw.ApplicationWindow):
         def __select_saved_location() -> None:
             try:
                 for row in self.sidebar:  # pylint: disable=not-an-iterable
-                    if row.get_child().path == Schema.get("root.state.library.session") + "/":
+                    if (
+                        row.get_child().path
+                        == Schema.get("root.state.library.session") + "/"
+                    ):
                         self.sidebar.select_row(row)
                         return
             except AttributeError:
                 pass
+
         state = self._state
         self.open_source_button.set_icon_name("open-source-symbolic")
 

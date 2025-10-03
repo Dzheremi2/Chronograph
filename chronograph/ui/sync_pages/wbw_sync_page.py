@@ -14,8 +14,12 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
-from chronograph.utils.lyrics import Lyrics, LyricsFormat, LyricsHierarchyConversion
-from chronograph.utils.lyrics import LyricsFile
+from chronograph.utils.lyrics import (
+    Lyrics,
+    LyricsFile,
+    LyricsFormat,
+    LyricsHierarchyConversion,
+)
 from chronograph.utils.player import Player
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
@@ -166,7 +170,7 @@ class WBWSyncPage(Adw.NavigationPage):
             prev_page == self.sync_view_stack_page
             and new_page == self.edit_view_stack_page
         ):
-            lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
+            lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
             buffer = Gtk.TextBuffer()
             buffer.set_text(lyrics)
             self.edit_view_text_view.set_buffer(buffer)
@@ -247,7 +251,7 @@ class WBWSyncPage(Adw.NavigationPage):
             )
         else:
             if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
             else:
                 lyrics = ""
 
@@ -266,7 +270,7 @@ class WBWSyncPage(Adw.NavigationPage):
             )
         else:
             if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
             else:
                 lyrics = ""
         clipboard = Gdk.Display().get_default().get_clipboard()
@@ -280,7 +284,7 @@ class WBWSyncPage(Adw.NavigationPage):
     def _sync(self, *_args) -> None:
         current_line = self._lyrics_model.get_current_line()
         current_word = current_line.get_current_word()
-        ns = Player()._gst_player.props.position # pylint: disable=protected-access
+        ns = Player()._gst_player.props.position  # pylint: disable=protected-access
         ms = ns // 1_000_000
         current_word.set_property("time", ms)
         logger.debug(

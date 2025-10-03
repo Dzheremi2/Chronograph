@@ -1,4 +1,5 @@
 """Lyrics handling utilities module"""
+
 import re
 from enum import Enum
 from pathlib import Path
@@ -32,24 +33,26 @@ class LyricsFormat(Enum):
 
     ::
 
-        PLAIN -> 0
-        LRC -> 1
-        ELRC -> 2
+        NONE -> 0
+        PLAIN -> 1
+        LRC -> 2
+        ELRC -> 3
     """
 
-    PLAIN = 0
-    LRC = 1
-    ELRC = 2
+    NONE = 0
+    PLAIN = 1
+    LRC = 2
+    ELRC = 3
 
     @classmethod
-    def from_int(cls, member_id: Literal[0, 1, 2]) -> "LyricsFormat":
+    def from_int(cls, member_id: Literal[0, 1, 2, 3]) -> "LyricsFormat":
         for member in cls:
             if member.value == member_id:
                 return member
         raise TypeError(f"Provided ID of {member_id} is out of scope of LyricsFormat")
 
 
-class Lyrics:
+class Lyrics(GObject.Object):
     """A lyrics representing class with useful methods.
 
     Parameters
@@ -58,16 +61,22 @@ class Lyrics:
         Text of lyrics
     """
 
+    __gtype_name__ = "Lyrics"
+    __gsignals__ = {
+        "format-changed": (GObject.SignalFlags.RUN_FIRST, None, (int,)),
+    }
+
     TIMESTAMP = re.compile(r"^\d{2}:\d{2}(?:\.\d{2,3})?$")
     _TIMED_LINE_RE = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
     _SPACER = "\u00a0"
 
     def __init__(self, text: str) -> None:
-        self._lyrics = text
+        super().__init__()
+        self._text = text
         self._format = self._detect_format()
 
     def __bool__(self) -> bool:
-        if self._lyrics:
+        if self._text:
             return True
         return False
 
@@ -141,15 +150,15 @@ class Lyrics:
             return
 
         if self._format == LyricsFormat.LRC and target == LyricsFormat.PLAIN:
-            self._lyrics = self._to_plain()
+            self._text = self._to_plain()
             self._format = LyricsFormat.PLAIN
 
         if self._format == LyricsFormat.ELRC:
             if target == LyricsFormat.LRC:
-                self._lyrics = self._to_lrc()
+                self._text = self._to_lrc()
                 self._format = LyricsFormat.LRC
             elif target == LyricsFormat.PLAIN:
-                self._lyrics = self._to_plain_from_elrc()
+                self._text = self._to_plain_from_elrc()
                 self._format = LyricsFormat.PLAIN
 
     def of_format(self, target: LyricsFormat) -> str:
@@ -177,7 +186,7 @@ class Lyrics:
             )
 
         if target.value == self._format.value:
-            return self._lyrics
+            return self._text
 
         if self._format == LyricsFormat.LRC and target == LyricsFormat.PLAIN:
             return self._to_plain()
@@ -191,22 +200,23 @@ class Lyrics:
     def get_normalized_lines(self) -> list[str]:
         """Returns normalized lyrics with whitespaces after the timestamp"""
         return [
-            self._TIMED_LINE_RE.sub(r"\1 \2", line)
-            for line in self._lyrics.splitlines()
+            self._TIMED_LINE_RE.sub(r"\1 \2", line) for line in self._text.splitlines()
         ]
 
     def _detect_format(self) -> LyricsFormat:
-        if re.search(
-            r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]\s*<\d{2}:\d{2}(?:\.\d{2,3})?>",
-            self._lyrics,
-        ):
-            return LyricsFormat.ELRC
-        if re.search(r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]", self._lyrics):
-            return LyricsFormat.LRC
-        return LyricsFormat.PLAIN
+        if self._text != "":
+            if re.search(
+                r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]\s*<\d{2}:\d{2}(?:\.\d{2,3})?>",
+                self._text,
+            ):
+                return LyricsFormat.ELRC
+            if re.search(r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]", self._text):
+                return LyricsFormat.LRC
+            return LyricsFormat.PLAIN
+        return LyricsFormat.NONE
 
     def _to_lrc(self) -> str:
-        lines = TokenParser.parse_lines(self._lyrics)
+        lines = TokenParser.parse_lines(self._text)
         out = []
         for line in lines:
             if line.timestamp:
@@ -218,7 +228,7 @@ class Lyrics:
     def _to_plain(self) -> str:
         pattern = r"\[.*?\]"
         plain_lines = [
-            re.sub(pattern, "", line).strip() for line in self._lyrics.splitlines()
+            re.sub(pattern, "", line).strip() for line in self._text.splitlines()
         ]
         return "\n".join(plain_lines)
 
@@ -228,13 +238,14 @@ class Lyrics:
         return lyrics_obj._to_plain()  # pylint: disable=protected-access
 
     @property
-    def lyrics(self) -> str:
-        return self._lyrics
+    def text(self) -> str:
+        return self._text
 
-    @lyrics.setter
-    def lyrics(self, new_text: str) -> None:
-        self._lyrics = new_text
+    @text.setter
+    def text(self, new_text: str) -> None:
+        self._text = new_text
         self._format = self._detect_format()
+        self.emit("format-changed", self._format.value)
 
     @property
     def format(self) -> LyricsFormat:
@@ -276,9 +287,10 @@ class LyricsFile(GObject.Object):
     _TIMED_LINE_RE = re.compile(r"^(\[\d{2}:\d{2}\.\d{2,3}\])(\S)")
 
     meta: dict
-    text: Lyrics
+    lyrics: Lyrics
 
     def __init__(self, path: Path):
+        super().__init__()
         self.path = path
         self._file_watcher = Gio.File.new_for_path(str(path)).monitor_file(
             Gio.FileMonitorFlags.NONE, None
@@ -288,7 +300,7 @@ class LyricsFile(GObject.Object):
             with open(self.path, "w"):
                 pass
         self.meta = self._parse_meta(self.path.read_text())
-        self.text = self._strip_tags(self.path.read_text())
+        self.lyrics = self._strip_tags(self.path.read_text().splitlines())
 
     def save(self) -> None:
         """Saves the metatags and lyrics of the LRC to file"""
@@ -303,7 +315,7 @@ class LyricsFile(GObject.Object):
             Lyrics text (no matter LRC or eLRC)
         """
         if lyrics != "":
-            self.text.lyrics = lyrics
+            self.lyrics.text = lyrics
             self.save()
             return
 
@@ -387,7 +399,7 @@ class LyricsFile(GObject.Object):
             # pylint: disable=possibly-used-before-assignment
             if not _err:
                 self.meta = self._parse_meta(text)
-                self.text = self._strip_tags(text)
+                self.lyrics = self._strip_tags(text)
                 self.emit("file-changed")
 
     def _construct_file(self) -> str:
@@ -409,5 +421,5 @@ class LyricsFile(GObject.Object):
             out_tags.append(f"[{tag}:{val}]")
 
         tags_str = "\n".join(out_tags)
-        file_str = (tags_str + "\n" + self.text.lyrics).strip()
+        file_str = (tags_str + "\n" + self.lyrics.text).strip()
         return file_str

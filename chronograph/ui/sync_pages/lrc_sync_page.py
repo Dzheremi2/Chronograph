@@ -19,8 +19,7 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
-from chronograph.utils.lyrics import Lyrics, LyricsFormat
-from chronograph.utils.lyrics import LyricsFile
+from chronograph.utils.lyrics import Lyrics, LyricsFile, LyricsFormat
 from chronograph.utils.player import Player
 from dgutils import Actions
 
@@ -77,12 +76,12 @@ class LRCSyncPage(Adw.NavigationPage):
             Schema.get("root.settings.file-manipulation.enabled")
             and self._autosave_path.exists()
         ):
-            lines = LyricsFile(self._autosave_path).get_normalized_lines()
+            lines = self._card._lyrics_file.lyrics.get_normalized_lines()
             self.sync_lines.remove_all()
             for line in lines:
                 self.sync_lines.append(LRCSyncLine(line))
 
-        self._lyrics_file = LyricsFile(self._autosave_path)
+        self._lyrics_file = self._card._lyrics_file
 
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
@@ -322,7 +321,7 @@ class LRCSyncPage(Adw.NavigationPage):
                 lyrics = [line.get_text() for line in self.sync_lines]
                 lyrics = Lyrics("\n".join(lyrics).strip())
                 if lyrics.format == LyricsFormat.LRC:
-                    self._lyrics_file.modify_lyrics(lyrics.lyrics)
+                    self._lyrics_file.modify_lyrics(lyrics.text)
                     self._file.embed_lyrics(lyrics)
                     logger.debug("Lyrics autosaved successfully")
                 else:

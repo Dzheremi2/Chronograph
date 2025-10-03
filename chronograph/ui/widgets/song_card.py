@@ -11,6 +11,7 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.lyrics import LyricsFile, LyricsFormat
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -28,17 +29,22 @@ class SongCard(Gtk.Box):
     cover_img: Gtk.Image = gtc()
     title_label: Gtk.Label = gtc()
     artist_label: Gtk.Label = gtc()
+    lyrics_state_indicator: Gtk.Button = gtc()
 
     list_view_row: Adw.ActionRow = gtc()
     cover_img_row: Gtk.Image = gtc()
+    lyrics_state_indicator_row: Gtk.Button = gtc()
     buttons_revealer_row: Gtk.Revealer = gtc()
     row_metadata_editor_button: Gtk.Button = gtc()
 
     def __init__(
-        self, file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable], **kwargs
+        self,
+        file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],
+        lyrics_file: LyricsFile,
     ) -> None:
-        super().__init__(**kwargs)
+        super().__init__()
         self._file = file
+        self._lyrics_file = lyrics_file
         self.bind_property(
             "title_display",
             self.title_label,
@@ -71,6 +77,9 @@ class SongCard(Gtk.Box):
             "cover", self.cover_img_row, "paintable", GObject.BindingFlags.SYNC_CREATE
         )
 
+        self._on_lyrics_format_changed(self._lyrics_file, None)
+        self._lyrics_file.connect("notify::highest-format", self._on_lyrics_format_changed)
+
         self.event_controller_motion = Gtk.EventControllerMotion.new()
         self.add_controller(self.event_controller_motion)
         self.event_controller_motion.connect("enter", self._toggle_buttons)
@@ -83,6 +92,41 @@ class SongCard(Gtk.Box):
         if isinstance(file, FileUntaggable):
             self.metadata_editor_button.set_visible(False)
             self.row_metadata_editor_button.set_visible(False)
+
+    def _on_lyrics_format_changed(self, lyrics_file: LyricsFile, _pspec) -> None:
+        match lyrics_file.highest_format:
+            case LyricsFormat.NONE.value:
+                self.lyrics_state_indicator.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "none"]
+                )
+                self.lyrics_state_indicator_row.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "none"]
+                )
+                self.lyrics_state_indicator.set_label(_("None"))
+            case LyricsFormat.PLAIN.value:
+                self.lyrics_state_indicator.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "plain"]
+                )
+                self.lyrics_state_indicator_row.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "plain"]
+                )
+                self.lyrics_state_indicator.set_label(_("Plain"))
+            case LyricsFormat.LRC.value:
+                self.lyrics_state_indicator.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "lrc"]
+                )
+                self.lyrics_state_indicator_row.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "lrc"]
+                )
+                self.lyrics_state_indicator.set_label("LRC")
+            case LyricsFormat.ELRC.value:
+                self.lyrics_state_indicator.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "elrc"]
+                )
+                self.lyrics_state_indicator_row.set_css_classes(
+                    ["no-hover", "pill", "small", "lyrics", "elrc"]
+                )
+                self.lyrics_state_indicator.set_label("eLRC")
 
     def _toggle_buttons(self, *_args) -> None:
         self.buttons_revealer.set_reveal_child(
