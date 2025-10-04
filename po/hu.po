@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 14:44+0300\n"
+"POT-Creation-Date: 2025-10-04 11:02+0300\n"
 "PO-Revision-Date: 2025-09-14 16:54+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
@@ -19,25 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:442
+#: chronograph/window.py:498
 msgid "Copied successfully"
 msgstr "Sikeresen másolva"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:165
+#: chronograph/main.py:167
 msgid "translator-credits"
 msgstr "Benedek Dévényi <rdbende@proton.me>"
 
-#: chronograph/main.py:173
+#: chronograph/main.py:175
 msgid "Inspiration"
 msgstr "Inspiráció"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:183
+#: chronograph/main.py:185
 msgid "Build your own dictionary"
 msgstr "Állítsd össze a saját szótáradat"
 
-#: chronograph/main.py:189
+#: chronograph/main.py:191
 msgid "Translate the App"
 msgstr "Segítség a fordításban"
 
@@ -81,57 +81,57 @@ msgstr "Nincs elérhető szinkronizált dalszöveg"
 msgid "No plain lyrics available"
 msgstr "Nincs elérhető egyszerű dalszöveg"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:248
-#: chronograph/ui/sync_pages/wbw_sync_page.py:275
+#: chronograph/ui/sync_pages/lrc_sync_page.py:242
+#: chronograph/ui/sync_pages/wbw_sync_page.py:261
 msgid "Lyrics exported to clipboard"
 msgstr "Dalszöveg másolva a vágólapra"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:260
-#: chronograph/ui/sync_pages/wbw_sync_page.py:235
+#: chronograph/ui/sync_pages/lrc_sync_page.py:254
+#: chronograph/ui/sync_pages/wbw_sync_page.py:221
 msgid "Lyrics exported to file"
 msgstr "Dalszöveg mentve fájlba"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:236
-#: chronograph/ui/widgets/song_card.py:121
+#: chronograph/ui/sync_pages/lrc_sync_page.py:255
+#: chronograph/ui/sync_pages/wbw_sync_page.py:222
+#: chronograph/ui/widgets/song_card.py:165
 msgid "Show"
 msgstr "Mutatás"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:397
-#: chronograph/ui/sync_pages/lrc_sync_page.py:440
+#: chronograph/ui/sync_pages/lrc_sync_page.py:384
+#: chronograph/ui/sync_pages/lrc_sync_page.py:427
 msgid "Failed to connect to LRClib.net"
 msgstr "Nem sikerült csatlakozni az LRClib.net szerverhez"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:400
-#: chronograph/ui/sync_pages/lrc_sync_page.py:443
+#: chronograph/ui/sync_pages/lrc_sync_page.py:387
+#: chronograph/ui/sync_pages/lrc_sync_page.py:430
 msgid "Connection to LRClib.net timed out"
 msgstr "Kapcsolódás az LRClib.net szerverhez időtúllépés miatt megszakadt"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:391
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Hiba történt az LRClib.net serverhez való csatlakozás során"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Sikeresen közzétéve: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:453
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Érvénytelen közzétételi token: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ismeretlen hiba történt: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:489
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 msgid "Unable to publish lyrics"
 msgstr "A dalszöveg közzététele sikertelen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:491
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -139,71 +139,82 @@ msgstr ""
 "A dalszövegek közzétételéhez a számnak rendelkeznie kell cím, előadól, album "
 "és dalszöveg mezőkkel"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:496
+#: chronograph/ui/sync_pages/lrc_sync_page.py:483
 msgid "Close"
 msgstr "Bezárás"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Cannot publish empty lyrics"
 msgstr "Üres dalszövegeket nem lehet közzétenni"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:501
+#: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid "Why?"
 msgstr "Miért?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Seems like not every line is synced"
 msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:157
+#: chronograph/ui/sync_pages/wbw_sync_page.py:143
 msgid "No lyrics available"
 msgstr "Nincs elérhető dalszöveg"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:159
+#: chronograph/ui/sync_pages/wbw_sync_page.py:145
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Nem adtál meg dalszöveget a szinkronizációhoz"
 
-#: chronograph/ui/widgets/song_card.py:105
+#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:247
+msgctxt "means lyrics absence"
+msgid "None"
+msgstr ""
+
+#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:251
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
+msgid "Plain"
+msgstr "Egyszerű"
+
+#: chronograph/ui/widgets/song_card.py:149
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Fájl adatai"
 
-#: chronograph/ui/widgets/song_card.py:108
+#: chronograph/ui/widgets/song_card.py:152
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Cím"
 
-#: chronograph/ui/widgets/song_card.py:112
+#: chronograph/ui/widgets/song_card.py:156
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Előadó"
 
-#: chronograph/ui/widgets/song_card.py:115
+#: chronograph/ui/widgets/song_card.py:159
 #: chronograph/ui/widgets/lrclib_track.py:13
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Album"
 
-#: chronograph/ui/widgets/song_card.py:117
+#: chronograph/ui/widgets/song_card.py:161
 msgid "Path"
 msgstr "Elérési út"
 
-#: chronograph/ui/widgets/song_card.py:189
-#: chronograph/ui/widgets/song_card.py:191
+#: chronograph/ui/widgets/song_card.py:233
+#: chronograph/ui/widgets/song_card.py:235
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/ui/widgets/song_card.py:193
-#: chronograph/ui/widgets/song_card.py:195
+#: chronograph/ui/widgets/song_card.py:237
+#: chronograph/ui/widgets/song_card.py:239
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/ui/widgets/song_card.py:197
-#: chronograph/ui/widgets/song_card.py:199
+#: chronograph/ui/widgets/song_card.py:241
+#: chronograph/ui/widgets/song_card.py:243
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -267,7 +278,7 @@ msgstr "Még nincs egy mentés sem"
 msgid "Press pin button to add current directory to the saves"
 msgstr "Használd a kitűzés gombot a jelenlegi mappa mentésekhez adásához"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:281
+#: data/gtk/window.blp:81 data/gtk/window.blp:307
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:50
 msgid "Quick Editor"
@@ -304,78 +315,88 @@ msgstr "Mappa vagy fájl megnyitása"
 msgid "Toggle search"
 msgstr "Keresés"
 
-#: data/gtk/window.blp:244 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
+#: data/gtk/window.blp:242
+#, fuzzy
+msgid "Filter library"
+msgstr "Könyvtár törlése"
+
+#: data/gtk/window.blp:245
+msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
+msgid "Show only…"
+msgstr ""
+
+#: data/gtk/window.blp:270 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr "Menü megnyitása"
 
-#: data/gtk/window.blp:248 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
+#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:17
 msgid "Sort"
 msgstr "Rendezés"
 
-#: data/gtk/window.blp:251 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
+#: data/gtk/window.blp:277 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:20
 msgid "A-Z"
 msgstr "A-Z"
 
-#: data/gtk/window.blp:257 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/window.blp:283 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:264 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
+#: data/gtk/window.blp:290 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "View"
 msgstr "Nézet"
 
-#: data/gtk/window.blp:267 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/window.blp:293 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
 msgid "Grid"
 msgstr "Rács"
 
-#: data/gtk/window.blp:273 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/window.blp:299 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:42
 msgid "List"
 msgstr "Lista"
 
-#: data/gtk/window.blp:285 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
+#: data/gtk/window.blp:311 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:54
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: data/gtk/window.blp:286 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:312 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
 msgstr "Gyorsbillentyűk megnyitása"
 
-#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
+#: data/gtk/window.blp:313 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:56
 msgid "About"
 msgstr "A Chronograph névjegye"
 
-#: data/gtk/window.blp:296
+#: data/gtk/window.blp:322
 msgid "Clean the library"
 msgstr "Könyvtár törlése"
 
-#: data/gtk/window.blp:311
+#: data/gtk/window.blp:337
 msgid "Re-parse current directory"
 msgstr "Jelenlegi mappa újratöltése"
 
-#: data/gtk/window.blp:317
+#: data/gtk/window.blp:343
 msgid "Add current directory to saves"
 msgstr "Jelenlegi mappa hozzáadása a mentésekhez"
 
-#: data/gtk/window.blp:334 data/gtk/ui/dialogs/LRClib.blp:78
+#: data/gtk/window.blp:360 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
 msgstr "Keresés"
 
-#: data/gtk/window.blp:375
+#: data/gtk/window.blp:401
 msgid "Directory"
 msgstr "Mappa"
 
-#: data/gtk/window.blp:376
+#: data/gtk/window.blp:402
 msgid "Files"
 msgstr "Fájlok"
 
@@ -465,11 +486,6 @@ msgstr "Keresés cím és előadó alapján"
 #: data/gtk/ui/dialogs/LRClib.blp:119
 msgid "Synced"
 msgstr "Szinkronizált"
-
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
-#: data/gtk/ui/dialogs/Preferences.blp:169
-msgid "Plain"
-msgstr "Egyszerű"
 
 #: data/gtk/ui/dialogs/LRClib.blp:173
 msgid ""
@@ -818,7 +834,7 @@ msgstr "Sor beszúrása későbbre"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:181
-#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
+#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:195
 msgid "Edit song metadata"
 msgstr "Szám metaadatainak szerkesztése"
 
@@ -836,7 +852,7 @@ msgid "Edit"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:247
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:184
 msgid "Sync"
 msgstr "Szinkronizálás"
 
@@ -862,13 +878,17 @@ msgstr "Név"
 msgid "Delete this Save?"
 msgstr "Törlöd ezt a mentést?"
 
-#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
+#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:205
 msgid "Show song info"
 msgstr "Szám adatainak megjelenítése"
 
 #: data/gtk/ui/widgets/SongCard.blp:68
 msgid "Open syncing page"
 msgstr "Szinkronizálási nézet megnyitása"
+
+#: data/gtk/ui/widgets/SongCard.blp:121
+msgid "Lyrics format (if exists)"
+msgstr ""
 
 #: data/gtk/ui/widgets/UIPlayer.blp:102
 msgid "Play/Pause"

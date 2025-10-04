@@ -78,7 +78,9 @@ class SongCard(Gtk.Box):
         )
 
         self._on_lyrics_format_changed(self._lyrics_file, None)
-        self._lyrics_file.connect("notify::highest-format", self._on_lyrics_format_changed)
+        self._lyrics_file.connect(
+            "notify::highest-format", self._on_lyrics_format_changed
+        )
 
         self.event_controller_motion = Gtk.EventControllerMotion.new()
         self.add_controller(self.event_controller_motion)
@@ -102,7 +104,9 @@ class SongCard(Gtk.Box):
                 self.lyrics_state_indicator_row.set_css_classes(
                     ["no-hover", "pill", "small", "lyrics", "none"]
                 )
-                self.lyrics_state_indicator.set_label(_("None"))
+                self.lyrics_state_indicator.set_label(
+                    C_("means lyrics absence", "None")
+                )
             case LyricsFormat.PLAIN.value:
                 self.lyrics_state_indicator.set_css_classes(
                     ["no-hover", "pill", "small", "lyrics", "plain"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 14:44+0300\n"
+"POT-Creation-Date: 2025-10-04 11:02+0300\n"
 "PO-Revision-Date: 2025-08-23 12:02+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/chronograph/"
@@ -19,26 +19,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.13\n"
 
-#: chronograph/window.py:442
+#: chronograph/window.py:498
 msgid "Copied successfully"
 msgstr "Gekopieerd"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:165
+#: chronograph/main.py:167
 msgid "translator-credits"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
-#: chronograph/main.py:173
+#: chronograph/main.py:175
 #, fuzzy
 msgid "Inspiration"
 msgstr "Duur"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:183
+#: chronograph/main.py:185
 msgid "Build your own dictionary"
 msgstr ""
 
-#: chronograph/main.py:189
+#: chronograph/main.py:191
 msgid "Translate the App"
 msgstr ""
 
@@ -77,132 +77,143 @@ msgstr "Er is geen gesynchroniseerde songtekst beschikbaar"
 msgid "No plain lyrics available"
 msgstr "Er is geen songtekst beschikbaar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:248
-#: chronograph/ui/sync_pages/wbw_sync_page.py:275
+#: chronograph/ui/sync_pages/lrc_sync_page.py:242
+#: chronograph/ui/sync_pages/wbw_sync_page.py:261
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Kopiëren naar klembord"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:260
-#: chronograph/ui/sync_pages/wbw_sync_page.py:235
+#: chronograph/ui/sync_pages/lrc_sync_page.py:254
+#: chronograph/ui/sync_pages/wbw_sync_page.py:221
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:261
-#: chronograph/ui/sync_pages/wbw_sync_page.py:236
-#: chronograph/ui/widgets/song_card.py:121
+#: chronograph/ui/sync_pages/lrc_sync_page.py:255
+#: chronograph/ui/sync_pages/wbw_sync_page.py:222
+#: chronograph/ui/widgets/song_card.py:165
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:397
-#: chronograph/ui/sync_pages/lrc_sync_page.py:440
+#: chronograph/ui/sync_pages/lrc_sync_page.py:384
+#: chronograph/ui/sync_pages/lrc_sync_page.py:427
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:400
-#: chronograph/ui/sync_pages/lrc_sync_page.py:443
+#: chronograph/ui/sync_pages/lrc_sync_page.py:387
+#: chronograph/ui/sync_pages/lrc_sync_page.py:430
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:391
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Gepubliceerd: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:453
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Ongeldige publicatiesleutel: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Er is een onbekende fout opgetreden: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:489
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:491
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:496
+#: chronograph/ui/sync_pages/lrc_sync_page.py:483
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:501
+#: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 msgid "Seems like not every line is synced"
 msgstr "Niet alle regels lijken gesynchroniseerd"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:157
+#: chronograph/ui/sync_pages/wbw_sync_page.py:143
 #, fuzzy
 msgid "No lyrics available"
 msgstr "Er is geen songtekst beschikbaar"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:159
+#: chronograph/ui/sync_pages/wbw_sync_page.py:145
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:105
+#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:247
+msgctxt "means lyrics absence"
+msgid "None"
+msgstr ""
+
+#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:251
+#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:169
+msgid "Plain"
+msgstr "Platte tekst"
+
+#: chronograph/ui/widgets/song_card.py:149
 #, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Over bestand"
 
-#: chronograph/ui/widgets/song_card.py:108
+#: chronograph/ui/widgets/song_card.py:152
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Titel"
 
-#: chronograph/ui/widgets/song_card.py:112
+#: chronograph/ui/widgets/song_card.py:156
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Artiest"
 
-#: chronograph/ui/widgets/song_card.py:115
+#: chronograph/ui/widgets/song_card.py:159
 #: chronograph/ui/widgets/lrclib_track.py:13
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Album"
 
-#: chronograph/ui/widgets/song_card.py:117
+#: chronograph/ui/widgets/song_card.py:161
 msgid "Path"
 msgstr "Locatie"
 
-#: chronograph/ui/widgets/song_card.py:189
-#: chronograph/ui/widgets/song_card.py:191
+#: chronograph/ui/widgets/song_card.py:233
+#: chronograph/ui/widgets/song_card.py:235
 #, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: chronograph/ui/widgets/song_card.py:193
-#: chronograph/ui/widgets/song_card.py:195
+#: chronograph/ui/widgets/song_card.py:237
+#: chronograph/ui/widgets/song_card.py:239
 #, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: chronograph/ui/widgets/song_card.py:197
-#: chronograph/ui/widgets/song_card.py:199
+#: chronograph/ui/widgets/song_card.py:241
+#: chronograph/ui/widgets/song_card.py:243
 #, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
@@ -268,7 +279,7 @@ msgstr "Er zijn geen bewaarde teksten"
 msgid "Press pin button to add current directory to the saves"
 msgstr "Klik op de vastmaakknop om de huidige map te bewaren"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:281
+#: data/gtk/window.blp:81 data/gtk/window.blp:307
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:50
 msgid "Quick Editor"
@@ -307,78 +318,88 @@ msgstr "Kies een werkmap of open een bestand"
 msgid "Toggle search"
 msgstr "Schakel zijbalk"
 
-#: data/gtk/window.blp:244 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
+#: data/gtk/window.blp:242
+#, fuzzy
+msgid "Filter library"
+msgstr "Bibliotheek opruimen"
+
+#: data/gtk/window.blp:245
+msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
+msgid "Show only…"
+msgstr ""
+
+#: data/gtk/window.blp:270 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr ""
 
-#: data/gtk/window.blp:248 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
+#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:17
 msgid "Sort"
 msgstr "Sorteer"
 
-#: data/gtk/window.blp:251 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
+#: data/gtk/window.blp:277 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:20
 msgid "A-Z"
 msgstr "A-Z"
 
-#: data/gtk/window.blp:257 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/window.blp:283 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:264 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
+#: data/gtk/window.blp:290 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "View"
 msgstr "Weergave"
 
-#: data/gtk/window.blp:267 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/window.blp:293 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
 msgid "Grid"
 msgstr "Grid"
 
-#: data/gtk/window.blp:273 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/window.blp:299 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:42
 msgid "List"
 msgstr "Lijst"
 
-#: data/gtk/window.blp:285 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
+#: data/gtk/window.blp:311 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:54
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/gtk/window.blp:286 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:312 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
 msgstr "Toets­combinaties"
 
-#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
+#: data/gtk/window.blp:313 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:56
 msgid "About"
 msgstr "Over"
 
-#: data/gtk/window.blp:296
+#: data/gtk/window.blp:322
 msgid "Clean the library"
 msgstr "Bibliotheek opruimen"
 
-#: data/gtk/window.blp:311
+#: data/gtk/window.blp:337
 msgid "Re-parse current directory"
 msgstr "Huidige werkmap opnieuw parseren"
 
-#: data/gtk/window.blp:317
+#: data/gtk/window.blp:343
 msgid "Add current directory to saves"
 msgstr "Voeg huidige werkmap toe aan opgeslagen"
 
-#: data/gtk/window.blp:334 data/gtk/ui/dialogs/LRClib.blp:78
+#: data/gtk/window.blp:360 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
 msgstr "Zoeken"
 
-#: data/gtk/window.blp:375
+#: data/gtk/window.blp:401
 msgid "Directory"
 msgstr "Werkmap"
 
-#: data/gtk/window.blp:376
+#: data/gtk/window.blp:402
 msgid "Files"
 msgstr "Bestanden"
 
@@ -469,11 +490,6 @@ msgstr "Zoeken op LRClib naar titel en artiest"
 #: data/gtk/ui/dialogs/LRClib.blp:119
 msgid "Synced"
 msgstr "Gesynchroniseerd"
-
-#: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
-#: data/gtk/ui/dialogs/Preferences.blp:169
-msgid "Plain"
-msgstr "Platte tekst"
 
 #: data/gtk/ui/dialogs/LRClib.blp:173
 msgid ""
@@ -814,7 +830,7 @@ msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:181
-#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:169
+#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:195
 msgid "Edit song metadata"
 msgstr "wijzig nummer metadata"
 
@@ -832,7 +848,7 @@ msgid "Edit"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:247
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:158
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:184
 msgid "Sync"
 msgstr "Sync"
 
@@ -859,13 +875,17 @@ msgstr ""
 msgid "Delete this Save?"
 msgstr "Verwijder dit opslagbestand?"
 
-#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:179
+#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:205
 msgid "Show song info"
 msgstr "Geef nummer info weer"
 
 #: data/gtk/ui/widgets/SongCard.blp:68
 msgid "Open syncing page"
 msgstr "Open synchronisatie pagina"
+
+#: data/gtk/ui/widgets/SongCard.blp:121
+msgid "Lyrics format (if exists)"
+msgstr ""
 
 #: data/gtk/ui/widgets/UIPlayer.blp:102
 msgid "Play/Pause"
