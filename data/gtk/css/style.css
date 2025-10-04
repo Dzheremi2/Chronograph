@@ -1,60 +1,103 @@
-.rounded {
-    border-radius: 12px;
+:root {
+  --lyrics-text-bg-dark: #f7f3fb;
+  --lyrics-text-bg-light: #291d02;
+  --lyrics-none-bg-dark: #565659;
+  --lyrics-none-bg-light: #eae8e6;
+  --border-radius-lg: 12px;
+  --border-radius-sm: 6px;
+  --rounded-frame-bg: #eeeeee;
+}
+
+.rounded, /* For just 12px rounded borders */
+.rounded-frame { /* For Gtk.TextView */
+    border-radius: var(--border-radius-lg); 
 }
 
 .rounded-frame {
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    background-color: #eeeeee;
+    background-color: var(--rounded-frame-bg);
 }
 
-.drag-target {
-    /* This is a style from https://gitlab.gnome.org/World/eartag/-/blob/main/src/style.css?ref_type=heads */
-    /* Thanks for this */
-	background-color: hsl(from var(--accent-bg-color) h calc(s * 0.7) calc(l * 0.7));
-	opacity: 0.85;
+@media (prefers-color-scheme: dark) {
+  :root {
+      --rounded-frame-bg: #1d1d20;
+  }
 }
 
-.word-frame {
+.drag-target { /* Drag'n'Drop overlay*/
+  background-color: hsl(from var(--accent-bg-color) h calc(s * 0.7) calc(l * 0.7));
+  opacity: 0.85;
+}
+
+/* Word-by-Word word cards */
+.word-frame { /* Used for cureent word */
   border: 4px solid var(--accent-bg-color);
-  border-radius: 12px;
+  border-radius: var(--border-radius-lg);
   padding: 6px;
 }
 
-.synced-card {
+.synced-card { /* Used when word is synced for Gtk.Box */
   background-color: #37713f;
 }
 
-.synced-text {
+.synced-text { /* Used when word is synced for Gtk.Label */
   color: #ffffff;
 }
 
-.no-hover:hover {
+.no-hover:hover, /* 
+To use buttons as icons display.
+Will only work with flat buttons without some extended setting
+*/
+flowboxchild:hover,
+flowboxchild:active { /* To "fix" Adwaita 1.8 Gtk.FlowBox fix */
   background: initial;
   background-image: initial;
   box-shadow: none;
   color: initial;
+  outline: none; 
 }
 
-#list_view_row_cover {
-    border-radius: 6px;
+/* From https://github.com/workbenchdev/Workbench/blob/main/src/style.css */
+button.pill.small { 
+  font-size: 0.83333em;
+  border-radius: 99px;
+  margin: 0;
+  padding: 1px 12px;
 }
 
-flowboxchild:hover,
-flowboxchild:active {
-  background: none;
-  box-shadow: none;
-  outline: none;
+/* Lyrics format chips for SongCard */
+button.lyrics.lrc,
+button.lyrics.elrc {
+  color: var(--lyrics-text-bg-dark);
+}
+
+button.lyrics.plain {
+  color: var(--lyrics-text-bg-light);
+  background-color: #cd9309;
+}
+
+button.lyrics.lrc {
+  background-color: #26a269;
+}
+
+button.lyrics.elrc {
+  background-color: #7b2cbf;
+}
+
+@media (prefers-color-scheme: light) {
+  button.lyrics.none {
+    background-color: var(--lyrics-none-bg-light);
+    color: var(--lyrics-text-bg-light);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  .rounded-frame {
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    background-color: #1d1d20;
+  button.lyrics.none {
+    background-color: var(--lyrics-none-bg-dark);
+    color: var(--lyrics-text-bg-dark);
   }
+}
+
+/* List View library mode covers rounding */
+#list_view_row_cover {
+  border-radius: var(--border-radius-sm); 
 }

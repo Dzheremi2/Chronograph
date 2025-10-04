@@ -14,8 +14,12 @@ from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
 from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
 from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
-from chronograph.utils.lyrics import Lyrics, LyricsFormat, LyricsHierarchyConversion
-from chronograph.utils.lyrics_file_helper import LyricsFile
+from chronograph.utils.lyrics import (
+    Lyrics,
+    LyricsFile,
+    LyricsFormat,
+    LyricsHierarchyConversion,
+)
 from chronograph.utils.player import Player
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
@@ -55,6 +59,7 @@ class WBWSyncPage(Adw.NavigationPage):
         # Player setup
         self._card: SongCard = card
         self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
+        self._lyrics_file = self._card._lyrics_file
         self._card.bind_property(
             "title", self, "title", GObject.BindingFlags.SYNC_CREATE
         )
@@ -65,22 +70,6 @@ class WBWSyncPage(Adw.NavigationPage):
             self.sync_page_metadata_editor_button.set_visible(False)
         self._player_widget = UIPlayer(file, card)
         self.player_container.append(self._player_widget)
-
-        self._elrc_autosave_path = (
-            Path(self._file.path)
-            .with_name(
-                (
-                    Schema.get("root.settings.file-manipulation.elrc-prefix")
-                    if Schema.get("root.settings.file-manipulation.lrc-along-elrc")
-                    else ""
-                )
-                + Path(self._file.path).name
-            )
-            .with_suffix(Schema.get("root.settings.file-manipulation.format"))
-        )
-        self._lrc_autosave_path = Path(self._file.path).with_suffix(
-            Schema.get("root.settings.file-manipulation.format")
-        )
 
         self._close_rq_handler_id = Constants.WIN.connect(
             "close-request", self._on_app_close
@@ -105,19 +94,16 @@ class WBWSyncPage(Adw.NavigationPage):
 
         # Automatically load the lyrics file if it exists
         if Schema.get("root.settings.file-manipulation.enabled"):
-            lines: LyricsFile = None
-            if self._elrc_autosave_path.exists():
-                lines = LyricsFile(self._elrc_autosave_path).get_normalized_lines()
-            elif self._lrc_autosave_path.exists():
-                lines = LyricsFile(self._lrc_autosave_path).get_normalized_lines()
+            lines = None
+            if self._lyrics_file.elrc_lyrics.text != "":
+                lines = self._lyrics_file.elrc_lyrics.get_normalized_lines()
+            elif self._lyrics_file.lrc_lyrics.text != "":
+                lines = self._lyrics_file.lrc_lyrics.get_normalized_lines()
 
             if lines is not None:
                 buffer = Gtk.TextBuffer()
-                buffer.set_text("\n".join(lines))
+                buffer.set_text("\n".join(lines).strip())
                 self.edit_view_text_view.set_buffer(buffer)
-
-        self._elrc_lyrics_file = LyricsFile(self._elrc_autosave_path)
-        self._lrc_lyrics_file = LyricsFile(self._lrc_autosave_path)
 
     def _page_visibility(self, stack: Adw.ViewStack, _pspec) -> None:
         page: Adw.ViewStackPage = stack.get_page(stack.get_visible_child())
@@ -166,7 +152,7 @@ class WBWSyncPage(Adw.NavigationPage):
             prev_page == self.sync_view_stack_page
             and new_page == self.edit_view_stack_page
         ):
-            lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
+            lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
             buffer = Gtk.TextBuffer()
             buffer.set_text(lyrics)
             self.edit_view_text_view.set_buffer(buffer)
@@ -247,7 +233,7 @@ class WBWSyncPage(Adw.NavigationPage):
             )
         else:
             if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
             else:
                 lyrics = ""
 
@@ -266,7 +252,7 @@ class WBWSyncPage(Adw.NavigationPage):
             )
         else:
             if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).lyrics
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
             else:
                 lyrics = ""
         clipboard = Gdk.Display().get_default().get_clipboard()
@@ -280,7 +266,7 @@ class WBWSyncPage(Adw.NavigationPage):
     def _sync(self, *_args) -> None:
         current_line = self._lyrics_model.get_current_line()
         current_word = current_line.get_current_word()
-        ns = Player()._gst_player.props.position # pylint: disable=protected-access
+        ns = Player()._gst_player.props.position  # pylint: disable=protected-access
         ms = ns // 1_000_000
         current_word.set_property("time", ms)
         logger.debug(
@@ -365,24 +351,32 @@ class WBWSyncPage(Adw.NavigationPage):
                     Schema.get("root.settings.file-manipulation.elrc-prefix") != ""
                 ):
                     try:
-                        self._lrc_lyrics_file.modify_lyrics(
-                            lyrics.of_format(LyricsFormat.LRC)
+                        self._lyrics_file.lrc_lyrics.text = lyrics.of_format(
+                            LyricsFormat.LRC
                         )
+                        self._lyrics_file.lrc_lyrics.save()
                         logger.debug("LRC lyrics autosaved successfully")
                     except LyricsHierarchyConversion:
                         logger.debug(
                             "Prevented overwriting LRC lyrics with Plain in LRC file"
                         )
                 try:
-                    self._elrc_lyrics_file.modify_lyrics(
-                        lyrics.of_format(LyricsFormat.ELRC)
+                    self._lyrics_file.elrc_lyrics.text = lyrics.of_format(
+                        LyricsFormat.ELRC
                     )
-                    self._file.embed_lyrics(lyrics)
+                    self._file.embed_lyrics(
+                        self._lyrics_file.elrc_lyrics.text
+                        if self._lyrics_file.elrc_lyrics.text
+                        else None
+                    )
+                    self._lyrics_file.elrc_lyrics.save()
                     logger.debug("eLRC lyrics autosaved successfully")
                 except LyricsHierarchyConversion:
                     logger.debug(
                         "Prevented overwriting eLRC lyrics with LRC or Plain in eLRC file"
                     )
+            except AttributeError:
+                pass
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
             self._autosave_timeout_id = None
@@ -396,8 +390,6 @@ class WBWSyncPage(Adw.NavigationPage):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         Player().stop()
-        self._lrc_lyrics_file.rm_empty()
-        self._elrc_lyrics_file.rm_empty()
 
     def _on_app_close(self, *_) -> None:
         if self._autosave_timeout_id:
@@ -405,8 +397,6 @@ class WBWSyncPage(Adw.NavigationPage):
         if Schema.get("root.settings.file-manipulation.enabled"):
             logger.debug("App closed, saving lyrics")
             self._autosave()
-        self._lrc_lyrics_file.rm_empty()
-        self._elrc_lyrics_file.rm_empty()
         return False
 
     ###############

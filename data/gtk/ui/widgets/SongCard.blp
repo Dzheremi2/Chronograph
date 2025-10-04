@@ -111,6 +111,19 @@ template $SongCard: Box {
             margin-end: 8;
             use-markup: false;
           }
+
+          Box {
+            margin-start: 8;
+            margin-bottom: 4;
+            margin-end: 8;
+
+            Button lyrics_state_indicator {
+              tooltip-text: _("Lyrics format (if exists)");
+              label: "None";
+              can-shrink: true;
+              styles ["no-hover", "pill", "small", "lyrics", "none"]
+            }
+          }
         }
 
         styles [
@@ -126,6 +139,7 @@ Adw.ActionRow list_view_row {
   use-markup: false;
   subtitle-lines: 1;
   title-lines: 1;
+  activatable-widget: lyrics_state_indicator;
   activated => $load();
 
   [prefix]
@@ -142,7 +156,19 @@ Adw.ActionRow list_view_row {
 
   [suffix]
   Box {
-    orientation: vertical;
+    valign: center;
+    Button lyrics_state_indicator_row {
+      tooltip-text: bind lyrics_state_indicator.tooltip-text;
+      label: bind lyrics_state_indicator.label;
+      visible: bind buttons_revealer_row.visible inverted;
+      can-shrink: true;
+      styles ["no-hover", "pill", "small", "lyrics", "none"]
+    }
+  }
+
+  [suffix]
+  Box {
+    orientation: horizontal;
     hexpand: false;
     valign: center;
 

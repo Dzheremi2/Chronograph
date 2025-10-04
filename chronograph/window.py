@@ -20,7 +20,12 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
-from chronograph.utils.miscellaneous import get_common_directory
+from chronograph.utils.lyrics import LyricsFile
+from chronograph.utils.miscellaneous import (
+    decode_filter_schema,
+    encode_filter_schema,
+    get_common_directory,
+)
 from dgutils.decorators import singleton
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -93,6 +98,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     quick_edit_text_view: Gtk.TextView = gtc()
     quick_edit_copy_button: Gtk.Button = gtc()
 
+    filter_none: bool = GObject.Property(type=bool, default=True)
+    filter_plain: bool = GObject.Property(type=bool, default=True)
+    filter_lrc: bool = GObject.Property(type=bool, default=True)
+    filter_elrc: bool = GObject.Property(type=bool, default=True)
+
     sort_state: str = Schema.get("root.state.library.sorting")
     view_state: str = Schema.get("root.state.library.view")
 
@@ -136,6 +146,33 @@ class ChronographWindow(Adw.ApplicationWindow):
 
         # Building up the sidebar with saved locations
         self.build_sidebar()
+
+        # Setup filter by lyrics format
+        (
+            self.props.filter_none,
+            self.props.filter_plain,
+            self.props.filter_lrc,
+            self.props.filter_elrc,
+        ) = (
+            decode_filter_schema(0),
+            decode_filter_schema(1),
+            decode_filter_schema(2),
+            decode_filter_schema(3),
+        )
+        filter_none_action = Gio.PropertyAction.new("filter_none", self, "filter_none")
+        self.add_action(filter_none_action)
+        filter_plain_action = Gio.PropertyAction.new(
+            "filter_plain", self, "filter_plain"
+        )
+        self.add_action(filter_plain_action)
+        filter_lrc_action = Gio.PropertyAction.new("filter_lrc", self, "filter_lrc")
+        self.add_action(filter_lrc_action)
+        filter_elrc_action = Gio.PropertyAction.new("filter_elrc", self, "filter_elrc")
+        self.add_action(filter_elrc_action)
+        self.connect("notify::filter-none", self._on_filter_state)
+        self.connect("notify::filter-plain", self._on_filter_state)
+        self.connect("notify::filter-lrc", self._on_filter_state)
+        self.connect("notify::filter-elrc", self._on_filter_state)
 
     def build_sidebar(self) -> None:
         """Builds the sidebar with saved locations"""
@@ -196,10 +233,10 @@ class ChronographWindow(Adw.ApplicationWindow):
             Returns True if files were loaded
         """
 
-        def __songcard_idle(
+        def songcard_idle(
             file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],
         ) -> None:
-            song_card = SongCard(file)
+            song_card = SongCard(file, LyricsFile(Path(file.path)))
             self.library.append(song_card)
             self.library_list.append(song_card.get_list_mode())
             song_card.get_parent().set_focusable(False)
@@ -214,7 +251,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             return False
         for mutagen_file in mutagen_files:
             if isinstance(mutagen_file, (FileID3, FileVorbis, FileMP4, FileUntaggable)):
-                GLib.idle_add(__songcard_idle, mutagen_file)
+                GLib.idle_add(songcard_idle, mutagen_file)
         self.open_source_button.set_icon_name("open-source-symbolic")
         if path := get_common_directory(paths):
             Schema.set("root.state.library.session", path)
@@ -580,6 +617,15 @@ class ChronographWindow(Adw.ApplicationWindow):
                     GLib.Variant.new_string("g")
                 )
 
+    def _on_filter_state(self, _obj, _pspec) -> None:
+        nn = self.lookup_action("filter_none").get_state().get_boolean()
+        pp = self.lookup_action("filter_plain").get_state().get_boolean()
+        ll = self.lookup_action("filter_lrc").get_state().get_boolean()
+        ee = self.lookup_action("filter_elrc").get_state().get_boolean()
+        Schema.set("root.state.library.filter", encode_filter_schema(nn, pp, ll, ee))
+        self.library.invalidate_filter()
+        self.library_list.invalidate_filter()
+
     ############### WindowState related methods ###############
     @GObject.Property()
     def state(self) -> WindowState:  # pylint: disable=method-hidden
@@ -594,11 +640,15 @@ class ChronographWindow(Adw.ApplicationWindow):
         def __select_saved_location() -> None:
             try:
                 for row in self.sidebar:  # pylint: disable=not-an-iterable
-                    if row.get_child().path == Schema.get("root.state.library.session") + "/":
+                    if (
+                        row.get_child().path
+                        == Schema.get("root.state.library.session") + "/"
+                    ):
                         self.sidebar.select_row(row)
                         return
             except AttributeError:
                 pass
+
         state = self._state
         self.open_source_button.set_icon_name("open-source-symbolic")
 

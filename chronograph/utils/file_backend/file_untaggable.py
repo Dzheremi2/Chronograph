@@ -1,3 +1,4 @@
+from typing import Optional
 from chronograph.utils.lyrics import Lyrics
 
 from .file import BaseFile
@@ -12,5 +13,5 @@ class FileUntaggable(BaseFile):
 
         self.cover = None
 
-    def embed_lyrics(self, lyrics: Lyrics, *, force: bool = False):
+    def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
         pass

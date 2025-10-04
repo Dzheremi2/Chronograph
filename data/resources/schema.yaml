@@ -95,6 +95,9 @@ root:
       session:
         type: str
         default: None
+      filter:
+        type: str
+        default: "1:1:1:1" # encoded string none:plain:lrc:elrc. 0 for disabled, 1 for enabled
     window:
       height:
         type: int
