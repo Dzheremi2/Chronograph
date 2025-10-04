@@ -65,6 +65,7 @@
     <file alias="chr-vol-min-symbolic.svg">icons/icons/symbolic/chr-vol-min-symbolic.svg</file>
     <file alias="chr-vol-mute-symbolic.svg">icons/icons/symbolic/chr-vol-mute-symbolic.svg</file>
     <file alias="chr-playback-rate-symbolic.svg">icons/icons/symbolic/chr-playback-rate-symbolic.svg</file>
+    <file alias="chr-filter-symbolic.svg">icons/icons/symbolic/chr-filter-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

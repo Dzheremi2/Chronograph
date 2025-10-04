@@ -236,6 +236,31 @@ template $ChronographWindow : Adw.ApplicationWindow {
                     tooltip-text: _("Toggle search");
                     action-name: "win.toggle_search";
                   }
+
+                  MenuButton {
+                    icon-name: "chr-filter-symbolic";
+                    tooltip-text: _("Filter library");
+                    menu-model: menu {
+                      section {
+                        item {
+                          label: C_("means lyrics abscense", "None");
+                          action: "win.filter_none";
+                        }
+                        item {
+                          label: _("Plain");
+                          action: "win.filter_plain";
+                        }
+                        item {
+                          label: "LRC";
+                          action: "win.filter_lrc";
+                        }
+                        item {
+                          label: "eLRC";
+                          action: "win.filter_elrc";
+                        }
+                      }
+                    };
+                  }
                 }
 
                 [end]

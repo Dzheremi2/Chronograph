@@ -119,7 +119,7 @@ template $SongCard: Box {
 
             Button lyrics_state_indicator {
               tooltip-text: _("Lyrics format (if exists)");
-              label: _("None");
+              label: "None";
               can-shrink: true;
               styles ["no-hover", "pill", "small", "lyrics", "none"]
             }
@@ -139,6 +139,7 @@ Adw.ActionRow list_view_row {
   use-markup: false;
   subtitle-lines: 1;
   title-lines: 1;
+  activatable-widget: lyrics_state_indicator;
   activated => $load();
 
   [prefix]

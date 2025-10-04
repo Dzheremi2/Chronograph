@@ -4,7 +4,6 @@ from gi.repository import Gio, GObject
 
 from chronograph.internal import Schema
 from chronograph.utils.lyrics.lyrics import Lyrics
-from chronograph.utils.lyrics.lyrics_format import LyricsFormat
 
 
 class LyricsFile(GObject.Object):
@@ -39,7 +38,7 @@ class LyricsFile(GObject.Object):
 
     elrc_path: str = GObject.Property(type=str, default="")
     lrc_path: str = GObject.Property(type=str, default="")
-    highest_format: LyricsFormat = GObject.Property(type=int, default=0)
+    highest_format: int = GObject.Property(type=int, default=0)
 
     def __init__(self, media_bind_path: Path) -> None:
         super().__init__()
