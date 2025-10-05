@@ -170,16 +170,19 @@ class LyricsFile(GObject.Object):
             elif file.get_path() == self.lrc_path:
                 self.lrc_lyrics.text = ""
             self.set_property("highest-format", self._determine_highest_format())
-        elif event_type == Gio.FileMonitorEvent.CHANGED:
+        elif event_type in (
+            Gio.FileMonitorEvent.CHANGED,
+            Gio.FileMonitorEvent.ATTRIBUTE_CHANGED,
+        ):
             if file.get_path() == self.elrc_path:
                 self.elrc_lyrics.text = (
-                    Path(self.elrc_path).read_text()
+                    Lyrics(Path(self.elrc_path).read_text()).text
                     if Path(self.elrc_path).exists()
                     else ""
                 )
             elif file.get_path() == self.lrc_path:
                 self.lrc_lyrics.text = (
-                    Path(self.lrc_path).read_text()
+                    Lyrics(Path(self.lrc_path).read_text()).text
                     if Path(self.lrc_path).exists()
                     else ""
                 )
