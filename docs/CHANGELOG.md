@@ -1,3 +1,11 @@
+## 5.0.1
+
+<p>5.0 Hotfix</p>
+<ul>
+  <li>Correctly change loaded lyrics on external file change if that file has LRC metatags</li>
+  <li>Correctly handle lyric file update on "Replace" operations (Replace file dialog in File managers)</li>
+</ul>
+
 ## 5.0
 
 <p>New features</p>
