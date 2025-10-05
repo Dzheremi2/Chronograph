@@ -1,26 +1,17 @@
-## 5.0-rc2
-
-<p>New features</p>
-<ul>
-  <li>Now all items in library have chips at the bottom showing the highest available lyrics format for this media resource</li>
-  <li>Filtering library by lyrics format</li>
-</ul>
-<p>Bug fixes</p>
-<ul>
-  <li>Drag'n'Drop now will reject files if there's no any supported formats in drop attempt</li>
-</ul>
-
-## 5.0-rc1
+## 5.0
 
 <p>New features</p>
 <ul>
   <li>New GStreamer based player</li>
   <li>Advanced volume control with state saving</li>
   <li>Playback rate control. Useful for syncing quickly sung songs</li>
+  <li>Now all items in library have chips at the bottom showing the highest available lyrics format for this media resource</li>
+  <li>Filtering library by lyrics format</li>
 </ul>
 <p>Bug fixes</p>
 <ul>
   <li>Fixed symlinks respective media files parsing</li>
+  <li>Drag'n'Drop now will reject files if there's no any supported formats in drop attempt</li>
 </ul>
 
 ## 4.2.2
