@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 11:02+0300\n"
+"POT-Creation-Date: 2025-10-05 16:30+0300\n"
 "PO-Revision-Date: 2025-09-30 02:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -90,7 +90,7 @@ msgstr "Laulusõnad on eksporditud faili"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:255
 #: chronograph/ui/sync_pages/wbw_sync_page.py:222
-#: chronograph/ui/widgets/song_card.py:165
+#: chronograph/ui/widgets/song_card.py:169
 msgid "Show"
 msgstr "Näita"
 
@@ -160,58 +160,58 @@ msgstr "Laulusõnu pole saadaval"
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 
-#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:247
+#: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:247
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:251
+#: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:251
 #: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
 #: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
 msgstr "Tavaline"
 
-#: chronograph/ui/widgets/song_card.py:149
+#: chronograph/ui/widgets/song_card.py:153
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Faili teave"
 
-#: chronograph/ui/widgets/song_card.py:152
+#: chronograph/ui/widgets/song_card.py:156
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Nimi"
 
-#: chronograph/ui/widgets/song_card.py:156
+#: chronograph/ui/widgets/song_card.py:160
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Esitaja"
 
-#: chronograph/ui/widgets/song_card.py:159
+#: chronograph/ui/widgets/song_card.py:163
 #: chronograph/ui/widgets/lrclib_track.py:13
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Album"
 
-#: chronograph/ui/widgets/song_card.py:161
+#: chronograph/ui/widgets/song_card.py:165
 msgid "Path"
 msgstr "Asukoht"
 
-#: chronograph/ui/widgets/song_card.py:233
-#: chronograph/ui/widgets/song_card.py:235
-msgctxt "song title placeholder"
-msgid "Unknown"
-msgstr "Tundmatu"
-
 #: chronograph/ui/widgets/song_card.py:237
 #: chronograph/ui/widgets/song_card.py:239
-msgctxt "song artist placeholder"
+msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Tundmatu"
 
 #: chronograph/ui/widgets/song_card.py:241
 #: chronograph/ui/widgets/song_card.py:243
+msgctxt "song artist placeholder"
+msgid "Unknown"
+msgstr "Tundmatu"
+
+#: chronograph/ui/widgets/song_card.py:245
+#: chronograph/ui/widgets/song_card.py:247
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Tundmatu"
