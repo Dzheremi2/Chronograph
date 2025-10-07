@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-05 16:30+0300\n"
-"PO-Revision-Date: 2025-09-30 02:01+0000\n"
+"PO-Revision-Date: 2025-10-07 15:02+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -163,7 +163,7 @@ msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 #: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:247
 msgctxt "means lyrics absence"
 msgid "None"
-msgstr ""
+msgstr "Puudub"
 
 #: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:251
 #: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
@@ -315,14 +315,13 @@ msgid "Toggle search"
 msgstr "Otsing sisse/välja"
 
 #: data/gtk/window.blp:242
-#, fuzzy
 msgid "Filter library"
-msgstr "Tühjenda muusikakogu"
+msgstr "Filtreeri muusikakogu"
 
 #: data/gtk/window.blp:245
 msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
 msgid "Show only…"
-msgstr ""
+msgstr "Näita vaid…"
 
 #: data/gtk/window.blp:270 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
@@ -894,7 +893,7 @@ msgstr "Ava sünkroniseerimisvaade"
 
 #: data/gtk/ui/widgets/SongCard.blp:121
 msgid "Lyrics format (if exists)"
-msgstr ""
+msgstr "Laulusõnade vorming (kui on olemas)"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:102
 msgid "Play/Pause"
