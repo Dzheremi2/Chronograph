@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-05 16:30+0300\n"
-"PO-Revision-Date: 2025-09-28 19:01+0000\n"
-"Last-Translator: Erdem Yumuşak <savyum135712@gmail.com>\n"
+"PO-Revision-Date: 2025-10-08 16:07+0000\n"
+"Last-Translator: Orkun Sürel <orkunsurel@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/tr/>\n"
 "Language: tr\n"
@@ -477,11 +477,11 @@ msgstr "Bir kelime ileri"
 
 #: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One line up"
-msgstr ""
+msgstr "Bir satır yukarı"
 
 #: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One line down"
-msgstr ""
+msgstr "Bir satır aşağı"
 
 #: data/gtk/ui/dialogs/LRClib.blp:73
 msgid "Search LRClib for provided title and artist"
@@ -528,7 +528,7 @@ msgstr ""
 #: data/gtk/ui/widgets/SavedLocation.blp:51
 #: data/gtk/ui/widgets/SavedLocation.blp:63
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
@@ -595,7 +595,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:35
 msgid "Quality level"
-msgstr ""
+msgstr "Kalite seviyesi"
 
 #: data/gtk/ui/dialogs/Preferences.blp:36
 msgid "The higher value, the higher cover quality"
@@ -633,7 +633,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "YENİDEN BAŞLATMA GEREKLİ"
 
 #: data/gtk/ui/dialogs/Preferences.blp:65
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
@@ -676,7 +676,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:100
 msgid "File format"
-msgstr ""
+msgstr "Dosya formatı"
 
 #: data/gtk/ui/dialogs/Preferences.blp:101
 msgid "File format for auto manipulation"
@@ -684,7 +684,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:106
 msgid "Autosave interval"
-msgstr ""
+msgstr "Otomatik kaydetme aralığı"
 
 #: data/gtk/ui/dialogs/Preferences.blp:107
 msgid "Autosave interval after lyrics syncing inactivity"
@@ -702,7 +702,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:122
 msgid "eLRC prefix"
-msgstr ""
+msgstr "eLRC öneki"
 
 #: data/gtk/ui/dialogs/Preferences.blp:131
 #: data/gtk/ui/dialogs/Preferences.blp:188
@@ -716,7 +716,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Lyrics embedding"
-msgstr ""
+msgstr "Şarkı sözleri ekleniyor"
 
 #: data/gtk/ui/dialogs/Preferences.blp:148
 msgid "Embed lyrics within audio file"
@@ -750,11 +750,11 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "Line-by-Line"
-msgstr ""
+msgstr "Satır satır"
 
 #: data/gtk/ui/dialogs/Preferences.blp:216
 msgid "Word-by-Word"
-msgstr ""
+msgstr "Kelime kelime"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:83
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:101
@@ -764,9 +764,8 @@ msgstr "Senkronize et/Senkronizasyonu geri al"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:94
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:112
-#, fuzzy
 msgid "Replay selected line"
-msgstr "Seçili satırı kaldır"
+msgstr "Seçili satırı oynat"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:102
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:120
