@@ -73,6 +73,15 @@
   </screenshots>
 
   <releases>
+    <release version="5.0.2" date="2025-10-10">
+      <description translate="no">
+        <p>5.0 Hotfix #2</p>
+        <ul>
+          <li>Search button is now visible again</li>
+          <li>Remain track length is now shown even if track is not played yet</li>
+        </ul>
+      </description>
+    </release>
     <release version="5.0.1" date="2025-10-05">
       <description translate="no">
         <p>5.0 Hotfix</p>

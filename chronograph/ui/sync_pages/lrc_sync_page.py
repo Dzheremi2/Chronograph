@@ -331,6 +331,7 @@ class LRCSyncPage(Adw.NavigationPage):
             logger.debug("Page closed, saving lyrics")
             self._autosave()
         Player().stop()
+        self._player_widget.disconnect_all()
 
     def _on_app_close(self, *_):
         if self._autosave_timeout_id:

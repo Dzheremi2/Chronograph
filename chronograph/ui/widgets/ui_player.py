@@ -59,23 +59,30 @@ class UIPlayer(Adw.BreakpointBin):
             self.volume_button.set_icon_name("chr-vol-mute-symbolic")
 
         # Playback UI Reactivity
-        Player().connect("notify::pos", self._on_pos_changed)
-        Player().connect("notify::playing", self._on_playing_changed)
-        Player().connect(
+        self.pos_hndl = Player().connect("notify::pos", self._on_pos_changed)
+        self.playing_hndl = Player().connect(
+            "notify::playing", self._on_playing_changed
+        )
+        self.volume_hndl = Player().connect(
             "notify::volume",
             lambda *__: self.volume_label.set_label(
                 _("{vol}%").format(vol=int(Player().volume * 100))
             ),
         )
-        Player().connect(
+        self.duration_hndl = Player().connect(
             "notify::duration",
-            lambda *__: self.position_adj.set_upper(Player().duration / Gst.SECOND),
+            lambda *__: [
+                self.position_adj.set_upper(Player().duration / Gst.SECOND),
+                self._on_pos_changed(Player(), None),
+            ],
         )
-        Player().connect(
+        self.rate_hndl = Player().connect(
             "notify::rate",
             lambda *__: self.rate_label.set_label(f"{Player().rate}x"),
         )
-        Player()._gst_player.connect("seek-done", self._on_seek_done)
+        self.seek_done_hndl = Player()._gst_player.connect(
+            "seek-done", self._on_seek_done
+        )
 
         # Info UI reactivity
         self._file = file
@@ -83,24 +90,38 @@ class UIPlayer(Adw.BreakpointBin):
         self.main_clamp.set_maximum_size(max_width)
         self.main_clamp.set_tightening_threshold(max_width)
 
-        self._card.bind_property(
+        self.title_display_bind = self._card.bind_property(
             "title_display",
             self.title_inscr,
             "text",
             GObject.BindingFlags.SYNC_CREATE,
         )
-        self._card.bind_property(
+        self.artist_display_bind = self._card.bind_property(
             "artist_display",
             self.artist_inscr,
             "text",
             GObject.BindingFlags.SYNC_CREATE,
         )
-        self._card.bind_property(
+        self.cover_bind = self._card.bind_property(
             "cover",
             self.sync_page_cover,
             "paintable",
             GObject.BindingFlags.SYNC_CREATE,
         )
+
+    def disconnect_all(self) -> None:
+        """Removes all reactivity from `self`.
+        Used on page closure to not update all other `UIPlayer` instances for each media 
+        (since Gtk.Widgets are not destroyed and cannot be)"""
+        self.disconnect(self.pos_hndl)
+        self.disconnect(self.volume_hndl)
+        self.disconnect(self.playing_hndl)
+        self.disconnect(self.duration_hndl)
+        self.disconnect(self.rate_hndl)
+        self.disconnect(self.seek_done_hndl)
+        self.title_display_bind.unbind()
+        self.artist_display_bind.unbind()
+        self.cover_bind.unbind()
 
     @Gtk.Template.Callback()
     def _toggle_play(self, *_args) -> None:

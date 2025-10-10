@@ -1,3 +1,11 @@
+## 5.0.2
+
+<p>5.0 Hotfix #2</p>
+<ul>
+  <li>Search button is now visible again</li>
+  <li>Remain track length is now shown even if track is not played yet</li>
+</ul>
+
 ## 5.0.1
 
 <p>5.0 Hotfix</p>
