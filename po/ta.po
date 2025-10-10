@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 16:30+0300\n"
+"POT-Creation-Date: 2025-10-10 18:44+0300\n"
 "PO-Revision-Date: 2025-03-17 20:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/lrcmake/"
@@ -94,59 +94,59 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:384
-#: chronograph/ui/sync_pages/lrc_sync_page.py:427
+#: chronograph/ui/sync_pages/lrc_sync_page.py:385
+#: chronograph/ui/sync_pages/lrc_sync_page.py:428
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:387
-#: chronograph/ui/sync_pages/lrc_sync_page.py:430
+#: chronograph/ui/sync_pages/lrc_sync_page.py:388
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:391
-#: chronograph/ui/sync_pages/lrc_sync_page.py:434
+#: chronograph/ui/sync_pages/lrc_sync_page.py:392
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:448
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "வெற்றிகரமாக வெளியிடப்பட்டது: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:453
+#: chronograph/ui/sync_pages/lrc_sync_page.py:454
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "தவறான வெளியீட்டு டோக்கன்: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:459
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "அறியப்படாத பிழை ஏற்பட்டது: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:478
+#: chronograph/ui/sync_pages/lrc_sync_page.py:479
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:483
+#: chronograph/ui/sync_pages/lrc_sync_page.py:484
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:488
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:495
 msgid "Seems like not every line is synced"
 msgstr "ஒவ்வொரு வரியும் ஒத்திசைக்கப்படவில்லை என்று தெரிகிறது"
 
@@ -159,12 +159,12 @@ msgstr "வெற்று வரிகள் எதுவும் கிடை
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:247
+#: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:251
+#: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:254
 #: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
 #: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
@@ -244,7 +244,7 @@ msgid "No"
 msgstr "இல்லை"
 
 #: chronograph/ui/widgets/ui_player.py:54
-#: chronograph/ui/widgets/ui_player.py:67
+#: chronograph/ui/widgets/ui_player.py:69
 #, python-brace-format
 msgid "{vol}%"
 msgstr ""
@@ -279,7 +279,7 @@ msgstr "சேமிப்புகள் எதுவும் இன்னு�
 msgid "Press pin button to add current directory to the saves"
 msgstr "சேமிப்புகளில் தற்போதைய கோப்பகத்தைச் சேர்க்க முள் பொத்தானை அழுத்தவும்"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:307
+#: data/gtk/window.blp:81 data/gtk/window.blp:311
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:50
 msgid "Quick Editor"
@@ -313,93 +313,93 @@ msgstr "பக்கப்பட்டியை மாற்றவும்"
 msgid "Select a directory or open a file"
 msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும் அல்லது ஒரு கோப்பைத் திறக்கவும்"
 
-#: data/gtk/window.blp:236 data/gtk/ui/shortcuts-dialog.blp:15
+#: data/gtk/window.blp:239 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr "தேடலை மாற்றவும்"
 
-#: data/gtk/window.blp:242
+#: data/gtk/window.blp:245
 #, fuzzy
 msgid "Filter library"
 msgstr "நூலகம் துடை"
 
-#: data/gtk/window.blp:245
+#: data/gtk/window.blp:248
 msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
 msgid "Show only…"
 msgstr ""
 
-#: data/gtk/window.blp:270 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
+#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr "பயன்பாட்டு அமைப்புகள், செய்தி மற்றும் பயன்பாடுகள்"
 
-#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
+#: data/gtk/window.blp:278 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:17
 msgid "Sort"
 msgstr "வரிசைப்படுத்து"
 
-#: data/gtk/window.blp:277 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
+#: data/gtk/window.blp:281 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:20
 msgid "A-Z"
 msgstr "A-z"
 
-#: data/gtk/window.blp:283 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Z-A"
 msgstr "Z-A."
 
-#: data/gtk/window.blp:290 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
+#: data/gtk/window.blp:294 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "View"
 msgstr "நோக்கு"
 
-#: data/gtk/window.blp:293 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/window.blp:297 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
 msgid "Grid"
 msgstr "பின்னல்"
 
-#: data/gtk/window.blp:299 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/window.blp:303 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:42
 msgid "List"
 msgstr "பட்டியல்"
 
-#: data/gtk/window.blp:311 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
+#: data/gtk/window.blp:315 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:54
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-#: data/gtk/window.blp:312 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:316 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
 msgstr "விசைப்பலகைகள்"
 
-#: data/gtk/window.blp:313 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
+#: data/gtk/window.blp:317 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:56
 msgid "About"
 msgstr "பற்றி"
 
-#: data/gtk/window.blp:322
+#: data/gtk/window.blp:326
 #, fuzzy
 msgid "Clean the library"
 msgstr "நூலகம் துடை"
 
-#: data/gtk/window.blp:337
+#: data/gtk/window.blp:341
 msgid "Re-parse current directory"
 msgstr "தற்போதைய கோப்பகத்தை மீண்டும் அலசுங்கள்"
 
-#: data/gtk/window.blp:343
+#: data/gtk/window.blp:347
 msgid "Add current directory to saves"
 msgstr "சேமிப்புகளுக்கு தற்போதைய கோப்பகத்தைச் சேர்க்கவும்"
 
-#: data/gtk/window.blp:360 data/gtk/ui/dialogs/LRClib.blp:78
+#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
 msgstr "தேடல்"
 
-#: data/gtk/window.blp:401
+#: data/gtk/window.blp:405
 msgid "Directory"
 msgstr "அடைவு"
 
-#: data/gtk/window.blp:402
+#: data/gtk/window.blp:406
 msgid "Files"
 msgstr "கோப்புகள்"
 

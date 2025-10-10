@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 16:30+0300\n"
+"POT-Creation-Date: 2025-10-10 18:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,59 +90,59 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:384
-#: chronograph/ui/sync_pages/lrc_sync_page.py:427
+#: chronograph/ui/sync_pages/lrc_sync_page.py:385
+#: chronograph/ui/sync_pages/lrc_sync_page.py:428
 msgid "Failed to connect to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:387
-#: chronograph/ui/sync_pages/lrc_sync_page.py:430
+#: chronograph/ui/sync_pages/lrc_sync_page.py:388
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
 msgid "Connection to LRClib.net timed out"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:391
-#: chronograph/ui/sync_pages/lrc_sync_page.py:434
+#: chronograph/ui/sync_pages/lrc_sync_page.py:392
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
 msgid "An error occurred while connecting to LRClib.net"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:448
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:453
+#: chronograph/ui/sync_pages/lrc_sync_page.py:454
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:459
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Unable to publish lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:478
+#: chronograph/ui/sync_pages/lrc_sync_page.py:479
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:483
+#: chronograph/ui/sync_pages/lrc_sync_page.py:484
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:488
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:488
+#: chronograph/ui/sync_pages/lrc_sync_page.py:489
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:495
 msgid "Seems like not every line is synced"
 msgstr ""
 
@@ -154,12 +154,12 @@ msgstr ""
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:247
+#: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:251
+#: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:254
 #: data/gtk/ui/dialogs/LRClib.blp:144 data/gtk/ui/dialogs/Preferences.blp:167
 #: data/gtk/ui/dialogs/Preferences.blp:169
 msgid "Plain"
@@ -234,7 +234,7 @@ msgid "No"
 msgstr ""
 
 #: chronograph/ui/widgets/ui_player.py:54
-#: chronograph/ui/widgets/ui_player.py:67
+#: chronograph/ui/widgets/ui_player.py:69
 #, python-brace-format
 msgid "{vol}%"
 msgstr ""
@@ -269,7 +269,7 @@ msgstr ""
 msgid "Press pin button to add current directory to the saves"
 msgstr ""
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:307
+#: data/gtk/window.blp:81 data/gtk/window.blp:311
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:50
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:50
 msgid "Quick Editor"
@@ -302,91 +302,91 @@ msgstr ""
 msgid "Select a directory or open a file"
 msgstr ""
 
-#: data/gtk/window.blp:236 data/gtk/ui/shortcuts-dialog.blp:15
+#: data/gtk/window.blp:239 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr ""
 
-#: data/gtk/window.blp:242
+#: data/gtk/window.blp:245
 msgid "Filter library"
 msgstr ""
 
-#: data/gtk/window.blp:245
+#: data/gtk/window.blp:248
 msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
 msgid "Show only…"
 msgstr ""
 
-#: data/gtk/window.blp:270 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
+#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:13
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:13
 msgid "App settings, info and utils"
 msgstr ""
 
-#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
+#: data/gtk/window.blp:278 data/gtk/ui/sync_pages/LRCSyncPage.blp:17
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:17
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:277 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
+#: data/gtk/window.blp:281 data/gtk/ui/sync_pages/LRCSyncPage.blp:20
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:20
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:283 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:290 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
+#: data/gtk/window.blp:294 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "View"
 msgstr ""
 
-#: data/gtk/window.blp:293 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/window.blp:297 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
 msgid "Grid"
 msgstr ""
 
-#: data/gtk/window.blp:299 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
+#: data/gtk/window.blp:303 data/gtk/ui/sync_pages/LRCSyncPage.blp:42
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:42
 msgid "List"
 msgstr ""
 
-#: data/gtk/window.blp:311 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
+#: data/gtk/window.blp:315 data/gtk/ui/sync_pages/LRCSyncPage.blp:54
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:54
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:312 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:316 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:55
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:313 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
+#: data/gtk/window.blp:317 data/gtk/ui/sync_pages/LRCSyncPage.blp:56
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:56
 msgid "About"
 msgstr ""
 
-#: data/gtk/window.blp:322
+#: data/gtk/window.blp:326
 msgid "Clean the library"
 msgstr ""
 
-#: data/gtk/window.blp:337
+#: data/gtk/window.blp:341
 msgid "Re-parse current directory"
 msgstr ""
 
-#: data/gtk/window.blp:343
+#: data/gtk/window.blp:347
 msgid "Add current directory to saves"
 msgstr ""
 
-#: data/gtk/window.blp:360 data/gtk/ui/dialogs/LRClib.blp:78
+#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search"
 msgstr ""
 
-#: data/gtk/window.blp:401
+#: data/gtk/window.blp:405
 msgid "Directory"
 msgstr ""
 
-#: data/gtk/window.blp:402
+#: data/gtk/window.blp:406
 msgid "Files"
 msgstr ""
 
