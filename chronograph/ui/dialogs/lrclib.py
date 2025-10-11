@@ -7,6 +7,7 @@ from chronograph.internal import Constants
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.lrclib_track import LRClibTrack
+from dgutils.actions import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -14,6 +15,7 @@ lrclib_logger = Constants.LRCLIB_LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/LRClib.ui")
+@Actions.from_schema(Constants.PREFIX + "/resources/actions/lrclib.yaml")
 class LRClib(Adw.Dialog):
     __gtype_name__ = "LRClib"
 
@@ -46,18 +48,6 @@ class LRClib(Adw.Dialog):
         self.album_entry.set_text(album)
 
         self._on_title_entry_changed(self.title_entry)
-
-        _actions = Gio.SimpleActionGroup.new()
-        _search_action = Gio.SimpleAction.new("search", None)
-        _search_action.connect("activate", self._search)
-        _import_synced_action = Gio.SimpleAction.new("import_synced", None)
-        _import_synced_action.connect("activate", self._import_synced)
-        _import_plain_action = Gio.SimpleAction.new("import_plain", None)
-        _import_plain_action.connect("activate", self._import_plain)
-        _actions.add_action(_search_action)
-        _actions.add_action(_import_synced_action)
-        _actions.add_action(_import_plain_action)
-        self.insert_action_group("lrclib", _actions)
 
     @Gtk.Template.Callback()
     def _on_title_entry_changed(self, entry: Gtk.Entry) -> None:

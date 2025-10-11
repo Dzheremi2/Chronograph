@@ -162,7 +162,7 @@ class WBWSyncPage(Adw.NavigationPage):
         direction = button == self.forw_button
         large = False
 
-        if state == Gdk.ModifierType.CONTROL_MASK:
+        if state in (Gdk.ModifierType.CONTROL_MASK.value, 20):  # 20 is used on X11
             large = True
         self._seek(None, None, direction, large)
 
