@@ -345,7 +345,7 @@ class WBWSyncPage(Adw.NavigationPage):
         ):
             Constants.WIN.show_toast(_("No lyrics to be re-synced"), 2)
         else:
-            Constants.WIN.show_toast(_("Open Sync mode to re-sync all lines"), 2)
+            Constants.WIN.show_toast(_("Open Sync mode to re-sync all words"), 2)
 
     ###############
 
