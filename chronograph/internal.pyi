@@ -28,6 +28,7 @@ class _Constants:
     COVER_PLACEHOLDER: Final[Gdk.Texture]
     LOGGER: Logger
     PLAYER_LOGGER: Logger
+    LRCLIB_LOGGER: Logger
 
 Constants: _Constants
 Schema: Sch

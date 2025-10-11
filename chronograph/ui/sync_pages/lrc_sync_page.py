@@ -26,6 +26,7 @@ from dgutils import Actions
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
+lrclib_logger = Constants.LRCLIB_LOGGER
 
 PANGO_HIGHLIGHTER = Pango.AttrList().from_string("0 -1 weight ultrabold")
 
@@ -444,8 +445,12 @@ class LRCSyncPage(Adw.NavigationPage):
         ) -> None:
             _err = None
             try:
+                lrclib_logger.info("Connecting to lrclib.net/api/request-challenge")
                 challenge_data = requests.post(
                     url="https://lrclib.net/api/request-challenge", timeout=10
+                )
+                lrclib_logger.debug(
+                    "LRClib cryptographic challenge was requested successfully"
                 )
             except requests.exceptions.ConnectionError as e:
                 Constants.WIN.show_toast(_("Failed to connect to LRClib.net"))
@@ -460,7 +465,9 @@ class LRCSyncPage(Adw.NavigationPage):
                 _err = e
             finally:
                 if _err:
-                    logger.warning("Publishing failed: %s", _err)
+                    lrclib_logger.warning(
+                        "Publishing failed: %s", _err, stack_info=True
+                    )
                     self.export_lyrics_button.set_sensitive(True)
                     self.export_lyrics_button.set_icon_name("export-to-symbolic")
                     return  # pylint: disable=return-in-finally, lost-exception
@@ -469,10 +476,13 @@ class LRCSyncPage(Adw.NavigationPage):
             nonce = solve_challenge(
                 prefix=challenge_data["prefix"], target_hex=challenge_data["target"]
             )
-            logger.info("X-Publish-Token: %s", f"{challenge_data["prefix"]}:{nonce}")
+            lrclib_logger.info(
+                "X-Publish-Token: %s", f"{challenge_data["prefix"]}:{nonce}"
+            )
 
             _err = None
             try:
+                lrclib_logger.info("Connecting to lrclib.net/api/publish")
                 response: requests.Response = requests.post(
                     url="https://lrclib.net/api/publish",
                     headers={
@@ -490,6 +500,7 @@ class LRCSyncPage(Adw.NavigationPage):
                     },
                     timeout=10,
                 )
+                lrclib_logger.info("Established connection to lrclib.net")
             except requests.exceptions.ConnectionError as e:
                 Constants.WIN.show_toast(_("Failed to connect to LRClib.net"))
                 _err = e
@@ -505,10 +516,12 @@ class LRCSyncPage(Adw.NavigationPage):
                 self.export_lyrics_button.set_sensitive(True)
                 self.export_lyrics_button.set_icon_name("export-to-symbolic")
                 if _err:
-                    logger.warning("Publishing failed: %s", _err)
+                    lrclib_logger.warning(
+                        "Publishing failed: %s", _err, stack_info=True
+                    )
                     return  # pylint: disable=return-in-finally, lost-exception
 
-            logger.info("Publishing status code: %s", response.status_code)
+            lrclib_logger.info("Publishing status code: %s", response.status_code)
             if response.status_code == 201:
                 Constants.WIN.show_toast(
                     _("Published successfully: {code}").format(

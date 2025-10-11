@@ -14,6 +14,7 @@ PyEncStr:
 
   LOGGER: logging.getLogger("App")
   PLAYER_LOGGER: logging.getLogger("GstPlayer")
+  LRCLIB_LOGGER: logging.getLogger("LRClib")
 
 # App metadata
 APP_ID: "@APP_ID@"

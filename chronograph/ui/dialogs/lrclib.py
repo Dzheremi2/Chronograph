@@ -10,6 +10,7 @@ from chronograph.ui.widgets.lrclib_track import LRClibTrack
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
+lrclib_logger = Constants.LRCLIB_LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/LRClib.ui")
@@ -36,7 +37,7 @@ class LRClib(Adw.Dialog):
     collapsed_lyrics_nav_page: Adw.NavigationPage = gtc()
     collapsed_bin: Adw.Bin = gtc()
 
-    def __init__(self, title: str = "", artist: str= "", album: str = "") -> None:
+    def __init__(self, title: str = "", artist: str = "", album: str = "") -> None:
         super().__init__()
 
         self.lrctracks_list_box.set_placeholder(self.search_lrclib_status_page)
@@ -101,6 +102,7 @@ class LRClib(Adw.Dialog):
             self.search_button.set_sensitive(False)
             _err = None
             try:
+                lrclib_logger.info("Connecting to lrclib.net")
                 request: requests.Response = requests.get(
                     url="https://lrclib.net/api/search",
                     params={
@@ -110,6 +112,7 @@ class LRClib(Adw.Dialog):
                     },
                     timeout=10,
                 )
+                lrclib_logger.info("Established connection to lrclib.net")
                 rq_result = request.json()
                 GLib.idle_add(on_search_result, rq_result)
             except requests.exceptions.ConnectionError as e:
@@ -148,11 +151,12 @@ class LRClib(Adw.Dialog):
             finally:
                 self.search_button.set_sensitive(True)
                 if _err:
-                    logger.warning(
+                    lrclib_logger.warning(
                         "Unable to fetch available lyrics for {title: %s, artist: %s}: %s",
                         self.title_entry.get_text().strip(),
                         self.artist_entry.get_text().strip(),
                         _err,
+                        stack_info=True,
                     )
 
         threading.Thread(target=do_request, daemon=True).start()
@@ -242,6 +246,6 @@ class LRClib(Adw.Dialog):
         if self.collapsed_bin.get_child() == self.lyrics_box:
             self.nav_view.push(self.collapsed_lyrics_nav_page)
         logger.debug(
-            "Lyrics for '%s' were loaded to TextViews",
+            "Lyrics for \n----------\n%s\n----------\nwere loaded to TextViews",
             row.get_child().get_tooltip_text(),
         )

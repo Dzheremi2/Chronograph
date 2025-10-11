@@ -52,6 +52,11 @@ def init_logger() -> None:
     player_logger.addHandler(file_handler)
     player_logger.addHandler(console_handler)
 
+    lrclib_logger = logging.getLogger("LRClib")
+    lrclib_logger.setLevel(log_level)
+    lrclib_logger.addHandler(file_handler)
+    lrclib_logger.addHandler(console_handler)
+
     logging.captureWarnings(True)
 
     def handle_exception(exc_type, exc_value, exc_traceback):
