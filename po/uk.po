@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 13:09+0300\n"
-"PO-Revision-Date: 2025-10-04 20:02+0000\n"
+"PO-Revision-Date: 2025-10-11 19:07+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -16,8 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
 "X-Generator: Weblate 5.14-dev\n"
 
 #: chronograph/window.py:497
@@ -168,11 +169,11 @@ msgstr "Ви не надали жодного тексту пісні для с�
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:346
 msgid "No lyrics to be re-synced"
-msgstr ""
+msgstr "Немає текстів пісень для повторної синхронізації"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:348
 msgid "Open Sync mode to re-sync all words"
-msgstr ""
+msgstr "Відкрийте режим синхронізації, щоб повторно синхронізувати всі слова"
 
 #: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
@@ -442,24 +443,20 @@ msgid "Replay selected line/word"
 msgstr "Відтворити вибраний рядок/слово"
 
 #: data/gtk/ui/shortcuts-dialog.blp:54
-#, fuzzy
 msgid "Re-sync default amount of ms back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати кількість мс за замовчуванням назад"
 
 #: data/gtk/ui/shortcuts-dialog.blp:59
-#, fuzzy
 msgid "Re-sync large amount of ms back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати великий обсяг мс назад"
 
 #: data/gtk/ui/shortcuts-dialog.blp:64
-#, fuzzy
 msgid "Re-sync default amount of ms forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати кількість мс уперед за замовчуванням"
 
 #: data/gtk/ui/shortcuts-dialog.blp:69
-#, fuzzy
 msgid "Re-sync large amount of ms forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати велику кількість мс вперед"
 
 #: data/gtk/ui/shortcuts-dialog.blp:75
 msgid "Line-by-Line line actions"
@@ -704,23 +701,24 @@ msgstr "Використовуйте 3-значні мілісекунди за�
 #: data/gtk/ui/dialogs/Preferences.blp:97
 #: data/gtk/ui/dialogs/Preferences.blp:123
 msgid "Default re-sync value"
-msgstr ""
+msgstr "Значення повторної синхронізації за замовчуванням"
 
 #: data/gtk/ui/dialogs/Preferences.blp:98
 #: data/gtk/ui/dialogs/Preferences.blp:124
 msgid "Amount of milliseconds default re-sync performs by"
 msgstr ""
+"Кількість мілісекунд, яку виконується для повторної синхронізації за "
+"замовчуванням"
 
 #: data/gtk/ui/dialogs/Preferences.blp:108
 #: data/gtk/ui/dialogs/Preferences.blp:134
-#, fuzzy
 msgid "Large re-sync value"
-msgstr "Синхронізувати/десинхронізувати рядок"
+msgstr "Велике значення повторної синхронізації"
 
 #: data/gtk/ui/dialogs/Preferences.blp:109
 #: data/gtk/ui/dialogs/Preferences.blp:135
 msgid "Amount of milliseconds large re-sync performs by"
-msgstr ""
+msgstr "Кількість мілісекунд, яку виконує велика повторна синхронізація"
 
 #: data/gtk/ui/dialogs/Preferences.blp:147
 msgid "File Manipulation"
@@ -832,14 +830,12 @@ msgid "Replay selected line"
 msgstr "Повторно програти рядок"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
-#, fuzzy
 msgid "Re-sync selected line back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати вибраний рядок назад"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
-#, fuzzy
 msgid "Re-sync selected line forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати вибраний рядок вперед"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:135
@@ -891,19 +887,17 @@ msgstr "Додати рядок нижче"
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:175
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:179
 msgid "Utilities"
-msgstr ""
+msgstr "Комунальні послуги"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:202
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:181
-#, fuzzy
 msgid "Re-sync all"
-msgstr "Синхронізувати/десинхронізувати рядок"
+msgstr "Повторно синхронізувати все"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:203
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
-#, fuzzy
 msgid "Edit metadata"
-msgstr "Редагувати метадані пісні"
+msgstr "Редагувати метадані"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:204
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:183
@@ -915,14 +909,12 @@ msgid "Add line"
 msgstr "Додайте лінію"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:115
-#, fuzzy
 msgid "Re-sync selected word back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати вибране слово назад"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
-#, fuzzy
 msgid "Re-sync selected word forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати вибране слово вперед"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
 msgid "Edit"
