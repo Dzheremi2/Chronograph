@@ -4,248 +4,243 @@ using Adw 1;
 template $WBWSyncPage : Adw.NavigationPage {
   title: _("Syncing");
 
-  Adw.ToolbarView {
-    [top]
-    Adw.HeaderBar header_bar {
-      [end]
-      MenuButton {
-        icon-name: "app-menu-symbolic";
-        tooltip-text: _("App settings, info and utils");
-        menu-model: menu about_app {
-          section {
-            submenu {
-              label: _("Sort");
+  Adw.BreakpointBin {
+    width-request: 1;
+    height-request: 1;
 
-              item {
-                label: _("A-Z");
-                action: "app.sort_type";
-                target: "a-z";
-              }
+    Adw.Breakpoint {
+      condition ("max-width: 500sp")
 
-              item {
-                label: _("Z-A");
-                action: "app.sort_type";
-                target: "z-a";
-              }
-            }
-
-            submenu {
-              label: _("View");
-
-              item {
-                label: _("Grid");
-                action: "app.view_type";
-                target: "g";
-              }
-
-              item {
-                label: _("List");
-                action: "app.view_type";
-                target: "l";
-              }
-            }
-          }
-
-          section {
-            item (_("Quick Editor"), "win.open_quick_editor")
-          }
-
-          section {
-            item (_("Preferences"), "win.show_preferences")
-            item (_("Keybindings"), "app.shortcuts")
-            item (_("About"), "app.about")
-          }
-        };
-        primary: true;
+      setters {
+        syncing_buttons_box.halign: center;
+        buttons_separator.visible: false;
       }
-
-      // [end]
-      // MenuButton format_menu_button {
-      //   menu-model: menu formats {
-      //     section {
-      //       item {
-      //         label: "eLRC";
-      //         action: "root.format";
-      //         target: "elrc";
-      //       }
-      //       item {
-      //         label: "TTML";
-      //         action: "root.format";
-      //         target: "ttml";
-      //       }
-      //     }
-      //   };
-      // }
     }
 
-    [top]
-    Box player_container {
-      margin-top: 12;
-    }
-
-    [top]
-    Adw.Clamp {
-      margin-top: 4;
-      orientation: horizontal;
-      maximum-size: 600;
-
-      Box syncing_buttons_box {
-        orientation: horizontal;
-        valign: center;
-        spacing: 4;
-        margin-bottom: 4;
-        margin-start: 4;
-        margin-end: 4;
-
-        Button sync_line_button {
-          tooltip-text: _("Sync/Re-sync line");
-          icon-name: "sync-line-symbolic";
-          action-name: "controls.sync";
-
-          styles [
-            "suggested-action",
-            "circular"
-          ]
-        }
-
-        Button replay_line_button {
-          tooltip-text: _("Replay selected line");
-          icon-name: "replay-line-symbolic";
-          action-name: "controls.rplay";
-
-          styles ["circular"]
-        }
-
-        Button rew100_button {
-          tooltip-text: _("Re-sync selected line 100ms back");
-          icon-name: "100ms-back-symbolic";
-          action-name: "controls.rew100";
-
-          styles ["circular"]
-        }
-
-        Button forw100_button {
-          tooltip-text: _("Re-sync selected line 100ms forward");
-          icon-name: "100ms-forw-symbolic";
-          action-name: "controls.forw100";
-
-          styles ["circular"]
-        }
-
-        MenuButton import_lyrics_button {
-          tooltip-text: _("Import from …");
-          icon-name: "import-from-symbolic";
-          menu-model: menu import_from {
+    Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar header_bar {
+        [end]
+        MenuButton {
+          icon-name: "app-menu-symbolic";
+          tooltip-text: _("App settings, info and utils");
+          menu-model: menu about_app {
             section {
-              label: _("Import from …");
+              submenu {
+                label: _("Sort");
 
-              item (_("File"), "import.file")
-              item (_("Clipboard"), "import.clipboard")
-              item ("LRClib", "import.lrclib")
-            }
-          };
+                item {
+                  label: _("A-Z");
+                  action: "app.sort_type";
+                  target: "a-z";
+                }
 
-          styles [
-            "osd",
-            "circular"
-          ]
-        }
+                item {
+                  label: _("Z-A");
+                  action: "app.sort_type";
+                  target: "z-a";
+                }
+              }
 
-        MenuButton export_lyrics_button {
-          tooltip-text: _("Export to …");
-          icon-name: "export-to-symbolic";
-          menu-model: menu export_to {
-            section {
-              label: _("Export to …");
+              submenu {
+                label: _("View");
 
-              item (_("File"), "export.file")
-              item (_("Clipboard"), "export.clipboard")
-            }
-          };
+                item {
+                  label: _("Grid");
+                  action: "app.view_type";
+                  target: "g";
+                }
 
-          styles [
-            "osd",
-            "circular"
-          ]
-        }
-
-        Separator {
-          hexpand: true;
-          visible: true;
-
-          styles ["spacer"]
-        }
-
-        Box sync_page_metadata_editor_button_box {
-          Button sync_page_metadata_editor_button {
-            tooltip-text: _("Edit song metadata");
-            icon-name: "edit-metadata-symbolic";
-
-            styles ["circular"]
-          }
-        }
-
-        Button info_button {
-          tooltip-text: _("About file");
-          icon-name: "info-button-symbolic";
-          action-name: "controls.file_info";
-
-          styles ["circular"]
-        }
-      }
-    }
-
-    Box {
-      orientation: vertical;
-
-      Box {
-        orientation: horizontal;
-        halign: center;
-        margin-start: 4;
-        margin-end: 4;
-
-        Adw.InlineViewSwitcher {
-          margin-bottom: 8;
-          halign: center;
-          stack: modes;
-          homogeneous: true;
-
-          styles ["round"]
-        }
-      }
-
-      Adw.ViewStack modes {
-        enable-transitions: true;
-
-        Adw.ViewStackPage edit_view_stack_page {
-          title: _("Edit");
-
-          child: Adw.Clamp {
-            orientation: horizontal;
-            maximum-size: 600;
-
-            Frame {
-              margin-bottom: 4;
-
-              ScrolledWindow {
-                TextView edit_view_text_view {
-                  editable: true;
-                  left-margin: 4;
-                  top-margin: 4;
-                  margin-bottom: 4;
-                  hexpand: true;
-                  vexpand: true;
-
-                  styles ["rounded-frame"]
+                item {
+                  label: _("List");
+                  action: "app.view_type";
+                  target: "l";
                 }
               }
             }
+
+            section {
+              item (_("Quick Editor"), "win.open_quick_editor")
+            }
+
+            section {
+              item (_("Preferences"), "win.show_preferences")
+              item (_("Keybindings"), "app.shortcuts")
+              item (_("About"), "app.about")
+            }
           };
+          primary: true;
+        }
+      }
+
+      [top]
+      Box player_container {
+        margin-top: 12;
+      }
+
+      [top]
+      Adw.Clamp {
+        margin-top: 4;
+        orientation: horizontal;
+        maximum-size: 600;
+
+        Box syncing_buttons_box {
+          orientation: horizontal;
+          valign: center;
+          spacing: 4;
+          margin-bottom: 4;
+          margin-start: 4;
+          margin-end: 4;
+
+          Button sync_line_button {
+            tooltip-text: _("Sync/Re-sync line");
+            icon-name: "sync-line-symbolic";
+            action-name: "controls.sync";
+
+            styles [
+              "suggested-action",
+              "circular"
+            ]
+          }
+
+          Button replay_line_button {
+            tooltip-text: _("Replay selected line");
+            icon-name: "replay-line-symbolic";
+            action-name: "controls.rplay";
+
+            styles ["circular"]
+          }
+
+          Button rew_button {
+            tooltip-text: _("Re-sync selected word back");
+            icon-name: "100ms-back-symbolic";
+            clicked => $_on_seek_button_released();
+
+            styles ["circular"]
+          }
+
+          Button forw_button {
+            tooltip-text: _("Re-sync selected word forward");
+            icon-name: "100ms-forw-symbolic";
+            clicked => $_on_seek_button_released();
+
+            styles ["circular"]
+          }
+
+          MenuButton import_lyrics_button {
+            tooltip-text: _("Import from …");
+            icon-name: "import-from-symbolic";
+            menu-model: menu import_from {
+              section {
+                label: _("Import from …");
+
+                item (_("File"), "import.file")
+                item (_("Clipboard"), "import.clipboard")
+                item ("LRClib", "import.lrclib")
+              }
+            };
+
+            styles [
+              "osd",
+              "circular"
+            ]
+          }
+
+          MenuButton export_lyrics_button {
+            tooltip-text: _("Export to …");
+            icon-name: "export-to-symbolic";
+            menu-model: menu export_to {
+              section {
+                label: _("Export to …");
+
+                item (_("File"), "export.file")
+                item (_("Clipboard"), "export.clipboard")
+              }
+            };
+
+            styles [
+              "osd",
+              "circular"
+            ]
+          }
+
+          Separator buttons_separator {
+            hexpand: true;
+            visible: true;
+
+            styles ["spacer"]
+          }
+
+          MenuButton utilities_button {
+            tooltip-text: _("Utilities");
+            icon-name: "chr-cogwheel-symbolic";
+            menu-model: menu {
+              section {
+                label: _("Utilities");
+
+                item (_("Re-sync all"), "utils.resync_all")
+                item (_("Edit metadata"), "controls.edit_metadata")
+                item (_("About file"), "controls.file_info")
+              }
+            };
+
+            styles ["circular", "osd"]
+          }
+        }
+      }
+
+      Box {
+        orientation: vertical;
+
+        Box {
+          orientation: horizontal;
+          halign: center;
+          margin-start: 4;
+          margin-end: 4;
+
+          Adw.InlineViewSwitcher {
+            margin-bottom: 8;
+            halign: center;
+            stack: modes;
+            homogeneous: true;
+
+            styles ["round"]
+          }
         }
 
-        Adw.ViewStackPage sync_view_stack_page {
-          title: _("Sync");
-          child: Adw.Bin lyrics_layout_container {};
+        Adw.ViewStack modes {
+          enable-transitions: true;
+
+          Adw.ViewStackPage edit_view_stack_page {
+            title: _("Edit");
+
+            child: Adw.Clamp {
+              orientation: horizontal;
+              maximum-size: 600;
+
+              Frame {
+                margin-bottom: 4;
+
+                ScrolledWindow {
+                  TextView edit_view_text_view {
+                    editable: true;
+                    left-margin: 4;
+                    top-margin: 4;
+                    margin-bottom: 4;
+                    hexpand: true;
+                    vexpand: true;
+
+                    styles ["rounded-frame"]
+                  }
+                }
+              }
+            };
+          }
+
+          Adw.ViewStackPage sync_view_stack_page {
+            title: _("Sync");
+            child: Adw.Bin lyrics_layout_container {};
+          }
         }
       }
     }

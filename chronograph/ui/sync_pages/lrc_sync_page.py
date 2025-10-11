@@ -12,6 +12,7 @@ import requests
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
+from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
@@ -36,8 +37,9 @@ class LRCSyncPage(Adw.NavigationPage):
 
     header_bar: Adw.HeaderBar = gtc()
     player_container: Gtk.Box = gtc()
+    rew_button: Gtk.Button = gtc()
+    forw_button: Gtk.Button = gtc()
     export_lyrics_button: Gtk.MenuButton = gtc()
-    sync_page_metadata_editor_button: Gtk.Button = gtc()
     sync_lines_scrolled_window: Gtk.ScrolledWindow = gtc()
     sync_lines: Gtk.ListBox = gtc()
     selected_line: Optional["LRCSyncLine"] = None
@@ -47,6 +49,11 @@ class LRCSyncPage(Adw.NavigationPage):
     def __init__(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
     ) -> None:
+        def on_shown(*_args) -> None:
+            # pylint: disable=protected-access
+            if isinstance(self._card._file, FileUntaggable):
+                self.action_set_enabled("controls.edit_metadata", False)
+
         super().__init__()
         self._card: SongCard = card
         self._lyrics_file = card._lyrics_file
@@ -54,15 +61,13 @@ class LRCSyncPage(Adw.NavigationPage):
         self._card.bind_property(
             "title", self, "title", GObject.BindingFlags.SYNC_CREATE
         )
-        self.sync_page_metadata_editor_button.connect(
-            "clicked", self._card.open_metadata_editor
-        )
         if isinstance(self._card._file, FileUntaggable):
-            self.sync_page_metadata_editor_button.set_visible(False)
+            self.action_set_enabled("controls.edit_metadata", False)
         self._player_widget = UIPlayer(file, card)
         self.player_container.append(self._player_widget)
         Player()._gst_player.connect("pos-upd", self._on_timestamp_changed)
 
+        self.connect("showing", on_shown)
         self.connect("hidden", self._on_page_closed)
         self._close_rq_handler_id = Constants.WIN.connect(
             "close-request", self._on_app_close
@@ -77,6 +82,20 @@ class LRCSyncPage(Adw.NavigationPage):
             self.sync_lines.remove_all()
             for line in lines:
                 self.sync_lines.append(LRCSyncLine(line))
+
+    @Gtk.Template.Callback()
+    def _on_seek_button_released(self, button: Gtk.Button) -> None:
+        display = Constants.WIN.get_display()
+        seat = display.get_default_seat()
+        device = seat.get_keyboard()
+        state = device.get_modifier_state()
+
+        direction = button == self.forw_button
+        large = False
+
+        if state == Gdk.ModifierType.CONTROL_MASK:
+            large = True
+        self._seek(None, None, direction, large)
 
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
@@ -164,7 +183,19 @@ class LRCSyncPage(Adw.NavigationPage):
         Player().seek(ns // 1_000_000)
         logger.debug("Replayed lines at timing: %s", ns_to_timestamp(ns))
 
-    def _seek100(self, _action, _param, mcs_seek: int) -> None:
+    def _seek(self, _action, _param, direction: bool, large: bool = False) -> None:
+        if direction:
+            if not large:
+                mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000
+            else:
+                mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000
+        else:
+            if not large:
+                mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000 * -1
+            else:
+                mcs_seek = (
+                    Schema.get("root.settings.syncing.seek.lbl.large") * 1_000 * -1
+                )
         pattern = re.compile(r"\[([^\[\]]+)\] ")
         match = pattern.search(self.selected_line.get_text())
         if match is None:
@@ -183,6 +214,26 @@ class LRCSyncPage(Adw.NavigationPage):
             self.selected_line,
             mcs_seek // 1000,
             timestamp,
+        )
+
+    def resync_all(self, ms: int, backwards: bool = False) -> None:
+        pattern = re.compile(r"\[([^\[\]]+)\] ")
+        for line in self.sync_lines:  # pylint: disable=not-an-iterable
+            line: LRCSyncLine
+            match = pattern.search(line.get_text())
+            if match is None:
+                return
+            timestamp = match[0]
+            ns = timestamp_to_ns(timestamp)
+            ns = (ns - ms * 1_000_000) if backwards else (ns + ms * 1_000_000)
+            ns = max(ns, 0)
+            timestamp = ns_to_timestamp(ns)
+            replacement = rf"{timestamp}"
+            line.set_text(re.sub(pattern, replacement, line.get_text()))
+        logger.info(
+            "All lines were resynced %sms %s",
+            ms,
+            "backwards" if backwards else "forward",
         )
 
     ###############
@@ -211,7 +262,9 @@ class LRCSyncPage(Adw.NavigationPage):
             path = file_dialog.open_finish(result).get_path()
 
             self.sync_lines.remove_all()
-            for _, line in enumerate(LyricsFile(path).get_normalized_lines()):
+            for _, line in enumerate(
+                Lyrics(Path(path).read_text()).get_normalized_lines()
+            ):
                 self.sync_lines.append(LRCSyncLine(line))
             logger.info("Imported lyrics from file")
 
@@ -223,7 +276,7 @@ class LRCSyncPage(Adw.NavigationPage):
     def _import_lrclib(self, *_args) -> None:
         from chronograph.ui.dialogs.lrclib import LRClib
 
-        lrclib_dialog = LRClib()
+        lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
         lrclib_dialog.present(Constants.WIN)
         logger.debug("LRClib import dialog shown")
 
@@ -298,6 +351,15 @@ class LRCSyncPage(Adw.NavigationPage):
         except IndexError:
             pass
 
+    ############### Utilities Actions ###############
+
+    def _resync_all_lines(self, *_args) -> None:
+        dialog = ResyncAllAlertDialog(self)
+        dialog.present(Constants.WIN)
+        dialog.get_extra_child().grab_focus()
+
+    ###############
+
     ############### Autosave Actions ###############
 
     def reset_timer(self) -> None:
@@ -316,7 +378,11 @@ class LRCSyncPage(Adw.NavigationPage):
                 lyrics = [line.get_text() for line in self.sync_lines]
                 self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
                 self._lyrics_file.lrc_lyrics.save()
-                self._file.embed_lyrics(self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None)
+                self._file.embed_lyrics(
+                    self._lyrics_file.lrc_lyrics
+                    if self._lyrics_file.lrc_lyrics.text
+                    else None
+                )
                 logger.debug("Lyrics autosaved successfully")
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())

@@ -214,10 +214,9 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_show_preferences_action(self, *_args) -> None:
         """Shows the preferences dialog"""
-        if not ChronographPreferences.opened:
-            preferences = ChronographPreferences()
-            preferences.present(self)
-            logger.debug("Showing preferences")
+        preferences = ChronographPreferences()
+        preferences.present(self)
+        logger.debug("Showing preferences")
 
     def load_files(self, paths: tuple[str]) -> bool:
         """Loads files into the library

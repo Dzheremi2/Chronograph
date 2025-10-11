@@ -51,13 +51,23 @@ Adw.ShortcutsDialog shortcuts_dialog {
     }
 
     Adw.ShortcutsItem {
-      title: _("Re-sync 100ms back");
+      title: _("Re-sync default amount of ms back");
       accelerator: "<Alt>minus";
     }
 
     Adw.ShortcutsItem {
-      title: _("Re-sync 100ms forward");
+      title: _("Re-sync large amount of ms back");
+      accelerator: "<Primary><Alt>minus";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Re-sync default amount of ms forward");
       accelerator: "<Alt>equal";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Re-sync large amount of ms forward");
+      accelerator: "<Primary><Alt>equal";
     }
   }
 

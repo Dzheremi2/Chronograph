@@ -1,0 +1,20 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $ResyncAllAlertDialog : Adw.AlertDialog {
+  heading: _("Re-Sync All Lines");
+  body: _("Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-sync backwards");
+  close-response: "cancel";
+  default-response: "cancel";
+  response => $_on_response();
+  extra-child: Gtk.Entry ms_entry {
+    placeholder-text: _("Milliseconds");
+    input-purpose: number;
+    changed => $_on_ms_entry_changed();
+  };
+
+  responses [
+    cancel: _("Cancel"),
+    resync: _("Re-Sync") suggested,
+  ]
+}

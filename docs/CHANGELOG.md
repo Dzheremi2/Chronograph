@@ -1,3 +1,18 @@
+## 5.1-rc1
+
+<p>New features</p>
+<ul>
+  <li>Album searching field for LRClib import dialog</li>
+  <li>LRClib import dialog search fields autofill</li>
+  <li>Ability to shift all sync points at once by a given amount of milliseconds</li>
+  <li>New second type of re-sync operation. Now, if Ctrl held, the re-sync operation uses "large" milliseconds amount. Default and Large ms amount could be set via preferences</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+  <li>Fixed importing lyrics from file</li>
+  <li>Fixed Word-by-Word re-syncing</li>
+</ul>
+
 ## 5.0.2
 
 <p>5.0 Hotfix #2</p>
