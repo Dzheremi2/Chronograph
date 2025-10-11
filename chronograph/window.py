@@ -1,7 +1,6 @@
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement LRC metatags support
 
-import os
 from enum import Enum
 from pathlib import Path
 from typing import Callable, Optional, Union
@@ -277,7 +276,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   def open_files(self, paths: list[str]) -> None:
     """Open provided files and update window state"""
     logger.info("Opening files:\n%s", "\n".join(paths))
-    if not self._state == WindowState.LOADED_FILES:
+    if self._state != WindowState.LOADED_FILES:
       self.clean_library()
     if self.load_files(tuple(paths)):
       self.state = WindowState.LOADED_FILES
@@ -403,7 +402,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
       for file in files:
         path = file.get_path()
-        if os.path.isdir(path):
+        if Path(path).is_dir():
           logger.warning("'%s' is a directory, rejecting DND", path)
           self.drop_target.reject()
           self._on_drag_leave()
@@ -456,16 +455,16 @@ class ChronographWindow(Adw.ApplicationWindow):
   @Gtk.Template.Callback()
   def on_add_dir_to_saves_button_clicked(self, *_args) -> None:
     """Adds the current directory to the saved locations in the sidebar"""
-    if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
-      if Schema.get("root.state.library.session") != "None":
-        dir_path = Schema.get("root.state.library.session") + "/"
-        if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
-          Constants.CACHE["pins"].append(
-            {"path": dir_path, "name": Path(dir_path).name}
-          )
-          logger.info("'%s' was added to Saves", dir_path)
-          self.add_dir_to_saves_button.set_visible(False)
-          self.build_sidebar()
+    if (
+      self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR)
+      and Schema.get("root.state.library.session") != "None"
+    ):
+      dir_path = Schema.get("root.state.library.session") + "/"
+      if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
+        Constants.CACHE["pins"].append({"path": dir_path, "name": Path(dir_path).name})
+        logger.info("'%s' was added to Saves", dir_path)
+        self.add_dir_to_saves_button.set_visible(False)
+        self.build_sidebar()
 
   ################# Quick Editor ###############
 
@@ -536,7 +535,9 @@ class ChronographWindow(Adw.ApplicationWindow):
     Parameters
     ----------
     card : SongCard
-        Song card to enter sync mode for
+      Song card to enter sync mode for
+    file : Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
+      Media file
     """
     if Schema.get("root.settings.syncing.sync-type") == "lrc":
       logger.info(
@@ -554,8 +555,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     self,
     msg: str,
     timeout: int = 5,
-    button_label: str = None,
-    button_callback: Callable = None,
+    button_label: Optional[str] = None,
+    button_callback: Optional[Callable] = None,
   ) -> None:
     """Shows a toast with the given message and optional button
 

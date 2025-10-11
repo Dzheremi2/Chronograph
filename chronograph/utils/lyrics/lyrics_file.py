@@ -1,3 +1,4 @@
+import contextlib
 from pathlib import Path
 
 from gi.repository import Gio, GObject
@@ -191,18 +192,14 @@ class LyricsFile(GObject.Object):
   def _setup_file_monitors(self) -> None:
     # Disconnect previous monitors if any
     if getattr(self, "_elrc_file_monitor", None) is not None:
-      try:
+      with contextlib.suppress(Exception):
         self._elrc_file_monitor.disconnect(self._elrc_file_monitor_id)
-      except Exception:
-        pass
       self._elrc_file_monitor = None
       self._elrc_file_monitor_id = None
 
     if getattr(self, "_lrc_file_monitor", None) is not None:
-      try:
+      with contextlib.suppress(Exception):
         self._lrc_file_monitor.disconnect(self._lrc_file_monitor_id)
-      except Exception:
-        pass
       self._lrc_file_monitor = None
       self._lrc_file_monitor_id = None
 

@@ -7,7 +7,7 @@ from chronograph.utils.wbw.models.line_model import LineModel
 class LineWidget(Adw.WrapBox):
   __gtype_name__ = "LineWidget"
 
-  def __init__(self, line: LineModel):
+  def __init__(self, line: LineModel) -> None:
     super().__init__(
       wrap_policy=Adw.WrapPolicy.NATURAL, child_spacing=5, line_spacing=5
     )

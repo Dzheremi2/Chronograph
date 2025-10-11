@@ -46,7 +46,7 @@ class LRClibTrack(Gtk.Box):
     tooltip_props = ""
     for i, item in enumerate(tooltip):
       if not isinstance(item, bool):
-        string = f"{I18N_STRINGS[i]}: {tooltip[i]}\n"
+        string = f"{I18N_STRINGS[i]}: {item}\n"
         tooltip_props += string
       else:
         string = f"{I18N_STRINGS[i]}: {TRUE_STR if item else FALSE_STR}"

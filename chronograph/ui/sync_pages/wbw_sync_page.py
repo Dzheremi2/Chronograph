@@ -51,9 +51,8 @@ class WBWSyncPage(Adw.NavigationPage):
     self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
   ) -> None:
     def on_shown(*_args) -> None:
-      # pylint: disable=protected-access
-      if isinstance(self._card._file, FileUntaggable):
-        self.action_set_enabled("controls.edit_metadata", False)
+      if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+        self.action_set_enabled("controls.edit_metadata", enabled=False)
 
     super().__init__()
 
@@ -65,10 +64,10 @@ class WBWSyncPage(Adw.NavigationPage):
     # Player setup
     self._card: SongCard = card
     self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
-    self._lyrics_file = self._card._lyrics_file
+    self._lyrics_file = self._card._lyrics_file  # noqa: SLF001
     self._card.bind_property("title", self, "title", GObject.BindingFlags.SYNC_CREATE)
-    if isinstance(self._card._file, FileUntaggable):
-      self.action_set_enabled("controls.edit_metadata", False)
+    if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+      self.action_set_enabled("controls.edit_metadata", enabled=False)
     self._player_widget = UIPlayer(file, card)
     self.player_container.append(self._player_widget)
 
@@ -108,7 +107,7 @@ class WBWSyncPage(Adw.NavigationPage):
       lyrics = self.edit_view_text_view.get_buffer().get_text(
         self.edit_view_text_view.get_buffer().get_start_iter(),
         self.edit_view_text_view.get_buffer().get_end_iter(),
-        False,
+        include_hidden_chars=False,
       )
       if lyrics != "":
         self.lyrics_layout_container.set_child((model := LyricsModel(lyrics)).widget)
@@ -157,7 +156,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
   ############### Import Actions ###############
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib
+    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)
@@ -211,13 +210,12 @@ class WBWSyncPage(Adw.NavigationPage):
       lyrics = self.edit_view_text_view.get_buffer().get_text(
         self.edit_view_text_view.get_buffer().get_start_iter(),
         self.edit_view_text_view.get_buffer().get_end_iter(),
-        False,
+        include_hidden_chars=False,
       )
+    elif not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
+      lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
     else:
-      if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-        lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
-      else:
-        lyrics = ""
+      lyrics = ""
 
     dialog = Gtk.FileDialog(
       initial_name=Path(self._file.path).stem
@@ -230,13 +228,12 @@ class WBWSyncPage(Adw.NavigationPage):
       lyrics = self.edit_view_text_view.get_buffer().get_text(
         self.edit_view_text_view.get_buffer().get_start_iter(),
         self.edit_view_text_view.get_buffer().get_end_iter(),
-        False,
+        include_hidden_chars=False,
       )
+    elif not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
+      lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
     else:
-      if not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-        lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
-      else:
-        lyrics = ""
+      lyrics = ""
     clipboard = Gdk.Display().get_default().get_clipboard()
     clipboard.set(lyrics)
     logger.info("Lyrics exported to clipboard")
@@ -248,7 +245,7 @@ class WBWSyncPage(Adw.NavigationPage):
   def _sync(self, *_args) -> None:
     current_line = self._lyrics_model.get_current_line()
     current_word = current_line.get_current_word()
-    ns = Player()._gst_player.props.position  # pylint: disable=protected-access
+    ns = Player()._gst_player.props.position  # noqa: SLF001
     ms = ns // 1_000_000
     current_word.set_property("time", ms)
     logger.debug(
@@ -274,11 +271,10 @@ class WBWSyncPage(Adw.NavigationPage):
         mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000
       else:
         mcs_seek = Schema.get("root.settings.syncing.seek.wbw.large") * 1_000
+    elif not large:
+      mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000 * -1
     else:
-      if not large:
-        mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000 * -1
-      else:
-        mcs_seek = Schema.get("root.settings.syncing.seek.wbw.large") * 1_000 * -1
+      mcs_seek = Schema.get("root.settings.syncing.seek.wbw.large") * 1_000 * -1
     current_line = self._lyrics_model.get_current_line()
     current_word = current_line.get_current_word()
     ms = current_word.time
@@ -362,7 +358,7 @@ class WBWSyncPage(Adw.NavigationPage):
             self.edit_view_text_view.get_buffer().get_text(
               self.edit_view_text_view.get_buffer().get_start_iter(),
               self.edit_view_text_view.get_buffer().get_end_iter(),
-              False,
+              include_hidden_chars=False,
             )
           )
         else:

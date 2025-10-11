@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 import gi
 import yaml
@@ -52,7 +53,7 @@ class ChronographApplication(Adw.Application):
     for file in files:
       path = file.get_path()
       if path:
-        if os.path.isdir(path):
+        if Path(path).is_dir():
           pass
         else:
           self.paths.append(path)
@@ -61,7 +62,6 @@ class ChronographApplication(Adw.Application):
 
   def do_activate(self) -> None:  # pylint: disable=arguments-differ
     """Emits on app creation"""
-
     win = self.props.active_window  # pylint: disable=no-member
     if not win:
       Constants.WIN = win = ChronographWindow(application=self)
@@ -120,7 +120,7 @@ class ChronographApplication(Adw.Application):
 
     if (
       (path := Schema.get("root.state.library.session")) != "None"
-      and os.path.exists(Schema.get("root.state.library.session"))
+      and Path(Schema.get("root.state.library.session")).exists()
       and len(self.paths) == 0
     ):
       logger.info("Loading last opened session: '%s'", path)
@@ -140,9 +140,9 @@ class ChronographApplication(Adw.Application):
     """Shows About App dialog"""
 
     def _get_debug_info() -> str:
-      if os.path.exists(
+      if Path(
         os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")
-      ):
+      ).exists():
         with open(
           os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")
         ) as f:
@@ -201,7 +201,7 @@ class ChronographApplication(Adw.Application):
     if not Schema.get("root.settings.general.save-session"):
       logger.info("Resetting session")
       Schema.set("root.state.library.session", "None")
-    Schema._save()  # pylint: disable=protected-access
+    Schema._save()  # noqa: SLF001
 
     Constants.CACHE_FILE.seek(0)
     Constants.CACHE_FILE.truncate(0)
@@ -246,13 +246,13 @@ def main(_version):
   """App entrypoint"""
   init_logger()
   logger.info("Launching application")
-  if "cache.yaml" not in os.listdir(Constants.DATA_DIR):
+  if "cache.yaml" not in os.listdir(Constants.DATA_DIR):  # noqa: PTH208
     logger.info("The cache file does not exist, creating")
-    file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+")
+    file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+")  # noqa: SIM115
     file.write("pins: []\ncache_version: 2")
     file.close()
 
-  Constants.CACHE_FILE = open(
+  Constants.CACHE_FILE = open(  # noqa: SIM115
     str(Constants.DATA_DIR) + "/cache.yaml", "r+", encoding="utf-8"
   )
   Constants.CACHE = yaml.safe_load(Constants.CACHE_FILE)

@@ -97,8 +97,7 @@ class SavedLocation(Gtk.Box):
     """
     if text.get_text_length() == 0:
       self.rename_entry.add_css_class("error")
-    else:
-      if "error" in self.rename_entry.get_css_classes():
+    elif "error" in self.rename_entry.get_css_classes():
         self.rename_entry.remove_css_class("error")
 
   @Gtk.Template.Callback()

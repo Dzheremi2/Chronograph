@@ -20,7 +20,7 @@ def get_common_directory(paths: tuple[str]) -> Optional[str]:
   Optional[str]
       Common directory path or `None` if not in the same tree
   """
-  dirs = [os.path.dirname(os.path.abspath(p)) for p in paths]
+  dirs = [Path(Path(p).resolve()).parent for p in paths]
   common = os.path.commonpath(dirs)
   for p in dirs:
     if not Path(p).is_relative_to(Path(common)):
@@ -29,6 +29,18 @@ def get_common_directory(paths: tuple[str]) -> Optional[str]:
 
 
 def decode_filter_schema(index: int) -> bool:
+  """Gets a filter value of a provided id
+
+  Parameters
+  ----------
+  index : int
+      index of filter in filter string in Schema
+
+  Returns
+  -------
+  bool
+      value of this filter
+  """
   value = Schema.get("root.state.library.filter")
   try:
     return bool(int(value.split(":")[index]))

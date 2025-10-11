@@ -1,7 +1,53 @@
 [tool.ruff]
 indent-width = 2
 line-length = 88
-ignore = ["ALL"]
+builtins = ["_"]
+select = ["ALL"]
+target-version = "py313"
+ignore = [
+  "UP035",
+  "D400",
+  "D415",
+  "D107",
+  "ANN003",
+  "UP045",
+  "COM812",
+  "D401",
+  "ANN002",
+  "D413",
+  "UP007",
+  "D102",
+  "RET503",
+  "C901",
+  "PLR0915",
+  "ANN001",
+  "PLR2004",
+  "E501",
+  "D100",
+  "E402",
+  "RUF028",
+  "PTH118",
+  "PTH123",
+  "ANN201",
+  "PLW0603",
+  "ANN202",
+  "EXE003",
+  "RUF012",
+  "D101",
+  "FBT001",
+  "TRY300",
+  "TRY003",
+  "EM102",
+  "ARG004",
+  "BLE001",
+  "D105",
+  "EM101",
+  "N818",
+  "PLW2901",
+  "N812",
+  "FBT002",
+  "PLR0912"
+]
 
 [tool.ruff.format]
 indent-style = "space"

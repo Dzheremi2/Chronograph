@@ -59,7 +59,7 @@ class FileMP4(TaggableFile):
         self.cover = picture
 
   def load_str_data(self) -> None:
-    """Sets all string data from tags. If data is unavailable, then sets `Unknоwn`"""
+    """Sets all string data from tags. If data is unavailable, then sets `Unknown`"""
     if self._mutagen_file.tags is not None:
       try:
         if (_title := self._mutagen_file.tags["\xa9nam"]) is not None:
@@ -88,7 +88,7 @@ class FileMP4(TaggableFile):
         path to image or None if cover should be deleted
     """
     if img_path is not None:
-      cover_bytes = open(img_path, "rb").read()
+      cover_bytes = open(img_path, "rb").read()  # noqa: SIM115
       if self._mutagen_file.tags:
         cover_val = []
         if "covr" in self._mutagen_file.tags:
@@ -109,8 +109,8 @@ class FileMP4(TaggableFile):
           self._mutagen_file.add_tags()
       self.cover = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
-    """Sets string tags to provided value
+  def set_str_data(self, tag_name: str, new_val: str) -> None:  # noqa: D417
+    r"""Sets string tags to provided value
 
     Parameters
     ----------

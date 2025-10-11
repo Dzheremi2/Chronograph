@@ -18,7 +18,7 @@ class WordModel(GObject.Object):
 
   def __init__(self, word: WordToken) -> None:
     """Create model from `WordToken`"""
-    from chronograph.ui.widgets.wbw.word_widget import WordWidget
+    from chronograph.ui.widgets.wbw.word_widget import WordWidget  # noqa: PLC0415
 
     try:
       ms = int(word)
@@ -44,14 +44,14 @@ class WordModel(GObject.Object):
     ms = self.time
     if ms < 0:
       self.set_property("timestamp", "")
-      self.set_property("synced", False)
+      self.set_property("synced", value=False)
       return
     if Schema.get("root.settings.syncing.precise"):
       timestamp = f"{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{ms % 1000:03d}"
     else:
       timestamp = f"{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{(ms % 1000):03d}"[:-1]
     self.set_property("timestamp", timestamp)
-    self.set_property("synced", True)
+    self.set_property("synced", value=True)
 
   def restore_token(self) -> WordToken:
     """Recreate `WordToken` from the model."""

@@ -1,3 +1,4 @@
+import contextlib
 import re
 from typing import Any, Optional, Union
 
@@ -19,7 +20,7 @@ class LyricsHierarchyConversion(Exception):
 
   def __init__(
     self, message="Target format is hierarchically higher than the source lyrics."
-  ):
+  ) -> None:
     super().__init__(message)
 
 
@@ -182,7 +183,7 @@ class Lyrics(GObject.Object):
   def _to_plain_from_elrc(self) -> str:
     lrc_text = self._to_lrc()
     lyrics_obj = Lyrics(lrc_text)
-    return lyrics_obj._to_plain()  # pylint: disable=protected-access
+    return lyrics_obj._to_plain()
 
   def _to_lrc(self) -> str:
     lines = TokenParser.parse_lines(self._text)
@@ -222,16 +223,12 @@ class Lyrics(GObject.Object):
         val = tag.group("val").strip()
 
         if key == "offset":
-          try:
+          with contextlib.suppress(ValueError):
             val = int(val)
-          except ValueError:
-            pass
 
         elif key == "length":
-          try:
+          with contextlib.suppress(ValueError):
             val = self._convert_length(val)
-          except ValueError:
-            pass
 
         out[key] = val
 
@@ -256,18 +253,14 @@ class Lyrics(GObject.Object):
         continue
 
       if tag == "offset":
-        if val >= 0:
-          str_offset = f"+{val}"
-        else:
-          str_offset = f"-{val}"
+        str_offset = f"+{val}" if val >= 0 else f"-{val}"
         out_tags.append(f"[{tag}:{str_offset}]")
         continue
 
       out_tags.append(f"[{tag}:{val}]")
 
     tags_str = "\n".join(out_tags)
-    file_str = (tags_str + "\n" + self._text).strip()
-    return file_str
+    return (tags_str + "\n" + self._text).strip()
 
   def _detect_format(self) -> None:
     if self._text != "":

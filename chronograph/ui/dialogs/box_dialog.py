@@ -1,4 +1,4 @@
-from gi.repository import Adw, Gtk  # type: ignore
+from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants
 
@@ -39,7 +39,7 @@ class BoxDialog(Adw.Dialog):
         use_markup=False,
       )
 
-      if "action" in entry.keys() and isinstance(entry["action"], dict):
+      if "action" in entry and isinstance(entry["action"], dict):
         action_cfg = entry["action"]
         button = Gtk.Button(
           icon_name=action_cfg["icon"],
