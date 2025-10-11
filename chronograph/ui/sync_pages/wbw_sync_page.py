@@ -7,6 +7,7 @@ from typing import Literal, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
+from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
@@ -33,22 +34,26 @@ logger = Constants.LOGGER
 class WBWSyncPage(Adw.NavigationPage):
     __gtype_name__ = "WBWSyncPage"
 
-    # format_menu_button: Gtk.MenuButton = gtc() TODO: Implement TTML
     player_container: Gtk.Box = gtc()
-    sync_page_metadata_editor_button: Gtk.Button = gtc()
     modes: Adw.ViewStack = gtc()
     edit_view_stack_page: Adw.ViewStackPage = gtc()
     edit_view_text_view: Gtk.TextView = gtc()
     sync_view_stack_page: Adw.ViewStackPage = gtc()
     lyrics_layout_container: Adw.Bin = gtc()
 
-    # _selected_format: str = "elrc" TODO: Implement TTML
     _lyrics_model: LyricsModel
     _autosave_timeout_id: Optional[int] = None
+    _lyrics_model: Optional[LyricsModel] = None
 
     def __init__(
         self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
     ) -> None:
+
+        def on_shown(*_args) -> None:
+            # pylint: disable=protected-access
+            if isinstance(self._card._file, FileUntaggable):
+                self.action_set_enabled("controls.edit_metadata", False)
+
         super().__init__()
 
         # Workaround, since Adw.InlineViewSwitcher doen't have singnal for describing
@@ -63,11 +68,8 @@ class WBWSyncPage(Adw.NavigationPage):
         self._card.bind_property(
             "title", self, "title", GObject.BindingFlags.SYNC_CREATE
         )
-        self.sync_page_metadata_editor_button.connect(
-            "clicked", self._card.open_metadata_editor
-        )
         if isinstance(self._card._file, FileUntaggable):
-            self.sync_page_metadata_editor_button.set_visible(False)
+            self.action_set_enabled("controls.edit_metadata", False)
         self._player_widget = UIPlayer(file, card)
         self.player_container.append(self._player_widget)
 
@@ -75,22 +77,10 @@ class WBWSyncPage(Adw.NavigationPage):
             "close-request", self._on_app_close
         )
 
-        # TODO: Implement param support to DGutils Actions module
-        group = Gio.SimpleActionGroup.new()
-        act = Gio.SimpleAction.new("format", GLib.VariantType.new("s"))
-        # act.connect("activate", self._on_format_changed) TODO: Implement TTML
-        group.add_action(act)
-        self.insert_action_group("root", group)
+        self.connect("showing", on_shown)
 
         self.modes.connect("notify::visible-child", self._page_visibility)
         self.connect("hidden", self._on_page_closed)
-
-        # TODO: Implement TTML
-        # Set initial label for format selector button
-        # if self._selected_format == "elrc":
-        #     self.format_menu_button.set_label("eLRC")
-        # elif self._selected_format == "ttml":
-        #     self.format_menu_button.set_label("TTML")
 
         # Automatically load the lyrics file if it exists
         if Schema.get("root.settings.file-manipulation.enabled"):
@@ -152,19 +142,13 @@ class WBWSyncPage(Adw.NavigationPage):
             prev_page == self.sync_view_stack_page
             and new_page == self.edit_view_stack_page
         ):
-            lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
-            buffer = Gtk.TextBuffer()
-            buffer.set_text(lyrics)
-            self.edit_view_text_view.set_buffer(buffer)
-
-    # TODO: Implement TTML
-    # def _on_format_changed(self, _action, param: GLib.Variant) -> None:
-    #     if param.get_string() == "elrc":
-    #         self._selected_format = "wbw"
-    #         self.format_menu_button.set_label("eLRC")
-    #     elif param.get_string() == "ttml":
-    #         self._selected_format = "ttml"
-    #         self.format_menu_button.set_label("TTML")
+            try:
+                lyrics = Lyrics.from_tokens(self._lyrics_model.get_tokens()).text
+                buffer = Gtk.TextBuffer()
+                buffer.set_text(lyrics)
+                self.edit_view_text_view.set_buffer(buffer)
+            except AttributeError:
+                pass
 
     ############### Import Actions ###############
     def _import_lrclib(self, *_args) -> None:
@@ -182,7 +166,7 @@ class WBWSyncPage(Adw.NavigationPage):
             path = file_dialog.open_finish(result).get_path()
 
             buffer = Gtk.TextBuffer()
-            buffer.set_text("\n".join(LyricsFile(path).get_normalized_lines()).rstrip())
+            buffer.set_text(Lyrics(Path(path).read_text()).text.strip())
             self.edit_view_text_view.set_buffer(buffer)
             logger.info("Imported lyrics from file")
 
@@ -302,6 +286,38 @@ class WBWSyncPage(Adw.NavigationPage):
             ns_to_timestamp(ns_new),
         )
         self.reset_timer()
+
+    def resync_all(self, ms: int, backwards: bool = False) -> None:
+        for line in self._lyrics_model:
+            for word in line:
+                prev_time = word.time
+                time = (prev_time - ms) if backwards else (prev_time + ms)
+                word.time = max(time, 0)
+        logger.info(
+            "All word were resynced %sms %s",
+            ms,
+            "backwards" if backwards else "forward",
+        )
+
+    ###############
+
+    ############### Utilities Actions ###############
+
+    def _resync_all_lines(self, *_args) -> None:
+        if (
+            self._current_page == self.sync_view_stack_page
+            and self._lyrics_model is not None
+        ):
+            dialog = ResyncAllAlertDialog(self)
+            dialog.present(Constants.WIN)
+            dialog.get_extra_child().grab_focus()
+        elif (
+            self._current_page == self.sync_view_stack_page
+            and self._lyrics_model is None
+        ):
+            Constants.WIN.show_toast(_("No lyrics to be re-synced"), 2)
+        else:
+            Constants.WIN.show_toast(_("Open Sync mode to re-sync all lines"), 2)
 
     ###############
 

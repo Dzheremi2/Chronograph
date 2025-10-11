@@ -33,6 +33,8 @@ groups:
       shortcut: "<Alt>z"
     - name: file_info
       callback: _card.show_info
+    - name: edit_metadata
+      callback: _card.open_metadata_editor
 
   line:
     - name: append
@@ -47,3 +49,7 @@ groups:
     - name: append_end
       callback: _append_end_line
       shortcut: "<Alt><primary>a"
+
+  utils:
+    - name: resync_all
+      callback: _resync_all_lines

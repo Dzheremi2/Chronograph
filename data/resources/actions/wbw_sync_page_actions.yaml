@@ -30,6 +30,8 @@ groups:
       shortcut: "<Alt>z"
     - name: file_info
       callback: _card.show_info
+    - name: edit_metadata
+      callback: _card.open_metadata_editor
 
   navigation:
     - name: prev
@@ -44,3 +46,7 @@ groups:
     - name: down
       callback: _nav_down
       shortcut: "<Alt>Down"
+
+  utils:
+    - name: resync_all
+      callback: _resync_all_lines
