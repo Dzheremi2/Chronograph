@@ -36,10 +36,13 @@ class LRClib(Adw.Dialog):
     collapsed_lyrics_nav_page: Adw.NavigationPage = gtc()
     collapsed_bin: Adw.Bin = gtc()
 
-    def __init__(self) -> None:
+    def __init__(self, title: str = "", artist: str= "", album: str = "") -> None:
         super().__init__()
 
         self.lrctracks_list_box.set_placeholder(self.search_lrclib_status_page)
+        self.title_entry.set_text(title)
+        self.artist_entry.set_text(artist)
+        self.album_entry.set_text(album)
 
         _actions = Gio.SimpleActionGroup.new()
         _search_action = Gio.SimpleAction.new("search", None)

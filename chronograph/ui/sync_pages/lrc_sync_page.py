@@ -223,7 +223,7 @@ class LRCSyncPage(Adw.NavigationPage):
     def _import_lrclib(self, *_args) -> None:
         from chronograph.ui.dialogs.lrclib import LRClib
 
-        lrclib_dialog = LRClib()
+        lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
         lrclib_dialog.present(Constants.WIN)
         logger.debug("LRClib import dialog shown")
 
@@ -316,7 +316,11 @@ class LRCSyncPage(Adw.NavigationPage):
                 lyrics = [line.get_text() for line in self.sync_lines]
                 self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
                 self._lyrics_file.lrc_lyrics.save()
-                self._file.embed_lyrics(self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None)
+                self._file.embed_lyrics(
+                    self._lyrics_file.lrc_lyrics
+                    if self._lyrics_file.lrc_lyrics.text
+                    else None
+                )
                 logger.debug("Lyrics autosaved successfully")
             except Exception:
                 logger.warning("Autosave failed: %s", traceback.format_exc())
