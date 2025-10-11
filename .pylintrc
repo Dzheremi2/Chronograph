@@ -48,6 +48,7 @@ additional-builtins=_
 [FORMAT]
 
 max-line-length=88
+indent-string='  '
 
 
 [BASIC]

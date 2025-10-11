@@ -5,11 +5,13 @@ from chronograph.utils.wbw.models.line_model import LineModel
 
 
 class LineWidget(Adw.WrapBox):
-    __gtype_name__ = "LineWidget"
+  __gtype_name__ = "LineWidget"
 
-    def __init__(self, line: LineModel):
-        super().__init__(wrap_policy=Adw.WrapPolicy.NATURAL, child_spacing=5, line_spacing=5)
+  def __init__(self, line: LineModel):
+    super().__init__(
+      wrap_policy=Adw.WrapPolicy.NATURAL, child_spacing=5, line_spacing=5
+    )
 
-        self.line = line
-        for word in self.line:
-            self.append(WordWidget(word))
+    self.line = line
+    for word in self.line:
+      self.append(WordWidget(word))

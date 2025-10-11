@@ -5,55 +5,54 @@ from chronograph.utils.wbw.tokens import WordToken
 
 
 class WordModel(GObject.Object):
-    """Model representing a single word."""
-    __gtype_name__ = "WordModel"
+  """Model representing a single word."""
 
-    word: str = GObject.Property(type=str, default="")
-    time: int = GObject.Property(type=int, default=-1)
-    timestamp: str = GObject.Property(type=str, default="")
-    synced: bool = GObject.Property(type=bool, default=False)
-    active: bool = GObject.Property(type=bool, default=False)
-    highlighted: bool = GObject.Property(type=bool, default=False)
+  __gtype_name__ = "WordModel"
 
-    def __init__(self, word: WordToken) -> None:
-        """Create model from `WordToken`"""
-        from chronograph.ui.widgets.wbw.word_widget import WordWidget
+  word: str = GObject.Property(type=str, default="")
+  time: int = GObject.Property(type=int, default=-1)
+  timestamp: str = GObject.Property(type=str, default="")
+  synced: bool = GObject.Property(type=bool, default=False)
+  active: bool = GObject.Property(type=bool, default=False)
+  highlighted: bool = GObject.Property(type=bool, default=False)
 
-        try:
-            ms = int(word)
-            synced = True
-        except TypeError:
-            ms = -1
-            synced = False
+  def __init__(self, word: WordToken) -> None:
+    """Create model from `WordToken`"""
+    from chronograph.ui.widgets.wbw.word_widget import WordWidget
 
-        super().__init__(
-            word=str(word),
-            time=ms,
-            timestamp=word.timestamp or "",
-            synced=synced,
-            active=False,
-            highlighted=False,
-        )
+    try:
+      ms = int(word)
+      synced = True
+    except TypeError:
+      ms = -1
+      synced = False
 
-        self.connect("notify::time", self._on_time_changed)
+    super().__init__(
+      word=str(word),
+      time=ms,
+      timestamp=word.timestamp or "",
+      synced=synced,
+      active=False,
+      highlighted=False,
+    )
 
-        self.widget = WordWidget(self)
+    self.connect("notify::time", self._on_time_changed)
 
-    def _on_time_changed(self, *_args) -> None:
-        ms = self.time
-        if ms < 0:
-            self.set_property("timestamp", "")
-            self.set_property("synced", False)
-            return
-        if Schema.get("root.settings.syncing.precise"):
-            timestamp = f"{ms // 60000:02d}:{(ms % 60000)//1000:02d}.{ms % 1000:03d}"
-        else:
-            timestamp = f"{ms // 60000:02d}:{(ms % 60000)//1000:02d}.{(ms % 1000):03d}"[
-                :-1
-            ]
-        self.set_property("timestamp", timestamp)
-        self.set_property("synced", True)
+    self.widget = WordWidget(self)
 
-    def restore_token(self) -> WordToken:
-        """Recreate `WordToken` from the model."""
-        return WordToken(self.word, time=self.time, timestamp=self.timestamp)
+  def _on_time_changed(self, *_args) -> None:
+    ms = self.time
+    if ms < 0:
+      self.set_property("timestamp", "")
+      self.set_property("synced", False)
+      return
+    if Schema.get("root.settings.syncing.precise"):
+      timestamp = f"{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{ms % 1000:03d}"
+    else:
+      timestamp = f"{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{(ms % 1000):03d}"[:-1]
+    self.set_property("timestamp", timestamp)
+    self.set_property("synced", True)
+
+  def restore_token(self) -> WordToken:
+    """Recreate `WordToken` from the model."""
+    return WordToken(self.word, time=self.time, timestamp=self.timestamp)

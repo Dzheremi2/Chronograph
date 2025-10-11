@@ -59,6 +59,7 @@ template $LRClib : Adw.Dialog {
 
                     Entry title_entry {
                       placeholder-text: _("Title");
+                      changed => $_on_title_entry_changed();
                     }
 
                     Entry artist_entry {
@@ -226,6 +227,6 @@ Adw.StatusPage nothing_found_status_page {
 }
 
 Adw.StatusPage search_lrclib_status_page {
-  title: _("Search on LRClib by title and artist names");
+  title: _("Search on LRClib by title, artist and album names");
   icon-name: "search-symbolic";
 }

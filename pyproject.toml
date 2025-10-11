@@ -1,0 +1,7 @@
+[tool.ruff]
+indent-width = 2
+line-length = 88
+ignore = ["ALL"]
+
+[tool.ruff.format]
+indent-style = "space"
