@@ -1,10 +1,12 @@
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants, Schema
+from dgutils.decorators import singleton
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 
 
+@singleton
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/Preferences.ui")
 class ChronographPreferences(Adw.PreferencesDialog):
     __gtype_name__ = "ChronographPreferences"
@@ -15,6 +17,10 @@ class ChronographPreferences(Adw.PreferencesDialog):
     autosave_throttling_adjustment: Gtk.Adjustment = gtc()
     save_session_on_quit_switch: Adw.SwitchRow = gtc()
     precise_milliseconds_switch: Adw.SwitchRow = gtc()
+    lbl_default_seek_adj: Gtk.Adjustment = gtc()
+    lbl_large_seek_adj: Gtk.Adjustment = gtc()
+    wbw_default_seek_adj: Gtk.Adjustment = gtc()
+    wbw_large_seek_adj: Gtk.Adjustment = gtc()
     automatic_list_view_switch: Adw.SwitchRow = gtc()
     recursive_parsing_switch: Adw.ExpanderRow = gtc()
     follow_symlinks_switch: Adw.SwitchRow = gtc()
@@ -34,8 +40,6 @@ class ChronographPreferences(Adw.PreferencesDialog):
     def __init__(self) -> None:
         super().__init__()
 
-        self.__class__.opened = True
-        self.connect("closed", lambda *_: self._set_opened(False))
         self.auto_file_manipulation_format.connect(
             "notify::selected", self._update_auto_file_format_schema
         )
@@ -127,6 +131,34 @@ class ChronographPreferences(Adw.PreferencesDialog):
             self.embed_lyrics_switch,
             "enable-expansion",
         )
+        Schema.bind(
+            "root.settings.syncing.seek.lbl.def",
+            self.lbl_default_seek_adj,
+            "value",
+            transform_from=int,
+            transform_to=float,
+        )
+        Schema.bind(
+            "root.settings.syncing.seek.lbl.large",
+            self.lbl_large_seek_adj,
+            "value",
+            transform_from=int,
+            transform_to=float,
+        )
+        Schema.bind(
+            "root.settings.syncing.seek.wbw.def",
+            self.wbw_default_seek_adj,
+            "value",
+            transform_from=int,
+            transform_to=float,
+        )
+        Schema.bind(
+            "root.settings.syncing.seek.wbw.large",
+            self.wbw_large_seek_adj,
+            "value",
+            transform_from=int,
+            transform_to=float,
+        )
 
         if Schema.get("root.settings.file-manipulation.format") == ".lrc":
             self.auto_file_manipulation_format.set_selected(0)
@@ -157,6 +189,3 @@ class ChronographPreferences(Adw.PreferencesDialog):
             Constants.APP.lookup_action("view_type").set_enabled(False)
         else:
             Constants.APP.lookup_action("view_type").set_enabled(True)
-
-    def _set_opened(self, opened: bool) -> None:
-        self.__class__.opened = opened

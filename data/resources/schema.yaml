@@ -39,6 +39,29 @@ root:
       precise:
         type: bool
         default: false
+      seek:
+        lbl:
+          def:
+            type: int
+            min: 1
+            max: 1000
+            default: 100
+          large:
+            type: int
+            min: 1
+            max: 1000
+            default: 200
+        wbw:
+          def:
+            type: int
+            min: 1
+            max: 1000
+            default: 50
+          large:
+            type: int
+            min: 1
+            max: 1000
+            default: 100
     general:
       reset-quick-editor:
         type: bool

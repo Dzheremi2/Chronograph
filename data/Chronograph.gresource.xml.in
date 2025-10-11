@@ -9,6 +9,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/Preferences.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/MetadataEditor.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/LRClib.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/dialogs/ResyncAllAlertDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/UIPlayer.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
@@ -67,6 +68,7 @@
     <file alias="chr-vol-mute-symbolic.svg">icons/icons/symbolic/chr-vol-mute-symbolic.svg</file>
     <file alias="chr-playback-rate-symbolic.svg">icons/icons/symbolic/chr-playback-rate-symbolic.svg</file>
     <file alias="chr-filter-symbolic.svg">icons/icons/symbolic/chr-filter-symbolic.svg</file>
+    <file alias="chr-cogwheel-symbolic.svg">icons/icons/symbolic/chr-cogwheel-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

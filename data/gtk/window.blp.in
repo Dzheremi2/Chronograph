@@ -252,36 +252,40 @@ template $ChronographWindow : Adw.ApplicationWindow {
                   valign: start;
                   halign: start;
 
-                  ToggleButton toggle_search_button {
-                    icon-name: "search-symbolic";
-                    tooltip-text: _("Toggle search");
-                    action-name: "win.toggle_search";
-                  }
+                  Box {
+                    spacing: 4;
 
-                  MenuButton {
-                    icon-name: "chr-filter-symbolic";
-                    tooltip-text: _("Filter library");
-                    menu-model: menu {
-                      section {
-                        label: C_("filter menu secton name. 'Show only…' selected lyric formats", "Show only…");
-                        item {
-                          label: C_("means lyrics absence", "None");
-                          action: "win.filter_none";
+                    ToggleButton toggle_search_button {
+                      icon-name: "search-symbolic";
+                      tooltip-text: _("Toggle search");
+                      action-name: "win.toggle_search";
+                    }
+
+                    MenuButton {
+                      icon-name: "chr-filter-symbolic";
+                      tooltip-text: _("Filter library");
+                      menu-model: menu {
+                        section {
+                          label: C_("filter menu secton name. 'Show only…' selected lyric formats", "Show only…");
+                          item {
+                            label: C_("means lyrics absence", "None");
+                            action: "win.filter_none";
+                          }
+                          item {
+                            label: _("Plain");
+                            action: "win.filter_plain";
+                          }
+                          item {
+                            label: "LRC";
+                            action: "win.filter_lrc";
+                          }
+                          item {
+                            label: "eLRC";
+                            action: "win.filter_elrc";
+                          }
                         }
-                        item {
-                          label: _("Plain");
-                          action: "win.filter_plain";
-                        }
-                        item {
-                          label: "LRC";
-                          action: "win.filter_lrc";
-                        }
-                        item {
-                          label: "eLRC";
-                          action: "win.filter_elrc";
-                        }
-                      }
-                    };
+                      };
+                    }
                   }
                 }
 

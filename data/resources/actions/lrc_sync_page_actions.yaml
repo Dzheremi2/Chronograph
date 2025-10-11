@@ -20,19 +20,29 @@ groups:
     - name: sync
       callback: _sync
       shortcut: "<Alt>Return"
-    - name: rew100
-      callback: _seek100
-      with_args: [-100000]
+    - name: rew
+      callback: _seek
+      with_args: [False]
       shortcut: "<Alt>minus"
-    - name: forw100
-      callback: _seek100
-      with_args: [100000]
+    - name: rew_large
+      callback: _seek
+      with_args: [False, True]
+      shortcut: "<Primary><Alt>minus"
+    - name: forw
+      callback: _seek
+      with_args: [True]
       shortcut: "<Alt>equal"
+    - name: forw_large
+      callback: _seek
+      with_args: [True, True]
+      shortcut: "<Primary><Alt>equal"
     - name: rplay
       callback: _replay
       shortcut: "<Alt>z"
     - name: file_info
       callback: _card.show_info
+    - name: edit_metadata
+      callback: _card.open_metadata_editor
 
   line:
     - name: append
@@ -47,3 +57,7 @@ groups:
     - name: append_end
       callback: _append_end_line
       shortcut: "<Alt><primary>a"
+
+  utils:
+    - name: resync_all
+      callback: _resync_all_lines

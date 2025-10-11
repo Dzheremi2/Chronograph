@@ -24,6 +24,7 @@ class LRClib(Adw.Dialog):
     main_box: Gtk.Box = gtc()
     title_entry: Gtk.Entry = gtc()
     artist_entry: Gtk.Entry = gtc()
+    album_entry: Gtk.Entry = gtc()
     search_button: Gtk.Button = gtc()
     lrctracks_scrolled_window: Gtk.ScrolledWindow = gtc()
     lrctracks_list_box: Gtk.ListBox = gtc()
@@ -35,10 +36,13 @@ class LRClib(Adw.Dialog):
     collapsed_lyrics_nav_page: Adw.NavigationPage = gtc()
     collapsed_bin: Adw.Bin = gtc()
 
-    def __init__(self) -> None:
+    def __init__(self, title: str = "", artist: str= "", album: str = "") -> None:
         super().__init__()
 
         self.lrctracks_list_box.set_placeholder(self.search_lrclib_status_page)
+        self.title_entry.set_text(title)
+        self.artist_entry.set_text(artist)
+        self.album_entry.set_text(album)
 
         _actions = Gio.SimpleActionGroup.new()
         _search_action = Gio.SimpleAction.new("search", None)
@@ -54,7 +58,7 @@ class LRClib(Adw.Dialog):
 
     def _search(self, *_args) -> None:
 
-        def _on_search_result(rq_result: list) -> None:
+        def on_search_result(rq_result: list) -> None:
             self.lrctracks_list_box.remove_all()
             if len(rq_result) > 0:
                 self.lrctracks_list_box.remove_all()
@@ -84,7 +88,7 @@ class LRClib(Adw.Dialog):
             else:
                 self.lrctracks_scrolled_window.set_child(self.nothing_found_status_page)
 
-        def _on_search_error(title: str, desc: str, icon: str) -> None:
+        def on_search_error(title: str, desc: str, icon: str) -> None:
             self.lrctracks_scrolled_window.set_child(
                 Adw.StatusPage(
                     title=title,
@@ -93,7 +97,7 @@ class LRClib(Adw.Dialog):
                 )
             )
 
-        def _do_request() -> None:
+        def do_request() -> None:
             self.search_button.set_sensitive(False)
             _err = None
             try:
@@ -102,14 +106,15 @@ class LRClib(Adw.Dialog):
                     params={
                         "track_name": self.title_entry.get_text().strip(),
                         "artist_name": self.artist_entry.get_text().strip(),
+                        "album_name": self.album_entry.get_text().strip(),
                     },
                     timeout=10,
                 )
                 rq_result = request.json()
-                GLib.idle_add(_on_search_result, rq_result)
+                GLib.idle_add(on_search_result, rq_result)
             except requests.exceptions.ConnectionError as e:
                 GLib.idle_add(
-                    _on_search_error,
+                    on_search_error,
                     _("Connection Error"),
                     _(
                         "Failed to connect to the LRC library server. Please check your internet connection and try again"
@@ -120,7 +125,7 @@ class LRClib(Adw.Dialog):
                 return
             except requests.exceptions.Timeout as e:
                 GLib.idle_add(
-                    _on_search_error,
+                    on_search_error,
                     _("Timeout Error"),
                     _(
                         "The request to the LRC library server timed out. Please try again later"
@@ -131,7 +136,7 @@ class LRClib(Adw.Dialog):
                 return
             except Exception as e:
                 GLib.idle_add(
-                    _on_search_error,
+                    on_search_error,
                     _("Something went wrong"),
                     _(
                         "An unknown error occurred while trying to connect to the LRC library server"
@@ -150,7 +155,7 @@ class LRClib(Adw.Dialog):
                         _err,
                     )
 
-        threading.Thread(target=_do_request, daemon=True).start()
+        threading.Thread(target=do_request, daemon=True).start()
 
     def _import_synced(self, *_args) -> None:
         from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
