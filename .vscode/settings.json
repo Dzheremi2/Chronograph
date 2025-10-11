@@ -21,15 +21,15 @@
     ],
     "search.followSymlinks": false,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         },
         "editor.rulers": [88],
-        "editor.tabSize": 4
+        "editor.tabSize": 2
     },
-    "isort.args":["--profile", "black"],
+    "isort.args":["--profile", "ruff"],
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "none"
     },

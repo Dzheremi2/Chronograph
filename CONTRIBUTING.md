@@ -38,7 +38,7 @@ flatpak install org.gnome.Sdk/x86_64/49 --system
 ```
 
 ## Code Style
-The code is formatted by [Black](https://github.com/psf/black) formatter. Imports are sorted by [isort](https://github.com/pycqa/isort).
+The code is formatted by [Ruff](https://github.com/astral-sh/ruff) formatter. Imports are sorted by [isort](https://github.com/pycqa/isort).
 The main IDE for developing this project is VSCode. Extensions for both these are available on VSCode Marketplace. The current configuration is embedded within the repo (`.vscode/settings.json`)
 
 All new methods should be type hinted, static variables should be type hinted too. All public methods should have docstrings in numpy docstring format ([extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) for automatic docstrings generation)
