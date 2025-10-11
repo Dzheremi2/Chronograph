@@ -34,7 +34,12 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         Adw.SpinRow compress_level_spin {
           title: _("Quality level");
           subtitle: _("The higher value, the higher cover quality");
-          adjustment: compress_level_adjustment;
+          adjustment: Adjustment compress_level_adjustment {
+            lower: 1;
+            upper: 95;
+            value: 75;
+            step-increment: 5;
+          };
         }
       }
 
@@ -71,12 +76,69 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       Adw.ComboRow syncing_type_combo_row {
         title: _("Syncing type");
         subtitle: _("Defines the default workflow of syncing process. It may be either Line-by-Line, or Word-by-Word\nWORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES");
-        model: sync_types;
+        model: StringList sync_types {
+          strings [
+            _("Line-by-Line"),
+            _("Word-by-Word")
+          ]
+        };
       }
 
       Adw.SwitchRow precise_milliseconds_switch {
         title: _("Use precise milliseconds");
         subtitle: _("Use 3-digit milliseconds instead of 2-digit");
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Line-by-Line");
+
+      Adw.SpinRow lbl_default_seek_spin_row {
+        title: _("Default seek value");
+        subtitle: _("Amount of milliseconds default seek performs by");
+        adjustment: Adjustment lbl_default_seek_adj {
+          lower: 1;
+          upper: 1000;
+          step-increment: 10;
+          page-increment: 100;
+        };
+      }
+
+      Adw.SpinRow lbl_large_seek_spin_row {
+        title: _("Large seek value");
+        subtitle: _("Amount of milliseconds large seek performs by");
+        adjustment: Adjustment lbl_large_seek_adj {
+          lower: 1;
+          upper: 1000;
+          step-increment: 10;
+          page-increment: 100;
+        };
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Word-by-Word");
+
+      Adw.SpinRow wbw_default_seek_spin_row {
+        title: _("Default seek value");
+        subtitle: _("Amount of milliseconds default seek performs by");
+        adjustment: Adjustment wbw_default_seek_adj {
+          lower: 1;
+          upper: 1000;
+          step-increment: 10;
+          page-increment: 100;
+        };
+      }
+
+      Adw.SpinRow wbw_large_seek_spin_row {
+        title: _("Large seek value");
+        subtitle: _("Amount of milliseconds large seek performs by");
+        adjustment: Adjustment wbw_large_seek_adj {
+          lower: 1;
+          upper: 1000;
+          step-increment: 10;
+          page-increment: 100;
+        };
       }
     }
   }
@@ -99,13 +161,23 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       Adw.ComboRow auto_file_manipulation_format {
         title: _("File format");
         subtitle: _("File format for auto manipulation");
-        model: formats;
+        model: StringList formats {
+          strings [
+            ".lrc",
+            ".txt"
+          ]
+        };
       }
 
       Adw.SpinRow autosave_throttling_spin {
         title: _("Autosave interval");
         subtitle: _("Autosave interval after lyrics syncing inactivity");
-        adjustment: autosave_throttling_adjustment;
+        adjustment: Adjustment autosave_throttling_adjustment {
+          lower: 1;
+          upper: 10;
+          value: 5;
+          step-increment: 1;
+        };
       }
     }
 
@@ -201,32 +273,4 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       }
     }
   }
-}
-
-StringList formats {
-  strings [
-    ".lrc",
-    ".txt"
-  ]
-}
-
-StringList sync_types {
-  strings [
-    _("Line-by-Line"),
-    _("Word-by-Word")
-  ]
-}
-
-Adjustment compress_level_adjustment {
-  lower: 1;
-  upper: 95;
-  value: 75;
-  step-increment: 5;
-}
-
-Adjustment autosave_throttling_adjustment {
-  lower: 1;
-  upper: 10;
-  value: 5;
-  step-increment: 1;
 }

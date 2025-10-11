@@ -37,6 +37,8 @@ class LRCSyncPage(Adw.NavigationPage):
 
     header_bar: Adw.HeaderBar = gtc()
     player_container: Gtk.Box = gtc()
+    rew_button: Gtk.Button = gtc()
+    forw_button: Gtk.Button = gtc()
     export_lyrics_button: Gtk.MenuButton = gtc()
     sync_lines_scrolled_window: Gtk.ScrolledWindow = gtc()
     sync_lines: Gtk.ListBox = gtc()
@@ -80,6 +82,20 @@ class LRCSyncPage(Adw.NavigationPage):
             self.sync_lines.remove_all()
             for line in lines:
                 self.sync_lines.append(LRCSyncLine(line))
+
+    @Gtk.Template.Callback()
+    def _on_seek_button_released(self, button: Gtk.Button) -> None:
+        display = Constants.WIN.get_display()
+        seat = display.get_default_seat()
+        device = seat.get_keyboard()
+        state = device.get_modifier_state()
+
+        direction = button == self.forw_button
+        large = False
+
+        if state == Gdk.ModifierType.CONTROL_MASK:
+            large = True
+        self._seek(None, None, direction, large)
 
     def is_all_lines_synced(self) -> bool:
         """Determines if all lines have timestamp
@@ -167,7 +183,19 @@ class LRCSyncPage(Adw.NavigationPage):
         Player().seek(ns // 1_000_000)
         logger.debug("Replayed lines at timing: %s", ns_to_timestamp(ns))
 
-    def _seek100(self, _action, _param, mcs_seek: int) -> None:
+    def _seek(self, _action, _param, direction: bool, large: bool = False) -> None:
+        if direction:
+            if not large:
+                mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000
+            else:
+                mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000
+        else:
+            if not large:
+                mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000 * -1
+            else:
+                mcs_seek = (
+                    Schema.get("root.settings.syncing.seek.lbl.large") * 1_000 * -1
+                )
         pattern = re.compile(r"\[([^\[\]]+)\] ")
         match = pattern.search(self.selected_line.get_text())
         if match is None:

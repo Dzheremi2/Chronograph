@@ -17,14 +17,22 @@ groups:
     - name: sync
       callback: _sync
       shortcut: "<Alt>Return"
-    - name: rew100
-      callback: _seek100
-      with_args: [-100000]
+    - name: rew
+      callback: _seek
+      with_args: [False]
       shortcut: "<Alt>minus"
-    - name: forw100
-      callback: _seek100
-      with_args: [100000]
+    - name: rew_large
+      callback: _seek
+      with_args: [False, True]
+      shortcut: "<Primary><Alt>minus"
+    - name: forw
+      callback: _seek
+      with_args: [True]
       shortcut: "<Alt>equal"
+    - name: forw_large
+      callback: _seek
+      with_args: [True, True]
+      shortcut: "<Primary><Alt>equal"
     - name: rplay
       callback: _replay
       shortcut: "<Alt>z"

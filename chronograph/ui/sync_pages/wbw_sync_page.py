@@ -35,6 +35,8 @@ class WBWSyncPage(Adw.NavigationPage):
     __gtype_name__ = "WBWSyncPage"
 
     player_container: Gtk.Box = gtc()
+    rew_button: Gtk.Button = gtc()
+    forw_button: Gtk.Button = gtc()
     modes: Adw.ViewStack = gtc()
     edit_view_stack_page: Adw.ViewStackPage = gtc()
     edit_view_text_view: Gtk.TextView = gtc()
@@ -149,6 +151,20 @@ class WBWSyncPage(Adw.NavigationPage):
                 self.edit_view_text_view.set_buffer(buffer)
             except AttributeError:
                 pass
+
+    @Gtk.Template.Callback()
+    def _on_seek_button_released(self, button: Gtk.Button) -> None:
+        display = Constants.WIN.get_display()
+        seat = display.get_default_seat()
+        device = seat.get_keyboard()
+        state = device.get_modifier_state()
+
+        direction = button == self.forw_button
+        large = False
+
+        if state == Gdk.ModifierType.CONTROL_MASK:
+            large = True
+        self._seek(None, None, direction, large)
 
     ############### Import Actions ###############
     def _import_lrclib(self, *_args) -> None:
@@ -270,14 +286,26 @@ class WBWSyncPage(Adw.NavigationPage):
         Player().seek(ns // 1_000_000)
         logger.debug("Replayed word at timing: %s", ns_to_timestamp(ns))
 
-    def _seek100(self, _action, _param, mcs_seek: int) -> None:
+    def _seek(self, _action, _param, direction: bool, large: bool = False) -> None:
+        if direction:
+            if not large:
+                mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000
+            else:
+                mcs_seek = Schema.get("root.settings.syncing.seek.wbw.large") * 1_000
+        else:
+            if not large:
+                mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000 * -1
+            else:
+                mcs_seek = (
+                    Schema.get("root.settings.syncing.seek.wbw.large") * 1_000 * -1
+                )
         current_line = self._lyrics_model.get_current_line()
         current_word = current_line.get_current_word()
         ms = current_word.time
-        ns = ms * 1000
+        ns = ms * 1_000_000
         ns_new = ns + mcs_seek * 1_000
         ns_new = max(ns_new, 0)
-        current_word.set_property("time", ns_new // 1000)
+        current_word.set_property("time", ns_new // 1_000_000)
         Player().seek(ns_new // 1_000_000)
         logger.debug(
             "Word(%s) was seeked %sms to %s",

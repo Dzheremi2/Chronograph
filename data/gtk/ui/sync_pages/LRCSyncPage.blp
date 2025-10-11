@@ -111,18 +111,18 @@ template $LRCSyncPage : Adw.NavigationPage {
             styles ["circular"]
           }
 
-          Button rew100_button {
-            tooltip-text: _("Re-sync selected line 100ms back");
+          Button rew_button {
+            tooltip-text: _("Re-sync selected line back");
             icon-name: "100ms-back-symbolic";
-            action-name: "controls.rew100";
+            clicked => $_on_seek_button_released();
 
             styles ["circular"]
           }
 
-          Button forw100_button {
-            tooltip-text: _("Re-sync selected line 100ms forward");
+          Button forw_button {
+            tooltip-text: _("Re-sync selected line forward");
             icon-name: "100ms-forw-symbolic";
-            action-name: "controls.forw100";
+            clicked => $_on_seek_button_released();
 
             styles ["circular"]
           }
