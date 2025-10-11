@@ -45,6 +45,8 @@ class LRClib(Adw.Dialog):
         self.artist_entry.set_text(artist)
         self.album_entry.set_text(album)
 
+        self._on_title_entry_changed(self.title_entry)
+
         _actions = Gio.SimpleActionGroup.new()
         _search_action = Gio.SimpleAction.new("search", None)
         _search_action.connect("activate", self._search)
@@ -56,6 +58,15 @@ class LRClib(Adw.Dialog):
         _actions.add_action(_import_synced_action)
         _actions.add_action(_import_plain_action)
         self.insert_action_group("lrclib", _actions)
+
+    @Gtk.Template.Callback()
+    def _on_title_entry_changed(self, entry: Gtk.Entry) -> None:
+        if len(entry.get_text()) == 0:
+            entry.add_css_class("error")
+            self.search_button.set_sensitive(False)
+        else:
+            entry.remove_css_class("error")
+            self.search_button.set_sensitive(True)
 
     def _search(self, *_args) -> None:
 

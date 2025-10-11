@@ -59,6 +59,7 @@ template $LRClib : Adw.Dialog {
 
                     Entry title_entry {
                       placeholder-text: _("Title");
+                      changed => $_on_title_entry_changed();
                     }
 
                     Entry artist_entry {
