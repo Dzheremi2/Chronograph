@@ -87,9 +87,13 @@ class LRCSyncPage(Adw.NavigationPage):
     @Gtk.Template.Callback()
     def _on_seek_button_released(self, button: Gtk.Button) -> None:
         display = Constants.WIN.get_display()
+        logger.debug(f"GDK DISPLAY: {display}")
         seat = display.get_default_seat()
+        logger.debug(f"GDK SEAT: {seat}")
         device = seat.get_keyboard()
+        logger.debug(f"GDK DEVICE: {device}")
         state = device.get_modifier_state()
+        logger.debug(f"GDK STATE: {state}")
 
         direction = button == self.forw_button
         large = False

@@ -24,6 +24,7 @@ class LRClibTrack(Gtk.Box):
 
     title_label: Gtk.Inscription = gtc()
     artist_label: Gtk.Inscription = gtc()
+    album_label: Gtk.Inscription = gtc()
 
     def __init__(
         self,
@@ -36,6 +37,7 @@ class LRClibTrack(Gtk.Box):
         super().__init__()
         self.title_label.set_text(title)
         self.artist_label.set_text(artist)
+        self.album_label.set_text(tooltip[3])
         self._synced: str = synced
         self._plain: str = plain
         self.set_tooltip_text(self._generate_tooltip(tooltip))
