@@ -18,6 +18,7 @@ class ResyncAllAlertDialog(Adw.AlertDialog):
         super().__init__()
         self.page = page
         self._on_ms_entry_changed(self.ms_entry)
+        self.ms_entry.connect("activate", self._on_response, "resync")
 
     @Gtk.Template.Callback()
     def _on_ms_entry_changed(self, entry: Gtk.Entry) -> None:
@@ -38,3 +39,4 @@ class ResyncAllAlertDialog(Adw.AlertDialog):
                     backwards = True
                 self.page.resync_all(int(ms.replace("-", "")), backwards)
                 del self.page
+                self.close()
