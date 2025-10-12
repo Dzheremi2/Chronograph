@@ -1,3 +1,4 @@
+import contextlib
 from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
@@ -22,7 +23,7 @@ class LyricsModel(GObject.Object):
   _eol_handler: int
 
   def __init__(self, lyrics: str) -> None:
-    from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget
+    from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget  # noqa: PLC0415
 
     super().__init__()
     store: Gio.ListStore = Gio.ListStore.new(item_type=LineModel)
@@ -40,10 +41,8 @@ class LyricsModel(GObject.Object):
     if 0 <= self.cindex < self.lines.get_n_items():
       old_line = self[self.cindex]
       if hasattr(self, "_eol_handler"):
-        try:
+        with contextlib.suppress(TypeError, RuntimeError):
           old_line.disconnect(self._eol_handler)
-        except (TypeError, RuntimeError):
-          pass
       old_line.set_is_current_line(False)
       old_line.set_current(-1)
 
@@ -77,7 +76,6 @@ class LyricsModel(GObject.Object):
     -------
     Optional[tuple[LineModel, int]]
     """
-
     for line in self:
       if line.get_latest_unsynced() is not None:
         return line, self.lines.find(line)[1]
@@ -92,9 +90,7 @@ class LyricsModel(GObject.Object):
   def get_tokens(self) -> tuple[tuple[WordToken, ...], ...]:
     lines = []
     for line_model in self:
-      line = []
-      for word in line_model:
-        line.append(word.restore_token())
+      line = [word.restore_token() for word in line_model]
       lines.append(line)
     return tuple(lines)
 

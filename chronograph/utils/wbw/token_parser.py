@@ -20,7 +20,7 @@ class TokenParser:
 
   _SPACER = "\u00a0"
 
-  def __new__(cls, *args, **kwargs):
+  def __new__(cls, *args, **kwargs):  # noqa: ANN204
     raise TypeError(f"{cls.__name__} may not be implemented")
 
   @staticmethod
@@ -87,7 +87,6 @@ class TokenParser:
     tuple[WordToken, ...]
         Tuple of `WordToken` dataclasses
     """
-
     raw = line.line if hasattr(line, "line") else line
     pos = 0
     match = TokenParser.LINE_TIMESTAMP.match(raw)

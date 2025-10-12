@@ -26,7 +26,7 @@ class LineModel(GObject.Object):
 
   def __init__(self, line: LineToken) -> None:
     """Create model from `LineToken`"""
-    from chronograph.ui.widgets.wbw.line_widget import LineWidget
+    from chronograph.ui.widgets.wbw.line_widget import LineWidget  # noqa: PLC0415
 
     try:
       ms = int(line)
@@ -64,14 +64,14 @@ class LineModel(GObject.Object):
       self.set_property("cindex", index)
       self.emit("cindex-changed", old, index)
       for word in self:
-        word.set_property("highlighted", False)
-      self.words.get_item(self.cindex).set_property("highlighted", True)
+        word.set_property("highlighted", value=False)
+      self.words.get_item(self.cindex).set_property("highlighted", value=True)
     else:
       # pylint: disable=superfluous-parens
       self.emit("end-of-line", not (index < 0))
       self.cindex = -1
       for word in self:
-        word.set_property("highlighted", False)
+        word.set_property("highlighted", value=False)
 
   def next(self) -> None:
     """Advance to the next word."""
@@ -86,7 +86,7 @@ class LineModel(GObject.Object):
 
     Parameters
     ----------
-    in_current_line : bool
+    is_current_line : bool
         True if this line is current, False otherwise
     """
     for word in self:
@@ -95,8 +95,7 @@ class LineModel(GObject.Object):
     if is_current_line:
       if self.cindex == -1 and self.words.get_n_items() > 0:
         self.set_current(0)
-    else:
-      if self.cindex != -1:
+    elif self.cindex != -1:
         self.set_current(-1)
 
   def get_latest_unsynced(self) -> Optional[tuple[WordModel, int]]:
@@ -106,7 +105,6 @@ class LineModel(GObject.Object):
     -------
     Optional[tuple[WordModel, int]]
     """
-
     for word in self:
       if word.time == -1:
         return word, self.words.find(word)[1]
@@ -130,6 +128,6 @@ class LineModel(GObject.Object):
     try:
       if (item := self.words.get_item(index)) is not None:
         return item
-      raise IndexError("List index out of range")
+      raise IndexError("List index out of range")  # noqa: TRY301
     except (IndexError, OverflowError) as e:
       raise IndexError("List index out of range") from e

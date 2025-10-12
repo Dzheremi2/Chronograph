@@ -65,12 +65,11 @@ def invalidate_filter(child: Union[Gtk.ListBoxRow, Gtk.FlowBoxChild]) -> bool:
   if isinstance(child, Gtk.FlowBoxChild):
     child = child.get_child()
   try:
-    # pylint: disable=protected-access
     if isinstance(child, SongCard):
-      filter_allowed = filter_decoded[child._lyrics_file.highest_format]
+      filter_allowed = filter_decoded[child._lyrics_file.highest_format]  # noqa: SLF001
     else:  # using `activatable-widget` as workaround to not create another one widget haha
       song_card: SongCard = child.get_activatable_widget().get_ancestor(SongCard)
-      filter_allowed = filter_decoded[song_card._lyrics_file.highest_format]
+      filter_allowed = filter_decoded[song_card._lyrics_file.highest_format]  # noqa: SLF001
     if not filter_allowed:
       return False
 

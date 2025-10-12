@@ -1,4 +1,4 @@
-## 5.1-rc1
+## 5.1
 
 <p>New features</p>
 <ul>
@@ -6,12 +6,18 @@
   <li>LRClib import dialog search fields autofill</li>
   <li>Ability to shift all sync points at once by a given amount of milliseconds</li>
   <li>New second type of re-sync operation. Now, if Ctrl held, the re-sync operation uses "large" milliseconds amount. Default and Large ms amount could be set via preferences</li>
+  <li>Album name is now shown on results in LRClib import dialog</li>
 </ul>
 <p>Bug fixes</p>
 <ul>
   <li>Fixed importing lyrics from file</li>
   <li>Fixed Word-by-Word re-syncing</li>
 </ul>
+<p>Miscellaneous</p>
+<ul>
+  <li>Users are now prohibited to search LRClib with "title" field empty in LRClib import dialog. "title" is a mandatory parameter according to LRClib documentation</li>
+</ul>
+
 
 ## 5.0.2
 

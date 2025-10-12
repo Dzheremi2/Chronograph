@@ -8,7 +8,6 @@ from chronograph.internal import Constants, Schema
 _LOGGER_INITIALIZED = False
 
 
-# pylint: disable=global-statement
 def init_logger() -> None:
   """Initialize application logger.
 
@@ -57,7 +56,7 @@ def init_logger() -> None:
   lrclib_logger.addHandler(file_handler)
   lrclib_logger.addHandler(console_handler)
 
-  logging.captureWarnings(True)
+  logging.captureWarnings(capture=True)
 
   def handle_exception(exc_type, exc_value, exc_traceback):
     app_logger.error(

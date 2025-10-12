@@ -1,4 +1,5 @@
 from typing import Optional
+
 from chronograph.utils.lyrics import Lyrics
 
 from .file import BaseFile
@@ -8,7 +9,7 @@ from .file import BaseFile
 class FileUntaggable(BaseFile):
   __gtype_name__ = "FileUntaggable"
 
-  def __init__(self, path: str):
+  def __init__(self, path: str) -> None:
     super().__init__(path)
 
     self.cover = None

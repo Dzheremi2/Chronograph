@@ -1,5 +1,3 @@
-# pylint: disable=all
-
 from io import TextIOWrapper
 from logging import Logger
 from pathlib import Path

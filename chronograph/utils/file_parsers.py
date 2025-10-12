@@ -26,7 +26,6 @@ def parse_files(
   tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]]
       Returns a tuple of mutagen files or an empty tuple if no files
   """
-
   mutagen_files = []
   for path in paths:
     if Path(path).suffix in (".ogg", ".flac", ".opus"):
@@ -42,6 +41,18 @@ def parse_files(
 
 
 def parse_dir(path: str) -> tuple[str]:
+  """Resolves all directory content paths depending on user settings
+
+  Parameters
+  ----------
+  path : str
+      root directory path
+
+  Returns
+  -------
+  tuple[str]
+      tuple of leaf paths
+  """
   path: Path = Path(path)
   files = []
 

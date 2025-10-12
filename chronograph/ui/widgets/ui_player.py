@@ -37,7 +37,6 @@ class UIPlayer(Adw.BreakpointBin):
   rate_label: Gtk.Label = gtc()
   repeat_button: Gtk.ToggleButton = gtc()
   collapse_box: Gtk.Box = gtc()
-  position_adj: Gtk.Adjustment = gtc()
 
   def __init__(
     self,
@@ -78,7 +77,7 @@ class UIPlayer(Adw.BreakpointBin):
       "notify::rate",
       lambda *__: self.rate_label.set_label(f"{Player().rate}x"),
     )
-    self.seek_done_hndl = Player()._gst_player.connect("seek-done", self._on_seek_done)
+    self.seek_done_hndl = Player()._gst_player.connect("seek-done", self._on_seek_done)  # noqa: SLF001
 
     # Info UI reactivity
     self._file = file
@@ -107,8 +106,10 @@ class UIPlayer(Adw.BreakpointBin):
 
   def disconnect_all(self) -> None:
     """Removes all reactivity from `self`.
+
     Used on page closure to not update all other `UIPlayer` instances for each media
-    (since Gtk.Widgets are not destroyed and cannot be)"""
+    (since Gtk.Widgets are not destroyed and cannot be)
+    """
     self.disconnect(self.pos_hndl)
     self.disconnect(self.volume_hndl)
     self.disconnect(self.playing_hndl)
@@ -122,9 +123,9 @@ class UIPlayer(Adw.BreakpointBin):
   @Gtk.Template.Callback()
   def _toggle_play(self, *_args) -> None:
     if Player().playing:
-      Player().set_property("playing", False)
+      Player().set_property("playing", value=False)
     else:
-      Player().set_property("playing", True)
+      Player().set_property("playing", value=True)
     Player().play_pause()
     self._on_playing_changed(Player(), None)
 
@@ -154,7 +155,7 @@ class UIPlayer(Adw.BreakpointBin):
     self.remaining_time_label.props.label = remain_string
 
   def _on_seek_done(self, *_args) -> None:
-    pos = Player()._gst_player.props.position  # pylint: disable=protected-access
+    pos = Player()._gst_player.props.position  # noqa: SLF001
     self.seekbar.set_value(pos / Gst.SECOND)
 
   @Gtk.Template.Callback()
@@ -166,7 +167,7 @@ class UIPlayer(Adw.BreakpointBin):
       self.volume_button.set_icon_name("chr-vol-middle-symbolic")
     elif 66.0 < val < 101.0:
       self.volume_button.set_icon_name("chr-vol-max-symbolic")
-    elif 101.0 <= val:
+    elif val >= 101.0:
       self.volume_button.set_icon_name("chr-vol-max-symbolic")
       self.volume_button.add_css_class("destructive-action")
     elif val < 0:
@@ -174,7 +175,7 @@ class UIPlayer(Adw.BreakpointBin):
     else:
       self.volume_button.set_icon_name("chr-vol-mute-symbolic")
     if Player().mute:
-      Player().set_property("mute", False)
+      Player().set_property("mute", value=False)
     Player().set_property("volume", round(val) / 100)
 
   @Gtk.Template.Callback()

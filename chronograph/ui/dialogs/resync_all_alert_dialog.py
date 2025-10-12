@@ -24,19 +24,18 @@ class ResyncAllAlertDialog(Adw.AlertDialog):
   def _on_ms_entry_changed(self, entry: Gtk.Entry) -> None:
     if self.ms_entry_regex.match(entry.get_text()):
       self.ms_entry.remove_css_class("error")
-      self.set_response_enabled("resync", True)
+      self.set_response_enabled("resync", enabled=True)
     else:
       self.ms_entry.add_css_class("error")
-      self.set_response_enabled("resync", False)
+      self.set_response_enabled("resync", enabled=False)
 
   @Gtk.Template.Callback()
   def _on_response(self, _alert_dialog, response: str) -> None:
-    if response == "resync":
-      if self.ms_entry_regex.match(self.ms_entry.get_text()):
-        ms = self.ms_entry.get_text()
-        backwards = False
-        if ms.startswith("-"):
-          backwards = True
-        self.page.resync_all(int(ms.replace("-", "")), backwards)
-        del self.page
-        self.close()
+    if response == "resync" and self.ms_entry_regex.match(self.ms_entry.get_text()):
+      ms = self.ms_entry.get_text()
+      backwards = False
+      if ms.startswith("-"):
+        backwards = True
+      self.page.resync_all(int(ms.replace("-", "")), backwards)
+      del self.page
+      self.close()

@@ -1,6 +1,7 @@
 import base64
+import contextlib
 import io
-import os
+from pathlib import Path
 from typing import Optional, Union
 
 import magic
@@ -25,7 +26,7 @@ class FileVorbis(TaggableFile):
   """A Vorbis (ogg, flac) compatible file class. Inherited from `TaggableFile`
 
   Parameters
-  --------
+  ----------
   path : str
       A path to file for loading
   """
@@ -97,7 +98,7 @@ class FileVorbis(TaggableFile):
       self._cover = None
 
   # pylint: disable=dangerous-default-value
-  def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:
+  def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:  # noqa: B006
     """Loads title, artist and album for Vorbis media format
 
     Parameters
@@ -125,7 +126,7 @@ class FileVorbis(TaggableFile):
           except KeyError:
             setattr(self, f"_{tag}", "Unknown")
     if self._title == "Unknown":  # pylint: disable=access-member-before-definition
-      self._title = os.path.basename(self._path)
+      self._title = Path(self._path).name
 
   def set_cover(self, img_path: Optional[str]) -> None:
     """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
@@ -142,7 +143,7 @@ class FileVorbis(TaggableFile):
       if "metadata_block_picture" in self._mutagen_file:
         self._mutagen_file["metadata_block_picture"] = []
 
-      self._cover = data = open(img_path, "rb").read()
+      self._cover = data = open(img_path, "rb").read()  # noqa: SIM115
 
       picture = Picture()
       picture.data = data
@@ -173,7 +174,7 @@ class FileVorbis(TaggableFile):
         self._mutagen_file["metadata_block_picture"] = []
         self._cover = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
+  def set_str_data(self, tag_name: str, new_val: str) -> None:  # noqa: D417
     """Sets string tags to provided value
 
     Parameters
@@ -182,9 +183,9 @@ class FileVorbis(TaggableFile):
 
     ::
 
-        "TIT2" -> [_title, "title"]
-        "TPE1" -> [_artist, "artist"]
-        "TALB" -> [_album, "album"]
+      "TIT2" -> [_title, "title"]
+      "TPE1" -> [_artist, "artist"]
+      "TALB" -> [_album, "album"]
 
     new_val : str
         new value for setting
@@ -216,14 +217,10 @@ class FileVorbis(TaggableFile):
         self.save()
       return
 
-    try:
+    with contextlib.suppress(KeyError):
       del self._mutagen_file.tags["UNSYNCEDLYRICS"]
-    except KeyError:
-      pass
 
-    try:
+    with contextlib.suppress(KeyError):
       del self._mutagen_file.tags["LYRICS"]
-    except KeyError:
-      pass
 
     self.save()

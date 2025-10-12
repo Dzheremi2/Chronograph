@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 13:09+0300\n"
-"PO-Revision-Date: 2025-10-04 20:02+0000\n"
+"POT-Creation-Date: 2025-10-12 08:55+0300\n"
+"PO-Revision-Date: 2025-10-11 19:07+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -20,35 +20,35 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:497
+#: chronograph/window.py:489
 msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:167
+#: chronograph/main.py:161
 msgid "translator-credits"
 msgstr ""
 "Максим Горпиніч\n"
 "antiascii"
 
-#: chronograph/main.py:175
+#: chronograph/main.py:169
 msgid "Inspiration"
 msgstr "Натхнення"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:185
+#: chronograph/main.py:179
 msgid "Build your own dictionary"
 msgstr "Створіть власний словник"
 
-#: chronograph/main.py:191
+#: chronograph/main.py:185
 msgid "Translate the App"
 msgstr "Перекласти додаток"
 
-#: chronograph/ui/dialogs/lrclib.py:118
+#: chronograph/ui/dialogs/lrclib.py:121
 msgid "Connection Error"
 msgstr "Помилка підключення"
 
-#: chronograph/ui/dialogs/lrclib.py:120
+#: chronograph/ui/dialogs/lrclib.py:123
 msgid ""
 "Failed to connect to the LRC library server. Please check your internet "
 "connection and try again"
@@ -56,85 +56,85 @@ msgstr ""
 "Не вдалося підключитися до сервера бібліотеки LRC. Перевірте підключення до "
 "Інтернету та спробуйте ще раз"
 
-#: chronograph/ui/dialogs/lrclib.py:129
+#: chronograph/ui/dialogs/lrclib.py:132
 msgid "Timeout Error"
 msgstr "Помилка тайм-ауту"
 
-#: chronograph/ui/dialogs/lrclib.py:131
+#: chronograph/ui/dialogs/lrclib.py:133
 msgid "The request to the LRC library server timed out. Please try again later"
 msgstr ""
 "Час очікування запиту до сервера бібліотеки LRC минув. Будь ласка, спробуйте "
 "пізніше"
 
-#: chronograph/ui/dialogs/lrclib.py:140
+#: chronograph/ui/dialogs/lrclib.py:141
 msgid "Something went wrong"
 msgstr "Щось пішло не так"
 
-#: chronograph/ui/dialogs/lrclib.py:142
+#: chronograph/ui/dialogs/lrclib.py:143
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 "Під час спроби підключення до сервера бібліотеки LRC сталася невідома помилка"
 
-#: chronograph/ui/dialogs/lrclib.py:235
+#: chronograph/ui/dialogs/lrclib.py:237
 msgid "No synced lyrics available"
 msgstr "Синхронізовані слова пісні не доступні"
 
-#: chronograph/ui/dialogs/lrclib.py:240
+#: chronograph/ui/dialogs/lrclib.py:242
 msgid "No plain lyrics available"
 msgstr "Прості слова пісні не доступні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
-#: chronograph/ui/sync_pages/wbw_sync_page.py:261
+#: chronograph/ui/sync_pages/lrc_sync_page.py:278
+#: chronograph/ui/sync_pages/wbw_sync_page.py:240
 msgid "Lyrics exported to clipboard"
 msgstr "Текст пісень експортовано в буфер обміну пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:307
-#: chronograph/ui/sync_pages/wbw_sync_page.py:221
+#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/wbw_sync_page.py:202
 msgid "Lyrics exported to file"
 msgstr "Текст пісні експортовано у файл пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:308
-#: chronograph/ui/sync_pages/wbw_sync_page.py:222
-#: chronograph/ui/widgets/song_card.py:169
+#: chronograph/ui/sync_pages/lrc_sync_page.py:290
+#: chronograph/ui/sync_pages/wbw_sync_page.py:203
+#: chronograph/ui/widgets/song_card.py:161
 msgid "Show"
 msgstr "Показати"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:451
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#: chronograph/ui/sync_pages/lrc_sync_page.py:474
 msgid "Failed to connect to LRClib.net"
 msgstr "Не вдалося підключитися до LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:454
-#: chronograph/ui/sync_pages/lrc_sync_page.py:497
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Connection to LRClib.net timed out"
 msgstr "Час очікування з'єднання з LRClib.net минув"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
-#: chronograph/ui/sync_pages/lrc_sync_page.py:501
+#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:480
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Сталася помилка під час підключення до LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:514
+#: chronograph/ui/sync_pages/lrc_sync_page.py:492
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успішно опубліковано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:496
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неправильний токен публікації: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:526
+#: chronograph/ui/sync_pages/lrc_sync_page.py:500
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Сталася невідома помилка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:543
+#: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid "Unable to publish lyrics"
 msgstr "Неможливо опублікувати текст пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:545
+#: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -142,98 +142,98 @@ msgstr ""
 "Щоб опублікувати текст пісні, для неї необхідно встановити поля назви, "
 "виконавця, альбому та тексту пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:550
+#: chronograph/ui/sync_pages/lrc_sync_page.py:520
 msgid "Close"
 msgstr "Закрити"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:554
+#: chronograph/ui/sync_pages/lrc_sync_page.py:524
 msgid "Cannot publish empty lyrics"
 msgstr "Не можна публікувати порожні тексти пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:555
+#: chronograph/ui/sync_pages/lrc_sync_page.py:525
 msgid "Why?"
 msgstr "Чому?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:561
+#: chronograph/ui/sync_pages/lrc_sync_page.py:531
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:135
+#: chronograph/ui/sync_pages/wbw_sync_page.py:126
 msgid "No lyrics available"
 msgstr "Немає текстів пісень"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:137
+#: chronograph/ui/sync_pages/wbw_sync_page.py:127
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Ви не надали жодного тексту пісні для синхронізації"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:346
+#: chronograph/ui/sync_pages/wbw_sync_page.py:318
 msgid "No lyrics to be re-synced"
-msgstr ""
+msgstr "Немає текстів пісень для повторної синхронізації"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:348
+#: chronograph/ui/sync_pages/wbw_sync_page.py:320
 msgid "Open Sync mode to re-sync all words"
-msgstr ""
+msgstr "Відкрийте режим синхронізації, щоб повторно синхронізувати всі слова"
 
-#: chronograph/ui/widgets/song_card.py:108 data/gtk/window.blp:250
+#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr "Нічого"
 
-#: chronograph/ui/widgets/song_card.py:117 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:148 data/gtk/ui/dialogs/Preferences.blp:239
+#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
 #: data/gtk/ui/dialogs/Preferences.blp:241
 msgid "Plain"
 msgstr "Прості"
 
-#: chronograph/ui/widgets/song_card.py:153
+#: chronograph/ui/widgets/song_card.py:145
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Про Файл"
 
-#: chronograph/ui/widgets/song_card.py:156
+#: chronograph/ui/widgets/song_card.py:148
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Назва"
 
-#: chronograph/ui/widgets/song_card.py:160
-#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:65
+#: chronograph/ui/widgets/song_card.py:152
+#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Виконавець"
 
-#: chronograph/ui/widgets/song_card.py:163
-#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:69
+#: chronograph/ui/widgets/song_card.py:155
+#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Альбом"
 
-#: chronograph/ui/widgets/song_card.py:165
+#: chronograph/ui/widgets/song_card.py:157
 msgid "Path"
 msgstr "Шлях"
 
-#: chronograph/ui/widgets/song_card.py:237
-#: chronograph/ui/widgets/song_card.py:239
+#: chronograph/ui/widgets/song_card.py:229
+#: chronograph/ui/widgets/song_card.py:231
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: chronograph/ui/widgets/song_card.py:241
-#: chronograph/ui/widgets/song_card.py:243
+#: chronograph/ui/widgets/song_card.py:233
+#: chronograph/ui/widgets/song_card.py:235
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: chronograph/ui/widgets/song_card.py:245
-#: chronograph/ui/widgets/song_card.py:247
+#: chronograph/ui/widgets/song_card.py:237
+#: chronograph/ui/widgets/song_card.py:239
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Невідомий"
 
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
-#: chronograph/ui/widgets/saved_location.py:28
-#: chronograph/ui/widgets/saved_location.py:32
+#: chronograph/ui/widgets/saved_location.py:26
+#: chronograph/ui/widgets/saved_location.py:30
 msgid "Path: {}"
 msgstr "Шлях: {}"
 
@@ -253,8 +253,8 @@ msgstr "Так"
 msgid "No"
 msgstr "Ні"
 
-#: chronograph/ui/widgets/ui_player.py:54
-#: chronograph/ui/widgets/ui_player.py:69
+#: chronograph/ui/widgets/ui_player.py:53
+#: chronograph/ui/widgets/ui_player.py:66
 #, python-brace-format
 msgid "{vol}%"
 msgstr "{vol}%"
@@ -399,7 +399,7 @@ msgstr "Повторний аналіз поточного каталогу"
 msgid "Add current directory to saves"
 msgstr "Додати поточний каталог до збереження"
 
-#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:82
+#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Шукати"
 
@@ -442,24 +442,20 @@ msgid "Replay selected line/word"
 msgstr "Відтворити вибраний рядок/слово"
 
 #: data/gtk/ui/shortcuts-dialog.blp:54
-#, fuzzy
 msgid "Re-sync default amount of ms back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати кількість мс за замовчуванням назад"
 
 #: data/gtk/ui/shortcuts-dialog.blp:59
-#, fuzzy
 msgid "Re-sync large amount of ms back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати великий обсяг мс назад"
 
 #: data/gtk/ui/shortcuts-dialog.blp:64
-#, fuzzy
 msgid "Re-sync default amount of ms forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати кількість мс уперед за замовчуванням"
 
 #: data/gtk/ui/shortcuts-dialog.blp:69
-#, fuzzy
 msgid "Re-sync large amount of ms forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати велику кількість мс вперед"
 
 #: data/gtk/ui/shortcuts-dialog.blp:75
 msgid "Line-by-Line line actions"
@@ -502,15 +498,15 @@ msgstr "Один рядок вгору"
 msgid "One line down"
 msgstr "Один рядок вниз"
 
-#: data/gtk/ui/dialogs/LRClib.blp:77
+#: data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search LRClib for provided title and artist"
 msgstr "Шукати у LRClib по заданій назві та виконавцю"
 
-#: data/gtk/ui/dialogs/LRClib.blp:123
+#: data/gtk/ui/dialogs/LRClib.blp:124
 msgid "Synced"
 msgstr "Синхронізовані"
 
-#: data/gtk/ui/dialogs/LRClib.blp:177
+#: data/gtk/ui/dialogs/LRClib.blp:178
 msgid ""
 "Synced lyrics are used by default, to use plain, select 'Use plain' from "
 "submenu"
@@ -518,28 +514,29 @@ msgstr ""
 "Синхронізовані слова пісень використовуються за замовченням, щоб "
 "використовувати прості, оберіть \"Використовувати прості\" із випадного меню"
 
-#: data/gtk/ui/dialogs/LRClib.blp:180
+#: data/gtk/ui/dialogs/LRClib.blp:181
 msgid "Use plain"
 msgstr "Використовувати прості"
 
-#: data/gtk/ui/dialogs/LRClib.blp:181
+#: data/gtk/ui/dialogs/LRClib.blp:182
 msgid "Use synced"
 msgstr "Використовувати синхронізовані"
 
-#: data/gtk/ui/dialogs/LRClib.blp:188
+#: data/gtk/ui/dialogs/LRClib.blp:189
 msgid "Use"
 msgstr "Використовувати"
 
-#: data/gtk/ui/dialogs/LRClib.blp:224
+#: data/gtk/ui/dialogs/LRClib.blp:225
 msgid "Nothing was found for this request"
 msgstr "Нічого не було знайдено за цим запитом"
 
-#: data/gtk/ui/dialogs/LRClib.blp:225
+#: data/gtk/ui/dialogs/LRClib.blp:226
 msgid "Try out another request, maybe there are mistakes in request text."
 msgstr "Спробуйте інший запит, мабуть у тексті є помилки."
 
-#: data/gtk/ui/dialogs/LRClib.blp:229
-msgid "Search on LRClib by title and artist names"
+#: data/gtk/ui/dialogs/LRClib.blp:230
+#, fuzzy
+msgid "Search on LRClib by title, artist and album names"
 msgstr "Шукайте в LRClib за назвою та іменами виконавців"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
@@ -704,23 +701,24 @@ msgstr "Використовуйте 3-значні мілісекунди за�
 #: data/gtk/ui/dialogs/Preferences.blp:97
 #: data/gtk/ui/dialogs/Preferences.blp:123
 msgid "Default re-sync value"
-msgstr ""
+msgstr "Значення повторної синхронізації за замовчуванням"
 
 #: data/gtk/ui/dialogs/Preferences.blp:98
 #: data/gtk/ui/dialogs/Preferences.blp:124
 msgid "Amount of milliseconds default re-sync performs by"
 msgstr ""
+"Кількість мілісекунд, яку виконується для повторної синхронізації за "
+"замовчуванням"
 
 #: data/gtk/ui/dialogs/Preferences.blp:108
 #: data/gtk/ui/dialogs/Preferences.blp:134
-#, fuzzy
 msgid "Large re-sync value"
-msgstr "Синхронізувати/десинхронізувати рядок"
+msgstr "Велике значення повторної синхронізації"
 
 #: data/gtk/ui/dialogs/Preferences.blp:109
 #: data/gtk/ui/dialogs/Preferences.blp:135
 msgid "Amount of milliseconds large re-sync performs by"
-msgstr ""
+msgstr "Кількість мілісекунд, яку виконує велика повторна синхронізація"
 
 #: data/gtk/ui/dialogs/Preferences.blp:147
 msgid "File Manipulation"
@@ -832,14 +830,12 @@ msgid "Replay selected line"
 msgstr "Повторно програти рядок"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
-#, fuzzy
 msgid "Re-sync selected line back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати вибраний рядок назад"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
-#, fuzzy
 msgid "Re-sync selected line forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати вибраний рядок вперед"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:135
@@ -891,19 +887,17 @@ msgstr "Додати рядок нижче"
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:175
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:179
 msgid "Utilities"
-msgstr ""
+msgstr "Комунальні послуги"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:202
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:181
-#, fuzzy
 msgid "Re-sync all"
-msgstr "Синхронізувати/десинхронізувати рядок"
+msgstr "Повторно синхронізувати все"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:203
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
-#, fuzzy
 msgid "Edit metadata"
-msgstr "Редагувати метадані пісні"
+msgstr "Редагувати метадані"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:204
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:183
@@ -915,14 +909,12 @@ msgid "Add line"
 msgstr "Додайте лінію"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:115
-#, fuzzy
 msgid "Re-sync selected word back"
-msgstr "Десинхронізувати обраний рядок на 100мс назад"
+msgstr "Повторно синхронізувати вибране слово назад"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
-#, fuzzy
 msgid "Re-sync selected word forward"
-msgstr "Десинхронізувати обраний рядок на 100мс вперед"
+msgstr "Повторно синхронізувати вибране слово вперед"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
 msgid "Edit"

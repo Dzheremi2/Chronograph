@@ -1,7 +1,7 @@
 import threading
 
 import requests
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
@@ -160,12 +160,12 @@ class LRClib(Adw.Dialog):
     threading.Thread(target=do_request, daemon=True).start()
 
   def _import_synced(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
 
     if text := self.synced_text_view.get_buffer().get_text(
       self.synced_text_view.get_buffer().get_start_iter(),
       self.synced_text_view.get_buffer().get_end_iter(),
-      False,
+      include_hidden_chars=False,
     ):
       if isinstance(
         (page := Constants.WIN.navigation_view.get_visible_page()), LRCSyncPage
@@ -183,12 +183,12 @@ class LRClib(Adw.Dialog):
       logger.debug("Imported synced lyrics")
 
   def _import_plain(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
 
     if text := self.plain_text_view.get_buffer().get_text(
       self.plain_text_view.get_buffer().get_start_iter(),
       self.plain_text_view.get_buffer().get_end_iter(),
-      False,
+      include_hidden_chars=False,
     ):
       if isinstance(
         (page := Constants.WIN.navigation_view.get_visible_page()), LRCSyncPage

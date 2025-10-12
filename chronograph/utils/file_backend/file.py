@@ -1,3 +1,4 @@
+import contextlib
 from typing import Optional
 
 import mutagen
@@ -56,10 +57,8 @@ class BaseFile:
         /path/to/file
     """
     self._mutagen_file = mutagen.File(path)
-    try:
+    with contextlib.suppress(Exception):
       self._duration = self._mutagen_file.info.length
-    except Exception:
-      pass
 
   def get_cover_texture(self) -> Gdk.Texture:
     """Prepares a Gdk.Texture for setting to SongCard.paintable
@@ -76,8 +75,7 @@ class BaseFile:
       pixbuf = loader.get_pixbuf()
 
       scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
-      _texture = Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
-      return _texture
+      return Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
     return Constants.COVER_PLACEHOLDER
 
   @property
@@ -134,13 +132,15 @@ class BaseFile:
   def load_str_data(self) -> None:
     """Reads the string data from file and binds it to the instance
 
-    Should be implemented in file specific child classes"""
+    Should be implemented in file specific child classes
+    """
     raise NotImplementedError
 
   def load_cover(self) -> None:
     """Reads the cover from the file and binds it to the instance
 
-    Should be implemented in file specific child classes"""
+    Should be implemented in file specific child classes
+    """
     raise NotImplementedError
 
   def set_str_data(self, tag_name: str, new_val: str) -> None:

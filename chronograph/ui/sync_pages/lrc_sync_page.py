@@ -51,20 +51,19 @@ class LRCSyncPage(Adw.NavigationPage):
     self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
   ) -> None:
     def on_shown(*_args) -> None:
-      # pylint: disable=protected-access
-      if isinstance(self._card._file, FileUntaggable):
-        self.action_set_enabled("controls.edit_metadata", False)
+      if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+        self.action_set_enabled("controls.edit_metadata", enabled=False)
 
     super().__init__()
     self._card: SongCard = card
-    self._lyrics_file = card._lyrics_file
+    self._lyrics_file = card._lyrics_file  # noqa: SLF001
     self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
     self._card.bind_property("title", self, "title", GObject.BindingFlags.SYNC_CREATE)
-    if isinstance(self._card._file, FileUntaggable):
-      self.action_set_enabled("controls.edit_metadata", False)
+    if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+      self.action_set_enabled("controls.edit_metadata", enabled=False)
     self._player_widget = UIPlayer(file, card)
     self.player_container.append(self._player_widget)
-    Player()._gst_player.connect("pos-upd", self._on_timestamp_changed)
+    Player()._gst_player.connect("pos-upd", self._on_timestamp_changed)  # noqa: SLF001
 
     self.connect("showing", on_shown)
     self.connect("hidden", self._on_page_closed)
@@ -107,10 +106,7 @@ class LRCSyncPage(Adw.NavigationPage):
     # pylint: disable=not-an-iterable
     text = "\n".join([line.get_text() for line in self.sync_lines])
     timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2,3}]")
-    for line in text.strip().splitlines():
-      if not timestamp_pattern.search(line):
-        return False
-    return True
+    return all(timestamp_pattern.search(line) for line in text.strip().splitlines())
 
   ############### Line Actions ###############
   def _append_end_line(self, *_args) -> None:
@@ -156,8 +152,7 @@ class LRCSyncPage(Adw.NavigationPage):
   ############### Sync Actions ###############
   def _sync(self, *_args) -> None:
     if self.selected_line:
-      # pylint: disable=protected-access
-      ns = Player()._gst_player.props.position
+      ns = Player()._gst_player.props.position  # noqa: SLF001
       timestamp = ns_to_timestamp(ns)
       pattern = re.compile(r"\[([^\[\]]+)\] ")
       if pattern.search(self.selected_line.get_text()) is None:
@@ -170,10 +165,12 @@ class LRCSyncPage(Adw.NavigationPage):
       logger.debug("Line was synced with timestamp: %s", timestamp)
 
       for index, line in enumerate(self.sync_lines):
-        if line == self.selected_line:
-          if (row := self.sync_lines.get_row_at_index(index + 1)) is not None:
-            row.grab_focus()
-            return
+        if (
+          line == self.selected_line
+          and (row := self.sync_lines.get_row_at_index(index + 1)) is not None
+        ):
+          row.grab_focus()
+          return
 
   def _replay(self, *_args) -> None:
     ns = timestamp_to_ns(self.selected_line.get_text())
@@ -186,11 +183,10 @@ class LRCSyncPage(Adw.NavigationPage):
         mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000
       else:
         mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000
+    elif not large:
+      mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000 * -1
     else:
-      if not large:
-        mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000 * -1
-      else:
-        mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000 * -1
+      mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000 * -1
     pattern = re.compile(r"\[([^\[\]]+)\] ")
     match = pattern.search(self.selected_line.get_text())
     if match is None:
@@ -261,7 +257,7 @@ class LRCSyncPage(Adw.NavigationPage):
     dialog.open(Constants.WIN, None, on_selected_lyrics_file)
 
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib
+    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)
@@ -324,7 +320,6 @@ class LRCSyncPage(Adw.NavigationPage):
       if not timestamps:
         return
 
-      # pylint: disable=protected-access
       timestamp = pos
       if timestamp < timestamps[0]:
         return
@@ -446,7 +441,7 @@ class LRCSyncPage(Adw.NavigationPage):
           lrclib_logger.warning("Publishing failed: %s", _err, stack_info=True)
           self.export_lyrics_button.set_sensitive(True)
           self.export_lyrics_button.set_icon_name("export-to-symbolic")
-          return  # pylint: disable=return-in-finally, lost-exception
+          return  # noqa: B012
 
       challenge_data = challenge_data.json()
       nonce = solve_challenge(
@@ -489,7 +484,7 @@ class LRCSyncPage(Adw.NavigationPage):
         self.export_lyrics_button.set_icon_name("export-to-symbolic")
         if _err:
           lrclib_logger.warning("Publishing failed: %s", _err, stack_info=True)
-          return  # pylint: disable=return-in-finally, lost-exception
+          return  # noqa: B012
 
       lrclib_logger.info("Publishing status code: %s", response.status_code)
       if response.status_code == 201:
@@ -582,7 +577,7 @@ class LRCSyncLine(Adw.EntryRow):
       page: LRCSyncPage = self.get_ancestor(LRCSyncPage)
       lines = []
       for line in page.sync_lines:
-        lines.append(line)
+        lines.append(line)  # noqa: PERF402
       index = lines.index(self)
       page.sync_lines.remove(self)
       if (row := page.sync_lines.get_row_at_index(index - 1)) is not None:

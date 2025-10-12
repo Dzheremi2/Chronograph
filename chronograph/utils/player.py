@@ -21,7 +21,7 @@ class GstPlayer(GstPlay.Play):
     "seek-done": (GObject.SignalFlags.RUN_FIRST, None, ()),
   }
 
-  def __init__(self):
+  def __init__(self) -> None:
     super().__init__()
 
     self.set_volume(0)
@@ -106,7 +106,7 @@ class Player(GObject.Object):
 
   looped: bool = False
 
-  def __init__(self):
+  def __init__(self) -> None:
     super().__init__()
     self._gst_player = GstPlayer()
     self.bind_property(
@@ -180,7 +180,7 @@ class Player(GObject.Object):
   def stop(self) -> None:
     self._gst_player.stop()
     self.props.playing = False
-    self.inhibit(False)
+    self.inhibit(inhibit=False)
     logger.info("Player stopped")
 
   def _on_eos(self, *_args) -> None:
@@ -188,7 +188,7 @@ class Player(GObject.Object):
     rate = self.rate
     self.seek(0)
     if not self.looped:
-      self.set_property("playing", False)
+      self.set_property("playing", value=False)
       self._gst_player.pause()
       logger.info("Stream ended")
     else:

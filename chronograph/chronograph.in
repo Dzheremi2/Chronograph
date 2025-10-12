@@ -1,5 +1,4 @@
 #!@PYTHON@
-# pylint: disable=all
 
 import gettext
 import locale
@@ -21,7 +20,7 @@ if __name__ == "__main__":
   from gi.repository import Gio
 
   resource = Gio.Resource.load(os.path.join(pkgdatadir, "Chronograph.gresource"))
-  resource._register()
+  resource._register()  # noqa: SLF001
 
   from chronograph import main
 

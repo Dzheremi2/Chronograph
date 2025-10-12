@@ -1,3 +1,4 @@
+import contextlib
 import io
 from typing import Optional
 
@@ -16,7 +17,7 @@ class FileID3(TaggableFile):
   """A ID3 compatible file class. Inherited from `TaggableFile`
 
   Parameters
-  --------
+  ----------
   path : str
       A path to file for loading
   """
@@ -29,7 +30,7 @@ class FileID3(TaggableFile):
       tags = self._mutagen_file.tags
       if not isinstance(tags, ID3):
         return
-      apics = [key for key in tags.keys() if key.startswith("APIC")]
+      apics = [key for key in tags if key.startswith("APIC")]
       for key in apics:
         apic = tags[key]
         bytes_origin = apic.data
@@ -61,7 +62,7 @@ class FileID3(TaggableFile):
       self._cover = None
 
   def load_str_data(self) -> None:
-    """Sets all string data from tags. If data is unavailable, then sets `Unknоwn`"""
+    """Sets all string data from tags. If data is unavailable, then sets `Unknown`"""
     if self._mutagen_file.tags is not None:
       try:
         if (_title := self._mutagen_file.tags["TIT2"].text[0]) is not None:
@@ -90,9 +91,9 @@ class FileID3(TaggableFile):
         path to image or None if cover should be deleted
     """
     if img_path is not None:
-      self._cover = open(img_path, "rb").read()
+      self._cover = open(img_path, "rb").read()  # noqa: SIM115
       if self._mutagen_file.tags:
-        for tag in dict(self._mutagen_file.tags).copy().keys():
+        for tag in dict(self._mutagen_file.tags).copy():
           if tag.startswith("APIC"):
             del self._mutagen_file.tags[tag]
       else:
@@ -108,15 +109,14 @@ class FileID3(TaggableFile):
         )
       )
       return
-    else:
-      if self._mutagen_file.tags:
-        for tag in dict(self._mutagen_file.tags).copy().keys():
-          if tag.startswith("APIC"):
-            del self._mutagen_file.tags[tag]
+    if self._mutagen_file.tags:
+      for tag in dict(self._mutagen_file.tags).copy():
+        if tag.startswith("APIC"):
+          del self._mutagen_file.tags[tag]
 
       self._cover = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
+  def set_str_data(self, tag_name: str, new_val: str) -> None:  # noqa: D417
     """Sets string tags to provided value
 
     Parameters
@@ -163,9 +163,7 @@ class FileID3(TaggableFile):
         self.save()
       return
 
-    try:
+    with contextlib.suppress(KeyError):
       del self._mutagen_file.tags["USLT"]
-    except KeyError:
-      pass
 
     self.save()

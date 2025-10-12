@@ -29,7 +29,7 @@ class WordWidget(Adw.Bin):
     self.word.connect("notify::active", self._set_in_current_line)
     self.word.connect("notify::highlighted", self._on_is_highlighted_changed)
     if self.word.time != -1:
-      self.word.set_property("synced", True)
+      self.word.set_property("synced", value=True)
 
   def _on_synced_changed(self, obj: WordModel, _arg) -> None:
     is_synced = obj.synced
