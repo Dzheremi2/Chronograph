@@ -2,7 +2,5 @@ groups:
   lrclib:
     - name: search
       callback: _search
-    - name: import_synced
-      callback: _import_synced
-    - name: import_plain
-      callback: _import_plain
+    - name: import_lyrics
+      callback: _import_lyrics

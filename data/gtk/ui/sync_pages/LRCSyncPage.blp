@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $LRCSyncPage : Adw.NavigationPage {
+template $LRCSyncPage: Adw.NavigationPage {
   title: _("Syncing");
 
   Adw.BreakpointBin {
@@ -24,6 +24,7 @@ template $LRCSyncPage : Adw.NavigationPage {
         MenuButton {
           icon-name: "app-menu-symbolic";
           tooltip-text: _("App settings, info and utils");
+
           menu-model: menu about_app {
             section {
               submenu {
@@ -69,6 +70,7 @@ template $LRCSyncPage : Adw.NavigationPage {
               item (_("About"), "app.about")
             }
           };
+
           primary: true;
         }
       }
@@ -80,7 +82,7 @@ template $LRCSyncPage : Adw.NavigationPage {
 
       [top]
       Adw.Clamp {
-        margin-top: 4;
+        margin-top: 8;
         orientation: horizontal;
         maximum-size: 600;
 
@@ -88,7 +90,6 @@ template $LRCSyncPage : Adw.NavigationPage {
           orientation: horizontal;
           valign: center;
           spacing: 4;
-          margin-bottom: 4;
           margin-start: 4;
           margin-end: 4;
 
@@ -99,7 +100,7 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "suggested-action",
-              "circular"
+              "circular",
             ]
           }
 
@@ -108,7 +109,9 @@ template $LRCSyncPage : Adw.NavigationPage {
             icon-name: "replay-line-symbolic";
             action-name: "controls.rplay";
 
-            styles ["circular"]
+            styles [
+              "circular",
+            ]
           }
 
           Button rew_button {
@@ -116,7 +119,9 @@ template $LRCSyncPage : Adw.NavigationPage {
             icon-name: "100ms-back-symbolic";
             clicked => $_on_seek_button_released();
 
-            styles ["circular"]
+            styles [
+              "circular",
+            ]
           }
 
           Button forw_button {
@@ -124,16 +129,18 @@ template $LRCSyncPage : Adw.NavigationPage {
             icon-name: "100ms-forw-symbolic";
             clicked => $_on_seek_button_released();
 
-            styles ["circular"]
+            styles [
+              "circular",
+            ]
           }
 
           MenuButton import_lyrics_button {
             tooltip-text: _("Import from …");
             icon-name: "import-from-symbolic";
+
             menu-model: menu import_from {
               section {
                 label: _("Import from …");
-
                 item (_("File"), "import.file")
                 item (_("Clipboard"), "import.clipboard")
                 item ("LRClib", "import.lrclib")
@@ -142,17 +149,17 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "osd",
-              "circular"
+              "circular",
             ]
           }
 
           MenuButton export_lyrics_button {
             tooltip-text: _("Export to …");
             icon-name: "export-to-symbolic";
+
             menu-model: menu export_to {
               section {
                 label: _("Export to …");
-
                 item (_("File"), "export.file")
                 item (_("Clipboard"), "export.clipboard")
                 item ("LRClib", "export.lrclib")
@@ -161,7 +168,7 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "osd",
-              "circular"
+              "circular",
             ]
           }
 
@@ -169,16 +176,18 @@ template $LRCSyncPage : Adw.NavigationPage {
             hexpand: true;
             visible: true;
 
-            styles ["spacer"]
+            styles [
+              "spacer",
+            ]
           }
 
           MenuButton line_actions_button {
             tooltip-text: _("Actions with selected line");
             icon-name: "line-actions-symbolic";
+
             menu-model: menu line_actions {
               section {
                 label: _("Actions with selected line");
-
                 item (_("Remove line"), "line.remove")
                 item (_("Prepend line"), "line.prepend")
                 item (_("Append line"), "line.append")
@@ -188,29 +197,34 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "osd",
-              "circular"
+              "circular",
             ]
           }
 
           MenuButton utilities_button {
             tooltip-text: _("Utilities");
             icon-name: "chr-cogwheel-symbolic";
+
             menu-model: menu {
               section {
                 label: _("Utilities");
-
                 item (_("Re-sync all"), "utils.resync_all")
                 item (_("Edit metadata"), "controls.edit_metadata")
                 item (_("About file"), "controls.file_info")
               }
             };
 
-            styles ["circular", "osd"]
+            styles [
+              "circular",
+              "osd",
+            ]
           }
         }
       }
 
       ScrolledWindow sync_lines_scrolled_window {
+        margin-top: 8;
+
         Adw.Clamp {
           orientation: horizontal;
           maximum-size: 600;
@@ -225,21 +239,17 @@ template $LRCSyncPage : Adw.NavigationPage {
             ListBox sync_lines {
               selection-mode: none;
 
-              styles ["boxed-list"]
+              styles [
+                "boxed-list",
+              ]
             }
 
-            Box add_line_button_box {
-              halign: end;
-
-              Button add_line_button {
+            Adw.PreferencesGroup {
+              margin-bottom: 8;
+              Adw.ButtonRow {
+                start-icon-name: "add-line-symbolic";
+                title: _("Add Line");
                 action-name: "line.append_end";
-
-                Adw.ButtonContent {
-                  label: _("Add line");
-                  icon-name: "add-line-symbolic";
-                }
-
-                styles ["suggested-action"]
               }
             }
           }

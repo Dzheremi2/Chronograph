@@ -33,8 +33,12 @@ class LRClib(Adw.Dialog):
   lrctracks_list_box: Gtk.ListBox = gtc()
   lyrics_box: Gtk.Box = gtc()
 
+  lyrics_stack: Adw.ViewStack = gtc()
+  synced_stack_page: Gtk.Box = gtc()
   synced_text_view: Gtk.TextView = gtc()
+  plain_stack_page: Gtk.Box = gtc()
   plain_text_view: Gtk.TextView = gtc()
+  import_button: Gtk.Button = gtc()
 
   collapsed_lyrics_nav_page: Adw.NavigationPage = gtc()
   collapsed_bin: Adw.Bin = gtc()
@@ -48,6 +52,7 @@ class LRClib(Adw.Dialog):
     self.album_entry.set_text(album)
 
     self._on_title_entry_changed(self.title_entry)
+    GLib.idle_add(self.import_button.set_sensitive, False)  # noqa: FBT003
 
   @Gtk.Template.Callback()
   def _on_title_entry_changed(self, entry: Gtk.Entry) -> None:
@@ -159,14 +164,25 @@ class LRClib(Adw.Dialog):
 
     threading.Thread(target=do_request, daemon=True).start()
 
-  def _import_synced(self, *_args) -> None:
+  def _import_lyrics(self, *_args) -> None:
     from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
 
-    if text := self.synced_text_view.get_buffer().get_text(
-      self.synced_text_view.get_buffer().get_start_iter(),
-      self.synced_text_view.get_buffer().get_end_iter(),
-      include_hidden_chars=False,
-    ):
+    text = ""
+    if self.lyrics_stack.get_visible_child() == self.synced_stack_page:
+      text = self.synced_text_view.get_buffer().get_text(
+        self.synced_text_view.get_buffer().get_start_iter(),
+        self.synced_text_view.get_buffer().get_end_iter(),
+        include_hidden_chars=False,
+      )
+      debug = "Synced"
+    elif self.lyrics_stack.get_visible_child() == self.plain_stack_page:
+      text = self.plain_text_view.get_buffer().get_text(
+        self.plain_text_view.get_buffer().get_start_iter(),
+        self.plain_text_view.get_buffer().get_end_iter(),
+        include_hidden_chars=False,
+      )
+      debug = "Plain"
+    if text:
       if isinstance(
         (page := Constants.WIN.navigation_view.get_visible_page()), LRCSyncPage
       ):
@@ -180,32 +196,7 @@ class LRClib(Adw.Dialog):
         buffer.set_text(text)
         page.edit_view_text_view.set_buffer(buffer)
       self.close()
-      logger.debug("Imported synced lyrics")
-
-  def _import_plain(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
-
-    if text := self.plain_text_view.get_buffer().get_text(
-      self.plain_text_view.get_buffer().get_start_iter(),
-      self.plain_text_view.get_buffer().get_end_iter(),
-      include_hidden_chars=False,
-    ):
-      if isinstance(
-        (page := Constants.WIN.navigation_view.get_visible_page()), LRCSyncPage
-      ):
-        page: LRCSyncPage
-        page.sync_lines.remove_all()
-        for _, line in enumerate(text.splitlines()):
-          page.sync_lines.append(LRCSyncLine(line))
-      elif isinstance(
-        (page := Constants.WIN.navigation_view.get_visible_page()), WBWSyncPage
-      ):
-        page: WBWSyncPage
-        buffer = Gtk.TextBuffer()
-        buffer.set_text(text)
-        page.edit_view_text_view.set_buffer(buffer)
-      self.close()
-      logger.debug("Imported plain lyrics")
+      logger.info("%s lyrics imported successfully", debug)
 
   @Gtk.Template.Callback()
   def on_breakpoint(self, *_args) -> None:
@@ -224,9 +215,9 @@ class LRClib(Adw.Dialog):
     Parameters
     ----------
     _listbox : Gtk.ListBox
-        A Gtk.ListBox containing the tracks
+      A Gtk.ListBox containing the tracks
     row : Gtk.ListBoxRow
-        A Gtk.ListBoxRow containing the selected track
+      A Gtk.ListBoxRow containing the selected track
     """
     synced: str = row.get_child().synced
     plain: str = row.get_child().plain
@@ -243,6 +234,7 @@ class LRClib(Adw.Dialog):
 
     if self.collapsed_bin.get_child() == self.lyrics_box:
       self.nav_view.push(self.collapsed_lyrics_nav_page)
+    self.import_button.set_sensitive(True)
     logger.debug(
       "Lyrics for \n----------\n%s\n----------\nwere loaded to TextViews",
       row.get_child().get_tooltip_text(),
