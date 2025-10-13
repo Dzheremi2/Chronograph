@@ -9,7 +9,7 @@ from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.lrclib_track import LRClibTrack
 from dgutils.actions import Actions
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 lrclib_logger = Constants.LRCLIB_LOGGER
 
@@ -165,7 +165,7 @@ class LRClib(Adw.Dialog):
     threading.Thread(target=do_request, daemon=True).start()
 
   def _import_lyrics(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
 
     text = ""
     if self.lyrics_stack.get_visible_child() == self.synced_stack_page:
@@ -235,6 +235,8 @@ class LRClib(Adw.Dialog):
     if self.collapsed_bin.get_child() == self.lyrics_box:
       self.nav_view.push(self.collapsed_lyrics_nav_page)
     self.import_button.set_sensitive(True)
+    self.synced_text_view.remove_css_class("placeholder-text")
+    self.plain_text_view.remove_css_class("placeholder-text")
     logger.debug(
       "Lyrics for \n----------\n%s\n----------\nwere loaded to TextViews",
       row.get_child().get_tooltip_text(),

@@ -23,6 +23,11 @@
   }
 }
 
+/* Dim for text in `TextView`s */
+textview.placeholder-text {
+  opacity: var(--dim-opacity);
+}
+
 .drag-target { /* Drag'n'Drop overlay*/
   background-color: hsl(from var(--accent-bg-color) h calc(s * 0.7) calc(l * 0.7));
   opacity: 0.85;
