@@ -26,7 +26,7 @@ class LineModel(GObject.Object):
 
   def __init__(self, line: LineToken) -> None:
     """Create model from `LineToken`"""
-    from chronograph.ui.widgets.wbw.line_widget import LineWidget  # noqa: PLC0415
+    from chronograph.ui.widgets.wbw.line_widget import LineWidget
 
     try:
       ms = int(line)
@@ -64,14 +64,14 @@ class LineModel(GObject.Object):
       self.set_property("cindex", index)
       self.emit("cindex-changed", old, index)
       for word in self:
-        word.set_property("highlighted", value=False)
-      self.words.get_item(self.cindex).set_property("highlighted", value=True)
+        word.set_property("highlighted", False)
+      self.words.get_item(self.cindex).set_property("highlighted", True)
     else:
       # pylint: disable=superfluous-parens
       self.emit("end-of-line", not (index < 0))
       self.cindex = -1
       for word in self:
-        word.set_property("highlighted", value=False)
+        word.set_property("highlighted", False)
 
   def next(self) -> None:
     """Advance to the next word."""
@@ -96,7 +96,7 @@ class LineModel(GObject.Object):
       if self.cindex == -1 and self.words.get_n_items() > 0:
         self.set_current(0)
     elif self.cindex != -1:
-        self.set_current(-1)
+      self.set_current(-1)
 
   def get_latest_unsynced(self) -> Optional[tuple[WordModel, int]]:
     """Returns the last word and its index if not all words were synchronized. `None` if all words are synced

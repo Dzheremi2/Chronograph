@@ -123,9 +123,9 @@ class UIPlayer(Adw.BreakpointBin):
   @Gtk.Template.Callback()
   def _toggle_play(self, *_args) -> None:
     if Player().playing:
-      Player().set_property("playing", value=False)
+      Player().set_property("playing", False)
     else:
-      Player().set_property("playing", value=True)
+      Player().set_property("playing", True)
     Player().play_pause()
     self._on_playing_changed(Player(), None)
 
@@ -175,7 +175,7 @@ class UIPlayer(Adw.BreakpointBin):
     else:
       self.volume_button.set_icon_name("chr-vol-mute-symbolic")
     if Player().mute:
-      Player().set_property("mute", value=False)
+      Player().set_property("mute", False)
     Player().set_property("volume", round(val) / 100)
 
   @Gtk.Template.Callback()
