@@ -188,7 +188,7 @@ class Player(GObject.Object):
     rate = self.rate
     self.seek(0)
     if not self.looped:
-      self.set_property("playing", value=False)
+      self.set_property("playing", False)
       self._gst_player.pause()
       logger.info("Stream ended")
     else:
