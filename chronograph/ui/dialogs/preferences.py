@@ -3,7 +3,7 @@ from gi.repository import Adw, Gtk
 from chronograph.internal import Constants, Schema
 from dgutils.decorators import singleton
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 
 
 @singleton

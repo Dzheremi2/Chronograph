@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 from chronograph.internal import Constants
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 
 I18N_STRINGS = (
   _("Title"),

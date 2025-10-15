@@ -13,7 +13,7 @@ from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.file_backend.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics import LyricsFile, LyricsFormat
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 

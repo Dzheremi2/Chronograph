@@ -184,7 +184,6 @@ class BaseFile:
     raise NotImplementedError
 
 
-# pylint: disable=abstract-method
 class TaggableFile(BaseFile):
   """Base class for files that support metadata editing.
 

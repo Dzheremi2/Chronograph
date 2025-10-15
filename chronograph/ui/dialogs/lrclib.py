@@ -52,7 +52,7 @@ class LRClib(Adw.Dialog):
     self.album_entry.set_text(album)
 
     self._on_title_entry_changed(self.title_entry)
-    GLib.idle_add(self.import_button.set_sensitive, False)  # noqa: FBT003
+    GLib.idle_add(self.import_button.set_sensitive, False)
 
   @Gtk.Template.Callback()
   def _on_title_entry_changed(self, entry: Gtk.Entry) -> None:

@@ -25,7 +25,7 @@ from chronograph.utils.player import Player
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 
@@ -156,7 +156,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
   ############### Import Actions ###############
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
+    from chronograph.ui.dialogs.lrclib import LRClib
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)

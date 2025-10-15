@@ -27,7 +27,7 @@ from chronograph.utils.miscellaneous import (
 )
 from dgutils.decorators import singleton
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 MIME_TYPES = (
@@ -58,7 +58,6 @@ class WindowState(Enum):
   LOADED_FILES = 3
 
 
-# pylint: disable=inconsistent-return-statements, comparison-with-callable
 @singleton
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/window.ui")
 class ChronographWindow(Adw.ApplicationWindow):
@@ -610,7 +609,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   ############### WindowState related methods ###############
   @GObject.Property()
-  def state(self) -> WindowState:  # pylint: disable=method-hidden
+  def state(self) -> WindowState:
     """Current state of the window"""
     return self._state
 
@@ -621,7 +620,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   def _state_changed(self, *_args) -> None:
     def select_saved_location() -> None:
       try:
-        for row in self.sidebar:  # pylint: disable=not-an-iterable
+        for row in self.sidebar:
           if row.get_child().path == Schema.get("root.state.library.session") + "/":
             self.sidebar.select_row(row)
             return

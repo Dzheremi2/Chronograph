@@ -5,7 +5,6 @@ from typing import Optional
 from chronograph.utils.wbw.tokens import LineToken, WordToken
 
 
-# pylint: disable=invalid-name
 class TokenParser:
   """Parser for text or paths to convert lyrics to tokens"""
 

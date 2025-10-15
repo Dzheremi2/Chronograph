@@ -49,7 +49,6 @@ class FileID3(TaggableFile):
         )
         tags[key] = apic_compressed
 
-  # pylint: disable=attribute-defined-outside-init
   def load_cover(self) -> None:
     """Extracts cover from song file. If no cover, then sets cover as `icon`"""
     if self._mutagen_file.tags is not None:

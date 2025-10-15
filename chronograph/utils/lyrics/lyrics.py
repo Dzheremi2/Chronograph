@@ -19,7 +19,8 @@ class LyricsHierarchyConversion(Exception):
   """
 
   def __init__(
-    self, message="Target format is hierarchically higher than the source lyrics."
+    self,
+    message: str = "Target format is hierarchically higher than the source lyrics.",
   ) -> None:
     super().__init__(message)
 

@@ -3,7 +3,7 @@ from gi.repository import Adw, Gio, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 
@@ -22,7 +22,7 @@ class SavedLocation(Gtk.Box):
     self._path = path
     self._name = name
     self.bind_property("name", self.title, "label", GObject.BindingFlags.SYNC_CREATE)
-    # pylint: disable=not-callable
+
     self.set_tooltip_text(_("Path: {}").format(self.path))
     self.connect(
       "notify::path",
@@ -98,7 +98,7 @@ class SavedLocation(Gtk.Box):
     if text.get_text_length() == 0:
       self.rename_entry.add_css_class("error")
     elif "error" in self.rename_entry.get_css_classes():
-        self.rename_entry.remove_css_class("error")
+      self.rename_entry.remove_css_class("error")
 
   @Gtk.Template.Callback()
   def do_rename(self, alert_dialog: Adw.AlertDialog, response: str) -> None:

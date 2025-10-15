@@ -21,7 +21,6 @@ tags_conjunction = {
 }
 
 
-# pylint: disable=attribute-defined-outside-init
 class FileVorbis(TaggableFile):
   """A Vorbis (ogg, flac) compatible file class. Inherited from `TaggableFile`
 
@@ -97,7 +96,6 @@ class FileVorbis(TaggableFile):
     else:
       self._cover = None
 
-  # pylint: disable=dangerous-default-value
   def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:  # noqa: B006
     """Loads title, artist and album for Vorbis media format
 
@@ -125,7 +123,7 @@ class FileVorbis(TaggableFile):
             setattr(self, f"_{tag}", text)
           except KeyError:
             setattr(self, f"_{tag}", "Unknown")
-    if self._title == "Unknown":  # pylint: disable=access-member-before-definition
+    if self._title == "Unknown":
       self._title = Path(self._path).name
 
   def set_cover(self, img_path: Optional[str]) -> None:

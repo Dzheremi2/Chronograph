@@ -58,7 +58,7 @@ def init_logger() -> None:
 
   logging.captureWarnings(capture=True)
 
-  def handle_exception(exc_type, exc_value, exc_traceback):
+  def handle_exception(exc_type, exc_value, exc_traceback):  # noqa: ANN001
     app_logger.error(
       "Unhandled exception",
       exc_info=(exc_type, exc_value, exc_traceback),

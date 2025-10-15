@@ -77,11 +77,7 @@ template $LRClib : Adw.Dialog {
                       Button search_button {
                         tooltip-text: _("Search LRClib for provided title and artist");
                         action-name: "lrclib.search";
-
-                        Adw.ButtonContent {
-                          icon-name: "search-symbolic";
-                          label: _("Search");
-                        }
+                        label: _("Search");
 
                         styles ["suggested-action"]
                       }
@@ -189,11 +185,7 @@ template $LRClib : Adw.Dialog {
                     Button import_button {
                       tooltip-text: _("Imports currently selected lyrics");
                       action-name: "lrclib.import_lyrics";
-
-                      Adw.ButtonContent {
-                        icon-name: "import-from-symbolic";
-                        label: _("Import");
-                      }
+                      label: _("Import");
 
                       styles ["suggested-action"]
                     }

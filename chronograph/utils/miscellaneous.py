@@ -15,12 +15,11 @@ def get_common_directory(paths: tuple[str]) -> Optional[str]:
   paths : tuple[str]
       Paths to files
 
-  Returns
   -------
   Optional[str]
       Common directory path or `None` if not in the same tree
   """
-  dirs = [Path(Path(p).resolve()).parent for p in paths]
+  dirs = [os.path.dirname(os.path.abspath(p)) for p in paths]  # noqa: PTH100, PTH120
   common = os.path.commonpath(dirs)
   for p in dirs:
     if not Path(p).is_relative_to(Path(common)):

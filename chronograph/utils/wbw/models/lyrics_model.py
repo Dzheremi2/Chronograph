@@ -23,7 +23,7 @@ class LyricsModel(GObject.Object):
   _eol_handler: int
 
   def __init__(self, lyrics: str) -> None:
-    from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget  # noqa: PLC0415
+    from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget
 
     super().__init__()
     store: Gio.ListStore = Gio.ListStore.new(item_type=LineModel)
@@ -104,7 +104,7 @@ class LyricsModel(GObject.Object):
     for i in range(self.lines.get_n_items()):
       yield self.lines.get_item(i)
 
-  def __getitem__(self, index) -> LineModel:
+  def __getitem__(self, index: int) -> LineModel:
     try:
       if (item := self.lines.get_item(index)) is not None:
         return item

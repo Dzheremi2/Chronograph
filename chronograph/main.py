@@ -12,10 +12,8 @@ gi.require_version("Adw", "1")
 gi.require_version("GstPlay", "1.0")
 gi.require_version("Gst", "1.0")
 
-# pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
-# pylint: disable=ungrouped-imports
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
@@ -60,9 +58,9 @@ class ChronographApplication(Adw.Application):
     logger.info("Requesting opening for files:\n%s", "\n".join(self.paths))
     self.do_activate()
 
-  def do_activate(self) -> None:  # pylint: disable=arguments-differ
+  def do_activate(self) -> None:
     """Emits on app creation"""
-    win = self.props.active_window  # pylint: disable=no-member
+    win = self.props.active_window
     if not win:
       Constants.WIN = win = ChronographWindow(application=self)
     else:
@@ -196,7 +194,7 @@ class ChronographApplication(Adw.Application):
   def on_quit_action(self, *_args) -> None:
     self.quit()
 
-  def do_shutdown(self):  # pylint: disable=arguments-differ
+  def do_shutdown(self) -> None:
     Player().stop()
     if not Schema.get("root.settings.general.save-session"):
       logger.info("Resetting session")
@@ -242,7 +240,7 @@ class ChronographApplication(Adw.Application):
       )
 
 
-def main(_version):
+def main(_version) -> int:
   """App entrypoint"""
   init_logger()
   logger.info("Launching application")

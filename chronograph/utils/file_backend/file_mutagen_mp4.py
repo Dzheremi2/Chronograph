@@ -16,7 +16,6 @@ tags_conjunction = {
 }
 
 
-# pylint: disable=attribute-defined-outside-init
 class FileMP4(TaggableFile):
   """A MPEG-4 compatible file class. Inherited from `TaggableFile`
 

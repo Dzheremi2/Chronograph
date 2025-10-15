@@ -14,7 +14,7 @@ class ResyncAllAlertDialog(Adw.AlertDialog):
   ms_entry: Gtk.Entry = Gtk.Template.Child()
   ms_entry_regex = re.compile(r"^-?\d+$")
 
-  def __init__(self, page) -> None:
+  def __init__(self, page: Adw.NavigationPage) -> None:
     super().__init__()
     self.page = page
     self._on_ms_entry_changed(self.ms_entry)

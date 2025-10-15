@@ -3,7 +3,7 @@ from gi.repository import Adw, GObject, Gtk
 from chronograph.internal import Constants
 from chronograph.utils.wbw.models.word_model import WordModel
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/wbw/WordWidget.ui")
@@ -29,7 +29,7 @@ class WordWidget(Adw.Bin):
     self.word.connect("notify::active", self._set_in_current_line)
     self.word.connect("notify::highlighted", self._on_is_highlighted_changed)
     if self.word.time != -1:
-      self.word.set_property("synced", value=True)
+      self.word.set_property("synced", True)
 
   def _on_synced_changed(self, obj: WordModel, _arg) -> None:
     is_synced = obj.synced
