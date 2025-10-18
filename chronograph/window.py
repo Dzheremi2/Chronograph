@@ -13,13 +13,14 @@ from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.saved_location import SavedLocation
 from chronograph.ui.widgets.song_card import SongCard
+from chronograph.utils.file_backend import SongCardModel
+from chronograph.utils.file_parsers import parse_dir, parse_files
+from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
+from chronograph.utils.lyrics import LyricsFile
 from chronograph.utils.media.file_mutagen_id3 import FileID3
 from chronograph.utils.media.file_mutagen_mp4 import FileMP4
 from chronograph.utils.media.file_mutagen_vorbis import FileVorbis
 from chronograph.utils.media.file_untaggable import FileUntaggable
-from chronograph.utils.file_parsers import parse_dir, parse_files
-from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
-from chronograph.utils.lyrics import LyricsFile
 from chronograph.utils.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
@@ -232,14 +233,16 @@ class ChronographWindow(Adw.ApplicationWindow):
     def songcard_idle(
       file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],
     ) -> None:
-      song_card = SongCard(file, LyricsFile(Path(file.path)))
+      # TODO: Rework file adding to library workflow
+      model = SongCardModel(file, LyricsFile(Path(file.path)))
+      song_card = SongCard(model)
       self.library.append(song_card)
       self.library_list.append(song_card.get_list_mode())
       song_card.get_parent().set_focusable(False)
       logger.debug(
         "SongCard for song '%s -- %s' was added",
-        song_card.title_display,
-        song_card.artist_display,
+        model.title_display,
+        model.artist_display,
       )
 
     mutagen_files = parse_files(paths)
@@ -527,28 +530,24 @@ class ChronographWindow(Adw.ApplicationWindow):
     logger.debug("View type set to: %s", self.view_state)
     Schema.set("root.state.library.view", self.view_state)
 
-  def enter_sync_mode(
-    self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
-  ) -> None:
+  def enter_sync_mode(self, card_model: SongCardModel) -> None:
     """Enters sync mode for the given song card
 
     Parameters
     ----------
-    card : SongCard
-      Song card to enter sync mode for
-    file : Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
-      Media file
+    card_model : SongCardModel
+      Card model with all necessary data for sync page
     """
     if Schema.get("root.settings.syncing.sync-type") == "lrc":
       logger.info(
         "Entering sync mode for '%s -- %s' in LRC syncing format",
-        card.title,
-        card.artist,
+        card_model.title_display,
+        card_model.artist_display,
       )
-      sync_nav_page = LRCSyncPage(card, file)
+      sync_nav_page = LRCSyncPage(card_model)
       self.navigation_view.push(sync_nav_page)
     elif Schema.get("root.settings.syncing.sync-type") == "wbw":
-      sync_nav_page = WBWSyncPage(card, file)
+      sync_nav_page = WBWSyncPage(card_model)
       self.navigation_view.push(sync_nav_page)
 
   def show_toast(

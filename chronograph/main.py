@@ -71,9 +71,9 @@ class ChronographApplication(Adw.Application):
       Constants.WIN = win
     logger.debug("Window was created")
 
+    # fmt: off
     self.create_actions(
       {
-        # fmt: off
         ("quit", ("<primary>q", "<primary>w")),
         ("toggle_sidebar", ("F9",), Constants.WIN),
         ("toggle_search", ("<primary>f",), Constants.WIN),
@@ -82,9 +82,9 @@ class ChronographApplication(Adw.Application):
         ("show_preferences", ("<primary>comma",), Constants.WIN),
         ("open_quick_editor", (), Constants.WIN),
         ("about",),
-        # fmt: on
       }
     )
+    # fmt: on
     self.set_accels_for_action("win.show-help-overlay", ("<primary>question",))
 
     sorting_action = Gio.SimpleAction.new_stateful(
@@ -201,6 +201,7 @@ class ChronographApplication(Adw.Application):
 
   def do_shutdown(self):  # pylint: disable=arguments-differ
     Player().stop()
+    FileManager().kill_all_monitors()
     if not Schema.get("root.settings.general.save-session"):
       logger.info("Resetting session")
       Schema.set("root.state.library.session", "None")

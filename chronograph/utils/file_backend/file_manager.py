@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Self
+from typing import Optional
 
 from gi.repository import Gio, GLib, GObject
 
@@ -47,12 +47,12 @@ class FileManager(GObject.Object):
 
   def set_directory(self, directory: Optional[Path]) -> None:
     if directory is not None:
-      self._kill_all_monitors()
+      self.kill_all_monitors()
       self.monitor_path = directory
       self._setup_monitor(directory)
     else:
       self.monitor_path = None
-      self._kill_all_monitors()
+      self.kill_all_monitors()
 
   def _setup_monitor(self, path: Path) -> None:
     abs_path = str(path.absolute())
@@ -131,7 +131,7 @@ class FileManager(GObject.Object):
       case __:
         pass
 
-  def _kill_all_monitors(self) -> None:
+  def kill_all_monitors(self) -> None:
     if not self.monitors:
       return
 
