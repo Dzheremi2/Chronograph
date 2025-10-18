@@ -109,7 +109,7 @@ class FileManager(GObject.Object):
         new_path = gfile_other.get_path()
         old_path = gfile_changed.get_path()
         logger.info("--> File '%s' was renamed to '%s'", old_path, new_path)
-        self.emit("renamed", gfile_changed.get_path(), gfile_other.get_path())
+        self.emit("renamed", gfile_other.get_path(), gfile_changed.get_path())
 
         if Path(new_path).is_dir():
           old_abs_path = str(Path(old_path).absolute())

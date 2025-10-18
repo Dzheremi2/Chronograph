@@ -5,6 +5,7 @@ from gi.repository import Adw, Gio, GObject, Gtk
 
 from chronograph.internal import Constants
 from chronograph.ui.dialogs.box_dialog import BoxDialog
+from chronograph.ui.dialogs.metadata_editor import MetadataEditor
 from chronograph.utils.file_backend import SongCardModel
 from chronograph.utils.lyrics import LyricsFormat
 from chronograph.utils.media import FileUntaggable
@@ -144,7 +145,13 @@ class SongCard(Gtk.Box):
 
   @Gtk.Template.Callback()
   def open_metadata_editor(self, *_args) -> None:
-    pass
+    """Open metadata editor dialog"""
+    logger.debug(
+      "Opening metadata editor for '%s -- %s'",
+      self.model.title_display,
+      self.model.artist_display,
+    )
+    MetadataEditor(self.model).present(Constants.WIN)
 
   # FIXME: Rework invalidators to remove `get_title`, `get_subtitle`
   def get_title(self) -> str:
