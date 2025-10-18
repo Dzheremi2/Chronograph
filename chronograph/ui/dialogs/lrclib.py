@@ -160,7 +160,7 @@ class LRClib(Adw.Dialog):
     threading.Thread(target=do_request, daemon=True).start()
 
   def _import_synced(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
 
     if text := self.synced_text_view.get_buffer().get_text(
       self.synced_text_view.get_buffer().get_start_iter(),
@@ -183,7 +183,7 @@ class LRClib(Adw.Dialog):
       logger.debug("Imported synced lyrics")
 
   def _import_plain(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
 
     if text := self.plain_text_view.get_buffer().get_text(
       self.plain_text_view.get_buffer().get_start_iter(),

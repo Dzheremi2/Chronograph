@@ -6,21 +6,18 @@ import threading
 import traceback
 from binascii import unhexlify
 from pathlib import Path
-from typing import Literal, Optional, Union
+from typing import Literal, Optional
 
 import requests
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
-from chronograph.ui.widgets.song_card import SongCard
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.file_backend import SongCardModel
 from chronograph.utils.lyrics import Lyrics, LyricsFile, LyricsFormat
+from chronograph.utils.media import FileUntaggable
 from chronograph.utils.player import Player
 from dgutils import Actions
 
@@ -47,21 +44,21 @@ class LRCSyncPage(Adw.NavigationPage):
 
   _autosave_timeout_id: Optional[int] = None
 
-  def __init__(
-    self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
-  ) -> None:
+  def __init__(self, card_model: SongCardModel) -> None:
     def on_shown(*_args) -> None:
-      if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+      if isinstance(self._file, FileUntaggable):
         self.action_set_enabled("controls.edit_metadata", enabled=False)
 
     super().__init__()
-    self._card: SongCard = card
-    self._lyrics_file = card._lyrics_file  # noqa: SLF001
-    self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
-    self._card.bind_property("title", self, "title", GObject.BindingFlags.SYNC_CREATE)
-    if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+    self._card = card_model
+    self._lyrics_file = card_model.lyrics_file
+    self._file = card_model.mfile
+    self._card.bind_property(
+      "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
+    )
+    if isinstance(self._file, FileUntaggable):
       self.action_set_enabled("controls.edit_metadata", enabled=False)
-    self._player_widget = UIPlayer(file, card)
+    self._player_widget = UIPlayer(card_model)
     self.player_container.append(self._player_widget)
     Player()._gst_player.connect("pos-upd", self._on_timestamp_changed)  # noqa: SLF001
 
@@ -257,7 +254,7 @@ class LRCSyncPage(Adw.NavigationPage):
     dialog.open(Constants.WIN, None, on_selected_lyrics_file)
 
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
+    from chronograph.ui.dialogs.lrclib import LRClib
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)
@@ -359,9 +356,10 @@ class LRCSyncPage(Adw.NavigationPage):
         lyrics = [line.get_text() for line in self.sync_lines]
         self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
         self._lyrics_file.lrc_lyrics.save()
-        self._file.embed_lyrics(
-          self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None
-        )
+        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
+          self._file.embed_lyrics(
+            self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None
+          )
         logger.debug("Lyrics autosaved successfully")
       except Exception:
         logger.warning("Autosave failed: %s", traceback.format_exc())
@@ -390,7 +388,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
   ############### Publisher ###############
 
-  def _publish(self, __, ___, card: SongCard) -> None:
+  def _publish(self, __, ___, card_model: SongCardModel) -> None:
     def verify_nonce(result: int, target: int) -> bool:
       if len(result) != len(target):
         return False
@@ -500,10 +498,10 @@ class LRCSyncPage(Adw.NavigationPage):
           _("Unknown error occured: {code}").format(code=str(response.status_code)),
         )
 
-    title = card.title
-    artist = card.artist
-    album = card.album
-    duration = card.duration
+    title = card_model.title
+    artist = card_model.artist
+    album = card_model.album
+    duration = card_model.duration
     # pylint: disable=not-an-iterable
     lyrics = Lyrics("\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"))
     if not all((title, artist, album, duration, lyrics)):

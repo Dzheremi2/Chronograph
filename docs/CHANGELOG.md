@@ -1,3 +1,12 @@
+## 5.2-rc1
+
+<p>New features</p>
+<ul>
+  <li>Library now live updates for opened direcotry files changes, so re-parse button was removed</li>
+  <li>This live update for for all types of event: Adding a new file or direcotry to a direcotry, Removing file or directory from a direcotry</li>
+  <li>It also works with symlinks if corresponding preference is enabled</li>
+</ul>
+
 ## 5.1
 
 <p>New features</p>

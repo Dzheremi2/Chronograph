@@ -2,6 +2,7 @@ import yaml
 from gi.repository import Adw, Gio, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
+from chronograph.utils.file_backend import LibraryModel
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
 logger = Constants.LOGGER
@@ -52,7 +53,7 @@ class SavedLocation(Gtk.Box):
   def load(self) -> None:
     """Loads the saved location"""
     if self.path != Schema.get("root.state.library.session"):
-      Constants.WIN.open_directory(self.path)
+      LibraryModel().open_dir(self.path)
       Constants.WIN.sidebar.select_row(self.get_parent())
 
   @Gtk.Template.Callback()
@@ -98,7 +99,7 @@ class SavedLocation(Gtk.Box):
     if text.get_text_length() == 0:
       self.rename_entry.add_css_class("error")
     elif "error" in self.rename_entry.get_css_classes():
-        self.rename_entry.remove_css_class("error")
+      self.rename_entry.remove_css_class("error")
 
   @Gtk.Template.Callback()
   def do_rename(self, alert_dialog: Adw.AlertDialog, response: str) -> None:

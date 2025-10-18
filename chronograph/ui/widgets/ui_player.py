@@ -1,14 +1,9 @@
 from pathlib import Path
-from typing import Union
 
 from gi.repository import Adw, GObject, Gst, Gtk
 
 from chronograph.internal import Constants, Schema
-from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.file_backend.song_card_model import SongCardModel
 from chronograph.utils.player import Player
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name
@@ -40,12 +35,11 @@ class UIPlayer(Adw.BreakpointBin):
 
   def __init__(
     self,
-    file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable],
-    card: SongCard,
+    card_model: SongCardModel,
     max_width: int = 600,
   ) -> None:
     super().__init__()
-    Player().set_file(Path(card.path))
+    Player().set_file(Path(card_model.path))
 
     # Init Playback GUI setup
     vol = int(Player().volume * 100)
@@ -80,8 +74,7 @@ class UIPlayer(Adw.BreakpointBin):
     self.seek_done_hndl = Player()._gst_player.connect("seek-done", self._on_seek_done)  # noqa: SLF001
 
     # Info UI reactivity
-    self._file = file
-    self._card = card
+    self._card = card_model
     self.main_clamp.set_maximum_size(max_width)
     self.main_clamp.set_tightening_threshold(max_width)
 

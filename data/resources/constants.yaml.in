@@ -12,9 +12,10 @@ PyEncStr:
 
   COVER_PLACEHOLDER: Gdk.Texture.new_from_resource("@PREFIX@" + "/icons/scalable/actions/note-placeholder.svg")
 
-  LOGGER: logging.getLogger("App")
-  PLAYER_LOGGER: logging.getLogger("GstPlayer")
-  LRCLIB_LOGGER: logging.getLogger("LRClib")
+  LOGGER: logging.getLogger("APP")
+  PLAYER_LOGGER: logging.getLogger("GST_PLAYER")
+  LRCLIB_LOGGER: logging.getLogger("LRCLIB")
+  FILE_LOGGER: logging.getLogger("FILE_MANAGER")
 
 # App metadata
 APP_ID: "@APP_ID@"

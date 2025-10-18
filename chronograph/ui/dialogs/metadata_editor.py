@@ -3,7 +3,7 @@ from typing import Optional
 from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
 from chronograph.internal import Constants
-from chronograph.ui.widgets import song_card  # noqa: TC001
+from chronograph.utils.file_backend import SongCardModel
 from chronograph.utils.lyrics import Lyrics
 from dgutils import Actions
 
@@ -22,14 +22,14 @@ class MetadataEditor(Adw.Dialog):
   album_row: Adw.EntryRow = gtc()
   lyrics_buttons_box: Gtk.Box = gtc()
 
-  def __init__(self, card: "song_card.SongCard") -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage  # noqa: PLC0415
-    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage  # noqa: PLC0415
+  def __init__(self, card_model: SongCardModel) -> None:
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 
     super().__init__()
     self._is_cover_changed: bool = False
     self._new_cover_path: Optional[str] = ""
-    self._card = card
+    self._card = card_model
     self.title_row.set_text(self._card.title)
     self.artist_row.set_text(self._card.artist)
     self._card.bind_property(
@@ -51,8 +51,8 @@ class MetadataEditor(Adw.Dialog):
   @Gtk.Template.Callback()
   def on_embed_lyrics_clicked(self, *_args) -> None:
     """Embedding lyrics to the file on button click"""
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage  # noqa: PLC0415
-    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 
     page = Constants.WIN.navigation_view.get_visible_page()
     if isinstance(page, WBWSyncPage):
@@ -68,26 +68,25 @@ class MetadataEditor(Adw.Dialog):
         )
       else:
         lyrics = Lyrics.from_tokens(page._lyrics_model.get_tokens())  # noqa: SLF001
-      self._card._file.embed_lyrics(lyrics, force=True)  # noqa: SLF001
+      self._card.mfile.embed_lyrics(lyrics, force=True)
     elif isinstance(page, LRCSyncPage):
       lyrics = [line.get_text() for line in page.sync_lines]
       lyrics = Lyrics("\n".join(lyrics).strip())
-      self._card._file.embed_lyrics(lyrics, force=True)  # noqa: SLF001
+      self._card.mfile.embed_lyrics(lyrics, force=True)
     else:
       logger.debug("Prevented lyrics embedding from library page")
 
   @Gtk.Template.Callback()
   def on_delete_lyrics_clicked(self, *_args) -> None:
-    self._card._file.embed_lyrics(None)  # noqa: SLF001
+    self._card.mfile.embed_lyrics(None)
 
   @Gtk.Template.Callback()
   def save(self, *_args) -> None:
     """Save metadata changes"""
     if self._is_cover_changed:
-      self._card._file.set_cover(self._new_cover_path)  # noqa: SLF001
-      self._card.cover_img.set_from_paintable(self._card.cover)
-      pspec = self._card.__class__.find_property("cover")
-      self._card.emit("notify::cover", pspec)
+      self._card.mfile.set_cover(self._new_cover_path)
+      self._card.widget.cover_img.set_from_paintable(self._card.cover)
+      self._card.notify("cover")
       logger.info(
         "Cover for '%s -- %s / %s' was saved",
         self._card.title_display,

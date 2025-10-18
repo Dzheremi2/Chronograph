@@ -40,9 +40,9 @@ groups:
       callback: _replay
       shortcut: "<Alt>z"
     - name: file_info
-      callback: _card.show_info
+      callback: _card.widget.show_info
     - name: edit_metadata
-      callback: _card.open_metadata_editor
+      callback: _card.widget.open_metadata_editor
 
   line:
     - name: append
