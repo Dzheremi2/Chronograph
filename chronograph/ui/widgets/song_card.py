@@ -73,7 +73,7 @@ class SongCard(Gtk.Box):
       "cover",
       self.cover_img_row,
       "paintable",
-      GObject.BindingFlags.DEFAULT,
+      GObject.BindingFlags.SYNC_CREATE,
     )
     self.model.bind_property(
       "lyrics_format",
@@ -153,16 +153,8 @@ class SongCard(Gtk.Box):
     )
     MetadataEditor(self.model).present(Constants.WIN)
 
-  # FIXME: Rework invalidators to remove `get_title`, `get_subtitle`
-  def get_title(self) -> str:
-    return self.model.title_display
-
   def get_list_mode(self) -> Adw.ActionRow:
     return self.list_view_row
-
-  # A workaround for unificating invalidate_filter functions
-  def get_subtitle(self) -> str:
-    return self.model.artist_display
 
   def _toggle_buttons(self, *_args) -> None:
     self.buttons_revealer.set_reveal_child(not self.buttons_revealer.get_reveal_child())

@@ -336,12 +336,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                   Box {
                     orientation: horizontal;
 
-                    Button reparse_dir_button {
-                      icon-name: "reparse-dir-symbolic";
-                      tooltip-text: _("Re-parse current directory");
-                      clicked => $on_reparse_dir_button_clicked();
-                    }
-
                     Button add_dir_to_saves_button {
                       icon-name: "pin-dir-symbolic";
                       tooltip-text: _("Add current directory to saves");

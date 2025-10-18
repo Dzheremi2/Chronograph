@@ -3,8 +3,9 @@ from typing import Union
 
 from gi.repository import Gdk, GObject
 
-from chronograph.internal import Constants
+from chronograph.internal import Constants, Schema
 from chronograph.utils.file_backend import FileManager
+from chronograph.utils.file_parsers import parse_files
 from chronograph.utils.lyrics import LyricsFile, LyricsFormat
 from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 
@@ -65,6 +66,17 @@ class SongCardModel(GObject.Object):
   def _on_any_file_renamed(self, _file_manager, new_path: str, old_path: str) -> None:
     if old_path == self.path:
       self.set_property("path", new_path)
+      self.mfile = parse_files([new_path])[0]
+
+      # Rename associated lyrics files
+      lrc_suffix = Schema.get("root.settings.file-manipulation.format")
+      elrc_prefix = Schema.get("root.settings.file-manipulation.elrc-prefix")
+      lrc_path = self.lyrics_file.media_bind_path.with_suffix(lrc_suffix)
+      elrc_path = self.lyrics_file.media_bind_path.with_name(
+        elrc_prefix + self.lyrics_file.media_bind_path.name
+      ).with_suffix(lrc_suffix)
+      self.lyrics_file.set_property("lrc-path", str(lrc_path))
+      self.lyrics_file.set_property("elrc-path", str(elrc_path))
 
   def _on_any_file_deleted(self, _file_manager, deleted_file: str) -> None:
     if self.path == deleted_file:

@@ -5,7 +5,7 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.utils.file_backend import FileManager
+from chronograph.utils.file_backend import FileManager, LibraryModel
 from chronograph.utils.player import Player
 
 gi.require_version("Gtk", "4.0")
@@ -126,10 +126,10 @@ class ChronographApplication(Adw.Application):
       and len(self.paths) == 0
     ):
       logger.info("Loading last opened session: '%s'", path)
-      Constants.WIN.open_directory(path)
+      LibraryModel().open_dir(path)
     elif len(self.paths) != 0:
       logger.info("Opening requested files")
-      Constants.WIN.open_files(self.paths)
+      LibraryModel().open_files(self.paths)
     else:
       Constants.WIN.set_property("state", WindowState.EMPTY)
 
@@ -137,7 +137,6 @@ class ChronographApplication(Adw.Application):
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
     Player().set_property("rate", float(Schema.get("root.state.player.rate")))
     logger.debug("Window shown")
-    FileManager(Path("/home/dzheremi/Music"))
 
   def on_about_action(self, *_args) -> None:
     """Shows About App dialog"""

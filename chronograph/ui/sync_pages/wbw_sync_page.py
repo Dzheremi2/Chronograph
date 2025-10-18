@@ -60,7 +60,9 @@ class WBWSyncPage(Adw.NavigationPage):
     self._card: SongCardModel = card_model
     self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = card_model.mfile
     self._lyrics_file = self._card.lyrics_file
-    self._card.bind_property("title", self, "title", GObject.BindingFlags.SYNC_CREATE)
+    self._card.bind_property(
+      "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
+    )
     if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
       self.action_set_enabled("controls.edit_metadata", enabled=False)
     self._player_widget = UIPlayer(card_model)
@@ -369,11 +371,12 @@ class WBWSyncPage(Adw.NavigationPage):
             logger.debug("Prevented overwriting LRC lyrics with Plain in LRC file")
         try:
           self._lyrics_file.elrc_lyrics.text = lyrics.of_format(LyricsFormat.ELRC)
-          self._file.embed_lyrics(
-            self._lyrics_file.elrc_lyrics.text
-            if self._lyrics_file.elrc_lyrics.text
-            else None
-          )
+          if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
+            self._file.embed_lyrics(
+              self._lyrics_file.elrc_lyrics.text
+              if self._lyrics_file.elrc_lyrics.text
+              else None
+            )
           self._lyrics_file.elrc_lyrics.save()
           logger.debug("eLRC lyrics autosaved successfully")
         except LyricsHierarchyConversion:

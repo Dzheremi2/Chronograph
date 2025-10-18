@@ -53,7 +53,9 @@ class LRCSyncPage(Adw.NavigationPage):
     self._card = card_model
     self._lyrics_file = card_model.lyrics_file
     self._file = card_model.mfile
-    self._card.bind_property("title", self, "title", GObject.BindingFlags.SYNC_CREATE)
+    self._card.bind_property(
+      "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
+    )
     if isinstance(self._file, FileUntaggable):
       self.action_set_enabled("controls.edit_metadata", enabled=False)
     self._player_widget = UIPlayer(card_model)
@@ -354,9 +356,10 @@ class LRCSyncPage(Adw.NavigationPage):
         lyrics = [line.get_text() for line in self.sync_lines]
         self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
         self._lyrics_file.lrc_lyrics.save()
-        self._file.embed_lyrics(
-          self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None
-        )
+        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
+          self._file.embed_lyrics(
+            self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None
+          )
         logger.debug("Lyrics autosaved successfully")
       except Exception:
         logger.warning("Autosave failed: %s", traceback.format_exc())

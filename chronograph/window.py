@@ -12,15 +12,16 @@ from chronograph.ui.dialogs.preferences import ChronographPreferences
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.saved_location import SavedLocation
-from chronograph.utils.file_backend import SongCardModel
-from chronograph.utils.file_parsers import parse_dir, parse_files
-from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
-from chronograph.utils.lyrics import LyricsFile
-from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
+from chronograph.utils.file_backend import LibraryModel, SongCardModel
+from chronograph.utils.invalidators import (
+  invalidate_filter_flowbox,
+  invalidate_filter_listbox,
+  invalidate_sort_flowbox,
+  invalidate_sort_listbox,
+)
 from chronograph.utils.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
-  get_common_directory,
 )
 from dgutils.decorators import singleton
 
@@ -81,7 +82,6 @@ class ChronographWindow(Adw.ApplicationWindow):
   search_bar: Gtk.SearchBar = gtc()
   search_entry: Gtk.SearchEntry = gtc()
   right_buttons_revealer: Gtk.Revealer = gtc()
-  reparse_dir_button: Gtk.Button = gtc()
   add_dir_to_saves_button: Gtk.Button = gtc()
   clean_files_button: Gtk.Button = gtc()
   library_overlay: Gtk.Overlay = gtc()
@@ -117,17 +117,17 @@ class ChronographWindow(Adw.ApplicationWindow):
       self.add_css_class("devel")
 
     # Create a WindowState property for automatic window UI state updates
-    self._state: Optional[WindowState] = None
+    self._state: WindowState = WindowState.EMPTY
     self.connect("notify::state", self._state_changed)
 
     # Connect the search entry to the search bar
     self.search_bar.connect_entry(self.search_entry)
 
     # Set sort and filter functions for the library
-    self.library.set_sort_func(invalidate_sort)
-    self.library.set_filter_func(invalidate_filter)
-    self.library_list.set_sort_func(invalidate_sort)
-    self.library_list.set_filter_func(invalidate_filter)
+    self.library.set_sort_func(invalidate_sort_flowbox)
+    self.library.set_filter_func(invalidate_filter_flowbox)
+    self.library_list.set_sort_func(invalidate_sort_listbox)
+    self.library_list.set_filter_func(invalidate_filter_listbox)
 
     # Drag'N'Drop setup
     self.drop_target = Gtk.DropTarget(
@@ -212,128 +212,55 @@ class ChronographWindow(Adw.ApplicationWindow):
     preferences.present(self)
     logger.debug("Showing preferences")
 
-  def load_files(self, paths: tuple[str]) -> bool:
-    """Loads files into the library
-
-    Parameters
-    ----------
-    paths : tuple[str]
-        Paths to files to load
-
-    Returns
-    -------
-    bool
-        Returns True if files were loaded
-    """
-
-    def songcard_idle(
-      file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],
-    ) -> None:
-      # TODO: Rework file adding to library workflow
-      model = SongCardModel(file, LyricsFile(Path(file.path)))
-      song_card = model.widget
-      self.library.append(song_card)
-      self.library_list.append(song_card.get_list_mode())
-      song_card.get_parent().set_focusable(False)
-      logger.debug(
-        "SongCard for song '%s -- %s' was added",
-        model.title_display,
-        model.artist_display,
-      )
-
-    mutagen_files = parse_files(paths)
-    if not mutagen_files:
-      return False
-    for mutagen_file in mutagen_files:
-      if isinstance(mutagen_file, (FileID3, FileVorbis, FileMP4, FileUntaggable)):
-        GLib.idle_add(songcard_idle, mutagen_file)
-    self.open_source_button.set_icon_name("open-source-symbolic")
-    if path := get_common_directory(paths):
-      Schema.set("root.state.library.session", path)
-    return True
-
-  def open_directory(self, path: str) -> None:
-    """Open a directory and load its files, updating window state"""
-    logger.info("Opening '%s' directory", path)
-
-    files = parse_dir(path)
-    mutagen_files = parse_files(files)
-
-    self.clean_library()
-    Schema.set("root.state.library.session", path)
-
-    self.add_dir_to_saves_button.set_visible(
-      path not in [pin["path"] for pin in Constants.CACHE["pins"]]
-    )
-
-    if mutagen_files:
-      self.load_files(files)
-      self.state = WindowState.LOADED_DIR
-    else:
-      self.state = WindowState.EMPTY_DIR
-
-  def open_files(self, paths: list[str]) -> None:
-    """Open provided files and update window state"""
-    logger.info("Opening files:\n%s", "\n".join(paths))
-    if self._state != WindowState.LOADED_FILES:
-      self.clean_library()
-    if self.load_files(tuple(paths)):
-      self.state = WindowState.LOADED_FILES
-    else:
-      self.state = WindowState.EMPTY
-    Schema.set("root.state.library.session", "None")
-
   @Gtk.Template.Callback()
   def clean_files_button_clicked(self, *_args) -> None:
-    self.clean_library()
-    self.state = WindowState.EMPTY
-    logger.info("Library cleaned")
+    LibraryModel().reset_library()
 
   ############### Actions for opening files and directories ###############
   def on_select_dir_action(self, *_args) -> None:
     """Selects a directory to open in the library"""
 
-    def __select_dir() -> None:
+    def select_dir() -> None:
       logger.debug("Showing directory selection dialog")
       dialog = Gtk.FileDialog(
         default_filter=Gtk.FileFilter(mime_types=["inode/directory"])
       )
       self.open_source_button.set_child(Adw.Spinner())
-      dialog.select_folder(self, None, __on_selected_dir)
+      dialog.select_folder(self, None, on_selected_dir)
 
-    def __on_selected_dir(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
+    def on_selected_dir(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
       try:
         _dir = file_dialog.select_folder_finish(result)
         if _dir is not None:
           dir_path = _dir.get_path()
-          self.open_directory(dir_path)
+          LibraryModel().open_dir(dir_path)
       except GLib.GError:
         pass
       finally:
         self.open_source_button.set_icon_name("open-source-symbolic")
 
-    __select_dir()
+    select_dir()
 
   def on_select_files_action(self, *_args) -> None:
     """Selects files to open in the library"""
 
-    def __select_files(*_args) -> None:
+    def select_files(*_args) -> None:
       logger.debug("Showing files selection dialog")
       dialog = Gtk.FileDialog(default_filter=Gtk.FileFilter(mime_types=MIME_TYPES))
       self.open_source_button.set_child(Adw.Spinner())
-      dialog.open_multiple(self, None, __on_select_files)
+      dialog.open_multiple(self, None, on_select_files)
 
-    def __on_select_files(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
+    def on_select_files(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
       try:
         files = [file.get_path() for file in file_dialog.open_multiple_finish(result)]
         if files is not None:
-          self.open_files(files)
+          LibraryModel().open_files(files)
       except GLib.GError:
         pass
       finally:
         self.open_source_button.set_icon_name("open-source-symbolic")
 
-    __select_files()
+    select_files()
 
   ##############################
 
@@ -368,7 +295,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   ) -> None:
     files = [file.get_path() for file in value.get_files()]
     logger.info("DND recieved files: %s\n", "\n".join(files))
-    self.open_files(files)
+    LibraryModel().open_files(files)
     self._on_drag_leave()
 
   def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
@@ -429,27 +356,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     except AttributeError:
       pass
 
-  def clean_library(self, *_args) -> None:
-    """Remove all `SongCard`s from the library"""
-    logger.info("Removing all cards from library")
-    self.library.remove_all()
-    self.library_list.remove_all()
-
   @Gtk.Template.Callback()
   def on_search_changed(self, *_args) -> None:
     """Calls `self.library.filter_func` to filter the library based on the search entry text"""
     self.library.invalidate_filter()
     self.library_list.invalidate_filter()
-
-  @Gtk.Template.Callback()
-  def on_reparse_dir_button_clicked(self, *_args) -> None:
-    """Re-parses the current directory in the library"""
-    if self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR):
-      logger.debug("Re-parsing current directory")
-      if Schema.get("root.state.library.session") != "None":
-        self.open_directory(Schema.get("root.state.library.session"))
-      else:
-        self.set_property("state", WindowState.EMPTY)
 
   @Gtk.Template.Callback()
   def on_add_dir_to_saves_button_clicked(self, *_args) -> None:
@@ -610,8 +521,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     return self._state
 
   @state.setter
-  def state(self, value: WindowState) -> None:
-    self._state = value
+  def state(self, value: Union[WindowState, int]) -> None:
+    if isinstance(value, WindowState):
+      self._state = value
+    else:
+      self._state = WindowState(value)
 
   def _state_changed(self, *_args) -> None:
     def select_saved_location() -> None:
@@ -642,13 +556,11 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.clean_files_button.set_visible(False)
         Schema.set("root.state.library.session", "None")
         self.sidebar.select_row(None)
-        self.clean_library()
       case WindowState.EMPTY_DIR:
         self.library_scrolled_window.set_child(self.empty_directory)
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(False)
         self.clean_files_button.set_visible(False)
-        self.clean_library()
         select_saved_location()
       case WindowState.LOADED_DIR:
         match Schema.get("root.state.library.view"):
@@ -659,7 +571,6 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(True)
         self.clean_files_button.set_visible(False)
-        self.clean_library()
         select_saved_location()
       case WindowState.LOADED_FILES:
         match Schema.get("root.state.library.view"):
