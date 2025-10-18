@@ -27,7 +27,7 @@ def init_logger() -> None:
     log_file, maxBytes=1_000_000, backupCount=5, encoding="utf-8"
   )
   file_handler.doRollover()
-  formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+  formatter = logging.Formatter("%(asctime)s [%(levelname)s] [%(name)s]: %(message)s")
   file_handler.setFormatter(formatter)
 
   console_handler = logging.StreamHandler(stream=sys.stderr)
@@ -41,25 +41,35 @@ def init_logger() -> None:
     else logging.INFO
   )
 
-  app_logger = logging.getLogger("App")
+  app_logger = logging.getLogger("APP")
   app_logger.setLevel(log_level)
   app_logger.addHandler(file_handler)
   app_logger.addHandler(console_handler)
 
-  player_logger = logging.getLogger("GstPlayer")
+  player_logger = logging.getLogger("GST_PLAYER")
   player_logger.setLevel(log_level)
   player_logger.addHandler(file_handler)
   player_logger.addHandler(console_handler)
 
-  lrclib_logger = logging.getLogger("LRClib")
+  lrclib_logger = logging.getLogger("LRCLIB")
   lrclib_logger.setLevel(log_level)
   lrclib_logger.addHandler(file_handler)
   lrclib_logger.addHandler(console_handler)
 
+  file_logger = logging.getLogger("FILE_MANAGER")
+  file_logger.setLevel(log_level)
+  file_logger.addHandler(file_handler)
+  file_logger.addHandler(console_handler)
+
+  exception_logger = logging.getLogger("EXCEPTION")
+  exception_logger.setLevel(log_level)
+  exception_logger.addHandler(file_handler)
+  exception_logger.addHandler(console_handler)
+
   logging.captureWarnings(capture=True)
 
   def handle_exception(exc_type, exc_value, exc_traceback):
-    app_logger.error(
+    exception_logger.error(
       "Unhandled exception",
       exc_info=(exc_type, exc_value, exc_traceback),
     )

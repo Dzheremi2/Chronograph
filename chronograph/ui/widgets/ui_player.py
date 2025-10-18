@@ -5,10 +5,10 @@ from gi.repository import Adw, GObject, Gst, Gtk
 
 from chronograph.internal import Constants, Schema
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.media.file_mutagen_id3 import FileID3
+from chronograph.utils.media.file_mutagen_mp4 import FileMP4
+from chronograph.utils.media.file_mutagen_vorbis import FileVorbis
+from chronograph.utils.media.file_untaggable import FileUntaggable
 from chronograph.utils.player import Player
 
 gtc = Gtk.Template.Child  # pylint: disable=invalid-name

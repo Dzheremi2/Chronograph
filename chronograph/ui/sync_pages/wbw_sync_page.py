@@ -11,10 +11,10 @@ from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.song_card import SongCard
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.media.file_mutagen_id3 import FileID3
+from chronograph.utils.media.file_mutagen_mp4 import FileMP4
+from chronograph.utils.media.file_mutagen_vorbis import FileVorbis
+from chronograph.utils.media.file_untaggable import FileUntaggable
 from chronograph.utils.lyrics import (
   Lyrics,
   LyricsFile,

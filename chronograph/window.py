@@ -13,10 +13,10 @@ from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.saved_location import SavedLocation
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.media.file_mutagen_id3 import FileID3
+from chronograph.utils.media.file_mutagen_mp4 import FileMP4
+from chronograph.utils.media.file_mutagen_vorbis import FileVorbis
+from chronograph.utils.media.file_untaggable import FileUntaggable
 from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.invalidators import invalidate_filter, invalidate_sort
 from chronograph.utils.lyrics import LyricsFile

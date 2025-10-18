@@ -5,12 +5,14 @@ from pathlib import Path
 import gi
 import yaml
 
+from chronograph.utils.file_backend import FileManager
 from chronograph.utils.player import Player
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("GstPlay", "1.0")
 gi.require_version("Gst", "1.0")
+gi.require_version("Gio", "2.0")
 
 # pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
@@ -135,6 +137,7 @@ class ChronographApplication(Adw.Application):
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
     Player().set_property("rate", float(Schema.get("root.state.player.rate")))
     logger.debug("Window shown")
+    FileManager(Path("/home/dzheremi/Music"))
 
   def on_about_action(self, *_args) -> None:
     """Shows About App dialog"""

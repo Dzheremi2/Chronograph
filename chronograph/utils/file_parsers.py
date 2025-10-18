@@ -5,10 +5,10 @@ from pathlib import Path
 from typing import Union
 
 from chronograph.internal import Schema
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.media.file_mutagen_id3 import FileID3
+from chronograph.utils.media.file_mutagen_mp4 import FileMP4
+from chronograph.utils.media.file_mutagen_vorbis import FileVorbis
+from chronograph.utils.media.file_untaggable import FileUntaggable
 
 
 def parse_files(
