@@ -54,7 +54,7 @@ class Schema(GObject.GObject):
       self._save()
       self.emit("changed", dotted_path, valid_value)
 
-  def bind(  # noqa: ANN201
+  def bind(
     self,
     dotted_path: str,
     target: GObject.Object,
@@ -130,7 +130,7 @@ class Schema(GObject.GObject):
     if not preserve_cursor:
 
       class Binding:
-        def unbind(_self):  # noqa: N805
+        def unbind(_self):  # pylint: disable=no-self-argument
           self.disconnect(handler_schema)
           if handler_widget:
             target.disconnect(handler_widget)

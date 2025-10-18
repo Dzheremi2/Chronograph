@@ -43,7 +43,7 @@ class LyricsFile(GObject.Object):
 
   def __init__(self, media_bind_path: Path) -> None:
     super().__init__()
-    self._media_bind_path = media_bind_path
+    self.media_bind_path = media_bind_path
 
     # Dummy schema path to trigger initial path construction
     self._construct_paths(None, "root.settings.file-manipulation.elrc-prefix", None)
@@ -96,9 +96,9 @@ class LyricsFile(GObject.Object):
     ):
       lrc_suffix = Schema.get("root.settings.file-manipulation.format")
       elrc_prefix = Schema.get("root.settings.file-manipulation.elrc-prefix")
-      lrc_path = self._media_bind_path.with_suffix(lrc_suffix)
-      elrc_path = self._media_bind_path.with_name(
-        elrc_prefix + self._media_bind_path.name
+      lrc_path = self.media_bind_path.with_suffix(lrc_suffix)
+      elrc_path = self.media_bind_path.with_name(
+        elrc_prefix + self.media_bind_path.name
       ).with_suffix(lrc_suffix)
 
       self.set_property("lrc_path", str(lrc_path))

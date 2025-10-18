@@ -27,6 +27,7 @@ class _Constants:
   LOGGER: Logger
   PLAYER_LOGGER: Logger
   LRCLIB_LOGGER: Logger
+  FILE_LOGGER: Logger
 
 Constants: _Constants
 Schema: Sch

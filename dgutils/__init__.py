@@ -1,4 +1,4 @@
-from dgutils.actions import Actions
+from dgutils.actions import Actions  # noqa: D104
 from dgutils.constants import Constants
 from dgutils.schema import Schema
 

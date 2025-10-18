@@ -8,19 +8,16 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
-from chronograph.ui.widgets.song_card import SongCard
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
-from chronograph.utils.file_backend.file_mutagen_id3 import FileID3
-from chronograph.utils.file_backend.file_mutagen_mp4 import FileMP4
-from chronograph.utils.file_backend.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.file_backend.file_untaggable import FileUntaggable
+from chronograph.utils.file_backend import SongCardModel
 from chronograph.utils.lyrics import (
   Lyrics,
   LyricsFile,
   LyricsFormat,
   LyricsHierarchyConversion,
 )
+from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 from chronograph.utils.player import Player
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
@@ -47,11 +44,9 @@ class WBWSyncPage(Adw.NavigationPage):
   _autosave_timeout_id: Optional[int] = None
   _lyrics_model: Optional[LyricsModel] = None
 
-  def __init__(
-    self, card: SongCard, file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable]
-  ) -> None:
+  def __init__(self, card_model: SongCardModel) -> None:
     def on_shown(*_args) -> None:
-      if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+      if isinstance(self._card.mfile, FileUntaggable):
         self.action_set_enabled("controls.edit_metadata", enabled=False)
 
     super().__init__()
@@ -62,13 +57,15 @@ class WBWSyncPage(Adw.NavigationPage):
     self._previous_page: Optional[Adw.ViewStackPage] = None
 
     # Player setup
-    self._card: SongCard = card
-    self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = file
-    self._lyrics_file = self._card._lyrics_file  # noqa: SLF001
-    self._card.bind_property("title", self, "title", GObject.BindingFlags.SYNC_CREATE)
+    self._card: SongCardModel = card_model
+    self._file: Union[FileID3, FileMP4, FileVorbis, FileUntaggable] = card_model.mfile
+    self._lyrics_file = self._card.lyrics_file
+    self._card.bind_property(
+      "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
+    )
     if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
       self.action_set_enabled("controls.edit_metadata", enabled=False)
-    self._player_widget = UIPlayer(file, card)
+    self._player_widget = UIPlayer(card_model)
     self.player_container.append(self._player_widget)
 
     self._close_rq_handler_id = Constants.WIN.connect(
@@ -374,11 +371,12 @@ class WBWSyncPage(Adw.NavigationPage):
             logger.debug("Prevented overwriting LRC lyrics with Plain in LRC file")
         try:
           self._lyrics_file.elrc_lyrics.text = lyrics.of_format(LyricsFormat.ELRC)
-          self._file.embed_lyrics(
-            self._lyrics_file.elrc_lyrics.text
-            if self._lyrics_file.elrc_lyrics.text
-            else None
-          )
+          if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
+            self._file.embed_lyrics(
+              self._lyrics_file.elrc_lyrics.text
+              if self._lyrics_file.elrc_lyrics.text
+              else None
+            )
           self._lyrics_file.elrc_lyrics.save()
           logger.debug("eLRC lyrics autosaved successfully")
         except LyricsHierarchyConversion:

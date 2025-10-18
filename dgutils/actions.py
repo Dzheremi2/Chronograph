@@ -2,7 +2,7 @@ import json
 from functools import wraps
 
 import yaml
-from gi.repository import Gio, GObject, Gtk
+from gi.repository import Gio, Gtk
 
 
 class Actions:
@@ -10,11 +10,13 @@ class Actions:
 
   Use via subclass (call `super().__init__(self, schema_dict)`) or as:
 
-    @Actions.from_schema(".../actions.yaml")
-    class MyWidget(...): ...
+  ::
+
+      @Actions.from_schema(".../actions.yaml")
+      class MyWidget(...): ...
   """
 
-  def __init__(self, instance: Gtk.Actionable, schema: dict) -> None:
+  def __init__(self, instance, schema: dict):
     self.instance = instance
     self.schema = schema
     self._setup()
@@ -74,21 +76,21 @@ class Actions:
     return out
 
   @staticmethod
-  def _resolve_attr_chain(root: object, dotted: str) -> GObject.Object:
+  def _resolve_attr_chain(root, dotted: str):
     obj = root
     for part in dotted.split("."):
       obj = getattr(obj, part)
     return obj
 
   @classmethod
-  def from_schema(cls, path: str, encoding: str = "yaml") -> "Actions":
+  def from_schema(cls, path: str, encoding: str = "yaml"):
     """Class decorator: load schema from GResource and build actions after `__init__`."""
 
-    def class_decorator(target_cls: Gtk.Actionable):
+    def class_decorator(target_cls):
       original_init = target_cls.__init__
 
       @wraps(original_init)
-      def new_init(self: Gtk.Actionable, *args, **kwargs):
+      def new_init(self, *args, **kwargs):
         # Run original constructor first
         original_init(self, *args, **kwargs)
 
