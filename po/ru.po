@@ -8,39 +8,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 08:55+0300\n"
-"PO-Revision-Date: 2025-10-20 17:04+0000\n"
+"POT-Creation-Date: 2025-10-20 21:13+0300\n"
+"PO-Revision-Date: 2025-10-20 21:15+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/chronograph/"
-"chronograph/ru/>\n"
+"Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural="
-"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
-"1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 49.0\n"
 
-#: chronograph/window.py:489
+#: chronograph/window.py:399
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:161
+#: chronograph/main.py:163
 msgid "translator-credits"
 msgstr "Артём Чичваров <chichvarov1315@gmail.com>"
 
-#: chronograph/main.py:169
+#: chronograph/main.py:171
 msgid "Inspiration"
 msgstr "Вдохновение"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:179
+#: chronograph/main.py:181
 msgid "Build your own dictionary"
 msgstr "Создайте свой собственный словарь"
 
-#: chronograph/main.py:185
+#: chronograph/main.py:187
 msgid "Translate the App"
 msgstr "Перевести приложение"
 
@@ -81,57 +79,57 @@ msgstr "Нет синхронизированных слов"
 msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:278
-#: chronograph/ui/sync_pages/wbw_sync_page.py:240
+#: chronograph/ui/sync_pages/lrc_sync_page.py:275
+#: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
-#: chronograph/ui/sync_pages/wbw_sync_page.py:202
+#: chronograph/ui/sync_pages/lrc_sync_page.py:286
+#: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:290
-#: chronograph/ui/sync_pages/wbw_sync_page.py:203
-#: chronograph/ui/widgets/song_card.py:161
+#: chronograph/ui/sync_pages/lrc_sync_page.py:287
+#: chronograph/ui/sync_pages/wbw_sync_page.py:200
+#: chronograph/ui/widgets/song_card.py:132
 msgid "Show"
 msgstr "Показать"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
-#: chronograph/ui/sync_pages/lrc_sync_page.py:474
+#: chronograph/ui/sync_pages/lrc_sync_page.py:429
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid "Failed to connect to LRClib.net"
 msgstr "Не удалось подключиться к LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:434
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
 msgid "Connection to LRClib.net timed out"
 msgstr "Время ожидания подключения к LRClib.net истекло"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
-#: chronograph/ui/sync_pages/lrc_sync_page.py:480
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Произошла ошибка при подключении к LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:492
+#: chronograph/ui/sync_pages/lrc_sync_page.py:490
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успешно опубликовано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:496
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неверный публичный токен: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Произошла неизвестная ошибка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:513
+#: chronograph/ui/sync_pages/lrc_sync_page.py:511
 msgid "Unable to publish lyrics"
 msgstr "Невозможно опубликовать текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -139,98 +137,69 @@ msgstr ""
 "Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
 "«Альбом» и синхронизировать слова"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:518
 msgid "Close"
 msgstr "Закрыть"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:524
+#: chronograph/ui/sync_pages/lrc_sync_page.py:522
 msgid "Cannot publish empty lyrics"
 msgstr "Невозможно опубликовать пустой текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:525
+#: chronograph/ui/sync_pages/lrc_sync_page.py:523
 msgid "Why?"
 msgstr "Почему?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:531
+#: chronograph/ui/sync_pages/lrc_sync_page.py:529
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:126
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
 msgstr "Нет текста песни"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:127
+#: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Вы не предоставили никаких слов для синхронизации"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:318
+#: chronograph/ui/sync_pages/wbw_sync_page.py:315
 msgid "No lyrics to be re-synced"
 msgstr "Нет слов для пересинхронизации"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:320
+#: chronograph/ui/sync_pages/wbw_sync_page.py:317
 msgid "Open Sync mode to re-sync all words"
 msgstr "Перейдите в режим синхронизации, чтобы пересинхронизировать все слова"
 
-#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:250
-msgctxt "means lyrics absence"
-msgid "None"
-msgstr "Отсутствуют"
-
-#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
-#: data/gtk/ui/dialogs/Preferences.blp:241
-msgid "Plain"
-msgstr "Простые"
-
-#: chronograph/ui/widgets/song_card.py:145
+#: chronograph/ui/widgets/song_card.py:116
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Сведения о файле"
 
-#: chronograph/ui/widgets/song_card.py:148
+#: chronograph/ui/widgets/song_card.py:119
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Название"
 
-#: chronograph/ui/widgets/song_card.py:152
+#: chronograph/ui/widgets/song_card.py:123
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Исполнитель"
 
-#: chronograph/ui/widgets/song_card.py:155
+#: chronograph/ui/widgets/song_card.py:126
 #: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Альбом"
 
-#: chronograph/ui/widgets/song_card.py:157
+#: chronograph/ui/widgets/song_card.py:128
 msgid "Path"
 msgstr "Путь"
 
-#: chronograph/ui/widgets/song_card.py:229
-#: chronograph/ui/widgets/song_card.py:231
-msgctxt "song title placeholder"
-msgid "Unknown"
-msgstr "Неизвестно"
-
-#: chronograph/ui/widgets/song_card.py:233
-#: chronograph/ui/widgets/song_card.py:235
-msgctxt "song artist placeholder"
-msgid "Unknown"
-msgstr "Неизвестен"
-
-#: chronograph/ui/widgets/song_card.py:237
-#: chronograph/ui/widgets/song_card.py:239
-msgctxt "song album placeholder"
-msgid "Unknown"
-msgstr "Неизвестен"
-
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
-#: chronograph/ui/widgets/saved_location.py:26
-#: chronograph/ui/widgets/saved_location.py:30
+#: chronograph/ui/widgets/saved_location.py:27
+#: chronograph/ui/widgets/saved_location.py:31
 msgid "Path: {}"
 msgstr "Путь: {}"
 
@@ -250,11 +219,38 @@ msgstr "Да"
 msgid "No"
 msgstr "Нет"
 
-#: chronograph/ui/widgets/ui_player.py:53
-#: chronograph/ui/widgets/ui_player.py:66
+#: chronograph/ui/widgets/ui_player.py:47
+#: chronograph/ui/widgets/ui_player.py:60
 #, python-brace-format
 msgid "{vol}%"
 msgstr "{vol}%"
+
+#: chronograph/utils/file_backend/song_card_model.py:12
+msgctxt "song title placeholder"
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: chronograph/utils/file_backend/song_card_model.py:13
+msgctxt "song artist placeholder"
+msgid "Unknown"
+msgstr "Неизвестен"
+
+#: chronograph/utils/file_backend/song_card_model.py:14
+msgctxt "song album placeholder"
+msgid "Unknown"
+msgstr "Неизвестен"
+
+#: chronograph/utils/file_backend/song_card_model.py:25
+#: chronograph/utils/lyrics/lyrics_format.py:33 data/gtk/window.blp:250
+msgctxt "means lyrics absence"
+msgid "None"
+msgstr "Отсутствуют"
+
+#: chronograph/utils/lyrics/lyrics_format.py:34 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
+#: data/gtk/ui/dialogs/Preferences.blp:241
+msgid "Plain"
+msgstr "Простые"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -389,22 +385,18 @@ msgid "Clean the library"
 msgstr "Очистить библиотеку"
 
 #: data/gtk/window.blp:341
-msgid "Re-parse current directory"
-msgstr "Пересканировать текущую директорию"
-
-#: data/gtk/window.blp:347
 msgid "Add current directory to saves"
 msgstr "Добавить текущую директория в сохранения"
 
-#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:358 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Искать"
 
-#: data/gtk/window.blp:405
+#: data/gtk/window.blp:399
 msgid "Directory"
 msgstr "Директория"
 
-#: data/gtk/window.blp:406
+#: data/gtk/window.blp:400
 msgid "Files"
 msgstr "Файлы"
 
@@ -536,6 +528,7 @@ msgid "Search on LRClib by title, artist and album names"
 msgstr "Искать на LRClib по указанным названию, исполнителю и альбому"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 #: data/gtk/ui/widgets/SavedLocation.blp:51
 #: data/gtk/ui/widgets/SavedLocation.blp:63
 msgid "Cancel"
@@ -809,6 +802,27 @@ msgstr ""
 "конвертированы в LRC и затем встроены выбранным способом (Vorbis)\n"
 "Слова только опускает слова по иерархии (eLRC -> LRC -> Обычные)"
 
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
+msgid "Re-Sync All Lines"
+msgstr "Пересинхронизировать Все Строки"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
+msgid ""
+"Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
+"sync backwards"
+msgstr ""
+"Введите количество миллисекунд на которое все строки должны быть "
+"пересинхронизированны. Используйте “-” перед числом для пересинхронизации "
+"назад"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
+msgid "Milliseconds"
+msgstr "Миллисекунды"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
+msgid "Re-Sync"
+msgstr "Пересинхронизировать"
+
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:96
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:96
 msgid "Sync/Re-sync line"
@@ -1034,6 +1048,9 @@ msgstr "Страница синхронизации на меньшем дисп
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;слова;интернет;песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;хронограф;"
+
+#~ msgid "Re-parse current directory"
+#~ msgstr "Пересканировать текущую директорию"
 
 #~ msgid "Re-sync 100ms back"
 #~ msgstr "Пересинхронизировать на 100мс назад"

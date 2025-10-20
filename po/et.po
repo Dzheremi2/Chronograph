@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 08:55+0300\n"
+"POT-Creation-Date: 2025-10-20 21:13+0300\n"
 "PO-Revision-Date: 2025-10-20 04:56+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -19,25 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:489
+#: chronograph/window.py:399
 msgid "Copied successfully"
 msgstr "Kopeerimine õnnestus"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:161
+#: chronograph/main.py:163
 msgid "translator-credits"
 msgstr "Priit Jõerüüt 2025"
 
-#: chronograph/main.py:169
+#: chronograph/main.py:171
 msgid "Inspiration"
 msgstr "Inspiratsioon"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:179
+#: chronograph/main.py:181
 msgid "Build your own dictionary"
 msgstr "Loo oma sõnastik"
 
-#: chronograph/main.py:185
+#: chronograph/main.py:187
 msgid "Translate the App"
 msgstr "Tõlgi rakendust"
 
@@ -78,57 +78,57 @@ msgstr "Sünkroonitud laulusõnad pole saadaval"
 msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:278
-#: chronograph/ui/sync_pages/wbw_sync_page.py:240
+#: chronograph/ui/sync_pages/lrc_sync_page.py:275
+#: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Laulusõnad on eksporditud lõikelauale"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
-#: chronograph/ui/sync_pages/wbw_sync_page.py:202
+#: chronograph/ui/sync_pages/lrc_sync_page.py:286
+#: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Laulusõnad on eksporditud faili"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:290
-#: chronograph/ui/sync_pages/wbw_sync_page.py:203
-#: chronograph/ui/widgets/song_card.py:161
+#: chronograph/ui/sync_pages/lrc_sync_page.py:287
+#: chronograph/ui/sync_pages/wbw_sync_page.py:200
+#: chronograph/ui/widgets/song_card.py:132
 msgid "Show"
 msgstr "Näita"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
-#: chronograph/ui/sync_pages/lrc_sync_page.py:474
+#: chronograph/ui/sync_pages/lrc_sync_page.py:429
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid "Failed to connect to LRClib.net"
 msgstr "Ühendamine LRClib.net serveriga ei õnnestunud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:434
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
 msgid "Connection to LRClib.net timed out"
 msgstr "Ühendus LRClib.net serveriga aegus"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
-#: chronograph/ui/sync_pages/lrc_sync_page.py:480
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:492
+#: chronograph/ui/sync_pages/lrc_sync_page.py:490
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Avaldamine õnnestus: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:496
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Vigane avaldamise tunnusluba: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Tekkis tundmatu viga: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:513
+#: chronograph/ui/sync_pages/lrc_sync_page.py:511
 msgid "Unable to publish lyrics"
 msgstr "Laulusõnade avaldamine ei õnnestu"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -136,98 +136,69 @@ msgstr ""
 "Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
 "väljad olema täidetud"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:518
 msgid "Close"
 msgstr "Sulge"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:524
+#: chronograph/ui/sync_pages/lrc_sync_page.py:522
 msgid "Cannot publish empty lyrics"
 msgstr "Tühje laulusõnu ei saa avaldada"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:525
+#: chronograph/ui/sync_pages/lrc_sync_page.py:523
 msgid "Why?"
 msgstr "Miks?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:531
+#: chronograph/ui/sync_pages/lrc_sync_page.py:529
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:126
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
 msgstr "Laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:127
+#: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:318
+#: chronograph/ui/sync_pages/wbw_sync_page.py:315
 msgid "No lyrics to be re-synced"
 msgstr "Pole laulusõnu, mida uuesti sünkroonida"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:320
+#: chronograph/ui/sync_pages/wbw_sync_page.py:317
 msgid "Open Sync mode to re-sync all words"
 msgstr "Uuesti sünkroonimiseks ava sünkroonimisvaade"
 
-#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:250
-msgctxt "means lyrics absence"
-msgid "None"
-msgstr "Puudub"
-
-#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
-#: data/gtk/ui/dialogs/Preferences.blp:241
-msgid "Plain"
-msgstr "Tavaline"
-
-#: chronograph/ui/widgets/song_card.py:145
+#: chronograph/ui/widgets/song_card.py:116
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Faili teave"
 
-#: chronograph/ui/widgets/song_card.py:148
+#: chronograph/ui/widgets/song_card.py:119
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Nimi"
 
-#: chronograph/ui/widgets/song_card.py:152
+#: chronograph/ui/widgets/song_card.py:123
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Esitaja"
 
-#: chronograph/ui/widgets/song_card.py:155
+#: chronograph/ui/widgets/song_card.py:126
 #: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Album"
 
-#: chronograph/ui/widgets/song_card.py:157
+#: chronograph/ui/widgets/song_card.py:128
 msgid "Path"
 msgstr "Asukoht"
 
-#: chronograph/ui/widgets/song_card.py:229
-#: chronograph/ui/widgets/song_card.py:231
-msgctxt "song title placeholder"
-msgid "Unknown"
-msgstr "Tundmatu"
-
-#: chronograph/ui/widgets/song_card.py:233
-#: chronograph/ui/widgets/song_card.py:235
-msgctxt "song artist placeholder"
-msgid "Unknown"
-msgstr "Tundmatu"
-
-#: chronograph/ui/widgets/song_card.py:237
-#: chronograph/ui/widgets/song_card.py:239
-msgctxt "song album placeholder"
-msgid "Unknown"
-msgstr "Tundmatu"
-
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
-#: chronograph/ui/widgets/saved_location.py:26
-#: chronograph/ui/widgets/saved_location.py:30
+#: chronograph/ui/widgets/saved_location.py:27
+#: chronograph/ui/widgets/saved_location.py:31
 msgid "Path: {}"
 msgstr "Asukoht: {}"
 
@@ -247,11 +218,38 @@ msgstr "Jah"
 msgid "No"
 msgstr "Ei"
 
-#: chronograph/ui/widgets/ui_player.py:53
-#: chronograph/ui/widgets/ui_player.py:66
+#: chronograph/ui/widgets/ui_player.py:47
+#: chronograph/ui/widgets/ui_player.py:60
 #, python-brace-format
 msgid "{vol}%"
 msgstr "{vol}%"
+
+#: chronograph/utils/file_backend/song_card_model.py:12
+msgctxt "song title placeholder"
+msgid "Unknown"
+msgstr "Tundmatu"
+
+#: chronograph/utils/file_backend/song_card_model.py:13
+msgctxt "song artist placeholder"
+msgid "Unknown"
+msgstr "Tundmatu"
+
+#: chronograph/utils/file_backend/song_card_model.py:14
+msgctxt "song album placeholder"
+msgid "Unknown"
+msgstr "Tundmatu"
+
+#: chronograph/utils/file_backend/song_card_model.py:25
+#: chronograph/utils/lyrics/lyrics_format.py:33 data/gtk/window.blp:250
+msgctxt "means lyrics absence"
+msgid "None"
+msgstr "Puudub"
+
+#: chronograph/utils/lyrics/lyrics_format.py:34 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
+#: data/gtk/ui/dialogs/Preferences.blp:241
+msgid "Plain"
+msgstr "Tavaline"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -387,22 +385,18 @@ msgid "Clean the library"
 msgstr "Tühjenda muusikakogu"
 
 #: data/gtk/window.blp:341
-msgid "Re-parse current directory"
-msgstr "Töötle seda kausta uuesti"
-
-#: data/gtk/window.blp:347
 msgid "Add current directory to saves"
 msgstr "Lisa see kaust lemmikute hulka"
 
-#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:358 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Otsi"
 
-#: data/gtk/window.blp:405
+#: data/gtk/window.blp:399
 msgid "Directory"
 msgstr "Kaust"
 
-#: data/gtk/window.blp:406
+#: data/gtk/window.blp:400
 msgid "Files"
 msgstr "Failid"
 
@@ -534,6 +528,7 @@ msgid "Search on LRClib by title, artist and album names"
 msgstr "Otsi pealkirja, esitaja ja albumi nime alusel LRClibi veebiteenusest"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 #: data/gtk/ui/widgets/SavedLocation.blp:51
 #: data/gtk/ui/widgets/SavedLocation.blp:63
 msgid "Cancel"
@@ -669,8 +664,8 @@ msgid ""
 "Line, or Word-by-Word\n"
 "WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
 msgstr ""
-"Määrab kas sõnahaaval või ridahaaval toimiva sünkroonimise vaikimisi töövoo."
-"\n"
+"Määrab kas sõnahaaval või ridahaaval toimiva sünkroonimise vaikimisi "
+"töövoo.\n"
 "SÕNAHAAVAL ESITUS EI TOIMI MOBIILSETES NUTISEADMETES"
 
 #: data/gtk/ui/dialogs/Preferences.blp:81
@@ -810,6 +805,27 @@ msgstr ""
 "(Vorbis)\n"
 "See on vaid varuvariant valitud vormingu kontekstis (eLRC -> LRC -> "
 "Tavatekst)"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
+#, fuzzy
+msgid "Re-Sync All Lines"
+msgstr "Sünkroniseeri laulurida"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
+msgid ""
+"Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
+"sync backwards"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
+#, fuzzy
+msgid "Milliseconds"
+msgstr "Kasuta täpseid millisekundeid"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
+#, fuzzy
+msgid "Re-Sync"
+msgstr "Sünkrooni"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:96
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:96
@@ -1035,9 +1051,10 @@ msgstr "Laulusõnade sünkroonimisvaade väikesel ekraanil"
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr ""
-"lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;kronograaf;muusika;laulud;laulusõnad;laulutekstid;lüürika;multimeedia;meedia;sünkroniseerimine;sünkroonimine;sünkimine;"
-""
+msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;kronograaf;muusika;laulud;laulusõnad;laulutekstid;lüürika;multimeedia;meedia;sünkroniseerimine;sünkroonimine;sünkimine;"
+
+#~ msgid "Re-parse current directory"
+#~ msgstr "Töötle seda kausta uuesti"
 
 #~ msgid "Re-sync 100ms back"
 #~ msgstr "Sünkroniseeri 100 ms tahapoole"
