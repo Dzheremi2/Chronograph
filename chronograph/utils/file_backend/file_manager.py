@@ -57,7 +57,7 @@ class FileManager(GObject.Object):
       self.monitor_path = directory
       self._setup_monitor(directory)
       self.emit("target-root-changed", str(directory))
-    else:
+    elif directory is None:
       self.monitor_path = None
       self.kill_all_monitors()
 
@@ -107,9 +107,13 @@ class FileManager(GObject.Object):
     changed_path = gfile_changed.get_path()
     logger.debug("[EVENT:%s], Path: '%s'", event_type.value_nick.upper(), changed_path)
 
+    follow_symlinks = Schema.get(
+      "root.settings.general.recursive-parsing.follow-symlinks"
+    )
+
     match event_type:
       case Gio.FileMonitorEvent.CREATED | Gio.FileMonitorEvent.MOVED_IN:
-        if Path(changed_path).is_dir():
+        if Path(changed_path).is_dir(follow_symlinks=follow_symlinks):
           logger.info(
             "--> New directory created. Starting monitoring '%s'", changed_path
           )
@@ -117,6 +121,7 @@ class FileManager(GObject.Object):
           self._recursively_emit_created(Path(changed_path))
         else:
           self.emit("created", gfile_changed.get_path())
+
       case Gio.FileMonitorEvent.DELETED:
         real_path = str(Path(changed_path).absolute())
         if real_path in self.monitors:
@@ -128,13 +133,14 @@ class FileManager(GObject.Object):
         else:
           logger.info("--> Item '%s' was deleted", real_path)
           self.emit("deleted", real_path)
+
       case Gio.FileMonitorEvent.RENAMED:
         new_path = gfile_other.get_path()
         old_path = gfile_changed.get_path()
         logger.info("--> File '%s' was renamed to '%s'", old_path, new_path)
         self.emit("renamed", gfile_other.get_path(), gfile_changed.get_path())
 
-        if Path(new_path).is_dir():
+        if Path(new_path).is_dir(follow_symlinks=follow_symlinks):
           old_abs_path = str(Path(old_path).absolute())
           if old_abs_path in self.monitors:
             self.monitors[old_abs_path].cancel()
@@ -142,6 +148,7 @@ class FileManager(GObject.Object):
             logger.info("--> Cleaned up monitor for old directory name: %s", old_path)
           self._setup_monitor(Path(new_path))
           self._recursively_emit_created(Path(new_path))
+
       case Gio.FileMonitorEvent.MOVED_OUT:
         # Gio for some reason don't pass the file destination path on this event for
         # trash moves. So treat all moves out as a deletion event
@@ -157,6 +164,7 @@ class FileManager(GObject.Object):
             "--> Monitored direcotry deleted. Stopping monitoring '%s'",
             abs_changed_path,
           )
+
       case __:
         pass
 
