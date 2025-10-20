@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-20 21:13+0300\n"
-"PO-Revision-Date: 2025-10-20 04:56+0000\n"
+"PO-Revision-Date: 2025-10-21 03:02+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -807,25 +807,24 @@ msgstr ""
 "Tavatekst)"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
-#, fuzzy
 msgid "Re-Sync All Lines"
-msgstr "Sünkroniseeri laulurida"
+msgstr "Sünkrooni kõik lauluread"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
 msgid ""
 "Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
 "sync backwards"
 msgstr ""
+"Kõikide ridade uuesti sünkroonimiseks sisesta aeg millisekundeis. Lisades "
+"ette „-“ teed seda tagurpidi"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
-#, fuzzy
 msgid "Milliseconds"
-msgstr "Kasuta täpseid millisekundeid"
+msgstr "Millisekundid"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
-#, fuzzy
 msgid "Re-Sync"
-msgstr "Sünkrooni"
+msgstr "Sünkrooni uuesti"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:96
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:96
