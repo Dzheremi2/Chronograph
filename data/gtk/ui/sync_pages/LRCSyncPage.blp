@@ -23,7 +23,7 @@ template $LRCSyncPage: Adw.NavigationPage {
         [end]
         MenuButton {
           icon-name: "app-menu-symbolic";
-          tooltip-text: _("App settings, info and utils");
+          tooltip-text: _("Menu");
 
           menu-model: menu about_app {
             section {
@@ -85,6 +85,7 @@ template $LRCSyncPage: Adw.NavigationPage {
         margin-top: 8;
         orientation: horizontal;
         maximum-size: 600;
+        tightening-threshold: 600;
 
         Box syncing_buttons_box {
           orientation: horizontal;
@@ -228,6 +229,7 @@ template $LRCSyncPage: Adw.NavigationPage {
         Adw.Clamp {
           orientation: horizontal;
           maximum-size: 600;
+          tightening-threshold: 600;
 
           Box {
             orientation: vertical;

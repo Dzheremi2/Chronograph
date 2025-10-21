@@ -43,42 +43,63 @@ template $MetadataEditor : Adw.Dialog {
           spacing: 8;
           hexpand: true;
 
-          Adw.Clamp {
-            orientation: horizontal;
-            maximum-size: 160;
+          Adw.Bin cover_image_bin {
+            halign: center;
+            valign: start;
+            hexpand: false;
+            vexpand: false;
+            width-request: 160;
+            height-request: 160;
+            styles ["album-cover"]
 
-            MenuButton {
-              tooltip-text: _("Change cover");
-              overflow: hidden;
-              has-frame: false;
-              menu-model: menu cover_action {
-                section {
-                  item {
-                    label: _("Set cover");
-                    action: "cover.change";
-                  }
+            Overlay {
+              [overlay]
+              Revealer edit_icon_revealer {
+                receives-default: false;
+                can-focus: false;
+                can-target: false;
+                reveal-child: false;
+                transition-type: crossfade;
+                hexpand: true;
+                vexpand: true;
 
-                  item {
-                    label: _("Remove cover");
-                    action: "cover.remove";
+                Box {
+                  styles ["hover-highlight"]
+
+                  Image {
+                    icon-name: "edit-metadata-symbolic";
+                    pixel-size: 40;
+                    valign: center;
+                    halign: center;
+                    hexpand: true;
                   }
                 }
-              };
+              }
 
-              Box {
-                orientation: vertical;
+              $ChrMenuButton {
+                tooltip-text: _("Change cover");
+                overflow: hidden;
+                popover: PopoverMenu {
+                  menu-model: menu cover_action {
+                    section {
+                      item {
+                        label: _("Set Cover…");
+                        action: "cover.change";
+                      }
 
-                Image cover_image {
-                  width-request: 160;
-                  height-request: 160;
+                      item {
+                        label: _("Remove Cover…");
+                        action: "cover.remove";
+                      }
+                    }
+                  };
+                };
+                child: Image cover_image {
                   hexpand: true;
                   vexpand: true;
-                  overflow: hidden;
                   icon-name: "note-placeholder";
                   pixel-size: 160;
-
-                  styles ["rounded"]
-                }
+                };
               }
             }
           }

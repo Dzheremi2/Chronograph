@@ -20,7 +20,7 @@ Adw.StatusPage no_source_opened {
     }
 
     Button load_files_btn {
-      label: _("Load Files");
+      label: _("Open File");
       action-name: "win.select_files";
       styles ["pill"]
     }
@@ -52,7 +52,7 @@ Adw.StatusPage empty_directory {
     }
 
     Button load_files_btn_empty_dir {
-      label: _("Load File");
+      label: _("Open File");
       action-name: "win.select_files";
       styles ["pill"]
     }
@@ -292,7 +292,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 [end]
                 MenuButton {
                   icon-name: "app-menu-symbolic";
-                  tooltip-text: _("App settings, info and utils");
+                  tooltip-text: _("Menu");
                   menu-model: menu about_app {
                     section {
                       submenu {

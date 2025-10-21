@@ -23,7 +23,7 @@ template $WBWSyncPage : Adw.NavigationPage {
         [end]
         MenuButton {
           icon-name: "app-menu-symbolic";
-          tooltip-text: _("App settings, info and utils");
+          tooltip-text: _("Menu");
           menu-model: menu about_app {
             section {
               submenu {
@@ -83,6 +83,7 @@ template $WBWSyncPage : Adw.NavigationPage {
         margin-top: 4;
         orientation: horizontal;
         maximum-size: 600;
+        tightening-threshold: 600;
 
         Box syncing_buttons_box {
           orientation: horizontal;
