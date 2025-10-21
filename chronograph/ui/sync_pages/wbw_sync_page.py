@@ -63,7 +63,7 @@ class WBWSyncPage(Adw.NavigationPage):
     self._card.bind_property(
       "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
     )
-    if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+    if isinstance(self._card.mfile, FileUntaggable):
       self.action_set_enabled("controls.edit_metadata", enabled=False)
     self._player_widget = UIPlayer(card_model)
     self.player_container.append(self._player_widget)
