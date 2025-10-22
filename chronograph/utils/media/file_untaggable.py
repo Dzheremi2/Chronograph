@@ -5,7 +5,6 @@ from chronograph.utils.lyrics import Lyrics
 from .file import BaseFile
 
 
-# pylint: disable=abstract-method
 class FileUntaggable(BaseFile):
   __gtype_name__ = "FileUntaggable"
 
@@ -14,5 +13,5 @@ class FileUntaggable(BaseFile):
 
     self.cover = None
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     pass

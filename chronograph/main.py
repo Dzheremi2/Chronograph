@@ -14,20 +14,16 @@ gi.require_version("GstPlay", "1.0")
 gi.require_version("Gst", "1.0")
 gi.require_version("Gio", "2.0")
 
-# pylint: disable=wrong-import-position,wrong-import-order
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
-# pylint: disable=ungrouped-imports
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
-from dgutils.decorators import singleton
 
 logger = Constants.LOGGER
 Gst.init(None)
 
 
-@singleton
 class ChronographApplication(Adw.Application):
   """Application class"""
 
@@ -62,9 +58,9 @@ class ChronographApplication(Adw.Application):
     logger.info("Requesting opening for files:\n%s", "\n".join(self.paths))
     self.do_activate()
 
-  def do_activate(self) -> None:  # pylint: disable=arguments-differ
+  def do_activate(self) -> None:
     """Emits on app creation"""
-    win = self.props.active_window  # pylint: disable=no-member
+    win = self.props.active_window
     if not win:
       Constants.WIN = win = ChronographWindow(application=self)
     else:
@@ -196,9 +192,11 @@ class ChronographApplication(Adw.Application):
     dialog.present(Constants.WIN)
 
   def on_quit_action(self, *_args) -> None:
+    """Triggered on user press `Ctrl + Q`"""
     self.quit()
 
-  def do_shutdown(self):  # pylint: disable=arguments-differ
+  def do_shutdown(self):
+    """Called on app closure. Proceeds all on exit operations"""
     Player().stop()
     FileManager().kill_all_monitors()
     if not Schema.get("root.settings.general.save-session"):

@@ -3,13 +3,12 @@ from pathlib import Path
 from gi.repository import GObject, Gst, GstPlay, Gtk
 
 from chronograph.internal import Constants, Schema
-from dgutils.decorators import singleton
+from dgutils import GSingleton
 
 logger = Constants.PLAYER_LOGGER
 
 
-@singleton
-class GstPlayer(GstPlay.Play):
+class GstPlayer(GstPlay.Play, metaclass=GSingleton):
   __gtype_name__ = "GstPlayer"
 
   __gsignals__ = {
@@ -79,6 +78,7 @@ class GstPlayer(GstPlay.Play):
 
   @property
   def state(self) -> Gst.State:
+    """Player state"""
     if not self._is_player_loaded():
       return Gst.State.READY
 
@@ -91,8 +91,7 @@ class GstPlayer(GstPlay.Play):
     return Gst.State.READY
 
 
-@singleton
-class Player(GObject.Object):
+class Player(GObject.Object, metaclass=GSingleton):
   __gtype_name__ = "Player"
 
   _cookie = 0
@@ -136,11 +135,18 @@ class Player(GObject.Object):
     self.connect("notify::playing", self._on_playing)
 
   def set_file(self, file: Path) -> None:
+    """Loads the provided file to player
+
+    Parameters
+    ----------
+    file : Path
+        A file to play
+    """
     self._gst_player.props.uri = file.as_uri()
     logger.info("File “%s” set to player", str(file))
     self._gst_player.pause()
 
-  def inhibit(self, inhibit: bool) -> None:
+  def _inhibit(self, inhibit: bool) -> None:
     app = Gtk.Application.get_default()
     if inhibit:
       if self._cookie:
@@ -178,9 +184,10 @@ class Player(GObject.Object):
     logger.debug("Seeked to %sns", pos)
 
   def stop(self) -> None:
+    """Force stops the player"""
     self._gst_player.stop()
     self.props.playing = False
-    self.inhibit(inhibit=False)
+    self._inhibit(inhibit=False)
     logger.info("Player stopped")
 
   def _on_eos(self, *_args) -> None:
@@ -197,9 +204,10 @@ class Player(GObject.Object):
       self.set_property("rate", rate)
 
   def _on_playing(self, *_args) -> None:
-    self.inhibit(self.playing)
+    self._inhibit(self.playing)
 
   def play_pause(self) -> None:
+    """Toggles play/pause modes"""
     if self._gst_player.state in (Gst.State.PAUSED, Gst.State.READY):
       self._gst_player.play()
     elif self._gst_player.state == Gst.State.PLAYING:

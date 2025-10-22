@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 from chronograph.internal import Constants
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 
 I18N_STRINGS = (
   _("Title"),
@@ -55,8 +55,10 @@ class LRClibTrack(Gtk.Box):
 
   @property
   def synced(self) -> str:
+    """Synced lyrics from LRClib"""
     return self._synced
 
   @property
   def plain(self) -> str:
+    """Plain lyrics from LRClib"""
     return self._plain

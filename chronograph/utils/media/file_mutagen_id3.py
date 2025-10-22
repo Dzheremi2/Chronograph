@@ -24,7 +24,7 @@ class FileID3(TaggableFile):
 
   __gtype_name__ = "FileID3"
 
-  def compress_images(self) -> None:
+  def compress_images(self) -> None:  # noqa: D102
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       tags = self._mutagen_file.tags
@@ -49,7 +49,6 @@ class FileID3(TaggableFile):
         )
         tags[key] = apic_compressed
 
-  # pylint: disable=attribute-defined-outside-init
   def load_cover(self) -> None:
     """Extracts cover from song file. If no cover, then sets cover as `icon`"""
     if self._mutagen_file.tags is not None:
@@ -116,7 +115,7 @@ class FileID3(TaggableFile):
 
       self._cover = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:  # noqa: D417
+  def set_str_data(self, tag_name: str, new_val: str) -> None:
     """Sets string tags to provided value
 
     Parameters
@@ -146,7 +145,7 @@ class FileID3(TaggableFile):
         self._mutagen_file.tags.add(TALB(text=[new_val]))
     setattr(self, tags_conjunction[tag_name], new_val)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         target_format = LyricsFormat[

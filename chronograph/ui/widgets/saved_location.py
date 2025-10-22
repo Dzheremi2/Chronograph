@@ -4,7 +4,7 @@ from gi.repository import Adw, Gio, GObject, Gtk
 from chronograph.internal import Constants, Schema
 from chronograph.utils.file_backend import LibraryModel
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 
@@ -23,7 +23,7 @@ class SavedLocation(Gtk.Box):
     self._path = path
     self._name = name
     self.bind_property("name", self.title, "label", GObject.BindingFlags.SYNC_CREATE)
-    # pylint: disable=not-callable
+
     self.set_tooltip_text(_("Path: {}").format(self.path))
     self.connect(
       "notify::path",
@@ -60,6 +60,15 @@ class SavedLocation(Gtk.Box):
   def on_deletion_alert_response(
     self, _alert_dialog: Adw.AlertDialog, response: str
   ) -> None:
+    """Triggered on deletion alert dialog response
+
+    Parameters
+    ----------
+    _alert_dialog : Adw.AlertDialog
+        An alert dialog
+    response : str
+        Response
+    """
     if response == "delete":
       self.on_delete_save()
 

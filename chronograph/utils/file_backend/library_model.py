@@ -10,13 +10,12 @@ from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.lyrics import LyricsFile
 from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 from chronograph.utils.miscellaneous import get_common_directory
-from dgutils.decorators import singleton
+from dgutils import GSingleton
 
 logger = Constants.LOGGER
 
 
-@singleton
-class LibraryModel(GObject.Object):
+class LibraryModel(GObject.Object, metaclass=GSingleton):
   __gtype_name__ = "ChronographLibrary"
 
   def __init__(self) -> None:
@@ -69,7 +68,6 @@ class LibraryModel(GObject.Object):
     self.library_list.remove_all()
 
   def _on_target_root_changed(self, _file_manager, new_path: str) -> None:
-    """Open a directory and load its files, updating window state"""
     logger.info("Opening '%s' directory", new_path)
 
     files = parse_dir(new_path)

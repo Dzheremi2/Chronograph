@@ -67,7 +67,6 @@ class LineModel(GObject.Object):
         word.set_property("highlighted", False)
       self.words.get_item(self.cindex).set_property("highlighted", True)
     else:
-      # pylint: disable=superfluous-parens
       self.emit("end-of-line", not (index < 0))
       self.cindex = -1
       for word in self:

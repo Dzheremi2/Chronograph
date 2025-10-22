@@ -85,6 +85,7 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default="")
   def title(self) -> str:
+    """Title of the song"""
     return self.mfile.title or ""
 
   @title.setter
@@ -94,10 +95,12 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default=_title_palceholder)
   def title_display(self) -> str:
+    """Displayable title of the song"""
     return self.mfile.title or _title_palceholder
 
   @GObject.Property(type=str, default="")
   def artist(self) -> str:
+    """Artist of the song"""
     return self.mfile.artist or ""
 
   @artist.setter
@@ -107,10 +110,12 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default=_artist_placeholder)
   def artist_display(self) -> str:
+    """Displayable artist of the song"""
     return self.mfile.artist or _artist_placeholder
 
   @GObject.Property(type=str, default="")
   def album(self) -> str:
+    """Album of the song"""
     return self.mfile.album or ""
 
   @album.setter
@@ -120,8 +125,10 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default=_album_placeholder)
   def album_display(self) -> str:
+    """Displayable album of the song"""
     return self.mfile.album or _album_placeholder
 
   @GObject.Property(type=Gdk.Texture, default=Constants.COVER_PLACEHOLDER)
   def cover(self) -> Gdk.Texture:
+    """Cover of the song"""
     return self.mfile.get_cover_texture()

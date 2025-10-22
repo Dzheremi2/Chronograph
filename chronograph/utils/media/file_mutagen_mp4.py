@@ -16,7 +16,6 @@ tags_conjunction = {
 }
 
 
-# pylint: disable=attribute-defined-outside-init
 class FileMP4(TaggableFile):
   """A MPEG-4 compatible file class. Inherited from `TaggableFile`
 
@@ -28,7 +27,7 @@ class FileMP4(TaggableFile):
 
   __gtype_name__ = "FileMP4"
 
-  def compress_images(self) -> None:
+  def compress_images(self) -> None:  # noqa: D102
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       tags = self._mutagen_file.tags
@@ -109,7 +108,7 @@ class FileMP4(TaggableFile):
           self._mutagen_file.add_tags()
       self.cover = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:  # noqa: D417
+  def set_str_data(self, tag_name: str, new_val: str) -> None:
     r"""Sets string tags to provided value
 
     Parameters
@@ -131,7 +130,7 @@ class FileMP4(TaggableFile):
     self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         if self._mutagen_file.tags is None:

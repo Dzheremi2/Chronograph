@@ -107,6 +107,7 @@ class SongCard(Gtk.Box):
 
   @Gtk.Template.Callback()
   def load(self, *_args) -> None:
+    """Triggered when SongCard was clicked. Opens sync page"""
     Constants.WIN.enter_sync_mode(self.model)
 
   @Gtk.Template.Callback()
@@ -154,6 +155,13 @@ class SongCard(Gtk.Box):
     MetadataEditor(self.model).present(Constants.WIN)
 
   def get_list_mode(self) -> Adw.ActionRow:
+    """Returns an ActionRow used for List view mode
+
+    Returns
+    -------
+    Adw.ActionRow
+        Widget
+    """
     return self.list_view_row
 
   def _toggle_buttons(self, *_args) -> None:

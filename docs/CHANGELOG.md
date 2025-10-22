@@ -2,8 +2,8 @@
 
 <p>New features</p>
 <ul>
-  <li>Library now live updates for opened direcotry files changes, so re-parse button was removed</li>
-  <li>This live update for for all types of event: Adding a new file or direcotry to a direcotry, Removing file or directory from a direcotry</li>
+  <li>Library now live updates for opened directory files changes, so re-parse button was removed</li>
+  <li>This live update for for all types of event: Adding a new file or directory to a directory, Removing file or directory from a directory</li>
   <li>It also works with symlinks if corresponding preference is enabled</li>
 </ul>
 

@@ -3,12 +3,13 @@ from pathlib import Path
 
 from gi.repository import GLib
 
-from dgutils import Constants, Schema
+from dgutils import Constants as _Cnst
+from dgutils import Schema as _Schema
 
 _PREFIX: str = "@PREFIX@"
 
-Constants = Constants.from_resource(_PREFIX + "/resources/constants.yaml")
-Schema = Schema(
+Constants = _Cnst.from_resource(_PREFIX + "/resources/constants.yaml")
+Schema = _Schema(
   _PREFIX + "/resources/schema.yaml",
   Path(os.path.join(GLib.get_user_config_dir(), "chronograph", "schema")),
 )

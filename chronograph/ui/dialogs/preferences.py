@@ -1,14 +1,13 @@
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants, Schema
-from dgutils.decorators import singleton
+from dgutils import GSingleton
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 
 
-@singleton
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/Preferences.ui")
-class ChronographPreferences(Adw.PreferencesDialog):
+class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   __gtype_name__ = "ChronographPreferences"
 
   reset_quick_edit_switch: Adw.SwitchRow = gtc()

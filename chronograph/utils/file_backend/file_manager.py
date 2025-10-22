@@ -4,13 +4,12 @@ from typing import Optional
 from gi.repository import Gio, GLib, GObject
 
 from chronograph.internal import Constants, Schema
-from dgutils.decorators import singleton
+from dgutils import GSingleton
 
 logger = Constants.FILE_LOGGER
 
 
-@singleton
-class FileManager(GObject.Object):
+class FileManager(GObject.Object, metaclass=GSingleton):
   """Manager singleton object for handling directories monitoring
 
   Parameters
@@ -21,7 +20,7 @@ class FileManager(GObject.Object):
   Emits
   -----
   renamed : str, str
-    Emitted when any direcotry entry is renamed. Passes new path and old path
+    Emitted when any directory entry is renamed. Passes new path and old path
   created : str
     Emitted when a new file is created in monitored directory. Passed path of the new file
   deleted : str
@@ -52,6 +51,13 @@ class FileManager(GObject.Object):
       self._setup_monitor(self.monitor_path)
 
   def set_directory(self, directory: Optional[Path]) -> None:
+    """Sets currently observed directory to a provided `Path` object
+
+    Parameters
+    ----------
+    directory : Optional[Path]
+      `Path` of an observed directory
+    """
     if directory is not None and directory != self.monitor_path:
       self.kill_all_monitors()
       self.monitor_path = directory
@@ -126,7 +132,7 @@ class FileManager(GObject.Object):
         real_path = str(Path(changed_path).absolute())
         if real_path in self.monitors:
           logger.info(
-            "--> Monitored direcotry deleted. Stopping monitoring '%s'", real_path
+            "--> Monitored directory deleted. Stopping monitoring '%s'", real_path
           )
           self.monitors[real_path].cancel()
           del self.monitors[real_path]
@@ -161,7 +167,7 @@ class FileManager(GObject.Object):
           self.monitors[abs_changed_path].cancel()
           del self.monitors[abs_changed_path]
           logger.info(
-            "--> Monitored direcotry deleted. Stopping monitoring '%s'",
+            "--> Monitored directory deleted. Stopping monitoring '%s'",
             abs_changed_path,
           )
 
@@ -169,6 +175,7 @@ class FileManager(GObject.Object):
         pass
 
   def kill_all_monitors(self) -> None:
+    """Removes all monitors of monitored directories"""
     if not self.monitors:
       return
 

@@ -6,7 +6,7 @@ from chronograph.internal import Constants, Schema
 from chronograph.utils.file_backend.song_card_model import SongCardModel
 from chronograph.utils.player import Player
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 player_logger = Constants.PLAYER_LOGGER
 
 
