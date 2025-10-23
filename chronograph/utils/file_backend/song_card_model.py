@@ -90,8 +90,11 @@ class SongCardModel(GObject.Object):
 
   @title.setter
   def title(self, new_title: str) -> None:
-    self.mfile.set_str_data("TIT2", new_title)
-    self.notify("title_display")
+    try:
+      self.mfile.set_str_data("TIT2", new_title)
+      self.notify("title_display")
+    except NotImplementedError:
+      pass
 
   @GObject.Property(type=str, default=_title_palceholder)
   def title_display(self) -> str:
@@ -105,8 +108,11 @@ class SongCardModel(GObject.Object):
 
   @artist.setter
   def artist(self, new_artist: str) -> None:
-    self.mfile.set_str_data("TPE1", new_artist)
-    self.notify("artist_display")
+    try:
+      self.mfile.set_str_data("TPE1", new_artist)
+      self.notify("artist_display")
+    except NotImplementedError:
+      pass
 
   @GObject.Property(type=str, default=_artist_placeholder)
   def artist_display(self) -> str:
@@ -120,8 +126,11 @@ class SongCardModel(GObject.Object):
 
   @album.setter
   def album(self, new_album: str) -> None:
-    self.mfile.set_str_data("TALB", new_album)
-    self.notify("album_display")
+    try:
+      self.mfile.set_str_data("TALB", new_album)
+      self.notify("album_display")
+    except NotImplementedError:
+      pass
 
   @GObject.Property(type=str, default=_album_placeholder)
   def album_display(self) -> str:
