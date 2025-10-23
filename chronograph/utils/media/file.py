@@ -127,21 +127,21 @@ class BaseFile:
 
     Should be implemented in file specific child classes
     """
-    raise NotImplementedError
+    raise NotImplementedError(self.path)
 
   def load_str_data(self) -> None:
     """Reads the string data from file and binds it to the instance
 
     Should be implemented in file specific child classes
     """
-    raise NotImplementedError
+    raise NotImplementedError(self.path)
 
   def load_cover(self) -> None:
     """Reads the cover from the file and binds it to the instance
 
     Should be implemented in file specific child classes
     """
-    raise NotImplementedError
+    raise NotImplementedError(self.path)
 
   def set_str_data(self, tag_name: str, new_val: str) -> None:
     """Sets the provided tag in ID3 format to the provided value
@@ -155,7 +155,7 @@ class BaseFile:
 
     Should be implemented in file specific child classes
     """
-    raise NotImplementedError
+    raise NotImplementedError(self.path)
 
   def set_cover(self, img_path: Optional[str]) -> None:
     """Sets the cover of the instance to a provided image
@@ -167,7 +167,7 @@ class BaseFile:
 
     Should be implemented in file specific child classes
     """
-    raise NotImplementedError
+    raise NotImplementedError(self.path)
 
   def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
     """Embeds the lyrics to the corresponding tags in realization
@@ -181,7 +181,7 @@ class BaseFile:
 
     Should be implemented in file specific child classes
     """
-    raise NotImplementedError
+    raise NotImplementedError(self.path)
 
 
 class TaggableFile(BaseFile):

@@ -25,8 +25,9 @@ template $UIPlayer: Adw.BreakpointBin {
     Box {
       orientation: vertical;
       spacing: 4;
-      margin-start: 4;
-      margin-end: 4;
+      margin-start: 10; // FIXME: Under rewview
+      margin-end: 10; // FIXME: Under rewview
+      margin-top: 4;
 
       Box {
         orientation: horizontal;
@@ -228,6 +229,7 @@ template $UIPlayer: Adw.BreakpointBin {
 
       Box collapse_box {
         visible: false;
+        margin-bottom: 4;
         
         styles ["card"]
       }

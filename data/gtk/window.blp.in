@@ -78,6 +78,7 @@ Adw.Dialog quick_edit_dialog {
   can-close: true;
   content-height: 600;
   content-width: 500;
+  title: _("Quick Editor");
 
   Adw.Clamp {
     orientation: horizontal;
@@ -91,22 +92,14 @@ Adw.Dialog quick_edit_dialog {
 
       Adw.ToastOverlay quck_editor_toast_overlay {
         Adw.ToolbarView {
-          margin-bottom: 12;
-          margin-end: 12;
-          margin-start: 12;
-          margin-top: 12;
 
           [top]
-          Adw.HeaderBar {
-            Label quick_editor_label {
-              label: _("Quick Editor");
-              ellipsize: end;
-
-              styles ["title-3"]
-            }
-          }
+          Adw.HeaderBar {}
 
           ScrolledWindow {
+            margin-start: 12;
+            margin-end: 12;
+
             TextView quick_edit_text_view {
               right-margin: 4;
               bottom-margin: 4;
@@ -120,14 +113,15 @@ Adw.Dialog quick_edit_dialog {
           [bottom]
           Box {
             orientation: horizontal;
-            margin-top: 4;
-            halign: end;
+            margin-top: 12;
+            margin-bottom: 12;
+            halign: center;
 
             Button quick_edit_copy_button {
               label: _("Copy to clipboard");
               clicked => $copy_quick_editor_text();
 
-              styles ["suggested-action"]
+              styles ["suggested-action", "pill"]
             }
           }
         }

@@ -224,7 +224,6 @@ class ChronographWindow(Adw.ApplicationWindow):
       dialog = Gtk.FileDialog(
         default_filter=Gtk.FileFilter(mime_types=["inode/directory"])
       )
-      self.open_source_button.set_child(Adw.Spinner())
       dialog.select_folder(self, None, on_selected_dir)
 
     def on_selected_dir(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
@@ -235,8 +234,6 @@ class ChronographWindow(Adw.ApplicationWindow):
           LibraryModel().open_dir(dir_path)
       except GLib.GError:
         pass
-      finally:
-        self.open_source_button.set_icon_name("open-source-symbolic")
 
     select_dir()
 
@@ -246,7 +243,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     def select_files(*_args) -> None:
       logger.debug("Showing files selection dialog")
       dialog = Gtk.FileDialog(default_filter=Gtk.FileFilter(mime_types=MIME_TYPES))
-      self.open_source_button.set_child(Adw.Spinner())
       dialog.open_multiple(self, None, on_select_files)
 
     def on_select_files(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
@@ -256,8 +252,6 @@ class ChronographWindow(Adw.ApplicationWindow):
           LibraryModel().open_files(files)
       except GLib.GError:
         pass
-      finally:
-        self.open_source_button.set_icon_name("open-source-symbolic")
 
     select_files()
 
@@ -537,7 +531,6 @@ class ChronographWindow(Adw.ApplicationWindow):
         pass
 
     state = self._state
-    self.open_source_button.set_icon_name("open-source-symbolic")
 
     # Check for the "Add to Saves" button visibility
     session_path = Schema.get("root.state.library.session") + "/"
@@ -555,11 +548,13 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.clean_files_button.set_visible(False)
         Schema.set("root.state.library.session", "None")
         self.sidebar.select_row(None)
+        self.open_source_button.set_visible(False)
       case WindowState.EMPTY_DIR:
         self.library_scrolled_window.set_child(self.empty_directory)
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(False)
         self.clean_files_button.set_visible(False)
+        self.open_source_button.set_visible(False)
         select_saved_location()
       case WindowState.LOADED_DIR:
         match Schema.get("root.state.library.view"):
@@ -570,6 +565,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(True)
         self.clean_files_button.set_visible(False)
+        self.open_source_button.set_visible(True)
         select_saved_location()
       case WindowState.LOADED_FILES:
         match Schema.get("root.state.library.view"):
@@ -580,5 +576,6 @@ class ChronographWindow(Adw.ApplicationWindow):
         Schema.set("root.state.library.session", "None")
         self.right_buttons_revealer.set_reveal_child(False)
         self.clean_files_button.set_visible(True)
+        self.open_source_button.set_visible(True)
         self.sidebar.select_row(None)
     logger.debug("Window state was set to: %s", self.state)
