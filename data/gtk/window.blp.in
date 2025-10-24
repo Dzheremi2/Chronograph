@@ -118,7 +118,7 @@ Adw.Dialog quick_edit_dialog {
             halign: center;
 
             Button quick_edit_copy_button {
-              label: _("Copy to clipboard");
+              label: _("Copy to Clipboard");
               clicked => $copy_quick_editor_text();
 
               styles ["suggested-action", "pill"]
