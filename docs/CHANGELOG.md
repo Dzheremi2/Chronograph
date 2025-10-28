@@ -1,3 +1,10 @@
+## 5.2-rc2
+
+<p>New features</p>
+<ul>
+  <li>Show banner with suggestion to re-parse directory if any parsing related setting changed</li>
+</ul>
+
 ## 5.2-rc1
 
 <p>New features</p>
