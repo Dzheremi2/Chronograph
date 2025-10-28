@@ -346,6 +346,14 @@ template $ChronographWindow : Adw.ApplicationWindow {
               }
 
               [top]
+              Adw.Banner reparse_alert_banner {
+                title: _("Recursive parsing settings changed. Re-parse?");
+                button-label: _("Re-Parse");
+                button-style: suggested;
+                button-clicked => $_on_reparse_banner_button_clicked();
+              }
+
+              [top]
               SearchBar search_bar {
                 search-mode-enabled: bind toggle_search_button.active bidirectional;
                 key-capture-widget: navigation_view;

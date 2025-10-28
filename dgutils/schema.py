@@ -130,7 +130,7 @@ class Schema(GObject.GObject):
     if not preserve_cursor:
 
       class Binding:
-        def unbind(_self):  # pylint: disable=no-self-argument
+        def unbind(_self):
           self.disconnect(handler_schema)
           if handler_widget:
             target.disconnect(handler_widget)

@@ -16,7 +16,6 @@ ignore = [
   "COM812",
   "D100",
   "D101",
-  "D102",
   "D105",
   "D107",
   "D400",
@@ -56,3 +55,7 @@ ignore = [
 
 [tool.ruff.format]
 indent-style = "space"
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+property-decorators = ["gi.repository.GObject.Property"]

@@ -21,7 +21,7 @@ from chronograph.utils.media import FileUntaggable
 from chronograph.utils.player import Player
 from dgutils import Actions
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 lrclib_logger = Constants.LRCLIB_LOGGER
 
@@ -100,7 +100,6 @@ class LRCSyncPage(Adw.NavigationPage):
     bool
         If all lines have timestamp
     """
-    # pylint: disable=not-an-iterable
     text = "\n".join([line.get_text() for line in self.sync_lines])
     timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2,3}]")
     return all(timestamp_pattern.search(line) for line in text.strip().splitlines())
@@ -111,6 +110,7 @@ class LRCSyncPage(Adw.NavigationPage):
     logger.debug("New line appended to the end of the sync lines")
 
   def append_line(self, *_args) -> None:
+    """Append a new LRCSyncLine to a selected line"""
     if self.selected_line:
       for index, line in enumerate(self.sync_lines):
         if line == self.selected_line:
@@ -205,8 +205,17 @@ class LRCSyncPage(Adw.NavigationPage):
     )
 
   def resync_all(self, ms: int, backwards: bool = False) -> None:
+    """Re-syncs all lines to a provided amount of milliseconds
+
+    Parameters
+    ----------
+    ms : int
+        Milliseconds
+    backwards : bool, optional
+        Is re-sync back, by default False
+    """
     pattern = re.compile(r"\[([^\[\]]+)\] ")
-    for line in self.sync_lines:  # pylint: disable=not-an-iterable
+    for line in self.sync_lines:
       line: LRCSyncLine
       match = pattern.search(line.get_text())
       if match is None:
@@ -266,7 +275,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
   def _export_clipboard(self, *_args) -> None:
     string = ""
-    for line in self.sync_lines:  # pylint: disable=not-an-iterable
+    for line in self.sync_lines:
       string += line.get_text() + "\n"
     string = string.strip()
     clipboard = Gdk.Display().get_default().get_clipboard()
@@ -291,7 +300,7 @@ class LRCSyncPage(Adw.NavigationPage):
       )
 
     lyrics = ""
-    for line in self.sync_lines:  # pylint: disable=not-an-iterable
+    for line in self.sync_lines:
       lyrics += line.get_text() + "\n"
     dialog = Gtk.FileDialog(
       initial_name=Path(self._file.path).stem
@@ -305,7 +314,7 @@ class LRCSyncPage(Adw.NavigationPage):
     try:
       lines: list[LRCSyncLine] = []
       timestamps: list[int] = []
-      for line in self.sync_lines:  # pylint: disable=not-an-iterable
+      for line in self.sync_lines:
         line.set_attributes(None)
         try:
           timing = timestamp_to_ns(line.get_text())
@@ -341,6 +350,7 @@ class LRCSyncPage(Adw.NavigationPage):
   ############### Autosave Actions ###############
 
   def reset_timer(self) -> None:
+    """Resets throttling timer of `_autosave` call"""
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.file-manipulation.enabled"):
@@ -352,7 +362,6 @@ class LRCSyncPage(Adw.NavigationPage):
   def _autosave(self) -> Literal[False]:
     if Schema.get("root.settings.file-manipulation.enabled"):
       try:
-        # pylint: disable=not-an-iterable
         lyrics = [line.get_text() for line in self.sync_lines]
         self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
         self._lyrics_file.lrc_lyrics.save()
@@ -502,7 +511,7 @@ class LRCSyncPage(Adw.NavigationPage):
     artist = card_model.artist
     album = card_model.album
     duration = card_model.duration
-    # pylint: disable=not-an-iterable
+
     lyrics = Lyrics("\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"))
     if not all((title, artist, album, duration, lyrics)):
 

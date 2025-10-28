@@ -1,6 +1,3 @@
-# pylint: disable=unnecessary-pass
-
-
 class SingletonInstantiation(Exception):
   """Raised when a second instance of a singleton class is created."""
 

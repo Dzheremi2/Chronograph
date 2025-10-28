@@ -23,9 +23,8 @@ from chronograph.utils.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
 )
-from dgutils.decorators import singleton
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 MIME_TYPES = (
@@ -56,8 +55,6 @@ class WindowState(Enum):
   LOADED_FILES = 3
 
 
-# pylint: disable=inconsistent-return-statements, comparison-with-callable
-@singleton
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/window.ui")
 class ChronographWindow(Adw.ApplicationWindow):
   """App window class"""
@@ -79,6 +76,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   sidebar: Gtk.ListBox = gtc()
   open_source_button: Gtk.MenuButton = gtc()
   left_buttons_revealer: Gtk.Revealer = gtc()
+  reparse_alert_banner: Adw.Banner = gtc()
   search_bar: Gtk.SearchBar = gtc()
   search_entry: Gtk.SearchEntry = gtc()
   right_buttons_revealer: Gtk.Revealer = gtc()
@@ -98,6 +96,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   filter_plain: bool = GObject.Property(type=bool, default=True)
   filter_lrc: bool = GObject.Property(type=bool, default=True)
   filter_elrc: bool = GObject.Property(type=bool, default=True)
+  reparse_action_done: bool = GObject.Property(type=bool, default=True)
 
   sort_state: str = Schema.get("root.state.library.sorting")
   view_state: str = Schema.get("root.state.library.view")
@@ -168,6 +167,13 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.connect("notify::filter-lrc", self._on_filter_state)
     self.connect("notify::filter-elrc", self._on_filter_state)
 
+    self.bind_property(
+      "reparse_action_done",
+      self.reparse_alert_banner,
+      "revealed",
+      GObject.BindingFlags.INVERT_BOOLEAN,
+    )
+
   def build_sidebar(self) -> None:
     """Builds the sidebar with saved locations"""
     logger.debug("Building the sidebar")
@@ -214,6 +220,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   @Gtk.Template.Callback()
   def clean_files_button_clicked(self, *_args) -> None:
+    """Triggered on clean library button press"""
     LibraryModel().reset_library()
 
   ############### Actions for opening files and directories ###############
@@ -491,6 +498,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   @Gtk.Template.Callback()
   def toggle_list_view(self, *_args) -> None:
+    """Triggered on window resize to determine used view mode if auto-list-view enabled"""
     if Schema.get("root.settings.general.auto-list-view") and (
       self.library_scrolled_window.get_child().get_child() != self.no_source_opened
       and self.library_scrolled_window.get_child().get_child() != self.empty_directory
@@ -514,9 +522,15 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.library.invalidate_filter()
     self.library_list.invalidate_filter()
 
+  @Gtk.Template.Callback()
+  def _on_reparse_banner_button_clicked(self, _banner: Adw.Banner) -> None:
+    self.reparse_action_done = not self.reparse_action_done
+    GLib.idle_add(LibraryModel().reparse_library)
+    ChronographPreferences().on_reparse_banner_button_clicked()
+
   ############### WindowState related methods ###############
   @GObject.Property()
-  def state(self) -> WindowState:  # pylint: disable=method-hidden
+  def state(self) -> WindowState:
     """Current state of the window"""
     return self._state
 
@@ -530,7 +544,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   def _state_changed(self, *_args) -> None:
     def select_saved_location() -> None:
       try:
-        for row in self.sidebar:  # pylint: disable=not-an-iterable
+        for row in self.sidebar:
           if row.get_child().path == Schema.get("root.state.library.session") + "/":
             self.sidebar.select_row(row)
             return
@@ -561,6 +575,9 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(False)
         self.clean_files_button.set_visible(False)
+        # Calling it to reset reparse settings states to their new values, if changed
+        # while window state was not dir related
+        ChronographPreferences().on_reparse_banner_button_clicked()
         select_saved_location()
       case WindowState.LOADED_DIR:
         match Schema.get("root.state.library.view"):
@@ -571,6 +588,9 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(True)
         self.clean_files_button.set_visible(False)
+        # Calling it to reset reparse settings states to their new values, if changed
+        # while window state was not dir related
+        ChronographPreferences().on_reparse_banner_button_clicked()
         select_saved_location()
       case WindowState.LOADED_FILES:
         match Schema.get("root.state.library.view"):

@@ -9,14 +9,12 @@ from chronograph.utils.file_backend.song_card_model import SongCardModel
 from chronograph.utils.file_parsers import parse_dir, parse_files
 from chronograph.utils.lyrics import LyricsFile
 from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
-from chronograph.utils.miscellaneous import get_common_directory
-from dgutils.decorators import singleton
+from dgutils import GSingleton
 
 logger = Constants.LOGGER
 
 
-@singleton
-class LibraryModel(GObject.Object):
+class LibraryModel(GObject.Object, metaclass=GSingleton):
   __gtype_name__ = "ChronographLibrary"
 
   def __init__(self) -> None:
@@ -63,13 +61,18 @@ class LibraryModel(GObject.Object):
     self._clean_library()
     Constants.WIN.state = 0
 
+  def reparse_library(self) -> None:
+    """Re-parses currently opened library. Used in reparse banner button callback"""
+    path = Schema.get("root.state.library.session")
+    self.reset_library()
+    self.open_dir(path)
+
   def _clean_library(self) -> None:
     logger.info("Removing all cards from library")
     self.library.remove_all()
     self.library_list.remove_all()
 
   def _on_target_root_changed(self, _file_manager, new_path: str) -> None:
-    """Open a directory and load its files, updating window state"""
     logger.info("Opening '%s' directory", new_path)
 
     files = parse_dir(new_path)
@@ -107,8 +110,6 @@ class LibraryModel(GObject.Object):
       if isinstance(mutagen_file, (FileID3, FileVorbis, FileMP4, FileUntaggable)):
         GObject.idle_add(songcard_idle, mutagen_file)
     Constants.WIN.open_source_button.set_icon_name("open-source-symbolic")
-    if path := get_common_directory([f.path for f in mutagen_files]):
-      Schema.set("root.state.library.session", path)
     return True
 
   def _on_file_created(self, _file_manager, created_file: str) -> None:

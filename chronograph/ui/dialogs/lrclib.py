@@ -9,7 +9,7 @@ from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.lrclib_track import LRClibTrack
 from dgutils.actions import Actions
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 lrclib_logger = Constants.LRCLIB_LOGGER
 

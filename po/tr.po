@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 08:55+0300\n"
+"POT-Creation-Date: 2025-10-20 21:13+0300\n"
 "PO-Revision-Date: 2025-10-08 16:07+0000\n"
 "Last-Translator: Orkun Sürel <orkunsurel@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
@@ -19,27 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:489
+#: chronograph/window.py:399
 msgid "Copied successfully"
 msgstr "Başarıyla kopyalandı"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:161
+#: chronograph/main.py:163
 msgid "translator-credits"
 msgstr ""
 "Recep Kaan Ergün\n"
 "polarwood"
 
-#: chronograph/main.py:169
+#: chronograph/main.py:171
 msgid "Inspiration"
 msgstr "Esinlenmek"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:179
+#: chronograph/main.py:181
 msgid "Build your own dictionary"
 msgstr "Kendi sözlüğünü oluştur"
 
-#: chronograph/main.py:185
+#: chronograph/main.py:187
 msgid "Translate the App"
 msgstr "Uygulamayı çevir"
 
@@ -82,57 +82,57 @@ msgstr "Eşzamanlı sözler mevcut değil"
 msgid "No plain lyrics available"
 msgstr "Düz şarkı sözleri yok"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:278
-#: chronograph/ui/sync_pages/wbw_sync_page.py:240
+#: chronograph/ui/sync_pages/lrc_sync_page.py:275
+#: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Şarkı sözleri panoya aktarıldı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
-#: chronograph/ui/sync_pages/wbw_sync_page.py:202
+#: chronograph/ui/sync_pages/lrc_sync_page.py:286
+#: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Şarkı sözleri dosyaya aktarıldı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:290
-#: chronograph/ui/sync_pages/wbw_sync_page.py:203
-#: chronograph/ui/widgets/song_card.py:161
+#: chronograph/ui/sync_pages/lrc_sync_page.py:287
+#: chronograph/ui/sync_pages/wbw_sync_page.py:200
+#: chronograph/ui/widgets/song_card.py:132
 msgid "Show"
 msgstr "Göster"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
-#: chronograph/ui/sync_pages/lrc_sync_page.py:474
+#: chronograph/ui/sync_pages/lrc_sync_page.py:429
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid "Failed to connect to LRClib.net"
 msgstr "LRClib.net'e bağlanılamadı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:434
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
 msgid "Connection to LRClib.net timed out"
 msgstr "LRClib.net bağlantısı zaman aşımına uğradı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
-#: chronograph/ui/sync_pages/lrc_sync_page.py:480
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "LRClib.net'e bağlanırken bir sorun oluştu"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:492
+#: chronograph/ui/sync_pages/lrc_sync_page.py:490
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Başarıyla yayınlandı: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:496
+#: chronograph/ui/sync_pages/lrc_sync_page.py:494
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Hatalı yayınlama tokeni: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:500
+#: chronograph/ui/sync_pages/lrc_sync_page.py:498
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Bilinmeyen bir hata oluştu: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:513
+#: chronograph/ui/sync_pages/lrc_sync_page.py:511
 msgid "Unable to publish lyrics"
 msgstr "Sözler paylaşılamadı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:513
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -140,98 +140,69 @@ msgstr ""
 "Şarkı sözleri yayınlamak için şarkı , bir başlığa , sanatçıya , albüme ve "
 "şarkı sözleri alanları dolu olmalıdır"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:518
 msgid "Close"
 msgstr "Kapat"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:524
+#: chronograph/ui/sync_pages/lrc_sync_page.py:522
 msgid "Cannot publish empty lyrics"
 msgstr "Boş şarkı sözleri yayınlanamaz"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:525
+#: chronograph/ui/sync_pages/lrc_sync_page.py:523
 msgid "Why?"
 msgstr "Neden?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:531
+#: chronograph/ui/sync_pages/lrc_sync_page.py:529
 msgid "Seems like not every line is synced"
 msgstr "Her satır eşzamanlanmamış gibi gözüküyor"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:126
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
 msgstr "Şarkı sözü mevcut değil"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:127
+#: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Senkronizasyon için herhangi bir şarkı sözü sağlamadınız"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:318
+#: chronograph/ui/sync_pages/wbw_sync_page.py:315
 msgid "No lyrics to be re-synced"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:320
+#: chronograph/ui/sync_pages/wbw_sync_page.py:317
 msgid "Open Sync mode to re-sync all words"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:105 data/gtk/window.blp:250
-msgctxt "means lyrics absence"
-msgid "None"
-msgstr ""
-
-#: chronograph/ui/widgets/song_card.py:113 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
-#: data/gtk/ui/dialogs/Preferences.blp:241
-msgid "Plain"
-msgstr "Düz"
-
-#: chronograph/ui/widgets/song_card.py:145
+#: chronograph/ui/widgets/song_card.py:116
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Dosya Hakkında"
 
-#: chronograph/ui/widgets/song_card.py:148
+#: chronograph/ui/widgets/song_card.py:119
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Başlık"
 
-#: chronograph/ui/widgets/song_card.py:152
+#: chronograph/ui/widgets/song_card.py:123
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Sanatçı"
 
-#: chronograph/ui/widgets/song_card.py:155
+#: chronograph/ui/widgets/song_card.py:126
 #: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Albüm"
 
-#: chronograph/ui/widgets/song_card.py:157
+#: chronograph/ui/widgets/song_card.py:128
 msgid "Path"
 msgstr "Yol"
 
-#: chronograph/ui/widgets/song_card.py:229
-#: chronograph/ui/widgets/song_card.py:231
-msgctxt "song title placeholder"
-msgid "Unknown"
-msgstr "Bilinmeyen"
-
-#: chronograph/ui/widgets/song_card.py:233
-#: chronograph/ui/widgets/song_card.py:235
-msgctxt "song artist placeholder"
-msgid "Unknown"
-msgstr "Bilinmeyen"
-
-#: chronograph/ui/widgets/song_card.py:237
-#: chronograph/ui/widgets/song_card.py:239
-msgctxt "song album placeholder"
-msgid "Unknown"
-msgstr "Bilinmeyen"
-
 #. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
-#: chronograph/ui/widgets/saved_location.py:26
-#: chronograph/ui/widgets/saved_location.py:30
+#: chronograph/ui/widgets/saved_location.py:27
+#: chronograph/ui/widgets/saved_location.py:31
 #, fuzzy
 msgid "Path: {}"
 msgstr "Yol: "
@@ -252,11 +223,38 @@ msgstr "Evet"
 msgid "No"
 msgstr "Hayır"
 
-#: chronograph/ui/widgets/ui_player.py:53
-#: chronograph/ui/widgets/ui_player.py:66
+#: chronograph/ui/widgets/ui_player.py:47
+#: chronograph/ui/widgets/ui_player.py:60
 #, python-brace-format
 msgid "{vol}%"
 msgstr ""
+
+#: chronograph/utils/file_backend/song_card_model.py:12
+msgctxt "song title placeholder"
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: chronograph/utils/file_backend/song_card_model.py:13
+msgctxt "song artist placeholder"
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: chronograph/utils/file_backend/song_card_model.py:14
+msgctxt "song album placeholder"
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: chronograph/utils/file_backend/song_card_model.py:25
+#: chronograph/utils/lyrics/lyrics_format.py:33 data/gtk/window.blp:250
+msgctxt "means lyrics absence"
+msgid "None"
+msgstr ""
+
+#: chronograph/utils/lyrics/lyrics_format.py:34 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
+#: data/gtk/ui/dialogs/Preferences.blp:241
+msgid "Plain"
+msgstr "Düz"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -391,22 +389,18 @@ msgid "Clean the library"
 msgstr "Kütüphaneyi temizle"
 
 #: data/gtk/window.blp:341
-msgid "Re-parse current directory"
-msgstr "Geçerli dizini yeniden ayrıştır"
-
-#: data/gtk/window.blp:347
 msgid "Add current directory to saves"
 msgstr "Şuanki dizini , kaydedilenlere ekle"
 
-#: data/gtk/window.blp:364 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:358 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Ara"
 
-#: data/gtk/window.blp:405
+#: data/gtk/window.blp:399
 msgid "Directory"
 msgstr "Dizin"
 
-#: data/gtk/window.blp:406
+#: data/gtk/window.blp:400
 msgid "Files"
 msgstr "Dosyalar"
 
@@ -544,6 +538,7 @@ msgid "Search on LRClib by title, artist and album names"
 msgstr "LRClib'de belirtilen başlık ve sanatçıyı arayın"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 #: data/gtk/ui/widgets/SavedLocation.blp:51
 #: data/gtk/ui/widgets/SavedLocation.blp:63
 msgid "Cancel"
@@ -798,6 +793,26 @@ msgid ""
 "This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
 
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
+#, fuzzy
+msgid "Re-Sync All Lines"
+msgstr "Senkronize et/Senkronizasyonu geri al"
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
+msgid ""
+"Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
+"sync backwards"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
+msgid "Milliseconds"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
+#, fuzzy
+msgid "Re-Sync"
+msgstr "Senkronize"
+
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:96
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:96
 #, fuzzy
@@ -1036,6 +1051,9 @@ msgstr "Açık şarkı sözlerini senkronize etme sayfası görünümü"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
+
+#~ msgid "Re-parse current directory"
+#~ msgstr "Geçerli dizini yeniden ayrıştır"
 
 #, fuzzy
 #~ msgid "Re-sync 100ms back"

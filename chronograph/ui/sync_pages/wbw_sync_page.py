@@ -22,7 +22,7 @@ from chronograph.utils.player import Player
 from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 from dgutils import Actions
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 
 
@@ -63,7 +63,7 @@ class WBWSyncPage(Adw.NavigationPage):
     self._card.bind_property(
       "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
     )
-    if isinstance(self._card._file, FileUntaggable):  # noqa: SLF001
+    if isinstance(self._card.mfile, FileUntaggable):
       self.action_set_enabled("controls.edit_metadata", enabled=False)
     self._player_widget = UIPlayer(card_model)
     self.player_container.append(self._player_widget)
@@ -289,6 +289,15 @@ class WBWSyncPage(Adw.NavigationPage):
     self.reset_timer()
 
   def resync_all(self, ms: int, backwards: bool = False) -> None:
+    """Re-syncs all words to a provided amount of milliseconds
+
+    Parameters
+    ----------
+    ms : int
+        Milliseconds
+    backwards : bool, optional
+        Is re-sync back, by default False
+    """
     for line in self._lyrics_model:
       for word in line:
         prev_time = word.time
@@ -336,6 +345,7 @@ class WBWSyncPage(Adw.NavigationPage):
   ############### Autosave Actions ###############
 
   def reset_timer(self) -> None:
+    """Resets throttling timer of `_autosave` call"""
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.file-manipulation.enabled"):

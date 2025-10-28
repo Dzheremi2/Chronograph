@@ -3,7 +3,7 @@ from gi.repository import Adw, GObject, Gtk
 from chronograph.internal import Constants
 from chronograph.utils.wbw.models.word_model import WordModel
 
-gtc = Gtk.Template.Child  # pylint: disable=invalid-name
+gtc = Gtk.Template.Child
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/wbw/WordWidget.ui")

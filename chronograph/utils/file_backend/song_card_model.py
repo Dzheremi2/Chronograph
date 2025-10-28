@@ -85,43 +85,59 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default="")
   def title(self) -> str:
+    """Title of the song"""
     return self.mfile.title or ""
 
   @title.setter
   def title(self, new_title: str) -> None:
-    self.mfile.set_str_data("TIT2", new_title)
-    self.notify("title_display")
+    try:
+      self.mfile.set_str_data("TIT2", new_title)
+      self.notify("title_display")
+    except NotImplementedError:
+      pass
 
   @GObject.Property(type=str, default=_title_palceholder)
   def title_display(self) -> str:
+    """Displayable title of the song"""
     return self.mfile.title or _title_palceholder
 
   @GObject.Property(type=str, default="")
   def artist(self) -> str:
+    """Artist of the song"""
     return self.mfile.artist or ""
 
   @artist.setter
   def artist(self, new_artist: str) -> None:
-    self.mfile.set_str_data("TPE1", new_artist)
-    self.notify("artist_display")
+    try:
+      self.mfile.set_str_data("TPE1", new_artist)
+      self.notify("artist_display")
+    except NotImplementedError:
+      pass
 
   @GObject.Property(type=str, default=_artist_placeholder)
   def artist_display(self) -> str:
+    """Displayable artist of the song"""
     return self.mfile.artist or _artist_placeholder
 
   @GObject.Property(type=str, default="")
   def album(self) -> str:
+    """Album of the song"""
     return self.mfile.album or ""
 
   @album.setter
   def album(self, new_album: str) -> None:
-    self.mfile.set_str_data("TALB", new_album)
-    self.notify("album_display")
+    try:
+      self.mfile.set_str_data("TALB", new_album)
+      self.notify("album_display")
+    except NotImplementedError:
+      pass
 
   @GObject.Property(type=str, default=_album_placeholder)
   def album_display(self) -> str:
+    """Displayable album of the song"""
     return self.mfile.album or _album_placeholder
 
   @GObject.Property(type=Gdk.Texture, default=Constants.COVER_PLACEHOLDER)
   def cover(self) -> Gdk.Texture:
+    """Cover of the song"""
     return self.mfile.get_cover_texture()

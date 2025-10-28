@@ -21,7 +21,6 @@ tags_conjunction = {
 }
 
 
-# pylint: disable=attribute-defined-outside-init
 class FileVorbis(TaggableFile):
   """A Vorbis (ogg, flac) compatible file class. Inherited from `TaggableFile`
 
@@ -33,7 +32,7 @@ class FileVorbis(TaggableFile):
 
   __gtype_name__ = "FileVorbis"
 
-  def compress_images(self) -> None:
+  def compress_images(self) -> None:  # noqa: D102
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       pic: Union[Picture, None] = None
@@ -97,7 +96,6 @@ class FileVorbis(TaggableFile):
     else:
       self._cover = None
 
-  # pylint: disable=dangerous-default-value
   def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:  # noqa: B006
     """Loads title, artist and album for Vorbis media format
 
@@ -125,7 +123,7 @@ class FileVorbis(TaggableFile):
             setattr(self, f"_{tag}", text)
           except KeyError:
             setattr(self, f"_{tag}", "Unknown")
-    if self._title == "Unknown":  # pylint: disable=access-member-before-definition
+    if self._title == "Unknown":
       self._title = Path(self._path).name
 
   def set_cover(self, img_path: Optional[str]) -> None:
@@ -174,7 +172,7 @@ class FileVorbis(TaggableFile):
         self._mutagen_file["metadata_block_picture"] = []
         self._cover = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:  # noqa: D417
+  def set_str_data(self, tag_name: str, new_val: str) -> None:
     """Sets string tags to provided value
 
     Parameters
@@ -196,7 +194,7 @@ class FileVorbis(TaggableFile):
       self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         target_format = LyricsFormat[
