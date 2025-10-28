@@ -86,6 +86,7 @@ class MetadataEditor(Adw.Dialog):
 
   @Gtk.Template.Callback()
   def on_delete_lyrics_clicked(self, *_args) -> None:
+    """Triggered on delete lyrics button click. Removes embeded lyrics from media file"""
     self._card.mfile.embed_lyrics(None)
 
   @Gtk.Template.Callback()

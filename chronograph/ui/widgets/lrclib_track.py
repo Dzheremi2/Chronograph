@@ -55,8 +55,10 @@ class LRClibTrack(Gtk.Box):
 
   @property
   def synced(self) -> str:
+    """Synced lyrics from LRClib"""
     return self._synced
 
   @property
   def plain(self) -> str:
+    """Plain lyrics from LRClib"""
     return self._plain

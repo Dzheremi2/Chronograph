@@ -19,7 +19,7 @@ class TokenParser:
 
   _SPACER = "\u00a0"
 
-  def __new__(cls, *args, **kwargs):  # noqa: ANN204
+  def __new__(cls, *args, **kwargs):  # noqa: ANN204, D102
     raise TypeError(f"{cls.__name__} may not be implemented")
 
   @staticmethod

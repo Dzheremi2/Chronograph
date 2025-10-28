@@ -21,6 +21,23 @@ class LyricsFormat(Enum):
 
   @classmethod
   def from_int(cls, member_id: Literal[0, 1, 2, 3]) -> "LyricsFormat":
+    """Determines enum member from its index
+
+    Parameters
+    ----------
+    member_id : Literal[0, 1, 2, 3]
+        Index of needed enum member
+
+    Returns
+    -------
+    LyricsFormat
+        Enum member
+
+    Raises
+    ------
+    TypeError
+        Raise if index is higher of lower than supported indexes
+    """
     for member in cls:
       if member.value == member_id:
         return member
@@ -28,6 +45,18 @@ class LyricsFormat(Enum):
 
   @staticmethod
   def translate(member_id: Literal[0, 1, 2, 3]) -> str:
+    """Returns a translated string depending on a given enum member index
+
+    Parameters
+    ----------
+    member_id : Literal[0, 1, 2, 3]
+        Index of needed enum member translation
+
+    Returns
+    -------
+    str
+        A translated string for this format
+    """
     # fmt: off
     match member_id:
       case 0: return C_("means lyrics absence", "None")

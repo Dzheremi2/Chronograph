@@ -35,6 +35,13 @@ class LyricsModel(GObject.Object):
     self.widget = LyricsWidget(self)
 
   def set_current(self, index: int) -> None:
+    """Sets line on provided index as current
+
+    Parameters
+    ----------
+    index : int
+        Index of line that should be set as current
+    """
     if index == self.cindex:
       return
 
@@ -62,10 +69,12 @@ class LyricsModel(GObject.Object):
       self.set_property("cindex", -1)
 
   def next(self) -> None:
+    """Sets next line to current"""
     if self.cindex + 1 < self.lines.get_n_items():
       self.set_current(self.cindex + 1)
 
   def previous(self) -> None:
+    """Sets previous line to current"""
     if self.cindex - 1 >= 0:
       self.set_current(self.cindex - 1)
 
@@ -82,12 +91,33 @@ class LyricsModel(GObject.Object):
     return None
 
   def get_current_line(self) -> LineModel:
+    """Gets the current line
+
+    Returns
+    -------
+    LineModel
+        Current line
+    """
     return self[self.cindex]
 
   def get_current_word(self) -> WordModel:
+    """Gets the current selected word in current line
+
+    Returns
+    -------
+    WordModel
+        Current word in current line
+    """
     return self.get_current_line().get_current_word()
 
   def get_tokens(self) -> tuple[tuple[WordToken, ...], ...]:
+    """Gets all words tokens to reconstruct eLRC lyrics then
+
+    Returns
+    -------
+    tuple[tuple[WordToken, ...], ...]
+        Lyrics(tuple) with lines(tuple) with words(WordToken)
+    """
     lines = []
     for line_model in self:
       line = [word.restore_token() for word in line_model]

@@ -68,4 +68,7 @@ suppress-dummy-args = true
 
 [tool.ruff.format]
 indent-style = "space"
-  
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+property-decorators = ["gi.repository.GObject.Property"]

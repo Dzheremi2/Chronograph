@@ -80,6 +80,7 @@ class BaseFile:
 
   @property
   def title(self) -> str:
+    """The title of the song"""
     return self._title
 
   @title.setter
@@ -88,6 +89,7 @@ class BaseFile:
 
   @property
   def artist(self) -> str:
+    """The artist of the song"""
     return self._artist
 
   @artist.setter
@@ -96,6 +98,7 @@ class BaseFile:
 
   @property
   def album(self) -> str:
+    """The album of the song"""
     return self._album
 
   @album.setter
@@ -104,6 +107,7 @@ class BaseFile:
 
   @property
   def cover(self) -> bytes:
+    """The cover of the song"""
     return self._cover
 
   @cover.setter
@@ -112,14 +116,17 @@ class BaseFile:
 
   @property
   def path(self) -> str:
+    """Path to the media file"""
     return self._path
 
   @property
   def duration(self) -> int:
+    """Duration of the song"""
     return round(self._duration)
 
   @property
   def duration_ns(self) -> int:
+    """Duration of the song in nanoseconds"""
     return int(self._duration * 1_000_000_000) if self._duration else 0
 
   def compress_images(self) -> None:

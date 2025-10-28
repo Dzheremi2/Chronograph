@@ -4,13 +4,12 @@ from typing import Optional
 from gi.repository import Gio, GLib, GObject
 
 from chronograph.internal import Constants, Schema
-from dgutils.decorators import singleton
+from dgutils import GSingleton
 
 logger = Constants.FILE_LOGGER
 
 
-@singleton
-class FileManager(GObject.Object):
+class FileManager(GObject.Object, metaclass=GSingleton):
   """Manager singleton object for handling directories monitoring
 
   Parameters
@@ -21,7 +20,7 @@ class FileManager(GObject.Object):
   Emits
   -----
   renamed : str, str
-    Emitted when any direcotry entry is renamed. Passes new path and old path
+    Emitted when any directory entry is renamed. Passes new path and old path
   created : str
     Emitted when a new file is created in monitored directory. Passed path of the new file
   deleted : str
@@ -52,12 +51,19 @@ class FileManager(GObject.Object):
       self._setup_monitor(self.monitor_path)
 
   def set_directory(self, directory: Optional[Path]) -> None:
+    """Sets currently observed directory to a provided `Path` object
+
+    Parameters
+    ----------
+    directory : Optional[Path]
+      `Path` of an observed directory
+    """
     if directory is not None and directory != self.monitor_path:
       self.kill_all_monitors()
       self.monitor_path = directory
       self._setup_monitor(directory)
       self.emit("target-root-changed", str(directory))
-    else:
+    elif directory is None:
       self.monitor_path = None
       self.kill_all_monitors()
 
@@ -107,9 +113,17 @@ class FileManager(GObject.Object):
     changed_path = gfile_changed.get_path()
     logger.debug("[EVENT:%s], Path: '%s'", event_type.value_nick.upper(), changed_path)
 
+    do_recursive_parsing = Schema.get("root.settings.general.recursive-parsing.enabled")
+    follow_symlinks = Schema.get(
+      "root.settings.general.recursive-parsing.follow-symlinks"
+    )
+
     match event_type:
       case Gio.FileMonitorEvent.CREATED | Gio.FileMonitorEvent.MOVED_IN:
-        if Path(changed_path).is_dir():
+        if (
+          Path(changed_path).is_dir(follow_symlinks=follow_symlinks)
+          and do_recursive_parsing
+        ):
           logger.info(
             "--> New directory created. Starting monitoring '%s'", changed_path
           )
@@ -117,24 +131,26 @@ class FileManager(GObject.Object):
           self._recursively_emit_created(Path(changed_path))
         else:
           self.emit("created", gfile_changed.get_path())
+
       case Gio.FileMonitorEvent.DELETED:
         real_path = str(Path(changed_path).absolute())
         if real_path in self.monitors:
           logger.info(
-            "--> Monitored direcotry deleted. Stopping monitoring '%s'", real_path
+            "--> Monitored directory deleted. Stopping monitoring '%s'", real_path
           )
           self.monitors[real_path].cancel()
           del self.monitors[real_path]
         else:
           logger.info("--> Item '%s' was deleted", real_path)
           self.emit("deleted", real_path)
+
       case Gio.FileMonitorEvent.RENAMED:
         new_path = gfile_other.get_path()
         old_path = gfile_changed.get_path()
         logger.info("--> File '%s' was renamed to '%s'", old_path, new_path)
         self.emit("renamed", gfile_other.get_path(), gfile_changed.get_path())
 
-        if Path(new_path).is_dir():
+        if Path(new_path).is_dir(follow_symlinks=follow_symlinks):
           old_abs_path = str(Path(old_path).absolute())
           if old_abs_path in self.monitors:
             self.monitors[old_abs_path].cancel()
@@ -142,6 +158,7 @@ class FileManager(GObject.Object):
             logger.info("--> Cleaned up monitor for old directory name: %s", old_path)
           self._setup_monitor(Path(new_path))
           self._recursively_emit_created(Path(new_path))
+
       case Gio.FileMonitorEvent.MOVED_OUT:
         # Gio for some reason don't pass the file destination path on this event for
         # trash moves. So treat all moves out as a deletion event
@@ -154,13 +171,15 @@ class FileManager(GObject.Object):
           self.monitors[abs_changed_path].cancel()
           del self.monitors[abs_changed_path]
           logger.info(
-            "--> Monitored direcotry deleted. Stopping monitoring '%s'",
+            "--> Monitored directory deleted. Stopping monitoring '%s'",
             abs_changed_path,
           )
+
       case __:
         pass
 
   def kill_all_monitors(self) -> None:
+    """Removes all monitors of monitored directories"""
     if not self.monitors:
       return
 

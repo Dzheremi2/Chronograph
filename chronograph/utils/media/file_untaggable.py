@@ -13,5 +13,5 @@ class FileUntaggable(BaseFile):
 
     self.cover = None
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     pass

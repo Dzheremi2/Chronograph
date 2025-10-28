@@ -138,6 +138,18 @@ class Lyrics(GObject.Object):
     self._meta[key.lower()] = value
 
   def to_format(self, target: LyricsFormat) -> None:
+    """Convert lyrics to a given format
+
+    Parameters
+    ----------
+    target : LyricsFormat
+        Target lyrics format
+
+    Raises
+    ------
+    LyricsHierarchyConversion
+        Raised if conversion is not possible e.g. LRC to eLRC
+    """
     if self._format.value > target.value:
       raise LyricsHierarchyConversion(
         f"Cannot convert from {self._format.name} to {target.name}. "
@@ -159,6 +171,23 @@ class Lyrics(GObject.Object):
     self._detect_format()
 
   def of_format(self, target: LyricsFormat) -> str:
+    """Returns lyrics in a given format. Does not replace original lyrics
+
+    Parameters
+    ----------
+    target : LyricsFormat
+        Target lyrics format
+
+    Returns
+    -------
+    str
+        Converted lyrics
+
+    Raises
+    ------
+    LyricsHierarchyConversion
+        Raised if conversion is not possible e.g. LRC to eLRC
+    """
     if target.value > self._format.value:
       raise LyricsHierarchyConversion(
         f"Cannot convert from {self._format.name} to {target.name}. "
@@ -281,6 +310,7 @@ class Lyrics(GObject.Object):
 
   @property
   def text(self) -> str:
+    """Lyrics text"""
     return self._text
 
   @text.setter
@@ -290,10 +320,12 @@ class Lyrics(GObject.Object):
 
   @property
   def format(self) -> LyricsFormat:
+    """Lyrics format"""
     return self._format
 
   @property
   def meta(self) -> dict[str, Any]:
+    """LRC metainfo tags"""
     return self._meta
 
   @staticmethod

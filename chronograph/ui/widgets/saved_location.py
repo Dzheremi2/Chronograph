@@ -60,6 +60,15 @@ class SavedLocation(Gtk.Box):
   def on_deletion_alert_response(
     self, _alert_dialog: Adw.AlertDialog, response: str
   ) -> None:
+    """Triggered on deletion alert dialog response
+
+    Parameters
+    ----------
+    _alert_dialog : Adw.AlertDialog
+        An alert dialog
+    response : str
+        Response
+    """
     if response == "delete":
       self.on_delete_save()
 

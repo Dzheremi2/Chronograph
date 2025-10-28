@@ -110,6 +110,7 @@ class LRCSyncPage(Adw.NavigationPage):
     logger.debug("New line appended to the end of the sync lines")
 
   def append_line(self, *_args) -> None:
+    """Append a new LRCSyncLine to a selected line"""
     if self.selected_line:
       for index, line in enumerate(self.sync_lines):
         if line == self.selected_line:
@@ -204,6 +205,15 @@ class LRCSyncPage(Adw.NavigationPage):
     )
 
   def resync_all(self, ms: int, backwards: bool = False) -> None:
+    """Re-syncs all lines to a provided amount of milliseconds
+
+    Parameters
+    ----------
+    ms : int
+        Milliseconds
+    backwards : bool, optional
+        Is re-sync back, by default False
+    """
     pattern = re.compile(r"\[([^\[\]]+)\] ")
     for line in self.sync_lines:
       line: LRCSyncLine
@@ -340,6 +350,7 @@ class LRCSyncPage(Adw.NavigationPage):
   ############### Autosave Actions ###############
 
   def reset_timer(self) -> None:
+    """Resets throttling timer of `_autosave` call"""
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.file-manipulation.enabled"):
@@ -500,7 +511,7 @@ class LRCSyncPage(Adw.NavigationPage):
     artist = card_model.artist
     album = card_model.album
     duration = card_model.duration
-    # pylint: disable=not-an-iterable
+
     lyrics = Lyrics("\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"))
     if not all((title, artist, album, duration, lyrics)):
 
