@@ -575,6 +575,9 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(False)
         self.clean_files_button.set_visible(False)
+        # Calling it to reset reparse settings states to their new values, if changed
+        # while window state was not dir related
+        ChronographPreferences().on_reparse_banner_button_clicked()
         select_saved_location()
       case WindowState.LOADED_DIR:
         match Schema.get("root.state.library.view"):
@@ -585,6 +588,9 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(True)
         self.clean_files_button.set_visible(False)
+        # Calling it to reset reparse settings states to their new values, if changed
+        # while window state was not dir related
+        ChronographPreferences().on_reparse_banner_button_clicked()
         select_saved_location()
       case WindowState.LOADED_FILES:
         match Schema.get("root.state.library.view"):

@@ -184,16 +184,17 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   def _on_resursive_parsing_changed(
     self, row: Union[Adw.SwitchRow, Adw.ExpanderRow], _pspec
   ) -> None:
-    if isinstance(row, Adw.SwitchRow):
-      self._follow_symlinks_unapplied = row.get_active() != self._follow_symlinks
-    elif isinstance(row, Adw.ExpanderRow):
-      self._parse_recursively_unapplied = (
-        row.get_enable_expansion() != self._parse_recursively
-      )
+    if Constants.WIN.state.value in (1, 2):
+      if isinstance(row, Adw.SwitchRow):
+        self._follow_symlinks_unapplied = row.get_active() != self._follow_symlinks
+      elif isinstance(row, Adw.ExpanderRow):
+        self._parse_recursively_unapplied = (
+          row.get_enable_expansion() != self._parse_recursively
+        )
 
-    Constants.WIN.reparse_action_done = not any(
-      (self._parse_recursively_unapplied, self._follow_symlinks_unapplied)
-    )
+      Constants.WIN.reparse_action_done = not any(
+        (self._parse_recursively_unapplied, self._follow_symlinks_unapplied)
+      )
 
   def on_reparse_banner_button_clicked(self) -> None:
     """Called on Window Re-parse banner button clicked to save new states of preferences as new default"""
