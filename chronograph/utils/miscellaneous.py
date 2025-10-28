@@ -1,31 +1,6 @@
 """Some functions without a specific grouping"""
 
-import os
-from pathlib import Path
-from typing import Optional
-
 from chronograph.internal import Schema
-
-
-def get_common_directory(paths: tuple[str]) -> Optional[str]:
-  """Return a common directory for provided paths or `None`.
-
-  Parameters
-  ----------
-  paths : tuple[str]
-      Paths to files
-
-  Returns
-  -------
-  Optional[str]
-      Common directory path or `None` if not in the same tree
-  """
-  dirs = [os.path.dirname(os.path.abspath(p)) for p in paths]  # noqa: PTH100, PTH120
-  common = os.path.commonpath(dirs)
-  for p in dirs:
-    if not Path(p).is_relative_to(Path(common)):
-      return None
-  return common
 
 
 def decode_filter_schema(index: int) -> bool:

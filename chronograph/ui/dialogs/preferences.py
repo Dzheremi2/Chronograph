@@ -1,3 +1,5 @@
+from typing import Union
+
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -34,7 +36,8 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   use_individual_synced_tag_vorbis_switch: Adw.SwitchRow = gtc()
   embed_lyrics_default_toggle_group: Adw.ToggleGroup = gtc()
 
-  opened: bool = False
+  _parse_recursively_unapplied = False
+  _follow_symlinks_unapplied = False
 
   def __init__(self) -> None:
     super().__init__()
@@ -168,6 +171,37 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       self.syncing_type_combo_row.set_selected(0)
     elif Schema.get("root.settings.syncing.sync-type") == "wbw":
       self.syncing_type_combo_row.set_selected(1)
+
+    self._parse_recursively = self.recursive_parsing_switch.get_enable_expansion()
+    self._follow_symlinks = self.follow_symlinks_switch.get_active()
+    self.recursive_parsing_switch.connect(
+      "notify::enable-expansion", self._on_resursive_parsing_changed
+    )
+    self.follow_symlinks_switch.connect(
+      "notify::active", self._on_resursive_parsing_changed
+    )
+
+  def _on_resursive_parsing_changed(
+    self, row: Union[Adw.SwitchRow, Adw.ExpanderRow], _pspec
+  ) -> None:
+    if Constants.WIN.state.value in (1, 2):
+      if isinstance(row, Adw.SwitchRow):
+        self._follow_symlinks_unapplied = row.get_active() != self._follow_symlinks
+      elif isinstance(row, Adw.ExpanderRow):
+        self._parse_recursively_unapplied = (
+          row.get_enable_expansion() != self._parse_recursively
+        )
+
+      Constants.WIN.reparse_action_done = not any(
+        (self._parse_recursively_unapplied, self._follow_symlinks_unapplied)
+      )
+
+  def on_reparse_banner_button_clicked(self) -> None:
+    """Called on Window Re-parse banner button clicked to save new states of preferences as new default"""
+    self._parse_recursively = self.recursive_parsing_switch.get_enable_expansion()
+    self._follow_symlinks = self.follow_symlinks_switch.get_active()
+    self._parse_recursively_unapplied = False
+    self._follow_symlinks_unapplied = False
 
   def _update_auto_file_format_schema(self, *_args) -> None:
     selected = self.auto_file_manipulation_format.get_selected()

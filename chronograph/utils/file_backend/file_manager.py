@@ -113,13 +113,17 @@ class FileManager(GObject.Object, metaclass=GSingleton):
     changed_path = gfile_changed.get_path()
     logger.debug("[EVENT:%s], Path: '%s'", event_type.value_nick.upper(), changed_path)
 
+    do_recursive_parsing = Schema.get("root.settings.general.recursive-parsing.enabled")
     follow_symlinks = Schema.get(
       "root.settings.general.recursive-parsing.follow-symlinks"
     )
 
     match event_type:
       case Gio.FileMonitorEvent.CREATED | Gio.FileMonitorEvent.MOVED_IN:
-        if Path(changed_path).is_dir(follow_symlinks=follow_symlinks):
+        if (
+          Path(changed_path).is_dir(follow_symlinks=follow_symlinks)
+          and do_recursive_parsing
+        ):
           logger.info(
             "--> New directory created. Starting monitoring '%s'", changed_path
           )
