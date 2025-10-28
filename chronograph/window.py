@@ -76,6 +76,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   sidebar: Gtk.ListBox = gtc()
   open_source_button: Gtk.MenuButton = gtc()
   left_buttons_revealer: Gtk.Revealer = gtc()
+  reparse_alert_banner: Adw.Banner = gtc()
   search_bar: Gtk.SearchBar = gtc()
   search_entry: Gtk.SearchEntry = gtc()
   right_buttons_revealer: Gtk.Revealer = gtc()
@@ -95,6 +96,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   filter_plain: bool = GObject.Property(type=bool, default=True)
   filter_lrc: bool = GObject.Property(type=bool, default=True)
   filter_elrc: bool = GObject.Property(type=bool, default=True)
+  reparse_action_done: bool = GObject.Property(type=bool, default=True)
 
   sort_state: str = Schema.get("root.state.library.sorting")
   view_state: str = Schema.get("root.state.library.view")
@@ -164,6 +166,13 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.connect("notify::filter-plain", self._on_filter_state)
     self.connect("notify::filter-lrc", self._on_filter_state)
     self.connect("notify::filter-elrc", self._on_filter_state)
+
+    self.bind_property(
+      "reparse_action_done",
+      self.reparse_alert_banner,
+      "revealed",
+      GObject.BindingFlags.INVERT_BOOLEAN,
+    )
 
   def build_sidebar(self) -> None:
     """Builds the sidebar with saved locations"""
@@ -512,6 +521,12 @@ class ChronographWindow(Adw.ApplicationWindow):
     Schema.set("root.state.library.filter", encode_filter_schema(nn, pp, ll, ee))
     self.library.invalidate_filter()
     self.library_list.invalidate_filter()
+
+  @Gtk.Template.Callback()
+  def _on_reparse_banner_button_clicked(self, _banner: Adw.Banner) -> None:
+    self.reparse_action_done = not self.reparse_action_done
+    GLib.idle_add(LibraryModel().reparse_library)
+    ChronographPreferences().on_reparse_banner_button_clicked()
 
   ############### WindowState related methods ###############
   @GObject.Property()
