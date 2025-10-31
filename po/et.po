@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-31 15:53+0300\n"
-"PO-Revision-Date: 2025-10-21 03:02+0000\n"
+"PO-Revision-Date: 2025-10-31 20:02+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: chronograph/window.py:406
 msgid "Copied successfully"
@@ -389,11 +389,11 @@ msgstr "Lisa see kaust lemmikute hulka"
 
 #: data/gtk/window.blp:350
 msgid "Recursive parsing settings changed. Re-parse?"
-msgstr ""
+msgstr "Rekursiivse töötlemise seadistused muutusid. Kas töötlen uuesti?"
 
 #: data/gtk/window.blp:351
 msgid "Re-Parse"
-msgstr ""
+msgstr "Töötle uuesti"
 
 #: data/gtk/window.blp:366 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
