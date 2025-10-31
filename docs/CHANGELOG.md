@@ -1,17 +1,15 @@
-## 5.2-rc2
-
-<p>New features</p>
-<ul>
-  <li>Show banner with suggestion to re-parse directory if any parsing related setting changed</li>
-</ul>
-
-## 5.2-rc1
+## 5.2
 
 <p>New features</p>
 <ul>
   <li>Library now live updates for opened directory files changes, so re-parse button was removed</li>
-  <li>This live update for for all types of event: Adding a new file or directory to a directory, Removing file or directory from a directory</li>
+  <li>This live update for all types of event: Adding a new file or directory to a directory, Removing file or directory from a directory</li>
   <li>It also works with symlinks if corresponding preference is enabled</li>
+  <li>Show banner with suggestion to re-parse directory if any parsing related setting changed</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+  <li>Lyrics format chip is now not focusable</li>
 </ul>
 
 ## 5.1

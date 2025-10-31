@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-20 21:13+0300\n"
+"POT-Creation-Date: 2025-10-31 15:53+0300\n"
 "PO-Revision-Date: 2025-07-28 18:17+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/chronograph/"
@@ -19,25 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: chronograph/window.py:399
+#: chronograph/window.py:406
 msgid "Copied successfully"
 msgstr "Copiado com sucesso"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:163
+#: chronograph/main.py:159
 msgid "translator-credits"
 msgstr "ssantos"
 
-#: chronograph/main.py:171
+#: chronograph/main.py:167
 msgid "Inspiration"
 msgstr "Inspiração"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:181
+#: chronograph/main.py:177
 msgid "Build your own dictionary"
 msgstr "Construa o seu próprio dicionário"
 
-#: chronograph/main.py:187
+#: chronograph/main.py:183
 msgid "Translate the App"
 msgstr ""
 
@@ -81,58 +81,58 @@ msgstr "Não há letras sincronizadas disponíveis"
 msgid "No plain lyrics available"
 msgstr "Não há letras simples disponíveis"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:275
+#: chronograph/ui/sync_pages/lrc_sync_page.py:284
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Cópia para a área de transferência"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:286
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Letras exportadas para o ficheiro"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:287
+#: chronograph/ui/sync_pages/lrc_sync_page.py:296
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
-#: chronograph/ui/widgets/song_card.py:132
+#: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Exibir"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:438
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Failed to connect to LRClib.net"
 msgstr "Falha ao conectar ao LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:432
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:441
+#: chronograph/ui/sync_pages/lrc_sync_page.py:484
 msgid "Connection to LRClib.net timed out"
 msgstr "Tempo de conexão ao LRClib.net esgotado"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:435
-#: chronograph/ui/sync_pages/lrc_sync_page.py:478
+#: chronograph/ui/sync_pages/lrc_sync_page.py:444
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "An error occurred while connecting to LRClib.net"
 msgstr "Um erro ocorreu ao conectar ao LRClib.net"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:490
+#: chronograph/ui/sync_pages/lrc_sync_page.py:499
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Publicado com sucesso: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:494
+#: chronograph/ui/sync_pages/lrc_sync_page.py:503
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:498
+#: chronograph/ui/sync_pages/lrc_sync_page.py:507
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ocorreu um erro desconhecido: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:511
+#: chronograph/ui/sync_pages/lrc_sync_page.py:520
 msgid "Unable to publish lyrics"
 msgstr "Incapaz de publicar letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:513
+#: chronograph/ui/sync_pages/lrc_sync_page.py:522
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -140,19 +140,19 @@ msgstr ""
 "Para publicar letras, a faixa deve ter campos de um título artista, álbum e "
 "letras definidos"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:518
+#: chronograph/ui/sync_pages/lrc_sync_page.py:527
 msgid "Close"
 msgstr "Fechar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:522
+#: chronograph/ui/sync_pages/lrc_sync_page.py:531
 msgid "Cannot publish empty lyrics"
 msgstr "Não é possível publicar letras vazias"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:523
+#: chronograph/ui/sync_pages/lrc_sync_page.py:532
 msgid "Why?"
 msgstr "Porquê?"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:529
+#: chronograph/ui/sync_pages/lrc_sync_page.py:538
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
@@ -165,43 +165,42 @@ msgstr "Não há letras simples disponíveis"
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:315
+#: chronograph/ui/sync_pages/wbw_sync_page.py:324
 msgid "No lyrics to be re-synced"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:317
+#: chronograph/ui/sync_pages/wbw_sync_page.py:326
 msgid "Open Sync mode to re-sync all words"
 msgstr ""
 
-#: chronograph/ui/widgets/song_card.py:116
+#: chronograph/ui/widgets/song_card.py:117
 #, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Sobre o ficheiro"
 
-#: chronograph/ui/widgets/song_card.py:119
+#: chronograph/ui/widgets/song_card.py:120
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:90
 msgid "Title"
 msgstr "Título"
 
-#: chronograph/ui/widgets/song_card.py:123
+#: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
 #: data/gtk/ui/dialogs/MetadataEditor.blp:94
 msgid "Artist"
 msgstr "Artista"
 
-#: chronograph/ui/widgets/song_card.py:126
+#: chronograph/ui/widgets/song_card.py:127
 #: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
 #: data/gtk/ui/dialogs/MetadataEditor.blp:98
 msgid "Album"
 msgstr "Álbum"
 
-#: chronograph/ui/widgets/song_card.py:128
+#: chronograph/ui/widgets/song_card.py:129
 msgid "Path"
 msgstr "Caminho"
 
-#. pylint: disable=not-callable
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:27
 #: chronograph/ui/widgets/saved_location.py:31
@@ -246,12 +245,12 @@ msgid "Unknown"
 msgstr "Desconhecido"
 
 #: chronograph/utils/file_backend/song_card_model.py:25
-#: chronograph/utils/lyrics/lyrics_format.py:33 data/gtk/window.blp:250
+#: chronograph/utils/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/utils/lyrics/lyrics_format.py:34 data/gtk/window.blp:254
+#: chronograph/utils/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
 #: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
 #: data/gtk/ui/dialogs/Preferences.blp:241
 msgid "Plain"
@@ -394,15 +393,23 @@ msgstr "Limpar a biblioteca"
 msgid "Add current directory to saves"
 msgstr "Adicione o diretório atual às gravações"
 
-#: data/gtk/window.blp:358 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:350
+msgid "Recursive parsing settings changed. Re-parse?"
+msgstr ""
+
+#: data/gtk/window.blp:351
+msgid "Re-Parse"
+msgstr ""
+
+#: data/gtk/window.blp:366 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Procurar"
 
-#: data/gtk/window.blp:399
+#: data/gtk/window.blp:407
 msgid "Directory"
 msgstr "Diretório"
 
-#: data/gtk/window.blp:400
+#: data/gtk/window.blp:408
 msgid "Files"
 msgstr "Ficheiros"
 
@@ -942,7 +949,7 @@ msgid "Edit"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:241
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:184
+#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:186
 msgid "Sync"
 msgstr "Sincronização"
 
@@ -968,11 +975,11 @@ msgstr "Nome"
 msgid "Delete this Save?"
 msgstr "Apagar este gravação?"
 
-#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:195
+#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:197
 msgid "Edit song metadata"
 msgstr "Editar metadados da música"
 
-#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:205
+#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:207
 msgid "Show song info"
 msgstr "Mostre informações da música"
 
