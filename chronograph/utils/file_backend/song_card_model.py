@@ -20,7 +20,7 @@ class SongCardModel(GObject.Object):
 
   # Properties without exclicit getters/setters
   path: str = GObject.Property(type=str, default="")
-  duration: int = GObject.Property(type=int, default=0, flags=GObject.PARAM_READABLE)
+  duration: int = GObject.Property(type=int, default=0)
   lyrics_format: str = GObject.Property(
     type=str, default=C_("means lyrics absence", "None")
   )
