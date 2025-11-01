@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-31 15:53+0300\n"
-"PO-Revision-Date: 2025-10-21 12:02+0000\n"
+"PO-Revision-Date: 2025-11-01 23:51+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -16,9 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: chronograph/window.py:406
 msgid "Copied successfully"
@@ -394,11 +395,11 @@ msgstr "Додати поточний каталог до збереження"
 
 #: data/gtk/window.blp:350
 msgid "Recursive parsing settings changed. Re-parse?"
-msgstr ""
+msgstr "Налаштування рекурсивного розбору змінено. Повторити розбір?"
 
 #: data/gtk/window.blp:351
 msgid "Re-Parse"
-msgstr ""
+msgstr "Повторний розбір"
 
 #: data/gtk/window.blp:366 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
