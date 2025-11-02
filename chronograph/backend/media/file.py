@@ -4,8 +4,8 @@ from typing import Optional
 import mutagen
 from gi.repository import Gdk, GdkPixbuf
 
+from chronograph.backend.lyrics import Lyrics
 from chronograph.internal import Constants
-from chronograph.utils.lyrics import Lyrics
 from dgutils.decorators import baseclass
 
 

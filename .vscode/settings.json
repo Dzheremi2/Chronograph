@@ -36,7 +36,7 @@
     "python.analysis.autoImportCompletions": true,
     "autoDocstring.docstringFormat": "numpy",
     "ruff.lint.enable": true,
+    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
     "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh"
+    "mesonbuild.buildFolder": "_build"
 }

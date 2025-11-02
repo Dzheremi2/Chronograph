@@ -9,8 +9,8 @@ from mutagen.flac import FLAC, Picture
 from mutagen.flac import error as FLACError
 from PIL import Image
 
+from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
-from chronograph.utils.lyrics import Lyrics, LyricsFormat
 
 from .file import TaggableFile
 

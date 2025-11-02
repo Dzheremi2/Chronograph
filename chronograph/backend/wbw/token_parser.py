@@ -2,7 +2,7 @@ import re
 from pathlib import Path
 from typing import Optional
 
-from chronograph.utils.wbw.tokens import LineToken, WordToken
+from chronograph.backend.wbw.tokens import LineToken, WordToken
 
 
 class TokenParser:

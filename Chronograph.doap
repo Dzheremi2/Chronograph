@@ -22,7 +22,7 @@ This app helps you to contribute to the large database of synced lyrics with bea
   <maintaner>
     <foaf:Person>
       <foaf:name>Dzheremi</foaf:name>
-      <foaf:mbox rdf:resource="mailto:chichvarov1315@gmail.com" />\
+      <foaf:mbox rdf:resource="mailto:chichvarov1315@gmail.com" />
       <foaf:account>
         <foaf:OnlineAccaunt>
           <foaf:accountServiceHomepage rdf:resource="https://github.com"/>

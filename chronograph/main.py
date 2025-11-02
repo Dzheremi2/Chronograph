@@ -1,3 +1,4 @@
+import asyncio
 import os
 import sys
 from pathlib import Path
@@ -5,8 +6,8 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.utils.file_backend import FileManager, LibraryModel
-from chronograph.utils.player import Player
+from chronograph.backend.file import FileManager, LibraryModel
+from chronograph.backend.player import Player
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -14,6 +15,7 @@ gi.require_version("GstPlay", "1.0")
 gi.require_version("Gst", "1.0")
 gi.require_version("Gio", "2.0")
 
+from gi.events import GLibEventLoopPolicy  # type: ignore  # noqa: PGH003
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -263,4 +265,10 @@ def main(_version):
     Constants.CACHE.pop("session", None)
     Constants.CACHE["cache_version"] = 2
   Constants.APP = app = ChronographApplication()
+
+  policy = GLibEventLoopPolicy()
+  event_loop = policy.get_event_loop()
+  event_loop.set_exception_handler(None)
+  asyncio.set_event_loop_policy(policy)
+
   return app.run(sys.argv)

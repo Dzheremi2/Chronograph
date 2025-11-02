@@ -1,8 +1,8 @@
 import yaml
 from gi.repository import Adw, Gio, GObject, Gtk
 
+from chronograph.backend.file import LibraryModel
 from chronograph.internal import Constants, Schema
-from chronograph.utils.file_backend import LibraryModel
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER

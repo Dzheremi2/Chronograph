@@ -4,8 +4,8 @@ from typing import Optional
 from mutagen.mp4 import MP4Cover
 from PIL import Image
 
+from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
-from chronograph.utils.lyrics import Lyrics, LyricsFormat
 
 from .file import TaggableFile
 

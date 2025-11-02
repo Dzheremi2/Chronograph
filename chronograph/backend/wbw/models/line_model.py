@@ -2,9 +2,9 @@ from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
 
-from chronograph.utils.wbw.models.word_model import WordModel
-from chronograph.utils.wbw.token_parser import TokenParser
-from chronograph.utils.wbw.tokens import LineToken
+from chronograph.backend.wbw.models.word_model import WordModel
+from chronograph.backend.wbw.token_parser import TokenParser
+from chronograph.backend.wbw.tokens import LineToken
 
 
 class LineModel(GObject.Object):

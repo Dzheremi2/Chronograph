@@ -3,11 +3,11 @@ from typing import Union
 
 from gi.repository import Gdk, GObject
 
+from chronograph.backend.file import FileManager
+from chronograph.backend.file_parsers import parse_files
+from chronograph.backend.lyrics import LyricsFile, LyricsFormat
+from chronograph.backend.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 from chronograph.internal import Constants, Schema
-from chronograph.utils.file_backend import FileManager
-from chronograph.utils.file_parsers import parse_files
-from chronograph.utils.lyrics import LyricsFile, LyricsFormat
-from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 
 _title_palceholder = C_("song title placeholder", "Unknown")
 _artist_placeholder = C_("song artist placeholder", "Unknown")

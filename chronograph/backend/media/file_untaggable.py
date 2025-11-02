@@ -1,6 +1,6 @@
 from typing import Optional
 
-from chronograph.utils.lyrics import Lyrics
+from chronograph.backend.lyrics import Lyrics
 
 from .file import BaseFile
 
