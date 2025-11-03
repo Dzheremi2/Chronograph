@@ -1,6 +1,5 @@
 import asyncio
 import re
-import threading
 from difflib import SequenceMatcher
 from typing import Coroutine, Iterable, Optional, Union
 
@@ -26,7 +25,9 @@ class LRClibService(metaclass=Singleton):
   def __init__(self) -> None:
     super().__init__()
 
-    self._loop = asyncio.get_event_loop()
+    from chronograph.main import event_loop
+
+    self.event_loop = event_loop
 
   async def _api_get(
     self, track_name: str, artist_name: str, album_name: str, duration: int
@@ -82,7 +83,7 @@ class LRClibService(metaclass=Singleton):
     duration : int
         Duration of the track
     """
-    return LRClibService.run_sync(
+    return self._run_sync(
       self._api_get(track_name, artist_name, album_name, duration)
     )
 
@@ -148,7 +149,7 @@ class LRClibService(metaclass=Singleton):
     LRClibResponse
         Response with either valid tracks, or with error description
     """
-    return LRClibService.run_sync(self._api_search(track_name, artist_name, album_name))
+    return self._run_sync(self._api_search(track_name, artist_name, album_name))
 
   async def _api_request_challenge(self) -> Union[LRClibChallenge, LRClibResponse]:
     async with httpx.AsyncClient() as client:
@@ -170,7 +171,7 @@ class LRClibService(metaclass=Singleton):
     Union[LRClibChallenge, LRClibResponse]
         Either valid prefix and target in dataclass, or LRClibResponse with error code
     """
-    return LRClibService.run_sync(self._api_request_challenge)
+    return LRClibService._run_sync(self._api_request_challenge)
 
   async def _api_publish(
     self,
@@ -237,7 +238,7 @@ class LRClibService(metaclass=Singleton):
     LRClibResponse
         Response about how request was
     """
-    return LRClibService.run_sync(
+    return self._run_sync(
       self._api_publish(
         track_name, artist_name, album_name, duration, plain_lyrics, synced_lyrics
       )
@@ -281,29 +282,14 @@ class LRClibService(metaclass=Singleton):
     dict[BaseFile, LRClibEntry]
       Conjunction of the media file and founded tracks. Gather lyrics from `synced_lyrics` and `plain_lyrics` attributes
     """
-    return LRClibService.run_sync(self._fetch_lyrics_many(tracks))
+    return self._run_sync(self._fetch_lyrics_many(tracks))
 
-  @staticmethod
-  def run_sync(coro: Coroutine):  # noqa: ANN205, D102
-    try:
-      return asyncio.run(coro)
-    except RuntimeError:
-      result = {}
-
-      def runner():
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        result["value"] = loop.run_until_complete(coro)
-        loop.close()
-
-      t = threading.Thread(target=runner)
-      t.start()
-      t.join()
-      return result["value"]
+  def _run_sync(self, coro: Coroutine) -> None:
+    self.event_loop.create_task(coro)
 
   @staticmethod
   def get_nearest(
-    original: BaseFile, candidates: Iterable[LRClibEntry], weight: int = 0.2
+    original: BaseFile, candidates: Iterable[LRClibEntry], weight: float = 0.2
   ) -> Optional[LRClibEntry]:
     """Gets the most suitable track for a given media file
 
@@ -313,7 +299,7 @@ class LRClibService(metaclass=Singleton):
         Original file against which the most suitable candidate is determined
     candidates : Iterable[LRClibEntry]
         Iterable of candidates against original comparable
-    weight : int, optional
+    weight : float, optional
         Max deviation weight, by default 0.2. If candidate deviates from original on\
         this weight, it rejects
 

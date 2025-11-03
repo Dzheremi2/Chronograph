@@ -13,7 +13,7 @@ from chronograph.internal import Schema
 
 def parse_files(
   paths: tuple[str],
-) -> tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]]:
+) -> tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable], ...]:
   """Generates a tuple of mutagen files from a list of paths
 
   Parameters
@@ -40,7 +40,7 @@ def parse_files(
   return tuple(mutagen_files)
 
 
-def parse_dir(path: str) -> tuple[str]:
+def parse_dir(path: str) -> tuple[str, ...]:
   """Resolves all directory content paths depending on user settings
 
   Parameters
