@@ -1,112 +1,148 @@
 import asyncio
 import re
+import threading
 from difflib import SequenceMatcher
-from typing import Coroutine, Iterable, Optional, Union
+from enum import StrEnum
+from typing import Callable, Iterable, Optional
 
 import httpx
+import requests
+from gi.repository import GLib, GObject
 
-from chronograph.backend.lrclib.lrclib_enums import ReqResultCode
-from chronograph.backend.media.file import BaseFile
+from chronograph.backend.media import BaseFile
 from chronograph.internal import Constants
-from dgutils import Singleton
+from dgutils import GSingleton
 
-from .responses import LRClibChallenge, LRClibEntry, LRClibResponse
+from . import APP_SIGNATURE_HEADER
+from .cryptograpic_challenge import solve_challenge
+from .exceptions import (
+  APIRequestError,
+  LRClibException,
+  PublishAlreadyRunning,
+  SearchEmptyReturn,
+  TrackNotFound,
+)
+from .responses import LRClibChallenge, LRClibEntry
 
 logger = Constants.LRCLIB_LOGGER
 
 
-class LRClibService(metaclass=Singleton):
-  __gtype_name__ = "LRClibService"
+class Endpoints(StrEnum):
+  GET = "https://lrclib.net/api/get"
+  SEARCH = "https://lrclib.net/api/search"
+  PUBLISH = "https://lrclib.net/api/publish"
+  CHALLENGE = "https://lrclib.net/api/request-challenge"
 
-  _APP_SIGNATURE_HEADER: str = (
-    f"Chronograph v{Constants.VERSION} (https://github.com/Dzheremi2/Chronograph)"
-  )
+
+class LRClibService(GObject.Object, metaclass=GSingleton):
+  __gsignals__ = {"publish-done": (GObject.SignalFlags.RUN_FIRST, None, (int,))}
 
   def __init__(self) -> None:
     super().__init__()
+    self._is_publish_running = False
 
-    from chronograph.main import event_loop
-
-    self.event_loop = event_loop
-
-  async def _api_get(
-    self, track_name: str, artist_name: str, album_name: str, duration: int
-  ) -> LRClibResponse:
-    async with httpx.AsyncClient() as client:
-      try:
-        params = {
-          "track_name": track_name,
-          "artist_name": artist_name,
-          "album_name": album_name,
-          "duration": duration,
-        }
-        resp = await client.get(
-          "https://lrclib.net/api/get",
-          params=params,
-          headers={"User-Agent": self._APP_SIGNATURE_HEADER},
-        )
-        if resp.status_code != 404:
-          resp_json = resp.json()
-          return LRClibResponse(
-            [
-              LRClibEntry(
-                resp_json["id"],
-                resp_json["trackName"],
-                resp_json["artistName"],
-                resp_json["albumName"],
-                resp_json["duration"],
-                resp_json["instrumental"],
-                resp_json["plainLyrics"],
-                resp_json["syncedLyrics"],
-              )
-            ]
-          )
-        return LRClibResponse(
-          code=resp.status_code, name=resp_json["name"], message=resp_json["message"]
-        )
-      except Exception as e:
-        return LRClibResponse(code=-1, message=str(e))
-
-  def api_get(
-    self, track_name: str, artist_name: str, album_name: str, duration: int
-  ) -> None:
-    """Starts an async operation for LRClib `/api/get` endpoint
+  async def api_get(self, track: BaseFile) -> LRClibEntry:
+    """Does one track search by absolute metadata (any deviation will result in TrackNotFound)
 
     Parameters
     ----------
-    track_name : str
-        Title of the track
-    artist_name : str
-        Artist of the track
-    album_name : str
-        Album of the track
-    duration : int
-        Duration of the track
-    """
-    return self._run_sync(
-      self._api_get(track_name, artist_name, album_name, duration)
-    )
+    track : BaseFile
+      A track media file
 
-  async def _api_search(
-    self, track_name: str, artist_name: Optional[str], album_name: Optional[str]
-  ) -> LRClibResponse:
+    Returns
+    -------
+    LRClibEntry
+      Dataclass instance will all attributes LRClib provide
+
+    Raises
+    ------
+    TrackNotFound
+      Raised if LRClib returned 404
+    APIRequestError
+      Raise on any other exception
+    """
     async with httpx.AsyncClient() as client:
       try:
         params = {
-          "track_name": track_name.strip(),
-          "artist_name": artist_name.strip(),
-          "album_name": album_name.strip(),
+          "track_name": track.title,
+          "artist_name": track.artist,
+          "album_name": track.album,
+          "duration": track.duration,
         }
-        resp = await client.get(
-          "https://lrclib.net/api/search",
+        response = await client.get(
+          Endpoints.GET.value,
           params=params,
-          headers={"User-Agent": self._APP_SIGNATURE_HEADER},
+          headers={"User-Agent": APP_SIGNATURE_HEADER},
         )
-        if resp.json():
-          resp_json = resp.json()
+        if response.status_code == 404:
+          logger.info("No entry for %s -- %s found", track.title, track.artist)
+          raise TrackNotFound(f"No entry for {track.title} -- {track.artist} found")  # noqa: TRY301
+
+        response.raise_for_status()
+
+        data = response.json()
+        return LRClibEntry(
+          data["id"],
+          data["trackName"],
+          data["artistName"],
+          data["albumName"],
+          data["duration"],
+          data["instrumental"],
+          data["plainLyrics"],
+          data["syncedLyrics"],
+        )
+      except LRClibException:
+        raise
+      except httpx.RequestError as e:
+        logger.exception("[GET] Network failure while fetching LRClib")
+        raise APIRequestError(f"Network error: {e!s}") from e
+      except httpx.HTTPStatusError as e:
+        logger.exception("[GET] Non-200 nor 404 response")
+        raise APIRequestError(f"Bad response: {e.response.status_code}") from e
+      except Exception as e:
+        logger.exception("[GET] Unexpected error")
+        raise APIRequestError(f"Unexpected error: {type(e).__name__}: {e!s}") from e
+
+  async def api_search(self, track: BaseFile) -> Iterable[LRClibEntry]:
+    """Does search on LRClib for provided track. Unlike get, this can return something
+    even if data deviates from one on LRClib
+
+    Parameters
+    ----------
+    track : BaseFile
+      A track media file
+
+    Returns
+    -------
+    Iterable[LRClibEntry]
+      Iterable with LRClibEntry dataclasses representing all track found. Max of 20
+      (API limitation)
+
+    Raises
+    ------
+    SearchEmptyReturn
+      Raised if no results dfound found for the request
+    APIRequestError
+      Raised on any other exception
+    """  # noqa: D205
+    async with httpx.AsyncClient() as client:
+      try:
+        params = {
+          "track_name": track.title.strip() if track.title else "",
+          "artist_name": track.artist.strip() if track.artist else "",
+          "album_name": track.album.strip() if track.album else "",
+        }
+        response = await client.get(
+          Endpoints.SEARCH.value,
+          params=params,
+          headers={"User-Agent": APP_SIGNATURE_HEADER},
+        )
+        response.raise_for_status()
+        data = response.json()
+        if data:
           tracks = []
-          for item in resp_json:
-            track = LRClibEntry(
+          for item in data:
+            track_ = LRClibEntry(
               item["id"],
               item["trackName"],
               item["artistName"],
@@ -116,176 +152,185 @@ class LRClibService(metaclass=Singleton):
               item["plainLyrics"],
               item["syncedLyrics"],
             )
-            tracks.append(track)
-          return LRClibResponse(tracks, resp.status_code)
-        resp_json = resp.json()
-        return LRClibResponse(
-          code=ReqResultCode.NOT_FOUND.value,
-          name="SearchEmptyResult",
-          message="No tracks found for this request",
-        )
-      except Exception as e:
-        return LRClibResponse(code=-1, message=str(e))
-
-  def api_search(
-    self,
-    track_name: str,
-    artist_name: str = "",
-    album_name: str = "",
-  ) -> LRClibResponse:
-    """Starts an async operation for LRClib `/api/search` endpoint
-
-    Parameters
-    ----------
-    track_name : str
-        Title of the track
-    artist_name : str, optional
-        Artst of the track, by default ""
-    album_name : str, optional
-        Album of the track, by default ""
-
-    Returns
-    -------
-    LRClibResponse
-        Response with either valid tracks, or with error description
-    """
-    return self._run_sync(self._api_search(track_name, artist_name, album_name))
-
-  async def _api_request_challenge(self) -> Union[LRClibChallenge, LRClibResponse]:
-    async with httpx.AsyncClient() as client:
-      try:
-        resp = await client.post(
-          "https://lrclib.net/api/request-challenge",
-          headers={"User-Agent": self._APP_SIGNATURE_HEADER},
-        )
-        resp_json = resp.json()
-        return LRClibChallenge(resp_json["prefix"], resp_json["target"])
-      except Exception:
-        return LRClibResponse(code=resp.status_code)
-
-  def api_request_challenge(self) -> Union[LRClibChallenge, LRClibResponse]:
-    """Starts and async operation for LRClib `/api/request-challenge` endpoint
-
-    Returns
-    -------
-    Union[LRClibChallenge, LRClibResponse]
-        Either valid prefix and target in dataclass, or LRClibResponse with error code
-    """
-    return LRClibService._run_sync(self._api_request_challenge)
-
-  async def _api_publish(
-    self,
-    track_name: str,
-    artist_name: str,
-    album_name: str,
-    duration: int,
-    plain_lyrics: str,
-    synced_lyrics: str,
-  ) -> LRClibResponse:
-    async with httpx.AsyncClient() as client:
-      try:
-        params = {
-          "trackName": track_name,
-          "artistName": artist_name,
-          "albumName": album_name,
-          "duration": duration,
-          "plainLyrics": plain_lyrics,
-          "syncedLyrics": synced_lyrics,
-        }
-        resp = await client.post(
-          "https://lrclib.net/api/publish",
-          params=params,
-          headers={"User-Agent": self._APP_SIGNATURE_HEADER, "X-Publish-Token": "1212"},
-        )
-        resp_json = resp.json()
-        if resp.status_code == ReqResultCode.PUBLISH_SUCCESS.value:
-          return LRClibResponse(code=resp.status_code)
-        if resp.status_code == ReqResultCode.FAILURE.value:
-          return LRClibResponse(
-            code=resp.status_code, name=resp_json["name"], message=resp_json["message"]
+            tracks.append(track_)
+          logger.info(
+            "[SEARCH] Done for %s -- %s positively", track.title, track.artist
           )
-      except Exception:
-        return LRClibResponse(code=resp.status_code)
+          return tracks
+        raise SearchEmptyReturn(f"No entries found for {track.title} -- {track.artist}")  # noqa: TRY301
+      except LRClibException:
+        raise
+      except httpx.RequestError as e:
+        logger.exception("[SEARCH] Network failure while fetching LRClib")
+        raise APIRequestError(f"Network error: {e!s}") from e
+      except httpx.HTTPStatusError as e:
+        logger.exception("[SEARCH] Non-200 response")
+        raise APIRequestError(f"Bad response: {e.response.status_code}") from e
+      except Exception as e:
+        logger.exception("[SEARCH] Unexpected error")
+        raise APIRequestError(f"Unexpected error: {type(e).__name__}: {e!s}") from e
 
-  def api_publish(
-    self,
-    track_name: str,
-    artist_name: str,
-    album_name: str,
-    duration: int,
-    plain_lyrics: str,
-    synced_lyrics: str,
-  ) -> LRClibResponse:
-    """Starts and async operation for LRClib `/api/publish` endpoint
-
-    Parameters
-    ----------
-    track_name : str
-        Title of the track
-    artist_name : str
-        Artist of the track
-    album_name : str
-        Album of the track
-    duration : int
-        Duration of the track
-    plain_lyrics : str
-        Plain lyrics of the track
-    synced_lyrics : str
-        Synced lyrics of the track
+  async def api_challenge(self) -> LRClibChallenge:
+    """Does cryptographic proof-of-work challenge request for publishing
 
     Returns
     -------
-    LRClibResponse
-        Response about how request was
+    LRClibChallenge
+      Dataclass with `prefix` and `target` attributes
+
+    Raises
+    ------
+    APIRequestError
+      Raised on any exception
     """
-    return self._run_sync(
-      self._api_publish(
-        track_name, artist_name, album_name, duration, plain_lyrics, synced_lyrics
-      )
-    )
-
-  async def _fetch_lyrics_many(
-    self, tracks: Iterable[BaseFile]
-  ) -> dict[BaseFile, LRClibEntry]:
-    sem = asyncio.Semaphore(5)
-
-    async def sem_fetch(track: BaseFile) -> tuple[BaseFile, Optional[LRClibEntry]]:
-      async with sem:
-        resp: LRClibResponse = await self._api_get(
-          track.title, track.artist, track.album, track.duration
+    async with httpx.AsyncClient() as client:
+      try:
+        response = await client.get(
+          Endpoints.CHALLENGE.value, headers={"User-Agent": APP_SIGNATURE_HEADER}
         )
-        if resp.code != ReqResultCode.NOT_FOUND.value and resp.response:
-          return track, resp.response[0]
+        response.raise_for_status()
+        data = response.json()
+        return LRClibChallenge(data["prefix"], data["target"])
+      except httpx.RequestError as e:
+        logger.exception("[CHALLENGE] Network failure while fetching LRClib")
+        raise APIRequestError(f"Network error: {e!s}") from e
+      except httpx.HTTPStatusError as e:
+        logger.exception("[CHALLENGE] Non-200 response")
+        raise APIRequestError(f"Bad response: {e.response.status_code}") from e
+      except Exception as e:
+        logger.exception("[CHALLENGE] Unexpected error")
+        raise APIRequestError(f"Unexpected error: {type(e).__name__}: {e!s}") from e
 
-        search_resp = await self._api_search(track.title, track.artist, track.album)
-        if search_resp.code != ReqResultCode.NOT_FOUND.value and search_resp.response:
-          nearest = LRClibService.get_nearest(track, search_resp.response)
-          return track, nearest
-        return track, None
-
-    tasks = [sem_fetch(track) for track in tracks]
-    results = await asyncio.gather(*tasks)
-    return dict(results)
-
-  def featch_lyrics_many(
-    self, tracks: Iterable[BaseFile]
-  ) -> dict[BaseFile, LRClibEntry]:
-    """Starts an async operation of fetching lyrics for given tracks
+  def publish(
+    self,
+    track: BaseFile,
+    plain_lyrics: str,
+    synced_lyrics: str,
+  ) -> None:
+    """Publishes the given lyrics to LRClib for a given track
 
     Parameters
     ----------
-    tracks : Sequence[BaseFile]
-        Any iterable with BaseFile subclasses (media files)
+    track : BaseFile
+        A track media file
+    plain_lyrics : str
+        Plain lyrics
+    synced_lyrics : str
+        Synced lyrics
+    """
+
+    def do_publish(
+      title: str,
+      artist: str,
+      album: str,
+      duration: int,
+      plain_lyrics: str,
+      synced_lyrics: str,
+    ) -> None:
+      loop = asyncio.new_event_loop()
+      asyncio.set_event_loop(loop)
+
+      try:
+        challenge = loop.run_until_complete(self.api_challenge())
+      except Exception:
+        self._is_publish_running = False
+        raise
+      finally:
+        loop.close()
+
+      nonce = solve_challenge(challenge.prefix, challenge.target)
+      logger.info("X-Publish-Token: %s", f"{challenge.target}:{nonce}")
+
+      try:
+        response: requests.Response = requests.post(
+          Endpoints.PUBLISH.value,
+          headers={
+            "X-Publish-Token": f"{challenge.prefix}:{nonce}",
+            "User-Agent": APP_SIGNATURE_HEADER,
+            "Content-Type": "application/json",
+          },
+          json={
+            "trackName": title,
+            "artistName": artist,
+            "albumName": album,
+            "duration": duration,
+            "plainLyrics": plain_lyrics,
+            "syncedLyrics": synced_lyrics,
+          },
+          timeout=10,
+        )
+        self.emit("publish-done", response.status_code)
+      except Exception:  # noqa: TRY203
+        raise
+      finally:
+        self._is_publish_running = False
+
+    title = track.title
+    artist = track.artist
+    album = track.album
+    duration = track.duration
+    if not all([title, artist, album, duration, plain_lyrics, synced_lyrics]):
+      raise AttributeError(
+        "Any of required fields (title, artist, album, duration, plain_lyrics, synced_lyrics) wes treated as False"
+      )
+    if self._is_publish_running:
+      raise PublishAlreadyRunning
+    self._is_publish_running = True
+    threading.Thread(
+      target=do_publish,
+      args=(title, artist, album, duration, plain_lyrics, synced_lyrics),
+      daemon=True,
+    ).start()
+
+  async def fetch_lyrics_many(
+    self, tracks: Iterable[BaseFile], on_progress: Callable
+  ) -> dict[BaseFile, LRClibEntry]:
+    """Asynchronously fetches lyrics for given iterable of files
+
+    Parameters
+    ----------
+    tracks : Iterable[BaseFile]
+      Iterable with madia files to parse lyrics for
+    on_progress : Callable
+      Callback for progress changes
 
     Returns
     -------
     dict[BaseFile, LRClibEntry]
-      Conjunction of the media file and founded tracks. Gather lyrics from `synced_lyrics` and `plain_lyrics` attributes
+      Conjunction for madia files and fetched lyrics. Will be `{BaseFile: None}` if no
+      lyrics found
     """
-    return self._run_sync(self._fetch_lyrics_many(tracks))
+    sem = asyncio.Semaphore(5)  # TODO: Replace with Schema value
+    files_parse = len(tracks)
+    files_parsed = 0
 
-  def _run_sync(self, coro: Coroutine) -> None:
-    self.event_loop.create_task(coro)
+    # TODO: Log each file successfulness
+    async def sem_fetch(track: BaseFile) -> tuple[BaseFile, Optional[LRClibEntry]]:
+      nonlocal files_parsed, on_progress, files_parse
+      async with sem:
+        try:
+          response = await self.api_get(track)
+          files_parsed += 1
+          return track, response
+        except TrackNotFound:
+          try:
+            search_response = await self.api_search(track)
+            nearest = LRClibService.get_nearest(track, search_response)
+            files_parsed += 1
+            return track, nearest
+          except SearchEmptyReturn:
+            files_parsed += 1
+            return track, None
+          except Exception:
+            raise
+        except Exception:
+          raise
+        finally:
+          GLib.idle_add(on_progress, files_parsed / files_parse)
+
+    tasks = [sem_fetch(track) for track in tracks]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    return dict(results)
 
   @staticmethod
   def get_nearest(

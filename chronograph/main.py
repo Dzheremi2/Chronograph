@@ -1,4 +1,3 @@
-import asyncio
 import os
 import sys
 from pathlib import Path
@@ -6,7 +5,10 @@ from pathlib import Path
 import gi
 import yaml
 
+from chronograph.backend.asynchronous.async_task import AsyncTask
 from chronograph.backend.file import FileManager, LibraryModel
+from chronograph.backend.file_parsers import parse_dir, parse_files
+from chronograph.backend.lrclib.lrclib_service import LRClibService
 from chronograph.backend.player import Player
 
 gi.require_version("Gtk", "4.0")
@@ -15,7 +17,6 @@ gi.require_version("GstPlay", "1.0")
 gi.require_version("Gst", "1.0")
 gi.require_version("Gio", "2.0")
 
-from gi.events import GLibEventLoopPolicy  # type: ignore  # noqa: PGH003
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
 from chronograph.internal import Constants, Schema
@@ -135,6 +136,15 @@ class ChronographApplication(Adw.Application):
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
     Player().set_property("rate", float(Schema.get("root.state.player.rate")))
     logger.debug("Window shown")
+
+    # FIXME: For testing. Remove
+    task = AsyncTask(
+      LRClibService().fetch_lyrics_many,
+      parse_files(parse_dir("/home/dzheremi/Music/LRCLIB")),
+      do_use_progress=True,
+    )
+    task.connect("task-done", lambda _task, result: print(result))
+    task.start()
 
   def on_about_action(self, *_args) -> None:
     """Shows About App dialog"""
@@ -265,10 +275,5 @@ def main(_version):
     Constants.CACHE.pop("session", None)
     Constants.CACHE["cache_version"] = 2
   Constants.APP = app = ChronographApplication()
-
-  policy = GLibEventLoopPolicy()
-  event_loop = policy.get_event_loop()
-  event_loop.set_exception_handler(None)
-  asyncio.set_event_loop_policy(policy)
 
   return app.run(sys.argv)
