@@ -91,6 +91,8 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           data["plainLyrics"],
           data["syncedLyrics"],
         )
+      # This re-raise mess is hapening since we need to catch all errors except those
+      # directly related to LRClib
       except LRClibException:
         raise
       except httpx.RequestError as e:
@@ -158,6 +160,8 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           )
           return tracks
         raise SearchEmptyReturn(f"No entries found for {track.title} -- {track.artist}")  # noqa: TRY301
+      # This re-raise mess is hapening since we need to catch all errors except those
+      # directly related to LRClib
       except LRClibException:
         raise
       except httpx.RequestError as e:
@@ -283,7 +287,10 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     ).start()
 
   async def fetch_lyrics_many(
-    self, tracks: Iterable[BaseFile], on_progress: Callable
+    self,
+    tracks: Iterable[BaseFile],
+    on_progress: Callable,
+    cancellable: threading.Event,
   ) -> dict[BaseFile, LRClibEntry]:
     """Asynchronously fetches lyrics for given iterable of files
 
@@ -306,7 +313,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
 
     # TODO: Log each file successfulness
     async def sem_fetch(track: BaseFile) -> tuple[BaseFile, Optional[LRClibEntry]]:
-      nonlocal files_parsed, on_progress, files_parse
+      nonlocal files_parsed, on_progress, files_parse, cancellable
+      if cancellable.is_set():
+        raise asyncio.CancelledError
       async with sem:
         try:
           response = await self.api_get(track)
@@ -326,10 +335,20 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
         except Exception:
           raise
         finally:
+          if cancellable.is_set():
+            raise asyncio.CancelledError
           GLib.idle_add(on_progress, files_parsed / files_parse)
 
-    tasks = [sem_fetch(track) for track in tracks]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+    tasks: list[asyncio.Task] = [sem_fetch(track) for track in tracks]
+    try:
+      results = await asyncio.gather(*tasks)
+    except asyncio.CancelledError:
+      print("cancelled")
+      for t in tasks:
+        t.cancel()
+      await asyncio.gather(*tasks, return_exceptions=True)
+      GLib.idle_add(on_progress, 1.0)
+      raise
     return dict(results)
 
   @staticmethod
@@ -354,7 +373,7 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
         The most suitable candidate, or `None` if all of them devictes from that weight allows
     """
 
-    def normalize(string: str) -> str:
+    def normalize(string: str) -> str:  # Remove double spaces
       return re.sub(r"\s+", " ", string.lower().strip())
 
     def string_similarity(a: str, b: str) -> float:

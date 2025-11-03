@@ -142,6 +142,7 @@ class ChronographApplication(Adw.Application):
       LRClibService().fetch_lyrics_many,
       parse_files(parse_dir("/home/dzheremi/Music/LRCLIB")),
       do_use_progress=True,
+      do_use_cancellable=True
     )
     task.connect("task-done", lambda _task, result: print(result))
     task.start()

@@ -15,10 +15,13 @@ class AsyncTask(GObject.Object):
   ----------
   coroutine : Coroutine
     A target async function
-  do_use_progress : bool
+  do_use_progress : bool, default `False`
     If target coroutine support progress, it should be added with this set to True.
     If set, will pass `self.set_propgress` to the coroutine for an `on_progress`
     keyword argument
+  do_use_cancellable : bool, default `True`
+    If set, will pass `threading.Event` to coroutine for `cancellable` keyword.
+    Coroutine can rely on this flag to support cancellation on `self.cancel()` call
 
   Properties
   ----------
@@ -28,15 +31,20 @@ class AsyncTask(GObject.Object):
 
   Emits
   -----
-  task-started -> Emited on coroutine started\n
-  task-done : object -> Emited on coroutine done executing. Passes the coroutine result\n
-  error : Exception -> Emited on any exception occured. Passes the excpetion\n
+  task-started -> Emited on coroutine started
+
+  task-done(object) -> Emited on coroutine done executing. Passes the coroutine result
+
+  error(Exception) -> Emited on any exception occured. Passes the excpetion
+
+  cancelled -> Emited on `self.cancel()` call. Tells that coroutine was cancelled
   """  # noqa: D301
 
   __gsignals__ = {
     "task-started": (GObject.SignalFlags.RUN_FIRST, None, ()),
     "task-done": (GObject.SignalFlags.RUN_FIRST, None, (object,)),
     "error": (GObject.SignalFlags.RUN_FIRST, None, (object,)),
+    "cancelled": (GObject.SignalFlags.RUN_FIRST, None, ()),
   }
 
   progress: float = GObject.Property(
@@ -44,11 +52,17 @@ class AsyncTask(GObject.Object):
   )
 
   def __init__(
-    self, coroutine: Coroutine, *args, do_use_progress: bool = False, **kwargs
+    self,
+    coroutine: Coroutine,
+    *args,
+    do_use_progress: bool = False,
+    do_use_cancellable: bool = False,
+    **kwargs,
   ) -> None:
     super().__init__()
     self._coroutine = coroutine
     self._do_use_progress = do_use_progress
+    self._do_use_cancellable = do_use_cancellable
     if args:
       self._args = args
     else:
@@ -58,6 +72,7 @@ class AsyncTask(GObject.Object):
     else:
       self._kwargs = {}
     self._thread = None
+    self._cancel_event = threading.Event()
 
   def start(self) -> None:
     """Starts the execution of the coroutine in separate thread
@@ -78,11 +93,10 @@ class AsyncTask(GObject.Object):
     try:
       GLib.idle_add(self.emit, "task-started")
       if self._do_use_progress:
-        result = loop.run_until_complete(
-          self._coroutine(*self._args, **self._kwargs, on_progress=self.set_progress)
-        )
-      else:
-        result = loop.run_until_complete(self._coroutine())
+        self._kwargs["on_progress"] = self.set_progress
+      if self._do_use_cancellable:
+        self._kwargs["cancellable"] = self._cancel_event
+      result = loop.run_until_complete(self._coroutine(*self._args, **self._kwargs))
     except Exception as e:
       GLib.idle_add(self.emit, "error", e)
     else:
@@ -100,3 +114,8 @@ class AsyncTask(GObject.Object):
     """
     progress = max(0.0, min(1.0, progress))
     self.props.progress = progress
+
+  def cancel(self) -> None:
+    """Cancels the running coroutine if it support cancellable"""
+    self._cancel_event.set()
+    self.emit("cancelled")
