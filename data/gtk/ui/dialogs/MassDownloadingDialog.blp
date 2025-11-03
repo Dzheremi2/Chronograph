@@ -1,0 +1,59 @@
+using Gtk 4.0;
+using Adw 1;
+
+
+template $MassDownloadingDialog : Adw.Dialog {
+  content-height: 600;
+  content-width: 500;
+  width-request: 1;
+  height-request: 1;
+  title: _("Mass Download");
+
+  Adw.Clamp {
+    orientation: horizontal;
+    tightening-threshold: 500;
+    maximum-size: 500;
+
+    Adw.Clamp {
+      orientation: vertical;
+      tightening-threshold: 600;
+      maximum-size: 600;
+
+      Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {}
+
+        ScrolledWindow {
+          margin-end: 12;
+          margin-start: 12;
+          ListBox fetch_log_list_box {
+            hexpand: true;
+            vexpand: true;
+            selection-mode: none;
+
+            styles ["navigation-sidebar"]
+          }
+        }
+
+        [bottom]
+        Box {
+          halign: center;
+          margin-bottom: 12;
+          margin-top: 12;
+
+          Button {
+            label: _("Fetch");
+            clicked => $_on_fetch_button_clicked();
+            styles ["pill", "suggested-action"]
+          }
+        }
+      }
+    }
+  }
+}
+
+Adw.StatusPage no_log_yet {
+  title: _("No Log Available Yet");
+  description: _("Start fetching to see something");
+  icon-name: "nothing-found-symbolic";
+}

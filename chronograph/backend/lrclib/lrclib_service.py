@@ -34,8 +34,26 @@ class Endpoints(StrEnum):
   CHALLENGE = "https://lrclib.net/api/request-challenge"
 
 
+class FetchStates(GObject.GEnum):
+  PENDING = 0
+  FAILED = 1
+  CANCELLED = 2
+  DONE = 3
+
+
 class LRClibService(GObject.Object, metaclass=GSingleton):
-  __gsignals__ = {"publish-done": (GObject.SignalFlags.RUN_FIRST, None, (int,))}
+  __gsignals__ = {
+    "publish-done": (GObject.SignalFlags.RUN_FIRST, None, (int,)),  # status-code
+    # Fetch-related signals
+    "fetch-started": (GObject.SignalFlags.RUN_FIRST, None, (str,)),  # path
+    "fetch-state": (
+      GObject.SignalFlags.RUN_FIRST,
+      None,
+      (str, FetchStates),  # path, FetchStates
+    ),
+    "fetch-message": (GObject.SignalFlags.RUN_FIRST, None, (str, str)),  # path, msg
+    "fetch-all-done": (GObject.SignalFlags.RUN_FIRST, None, ()),
+  }
 
   def __init__(self) -> None:
     super().__init__()
@@ -74,7 +92,7 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           params=params,
           headers={"User-Agent": APP_SIGNATURE_HEADER},
         )
-        if response.status_code == 404:
+        if response.status_code in (404, 400):
           logger.info("No entry for %s -- %s found", track.title, track.artist)
           raise TrackNotFound(f"No entry for {track.title} -- {track.artist} found")  # noqa: TRY301
 
@@ -312,23 +330,54 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     files_parsed = 0
 
     # TODO: Log each file successfulness
+    # FIXME: Refactor cancelling functionality to properly emit "fetch-cancelled" for
+    # already running fetchings
     async def sem_fetch(track: BaseFile) -> tuple[BaseFile, Optional[LRClibEntry]]:
       nonlocal files_parsed, on_progress, files_parse, cancellable
       if cancellable.is_set():
+        GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.CANCELLED)
+        GLib.idle_add(self.emit, "fetch-message", track.path, _("Cancelled"))
+        logger.info("[FETCH] Fetching for %s was cancelled", track.path)
         raise asyncio.CancelledError
       async with sem:
+        GLib.idle_add(self.emit, "fetch-started", track.path)
+        logger.info("[FETCH] Starting fetching lyrics for %s", track.path)
         try:
           response = await self.api_get(track)
           files_parsed += 1
+          GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.DONE)
+          GLib.idle_add(
+            self.emit, "fetch-message", track.path, _("Fetched successfully")
+          )
+          logger.info("[FETCH] Successfully fetched lyrics for %s", track.path)
           return track, response
         except TrackNotFound:
+          GLib.idle_add(
+            self.emit,
+            "fetch-message",
+            track.path,
+            _("Fetching using /api/get failed, trying /api/search"),
+          )
+          logger.warning(
+            "[FETCH] Failed to fetch lyrics for %s using absolute /api/get", track.path
+          )
           try:
             search_response = await self.api_search(track)
             nearest = LRClibService.get_nearest(track, search_response)
             files_parsed += 1
+            GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.DONE)
+            GLib.idle_add(
+              self.emit, "fetch-message", track.path, _("Fetched successfully")
+            )
+            logger.info("[FETCH] Successfully fetched lyrics for %s")
             return track, nearest
           except SearchEmptyReturn:
             files_parsed += 1
+            GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.FAILED)
+            GLib.idle_add(self.emit, "fetch-message", track.path, _("No lyrics found"))
+            logger.warning(
+              "[FETCH] Failed to fetch lyrics for %s using /api/search", track.path
+            )
             return track, None
           except Exception:
             raise
@@ -343,12 +392,13 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     try:
       results = await asyncio.gather(*tasks)
     except asyncio.CancelledError:
-      print("cancelled")
       for t in tasks:
         t.cancel()
       await asyncio.gather(*tasks, return_exceptions=True)
       GLib.idle_add(on_progress, 1.0)
       raise
+    GLib.idle_add(self.emit, "fetch-all-done")
+    logger.info("[FETCH] All lyric fetches are done")
     return dict(results)
 
   @staticmethod

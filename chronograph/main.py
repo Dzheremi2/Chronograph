@@ -5,10 +5,7 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.backend.asynchronous.async_task import AsyncTask
 from chronograph.backend.file import FileManager, LibraryModel
-from chronograph.backend.file_parsers import parse_dir, parse_files
-from chronograph.backend.lrclib.lrclib_service import LRClibService
 from chronograph.backend.player import Player
 
 gi.require_version("Gtk", "4.0")
@@ -80,6 +77,7 @@ class ChronographApplication(Adw.Application):
         ("select_files", ("<primary>o",), Constants.WIN),
         ("show_preferences", ("<primary>comma",), Constants.WIN),
         ("open_quick_editor", (), Constants.WIN),
+        ("open_mass_downloading", (), Constants.WIN),
         ("about",),
       }
     )
@@ -136,16 +134,6 @@ class ChronographApplication(Adw.Application):
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
     Player().set_property("rate", float(Schema.get("root.state.player.rate")))
     logger.debug("Window shown")
-
-    # FIXME: For testing. Remove
-    task = AsyncTask(
-      LRClibService().fetch_lyrics_many,
-      parse_files(parse_dir("/home/dzheremi/Music/LRCLIB")),
-      do_use_progress=True,
-      do_use_cancellable=True
-    )
-    task.connect("task-done", lambda _task, result: print(result))
-    task.start()
 
   def on_about_action(self, *_args) -> None:
     """Shows About App dialog"""
