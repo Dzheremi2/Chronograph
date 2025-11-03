@@ -1,7 +1,6 @@
-subdir('gtk')
-
 blueprints = custom_target('blueprints',
   input: files(
+    'gtk/window.blp',
     'gtk/ui/widgets/SongCard.blp',
     'gtk/ui/dialogs/BoxDialog.blp',
     'gtk/ui/dialogs/LRClib.blp',
@@ -33,7 +32,7 @@ gnome.compile_resources(
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
-  dependencies: [blueprints, window]
+  dependencies: [blueprints]
 )
 
 desktop_file = i18n.merge_file(
