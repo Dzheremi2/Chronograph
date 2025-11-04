@@ -10,7 +10,7 @@ import requests
 from gi.repository import GLib, GObject
 
 from chronograph.backend.media import BaseFile
-from chronograph.internal import Constants
+from chronograph.internal import Constants, Schema
 from dgutils import GSingleton
 
 from . import APP_SIGNATURE_HEADER
@@ -49,7 +49,11 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     "fetch-state": (
       GObject.SignalFlags.RUN_FIRST,
       None,
-      (str, FetchStates),  # path, FetchStates
+      (
+        str,
+        FetchStates,
+        object,
+      ),  # path, FetchStates, Optional[Union[LRClibEntry, Exception]]
     ),
     "fetch-message": (GObject.SignalFlags.RUN_FIRST, None, (str, str)),  # path, msg
     "fetch-all-done": (GObject.SignalFlags.RUN_FIRST, None, ()),
@@ -93,7 +97,7 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           headers={"User-Agent": APP_SIGNATURE_HEADER},
         )
         if response.status_code in (404, 400):
-          logger.info("No entry for %s -- %s found", track.title, track.artist)
+          logger.info("[GET] No entry for %s -- %s found", track.title, track.artist)
           raise TrackNotFound(f"No entry for {track.title} -- {track.artist} found")  # noqa: TRY301
 
         response.raise_for_status()
@@ -325,33 +329,37 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
       Conjunction for madia files and fetched lyrics. Will be `{BaseFile: None}` if no
       lyrics found
     """
-    sem = asyncio.Semaphore(5)  # TODO: Replace with Schema value
+    sem = asyncio.Semaphore(
+      Schema.get("root.settings.general.mass-downloading.parallel-amount")
+    )
     files_parse = len(tracks)
     files_parsed = 0
 
-    # TODO: Log each file successfulness
-    # FIXME: Refactor cancelling functionality to properly emit "fetch-cancelled" for
-    # already running fetchings
     async def sem_fetch(track: BaseFile) -> tuple[BaseFile, Optional[LRClibEntry]]:
       nonlocal files_parsed, on_progress, files_parse, cancellable
+
       if cancellable.is_set():
-        GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.CANCELLED)
-        GLib.idle_add(self.emit, "fetch-message", track.path, _("Cancelled"))
-        logger.info("[FETCH] Fetching for %s was cancelled", track.path)
         raise asyncio.CancelledError
+
       async with sem:
         GLib.idle_add(self.emit, "fetch-started", track.path)
         logger.info("[FETCH] Starting fetching lyrics for %s", track.path)
+
         try:
+          # First attempt using api_get
           response = await self.api_get(track)
           files_parsed += 1
-          GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.DONE)
           GLib.idle_add(
             self.emit, "fetch-message", track.path, _("Fetched successfully")
           )
+          GLib.idle_add(
+            self.emit, "fetch-state", track.path, FetchStates.DONE, response
+          )
           logger.info("[FETCH] Successfully fetched lyrics for %s", track.path)
           return track, response
+
         except TrackNotFound:
+          # Second attempt using api_search
           GLib.idle_add(
             self.emit,
             "fetch-message",
@@ -361,32 +369,53 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           logger.warning(
             "[FETCH] Failed to fetch lyrics for %s using absolute /api/get", track.path
           )
+
           try:
             search_response = await self.api_search(track)
             nearest = LRClibService.get_nearest(track, search_response)
             files_parsed += 1
-            GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.DONE)
-            GLib.idle_add(
-              self.emit, "fetch-message", track.path, _("Fetched successfully")
-            )
-            logger.info("[FETCH] Successfully fetched lyrics for %s")
+
+            if nearest:
+              GLib.idle_add(
+                self.emit, "fetch-message", track.path, _("Fetched successfully")
+              )
+              GLib.idle_add(
+                self.emit, "fetch-state", track.path, FetchStates.DONE, nearest
+              )
+              logger.info("[FETCH] Successfully fetched lyrics for %s", track.path)
+            else:
+              GLib.idle_add(
+                self.emit, "fetch-state", track.path, FetchStates.FAILED, None
+              )
+              GLib.idle_add(
+                self.emit, "fetch-message", track.path, _("No suitable lyrics found")
+              )
+              logger.warning(
+                "[FETCH] No suitable lyrics found for %s using /api/search", track.path
+              )
+
             return track, nearest
+
           except SearchEmptyReturn:
             files_parsed += 1
-            GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.FAILED)
+            GLib.idle_add(
+              self.emit, "fetch-state", track.path, FetchStates.FAILED, None
+            )
             GLib.idle_add(self.emit, "fetch-message", track.path, _("No lyrics found"))
             logger.warning(
               "[FETCH] Failed to fetch lyrics for %s using /api/search", track.path
             )
             return track, None
-          except Exception:
-            raise
-        except Exception:
-          raise
+
+        except Exception as e:
+          GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.FAILED, e)
+
         finally:
           if cancellable.is_set():
             raise asyncio.CancelledError
           GLib.idle_add(on_progress, files_parsed / files_parse)
+
+        return track, None
 
     tasks: list[asyncio.Task] = [sem_fetch(track) for track in tracks]
     try:

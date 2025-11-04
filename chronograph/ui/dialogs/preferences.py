@@ -28,6 +28,8 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   load_compressed_covers_switch: Adw.ExpanderRow = gtc()
   compress_level_spin: Adw.SpinRow = gtc()
   compress_level_adjustment: Gtk.Adjustment = gtc()
+  parallel_downloadings_adj: Gtk.Adjustment = gtc()
+  preferred_format_combo_row: Adw.ComboRow = gtc()
   enable_debug_logging_switch: Adw.SwitchRow = gtc()
   syncing_type_combo_row: Adw.ComboRow = gtc()
   save_plain_lrc_also_switch_row: Adw.SwitchRow = gtc()
@@ -51,6 +53,7 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
     self.syncing_type_combo_row.connect(
       "notify::selected", self._update_sync_type_schema
     )
+    self._setup_mass_downloading_preferred_format()
 
     Schema.bind(
       "root.settings.file-manipulation.enabled",
@@ -161,6 +164,13 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       transform_from=int,
       transform_to=float,
     )
+    Schema.bind(
+      "root.settings.general.mass-downloading.parallel-amount",
+      self.parallel_downloadings_adj,
+      "value",
+      transform_from=int,
+      transform_to=float,
+    )
 
     if Schema.get("root.settings.file-manipulation.format") == ".lrc":
       self.auto_file_manipulation_format.set_selected(0)
@@ -179,6 +189,43 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
     )
     self.follow_symlinks_switch.connect(
       "notify::active", self._on_resursive_parsing_changed
+    )
+
+  def _setup_mass_downloading_preferred_format(self) -> None:
+    def update_mass_downloading_preferred_format_schema(
+      combo_row: Adw.ComboRow, _pspec
+    ) -> None:
+      selected = combo_row.get_selected()
+      if selected < len(self.mass_downloading_preffered_format_keys):
+        Schema.set(
+          "root.settings.general.mass-downloading.preferred-format",
+          self.mass_downloading_preffered_format_keys[selected],
+        )
+
+    preferred_format = Schema.get(
+      "root.settings.general.mass-downloading.preferred-format"
+    )
+    string_list = Gtk.StringList()
+
+    options = [
+      ("s", _("Synced Only")),
+      ("s~p", _("Synced, Fallback to Plain If Unavailable")),
+      ("p", _("Plain Only")),
+    ]
+    self.mass_downloading_preffered_format_keys = [key for key, __ in options]
+    for _key, display_name in options:
+      string_list.append(display_name)
+
+    self.preferred_format_combo_row.set_model(string_list)
+
+    try:
+      current_idx = self.mass_downloading_preffered_format_keys.index(preferred_format)
+      self.preferred_format_combo_row.set_selected(current_idx)
+    except ValueError:
+      self.preferred_format_combo_row.set_selected(0)
+
+    self.preferred_format_combo_row.connect(
+      "notify::selected", update_mass_downloading_preferred_format_schema
     )
 
   def _on_resursive_parsing_changed(

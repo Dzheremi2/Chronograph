@@ -1,6 +1,7 @@
 import asyncio
+import contextlib
 import threading
-from typing import Coroutine
+from typing import Coroutine, Optional
 
 from gi.repository import GLib, GObject
 
@@ -35,7 +36,7 @@ class AsyncTask(GObject.Object):
 
   task-done(object) -> Emited on coroutine done executing. Passes the coroutine result
 
-  error(Exception) -> Emited on any exception occured. Passes the excpetion
+  error(Exception) -> Emited on any exception occured. Passes the exception
 
   cancelled -> Emited on `self.cancel()` call. Tells that coroutine was cancelled
   """  # noqa: D301
@@ -73,6 +74,8 @@ class AsyncTask(GObject.Object):
       self._kwargs = {}
     self._thread = None
     self._cancel_event = threading.Event()
+    self._loop: Optional[asyncio.AbstractEventLoop] = None
+    self._asyncio_task: Optional[asyncio.Task] = None
 
   def start(self) -> None:
     """Starts the execution of the coroutine in separate thread
@@ -89,6 +92,7 @@ class AsyncTask(GObject.Object):
 
   def _run(self) -> None:
     loop = asyncio.new_event_loop()
+    self._loop = loop
     asyncio.set_event_loop(loop)
     try:
       GLib.idle_add(self.emit, "task-started")
@@ -96,12 +100,19 @@ class AsyncTask(GObject.Object):
         self._kwargs["on_progress"] = self.set_progress
       if self._do_use_cancellable:
         self._kwargs["cancellable"] = self._cancel_event
-      result = loop.run_until_complete(self._coroutine(*self._args, **self._kwargs))
+      self._asyncio_task = loop.create_task(
+        self._coroutine(*self._args, **self._kwargs)
+      )
+      try:
+        result = loop.run_until_complete(self._asyncio_task)
+      except asyncio.CancelledError:
+        return
+      GLib.idle_add(self.emit, "task-done", result)
     except Exception as e:
       GLib.idle_add(self.emit, "error", e)
-    else:
-      GLib.idle_add(self.emit, "task-done", result)
     finally:
+      self._asyncio_task = None
+      self._loop = None
       loop.close()
 
   def set_progress(self, progress: float) -> None:
@@ -118,4 +129,7 @@ class AsyncTask(GObject.Object):
   def cancel(self) -> None:
     """Cancels the running coroutine if it support cancellable"""
     self._cancel_event.set()
+    if self._loop and self._asyncio_task:
+      with contextlib.suppress(Exception):
+        self._loop.call_soon_threadsafe(self._asyncio_task.cancel)
     self.emit("cancelled")

@@ -39,6 +39,10 @@
   background-color: #37713f;
 }
 
+.instrumental {
+  color: #2190a4;
+}
+
 .synced-text { /* Used when word is synced for Gtk.Label */
   color: #ffffff;
 }

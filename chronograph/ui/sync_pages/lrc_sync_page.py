@@ -263,7 +263,7 @@ class LRCSyncPage(Adw.NavigationPage):
     dialog.open(Constants.WIN, None, on_selected_lyrics_file)
 
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib
+    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)

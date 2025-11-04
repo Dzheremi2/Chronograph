@@ -56,6 +56,27 @@ template $ChronographPreferences : Adw.PreferencesDialog {
     }
 
     Adw.PreferencesGroup {
+      title: _("Mass Downloading");
+
+      Adw.SpinRow {
+        title: _("Max Parallel Downloadings");
+        subtitle: _("The amount of simultanious parallel downloadings. High amount may cause downloading failure if treated as DDoS attack");
+        adjustment: Adjustment parallel_downloadings_adj {
+          lower: 1;
+          upper: 9999999;
+          step-increment: 1;
+          page-increment: 5;
+          value: 5;
+        };
+      }
+
+      Adw.ComboRow preferred_format_combo_row {
+        title: _("Preferred Lyrics Format");
+        subtitle: _("Target lyrics format for LRClib downloading");
+      }
+    }
+
+    Adw.PreferencesGroup {
       title: _("Debug");
 
       Adw.SwitchRow enable_debug_logging_switch {
