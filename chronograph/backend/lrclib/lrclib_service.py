@@ -44,6 +44,7 @@ class FetchStates(GObject.GEnum):
 class LRClibService(GObject.Object, metaclass=GSingleton):
   __gsignals__ = {
     "publish-done": (GObject.SignalFlags.RUN_FIRST, None, (int,)),  # status-code
+    "publish-failed": (GObject.SignalFlags.RUN_FIRST, None, (object,)),  # Exception
     # Fetch-related signals
     "fetch-started": (GObject.SignalFlags.RUN_FIRST, None, (str,)),  # path
     "fetch-state": (
@@ -211,7 +212,8 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     """
     async with httpx.AsyncClient() as client:
       try:
-        response = await client.get(
+        logger.info("[CHALLENGE] Requesting challenge from LRClib")
+        response = await client.post(
           Endpoints.CHALLENGE.value, headers={"User-Agent": APP_SIGNATURE_HEADER}
         )
         response.raise_for_status()
@@ -238,11 +240,11 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     Parameters
     ----------
     track : BaseFile
-        A track media file
+      A track media file
     plain_lyrics : str
-        Plain lyrics
+      Plain lyrics
     synced_lyrics : str
-        Synced lyrics
+      Synced lyrics
     """
 
     def do_publish(
@@ -258,9 +260,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
 
       try:
         challenge = loop.run_until_complete(self.api_challenge())
-      except Exception:
+      except Exception as e:
         self._is_publish_running = False
-        raise
+        GLib.idle_add(self.emit, "publish-failed", e)
       finally:
         loop.close()
 
@@ -286,8 +288,8 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           timeout=10,
         )
         self.emit("publish-done", response.status_code)
-      except Exception:  # noqa: TRY203
-        raise
+      except Exception as e:
+        GLib.idle_add(self.emit, "publish-failed", e)
       finally:
         self._is_publish_running = False
 

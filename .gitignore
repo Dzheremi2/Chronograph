@@ -9,6 +9,3 @@ io.github.dzheremi2.lrcmake-gtk.flatpak
 *.pyc
 io.github.dzheremi2.lrcmake_gtk.Devel.flatpak
 io.github.dzheremi2.lrcmake_gtk.Devel.yaml
-chronograph/backend/asynchronous/_async_multitask.py
-chronograph/backend/asynchronous/_async_task.py
-chronograph/backend/lrclib/_lrclib_service.py
