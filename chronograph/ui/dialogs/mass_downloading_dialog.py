@@ -22,6 +22,8 @@ gtc = Gtk.Template.Child
 class MassDownloadingDialog(Adw.Dialog):
   __gtype_name__ = "MassDownloadingDialog"
 
+  progress_revealer: Gtk.Revealer = gtc()
+  progress_bar: Gtk.ProgressBar = gtc()
   fetch_log_list_box: Gtk.ListBox = gtc()
   no_log_yet: Adw.StatusPage = gtc()
 
@@ -42,6 +44,7 @@ class MassDownloadingDialog(Adw.Dialog):
     def on_all_done(*_args) -> None:
       self._fetch_going = False
       button.set_label(_("Fetch"))
+      self.progress_revealer.set_reveal_child(False)
 
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
@@ -67,8 +70,11 @@ class MassDownloadingDialog(Adw.Dialog):
         do_use_cancellable=True,
       )
       self._task_cancel_hdl = self.task.connect("cancelled", self._on_task_cancelled)
+      self.task.connect("notify::progress", self._on_progress_change)
       self.task.start()
       self._fetch_going = True
+      self.progress_revealer.set_reveal_child(True)
+      self.progress_bar.set_fraction(0.0)
       self.fstr = LRClibService().connect(
         "fetch-started", lambda _lrclib, path: self.log_items.insert(0, LogEntry(path))
       )
@@ -80,6 +86,9 @@ class MassDownloadingDialog(Adw.Dialog):
       self.task.cancel()
       self._fetch_going = False
       button.set_label(_("Fetch"))
+
+  def _on_progress_change(self, task: AsyncTask, _pspec) -> None:
+    self.progress_bar.set_fraction(task.progress)
 
   def _on_fetch_state(
     self,
