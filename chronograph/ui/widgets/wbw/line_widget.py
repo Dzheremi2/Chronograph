@@ -1,7 +1,7 @@
 from gi.repository import Adw
 
+from chronograph.backend.wbw.models.line_model import LineModel
 from chronograph.ui.widgets.wbw.word_widget import WordWidget
-from chronograph.utils.wbw.models.line_model import LineModel
 
 
 class LineWidget(Adw.WrapBox):

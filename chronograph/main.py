@@ -5,8 +5,8 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.utils.file_backend import FileManager, LibraryModel
-from chronograph.utils.player import Player
+from chronograph.backend.file import FileManager, LibraryModel
+from chronograph.backend.player import Player
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -77,6 +77,7 @@ class ChronographApplication(Adw.Application):
         ("select_files", ("<primary>o",), Constants.WIN),
         ("show_preferences", ("<primary>comma",), Constants.WIN),
         ("open_quick_editor", (), Constants.WIN),
+        ("open_mass_downloading", (), Constants.WIN),
         ("about",),
       }
     )
@@ -263,4 +264,5 @@ def main(_version):
     Constants.CACHE.pop("session", None)
     Constants.CACHE["cache_version"] = 2
   Constants.APP = app = ChronographApplication()
+
   return app.run(sys.argv)

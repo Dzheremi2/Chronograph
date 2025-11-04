@@ -2,9 +2,9 @@
 
 from gi.repository import Gtk
 
+from chronograph.backend.miscellaneous import decode_filter_schema
 from chronograph.internal import Constants
 from chronograph.ui.widgets.song_card import SongCard
-from chronograph.utils.miscellaneous import decode_filter_schema
 
 
 def invalidate_sort_flowbox(child1: Gtk.FlowBoxChild, child2: Gtk.FlowBoxChild) -> int:

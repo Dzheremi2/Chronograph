@@ -3,12 +3,12 @@ from typing import Union
 
 from gi.repository import GObject
 
+from chronograph.backend.file.file_manager import FileManager
+from chronograph.backend.file.song_card_model import SongCardModel
+from chronograph.backend.file_parsers import parse_dir, parse_files
+from chronograph.backend.lyrics import LyricsFile
+from chronograph.backend.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 from chronograph.internal import Constants, Schema
-from chronograph.utils.file_backend.file_manager import FileManager
-from chronograph.utils.file_backend.song_card_model import SongCardModel
-from chronograph.utils.file_parsers import parse_dir, parse_files
-from chronograph.utils.lyrics import LyricsFile
-from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
 from dgutils import GSingleton
 
 logger = Constants.LOGGER

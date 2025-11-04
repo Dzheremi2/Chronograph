@@ -1,7 +1,7 @@
 from gi.repository import Adw, Gtk
 
+from chronograph.backend.wbw.models.lyrics_model import LyricsModel
 from chronograph.internal import Constants
-from chronograph.utils.wbw.models.lyrics_model import LyricsModel
 
 gtc = Gtk.Template.Child
 

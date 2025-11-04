@@ -1,7 +1,7 @@
 from gi.repository import GObject
 
+from chronograph.backend.wbw.tokens import WordToken
 from chronograph.internal import Schema
-from chronograph.utils.wbw.tokens import WordToken
 
 
 class WordModel(GObject.Object):

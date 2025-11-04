@@ -7,22 +7,23 @@ from typing import Callable, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
-from chronograph.internal import Constants, Schema
-from chronograph.ui.dialogs.preferences import ChronographPreferences
-from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
-from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
-from chronograph.ui.widgets.saved_location import SavedLocation
-from chronograph.utils.file_backend import LibraryModel, SongCardModel
-from chronograph.utils.invalidators import (
+from chronograph.backend.file import LibraryModel, SongCardModel
+from chronograph.backend.invalidators import (
   invalidate_filter_flowbox,
   invalidate_filter_listbox,
   invalidate_sort_flowbox,
   invalidate_sort_listbox,
 )
-from chronograph.utils.miscellaneous import (
+from chronograph.backend.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
 )
+from chronograph.internal import Constants, Schema
+from chronograph.ui.dialogs.mass_downloading_dialog import MassDownloadingDialog
+from chronograph.ui.dialogs.preferences import ChronographPreferences
+from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+from chronograph.ui.widgets.saved_location import SavedLocation
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -192,6 +193,10 @@ class ChronographWindow(Adw.ApplicationWindow):
       self.overlay_split_view.set_show_sidebar(
         not self.overlay_split_view.get_show_sidebar()
       )
+
+  def on_open_mass_downloading_action(self, *_args) -> None:
+    """Shows mass downloading dialog"""
+    MassDownloadingDialog().present(self)
 
   def on_toggle_search_action(self, *_args) -> None:
     """Toggles search field of `self`"""

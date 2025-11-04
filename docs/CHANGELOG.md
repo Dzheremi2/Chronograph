@@ -1,3 +1,10 @@
+## 5.3-rc1
+
+<p>New features</p>
+<ul>
+  <li>Ability to mass download lyrics for opened library</li>
+</ul>
+
 ## 5.2
 
 <p>New features</p>

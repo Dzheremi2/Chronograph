@@ -3,8 +3,8 @@ from pathlib import Path
 
 from gi.repository import Gio, GObject
 
+from chronograph.backend.lyrics.lyrics import Lyrics
 from chronograph.internal import Schema
-from chronograph.utils.lyrics.lyrics import Lyrics
 
 
 class LyricsFile(GObject.Object):

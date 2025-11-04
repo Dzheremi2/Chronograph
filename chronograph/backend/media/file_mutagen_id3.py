@@ -5,8 +5,8 @@ from typing import Optional
 from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1, USLT
 from PIL import Image
 
+from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
-from chronograph.utils.lyrics import Lyrics, LyricsFormat
 
 from .file import TaggableFile
 

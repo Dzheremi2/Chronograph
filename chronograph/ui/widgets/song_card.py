@@ -3,12 +3,12 @@ from pathlib import Path
 
 from gi.repository import Adw, Gio, GObject, Gtk
 
+from chronograph.backend.file import SongCardModel
+from chronograph.backend.lyrics import LyricsFormat
+from chronograph.backend.media import FileUntaggable
 from chronograph.internal import Constants
 from chronograph.ui.dialogs.box_dialog import BoxDialog
 from chronograph.ui.dialogs.metadata_editor import MetadataEditor
-from chronograph.utils.file_backend import SongCardModel
-from chronograph.utils.lyrics import LyricsFormat
-from chronograph.utils.media import FileUntaggable
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER

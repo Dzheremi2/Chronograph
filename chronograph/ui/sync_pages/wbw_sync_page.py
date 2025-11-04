@@ -6,20 +6,20 @@ from typing import Literal, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
-from chronograph.internal import Constants, Schema
-from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
-from chronograph.ui.widgets.ui_player import UIPlayer
-from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
-from chronograph.utils.file_backend import SongCardModel
-from chronograph.utils.lyrics import (
+from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
+from chronograph.backend.file import SongCardModel
+from chronograph.backend.lyrics import (
   Lyrics,
   LyricsFile,
   LyricsFormat,
   LyricsHierarchyConversion,
 )
-from chronograph.utils.media import FileID3, FileMP4, FileUntaggable, FileVorbis
-from chronograph.utils.player import Player
-from chronograph.utils.wbw.models.lyrics_model import LyricsModel
+from chronograph.backend.media import FileID3, FileMP4, FileUntaggable, FileVorbis
+from chronograph.backend.player import Player
+from chronograph.backend.wbw.models.lyrics_model import LyricsModel
+from chronograph.internal import Constants, Schema
+from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
+from chronograph.ui.widgets.ui_player import UIPlayer
 from dgutils import Actions
 
 gtc = Gtk.Template.Child

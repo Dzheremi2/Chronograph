@@ -3,10 +3,10 @@ from typing import Iterator, Optional
 
 from gi.repository import Gio, GObject
 
-from chronograph.utils.wbw.models.line_model import LineModel
-from chronograph.utils.wbw.models.word_model import WordModel
-from chronograph.utils.wbw.token_parser import TokenParser
-from chronograph.utils.wbw.tokens import WordToken
+from chronograph.backend.wbw.models.line_model import LineModel
+from chronograph.backend.wbw.models.word_model import WordModel
+from chronograph.backend.wbw.token_parser import TokenParser
+from chronograph.backend.wbw.tokens import WordToken
 
 
 class LyricsModel(GObject.Object):

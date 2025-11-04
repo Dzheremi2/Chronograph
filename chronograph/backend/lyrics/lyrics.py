@@ -4,10 +4,10 @@ from typing import Any, Optional, Union
 
 from gi.repository import GObject
 
+from chronograph.backend.lyrics.lyrics_format import LyricsFormat
+from chronograph.backend.wbw.token_parser import TokenParser
+from chronograph.backend.wbw.tokens import WordToken
 from chronograph.internal import Constants, Schema
-from chronograph.utils.lyrics.lyrics_format import LyricsFormat
-from chronograph.utils.wbw.token_parser import TokenParser
-from chronograph.utils.wbw.tokens import WordToken
 
 
 class LyricsHierarchyConversion(Exception):

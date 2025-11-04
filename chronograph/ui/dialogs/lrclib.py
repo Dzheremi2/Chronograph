@@ -1,8 +1,11 @@
-import threading
+from typing import Iterable
 
-import requests
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import Adw, Gtk
 
+from chronograph.backend.asynchronous.async_task import AsyncTask
+from chronograph.backend.lrclib.exceptions import APIRequestError, SearchEmptyReturn
+from chronograph.backend.lrclib.lrclib_service import LRClibService
+from chronograph.backend.lrclib.responses import LRClibEntry
 from chronograph.internal import Constants
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
@@ -59,108 +62,71 @@ class LRClib(Adw.Dialog):
       self.search_button.set_sensitive(True)
 
   def _search(self, *_args) -> None:
-    def on_search_result(rq_result: list) -> None:
+    def on_search_result(_task, result: Iterable[LRClibEntry]) -> None:
       self.lrctracks_list_box.remove_all()
-      if len(rq_result) > 0:
-        self.lrctracks_list_box.remove_all()
-        for item in rq_result:
-          logger.debug(
-            "Adding '%s -- %s / %s' to result list",
-            item["trackName"],
-            item["artistName"],
-            item["albumName"],
+      for item in result:
+        logger.debug(
+          "Adding '%s -- %s / %s' to result list",
+          item.track_name,
+          item.artist_name,
+          item.album_name,
+        )
+        self.lrctracks_list_box.append(
+          LRClibTrack(
+            title=item.track_name,
+            artist=item.artist_name,
+            tooltip=(
+              item.track_name,
+              item.artist_name,
+              item.duration,
+              item.album_name,
+              item.instrumental,
+            ),
+            synced=item.synced_lyrics,
+            plain=item.plain_lyrics,
           )
-          self.lrctracks_list_box.append(
-            LRClibTrack(
-              title=item["trackName"],
-              artist=item["artistName"],
-              tooltip=(
-                item["trackName"],
-                item["artistName"],
-                item["duration"],
-                item["albumName"],
-                item["instrumental"],
-              ),
-              synced=item["syncedLyrics"],
-              plain=item["plainLyrics"],
-            )
+        )
+      self.lrctracks_scrolled_window.set_child(self.lrctracks_list_box)
+      self.search_button.set_sensitive(True)
+
+    def on_search_failed(_task, error: Exception) -> None:
+      def non_lrclib_error(title: str, desc: str, icon: str) -> None:
+        self.lrctracks_scrolled_window.set_child(
+          Adw.StatusPage(title=title, description=desc, icon_name=icon)
+        )
+
+      match error:
+        case SearchEmptyReturn():
+          self.lrctracks_scrolled_window.set_child(self.nothing_found_status_page)
+        case APIRequestError():
+          non_lrclib_error(
+            _("Connection Error"),
+            _(
+              "Network error occured while connecting to LRClib",
+            ),
+            "chr-no-internet-connection-symbolic",
           )
-        self.lrctracks_scrolled_window.set_child(self.lrctracks_list_box)
-      else:
-        self.lrctracks_scrolled_window.set_child(self.nothing_found_status_page)
-
-    def on_search_error(title: str, desc: str, icon: str) -> None:
-      self.lrctracks_scrolled_window.set_child(
-        Adw.StatusPage(
-          title=title,
-          description=desc,
-          icon_name=icon,
-        )
-      )
-
-    def do_request() -> None:
-      self.search_button.set_sensitive(False)
-      _err = None
-      try:
-        lrclib_logger.info("Connecting to lrclib.net")
-        request: requests.Response = requests.get(
-          url="https://lrclib.net/api/search",
-          params={
-            "track_name": self.title_entry.get_text().strip(),
-            "artist_name": self.artist_entry.get_text().strip(),
-            "album_name": self.album_entry.get_text().strip(),
-          },
-          timeout=10,
-        )
-        lrclib_logger.info("Established connection to lrclib.net")
-        rq_result = request.json()
-        GLib.idle_add(on_search_result, rq_result)
-      except requests.exceptions.ConnectionError as e:
-        GLib.idle_add(
-          on_search_error,
-          _("Connection Error"),
-          _(
-            "Failed to connect to the LRC library server. Please check your internet connection and try again"
-          ),
-          "chr-no-internet-connection-symbolic",
-        )
-        _err = e
-        return
-      except requests.exceptions.Timeout as e:
-        GLib.idle_add(
-          on_search_error,
-          _("Timeout Error"),
-          _("The request to the LRC library server timed out. Please try again later"),
-          "chr-connection-timeout-symbolic",
-        )
-        _err = e
-        return
-      except Exception as e:
-        GLib.idle_add(
-          on_search_error,
-          _("Something went wrong"),
-          _(
-            "An unknown error occurred while trying to connect to the LRC library server"
-          ),
-          "chr-error-occured-symbolic.svg",
-        )
-        _err = e
-        return
-      finally:
-        self.search_button.set_sensitive(True)
-        if _err:
-          lrclib_logger.warning(
-            "Unable to fetch available lyrics for {title: %s, artist: %s}: %s",
-            self.title_entry.get_text().strip(),
-            self.artist_entry.get_text().strip(),
-            _err,
-            stack_info=True,
+        case __:
+          non_lrclib_error(
+            _("Something went wrong"),
+            _(
+              "An unknown error occurred while trying to connect to the LRC library server"
+            ),
+            "chr-error-occured-symbolic",
           )
+      self.search_button.set_sensitive(True)
 
-    threading.Thread(target=do_request, daemon=True).start()
+    title = self.title_entry.get_text().strip()
+    artist = self.artist_entry.get_text().strip()
+    album = self.album_entry.get_text().strip()
+    task = AsyncTask(LRClibService().api_search, title, artist, album)
+    task.connect("task-done", on_search_result)
+    task.connect("error", on_search_failed)
+    task.start()
+    self.search_button.set_sensitive(False)
 
   def _import_synced(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
 
     if text := self.synced_text_view.get_buffer().get_text(
       self.synced_text_view.get_buffer().get_start_iter(),
@@ -183,7 +149,7 @@ class LRClib(Adw.Dialog):
       logger.debug("Imported synced lyrics")
 
   def _import_plain(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
 
     if text := self.plain_text_view.get_buffer().get_text(
       self.plain_text_view.get_buffer().get_start_iter(),

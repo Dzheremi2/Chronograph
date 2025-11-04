@@ -1,7 +1,7 @@
 from gi.repository import Adw, GObject, Gtk
 
+from chronograph.backend.wbw.models.word_model import WordModel
 from chronograph.internal import Constants
-from chronograph.utils.wbw.models.word_model import WordModel
 
 gtc = Gtk.Template.Child
 

@@ -4,16 +4,16 @@ import os
 from pathlib import Path
 from typing import Union
 
+from chronograph.backend.media.file_mutagen_id3 import FileID3
+from chronograph.backend.media.file_mutagen_mp4 import FileMP4
+from chronograph.backend.media.file_mutagen_vorbis import FileVorbis
+from chronograph.backend.media.file_untaggable import FileUntaggable
 from chronograph.internal import Schema
-from chronograph.utils.media.file_mutagen_id3 import FileID3
-from chronograph.utils.media.file_mutagen_mp4 import FileMP4
-from chronograph.utils.media.file_mutagen_vorbis import FileVorbis
-from chronograph.utils.media.file_untaggable import FileUntaggable
 
 
 def parse_files(
   paths: tuple[str],
-) -> tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]]:
+) -> tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable], ...]:
   """Generates a tuple of mutagen files from a list of paths
 
   Parameters
@@ -40,7 +40,7 @@ def parse_files(
   return tuple(mutagen_files)
 
 
-def parse_dir(path: str) -> tuple[str]:
+def parse_dir(path: str) -> tuple[str, ...]:
   """Resolves all directory content paths depending on user settings
 
   Parameters

@@ -91,6 +91,15 @@ root:
       debug-profile:
         type: bool
         default: false
+      mass-downloading:
+        parallel-amount:
+          type: int
+          min: 1
+          default: 5
+        preferred-format:
+          type: str
+          enum: [s, s~p, p]
+          default: s
   state:
     player:
       volume:

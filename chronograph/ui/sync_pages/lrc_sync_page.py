@@ -1,24 +1,23 @@
 """Sync page for LRC format syncing"""
 
-import hashlib
+import os
 import re
-import threading
 import traceback
-from binascii import unhexlify
 from pathlib import Path
 from typing import Literal, Optional
 
-import requests
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
+from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
+from chronograph.backend.file import SongCardModel
+from chronograph.backend.lrclib.exceptions import APIRequestError
+from chronograph.backend.lrclib.lrclib_service import LRClibService
+from chronograph.backend.lyrics import Lyrics, LyricsFile, LyricsFormat
+from chronograph.backend.media import FileUntaggable
+from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.ui_player import UIPlayer
-from chronograph.utils.converter import ns_to_timestamp, timestamp_to_ns
-from chronograph.utils.file_backend import SongCardModel
-from chronograph.utils.lyrics import Lyrics, LyricsFile, LyricsFormat
-from chronograph.utils.media import FileUntaggable
-from chronograph.utils.player import Player
 from dgutils import Actions
 
 gtc = Gtk.Template.Child
@@ -263,7 +262,7 @@ class LRCSyncPage(Adw.NavigationPage):
     dialog.open(Constants.WIN, None, on_selected_lyrics_file)
 
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib
+    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)
@@ -398,122 +397,62 @@ class LRCSyncPage(Adw.NavigationPage):
   ############### Publisher ###############
 
   def _publish(self, __, ___, card_model: SongCardModel) -> None:
-    def verify_nonce(result: int, target: int) -> bool:
-      if len(result) != len(target):
-        return False
-
-      for index, res in enumerate(result):
-        if res > target[index]:
-          return False
-        if res < target[index]:
-          break
-
-      return True
-
-    def solve_challenge(prefix: str, target_hex: str) -> str:
-      target = unhexlify(target_hex.upper())
-      nonce = 0
-
-      while True:
-        input_data = f"{prefix}{nonce}".encode()
-        hashed = hashlib.sha256(input_data).digest()
-
-        if verify_nonce(hashed, target):
-          break
-        nonce += 1
-
-      return str(nonce)
-
-    def do_publish(
-      title: str, artist: str, album: str, duration: str, lyrics: Lyrics
-    ) -> None:
-      _err = None
-      try:
-        lrclib_logger.info("Connecting to lrclib.net/api/request-challenge")
-        challenge_data = requests.post(
-          url="https://lrclib.net/api/request-challenge", timeout=10
-        )
-        lrclib_logger.debug("LRClib cryptographic challenge was requested successfully")
-      except requests.exceptions.ConnectionError as e:
-        Constants.WIN.show_toast(_("Failed to connect to LRClib.net"))
-        _err = e
-      except requests.exceptions.Timeout as e:
-        Constants.WIN.show_toast(_("Connection to LRClib.net timed out"))
-        _err = e
-      except Exception as e:
-        Constants.WIN.show_toast(_("An error occurred while connecting to LRClib.net"))
-        _err = e
-      finally:
-        if _err:
-          lrclib_logger.warning("Publishing failed: %s", _err, stack_info=True)
-          self.export_lyrics_button.set_sensitive(True)
-          self.export_lyrics_button.set_icon_name("export-to-symbolic")
-          return  # noqa: B012
-
-      challenge_data = challenge_data.json()
-      nonce = solve_challenge(
-        prefix=challenge_data["prefix"], target_hex=challenge_data["target"]
-      )
-      lrclib_logger.info("X-Publish-Token: %s", f"{challenge_data['prefix']}:{nonce}")
-
-      _err = None
-      try:
-        lrclib_logger.info("Connecting to lrclib.net/api/publish")
-        response: requests.Response = requests.post(
-          url="https://lrclib.net/api/publish",
-          headers={
-            "X-Publish-Token": f"{challenge_data['prefix']}:{nonce}",
-            "Content-Type": "application/json",
-          },
-          params={"keep_headers": "true"},
-          json={
-            "trackName": title,
-            "artistName": artist,
-            "albumName": album,
-            "duration": duration,
-            "plainLyrics": lyrics.of_format(LyricsFormat.PLAIN),
-            "syncedLyrics": lyrics.of_format(LyricsFormat.LRC),
-          },
-          timeout=10,
-        )
-        lrclib_logger.info("Established connection to lrclib.net")
-      except requests.exceptions.ConnectionError as e:
-        Constants.WIN.show_toast(_("Failed to connect to LRClib.net"))
-        _err = e
-      except requests.exceptions.Timeout as e:
-        Constants.WIN.show_toast(_("Connection to LRClib.net timed out"))
-        _err = e
-      except Exception as e:
-        Constants.WIN.show_toast(_("An error occurred while connecting to LRClib.net"))
-        _err = e
-      finally:
-        self.export_lyrics_button.set_sensitive(True)
-        self.export_lyrics_button.set_icon_name("export-to-symbolic")
-        if _err:
-          lrclib_logger.warning("Publishing failed: %s", _err, stack_info=True)
-          return  # noqa: B012
-
-      lrclib_logger.info("Publishing status code: %s", response.status_code)
-      if response.status_code == 201:
+    def on_publish_done(_service, status_code: int) -> None:
+      nonlocal handler
+      if status_code == 201:
         Constants.WIN.show_toast(
-          _("Published successfully: {code}").format(code=str(response.status_code)),
+          _("Published successfully: {code}").format(code=str(status_code)),
         )
-      elif response.status_code == 400:
+      elif status_code == 400:
         Constants.WIN.show_toast(
-          _("Incorrect publish token: {code}").format(code=str(response.status_code)),
+          _("Incorrect publish token: {code}").format(code=str(status_code)),
         )
       else:
         Constants.WIN.show_toast(
-          _("Unknown error occured: {code}").format(code=str(response.status_code)),
+          _("Unknown error occured: {code}").format(code=str(status_code)),
         )
+      LRClibService().disconnect(handler)
+      self.export_lyrics_button.set_sensitive(True)
+      self.export_lyrics_button.set_icon_name("export-to-symbolic")
 
-    title = card_model.title
-    artist = card_model.artist
-    album = card_model.album
-    duration = card_model.duration
+    def on_publish_failed(_service, error: Exception) -> None:
+      nonlocal err_handler
+      match error:
+        case APIRequestError():
+          Constants.WIN.show_toast(
+            _("Network error occurred while publishing lyrics"),
+            button_label=_("Log"),
+            button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
+              f"file://{os.path.join(Constants.CACHE_DIR, 'chronograph', 'logs', 'chronograph.log')}"
+            ),
+          )
+        case __:
+          Constants.WIN.show_toast(
+            _("An error occurred while publishing lyrics"),
+            button_label=_("Log"),
+            button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
+              f"file://{os.path.join(Constants.CACHE_DIR, 'chronograph', 'logs', 'chronograph.log')}"
+            ),
+          )
+      LRClibService().disconnect(err_handler)
+      self.export_lyrics_button.set_sensitive(True)
+      self.export_lyrics_button.set_icon_name("export-to-symbolic")
 
     lyrics = Lyrics("\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"))
-    if not all((title, artist, album, duration, lyrics)):
+    plain_lyrics = lyrics.of_format(LyricsFormat.PLAIN)
+    if not self.is_all_lines_synced():
+      Constants.WIN.show_toast(
+        _("Seems like not every line is synced"),
+      )
+      return
+    self.export_lyrics_button.set_sensitive(False)
+    self.export_lyrics_button.set_child(Adw.Spinner())
+
+    try:
+      handler = LRClibService().connect("publish-done", on_publish_done)
+      err_handler = LRClibService().connect("publish-failed", on_publish_failed)
+      LRClibService().publish(card_model.mfile, plain_lyrics, lyrics.text)
+    except AttributeError:
 
       def reason(*_args) -> None:
         _alert = Adw.AlertDialog(
@@ -533,18 +472,6 @@ class LRCSyncPage(Adw.NavigationPage):
         button_callback=reason,
       )
       return
-    if not self.is_all_lines_synced():
-      Constants.WIN.show_toast(
-        _("Seems like not every line is synced"),
-      )
-      return
-    self.export_lyrics_button.set_sensitive(False)
-    self.export_lyrics_button.set_child(Adw.Spinner())
-    threading.Thread(
-      target=do_publish,
-      args=(title, artist, album, duration, lyrics),
-      daemon=True,
-    ).start()
 
   ###############
 

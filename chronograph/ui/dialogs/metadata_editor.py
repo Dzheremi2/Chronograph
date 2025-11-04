@@ -2,9 +2,9 @@ from typing import Optional
 
 from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
+from chronograph.backend.file import SongCardModel
+from chronograph.backend.lyrics import Lyrics
 from chronograph.internal import Constants
-from chronograph.utils.file_backend import SongCardModel
-from chronograph.utils.lyrics import Lyrics
 from dgutils import Actions
 
 gtc = Gtk.Template.Child
