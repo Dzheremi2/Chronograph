@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 19:37+0300\n"
-"PO-Revision-Date: 2025-10-31 20:02+0000\n"
+"PO-Revision-Date: 2025-11-04 23:51+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -46,7 +46,6 @@ msgid "Connection Error"
 msgstr "Ühenduse viga"
 
 #: chronograph/ui/dialogs/lrclib.py:105
-#, fuzzy
 msgid "Network error occured while connecting to LRClib"
 msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
 
@@ -68,23 +67,21 @@ msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
 #: chronograph/ui/dialogs/preferences.py:211
-#, fuzzy
 msgid "Synced Only"
-msgstr "Sünkroonitud"
+msgstr "Vaid sünkroonitud"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
-msgstr ""
+msgstr "Sünkroonitud, varuvariandina tavalised laulusõnad"
 
 #: chronograph/ui/dialogs/preferences.py:213
-#, fuzzy
 msgid "Plain Only"
-msgstr "Tavaline"
+msgstr "Vaid tavalised laulusõnad"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:46
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:88
 msgid "Fetch"
-msgstr ""
+msgstr "Laadi"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:83
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
@@ -95,50 +92,41 @@ msgid "Cancel"
 msgstr "Katkesta"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:108
-#, fuzzy
 msgid "Connection timed out"
-msgstr "Ühendus LRClib.net serveriga aegus"
+msgstr "Ühendus serveriga aegus"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:110
-#, fuzzy
 msgid "Connection error occurred"
-msgstr "Ühenduse viga"
+msgstr "Tekkis ühenduse viga"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:112
-#, fuzzy
 msgid "An error occurred: "
-msgstr "Tekkis tundmatu viga: {code}"
+msgstr "Tekkis viga: "
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:118
-#, fuzzy
 msgid "Instrumental track. No lyrics available"
-msgstr "Laulusõnu pole saadaval"
+msgstr "Instrumentaalpala. Laulusõnu pole saadaval"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:132
-#, fuzzy
 msgid "No synced lyrics found"
-msgstr "Sünkroonitud laulusõnad pole saadaval"
+msgstr "Sünkroonitud laulusõnu ei leidu"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 #: chronograph/backend/lrclib/lrclib_service.py:410
-#, fuzzy
 msgid "No lyrics found"
-msgstr "Pole laulusõnu, mida uuesti sünkroonida"
+msgstr "Laulusõnu ei leidunud"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:152
-#, fuzzy
 msgid "No plain lyrics found"
-msgstr "Tavalisi laulusõnu pole saadaval"
+msgstr "Tavalisi laulusõnu ei leidunud"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:173
-#, fuzzy
 msgid "Cancelled"
-msgstr "Katkesta"
+msgstr "Katkestatud"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-#, fuzzy
 msgid "Pending"
-msgstr "Klahvide seosed"
+msgstr "Ootel"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
@@ -173,17 +161,16 @@ msgstr "Tekkis tundmatu viga: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:423
 msgid "Network error occurred while publishing lyrics"
-msgstr ""
+msgstr "Laulusõnade avaldamisel tekkis võrguviga"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:424
 #: chronograph/ui/sync_pages/lrc_sync_page.py:432
 msgid "Log"
-msgstr ""
+msgstr "Logi"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:431
-#, fuzzy
 msgid "An error occurred while publishing lyrics"
-msgstr "Ühendamisel LRClib.net serveriga tekkis viga"
+msgstr "Laulusõnade avaldamisel tekkis viga"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Seems like not every line is synced"
@@ -313,18 +300,16 @@ msgstr "Tavaline"
 
 #: chronograph/backend/lrclib/lrclib_service.py:357
 #: chronograph/backend/lrclib/lrclib_service.py:386
-#, fuzzy
 msgid "Fetched successfully"
-msgstr "Kopeerimine õnnestus"
+msgstr "Laadimine õnnestus"
 
 #: chronograph/backend/lrclib/lrclib_service.py:371
 msgid "Fetching using /api/get failed, trying /api/search"
-msgstr ""
+msgstr "Laadimine „/api/get“ abil ei õnnestunud, proovin „/api/search“ päringut"
 
 #: chronograph/backend/lrclib/lrclib_service.py:397
-#, fuzzy
 msgid "No suitable lyrics found"
-msgstr "Ühtegi lemmikut veel ei leidu"
+msgstr "Sobilikke laulusõnu ei leidunud"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -441,7 +426,7 @@ msgstr "Loend"
 
 #: data/gtk/window.blp:312
 msgid "Mass Lyrics Downloading"
-msgstr ""
+msgstr "Laulusõnade allalaadimine pakktöötlusena"
 
 #: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
@@ -714,25 +699,28 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "Mass Downloading"
-msgstr ""
+msgstr "Allalaadimine pakktöötlusena"
 
 #: data/gtk/ui/dialogs/Preferences.blp:62
 msgid "Max Parallel Downloadings"
-msgstr ""
+msgstr "Lubatud rööpsete allalaadimiste arv"
 
 #: data/gtk/ui/dialogs/Preferences.blp:63
 msgid ""
 "The amount of simultaneous parallel downloadings. High amount may cause "
 "downloading failure if treated as DDoS attack"
 msgstr ""
+"Lubatud samaaegsete rööpsete allalaadimiste arvu ülempiir. Suurt päringute "
+"arvu võib server tõlgendada ummistusründe katsena ja allalaadimine ei pruugi "
+"toimida"
 
 #: data/gtk/ui/dialogs/Preferences.blp:74
 msgid "Preferred Lyrics Format"
-msgstr ""
+msgstr "Laulusõnade eelistatud vorming"
 
 #: data/gtk/ui/dialogs/Preferences.blp:75
 msgid "Target lyrics format for LRClib downloading"
-msgstr ""
+msgstr "Laulusõnade vorming allalaadimisel LRClib teenusest"
 
 #: data/gtk/ui/dialogs/Preferences.blp:80
 msgid "Debug"
