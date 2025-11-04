@@ -128,7 +128,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
         logger.exception("[GET] Unexpected error")
         raise APIRequestError(f"Unexpected error: {type(e).__name__}: {e!s}") from e
 
-  async def api_search(self, track: BaseFile) -> Iterable[LRClibEntry]:
+  async def api_search(
+    self, title: str, artist: str = "", album: str = ""
+  ) -> Iterable[LRClibEntry]:
     """Does search on LRClib for provided track. Unlike get, this can return something
     even if data deviates from one on LRClib
 
@@ -153,9 +155,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     async with httpx.AsyncClient() as client:
       try:
         params = {
-          "track_name": track.title.strip() if track.title else "",
-          "artist_name": track.artist.strip() if track.artist else "",
-          "album_name": track.album.strip() if track.album else "",
+          "track_name": title.strip() if title else "",
+          "artist_name": artist.strip() if artist else "",
+          "album_name": album.strip() if album else "",
         }
         response = await client.get(
           Endpoints.SEARCH.value,
@@ -179,10 +181,10 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
             )
             tracks.append(track_)
           logger.info(
-            "[SEARCH] Done for %s -- %s positively", track.title, track.artist
+            "[SEARCH] Done for %s -- %s positively",title, artist
           )
           return tracks
-        raise SearchEmptyReturn(f"No entries found for {track.title} -- {track.artist}")  # noqa: TRY301
+        raise SearchEmptyReturn(f"No entries found for {title} -- {artist}")  # noqa: TRY301
       # This re-raise mess is hapening since we need to catch all errors except those
       # directly related to LRClib
       except LRClibException:
@@ -373,7 +375,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           )
 
           try:
-            search_response = await self.api_search(track)
+            search_response = await self.api_search(
+              track.title, track.artist, track.album
+            )
             nearest = LRClibService.get_nearest(track, search_response)
             files_parsed += 1
 
