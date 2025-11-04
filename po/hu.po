@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-31 15:53+0300\n"
+"POT-Creation-Date: 2025-11-04 19:34+0300\n"
 "PO-Revision-Date: 2025-09-14 16:54+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
@@ -19,119 +19,182 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:406
+#: chronograph/window.py:411
 msgid "Copied successfully"
 msgstr "Sikeresen másolva"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:159
+#: chronograph/main.py:160
 msgid "translator-credits"
 msgstr "Benedek Dévényi <rdbende@proton.me>"
 
-#: chronograph/main.py:167
+#: chronograph/main.py:168
 msgid "Inspiration"
 msgstr "Inspiráció"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:177
+#: chronograph/main.py:178
 msgid "Build your own dictionary"
 msgstr "Állítsd össze a saját szótáradat"
 
-#: chronograph/main.py:183
+#: chronograph/main.py:184
 msgid "Translate the App"
 msgstr "Segítség a fordításban"
 
-#: chronograph/ui/dialogs/lrclib.py:121
+#: chronograph/ui/dialogs/lrclib.py:103
 msgid "Connection Error"
 msgstr "Kapcsolati hiba"
 
-#: chronograph/ui/dialogs/lrclib.py:123
-msgid ""
-"Failed to connect to the LRC library server. Please check your internet "
-"connection and try again"
-msgstr ""
-"Nem sikerült csatlakozni az LRC könyvtár szerveréhez. Ellenőrizd az "
-"internetkapcsolatot, és próbáld újra"
+#: chronograph/ui/dialogs/lrclib.py:105
+#, fuzzy
+msgid "Network error occured while connecting to LRClib"
+msgstr "Hiba történt az LRClib.net serverhez való csatlakozás során"
 
-#: chronograph/ui/dialogs/lrclib.py:132
-msgid "Timeout Error"
-msgstr "Időkorlát hiba"
-
-#: chronograph/ui/dialogs/lrclib.py:133
-msgid "The request to the LRC library server timed out. Please try again later"
-msgstr ""
-"Az LRC könyvtár szerveréhez intézett lekérés időtúllépés miatt megszakadt. "
-"Próbálkozz újra később"
-
-#: chronograph/ui/dialogs/lrclib.py:141
+#: chronograph/ui/dialogs/lrclib.py:111
 msgid "Something went wrong"
 msgstr "Valami nem stimmel"
 
-#: chronograph/ui/dialogs/lrclib.py:143
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 "Ismeretlen hiba történt az LRC könyvtár szerveréhez való csatlakozás során"
 
-#: chronograph/ui/dialogs/lrclib.py:237
+#: chronograph/ui/dialogs/lrclib.py:203
 msgid "No synced lyrics available"
 msgstr "Nincs elérhető szinkronizált dalszöveg"
 
-#: chronograph/ui/dialogs/lrclib.py:242
+#: chronograph/ui/dialogs/lrclib.py:208
 msgid "No plain lyrics available"
 msgstr "Nincs elérhető egyszerű dalszöveg"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:284
+#: chronograph/ui/dialogs/preferences.py:211
+#, fuzzy
+msgid "Synced Only"
+msgstr "Szinkronizált"
+
+#: chronograph/ui/dialogs/preferences.py:212
+msgid "Synced, Fallback to Plain If Unavailable"
+msgstr ""
+
+#: chronograph/ui/dialogs/preferences.py:213
+#, fuzzy
+msgid "Plain Only"
+msgstr "Egyszerű"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:46
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:88
+msgid "Fetch"
+msgstr ""
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:83
+#: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
+#: data/gtk/ui/widgets/SavedLocation.blp:51
+#: data/gtk/ui/widgets/SavedLocation.blp:63
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:108
+#, fuzzy
+msgid "Connection timed out"
+msgstr "Kapcsolódás az LRClib.net szerverhez időtúllépés miatt megszakadt"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:110
+#, fuzzy
+msgid "Connection error occurred"
+msgstr "Kapcsolati hiba"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:112
+#, fuzzy
+msgid "An error occurred: "
+msgstr "Ismeretlen hiba történt: {code}"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:118
+#, fuzzy
+msgid "Instrumental track. No lyrics available"
+msgstr "Nincs elérhető dalszöveg"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#, fuzzy
+msgid "No synced lyrics found"
+msgstr "Nincs elérhető szinkronizált dalszöveg"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
+#: chronograph/backend/lrclib/lrclib_service.py:410
+#, fuzzy
+msgid "No lyrics found"
+msgstr "Még nincs egy mentés sem"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#, fuzzy
+msgid "No plain lyrics found"
+msgstr "Nincs elérhető egyszerű dalszöveg"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:173
+#, fuzzy
+msgid "Cancelled"
+msgstr "Mégsem"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:210
+#, fuzzy
+msgid "Pending"
+msgstr "Gyorsbillentyűk megnyitása"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Dalszöveg másolva a vágólapra"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
+#: chronograph/ui/sync_pages/lrc_sync_page.py:294
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Dalszöveg mentve fájlba"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:296
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Mutatás"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:438
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
-msgid "Failed to connect to LRClib.net"
-msgstr "Nem sikerült csatlakozni az LRClib.net szerverhez"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:441
-#: chronograph/ui/sync_pages/lrc_sync_page.py:484
-msgid "Connection to LRClib.net timed out"
-msgstr "Kapcsolódás az LRClib.net szerverhez időtúllépés miatt megszakadt"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:444
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
-msgid "An error occurred while connecting to LRClib.net"
-msgstr "Hiba történt az LRClib.net serverhez való csatlakozás során"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Sikeresen közzétéve: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:503
+#: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Érvénytelen közzétételi token: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:412
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ismeretlen hiba történt: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+msgid "Network error occurred while publishing lyrics"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:424
+#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+msgid "Log"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#, fuzzy
+msgid "An error occurred while publishing lyrics"
+msgstr "Hiba történt az LRClib.net serverhez való csatlakozás során"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+msgid "Seems like not every line is synced"
+msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 msgid "Unable to publish lyrics"
 msgstr "A dalszöveg közzététele sikertelen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:522
+#: chronograph/ui/sync_pages/lrc_sync_page.py:461
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -139,21 +202,17 @@ msgstr ""
 "A dalszövegek közzétételéhez a számnak rendelkeznie kell cím, előadól, album "
 "és dalszöveg mezőkkel"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:527
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid "Close"
 msgstr "Bezárás"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:531
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Cannot publish empty lyrics"
 msgstr "Üres dalszövegeket nem lehet közzétenni"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:532
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Why?"
 msgstr "Miért?"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:538
-msgid "Seems like not every line is synced"
-msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
@@ -226,32 +285,47 @@ msgstr "Nem"
 msgid "{vol}%"
 msgstr ""
 
-#: chronograph/utils/file_backend/song_card_model.py:12
+#: chronograph/backend/file/song_card_model.py:12
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/utils/file_backend/song_card_model.py:13
+#: chronograph/backend/file/song_card_model.py:13
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/utils/file_backend/song_card_model.py:14
+#: chronograph/backend/file/song_card_model.py:14
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/utils/file_backend/song_card_model.py:25
-#: chronograph/utils/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
+#: chronograph/backend/file/song_card_model.py:25
+#: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/utils/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
-#: data/gtk/ui/dialogs/Preferences.blp:241
+#: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:260
+#: data/gtk/ui/dialogs/Preferences.blp:262
 msgid "Plain"
 msgstr "Egyszerű"
+
+#: chronograph/backend/lrclib/lrclib_service.py:357
+#: chronograph/backend/lrclib/lrclib_service.py:386
+#, fuzzy
+msgid "Fetched successfully"
+msgstr "Sikeresen másolva"
+
+#: chronograph/backend/lrclib/lrclib_service.py:371
+msgid "Fetching using /api/get failed, trying /api/search"
+msgstr ""
+
+#: chronograph/backend/lrclib/lrclib_service.py:397
+#, fuzzy
+msgid "No suitable lyrics found"
+msgstr "Még nincs egy mentés sem"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -365,53 +439,57 @@ msgstr "Rács"
 msgid "List"
 msgstr "Lista"
 
-#: data/gtk/window.blp:315 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
+#: data/gtk/window.blp:312
+msgid "Mass Lyrics Downloading"
+msgstr ""
+
+#: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: data/gtk/window.blp:316 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:317 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:68
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:68
 msgid "Keybindings"
 msgstr "Gyorsbillentyűk megnyitása"
 
-#: data/gtk/window.blp:317 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
+#: data/gtk/window.blp:318 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:69
 msgid "About"
 msgstr "A Chronograph névjegye"
 
-#: data/gtk/window.blp:326
+#: data/gtk/window.blp:327
 msgid "Clean the library"
 msgstr "Könyvtár törlése"
 
-#: data/gtk/window.blp:341
+#: data/gtk/window.blp:342
 msgid "Add current directory to saves"
 msgstr "Jelenlegi mappa hozzáadása a mentésekhez"
 
-#: data/gtk/window.blp:350
+#: data/gtk/window.blp:351
 msgid "Recursive parsing settings changed. Re-parse?"
 msgstr ""
 
-#: data/gtk/window.blp:351
+#: data/gtk/window.blp:352
 msgid "Re-Parse"
 msgstr ""
 
-#: data/gtk/window.blp:366 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:367 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Keresés"
 
-#: data/gtk/window.blp:407
+#: data/gtk/window.blp:408
 msgid "Directory"
 msgstr "Mappa"
 
-#: data/gtk/window.blp:408
+#: data/gtk/window.blp:409
 msgid "Files"
 msgstr "Fájlok"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
-#: data/gtk/ui/dialogs/Preferences.blp:74
-#: data/gtk/ui/dialogs/Preferences.blp:158
+#: data/gtk/ui/dialogs/Preferences.blp:95
+#: data/gtk/ui/dialogs/Preferences.blp:179
 msgid "General"
 msgstr "Általános"
 
@@ -541,13 +619,6 @@ msgstr "Probálkozz másképp. Lehet, hogy elírás van a keresésben."
 msgid "Search on LRClib by title, artist and album names"
 msgstr "Keresés cím és előadó alapján az LRCliben"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:16
-#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
-#: data/gtk/ui/widgets/SavedLocation.blp:51
-#: data/gtk/ui/widgets/SavedLocation.blp:63
-msgid "Cancel"
-msgstr "Mégsem"
-
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
 msgstr "Alkalmazás"
@@ -646,32 +717,54 @@ msgstr ""
 "talál"
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
+msgid "Mass Downloading"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:62
+msgid "Max Parallel Downloadings"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:63
+msgid ""
+"The amount of simultaneous parallel downloadings. High amount may cause "
+"downloading failure if treated as DDoS attack"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:74
+msgid "Preferred Lyrics Format"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:75
+msgid "Target lyrics format for LRClib downloading"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:80
 msgid "Debug"
 msgstr "Hibakeresés"
 
-#: data/gtk/ui/dialogs/Preferences.blp:62
+#: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Enable Debug logging profile"
 msgstr "Hibakeresési naplózási profil engedélyezése"
 
-#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "Expands logging information for debug purposes"
 msgstr "A hibakeresés céljából bővíti a naplózott információkat"
 
-#: data/gtk/ui/dialogs/Preferences.blp:64
+#: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "NEEDS RESTART"
 msgstr "ÚJRAINDÍTÁS SZÜKSÉGES"
 
-#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Szinkronizálás"
 
-#: data/gtk/ui/dialogs/Preferences.blp:77
+#: data/gtk/ui/dialogs/Preferences.blp:98
 msgid "Syncing type"
 msgstr "Szinkronizálás fajtája"
 
-#: data/gtk/ui/dialogs/Preferences.blp:78
+#: data/gtk/ui/dialogs/Preferences.blp:99
 msgid ""
 "Defines the default workflow of syncing process. It may be either Line-by-"
 "Line, or Word-by-Word\n"
@@ -681,81 +774,81 @@ msgstr ""
 "sorra, vagy szóról-szóra.\n"
 "A SZÓRÓL-SZÓRA MÓDSZER NEM KOMPATIBILIS MOBIL ESZKÖZÖKKEL"
 
-#: data/gtk/ui/dialogs/Preferences.blp:81
-#: data/gtk/ui/dialogs/Preferences.blp:94
+#: data/gtk/ui/dialogs/Preferences.blp:102
+#: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Line-by-Line"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
-#: data/gtk/ui/dialogs/Preferences.blp:120
+#: data/gtk/ui/dialogs/Preferences.blp:103
+#: data/gtk/ui/dialogs/Preferences.blp:141
 msgid "Word-by-Word"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:88
+#: data/gtk/ui/dialogs/Preferences.blp:109
 msgid "Use precise milliseconds"
 msgstr "Precízebb ezredmásodpercek"
 
-#: data/gtk/ui/dialogs/Preferences.blp:89
+#: data/gtk/ui/dialogs/Preferences.blp:110
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "3 számjegy használata 2 helyett"
 
-#: data/gtk/ui/dialogs/Preferences.blp:97
-#: data/gtk/ui/dialogs/Preferences.blp:123
+#: data/gtk/ui/dialogs/Preferences.blp:118
+#: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Default re-sync value"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
-#: data/gtk/ui/dialogs/Preferences.blp:124
+#: data/gtk/ui/dialogs/Preferences.blp:119
+#: data/gtk/ui/dialogs/Preferences.blp:145
 msgid "Amount of milliseconds default re-sync performs by"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:108
-#: data/gtk/ui/dialogs/Preferences.blp:134
+#: data/gtk/ui/dialogs/Preferences.blp:129
+#: data/gtk/ui/dialogs/Preferences.blp:155
 #, fuzzy
 msgid "Large re-sync value"
 msgstr "Sor szinkronizálása"
 
-#: data/gtk/ui/dialogs/Preferences.blp:109
-#: data/gtk/ui/dialogs/Preferences.blp:135
+#: data/gtk/ui/dialogs/Preferences.blp:130
+#: data/gtk/ui/dialogs/Preferences.blp:156
 msgid "Amount of milliseconds large re-sync performs by"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:147
+#: data/gtk/ui/dialogs/Preferences.blp:168
 msgid "File Manipulation"
 msgstr "Fájlszerkesztés"
 
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:173
 msgid "Auto file manipulation"
 msgstr "Fájlok automatikus mentése"
 
-#: data/gtk/ui/dialogs/Preferences.blp:153
+#: data/gtk/ui/dialogs/Preferences.blp:174
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Automatikusan létrehozza és frissíti a fájlokat, ha bármelyik dalszövegsor "
 "megváltozik"
 
-#: data/gtk/ui/dialogs/Preferences.blp:162
+#: data/gtk/ui/dialogs/Preferences.blp:183
 msgid "File format"
 msgstr "Fájlformátum"
 
-#: data/gtk/ui/dialogs/Preferences.blp:163
+#: data/gtk/ui/dialogs/Preferences.blp:184
 msgid "File format for auto manipulation"
 msgstr "Automatikusan mentett fájlok formátuma"
 
-#: data/gtk/ui/dialogs/Preferences.blp:173
+#: data/gtk/ui/dialogs/Preferences.blp:194
 msgid "Autosave interval"
 msgstr "Automatikus mentés időköze"
 
-#: data/gtk/ui/dialogs/Preferences.blp:174
+#: data/gtk/ui/dialogs/Preferences.blp:195
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Automatikus mentés időköze az utolsó aktivitás után"
 
-#: data/gtk/ui/dialogs/Preferences.blp:189
+#: data/gtk/ui/dialogs/Preferences.blp:210
 msgid "Save plain LRC too"
 msgstr "A sima LRC fájlt is mentse"
 
-#: data/gtk/ui/dialogs/Preferences.blp:190
+#: data/gtk/ui/dialogs/Preferences.blp:211
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -763,33 +856,33 @@ msgstr ""
 "Elmenti a sima LRC fájlt is az eLRC fájl mellett. Csak akkor működik, ha az "
 "eLRC előtag be van állítva"
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "eLRC prefix"
 msgstr "eLRC előtag"
 
-#: data/gtk/ui/dialogs/Preferences.blp:203
-#: data/gtk/ui/dialogs/Preferences.blp:260
+#: data/gtk/ui/dialogs/Preferences.blp:224
+#: data/gtk/ui/dialogs/Preferences.blp:281
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr "Súgó"
 
-#: data/gtk/ui/dialogs/Preferences.blp:206
+#: data/gtk/ui/dialogs/Preferences.blp:227
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr "Az eLRC fájlok előtagja, hogy ne zavarják a sima LRCket"
 
-#: data/gtk/ui/dialogs/Preferences.blp:216
+#: data/gtk/ui/dialogs/Preferences.blp:237
 msgid "Lyrics embedding"
 msgstr "Dalszöveg beágyazás"
 
-#: data/gtk/ui/dialogs/Preferences.blp:220
+#: data/gtk/ui/dialogs/Preferences.blp:241
 msgid "Embed lyrics within audio file"
 msgstr "Dalszövegek beágyazása az audio fájlokba"
 
-#: data/gtk/ui/dialogs/Preferences.blp:224
+#: data/gtk/ui/dialogs/Preferences.blp:245
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr "Önálló szinkronizált dalszöveg címke használata Vorbis fájlokban"
 
-#: data/gtk/ui/dialogs/Preferences.blp:225
+#: data/gtk/ui/dialogs/Preferences.blp:246
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
@@ -797,15 +890,15 @@ msgstr ""
 "Lehetővé teszi a szinkronizált dalszövegek külön címkébe történő írását a "
 "Vorbis Comment kompatibilis fájlokban (ogg, flac, opus)"
 
-#: data/gtk/ui/dialogs/Preferences.blp:230
+#: data/gtk/ui/dialogs/Preferences.blp:251
 msgid "Embed lyrics default format"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:231
+#: data/gtk/ui/dialogs/Preferences.blp:252
 msgid "Brings lyrics to selected format before embedding"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:266
+#: data/gtk/ui/dialogs/Preferences.blp:287
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -1065,6 +1158,25 @@ msgstr "Dalszöveg szinkronizálási nézet kisebb kijelzőn"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;dalszöveg;számok;dalok;média;multimédia;zene;szinkronizálás;kronográf;"
+
+#~ msgid ""
+#~ "Failed to connect to the LRC library server. Please check your internet "
+#~ "connection and try again"
+#~ msgstr ""
+#~ "Nem sikerült csatlakozni az LRC könyvtár szerveréhez. Ellenőrizd az "
+#~ "internetkapcsolatot, és próbáld újra"
+
+#~ msgid "Timeout Error"
+#~ msgstr "Időkorlát hiba"
+
+#~ msgid ""
+#~ "The request to the LRC library server timed out. Please try again later"
+#~ msgstr ""
+#~ "Az LRC könyvtár szerveréhez intézett lekérés időtúllépés miatt "
+#~ "megszakadt. Próbálkozz újra később"
+
+#~ msgid "Failed to connect to LRClib.net"
+#~ msgstr "Nem sikerült csatlakozni az LRClib.net szerverhez"
 
 #~ msgid "Re-parse current directory"
 #~ msgstr "Jelenlegi mappa újratöltése"

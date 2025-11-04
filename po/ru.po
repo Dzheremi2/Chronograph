@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-31 15:53+0300\n"
-"PO-Revision-Date: 2025-10-31 15:54+0300\n"
+"POT-Creation-Date: 2025-11-04 19:34+0300\n"
+"PO-Revision-Date: 2025-11-04 19:35+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -20,116 +20,168 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: chronograph/window.py:406
+#: chronograph/window.py:411
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:159
+#: chronograph/main.py:160
 msgid "translator-credits"
 msgstr "Артём Чичваров <chichvarov1315@gmail.com>"
 
-#: chronograph/main.py:167
+#: chronograph/main.py:168
 msgid "Inspiration"
 msgstr "Вдохновение"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:177
+#: chronograph/main.py:178
 msgid "Build your own dictionary"
 msgstr "Создайте свой собственный словарь"
 
-#: chronograph/main.py:183
+#: chronograph/main.py:184
 msgid "Translate the App"
 msgstr "Перевести приложение"
 
-#: chronograph/ui/dialogs/lrclib.py:121
+#: chronograph/ui/dialogs/lrclib.py:103
 msgid "Connection Error"
 msgstr "Ошибка соединения"
 
-#: chronograph/ui/dialogs/lrclib.py:123
-msgid ""
-"Failed to connect to the LRC library server. Please check your internet "
-"connection and try again"
-msgstr ""
-"Не удалось подключиться к серверу. Проверьте подключение к интернету и "
-"повторите попытку"
+#: chronograph/ui/dialogs/lrclib.py:105
+msgid "Network error occured while connecting to LRClib"
+msgstr "Произошла ошибка при подключении к LRClib.net"
 
-#: chronograph/ui/dialogs/lrclib.py:132
-msgid "Timeout Error"
-msgstr "Превышено время ожидания"
-
-#: chronograph/ui/dialogs/lrclib.py:133
-msgid "The request to the LRC library server timed out. Please try again later"
-msgstr "Превышено время ожидания ответа от сервера. Попробуйте еще раз позже"
-
-#: chronograph/ui/dialogs/lrclib.py:141
+#: chronograph/ui/dialogs/lrclib.py:111
 msgid "Something went wrong"
 msgstr "Что-то пошло не так"
 
-#: chronograph/ui/dialogs/lrclib.py:143
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr "Произошла неизвестная ошибка при попытке подключения к серверу"
 
-#: chronograph/ui/dialogs/lrclib.py:237
+#: chronograph/ui/dialogs/lrclib.py:203
 msgid "No synced lyrics available"
 msgstr "Нет синхронизированных слов"
 
-#: chronograph/ui/dialogs/lrclib.py:242
+#: chronograph/ui/dialogs/lrclib.py:208
 msgid "No plain lyrics available"
 msgstr "Нет простых слов"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:284
+#: chronograph/ui/dialogs/preferences.py:211
+msgid "Synced Only"
+msgstr "Только Синхронизированные"
+
+#: chronograph/ui/dialogs/preferences.py:212
+msgid "Synced, Fallback to Plain If Unavailable"
+msgstr "Синхронизированные. Простые, если Недоступны"
+
+#: chronograph/ui/dialogs/preferences.py:213
+msgid "Plain Only"
+msgstr "Только Простые"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:46
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:88
+msgid "Fetch"
+msgstr "Загрузить"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:83
+#: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
+#: data/gtk/ui/widgets/SavedLocation.blp:51
+#: data/gtk/ui/widgets/SavedLocation.blp:63
+msgid "Cancel"
+msgstr "Отмена"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:108
+msgid "Connection timed out"
+msgstr "Время ожидания подключения истекло"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:110
+msgid "Connection error occurred"
+msgstr "Ошибка соединения"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:112
+msgid "An error occurred: "
+msgstr "Произошла неизвестная ошибка: "
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:118
+msgid "Instrumental track. No lyrics available"
+msgstr "Инструментальный трек. Текст недоступен"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+msgid "No synced lyrics found"
+msgstr "Нет синхронизированных слов"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
+#: chronograph/backend/lrclib/lrclib_service.py:410
+msgid "No lyrics found"
+msgstr "Слов не найдено"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+msgid "No plain lyrics found"
+msgstr "Простых слов не найдено"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:173
+msgid "Cancelled"
+msgstr "Отменено"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:210
+msgid "Pending"
+msgstr "Ожидает"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
+#: chronograph/ui/sync_pages/lrc_sync_page.py:294
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:296
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Показать"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:438
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
-msgid "Failed to connect to LRClib.net"
-msgstr "Не удалось подключиться к LRClib.net"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:441
-#: chronograph/ui/sync_pages/lrc_sync_page.py:484
-msgid "Connection to LRClib.net timed out"
-msgstr "Время ожидания подключения к LRClib.net истекло"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:444
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
-msgid "An error occurred while connecting to LRClib.net"
-msgstr "Произошла ошибка при подключении к LRClib.net"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успешно опубликовано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:503
+#: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неверный публичный токен: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:412
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Произошла неизвестная ошибка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+msgid "Network error occurred while publishing lyrics"
+msgstr "Ошибка подключения во время публикации"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:424
+#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+msgid "Log"
+msgstr "Журнал"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+msgid "An error occurred while publishing lyrics"
+msgstr "Произошла ошибка при публикации"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+msgid "Seems like not every line is synced"
+msgstr "Похоже, не все строки синхронизированы"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 msgid "Unable to publish lyrics"
 msgstr "Невозможно опубликовать текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:522
+#: chronograph/ui/sync_pages/lrc_sync_page.py:461
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -137,21 +189,17 @@ msgstr ""
 "Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
 "«Альбом» и синхронизировать слова"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:527
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid "Close"
 msgstr "Закрыть"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:531
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Cannot publish empty lyrics"
 msgstr "Невозможно опубликовать пустой текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:532
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Why?"
 msgstr "Почему?"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:538
-msgid "Seems like not every line is synced"
-msgstr "Похоже, не все строки синхронизированы"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
@@ -224,32 +272,45 @@ msgstr "Нет"
 msgid "{vol}%"
 msgstr "{vol}%"
 
-#: chronograph/utils/file_backend/song_card_model.py:12
+#: chronograph/backend/file/song_card_model.py:12
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: chronograph/utils/file_backend/song_card_model.py:13
+#: chronograph/backend/file/song_card_model.py:13
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: chronograph/utils/file_backend/song_card_model.py:14
+#: chronograph/backend/file/song_card_model.py:14
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: chronograph/utils/file_backend/song_card_model.py:25
-#: chronograph/utils/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
+#: chronograph/backend/file/song_card_model.py:25
+#: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr "Отсутствуют"
 
-#: chronograph/utils/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
-#: data/gtk/ui/dialogs/Preferences.blp:241
+#: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:260
+#: data/gtk/ui/dialogs/Preferences.blp:262
 msgid "Plain"
 msgstr "Простые"
+
+#: chronograph/backend/lrclib/lrclib_service.py:357
+#: chronograph/backend/lrclib/lrclib_service.py:386
+msgid "Fetched successfully"
+msgstr "Успешно загружено"
+
+#: chronograph/backend/lrclib/lrclib_service.py:371
+msgid "Fetching using /api/get failed, trying /api/search"
+msgstr "Загрузка через /api/get не удалась, переход на /api/search"
+
+#: chronograph/backend/lrclib/lrclib_service.py:397
+msgid "No suitable lyrics found"
+msgstr "Подходящие слова не найдены"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -363,53 +424,57 @@ msgstr "Сетка"
 msgid "List"
 msgstr "Список"
 
-#: data/gtk/window.blp:315 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
+#: data/gtk/window.blp:312
+msgid "Mass Lyrics Downloading"
+msgstr "Массовая Загрузка Текстов"
+
+#: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
 msgid "Preferences"
 msgstr "Настройки"
 
-#: data/gtk/window.blp:316 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:317 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:68
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:68
 msgid "Keybindings"
 msgstr "Сочетания клавиш"
 
-#: data/gtk/window.blp:317 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
+#: data/gtk/window.blp:318 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:69
 msgid "About"
 msgstr "О приложении"
 
-#: data/gtk/window.blp:326
+#: data/gtk/window.blp:327
 msgid "Clean the library"
 msgstr "Очистить библиотеку"
 
-#: data/gtk/window.blp:341
+#: data/gtk/window.blp:342
 msgid "Add current directory to saves"
 msgstr "Добавить текущую директория в сохранения"
 
-#: data/gtk/window.blp:350
+#: data/gtk/window.blp:351
 msgid "Recursive parsing settings changed. Re-parse?"
 msgstr "Изменились настройки рекурсивного сканирования. Пересканировать?"
 
-#: data/gtk/window.blp:351
+#: data/gtk/window.blp:352
 msgid "Re-Parse"
 msgstr "Пересканировать"
 
-#: data/gtk/window.blp:366 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:367 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Искать"
 
-#: data/gtk/window.blp:407
+#: data/gtk/window.blp:408
 msgid "Directory"
 msgstr "Директория"
 
-#: data/gtk/window.blp:408
+#: data/gtk/window.blp:409
 msgid "Files"
 msgstr "Файлы"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
-#: data/gtk/ui/dialogs/Preferences.blp:74
-#: data/gtk/ui/dialogs/Preferences.blp:158
+#: data/gtk/ui/dialogs/Preferences.blp:95
+#: data/gtk/ui/dialogs/Preferences.blp:179
 msgid "General"
 msgstr "Основные"
 
@@ -534,13 +599,6 @@ msgstr "Попробуйте другой запрос, возможно в эт
 msgid "Search on LRClib by title, artist and album names"
 msgstr "Искать на LRClib по указанным названию, исполнителю и альбому"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:16
-#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
-#: data/gtk/ui/widgets/SavedLocation.blp:51
-#: data/gtk/ui/widgets/SavedLocation.blp:63
-msgid "Cancel"
-msgstr "Отмена"
-
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
 msgstr "Применить"
@@ -639,32 +697,56 @@ msgstr ""
 "зацикленные ссылки"
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
+msgid "Mass Downloading"
+msgstr "Массовая Загрузка"
+
+#: data/gtk/ui/dialogs/Preferences.blp:62
+msgid "Max Parallel Downloadings"
+msgstr "Максимально Параллельных Загрузок"
+
+#: data/gtk/ui/dialogs/Preferences.blp:63
+msgid ""
+"The amount of simultaneous parallel downloadings. High amount may cause "
+"downloading failure if treated as DDoS attack"
+msgstr ""
+"Количество одновременных параллельных загрузок. Высокое значение может "
+"привести к ошибке загрузки, если будет распознано как DDoS-атака"
+
+#: data/gtk/ui/dialogs/Preferences.blp:74
+msgid "Preferred Lyrics Format"
+msgstr "Предпочитаемый Формат Слов"
+
+#: data/gtk/ui/dialogs/Preferences.blp:75
+msgid "Target lyrics format for LRClib downloading"
+msgstr "Целевой формат слов для загрузки с LRClib"
+
+#: data/gtk/ui/dialogs/Preferences.blp:80
 msgid "Debug"
 msgstr "Отладка"
 
-#: data/gtk/ui/dialogs/Preferences.blp:62
+#: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Enable Debug logging profile"
 msgstr "Включить отладочный профиль журналирования"
 
-#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "Expands logging information for debug purposes"
 msgstr "Расширяет информацию журнала для отладки"
 
-#: data/gtk/ui/dialogs/Preferences.blp:64
+#: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "NEEDS RESTART"
 msgstr "ТРЕБУЕТСЯ ПЕРЕЗАПУСК"
 
-#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Синхронизация"
 
-#: data/gtk/ui/dialogs/Preferences.blp:77
+#: data/gtk/ui/dialogs/Preferences.blp:98
 msgid "Syncing type"
 msgstr "Тип синхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:78
+#: data/gtk/ui/dialogs/Preferences.blp:99
 msgid ""
 "Defines the default workflow of syncing process. It may be either Line-by-"
 "Line, or Word-by-Word\n"
@@ -674,78 +756,78 @@ msgstr ""
 "либо Пословным\n"
 "ПОСЛОВНЫЙ РЕЖИМ НЕ ПОДДЕРЖИВАЕТСЯ НА МОБИЛЬНЫХ УСТРОЙСТВАХ"
 
-#: data/gtk/ui/dialogs/Preferences.blp:81
-#: data/gtk/ui/dialogs/Preferences.blp:94
+#: data/gtk/ui/dialogs/Preferences.blp:102
+#: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Line-by-Line"
 msgstr "Построчный"
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
-#: data/gtk/ui/dialogs/Preferences.blp:120
+#: data/gtk/ui/dialogs/Preferences.blp:103
+#: data/gtk/ui/dialogs/Preferences.blp:141
 msgid "Word-by-Word"
 msgstr "Пословный"
 
-#: data/gtk/ui/dialogs/Preferences.blp:88
+#: data/gtk/ui/dialogs/Preferences.blp:109
 msgid "Use precise milliseconds"
 msgstr "Использовать точные миллисекунды"
 
-#: data/gtk/ui/dialogs/Preferences.blp:89
+#: data/gtk/ui/dialogs/Preferences.blp:110
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Использовать 3-х значные миллисекунды вместо 2-х значных"
 
-#: data/gtk/ui/dialogs/Preferences.blp:97
-#: data/gtk/ui/dialogs/Preferences.blp:123
+#: data/gtk/ui/dialogs/Preferences.blp:118
+#: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Default re-sync value"
 msgstr "Стандартное значение пересинхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
-#: data/gtk/ui/dialogs/Preferences.blp:124
+#: data/gtk/ui/dialogs/Preferences.blp:119
+#: data/gtk/ui/dialogs/Preferences.blp:145
 msgid "Amount of milliseconds default re-sync performs by"
 msgstr "Количество миллисекунд для стандартной пересинхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:108
-#: data/gtk/ui/dialogs/Preferences.blp:134
+#: data/gtk/ui/dialogs/Preferences.blp:129
+#: data/gtk/ui/dialogs/Preferences.blp:155
 msgid "Large re-sync value"
 msgstr "Большое значение пересинхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:109
-#: data/gtk/ui/dialogs/Preferences.blp:135
+#: data/gtk/ui/dialogs/Preferences.blp:130
+#: data/gtk/ui/dialogs/Preferences.blp:156
 msgid "Amount of milliseconds large re-sync performs by"
 msgstr "Количество миллисекунд для большой пересинхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:147
+#: data/gtk/ui/dialogs/Preferences.blp:168
 msgid "File Manipulation"
 msgstr "Манипулирование файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:173
 msgid "Auto file manipulation"
 msgstr "Автоматическое манипулирование файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:153
+#: data/gtk/ui/dialogs/Preferences.blp:174
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr "Автоматически создаёт и обновляет файлы при изменении текста слов"
 
-#: data/gtk/ui/dialogs/Preferences.blp:162
+#: data/gtk/ui/dialogs/Preferences.blp:183
 msgid "File format"
 msgstr "Формат файла"
 
-#: data/gtk/ui/dialogs/Preferences.blp:163
+#: data/gtk/ui/dialogs/Preferences.blp:184
 msgid "File format for auto manipulation"
 msgstr "Формат файла для автоманипуляции"
 
-#: data/gtk/ui/dialogs/Preferences.blp:173
+#: data/gtk/ui/dialogs/Preferences.blp:194
 msgid "Autosave interval"
 msgstr "Интервал автосохранения"
 
-#: data/gtk/ui/dialogs/Preferences.blp:174
+#: data/gtk/ui/dialogs/Preferences.blp:195
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Интервал автосохранения при бездействии синхронизации"
 
-#: data/gtk/ui/dialogs/Preferences.blp:189
+#: data/gtk/ui/dialogs/Preferences.blp:210
 msgid "Save plain LRC too"
 msgstr "Также сохранять обычный LRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:190
+#: data/gtk/ui/dialogs/Preferences.blp:211
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -753,35 +835,35 @@ msgstr ""
 "Сохраняет обычный LRC файл вместе с файлом eLRC. Не будет работать если "
 "префикс eLRC не задан"
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "eLRC prefix"
 msgstr "Префикс eLRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:203
-#: data/gtk/ui/dialogs/Preferences.blp:260
+#: data/gtk/ui/dialogs/Preferences.blp:224
+#: data/gtk/ui/dialogs/Preferences.blp:281
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr "Помощь"
 
-#: data/gtk/ui/dialogs/Preferences.blp:206
+#: data/gtk/ui/dialogs/Preferences.blp:227
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 "Префикс, который будут иметь eLRC файлы, чтобы не конфликтовать с обычными "
 "LRC файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:216
+#: data/gtk/ui/dialogs/Preferences.blp:237
 msgid "Lyrics embedding"
 msgstr "Встраивание слов"
 
-#: data/gtk/ui/dialogs/Preferences.blp:220
+#: data/gtk/ui/dialogs/Preferences.blp:241
 msgid "Embed lyrics within audio file"
 msgstr "Встраивать слова в аудио-файл"
 
-#: data/gtk/ui/dialogs/Preferences.blp:224
+#: data/gtk/ui/dialogs/Preferences.blp:245
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr "Использовать отдельный тег для синхронизированных слов в файлах Vorbis"
 
-#: data/gtk/ui/dialogs/Preferences.blp:225
+#: data/gtk/ui/dialogs/Preferences.blp:246
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
@@ -789,15 +871,15 @@ msgstr ""
 "Включает запись синхронизированных слов в отдельный тег в Vorbis Comment-"
 "совместимых файлах (ogg, flac, opus)"
 
-#: data/gtk/ui/dialogs/Preferences.blp:230
+#: data/gtk/ui/dialogs/Preferences.blp:251
 msgid "Embed lyrics default format"
 msgstr "Стандартный формат встраиваемых слов"
 
-#: data/gtk/ui/dialogs/Preferences.blp:231
+#: data/gtk/ui/dialogs/Preferences.blp:252
 msgid "Brings lyrics to selected format before embedding"
 msgstr "Приводит слова к выбранному формату пере встраиванием"
 
-#: data/gtk/ui/dialogs/Preferences.blp:266
+#: data/gtk/ui/dialogs/Preferences.blp:287
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -1055,6 +1137,24 @@ msgstr "Страница синхронизации на меньшем дисп
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;слова;интернет;песни;мильтимедиа;медиа;lrclib;музыка;синхронизация;хронограф;"
+
+#~ msgid ""
+#~ "Failed to connect to the LRC library server. Please check your internet "
+#~ "connection and try again"
+#~ msgstr ""
+#~ "Не удалось подключиться к серверу. Проверьте подключение к интернету и "
+#~ "повторите попытку"
+
+#~ msgid "Timeout Error"
+#~ msgstr "Превышено время ожидания"
+
+#~ msgid ""
+#~ "The request to the LRC library server timed out. Please try again later"
+#~ msgstr ""
+#~ "Превышено время ожидания ответа от сервера. Попробуйте еще раз позже"
+
+#~ msgid "Failed to connect to LRClib.net"
+#~ msgstr "Не удалось подключиться к LRClib.net"
 
 #~ msgid "Re-parse current directory"
 #~ msgstr "Пересканировать текущую директорию"

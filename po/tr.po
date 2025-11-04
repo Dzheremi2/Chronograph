@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-31 15:53+0300\n"
+"POT-Creation-Date: 2025-11-04 19:34+0300\n"
 "PO-Revision-Date: 2025-10-08 16:07+0000\n"
 "Last-Translator: Orkun Sürel <orkunsurel@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
@@ -19,120 +19,184 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14-dev\n"
 
-#: chronograph/window.py:406
+#: chronograph/window.py:411
 msgid "Copied successfully"
 msgstr "Başarıyla kopyalandı"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:159
+#: chronograph/main.py:160
 msgid "translator-credits"
 msgstr ""
 "Recep Kaan Ergün\n"
 "polarwood"
 
-#: chronograph/main.py:167
+#: chronograph/main.py:168
 msgid "Inspiration"
 msgstr "Esinlenmek"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:177
+#: chronograph/main.py:178
 msgid "Build your own dictionary"
 msgstr "Kendi sözlüğünü oluştur"
 
-#: chronograph/main.py:183
+#: chronograph/main.py:184
 msgid "Translate the App"
 msgstr "Uygulamayı çevir"
 
-#: chronograph/ui/dialogs/lrclib.py:121
+#: chronograph/ui/dialogs/lrclib.py:103
 msgid "Connection Error"
 msgstr "Bağlantı Hatası"
 
-#: chronograph/ui/dialogs/lrclib.py:123
-msgid ""
-"Failed to connect to the LRC library server. Please check your internet "
-"connection and try again"
-msgstr ""
-"LRC kütüphanesi sunucusuyla bağlanıt kurulamadı. Lütfen internet "
-"bağlantınızı kontrol edin ve tekrar deneyin"
+#: chronograph/ui/dialogs/lrclib.py:105
+#, fuzzy
+msgid "Network error occured while connecting to LRClib"
+msgstr "LRClib.net'e bağlanırken bir sorun oluştu"
 
-#: chronograph/ui/dialogs/lrclib.py:132
-msgid "Timeout Error"
-msgstr "Zaman Aşımı Hatası"
-
-#: chronograph/ui/dialogs/lrclib.py:133
-msgid "The request to the LRC library server timed out. Please try again later"
-msgstr ""
-"LRC kütüphane sunucusunun isteği zaman aşımına uğradı. Lütfen tekrar deneyin"
-
-#: chronograph/ui/dialogs/lrclib.py:141
+#: chronograph/ui/dialogs/lrclib.py:111
 msgid "Something went wrong"
 msgstr "Bir şeyler ters gitti"
 
-#: chronograph/ui/dialogs/lrclib.py:143
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 "LRC kütüphane sunucusuna bağlanmaya çalışırken bilinmeyen bir hata oluştu"
 
-#: chronograph/ui/dialogs/lrclib.py:237
+#: chronograph/ui/dialogs/lrclib.py:203
 msgid "No synced lyrics available"
 msgstr "Eşzamanlı sözler mevcut değil"
 
-#: chronograph/ui/dialogs/lrclib.py:242
+#: chronograph/ui/dialogs/lrclib.py:208
 msgid "No plain lyrics available"
 msgstr "Düz şarkı sözleri yok"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:284
+#: chronograph/ui/dialogs/preferences.py:211
+#, fuzzy
+msgid "Synced Only"
+msgstr "Senkronize"
+
+#: chronograph/ui/dialogs/preferences.py:212
+msgid "Synced, Fallback to Plain If Unavailable"
+msgstr ""
+
+#: chronograph/ui/dialogs/preferences.py:213
+#, fuzzy
+msgid "Plain Only"
+msgstr "Düz"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:46
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:88
+msgid "Fetch"
+msgstr ""
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:83
+#: data/gtk/ui/dialogs/MetadataEditor.blp:16
+#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
+#: data/gtk/ui/widgets/SavedLocation.blp:51
+#: data/gtk/ui/widgets/SavedLocation.blp:63
+msgid "Cancel"
+msgstr "İptal"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:108
+#, fuzzy
+msgid "Connection timed out"
+msgstr "LRClib.net bağlantısı zaman aşımına uğradı"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:110
+#, fuzzy
+msgid "Connection error occurred"
+msgstr "Bağlantı Hatası"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:112
+#, fuzzy
+msgid "An error occurred: "
+msgstr "Bilinmeyen bir hata oluştu: {code}"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:118
+#, fuzzy
+msgid "Instrumental track. No lyrics available"
+msgstr "Şarkı sözü mevcut değil"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#, fuzzy
+msgid "No synced lyrics found"
+msgstr "Eşzamanlı sözler mevcut değil"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
+#: chronograph/backend/lrclib/lrclib_service.py:410
+#, fuzzy
+msgid "No lyrics found"
+msgstr "Kayıtlar bulunmadı"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#, fuzzy
+msgid "No plain lyrics found"
+msgstr "Düz şarkı sözleri yok"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:173
+#, fuzzy
+msgid "Cancelled"
+msgstr "İptal"
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:210
+#, fuzzy
+msgid "Pending"
+msgstr "Tuş Atamaları"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Şarkı sözleri panoya aktarıldı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
+#: chronograph/ui/sync_pages/lrc_sync_page.py:294
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Şarkı sözleri dosyaya aktarıldı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:296
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Göster"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:438
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
-msgid "Failed to connect to LRClib.net"
-msgstr "LRClib.net'e bağlanılamadı"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:441
-#: chronograph/ui/sync_pages/lrc_sync_page.py:484
-msgid "Connection to LRClib.net timed out"
-msgstr "LRClib.net bağlantısı zaman aşımına uğradı"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:444
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
-msgid "An error occurred while connecting to LRClib.net"
-msgstr "LRClib.net'e bağlanırken bir sorun oluştu"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:499
+#: chronograph/ui/sync_pages/lrc_sync_page.py:404
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Başarıyla yayınlandı: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:503
+#: chronograph/ui/sync_pages/lrc_sync_page.py:408
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Hatalı yayınlama tokeni: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:507
+#: chronograph/ui/sync_pages/lrc_sync_page.py:412
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Bilinmeyen bir hata oluştu: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:520
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+msgid "Network error occurred while publishing lyrics"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:424
+#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+msgid "Log"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#, fuzzy
+msgid "An error occurred while publishing lyrics"
+msgstr "LRClib.net'e bağlanırken bir sorun oluştu"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+msgid "Seems like not every line is synced"
+msgstr "Her satır eşzamanlanmamış gibi gözüküyor"
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 msgid "Unable to publish lyrics"
 msgstr "Sözler paylaşılamadı"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:522
+#: chronograph/ui/sync_pages/lrc_sync_page.py:461
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
@@ -140,21 +204,17 @@ msgstr ""
 "Şarkı sözleri yayınlamak için şarkı , bir başlığa , sanatçıya , albüme ve "
 "şarkı sözleri alanları dolu olmalıdır"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:527
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid "Close"
 msgstr "Kapat"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:531
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Cannot publish empty lyrics"
 msgstr "Boş şarkı sözleri yayınlanamaz"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:532
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Why?"
 msgstr "Neden?"
-
-#: chronograph/ui/sync_pages/lrc_sync_page.py:538
-msgid "Seems like not every line is synced"
-msgstr "Her satır eşzamanlanmamış gibi gözüküyor"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
@@ -228,32 +288,47 @@ msgstr "Hayır"
 msgid "{vol}%"
 msgstr ""
 
-#: chronograph/utils/file_backend/song_card_model.py:12
+#: chronograph/backend/file/song_card_model.py:12
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: chronograph/utils/file_backend/song_card_model.py:13
+#: chronograph/backend/file/song_card_model.py:13
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: chronograph/utils/file_backend/song_card_model.py:14
+#: chronograph/backend/file/song_card_model.py:14
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: chronograph/utils/file_backend/song_card_model.py:25
-#: chronograph/utils/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
+#: chronograph/backend/file/song_card_model.py:25
+#: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/utils/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:239
-#: data/gtk/ui/dialogs/Preferences.blp:241
+#: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
+#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:260
+#: data/gtk/ui/dialogs/Preferences.blp:262
 msgid "Plain"
 msgstr "Düz"
+
+#: chronograph/backend/lrclib/lrclib_service.py:357
+#: chronograph/backend/lrclib/lrclib_service.py:386
+#, fuzzy
+msgid "Fetched successfully"
+msgstr "Başarıyla kopyalandı"
+
+#: chronograph/backend/lrclib/lrclib_service.py:371
+msgid "Fetching using /api/get failed, trying /api/search"
+msgstr ""
+
+#: chronograph/backend/lrclib/lrclib_service.py:397
+#, fuzzy
+msgid "No suitable lyrics found"
+msgstr "Kayıtlar bulunmadı"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -367,53 +442,57 @@ msgstr "Izgara"
 msgid "List"
 msgstr "Listele"
 
-#: data/gtk/window.blp:315 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
+#: data/gtk/window.blp:312
+msgid "Mass Lyrics Downloading"
+msgstr ""
+
+#: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: data/gtk/window.blp:316 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:317 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:68
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:68
 msgid "Keybindings"
 msgstr "Tuş Atamaları"
 
-#: data/gtk/window.blp:317 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
+#: data/gtk/window.blp:318 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:69
 msgid "About"
 msgstr "Hakkında"
 
-#: data/gtk/window.blp:326
+#: data/gtk/window.blp:327
 msgid "Clean the library"
 msgstr "Kütüphaneyi temizle"
 
-#: data/gtk/window.blp:341
+#: data/gtk/window.blp:342
 msgid "Add current directory to saves"
 msgstr "Şuanki dizini , kaydedilenlere ekle"
 
-#: data/gtk/window.blp:350
+#: data/gtk/window.blp:351
 msgid "Recursive parsing settings changed. Re-parse?"
 msgstr ""
 
-#: data/gtk/window.blp:351
+#: data/gtk/window.blp:352
 msgid "Re-Parse"
 msgstr ""
 
-#: data/gtk/window.blp:366 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:367 data/gtk/ui/dialogs/LRClib.blp:83
 msgid "Search"
 msgstr "Ara"
 
-#: data/gtk/window.blp:407
+#: data/gtk/window.blp:408
 msgid "Directory"
 msgstr "Dizin"
 
-#: data/gtk/window.blp:408
+#: data/gtk/window.blp:409
 msgid "Files"
 msgstr "Dosyalar"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
-#: data/gtk/ui/dialogs/Preferences.blp:74
-#: data/gtk/ui/dialogs/Preferences.blp:158
+#: data/gtk/ui/dialogs/Preferences.blp:95
+#: data/gtk/ui/dialogs/Preferences.blp:179
 msgid "General"
 msgstr "Genel"
 
@@ -544,13 +623,6 @@ msgstr ""
 msgid "Search on LRClib by title, artist and album names"
 msgstr "LRClib'de belirtilen başlık ve sanatçıyı arayın"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:16
-#: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
-#: data/gtk/ui/widgets/SavedLocation.blp:51
-#: data/gtk/ui/widgets/SavedLocation.blp:63
-msgid "Cancel"
-msgstr "İptal"
-
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
 msgstr "Uygula"
@@ -641,158 +713,180 @@ msgid ""
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
-msgid "Debug"
+msgid "Mass Downloading"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:62
-msgid "Enable Debug logging profile"
+msgid "Max Parallel Downloadings"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:63
+msgid ""
+"The amount of simultaneous parallel downloadings. High amount may cause "
+"downloading failure if treated as DDoS attack"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:74
+msgid "Preferred Lyrics Format"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:75
+msgid "Target lyrics format for LRClib downloading"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:80
+msgid "Debug"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:83
+msgid "Enable Debug logging profile"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "Expands logging information for debug purposes"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:64
+#: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "NEEDS RESTART"
 msgstr "YENİDEN BAŞLATMA GEREKLİ"
 
-#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Senkronize ediliyor"
 
-#: data/gtk/ui/dialogs/Preferences.blp:77
+#: data/gtk/ui/dialogs/Preferences.blp:98
 #, fuzzy
 msgid "Syncing type"
 msgstr "Senkronize"
 
-#: data/gtk/ui/dialogs/Preferences.blp:78
+#: data/gtk/ui/dialogs/Preferences.blp:99
 msgid ""
 "Defines the default workflow of syncing process. It may be either Line-by-"
 "Line, or Word-by-Word\n"
 "WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:81
-#: data/gtk/ui/dialogs/Preferences.blp:94
+#: data/gtk/ui/dialogs/Preferences.blp:102
+#: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Line-by-Line"
 msgstr "Satır satır"
 
-#: data/gtk/ui/dialogs/Preferences.blp:82
-#: data/gtk/ui/dialogs/Preferences.blp:120
+#: data/gtk/ui/dialogs/Preferences.blp:103
+#: data/gtk/ui/dialogs/Preferences.blp:141
 msgid "Word-by-Word"
 msgstr "Kelime kelime"
 
-#: data/gtk/ui/dialogs/Preferences.blp:88
+#: data/gtk/ui/dialogs/Preferences.blp:109
 msgid "Use precise milliseconds"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:89
+#: data/gtk/ui/dialogs/Preferences.blp:110
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:97
-#: data/gtk/ui/dialogs/Preferences.blp:123
+#: data/gtk/ui/dialogs/Preferences.blp:118
+#: data/gtk/ui/dialogs/Preferences.blp:144
 msgid "Default re-sync value"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
-#: data/gtk/ui/dialogs/Preferences.blp:124
+#: data/gtk/ui/dialogs/Preferences.blp:119
+#: data/gtk/ui/dialogs/Preferences.blp:145
 msgid "Amount of milliseconds default re-sync performs by"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:108
-#: data/gtk/ui/dialogs/Preferences.blp:134
+#: data/gtk/ui/dialogs/Preferences.blp:129
+#: data/gtk/ui/dialogs/Preferences.blp:155
 #, fuzzy
 msgid "Large re-sync value"
 msgstr "Senkronize et/Senkronizasyonu geri al"
 
-#: data/gtk/ui/dialogs/Preferences.blp:109
-#: data/gtk/ui/dialogs/Preferences.blp:135
+#: data/gtk/ui/dialogs/Preferences.blp:130
+#: data/gtk/ui/dialogs/Preferences.blp:156
 msgid "Amount of milliseconds large re-sync performs by"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:147
+#: data/gtk/ui/dialogs/Preferences.blp:168
 msgid "File Manipulation"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:173
 msgid "Auto file manipulation"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:153
+#: data/gtk/ui/dialogs/Preferences.blp:174
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:162
+#: data/gtk/ui/dialogs/Preferences.blp:183
 msgid "File format"
 msgstr "Dosya formatı"
 
-#: data/gtk/ui/dialogs/Preferences.blp:163
+#: data/gtk/ui/dialogs/Preferences.blp:184
 msgid "File format for auto manipulation"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:173
+#: data/gtk/ui/dialogs/Preferences.blp:194
 msgid "Autosave interval"
 msgstr "Otomatik kaydetme aralığı"
 
-#: data/gtk/ui/dialogs/Preferences.blp:174
+#: data/gtk/ui/dialogs/Preferences.blp:195
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:189
+#: data/gtk/ui/dialogs/Preferences.blp:210
 msgid "Save plain LRC too"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:190
+#: data/gtk/ui/dialogs/Preferences.blp:211
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
+#: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "eLRC prefix"
 msgstr "eLRC öneki"
 
-#: data/gtk/ui/dialogs/Preferences.blp:203
-#: data/gtk/ui/dialogs/Preferences.blp:260
+#: data/gtk/ui/dialogs/Preferences.blp:224
+#: data/gtk/ui/dialogs/Preferences.blp:281
 msgctxt "button tooltip; noun"
 msgid "Help"
 msgstr "Yardım"
 
-#: data/gtk/ui/dialogs/Preferences.blp:206
+#: data/gtk/ui/dialogs/Preferences.blp:227
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:216
+#: data/gtk/ui/dialogs/Preferences.blp:237
 msgid "Lyrics embedding"
 msgstr "Şarkı sözleri ekleniyor"
 
-#: data/gtk/ui/dialogs/Preferences.blp:220
+#: data/gtk/ui/dialogs/Preferences.blp:241
 msgid "Embed lyrics within audio file"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:224
+#: data/gtk/ui/dialogs/Preferences.blp:245
 msgid "Use individual synced lyrics tag in Vorbis files"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:225
+#: data/gtk/ui/dialogs/Preferences.blp:246
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:230
+#: data/gtk/ui/dialogs/Preferences.blp:251
 msgid "Embed lyrics default format"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:231
+#: data/gtk/ui/dialogs/Preferences.blp:252
 msgid "Brings lyrics to selected format before embedding"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:266
+#: data/gtk/ui/dialogs/Preferences.blp:287
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -1058,6 +1152,25 @@ msgstr "Açık şarkı sözlerini senkronize etme sayfası görünümü"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
+
+#~ msgid ""
+#~ "Failed to connect to the LRC library server. Please check your internet "
+#~ "connection and try again"
+#~ msgstr ""
+#~ "LRC kütüphanesi sunucusuyla bağlanıt kurulamadı. Lütfen internet "
+#~ "bağlantınızı kontrol edin ve tekrar deneyin"
+
+#~ msgid "Timeout Error"
+#~ msgstr "Zaman Aşımı Hatası"
+
+#~ msgid ""
+#~ "The request to the LRC library server timed out. Please try again later"
+#~ msgstr ""
+#~ "LRC kütüphane sunucusunun isteği zaman aşımına uğradı. Lütfen tekrar "
+#~ "deneyin"
+
+#~ msgid "Failed to connect to LRClib.net"
+#~ msgstr "LRClib.net'e bağlanılamadı"
 
 #~ msgid "Re-parse current directory"
 #~ msgstr "Geçerli dizini yeniden ayrıştır"
