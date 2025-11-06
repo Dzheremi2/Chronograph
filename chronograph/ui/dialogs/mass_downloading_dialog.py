@@ -49,8 +49,6 @@ class MassDownloadingDialog(Adw.Dialog):
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
         self.log_items.remove_all()
-        # FIXME: Create a class (in dgutils) wrapper for Handlers to provide an API
-        # methods "disconnect_all" to kill all handlers
         LRClibService().disconnect(self.fstr)
         LRClibService().disconnect(self.fmsg)
         LRClibService().disconnect(self.fst)
