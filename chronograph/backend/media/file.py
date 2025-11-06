@@ -1,76 +1,45 @@
 import contextlib
-from typing import Optional
+from typing import Literal, Optional
 
 import mutagen
-from gi.repository import Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, GObject
 
-from chronograph.backend.lyrics import Lyrics
+from chronograph.backend.lyrics.lyrics import Lyrics
 from chronograph.internal import Constants
-from dgutils.decorators import baseclass
 
 
-@baseclass
-class BaseFile:
-  """A base class for mutagen filetypes classes
-
-  Parameters
-  ----------
-  path : str
-      A path to file for loading
-
-  Props
-  --------
-  ::
-
-      title : str -> Title of the song
-      artist : str -> Artist of the song
-      album : str -> Album of the song
-      cover : Gdk.Texture | str -> Cover of the song
-      path : str -> Path to the loaded song
-      duration : int -> Duration of the loaded song
-  """
-
+class BaseFile(GObject.Object):
   __gtype_name__ = "BaseFile"
 
-  _title: str = None
-  _artist: str = None
-  _album: str = None
-  _cover: Optional[bytes] = None
-  _mutagen_file: mutagen.FileType = None
-  _duration: float = None
-  _cover_updated: bool = False
+  path: str = GObject.Property(type=str, default="")
+  title: str = GObject.Property(type=str, default="")
+  artist: str = GObject.Property(type=str, default="")
+  album: str = GObject.Property(type=str, default="")
+  duration: int = GObject.Property(type=str, default=0)
 
   def __init__(self, path: str) -> None:
-    self._path: str = path
-    self.load_from_file(path)
+    super().__init__()
+    self._cover_bytes: Optional[bytes] = None
+    self._mutagen_file: mutagen.FileType = None
+    self._cover_updated: bool = False
+    self.props.path = path
+    self._load_from_file(path)
 
   def save(self) -> None:
     """Saves the changes to the file"""
     self._mutagen_file.save()
 
-  def load_from_file(self, path: str) -> None:
-    """Generates mutagen file instance for path
-
-    Parameters
-    ----------
-    path : str
-        /path/to/file
-    """
+  def _load_from_file(self, path: str) -> None:
     self._mutagen_file = mutagen.File(path)
     with contextlib.suppress(Exception):
-      self._duration = self._mutagen_file.info.length
+      self.props.duration = self._mutagen_file.info.length
 
-  def get_cover_texture(self) -> Gdk.Texture:
-    """Prepares a Gdk.Texture for setting to SongCard.paintable
-
-    Returns
-    -------
-    Gdk.Texture
-        Gdk.Texture or a placeholder texture if no cover is set
-    """
-    if self._cover:
+  @GObject.Property(type=Gdk.Texture)
+  def cover_texture(self) -> Gdk.Texture:
+    """Cover of the track"""
+    if self._cover_bytes:
       loader = GdkPixbuf.PixbufLoader.new()
-      loader.write(self._cover)
+      loader.write(self._cover_bytes)
       loader.close()
       pixbuf = loader.get_pixbuf()
 
@@ -79,86 +48,47 @@ class BaseFile:
     return Constants.COVER_PLACEHOLDER
 
   @property
-  def title(self) -> str:
-    """The title of the song"""
-    return self._title
+  def cover_bytes(self) -> Optional[bytes]:
+    """Cover image bytes, `None` for no cover (placeholder used)"""
+    return self._cover_bytes
 
-  @title.setter
-  def title(self, value: str) -> None:
-    self._title = value
+  @cover_bytes.setter
+  def cover_bytes(self, new_bytes: Optional[bytes]) -> None:
+    self._cover_bytes = new_bytes
+    self.notify("cover_texture")
 
-  @property
-  def artist(self) -> str:
-    """The artist of the song"""
-    return self._artist
-
-  @artist.setter
-  def artist(self, value: str) -> None:
-    self._artist = value
-
-  @property
-  def album(self) -> str:
-    """The album of the song"""
-    return self._album
-
-  @album.setter
-  def album(self, value: str) -> None:
-    self._album = value
-
-  @property
-  def cover(self) -> bytes:
-    """The cover of the song"""
-    return self._cover
-
-  @cover.setter
-  def cover(self, data: bytes) -> None:
-    self._cover = data
-
-  @property
-  def path(self) -> str:
-    """Path to the media file"""
-    return self._path
-
-  @property
-  def duration(self) -> int:
-    """Duration of the song"""
-    return round(self._duration)
-
-  @property
-  def duration_ns(self) -> int:
-    """Duration of the song in nanoseconds"""
-    return int(self._duration * 1_000_000_000) if self._duration else 0
-
-  def compress_images(self) -> None:
+  def _compress_images(self) -> None:
     """Makes the loaded MutagenFile instance to have compressed covers without saving to the file
 
     Should be implemented in file specific child classes
     """
     raise NotImplementedError
 
-  def load_str_data(self) -> None:
+  def _load_tags(self) -> None:
     """Reads the string data from file and binds it to the instance
 
     Should be implemented in file specific child classes
     """
     raise NotImplementedError
 
-  def load_cover(self) -> None:
+  def _load_cover(self) -> None:
     """Reads the cover from the file and binds it to the instance
 
     Should be implemented in file specific child classes
     """
     raise NotImplementedError
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
+  def set_tag(
+    self, tag_name: Literal["TITLE", "ARTIST", "ALBUM"], new_val: str
+  ) -> None:
     """Sets the provided tag in ID3 format to the provided value
 
     Parameters
     ----------
-    tag_name : str
-        ID3 tag (must work in all realizations using TAGS_CONJUNCTION)
+    tag_name : Literal["TITLE", "ARTIST", "ALBUM"]
+      Wide-known tag name
     new_val : str
-        value to be set
+      value to be set
 
     Should be implemented in file specific child classes
     """
@@ -204,6 +134,46 @@ class TaggableFile(BaseFile):
 
   def __init__(self, path: str) -> None:
     super().__init__(path)
-    self.compress_images()
-    self.load_cover()
-    self.load_str_data()
+    self._compress_images()
+    self._load_cover()
+    self._load_tags()
+
+
+class Tag:
+  @staticmethod
+  def determine(  # noqa: PLR0911
+    media_type: Literal["ID3", "VORBIS", "MP4"],
+    tag: Literal["TITLE", "ARTIST", "ALBUM"],
+  ) -> str:
+    """Gives a correct tag name for specified media container type by tag wide-known name
+
+    Parameters
+    ----------
+    media_type : Literal['ID3', 'VORBIS', 'MP4']
+      Media file container type
+    tag : Literal['TITLE', 'ARTIST', 'ALBUM']
+      Tag wide-known name
+
+    Returns
+    -------
+    str
+        Tag used by container tag system
+    """
+    # fmt: off
+    match media_type:
+      case "ID3":
+        match tag:
+          case "TITLE": return "TIT2"
+          case "ARTIST": return "TPE1"
+          case "ALBUM": return "TALB"
+      case "MP4":
+        match tag:
+          case "TITLE": return "\xa9nam"
+          case "ARTIST": return "\xa9ART"
+          case "ALBUM": return "\xa9alb"
+      case "VORBIS":
+        match tag:
+          case "TITLE": return "title"
+          case "ARTIST": return "artist"
+          case "ALBUM": return "album"
+    # fmt: on

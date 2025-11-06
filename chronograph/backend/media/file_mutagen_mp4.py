@@ -1,3 +1,4 @@
+import contextlib
 import io
 from typing import Optional
 
@@ -7,27 +8,13 @@ from PIL import Image
 from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
 
-from .file import TaggableFile
-
-tags_conjunction = {
-  "TIT2": ["_title", "\xa9nam"],
-  "TPE1": ["_artist", "\xa9ART"],
-  "TALB": ["_album", "\xa9alb"],
-}
+from .file import Tag, TaggableFile
 
 
 class FileMP4(TaggableFile):
-  """A MPEG-4 compatible file class. Inherited from `TaggableFile`
-
-  Parameters
-  ----------
-  path : str
-      A path to the file for loading
-  """
-
   __gtype_name__ = "FileMP4"
 
-  def compress_images(self) -> None:  # noqa: D102
+  def _compress_images(self) -> None:
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       tags = self._mutagen_file.tags
@@ -42,50 +29,35 @@ class FileMP4(TaggableFile):
         bytes_compressed = buffer.getvalue()
 
       tags["covr"][0] = MP4Cover(bytes_compressed, imageformat=MP4Cover.FORMAT_JPEG)
-      self.cover = tags["covr"][0]
+      self.cover_bytes = tags["covr"][0]
 
-  def load_cover(self) -> None:
-    """Extracts cover from song file. If no cover, then sets cover as `icon`"""
+  def _load_cover(self) -> None:
     if (
       "covr" not in self._mutagen_file.tags
       or not self._mutagen_file.tags["covr"]
       or self._mutagen_file.tags is None
     ):
-      self.cover = None
+      self.cover_bytes = None
     else:
       picture = self._mutagen_file.tags["covr"][0]
       if picture != "EMPTY_COVER":
-        self.cover = picture
+        self.cover_bytes = picture
 
-  def load_str_data(self) -> None:
-    """Sets all string data from tags. If data is unavailable, then sets `Unknown`"""
+  def _load_tags(self) -> None:
     if self._mutagen_file.tags is not None:
-      try:
+      with contextlib.suppress(KeyError):
         if (_title := self._mutagen_file.tags["\xa9nam"]) is not None:
-          self.title = _title[0]
-      except KeyError:
-        pass
+          self.props.title = _title[0]
 
-      try:
+      with contextlib.suppress(KeyError):
         if (_artist := self._mutagen_file.tags["\xa9ART"]) is not None:
-          self.artist = _artist[0]
-      except KeyError:
-        pass
+          self.props.artist = _artist[0]
 
-      try:
+      with contextlib.suppress(KeyError):
         if (_album := self._mutagen_file.tags["\xa9alb"]) is not None:
-          self.album = _album[0]
-      except KeyError:
-        pass
+          self.props.album = _album[0]
 
-  def set_cover(self, img_path: Optional[str]) -> None:
-    """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
-
-    Parameters
-    ----------
-    img_path : str | None
-        path to image or None if cover should be deleted
-    """
+  def set_cover(self, img_path: Optional[str]) -> None:  # noqa: D102
     if img_path is not None:
       cover_bytes = open(img_path, "rb").read()  # noqa: SIM115
       if self._mutagen_file.tags:
@@ -99,36 +71,22 @@ class FileMP4(TaggableFile):
           cover_val.append(MP4Cover(cover_bytes, MP4Cover.FORMAT_PNG))
 
         self._mutagen_file.tags["covr"] = cover_val
-        self.cover = cover_val[0]
+        self.cover_bytes = cover_val[0]
     else:
       if self._mutagen_file.tags:
         if "covr" in self._mutagen_file.tags:
           del self._mutagen_file.tags["covr"]
         else:
           self._mutagen_file.add_tags()
-      self.cover = None
+      self.cover_bytes = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
-    r"""Sets string tags to provided value
-
-    Parameters
-    ----------
-    tag_name : str
-
-    ::
-
-        "TIT2" -> [_title, "\xa9nam"]
-        "TPE1" -> [_artist, "\xa9ART"]
-        "TALB" -> [_album, "\xa9alb"]
-
-    new_val : str
-        new value for setting
-    """
+  def set_tag(self, tag_name: str, new_val: str) -> None:  # noqa: D102
+    _tag_name = Tag.determine("MP4", tag_name)
     if self._mutagen_file.tags is None:
       self._mutagen_file.add_tags()
 
-    self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
-    setattr(self, tags_conjunction[tag_name][0], new_val)
+    self._mutagen_file.tags[_tag_name] = new_val
+    self.set_property(tag_name.lower(), new_val)
 
   def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     if lyrics is not None:
@@ -148,10 +106,8 @@ class FileMP4(TaggableFile):
         self.save()
       return
 
-    try:
+    with contextlib.suppress(KeyError):
       if self._mutagen_file.tags is not None:
         del self._mutagen_file.tags["\xa9lyr"]
-    except KeyError:
-      pass
 
     self.save()

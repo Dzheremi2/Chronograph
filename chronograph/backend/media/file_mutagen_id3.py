@@ -1,6 +1,6 @@
 import contextlib
 import io
-from typing import Optional
+from typing import Literal, Optional
 
 from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1, USLT
 from PIL import Image
@@ -8,23 +8,13 @@ from PIL import Image
 from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
 
-from .file import TaggableFile
-
-tags_conjunction = {"TIT2": "_title", "TPE1": "_artist", "TALB": "_album"}
+from .file import Tag, TaggableFile
 
 
 class FileID3(TaggableFile):
-  """A ID3 compatible file class. Inherited from `TaggableFile`
-
-  Parameters
-  ----------
-  path : str
-      A path to file for loading
-  """
-
   __gtype_name__ = "FileID3"
 
-  def compress_images(self) -> None:  # noqa: D102
+  def _compress_images(self) -> None:
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       tags = self._mutagen_file.tags
@@ -49,37 +39,29 @@ class FileID3(TaggableFile):
         )
         tags[key] = apic_compressed
 
-  def load_cover(self) -> None:
-    """Extracts cover from song file. If no cover, then sets cover as `icon`"""
+  def _load_cover(self) -> None:
     if self._mutagen_file.tags is not None:
       pictures = self._mutagen_file.tags.getall("APIC")
       if len(pictures) != 0:
-        self._cover = pictures[0].data
+        self.cover_bytes = pictures[0].data
       if len(pictures) == 0:
-        self._cover = None
+        self.cover_bytes = None
     else:
-      self._cover = None
+      self.cover_bytes = None
 
-  def load_str_data(self) -> None:
-    """Sets all string data from tags. If data is unavailable, then sets `Unknown`"""
+  def _load_tags(self) -> None:
     if self._mutagen_file.tags is not None:
-      try:
+      with contextlib.suppress(KeyError):
         if (_title := self._mutagen_file.tags["TIT2"].text[0]) is not None:
-          self._title = _title
-      except KeyError:
-        pass
+          self.props.title = _title
 
-      try:
+      with contextlib.suppress(KeyError):
         if (_artist := self._mutagen_file.tags["TPE1"].text[0]) is not None:
-          self._artist = _artist
-      except KeyError:
-        pass
+          self.props.artist = _artist
 
-      try:
+      with contextlib.suppress(KeyError):
         if (_album := self._mutagen_file.tags["TALB"].text[0]) is not None:
-          self._album = _album
-      except KeyError:
-        pass
+          self.props.album = _album
 
   def set_cover(self, img_path: Optional[str]) -> None:
     """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
@@ -87,10 +69,10 @@ class FileID3(TaggableFile):
     Parameters
     ----------
     img_path : str | None
-        path to image or None if cover should be deleted
+        path to image or `None` if cover should be deleted
     """
     if img_path is not None:
-      self._cover = open(img_path, "rb").read()  # noqa: SIM115
+      self.cover_bytes = open(img_path, "rb").read()  # noqa: SIM115
       if self._mutagen_file.tags:
         for tag in dict(self._mutagen_file.tags).copy():
           if tag.startswith("APIC"):
@@ -113,37 +95,25 @@ class FileID3(TaggableFile):
         if tag.startswith("APIC"):
           del self._mutagen_file.tags[tag]
 
-      self._cover = None
+      self.cover_bytes = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
-    """Sets string tags to provided value
-
-    Parameters
-    ----------
-    tag_name : str
-
-    ::
-
-        "TIT2" -> _title
-        "TPE1" -> _artist
-        "TALB" -> _album
-
-    new_val : str
-        new value for setting
-    """
+  def set_tag(  # noqa: D102
+    self, tag_name: Literal["TITLE", "ARTIST", "ALBUM"], new_val: str
+  ) -> None:
+    _tag_name = Tag.determine("ID3", tag_name)
     if self._mutagen_file.tags is None:
       self._mutagen_file.add_tags()
 
     try:
-      self._mutagen_file.tags[tag_name].text[0] = new_val
+      self._mutagen_file.tags[_tag_name].text[0] = new_val
     except (KeyError, IndexError):
-      if tag_name == "TIT2":
+      if _tag_name == "TIT2":
         self._mutagen_file.tags.add(TIT2(text=[new_val]))
-      elif tag_name == "TPE1":
+      elif _tag_name == "TPE1":
         self._mutagen_file.tags.add(TPE1(text=[new_val]))
-      elif tag_name == "TALB":
+      elif _tag_name == "TALB":
         self._mutagen_file.tags.add(TALB(text=[new_val]))
-    setattr(self, tags_conjunction[tag_name], new_val)
+    self.set_property(tag_name.lower(), new_val)
 
   def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     if lyrics is not None:

@@ -2,7 +2,7 @@ import base64
 import contextlib
 import io
 from pathlib import Path
-from typing import Optional, Union
+from typing import Literal, Optional, Union
 
 import magic
 from mutagen.flac import FLAC, Picture
@@ -12,27 +12,13 @@ from PIL import Image
 from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
 
-from .file import TaggableFile
-
-tags_conjunction = {
-  "TIT2": ["_title", "title"],
-  "TPE1": ["_artist", "artist"],
-  "TALB": ["_album", "album"],
-}
+from .file import Tag, TaggableFile
 
 
 class FileVorbis(TaggableFile):
-  """A Vorbis (ogg, flac) compatible file class. Inherited from `TaggableFile`
-
-  Parameters
-  ----------
-  path : str
-      A path to file for loading
-  """
-
   __gtype_name__ = "FileVorbis"
 
-  def compress_images(self) -> None:  # noqa: D102
+  def _compress_images(self) -> None:
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       pic: Union[Picture, None] = None
@@ -67,15 +53,14 @@ class FileVorbis(TaggableFile):
       encoded = base64.b64encode(picture_data).decode("ascii")
       self._mutagen_file["metadata_block_picture"] = [encoded]
 
-      self._cover = bytes_compressed
+      self.cover_bytes = bytes_compressed
 
-  def load_cover(self) -> None:
-    """Loads cover for Vorbis format audio"""
+  def _load_cover(self) -> None:
     if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:
       if self._mutagen_file.pictures[0].data is not None:
-        self._cover = self._mutagen_file.pictures[0].data
+        self.cover_bytes = self._mutagen_file.pictures[0].data
       else:
-        self._cover = None
+        self.cover_bytes = None
     elif self._mutagen_file.get("metadata_block_picture", []):
       _data = None
       for base64_data in self._mutagen_file.get("metadata_block_picture", []):
@@ -90,50 +75,37 @@ class FileVorbis(TaggableFile):
           continue
 
       if _data is None:
-        self._cover = None
+        self.cover_bytes = None
       else:
-        self._cover = _data
+        self.cover_bytes = _data
     else:
-      self._cover = None
+      self.cover_bytes = None
 
-  def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:  # noqa: B006
-    """Loads title, artist and album for Vorbis media format
-
-    Parameters
-    ----------
-    tags : list, persistent
-        list of tags for parsing in vorbis comment, by default `["title", "artist", "album"]`
-    """
+  def _load_tags(self) -> None:
+    tags = ["title", "artist", "album"]
     if self._mutagen_file.tags is not None:
       for tag in tags:
         try:
           text = (
-            "Unknown"
+            None
             if not self._mutagen_file.tags[tag.lower()][0]
             else self._mutagen_file.tags[tag.lower()][0]
           )
-          setattr(self, f"_{tag}", text)
+          self.set_property(tag, text)
         except KeyError:
           try:
             text = (
-              "Unknown"
+              None
               if not self._mutagen_file.tags[tag.upper()][0]
               else self._mutagen_file.tags[tag.upper()][0]
             )
-            setattr(self, f"_{tag}", text)
+            self.set_property(tag, text)
           except KeyError:
-            setattr(self, f"_{tag}", "Unknown")
-    if self._title == "Unknown":
-      self._title = Path(self._path).name
+            self.set_property(tag, None)
+    if self.props.title is None:
+      self.props.title = Path(self._path).name
 
-  def set_cover(self, img_path: Optional[str]) -> None:
-    """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
-
-    Parameters
-    ----------
-    img_path : str | None
-        path to image or None if cover should be deleted
-    """
+  def set_cover(self, img_path: Optional[str]) -> None:  # noqa: D102
     if img_path is not None:
       if isinstance(self._mutagen_file, FLAC):
         self._mutagen_file.clear_pictures()
@@ -141,7 +113,7 @@ class FileVorbis(TaggableFile):
       if "metadata_block_picture" in self._mutagen_file:
         self._mutagen_file["metadata_block_picture"] = []
 
-      self._cover = data = open(img_path, "rb").read()  # noqa: SIM115
+      self.cover_bytes = data = open(img_path, "rb").read()  # noqa: SIM115
 
       picture = Picture()
       picture.data = data
@@ -166,33 +138,21 @@ class FileVorbis(TaggableFile):
     else:
       if isinstance(self._mutagen_file, FLAC):
         self._mutagen_file.clear_pictures()
-        self._cover = None
+        self.cover_bytes = None
 
       if "metadata_block_picture" in self._mutagen_file:
         self._mutagen_file["metadata_block_picture"] = []
-        self._cover = None
+        self.cover_bytes = None
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
-    """Sets string tags to provided value
-
-    Parameters
-    ----------
-    tag_name : str
-
-    ::
-
-      "TIT2" -> [_title, "title"]
-      "TPE1" -> [_artist, "artist"]
-      "TALB" -> [_album, "album"]
-
-    new_val : str
-        new value for setting
-    """
-    if tags_conjunction[tag_name][1].upper() in self._mutagen_file.tags:
-      self._mutagen_file.tags[tags_conjunction[tag_name][1].upper()] = new_val
+  def set_tag(  # noqa: D102
+    self, tag_name: Literal["TITLE", "ARTIST", "ALBUM"], new_val: str
+  ) -> None:
+    _tag_name = Tag.determine("VORBIS", tag_name)
+    if _tag_name.upper() in self._mutagen_file.tags:
+      self._mutagen_file.tags[_tag_name.upper()] = new_val
     else:
-      self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
-    setattr(self, tags_conjunction[tag_name][0], new_val)
+      self._mutagen_file.tags[_tag_name] = new_val
+    self.set_property(tag_name.lower(), new_val)
 
   def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
     if lyrics is not None:
