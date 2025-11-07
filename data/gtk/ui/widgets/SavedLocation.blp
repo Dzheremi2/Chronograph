@@ -39,7 +39,7 @@ PopoverMenu actions_popover {
 
 Adw.AlertDialog rename_dialog {
   close-response: "not_rename";
-  heading: _("Rename this Save");
+  heading: _("Rename this Save?");
   default-response: "not_rename";
   response => $do_rename();
   extra-child: Gtk.Entry rename_entry {

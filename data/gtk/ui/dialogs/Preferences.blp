@@ -75,7 +75,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
       Adw.ComboRow syncing_type_combo_row {
         title: _("Syncing Type");
-        subtitle: _("Defines the default workflow of syncing process. It may be either Line-by-Line, or Word-by-Word\nWORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES");
+        subtitle: _("Defines the default workflow of syncing process");
         model: StringList sync_types {
           strings [
             _("Line-by-Line"),
@@ -84,10 +84,21 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         };
       }
 
+      Adw.ActionRow {
+        title: _("Word-by-Word sync workflow is not supported on mobile devices.");
+
+        [prefix]
+        Image {
+          icon-name: "info-button-symbolic";
+        }
+      }
+    }
+
+    Adw.PreferencesGroup {
       Adw.SwitchRow precise_milliseconds_switch {
         title: _("Use Precise Milliseconds");
         subtitle: _("Use 3-digit milliseconds instead of 2-digit");
-      }
+      } 
     }
 
     Adw.PreferencesGroup {

@@ -260,7 +260,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                       tooltip-text: _("Filter library");
                       menu-model: menu {
                         section {
-                          label: C_("filter menu secton name. 'Show only…' selected lyric formats", "Show only…");
                           item {
                             label: C_("means lyrics absence", "None");
                             action: "win.filter_none";
@@ -320,10 +319,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                           target: "l";
                         }
                       }
-                    }
-
-                    section {
-                      item (_("Quick Editor"), "win.open_quick_editor")
                     }
 
                     section {

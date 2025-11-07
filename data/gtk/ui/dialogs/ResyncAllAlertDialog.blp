@@ -2,8 +2,8 @@ using Gtk 4.0;
 using Adw 1;
 
 template $ResyncAllAlertDialog : Adw.AlertDialog {
-  heading: _("Re-Sync All Lines");
-  body: _("Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-sync backwards");
+  heading: _("Re-Sync All Lines?");
+  body: _("Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-sync backwards.");
   close-response: "cancel";
   default-response: "cancel";
   response => $_on_response();

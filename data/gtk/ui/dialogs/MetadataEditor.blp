@@ -104,11 +104,9 @@ template $MetadataEditor : Adw.Dialog {
             }
           }
 
-          ListBox {
-            selection-mode: none;
-
+          Adw.PreferencesGroup {
             Adw.EntryRow title_row {
-              title: _("Title");
+                title: _("Title");
             }
 
             Adw.EntryRow artist_row {
@@ -118,22 +116,17 @@ template $MetadataEditor : Adw.Dialog {
             Adw.EntryRow album_row {
               title: _("Album");
             }
-
-            styles ["boxed-list"]
           }
 
-          Box lyrics_buttons_box {
-            orientation: vertical;
-            spacing: 4;
-
-            Button {
-              label: _("Embed Lyrics");
-              clicked => $on_embed_lyrics_clicked();
+          Adw.PreferencesGroup lyrics_buttons_box {
+            Adw.ButtonRow {
+              title: _("Embed Lyrics");
+              activated => $on_embed_lyrics_clicked();
             }
 
-            Button {
-              label: _("Delete Lyrics");
-              clicked => $on_delete_lyrics_clicked();
+            Adw.ButtonRow {
+              title: _("Delete Lyrics");
+              activated => $on_delete_lyrics_clicked();
 
               styles ["destructive-action"]
             }
