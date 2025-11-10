@@ -11,6 +11,7 @@ template $UIPlayer: Adw.BreakpointBin {
       collapse_box.visible: true;
       repeat_button.visible: false;
       collapsed_buttons_box.visible: true;
+      main_box.margin-bottom: 0;
     }
     
     apply => $_on_breakpoint();
@@ -22,12 +23,13 @@ template $UIPlayer: Adw.BreakpointBin {
     // tightening-threshold: {controlled by class}
     orientation: horizontal;
 
-    Box {
+    Box main_box {
       orientation: vertical;
       spacing: 4;
       margin-start: 10; // FIXME: Under rewview
       margin-end: 10; // FIXME: Under rewview
       margin-top: 4;
+      margin-bottom: 4;
 
       Box {
         orientation: horizontal;
