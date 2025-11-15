@@ -52,11 +52,11 @@ Chronograph has three types of releases *stable*, *release candidates (beta)* an
 
 #### Stable
 
-Stable releases are available on Sundays (if not a hotfix) if their develepment cycle has ended. Could be downloaded either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or via [GitHub Releases]((https://github.com/Dzheremi2/Chronograph/releases/latest))
+Stable releases are available on Fridays (if not a hotfix) if their develepment cycle has ended. Could be downloaded either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or via [GitHub Releases]((https://github.com/Dzheremi2/Chronograph/releases/latest))
 
 #### Release Candidate
 
-RCs are published before the stable release in sunday-awaiting time for users to be able to test them and report bugs before the release happens.
+RCs are published before the stable release in friday-awaiting time for users to be able to test them and report bugs before the release happens.
 Could be downloaded only on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/). RCs are marked as `Pre-release`
 
 #### Devel
