@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-15 14:33+0300\n"
+"POT-Creation-Date: 2025-11-15 19:35+0300\n"
 "PO-Revision-Date: 2025-11-04 23:51+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
@@ -44,29 +44,29 @@ msgstr "Створіть власний словник"
 msgid "Translate the App"
 msgstr "Перекласти додаток"
 
-#: chronograph/ui/dialogs/lrclib.py:108
+#: chronograph/ui/dialogs/lrclib.py:110
 msgid "Connection Error"
 msgstr "Помилка підключення"
 
-#: chronograph/ui/dialogs/lrclib.py:110
+#: chronograph/ui/dialogs/lrclib.py:112
 msgid "Network error occured while connecting to LRClib"
 msgstr "Під час підключення до LRClib сталася помилка мережі"
 
-#: chronograph/ui/dialogs/lrclib.py:116
+#: chronograph/ui/dialogs/lrclib.py:118
 msgid "Something went wrong"
 msgstr "Щось пішло не так"
 
-#: chronograph/ui/dialogs/lrclib.py:118
+#: chronograph/ui/dialogs/lrclib.py:120
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 "Під час спроби підключення до сервера бібліотеки LRC сталася невідома помилка"
 
-#: chronograph/ui/dialogs/lrclib.py:194
+#: chronograph/ui/dialogs/lrclib.py:196
 msgid "No synced lyrics available"
 msgstr "Синхронізовані слова пісні не доступні"
 
-#: chronograph/ui/dialogs/lrclib.py:199
+#: chronograph/ui/dialogs/lrclib.py:201
 msgid "No plain lyrics available"
 msgstr "Прості слова пісні не доступні"
 
@@ -82,12 +82,12 @@ msgstr "Синхронізовано, повернення до звичайно
 msgid "Plain Only"
 msgstr "Тільки звичайний"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:46
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:88
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:64
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:124
 msgid "Fetch"
 msgstr "Отримати"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:83
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:120
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 #: data/gtk/ui/widgets/SavedLocation.blp:51
@@ -95,42 +95,43 @@ msgstr "Отримати"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:108
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 msgid "Connection timed out"
 msgstr "Час очікування з'єднання минув"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:110
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:146
 msgid "Connection error occurred"
 msgstr "Сталася помилка підключення"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:112
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:148
 msgid "An error occurred: "
 msgstr "Сталася помилка: "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:118
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
 msgid "Instrumental track. No lyrics available"
 msgstr "Інструментальний трек. Текст пісні недоступний"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:168
 msgid "No synced lyrics found"
 msgstr "Синхронізованих текстів пісень не знайдено"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
-#: chronograph/backend/lrclib/lrclib_service.py:410
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
+#: chronograph/backend/lrclib/lrclib_service.py:423
 msgid "No lyrics found"
 msgstr "Текстів пісень не знайдено"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:188
 msgid "No plain lyrics found"
 msgstr "Простих текстів пісень не знайдено"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:173
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:209
 msgid "Cancelled"
 msgstr "Скасовано"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-msgid "Pending"
-msgstr "Очікує на розгляд"
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:246
+#, fuzzy
+msgid "Fetching"
+msgstr "Отримати"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
@@ -148,44 +149,44 @@ msgstr "Текст пісні експортовано у файл пісні"
 msgid "Show"
 msgstr "Показати"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:403
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успішно опубліковано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:408
+#: chronograph/ui/sync_pages/lrc_sync_page.py:407
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неправильний токен публікації: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:412
+#: chronograph/ui/sync_pages/lrc_sync_page.py:411
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Сталася невідома помилка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:422
 msgid "Network error occurred while publishing lyrics"
 msgstr "Під час публікації тексту пісні сталася помилка мережі"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:424
-#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
 msgid "Log"
 msgstr "Журнал"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#: chronograph/ui/sync_pages/lrc_sync_page.py:430
 msgid "An error occurred while publishing lyrics"
 msgstr "Під час публікації тексту пісні сталася помилка"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+#: chronograph/ui/sync_pages/lrc_sync_page.py:444
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:459
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
 #, fuzzy
 msgid "Unable to publish lyrics."
 msgstr "Неможливо опублікувати текст пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:461
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
@@ -194,15 +195,15 @@ msgstr ""
 "Щоб опублікувати текст пісні, для неї необхідно встановити поля назви, "
 "виконавця, альбому та тексту пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:465
 msgid "Close"
 msgstr "Закрити"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:469
 msgid "Cannot publish empty lyrics"
 msgstr "Не можна публікувати порожні тексти пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Why?"
 msgstr "Чому?"
 
@@ -271,8 +272,8 @@ msgstr "Так"
 msgid "No"
 msgstr "Ні"
 
-#: chronograph/ui/widgets/ui_player.py:47
-#: chronograph/ui/widgets/ui_player.py:60
+#: chronograph/ui/widgets/ui_player.py:49
+#: chronograph/ui/widgets/ui_player.py:63
 #, python-brace-format
 msgid "{vol}%"
 msgstr "{vol}%"
@@ -304,17 +305,24 @@ msgstr "Нічого"
 msgid "Plain"
 msgstr "Прості"
 
-#: chronograph/backend/lrclib/lrclib_service.py:357
-#: chronograph/backend/lrclib/lrclib_service.py:386
+#: chronograph/backend/lrclib/lrclib_service.py:368
+#: chronograph/backend/lrclib/lrclib_service.py:396
+#: chronograph/backend/lrclib/lrclib_service.py:409
 msgid "Fetched successfully"
 msgstr "Успішно отримано"
 
-#: chronograph/backend/lrclib/lrclib_service.py:371
-msgid "Fetching using /api/get failed, trying /api/search"
+#: chronograph/backend/lrclib/lrclib_service.py:376
+#, fuzzy
+msgid "Fetch using /api/get failed, trying /api/search"
 msgstr ""
 "Не вдалося отримати дані за допомогою /api/get, намагаюся через /api/search"
 
-#: chronograph/backend/lrclib/lrclib_service.py:397
+#: chronograph/backend/lrclib/lrclib_service.py:392
+msgid "Trying search with no album"
+msgstr ""
+
+#: chronograph/backend/lrclib/lrclib_service.py:402
+#: chronograph/backend/lrclib/lrclib_service.py:414
 msgid "No suitable lyrics found"
 msgstr "Відповідних текстів пісень не знайдено"
 
@@ -366,8 +374,9 @@ msgstr "Швидкий редактор"
 msgid "Copy to Clipboard"
 msgstr "Копіювати в буфер обміну"
 
+#. Translators: App name IS intended to be translated
 #: data/gtk/window.blp:133 data/gtk/window.blp:195
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Хронограф"
@@ -1113,70 +1122,149 @@ msgstr "Скинути"
 msgid "Toggle song repeat"
 msgstr "Перемикнути повторення пісні"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:9
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr "Синхронізуйте тексти ваших улюблених пісень"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-msgid ""
-"This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
-msgstr ""
-"Ця програма допоможе вам зробити свій внесок у велику базу даних "
-"синхронізованих текстів пісень за допомогою красивого інтерфейсу GTK4 та "
-"LibAdwaita."
-
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:11
 msgid ""
-"It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced "
-"functionality) formats."
+"Chronograph is an open-source application designed for accurately syncing "
+"lyrics with audio timestamps."
 msgstr ""
-"Він підтримує музику у форматах ogg, flac, mp3, m4a, wav, opus та aac (з "
-"обмеженою функціональністю)."
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:12
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:13
 msgid ""
-"It also supports Word-by-Word syncing in eLRC format for true karaoke effect "
-"in supported players"
+"You may notice that many of music players support synced lyrics which are "
+"highlighted line-by-line or word-by-word while playing? This app was "
+"designed to give the community an ability to be the ones who make these "
+"lyrics."
 msgstr ""
-"Він також підтримує синхронізацію слово за словом у форматі eLRC для "
-"справжнього ефекту караоке у підтримуваних програвачах"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:47
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:16
+msgid ""
+"Chronograph directly supports publishing to LRCLib. As many FOSS music "
+"players use LRCLib to fetch synchronized lyrics, this integration allows "
+"users to easily contribute their work back to the open-source community."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:19
+#, fuzzy
+msgid "Syncing Modes"
+msgstr "Режим синхронізації"
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:21
+msgid ""
+"Line-by-Line (Primary): Here, every time you do sync action, timestamp is "
+"placed for the whole line of lyrics. This is the most supported format of "
+"synced lyrics."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:23
+msgid ""
+"Word-by-Word (Advanced): Designed for true karaoke quality. It places a "
+"timestamp for every single word, enabling players to animate lyrics with "
+"precision."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
+msgid "Supported Formats"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
+msgid "OGG"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:31
+msgid "FLAC"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:33
+msgid "MP3"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:35
+msgid "M4A"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:37
+msgid "OPUS"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:39
+msgid "WAV"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
+msgid "AAC (reduced functionality)"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:76
 msgid "Library"
 msgstr "Бібліотека"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:51
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:80
 msgid "Lyrics syncing page"
 msgstr "Сторінка синхронізації пісень"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:55
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:84
 msgid "Word-by-Word syncing workflow"
 msgstr "Робочий процес синхронізації слово за словом"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:59
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:88
 msgid "Word-by-Word lyrics editor"
 msgstr "Редактор текстів пісень слово за словом"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:63
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:92
 msgid "LRClib import dialog"
 msgstr "Діалог імпорту LRClib"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:67
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:96
 msgid "Library in List View mode"
 msgstr "Бібліотека в режимі перегляду списку"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:71
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:100
 msgid "Lyrics syncing page on smaller display"
 msgstr "Сторінка синхронізації пісень на меншому дисплеї"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+#, fuzzy
+msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
 "тексти "
 "пісень;інтернет;пісні;мультимедіа;медіа;lrclib;музика;синхронізація;хронограф;"
+
+#~ msgid "Pending"
+#~ msgstr "Очікує на розгляд"
+
+#~ msgid ""
+#~ "This app helps you to contribute to the large database of synced lyrics "
+#~ "with beautiful GTK4 and LibAdwaita interface."
+#~ msgstr ""
+#~ "Ця програма допоможе вам зробити свій внесок у велику базу даних "
+#~ "синхронізованих текстів пісень за допомогою красивого інтерфейсу GTK4 та "
+#~ "LibAdwaita."
+
+#~ msgid ""
+#~ "It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced "
+#~ "functionality) formats."
+#~ msgstr ""
+#~ "Він підтримує музику у форматах ogg, flac, mp3, m4a, wav, opus та aac (з "
+#~ "обмеженою функціональністю)."
+
+#~ msgid ""
+#~ "It also supports Word-by-Word syncing in eLRC format for true karaoke "
+#~ "effect in supported players"
+#~ msgstr ""
+#~ "Він також підтримує синхронізацію слово за словом у форматі eLRC для "
+#~ "справжнього ефекту караоке у підтримуваних програвачах"
 
 #~ msgid "No source selected yet"
 #~ msgstr "Джерело ще не вибрано"

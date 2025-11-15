@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
+  <!-- Translators: App name IS intended to be translated -->
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
@@ -17,18 +18,24 @@
     contribute their work back to the open-source community.</p>
     <p>Syncing Modes</p>
     <ul>
-      <li>Line-by-Line (Primary). Here, every time you do sync action, timestamp is placed 
+      <li>Line-by-Line (Primary): Here, every time you do sync action, timestamp is placed 
       for the whole line of lyrics. This is the most supported format of synced lyrics.</li>
       <li>Word-by-Word (Advanced): Designed for true karaoke quality. It places a 
       timestamp for every single word, enabling players to animate lyrics with precision.</li>
     </ul>
     <p>Supported Formats</p>
     <ul>
+      <!-- Translators: Remain as is -->
       <li>OGG</li>
+      <!-- Translators: Remain as is -->
       <li>FLAC</li>
+      <!-- Translators: Remain as is -->
       <li>MP3</li>
+      <!-- Translators: Remain as is -->
       <li>M4A</li>
+      <!-- Translators: Remain as is -->
       <li>OPUS</li>
+      <!-- Translators: Remain as is -->
       <li>WAV</li>
       <li>AAC (reduced functionality)</li>
     </ul>
@@ -60,7 +67,7 @@
     <control>pointing</control>
   </supports>
   <requires>
-    <display_length compare="ge">360</display_length>
+    <display_length compare="ge">362</display_length>
   </requires>
 
   <screenshots>

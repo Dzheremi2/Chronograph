@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-15 14:33+0300\n"
+"POT-Creation-Date: 2025-11-15 19:35+0300\n"
 "PO-Revision-Date: 2025-04-28 22:10+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -42,28 +42,28 @@ msgstr ""
 msgid "Translate the App"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:108
+#: chronograph/ui/dialogs/lrclib.py:110
 msgid "Connection Error"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:110
+#: chronograph/ui/dialogs/lrclib.py:112
 msgid "Network error occured while connecting to LRClib"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:116
+#: chronograph/ui/dialogs/lrclib.py:118
 msgid "Something went wrong"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:118
+#: chronograph/ui/dialogs/lrclib.py:120
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:194
+#: chronograph/ui/dialogs/lrclib.py:196
 msgid "No synced lyrics available"
 msgstr "无同步歌词可用"
 
-#: chronograph/ui/dialogs/lrclib.py:199
+#: chronograph/ui/dialogs/lrclib.py:201
 msgid "No plain lyrics available"
 msgstr "无纯文本歌词可用"
 
@@ -81,12 +81,12 @@ msgstr ""
 msgid "Plain Only"
 msgstr "纯文本"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:46
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:88
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:64
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:124
 msgid "Fetch"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:83
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:120
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 #: data/gtk/ui/widgets/SavedLocation.blp:51
@@ -94,47 +94,47 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:108
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 msgid "Connection timed out"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:110
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:146
 #, fuzzy
 msgid "Connection error occurred"
 msgstr "发生未知错误 "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:112
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:148
 #, fuzzy
 msgid "An error occurred: "
 msgstr "发生未知错误 "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:118
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
 #, fuzzy
 msgid "Instrumental track. No lyrics available"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:168
 #, fuzzy
 msgid "No synced lyrics found"
 msgstr "无同步歌词可用"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
-#: chronograph/backend/lrclib/lrclib_service.py:410
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
+#: chronograph/backend/lrclib/lrclib_service.py:423
 #, fuzzy
 msgid "No lyrics found"
 msgstr "尚未找到保存项"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:188
 #, fuzzy
 msgid "No plain lyrics found"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:173
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:209
 msgid "Cancelled"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-msgid "Pending"
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:246
+msgid "Fetching"
 msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
@@ -154,57 +154,57 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:403
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "发布成功 "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:408
+#: chronograph/ui/sync_pages/lrc_sync_page.py:407
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "发布令牌错误 "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:412
+#: chronograph/ui/sync_pages/lrc_sync_page.py:411
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "发生未知错误 "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:422
 msgid "Network error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:424
-#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:431
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#: chronograph/ui/sync_pages/lrc_sync_page.py:430
 msgid "An error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+#: chronograph/ui/sync_pages/lrc_sync_page.py:444
 msgid "Seems like not every line is synced"
 msgstr "似乎不是每一句歌词都是同步的"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:459
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
 msgid "Unable to publish lyrics."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:461
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:465
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:469
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Why?"
 msgstr ""
 
@@ -276,8 +276,8 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: chronograph/ui/widgets/ui_player.py:47
-#: chronograph/ui/widgets/ui_player.py:60
+#: chronograph/ui/widgets/ui_player.py:49
+#: chronograph/ui/widgets/ui_player.py:63
 #, python-brace-format
 msgid "{vol}%"
 msgstr ""
@@ -312,17 +312,23 @@ msgstr ""
 msgid "Plain"
 msgstr "纯文本"
 
-#: chronograph/backend/lrclib/lrclib_service.py:357
-#: chronograph/backend/lrclib/lrclib_service.py:386
+#: chronograph/backend/lrclib/lrclib_service.py:368
+#: chronograph/backend/lrclib/lrclib_service.py:396
+#: chronograph/backend/lrclib/lrclib_service.py:409
 #, fuzzy
 msgid "Fetched successfully"
 msgstr "已成功复制"
 
-#: chronograph/backend/lrclib/lrclib_service.py:371
-msgid "Fetching using /api/get failed, trying /api/search"
+#: chronograph/backend/lrclib/lrclib_service.py:376
+msgid "Fetch using /api/get failed, trying /api/search"
 msgstr ""
 
-#: chronograph/backend/lrclib/lrclib_service.py:397
+#: chronograph/backend/lrclib/lrclib_service.py:392
+msgid "Trying search with no album"
+msgstr ""
+
+#: chronograph/backend/lrclib/lrclib_service.py:402
+#: chronograph/backend/lrclib/lrclib_service.py:414
 #, fuzzy
 msgid "No suitable lyrics found"
 msgstr "尚未找到保存项"
@@ -375,8 +381,9 @@ msgstr "快速编辑器"
 msgid "Copy to Clipboard"
 msgstr "复制到粘贴板"
 
+#. Translators: App name IS intended to be translated
 #: data/gtk/window.blp:133 data/gtk/window.blp:195
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Chronograph"
@@ -1091,60 +1098,120 @@ msgstr ""
 msgid "Toggle song repeat"
 msgstr "切换歌曲重复播放"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:9
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-msgid ""
-"This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
-msgstr ""
-
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:11
 msgid ""
-"It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced "
-"functionality) formats."
+"Chronograph is an open-source application designed for accurately syncing "
+"lyrics with audio timestamps."
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:12
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:13
 msgid ""
-"It also supports Word-by-Word syncing in eLRC format for true karaoke effect "
-"in supported players"
+"You may notice that many of music players support synced lyrics which are "
+"highlighted line-by-line or word-by-word while playing? This app was "
+"designed to give the community an ability to be the ones who make these "
+"lyrics."
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:47
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:16
+msgid ""
+"Chronograph directly supports publishing to LRCLib. As many FOSS music "
+"players use LRCLib to fetch synchronized lyrics, this integration allows "
+"users to easily contribute their work back to the open-source community."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:19
+#, fuzzy
+msgid "Syncing Modes"
+msgstr "已同步"
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:21
+msgid ""
+"Line-by-Line (Primary): Here, every time you do sync action, timestamp is "
+"placed for the whole line of lyrics. This is the most supported format of "
+"synced lyrics."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:23
+msgid ""
+"Word-by-Word (Advanced): Designed for true karaoke quality. It places a "
+"timestamp for every single word, enabling players to animate lyrics with "
+"precision."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
+msgid "Supported Formats"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
+msgid "OGG"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:31
+msgid "FLAC"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:33
+msgid "MP3"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:35
+msgid "M4A"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:37
+msgid "OPUS"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:39
+msgid "WAV"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
+msgid "AAC (reduced functionality)"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:76
 msgid "Library"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:51
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:80
 msgid "Lyrics syncing page"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:55
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:84
 msgid "Word-by-Word syncing workflow"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:59
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:88
 msgid "Word-by-Word lyrics editor"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:63
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:92
 msgid "LRClib import dialog"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:67
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:96
 msgid "Library in List View mode"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:71
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:100
 msgid "Lyrics syncing page on smaller display"
 msgstr ""
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
 
 #~ msgid "No source selected yet"
