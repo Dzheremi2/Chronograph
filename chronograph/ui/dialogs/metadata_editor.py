@@ -5,6 +5,7 @@ from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 from chronograph.backend.file import SongCardModel
 from chronograph.backend.lyrics import Lyrics
 from chronograph.internal import Constants
+from chronograph.ui.widgets.internal.menu_button import ChrMenuButton  # noqa: F401
 from dgutils import Actions
 
 gtc = Gtk.Template.Child
@@ -16,6 +17,8 @@ logger = Constants.LOGGER
 class MetadataEditor(Adw.Dialog):
   __gtype_name__ = "MetadataEditor"
 
+  cover_image_bin: Adw.Bin = gtc()
+  edit_icon_revealer: Gtk.Revealer = gtc()
   cover_image: Gtk.Image = gtc()
   title_row: Adw.EntryRow = gtc()
   artist_row: Adw.EntryRow = gtc()
@@ -36,6 +39,11 @@ class MetadataEditor(Adw.Dialog):
       "cover", self.cover_image, "paintable", GObject.BindingFlags.SYNC_CREATE
     )
     self.album_row.set_text(self._card.album)
+
+    self.hover_controller = Gtk.EventControllerMotion.new()
+    self.hover_controller.connect("enter", self._on_icon_revealer)
+    self.hover_controller.connect("leave", self._on_icon_revealer)
+    self.cover_image_bin.add_controller(self.hover_controller)
 
     # Hide "Embed Lyrics" button if launched from library page
     page = Constants.WIN.navigation_view.get_visible_page()
@@ -144,4 +152,9 @@ class MetadataEditor(Adw.Dialog):
       self._card.title_display,
       self._card.artist_display,
       self._card.album_display,
+    )
+
+  def _on_icon_revealer(self, *_args) -> None:
+    self.edit_icon_revealer.set_reveal_child(
+      not self.edit_icon_revealer.get_reveal_child()
     )

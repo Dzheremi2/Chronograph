@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $LRCSyncPage : Adw.NavigationPage {
+template $LRCSyncPage: Adw.NavigationPage {
   title: _("Syncing");
 
   Adw.BreakpointBin {
@@ -23,42 +23,9 @@ template $LRCSyncPage : Adw.NavigationPage {
         [end]
         MenuButton {
           icon-name: "app-menu-symbolic";
-          tooltip-text: _("App settings, info and utils");
+          tooltip-text: _("Menu");
+
           menu-model: menu about_app {
-            section {
-              submenu {
-                label: _("Sort");
-
-                item {
-                  label: _("A-Z");
-                  action: "app.sort_type";
-                  target: "a-z";
-                }
-
-                item {
-                  label: _("Z-A");
-                  action: "app.sort_type";
-                  target: "z-a";
-                }
-              }
-
-              submenu {
-                label: _("View");
-
-                item {
-                  label: _("Grid");
-                  action: "app.view_type";
-                  target: "g";
-                }
-
-                item {
-                  label: _("List");
-                  action: "app.view_type";
-                  target: "l";
-                }
-              }
-            }
-
             section {
               item (_("Quick Editor"), "win.open_quick_editor")
             }
@@ -69,6 +36,7 @@ template $LRCSyncPage : Adw.NavigationPage {
               item (_("About"), "app.about")
             }
           };
+
           primary: true;
         }
       }
@@ -80,17 +48,17 @@ template $LRCSyncPage : Adw.NavigationPage {
 
       [top]
       Adw.Clamp {
-        margin-top: 4;
+        margin-top: 8;
         orientation: horizontal;
         maximum-size: 600;
+        tightening-threshold: 600;
 
         Box syncing_buttons_box {
           orientation: horizontal;
           valign: center;
           spacing: 4;
-          margin-bottom: 4;
-          margin-start: 4;
-          margin-end: 4;
+          margin-start: 10; // FIXME: Under rewview
+          margin-end: 10; // FIXME: Under rewview
 
           Button sync_line_button {
             tooltip-text: _("Sync/Re-sync line");
@@ -99,7 +67,7 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "suggested-action",
-              "circular"
+              "circular",
             ]
           }
 
@@ -108,7 +76,9 @@ template $LRCSyncPage : Adw.NavigationPage {
             icon-name: "replay-line-symbolic";
             action-name: "controls.rplay";
 
-            styles ["circular"]
+            styles [
+              "circular",
+            ]
           }
 
           Button rew_button {
@@ -116,7 +86,9 @@ template $LRCSyncPage : Adw.NavigationPage {
             icon-name: "100ms-back-symbolic";
             clicked => $_on_seek_button_released();
 
-            styles ["circular"]
+            styles [
+              "circular",
+            ]
           }
 
           Button forw_button {
@@ -124,16 +96,18 @@ template $LRCSyncPage : Adw.NavigationPage {
             icon-name: "100ms-forw-symbolic";
             clicked => $_on_seek_button_released();
 
-            styles ["circular"]
+            styles [
+              "circular",
+            ]
           }
 
           MenuButton import_lyrics_button {
             tooltip-text: _("Import from …");
             icon-name: "import-from-symbolic";
+
             menu-model: menu import_from {
               section {
                 label: _("Import from …");
-
                 item (_("File"), "import.file")
                 item (_("Clipboard"), "import.clipboard")
                 item ("LRClib", "import.lrclib")
@@ -142,17 +116,17 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "osd",
-              "circular"
+              "circular",
             ]
           }
 
           MenuButton export_lyrics_button {
             tooltip-text: _("Export to …");
             icon-name: "export-to-symbolic";
+
             menu-model: menu export_to {
               section {
                 label: _("Export to …");
-
                 item (_("File"), "export.file")
                 item (_("Clipboard"), "export.clipboard")
                 item ("LRClib", "export.lrclib")
@@ -161,7 +135,7 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "osd",
-              "circular"
+              "circular",
             ]
           }
 
@@ -169,16 +143,18 @@ template $LRCSyncPage : Adw.NavigationPage {
             hexpand: true;
             visible: true;
 
-            styles ["spacer"]
+            styles [
+              "spacer",
+            ]
           }
 
           MenuButton line_actions_button {
             tooltip-text: _("Actions with selected line");
             icon-name: "line-actions-symbolic";
+
             menu-model: menu line_actions {
               section {
                 label: _("Actions with selected line");
-
                 item (_("Remove line"), "line.remove")
                 item (_("Prepend line"), "line.prepend")
                 item (_("Append line"), "line.append")
@@ -188,58 +164,60 @@ template $LRCSyncPage : Adw.NavigationPage {
 
             styles [
               "osd",
-              "circular"
+              "circular",
             ]
           }
 
           MenuButton utilities_button {
             tooltip-text: _("Utilities");
             icon-name: "chr-cogwheel-symbolic";
+
             menu-model: menu {
               section {
                 label: _("Utilities");
-
                 item (_("Re-sync all"), "utils.resync_all")
                 item (_("Edit metadata"), "controls.edit_metadata")
                 item (_("About file"), "controls.file_info")
               }
             };
 
-            styles ["circular", "osd"]
+            styles [
+              "circular",
+              "osd",
+            ]
           }
         }
       }
 
       ScrolledWindow sync_lines_scrolled_window {
+        margin-top: 8;
+
         Adw.Clamp {
           orientation: horizontal;
           maximum-size: 600;
+          tightening-threshold: 600;
 
           Box {
             orientation: vertical;
             spacing: 8;
             hexpand: true;
-            margin-start: 4;
-            margin-end: 4;
+            margin-start: 10; // FIXME: Under rewview
+            margin-end: 10; // FIXME: Under rewview
 
             ListBox sync_lines {
               selection-mode: none;
 
-              styles ["boxed-list"]
+              styles [
+                "boxed-list",
+              ]
             }
 
-            Box add_line_button_box {
-              halign: end;
-
-              Button add_line_button {
+            Adw.PreferencesGroup {
+              margin-bottom: 8;
+              Adw.ButtonRow {
+                start-icon-name: "add-line-symbolic";
+                title: _("Add Line");
                 action-name: "line.append_end";
-
-                Adw.ButtonContent {
-                  label: _("Add line");
-                  icon-name: "add-line-symbolic";
-                }
-
-                styles ["suggested-action"]
               }
             }
           }

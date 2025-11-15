@@ -77,11 +77,7 @@ template $LRClib : Adw.Dialog {
                       Button search_button {
                         tooltip-text: _("Search LRClib for provided title and artist");
                         action-name: "lrclib.search";
-
-                        Adw.ButtonContent {
-                          icon-name: "search-symbolic";
-                          label: _("Search");
-                        }
+                        label: _("Search");
 
                         styles ["suggested-action"]
                       }
@@ -110,7 +106,13 @@ template $LRClib : Adw.Dialog {
                   visible: true;
                   orientation: vertical;
 
-                  Adw.InlineViewSwitcher {
+                  // Label {
+                  //   margin-top: 8;
+                  //   label: _("Lyrics");
+                  //   styles ["title-3"]
+                  // }
+
+                  Adw.InlineViewSwitcher view_switcher {
                     margin-top: 8;
                     halign: center;
                     stack: lyrics_stack;
@@ -123,7 +125,7 @@ template $LRClib : Adw.Dialog {
                       name: "synced";
                       title: _("Synced");
 
-                      child: Box {
+                      child: Box synced_stack_page {
                         margin-top: 8;
                         margin-bottom: 8;
                         margin-start: 8;
@@ -137,8 +139,11 @@ template $LRClib : Adw.Dialog {
                             hexpand: true;
                             vexpand: true;
                             wrap-mode: word_char;
+                            buffer: TextBuffer {
+                              text: _("Synced lyrics from LRClib");
+                            };
 
-                            styles ["rounded-frame"]
+                            styles ["rounded-frame", "placeholder-text"]
                           }
                         }
                       };
@@ -148,7 +153,7 @@ template $LRClib : Adw.Dialog {
                       name: "plain";
                       title: _("Plain");
 
-                      child: Box {
+                      child: Box plain_stack_page {
                         margin-bottom: 8;
                         margin-end: 8;
                         margin-start: 8;
@@ -161,8 +166,11 @@ template $LRClib : Adw.Dialog {
                             hexpand: true;
                             vexpand: true;
                             wrap-mode: word_char;
+                            buffer: TextBuffer {
+                              text: _("Plain lyrics from LRClib");
+                            };
 
-                            styles ["rounded-frame"]
+                            styles ["rounded-frame", "placeholder-text"]
                           }
                         }
                       };
@@ -174,20 +182,10 @@ template $LRClib : Adw.Dialog {
                     margin-end: 8;
                     halign: end;
 
-                    Adw.SplitButton {
-                      tooltip-text: _("Synced lyrics are used by default, to use plain, select 'Use plain' from submenu");
-                      menu-model: menu use_lyrics_menu {
-                        section {
-                          item (_("Use plain"), "lrclib.import_plain")
-                          item (_("Use synced"), "lrclib.import_synced")
-                        }
-                      };
-                      action-name: "lrclib.import_synced";
-
-                      Adw.ButtonContent {
-                        icon-name: "import-from-symbolic";
-                        label: _("Use");
-                      }
+                    Button import_button {
+                      tooltip-text: _("Imports currently selected lyrics");
+                      action-name: "lrclib.import_lyrics";
+                      label: _("Import");
 
                       styles ["suggested-action"]
                     }
@@ -222,11 +220,12 @@ Adw.NavigationPage collapsed_lyrics_nav_page {
 
 Adw.StatusPage nothing_found_status_page {
   icon-name: "nothing-found-symbolic";
-  title: _("Nothing was found for this request");
-  description: _("Try out another request, maybe there are mistakes in request text.");
+  title: _("Nothing Was Found");
+  description: _("Try out another request, maybe there are mistakes in request text");
 }
 
 Adw.StatusPage search_lrclib_status_page {
-  title: _("Search on LRClib by title, artist and album names");
+  title: _("Search LRClib");
+  description: _("Search songs by title, artist and album");
   icon-name: "search-symbolic";
 }

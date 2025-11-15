@@ -456,9 +456,9 @@ class LRCSyncPage(Adw.NavigationPage):
 
       def reason(*_args) -> None:
         _alert = Adw.AlertDialog(
-          heading=_("Unable to publish lyrics"),
+          heading=_("Unable to publish lyrics."),
           body=_(
-            "To publish lyrics the track must have a title, artist, album and lyrics fields set"
+            "To publish lyrics the track must have a title, artist, album and lyrics fields set."
           ),
           default_response="close",
           close_response="close",

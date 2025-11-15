@@ -23,42 +23,8 @@ template $WBWSyncPage : Adw.NavigationPage {
         [end]
         MenuButton {
           icon-name: "app-menu-symbolic";
-          tooltip-text: _("App settings, info and utils");
+          tooltip-text: _("Menu");
           menu-model: menu about_app {
-            section {
-              submenu {
-                label: _("Sort");
-
-                item {
-                  label: _("A-Z");
-                  action: "app.sort_type";
-                  target: "a-z";
-                }
-
-                item {
-                  label: _("Z-A");
-                  action: "app.sort_type";
-                  target: "z-a";
-                }
-              }
-
-              submenu {
-                label: _("View");
-
-                item {
-                  label: _("Grid");
-                  action: "app.view_type";
-                  target: "g";
-                }
-
-                item {
-                  label: _("List");
-                  action: "app.view_type";
-                  target: "l";
-                }
-              }
-            }
-
             section {
               item (_("Quick Editor"), "win.open_quick_editor")
             }
@@ -83,6 +49,7 @@ template $WBWSyncPage : Adw.NavigationPage {
         margin-top: 4;
         orientation: horizontal;
         maximum-size: 600;
+        tightening-threshold: 600;
 
         Box syncing_buttons_box {
           orientation: horizontal;

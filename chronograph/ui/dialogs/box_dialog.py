@@ -25,10 +25,9 @@ class BoxDialog(Adw.Dialog):
 
   __gtype_name__ = "BoxDialog"
 
-  dialog_title_label: Gtk.Label = Gtk.Template.Child()
   props_list: Gtk.ListBox = Gtk.Template.Child()
 
-  def __init__(self, label: str, lines_content: tuple[dict]) -> None:
+  def __init__(self, title: str, lines_content: tuple[dict]) -> None:
     super().__init__()
 
     for entry in lines_content:
@@ -53,4 +52,4 @@ class BoxDialog(Adw.Dialog):
 
       self.props_list.append(row)
 
-    self.dialog_title_label.set_label(label)
+    self.set_title(title)
