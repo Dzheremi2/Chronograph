@@ -1,4 +1,5 @@
 import asyncio
+import contextlib
 import re
 import threading
 from difflib import SequenceMatcher
@@ -96,6 +97,7 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
           Endpoints.GET.value,
           params=params,
           headers={"User-Agent": APP_SIGNATURE_HEADER},
+          timeout=10,
         )
         if response.status_code in (404, 400):
           logger.info("[GET] No entry for %s -- %s found", track.title, track.artist)
@@ -180,9 +182,7 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
               item["syncedLyrics"],
             )
             tracks.append(track_)
-          logger.info(
-            "[SEARCH] Done for %s -- %s positively",title, artist
-          )
+          logger.info("[SEARCH] Done for %s -- %s positively", title, artist)
           return tracks
         raise SearchEmptyReturn(f"No entries found for {title} -- {artist}")  # noqa: TRY301
       # This re-raise mess is hapening since we need to catch all errors except those
@@ -339,6 +339,16 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     files_parse = len(tracks)
     files_parsed = 0
 
+    def emit_message(path: str, msg: str) -> None:
+      GLib.idle_add(self.emit, "fetch-message", path, msg)
+
+    def emit_state(path: str, state: FetchStates, data: object) -> None:
+      GLib.idle_add(self.emit, "fetch-state", path, state, data)
+
+    def fetch_failed(path: str, msg: str) -> None:
+      emit_state(path, FetchStates.FAILED, None)
+      emit_message(path, msg)
+
     async def sem_fetch(track: BaseFile) -> tuple[BaseFile, Optional[LRClibEntry]]:
       nonlocal files_parsed, on_progress, files_parse, cancellable
 
@@ -352,23 +362,18 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
         try:
           # First attempt using api_get
           response = await self.api_get(track)
+          if not response.synced_lyrics:
+            raise TrackNotFound  # Fallback to search to be able to use no album method  # noqa: TRY301
           files_parsed += 1
-          GLib.idle_add(
-            self.emit, "fetch-message", track.path, _("Fetched successfully")
-          )
-          GLib.idle_add(
-            self.emit, "fetch-state", track.path, FetchStates.DONE, response
-          )
+          emit_message(track.path, _("Fetched successfully"))
+          emit_state(track.path, FetchStates.DONE, response)
           logger.info("[FETCH] Successfully fetched lyrics for %s", track.path)
           return track, response
 
         except TrackNotFound:
           # Second attempt using api_search
-          GLib.idle_add(
-            self.emit,
-            "fetch-message",
-            track.path,
-            _("Fetching using /api/get failed, trying /api/search"),
+          emit_message(
+            track.path, _("Fetch using /api/get failed, trying /api/search")
           )
           logger.warning(
             "[FETCH] Failed to fetch lyrics for %s using absolute /api/get", track.path
@@ -379,23 +384,34 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
               track.title, track.artist, track.album
             )
             nearest = LRClibService.get_nearest(track, search_response)
-            files_parsed += 1
 
             if nearest:
-              GLib.idle_add(
-                self.emit, "fetch-message", track.path, _("Fetched successfully")
-              )
-              GLib.idle_add(
-                self.emit, "fetch-state", track.path, FetchStates.DONE, nearest
-              )
+              if not nearest.synced_lyrics:
+                with contextlib.suppress(SearchEmptyReturn):
+                  logger.info("Trying to search %s with no album", track.path)
+                  emit_message(track.path, _("Trying search with no album"))
+                  search_response = await self.api_search(track.title, track.artist)
+                  nearest = LRClibService.get_nearest(track, search_response)
+                  if nearest:
+                    emit_message(track.path, _("Fetched successfully"))
+                    emit_state(track.path, FetchStates.DONE, nearest)
+                    logger.info(
+                      "[FETCH] Successfully fetched lyrics for %s", track.path
+                    )
+                  else:
+                    fetch_failed(track.path, _("No suitable lyrics found"))
+                    logger.warning(
+                      "[FETCH] No suitable lyrics found for %s using /api/search",
+                      track.path,
+                    )
+                  files_parsed += 1
+                  return track, nearest
+              emit_message(track.path, _("Fetched successfully"))
+              emit_state(track.path, FetchStates.DONE, nearest)
               logger.info("[FETCH] Successfully fetched lyrics for %s", track.path)
             else:
-              GLib.idle_add(
-                self.emit, "fetch-state", track.path, FetchStates.FAILED, None
-              )
-              GLib.idle_add(
-                self.emit, "fetch-message", track.path, _("No suitable lyrics found")
-              )
+              files_parsed += 1
+              fetch_failed(track.path, _("No suitable lyrics found"))
               logger.warning(
                 "[FETCH] No suitable lyrics found for %s using /api/search", track.path
               )
@@ -404,17 +420,14 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
 
           except SearchEmptyReturn:
             files_parsed += 1
-            GLib.idle_add(
-              self.emit, "fetch-state", track.path, FetchStates.FAILED, None
-            )
-            GLib.idle_add(self.emit, "fetch-message", track.path, _("No lyrics found"))
+            fetch_failed(track.path, _("No lyrics found"))
             logger.warning(
               "[FETCH] Failed to fetch lyrics for %s using /api/search", track.path
             )
             return track, None
 
         except Exception as e:
-          GLib.idle_add(self.emit, "fetch-state", track.path, FetchStates.FAILED, e)
+          emit_state(track.path, FetchStates.FAILED, e)
 
         finally:
           if cancellable.is_set():
@@ -445,17 +458,17 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
     Parameters
     ----------
     original : BaseFile
-        Original file against which the most suitable candidate is determined
+      Original file against which the most suitable candidate is determined
     candidates : Iterable[LRClibEntry]
-        Iterable of candidates against original comparable
+      Iterable of candidates against original comparable
     weight : float, optional
-        Max deviation weight, by default 0.2. If candidate deviates from original on\
-        this weight, it rejects
+      Max deviation weight, by default 0.2. If candidate deviates from original on\
+      this weight, it rejects
 
     Returns
     -------
     Optional[LRClibEntry]
-        The most suitable candidate, or `None` if all of them devictes from that weight allows
+      The most suitable candidate, or `None` if all of them devictes from that weight allows
     """
 
     def normalize(string: str) -> str:  # Remove double spaces
@@ -479,7 +492,13 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
       for score in scores:
         if score < 1 - weight:
           return 0.0
-      return sum(scores) / len(scores)
+
+      base_score = sum(scores) / len(scores)
+      if candidate.synced_lyrics:
+        synced_lyrics_bonus = 1e-9
+        return base_score + synced_lyrics_bonus
+
+      return base_score
 
     best = None
     best_score = 0.0

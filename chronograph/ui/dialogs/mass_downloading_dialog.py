@@ -46,6 +46,11 @@ class MassDownloadingDialog(Adw.Dialog):
       button.set_label(_("Fetch"))
       self.progress_revealer.set_reveal_child(False)
 
+    def is_lrc_exist(media_path: str) -> bool:
+      path = Path(media_path)
+      lrc_path = path.with_suffix(Schema.get("root.settings.file-manipulation.format"))
+      return not lrc_path.exists()
+
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
         self.log_items.remove_all()
@@ -59,10 +64,10 @@ class MassDownloadingDialog(Adw.Dialog):
         with contextlib.suppress(Exception):
           self.task.disconnect(self._task_cancel_hdl)
       self._task_cancel_hdl = None
-      medias: list[BaseFile] = []
-      for item in LibraryModel().library:
-        media = item.get_child().model.mfile
-        medias.append(media)
+      medias: list[BaseFile] = [
+        item.get_child().model.mfile for item in LibraryModel().library
+      ]
+      medias = [media for media in medias.copy() if is_lrc_exist(media.path)]
       self.task = AsyncTask(
         LRClibService().fetch_lyrics_many,
         medias,
@@ -123,7 +128,7 @@ class MassDownloadingDialog(Adw.Dialog):
             )
             match dl_profile:
               case "s":
-                if entry.synced_lyrics.strip() != "":
+                if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
                   lyrics_file.lrc_lyrics.text = entry.synced_lyrics
                   lyrics_file.lrc_lyrics.save()
                   item.props.done = True
@@ -131,7 +136,7 @@ class MassDownloadingDialog(Adw.Dialog):
                 item.props.failed = True
                 item.props.message = _("No synced lyrics found")
               case "s~p":
-                if entry.synced_lyrics.strip() != "":
+                if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
                   lyrics_file.lrc_lyrics.text = entry.synced_lyrics
                   lyrics_file.lrc_lyrics.save()
                   item.props.done = True
@@ -207,6 +212,6 @@ class LogEntry(GObject.Object):
   cancelled: bool = GObject.Property(type=bool, default=False)
   instrumental: bool = GObject.Property(type=bool, default=False)
 
-  def __init__(self, path: str, message: str = _("Pending")) -> None:
+  def __init__(self, path: str, message: str = _("Fetching")) -> None:
     super().__init__(message=message)
     self.path = path
