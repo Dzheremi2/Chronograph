@@ -33,6 +33,9 @@
     "[xml]": {
         "editor.rulers": [90] // Just for text, like in descriptions, ignore for links, tags, e.t.c
     },
+    "[markdown]": {
+        "editor.rulers": [90] // Just for text, ignore for links, tags, e.t.c
+    },
     "isort.args":["--profile", "ruff"],
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "none"
