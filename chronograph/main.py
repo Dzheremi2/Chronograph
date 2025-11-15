@@ -196,7 +196,7 @@ class ChronographApplication(Adw.Application):
     """Triggered on user press `Ctrl + Q`"""
     self.quit()
 
-  def do_shutdown(self):
+  def do_shutdown(self) -> None:
     """Called on app closure. Proceeds all on exit operations"""
     Player().stop()
     FileManager().kill_all_monitors()
@@ -244,7 +244,7 @@ class ChronographApplication(Adw.Application):
       )
 
 
-def main(_version):
+def main(_version) -> int:
   """App entrypoint"""
   init_logger()
   logger.info("Launching application")

@@ -11,7 +11,8 @@
         "chronograph.in": "python",
         "*.yaml.in": "yaml",
         "*.xml.in": "xml",
-        ".doap": "xml"
+        ".doap": "xml",
+        "*.blp.in": "blueprint-gtk"
     },
     "xml.fileAssociations": [
         {
@@ -27,7 +28,7 @@
             "source.organizeImports": "explicit"
         },
         "editor.rulers": [88],
-        "editor.tabSize": 2,
+        "editor.tabSize": 2
     },
     "isort.args":["--profile", "ruff"],
     "python.analysis.diagnosticSeverityOverrides": {

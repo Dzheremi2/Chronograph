@@ -2,51 +2,71 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.StatusPage no_source_opened {
-  // Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
-  title: _("No source selected yet");
-  description: _("Select a directory or Drag-N-Drop files to load them");
-  icon-name: "open-source-symbolic";
+  title: _("No Music");
+  description: _("Select a directory or drop files to load them");
+  icon-name: "chr-app-icon";
 
   Box {
     halign: center;
     hexpand: true;
+    orientation: vertical;
+    spacing: 12;
 
-    MenuButton {
-      // Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
-      label: _("Open source");
-      menu-model: open_source_menu;
+    Button open_dir_btn {
+      label: _("Open Directory");
+      action-name: "win.select_dir";
+      styles ["pill", "suggested-action"]
+    }
 
-      styles [
-        "pill",
-        "suggested-action"
-      ]
+    Button load_files_btn {
+      label: _("Open File");
+      action-name: "win.select_files";
+      styles ["pill"]
     }
   }
+}
+
+SizeGroup {
+  widgets [
+    open_dir_btn,
+    load_files_btn
+  ]
 }
 
 Adw.StatusPage empty_directory {
-  title: _("Empty directory");
+  title: _("Empty Directory");
   description: _("This directory doesn't have any supported music files");
-  icon-name: "nothing-found-symbolic";
+  icon-name: "@APP_ID@";
 
   Box {
     halign: center;
     hexpand: true;
+    orientation: vertical;
+    spacing: 12;
 
-    MenuButton {
-      label: _("Open source");
-      menu-model: open_source_menu;
+    Button open_dir_btn_empty_dir {
+      label: _("Open Directory");
+      action-name: "win.select_dir";
+      styles ["pill", "suggested-action"]
+    }
 
-      styles [
-        "pill",
-        "suggested-action"
-      ]
+    Button load_files_btn_empty_dir {
+      label: _("Open File");
+      action-name: "win.select_files";
+      styles ["pill"]
     }
   }
 }
 
+SizeGroup {
+  widgets [
+    open_dir_btn_empty_dir,
+    load_files_btn_empty_dir
+  ]
+}
+
 Adw.StatusPage no_saves_found_status {
-  title: _("No saves found yet");
+  title: _("No Saves");
   icon-name: "nothing-found-symbolic";
   description: _("Press pin button to add current directory to the saves");
 
@@ -57,6 +77,7 @@ Adw.Dialog quick_edit_dialog {
   can-close: true;
   content-height: 600;
   content-width: 500;
+  title: _("Quick Editor");
 
   Adw.Clamp {
     orientation: horizontal;
@@ -70,22 +91,14 @@ Adw.Dialog quick_edit_dialog {
 
       Adw.ToastOverlay quck_editor_toast_overlay {
         Adw.ToolbarView {
-          margin-bottom: 12;
-          margin-end: 12;
-          margin-start: 12;
-          margin-top: 12;
 
           [top]
-          Adw.HeaderBar {
-            Label quick_editor_label {
-              label: _("Quick Editor");
-              ellipsize: end;
-
-              styles ["title-3"]
-            }
-          }
+          Adw.HeaderBar {}
 
           ScrolledWindow {
+            margin-start: 12;
+            margin-end: 12;
+
             TextView quick_edit_text_view {
               right-margin: 4;
               bottom-margin: 4;
@@ -99,14 +112,15 @@ Adw.Dialog quick_edit_dialog {
           [bottom]
           Box {
             orientation: horizontal;
-            margin-top: 4;
-            halign: end;
+            margin-top: 12;
+            margin-bottom: 12;
+            halign: center;
 
             Button quick_edit_copy_button {
-              label: _("Copy to clipboard");
+              label: _("Copy to Clipboard");
               clicked => $copy_quick_editor_text();
 
-              styles ["suggested-action"]
+              styles ["suggested-action", "pill"]
             }
           }
         }
@@ -245,7 +259,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                       tooltip-text: _("Filter library");
                       menu-model: menu {
                         section {
-                          label: C_("filter menu secton name. 'Show only…' selected lyric formats", "Show only…");
                           item {
                             label: C_("means lyrics absence", "None");
                             action: "win.filter_none";
@@ -271,7 +284,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 [end]
                 MenuButton {
                   icon-name: "app-menu-symbolic";
-                  tooltip-text: _("App settings, info and utils");
+                  tooltip-text: _("Menu");
                   menu-model: menu about_app {
                     section {
                       submenu {

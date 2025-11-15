@@ -32,6 +32,7 @@
   <!-- Icons -->
   <gresource prefix="@PREFIX@/icons/scalable/actions/">
     <file alias="io.github.dzheremi2.lexi.svg">icons/hicolor/scalable/apps/io.github.dzheremi2.lexi.svg</file>
+    <file alias="chr-app-icon.svg">icons/hicolor/scalable/apps/@APP_ID@.svg</file>
     <file alias="toggle-sidebar-symbolic.svg">icons/icons/symbolic/toggle-sidebar-symbolic.svg</file>
     <file alias="open-source-symbolic.svg">icons/icons/symbolic/open-source-symbolic.svg</file>
     <file alias="search-symbolic.svg">icons/icons/symbolic/search-symbolic.svg</file>

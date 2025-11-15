@@ -9,3 +9,4 @@ io.github.dzheremi2.lrcmake-gtk.flatpak
 *.pyc
 io.github.dzheremi2.lrcmake_gtk.Devel.flatpak
 io.github.dzheremi2.lrcmake_gtk.Devel.yaml
+.ruff_cache/

@@ -231,7 +231,7 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   def _on_resursive_parsing_changed(
     self, row: Union[Adw.SwitchRow, Adw.ExpanderRow], _pspec
   ) -> None:
-    if Constants.WIN.state.value in (1, 2):
+    if Constants.WIN.state in (1, 2):
       if isinstance(row, Adw.SwitchRow):
         self._follow_symlinks_unapplied = row.get_active() != self._follow_symlinks
       elif isinstance(row, Adw.ExpanderRow):

@@ -122,7 +122,7 @@ class LineModel(GObject.Object):
     for i in range(self.words.get_n_items()):
       yield self.words.get_item(i)
 
-  def __getitem__(self, index) -> WordModel:
+  def __getitem__(self, index: int) -> WordModel:
     """Return word by index."""
     try:
       if (item := self.words.get_item(index)) is not None:

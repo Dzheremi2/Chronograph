@@ -33,7 +33,7 @@ gnome.compile_resources(
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
-  dependencies: blueprints
+  dependencies: [blueprints]
 )
 
 desktop_file = i18n.merge_file(

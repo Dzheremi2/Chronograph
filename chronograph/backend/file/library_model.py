@@ -51,7 +51,7 @@ class LibraryModel(GObject.Object, metaclass=GSingleton):
       Constants.WIN.state = 3
     else:
       Constants.WIN.state = 0
-    FileManager()
+    FileManager().set_directory(None)
     Schema.set("root.state.library.session", "None")
 
   def reset_library(self) -> None:
@@ -88,7 +88,7 @@ class LibraryModel(GObject.Object, metaclass=GSingleton):
       Constants.WIN.state = 1
 
   def _load_files(
-    self, mutagen_files: tuple[Union[FileID3, FileMP4, FileVorbis, FileUntaggable]]
+    self, mutagen_files: tuple[Union[FileID3, FileMP4, FileVorbis, FileUntaggable], ...]
   ) -> bool:
     def songcard_idle(
       file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],

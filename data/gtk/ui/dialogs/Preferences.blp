@@ -12,27 +12,27 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("Behavior");
 
       Adw.SwitchRow reset_quick_edit_switch {
-        title: _("Reset quick edit dialog on close");
+        title: _("Reset Quick Edit Dialog on Close");
         subtitle: _("Choose, if quick edit dialog text should be cleaned after exit or not");
       }
 
       Adw.SwitchRow save_session_on_quit_switch {
-        title: _("Save session on app close");
+        title: _("Save Session on App Close");
         subtitle: _("Re-opens last opened directory on the next startup");
       }
 
       Adw.SwitchRow automatic_list_view_switch {
-        title: _("Automatically toggle List View mode");
+        title: _("Automatically Toggle List View Mode");
         subtitle: _("Automatically toggles List View mode when display size is not big enough");
       }
 
       Adw.ExpanderRow load_compressed_covers_switch {
-        title: _("Display compressed covers");
+        title: _("Display Compressed Covers");
         subtitle: _("May slightly reduce memory consumption.\nThis does not affect actual images stored within files");
         show-enable-switch: true;
 
         Adw.SpinRow compress_level_spin {
-          title: _("Quality level");
+          title: _("Quality Level");
           subtitle: _("The higher value, the higher cover quality");
           adjustment: Adjustment compress_level_adjustment {
             lower: 1;
@@ -45,11 +45,11 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
       Adw.ExpanderRow recursive_parsing_switch {
         show-enable-switch: true;
-        title: _("Parse directories recursively");
+        title: _("Parse Directories Recursively");
         subtitle: _("Scans provided directory for supported files recursively");
 
         Adw.SwitchRow follow_symlinks_switch {
-          title: _("Follow symlinks");
+          title: _("Follow Symlinks");
           subtitle: _("If a directory has symlinks to other directories, they would be parsed too\nMay cause excessive memory consumption and looping if it has looped symlinks");
         }
       }
@@ -80,7 +80,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("Debug");
 
       Adw.SwitchRow enable_debug_logging_switch {
-        title: _("Enable Debug logging profile");
+        title: _("Enable Debug Logging Profile");
         subtitle: _("Expands logging information for debug purposes");
         tooltip-text: _("NEEDS RESTART");
       }
@@ -95,8 +95,8 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("General");
 
       Adw.ComboRow syncing_type_combo_row {
-        title: _("Syncing type");
-        subtitle: _("Defines the default workflow of syncing process. It may be either Line-by-Line, or Word-by-Word\nWORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES");
+        title: _("Syncing Type");
+        subtitle: _("Defines the default workflow of syncing process");
         model: StringList sync_types {
           strings [
             _("Line-by-Line"),
@@ -105,17 +105,28 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         };
       }
 
-      Adw.SwitchRow precise_milliseconds_switch {
-        title: _("Use precise milliseconds");
-        subtitle: _("Use 3-digit milliseconds instead of 2-digit");
+      Adw.ActionRow {
+        title: _("Word-by-Word sync workflow is not supported on mobile devices.");
+
+        [prefix]
+        Image {
+          icon-name: "info-button-symbolic";
+        }
       }
+    }
+
+    Adw.PreferencesGroup {
+      Adw.SwitchRow precise_milliseconds_switch {
+        title: _("Use Precise Milliseconds");
+        subtitle: _("Use 3-digit milliseconds instead of 2-digit");
+      } 
     }
 
     Adw.PreferencesGroup {
       title: _("Line-by-Line");
 
       Adw.SpinRow lbl_default_seek_spin_row {
-        title: _("Default re-sync value");
+        title: _("Default Re-Sync Value");
         subtitle: _("Amount of milliseconds default re-sync performs by");
         adjustment: Adjustment lbl_default_seek_adj {
           lower: 1;
@@ -126,7 +137,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       }
 
       Adw.SpinRow lbl_large_seek_spin_row {
-        title: _("Large re-sync value");
+        title: _("Large Re-Sync Value");
         subtitle: _("Amount of milliseconds large re-sync performs by");
         adjustment: Adjustment lbl_large_seek_adj {
           lower: 1;
@@ -141,7 +152,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("Word-by-Word");
 
       Adw.SpinRow wbw_default_seek_spin_row {
-        title: _("Default re-sync value");
+        title: _("Default Re-Sync Value");
         subtitle: _("Amount of milliseconds default re-sync performs by");
         adjustment: Adjustment wbw_default_seek_adj {
           lower: 1;
@@ -152,7 +163,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       }
 
       Adw.SpinRow wbw_large_seek_spin_row {
-        title: _("Large re-sync value");
+        title: _("Large Re-Sync Value");
         subtitle: _("Amount of milliseconds large re-sync performs by");
         adjustment: Adjustment wbw_large_seek_adj {
           lower: 1;
@@ -170,7 +181,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
     Adw.PreferencesGroup {
       Adw.SwitchRow auto_file_manipulation_switch {
-        title: _("Auto file manipulation");
+        title: _("Auto File Manipulation");
         subtitle: _("Automatically creates and updates files when any of lyrics lines changed");
       }
     }
@@ -180,7 +191,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       sensitive: bind auto_file_manipulation_switch.active;
 
       Adw.ComboRow auto_file_manipulation_format {
-        title: _("File format");
+        title: _("File Format");
         subtitle: _("File format for auto manipulation");
         model: StringList formats {
           strings [
@@ -191,7 +202,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       }
 
       Adw.SpinRow autosave_throttling_spin {
-        title: _("Autosave interval");
+        title: _("Autosave Interval");
         subtitle: _("Autosave interval after lyrics syncing inactivity");
         adjustment: Adjustment autosave_throttling_adjustment {
           lower: 1;
@@ -207,12 +218,12 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       sensitive: bind auto_file_manipulation_switch.active;
 
       Adw.SwitchRow save_plain_lrc_also_switch_row {
-        title: _("Save plain LRC too");
+        title: _("Save Plain LRC Too");
         subtitle: _("Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't set");
       }
 
       Adw.EntryRow elrc_prefix_entry_row {
-        title: _("eLRC prefix");
+        title: _("eLRC Prefix");
         sensitive: bind save_plain_lrc_also_switch_row.active;
 
         [suffix]
@@ -234,21 +245,21 @@ template $ChronographPreferences : Adw.PreferencesDialog {
     }
 
     Adw.PreferencesGroup {
-      title: _("Lyrics embedding");
+      title: _("Lyrics Embedding");
       sensitive: bind auto_file_manipulation_switch.active;
 
       Adw.ExpanderRow embed_lyrics_switch {
-        title: _("Embed lyrics within audio file");
+        title: _("Embed Lyrics Within Audio File");
         show-enable-switch: true;
 
         Adw.SwitchRow use_individual_synced_tag_vorbis_switch {
-          title: _("Use individual synced lyrics tag in Vorbis files");
+          title: _("Use Individual Synced Lyrics Tag in Vorbis Files");
           subtitle: _("Enables writing synced lyrics into separate tag in Vorbis Comment capable files (ogg, flac, opus)");
         }
       }
 
       Adw.ActionRow {
-        title: _("Embed lyrics default format");
+        title: _("Embed Lyrics Default Format");
         subtitle: _("Brings lyrics to selected format before embedding");
 
         [suffix]

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-04 19:34+0300\n"
-"PO-Revision-Date: 2025-05-14 12:01+0000\n"
-"Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
+"POT-Creation-Date: 2025-11-15 14:33+0300\n"
+"PO-Revision-Date: 2025-11-12 07:51+0000\n"
+"Last-Translator: vitrola06 <laverdolin@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "chronograph/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,9 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
-#: chronograph/window.py:411
+#: chronograph/window.py:405
 msgid "Copied successfully"
 msgstr "Copiado com sucesso"
 
@@ -41,30 +41,30 @@ msgstr "Construa seu próprio dicionário"
 
 #: chronograph/main.py:184
 msgid "Translate the App"
-msgstr ""
+msgstr "Traduza o App"
 
-#: chronograph/ui/dialogs/lrclib.py:103
+#: chronograph/ui/dialogs/lrclib.py:108
 msgid "Connection Error"
-msgstr ""
+msgstr "Erro de Conexão"
 
-#: chronograph/ui/dialogs/lrclib.py:105
+#: chronograph/ui/dialogs/lrclib.py:110
 msgid "Network error occured while connecting to LRClib"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:111
+#: chronograph/ui/dialogs/lrclib.py:116
 msgid "Something went wrong"
-msgstr ""
+msgstr "Alguma coisa deu errado"
 
-#: chronograph/ui/dialogs/lrclib.py:113
+#: chronograph/ui/dialogs/lrclib.py:118
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:203
+#: chronograph/ui/dialogs/lrclib.py:194
 msgid "No synced lyrics available"
 msgstr "Não há letras sincronizadas disponíveis"
 
-#: chronograph/ui/dialogs/lrclib.py:208
+#: chronograph/ui/dialogs/lrclib.py:199
 msgid "No plain lyrics available"
 msgstr "Não há letras simples disponíveis"
 
@@ -100,45 +100,37 @@ msgid "Connection timed out"
 msgstr ""
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:110
-#, fuzzy
 msgid "Connection error occurred"
-msgstr "Ocorreu um erro desconhecido: "
+msgstr "Ocorreu um erro de conexão"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:112
-#, fuzzy
 msgid "An error occurred: "
-msgstr "Ocorreu um erro desconhecido: "
+msgstr "Um erro ocorreu: "
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:118
-#, fuzzy
 msgid "Instrumental track. No lyrics available"
-msgstr "Não há letras simples disponíveis"
+msgstr "Faixa instrumental. Sem letras disponíveis"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:132
-#, fuzzy
 msgid "No synced lyrics found"
-msgstr "Não há letras sincronizadas disponíveis"
+msgstr "Nenhuma letra sincronizada encontrada"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 #: chronograph/backend/lrclib/lrclib_service.py:410
-#, fuzzy
 msgid "No lyrics found"
-msgstr "Nenhuma defesa encontrada ainda"
+msgstr "Nenhuma letra encontrada"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:152
-#, fuzzy
 msgid "No plain lyrics found"
-msgstr "Não há letras simples disponíveis"
+msgstr "Nenhuma letra simples encontrada"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:173
-#, fuzzy
 msgid "Cancelled"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-#, fuzzy
 msgid "Pending"
-msgstr "Chandings Keybindings"
+msgstr "Pendente"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
@@ -149,13 +141,13 @@ msgstr "Cópia para a área de transferência"
 #: chronograph/ui/sync_pages/lrc_sync_page.py:294
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Letras exportadas para arquivo"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:404
 #, fuzzy, python-brace-format
@@ -168,13 +160,13 @@ msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:412
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Ocorreu um erro desconhecido: "
+msgstr "Ocorreu um erro desconhecido:{code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:423
 msgid "Network error occurred while publishing lyrics"
-msgstr ""
+msgstr "Ocorreu um erro de rede ao publicar as letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:424
 #: chronograph/ui/sync_pages/lrc_sync_page.py:432
@@ -183,50 +175,53 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:431
 msgid "An error occurred while publishing lyrics"
-msgstr ""
+msgstr "Um erro ocorreu ao publicar as letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:459
-msgid "Unable to publish lyrics"
-msgstr ""
+#, fuzzy
+msgid "Unable to publish lyrics."
+msgstr "Não é possível publicar as letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:461
+#, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
-"fields set"
+"fields set."
 msgstr ""
+"Para publicar as letras a faixa deve ter um título e os campos de artista, "
+"álbum e letras definidos"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Não é possível publicar letras vazias"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Why?"
-msgstr ""
+msgstr "Por quê?"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Não há letras simples disponíveis"
+msgstr "Não há letras disponíveis"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
-msgstr ""
+msgstr "Você não proveu nenhuma letra para sincronização"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:324
 msgid "No lyrics to be re-synced"
-msgstr ""
+msgstr "Nenhuma letra a ser ressincronizada"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:326
 msgid "Open Sync mode to re-sync all words"
-msgstr ""
+msgstr "Abra o modo Sincronizar para ressincronizar todas as palavras"
 
 #: chronograph/ui/widgets/song_card.py:117
 #, fuzzy
@@ -236,19 +231,19 @@ msgstr "Sobre o arquivo"
 
 #: chronograph/ui/widgets/song_card.py:120
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
-#: data/gtk/ui/dialogs/MetadataEditor.blp:90
+#: data/gtk/ui/dialogs/MetadataEditor.blp:109
 msgid "Title"
 msgstr "Título"
 
 #: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
-#: data/gtk/ui/dialogs/MetadataEditor.blp:94
+#: data/gtk/ui/dialogs/MetadataEditor.blp:113
 msgid "Artist"
 msgstr "Artista"
 
 #: chronograph/ui/widgets/song_card.py:127
 #: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
-#: data/gtk/ui/dialogs/MetadataEditor.blp:98
+#: data/gtk/ui/dialogs/MetadataEditor.blp:117
 msgid "Album"
 msgstr "Álbum"
 
@@ -304,14 +299,14 @@ msgid "Unknown"
 msgstr "Desconhecido"
 
 #: chronograph/backend/file/song_card_model.py:25
-#: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:250
+#: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:263
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:254
-#: data/gtk/ui/dialogs/LRClib.blp:149 data/gtk/ui/dialogs/Preferences.blp:260
-#: data/gtk/ui/dialogs/Preferences.blp:262
+#: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:267
+#: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:271
+#: data/gtk/ui/dialogs/Preferences.blp:273
 msgid "Plain"
 msgstr "Simples"
 
@@ -326,174 +321,168 @@ msgid "Fetching using /api/get failed, trying /api/search"
 msgstr ""
 
 #: chronograph/backend/lrclib/lrclib_service.py:397
-#, fuzzy
 msgid "No suitable lyrics found"
-msgstr "Nenhuma defesa encontrada ainda"
+msgstr "Nenhuma letra adequada encontrada"
 
-#. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
+#: data/gtk/window.blp:5
+msgid "No Music"
+msgstr ""
+
 #: data/gtk/window.blp:6
-msgid "No source selected yet"
-msgstr "Nenhuma fonte selecionada ainda"
-
-#: data/gtk/window.blp:7
-msgid "Select a directory or Drag-N-Drop files to load them"
+#, fuzzy
+msgid "Select a directory or drop files to load them"
 msgstr "Selecione um diretório ou arraste e solte arquivos para carregá-los"
 
-#. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
-#: data/gtk/window.blp:16 data/gtk/window.blp:37
-msgid "Open source"
-msgstr "Código aberto"
+#: data/gtk/window.blp:16 data/gtk/window.blp:48
+#, fuzzy
+msgid "Open Directory"
+msgstr "Diretório"
 
-#: data/gtk/window.blp:28
-msgid "Empty directory"
+#: data/gtk/window.blp:22 data/gtk/window.blp:54
+#, fuzzy
+msgid "Open File"
+msgstr "Arquivo"
+
+#: data/gtk/window.blp:37
+#, fuzzy
+msgid "Empty Directory"
 msgstr "Diretório vazio"
 
-#: data/gtk/window.blp:29
+#: data/gtk/window.blp:38
 msgid "This directory doesn't have any supported music files"
 msgstr "Este diretório não possui nenhum arquivo de música suportado"
 
-#: data/gtk/window.blp:49
-msgid "No saves found yet"
-msgstr "Nenhuma defesa encontrada ainda"
+#: data/gtk/window.blp:69
+#, fuzzy
+msgid "No Saves"
+msgstr "Salva"
 
-#: data/gtk/window.blp:51
+#: data/gtk/window.blp:71
 msgid "Press pin button to add current directory to the saves"
-msgstr "Pressione o botão PIN para adicionar diretório atual às defesas"
+msgstr "Pressione o botão PIN para adicionar diretório atual aos fixados"
 
-#: data/gtk/window.blp:81 data/gtk/window.blp:311
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:63
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
+#: data/gtk/window.blp:80 data/gtk/window.blp:324
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:29
 msgid "Quick Editor"
 msgstr "Editor rápido"
 
-#: data/gtk/window.blp:106
+#: data/gtk/window.blp:120
 #, fuzzy
-msgid "Copy to clipboard"
+msgid "Copy to Clipboard"
 msgstr "Praça de transferência"
 
-#: data/gtk/window.blp:119 data/gtk/window.blp:181
+#: data/gtk/window.blp:133 data/gtk/window.blp:195
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Cronógrafo"
 
-#: data/gtk/window.blp:167
+#: data/gtk/window.blp:181
 msgid "Drop files here to open them"
 msgstr "Solte arquivos aqui para abri-los"
 
-#: data/gtk/window.blp:188
+#: data/gtk/window.blp:202
 msgid "Saves"
 msgstr "Salva"
 
-#: data/gtk/window.blp:196 data/gtk/window.blp:217
+#: data/gtk/window.blp:210 data/gtk/window.blp:231
 #: data/gtk/ui/shortcuts-dialog.blp:35
 msgid "Toggle sidebar"
 msgstr "Alterne a barra lateral"
 
-#: data/gtk/window.blp:224
+#: data/gtk/window.blp:238
 msgid "Select a directory or open a file"
 msgstr "Selecione um diretório ou abra um arquivo"
 
-#: data/gtk/window.blp:239 data/gtk/ui/shortcuts-dialog.blp:15
+#: data/gtk/window.blp:253 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
 msgstr "Alternar pesquisar"
 
-#: data/gtk/window.blp:245
-#, fuzzy
+#: data/gtk/window.blp:259
 msgid "Filter library"
-msgstr "Limpar a biblioteca"
+msgstr "Filtre a biblioteca"
 
-#: data/gtk/window.blp:248
-msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
-msgid "Show only…"
+#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
+msgid "Menu"
 msgstr ""
 
-#: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
-msgid "App settings, info and utils"
-msgstr "Configurações, informações e utilitários de aplicativos"
-
-#: data/gtk/window.blp:278 data/gtk/ui/sync_pages/LRCSyncPage.blp:30
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:30
+#: data/gtk/window.blp:291
 msgid "Sort"
 msgstr "Organizar"
 
-#: data/gtk/window.blp:281 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
+#: data/gtk/window.blp:294
 msgid "A-Z"
-msgstr "A-z"
+msgstr "A-Z"
 
-#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:39
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:39
+#: data/gtk/window.blp:300
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:294 data/gtk/ui/sync_pages/LRCSyncPage.blp:46
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:46
+#: data/gtk/window.blp:307
 msgid "View"
 msgstr "Visualizar"
 
-#: data/gtk/window.blp:297 data/gtk/ui/sync_pages/LRCSyncPage.blp:49
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:49
+#: data/gtk/window.blp:310
 msgid "Grid"
 msgstr "Grade"
 
-#: data/gtk/window.blp:303 data/gtk/ui/sync_pages/LRCSyncPage.blp:55
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:55
+#: data/gtk/window.blp:316
 msgid "List"
 msgstr "Lista"
 
-#: data/gtk/window.blp:312
+#: data/gtk/window.blp:325
 msgid "Mass Lyrics Downloading"
-msgstr ""
+msgstr "Download de Letras em Massa"
 
-#: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
+#: data/gtk/window.blp:329 data/gtk/ui/sync_pages/LRCSyncPage.blp:34
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "Preferences"
 msgstr "Preferências"
 
-#: data/gtk/window.blp:317 data/gtk/ui/shortcuts-dialog.blp:30
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:68
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:68
+#: data/gtk/window.blp:330 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:35
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
 msgid "Keybindings"
-msgstr "Chandings Keybindings"
+msgstr "Atalhos"
 
-#: data/gtk/window.blp:318 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:69
+#: data/gtk/window.blp:331 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
 msgid "About"
 msgstr "Sobre"
 
-#: data/gtk/window.blp:327
+#: data/gtk/window.blp:340
 msgid "Clean the library"
 msgstr "Limpar a biblioteca"
 
-#: data/gtk/window.blp:342
+#: data/gtk/window.blp:355
 msgid "Add current directory to saves"
-msgstr "Adicione o diretório atual às salvamentos"
+msgstr "Adicione o diretório atual aos fixados"
 
-#: data/gtk/window.blp:351
+#: data/gtk/window.blp:364
 msgid "Recursive parsing settings changed. Re-parse?"
-msgstr ""
+msgstr "Configurações de análise recursiva alteradas. Reanalisar?"
 
-#: data/gtk/window.blp:352
+#: data/gtk/window.blp:365
 msgid "Re-Parse"
 msgstr ""
 
-#: data/gtk/window.blp:367 data/gtk/ui/dialogs/LRClib.blp:83
+#: data/gtk/window.blp:380 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
 msgstr "Procurar"
 
-#: data/gtk/window.blp:408
+#: data/gtk/window.blp:421
 msgid "Directory"
 msgstr "Diretório"
 
-#: data/gtk/window.blp:409
+#: data/gtk/window.blp:422
 msgid "Files"
 msgstr "Arquivos"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:95
-#: data/gtk/ui/dialogs/Preferences.blp:179
+#: data/gtk/ui/dialogs/Preferences.blp:190
 msgid "General"
 msgstr "Em geral"
 
@@ -515,17 +504,15 @@ msgstr "Modo de sincronização"
 
 #: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
-msgstr "Sincronização/re-sincronização"
+msgstr "Sincronizar/Ressincronizar"
 
 #: data/gtk/ui/shortcuts-dialog.blp:49
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Replay Linha selecionada"
+msgstr "Passar a linha/palavra selecionada novamente"
 
 #: data/gtk/ui/shortcuts-dialog.blp:54
-#, fuzzy
 msgid "Re-sync default amount of ms back"
-msgstr "Re-sincronizar a linha selecionada 100ms de volta"
+msgstr "Ressincronizar a quantidade padrão de ms"
 
 #: data/gtk/ui/shortcuts-dialog.blp:59
 #, fuzzy
@@ -559,7 +546,7 @@ msgid "Append line to selected"
 msgstr "Anexar a linha para selecionar"
 
 #: data/gtk/ui/shortcuts-dialog.blp:93
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:185
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:161
 msgid "Append line to end"
 msgstr "Anexar a linha para terminar"
 
@@ -585,77 +572,83 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search LRClib for provided title and artist"
-msgstr "Pesquise lrclib pelo título e artista fornecido"
+msgstr "Procure no LRClib pelo título e artista fornecidos"
 
-#: data/gtk/ui/dialogs/LRClib.blp:124
+#: data/gtk/ui/dialogs/LRClib.blp:126
 msgid "Synced"
 msgstr "Sincronizado"
 
-#: data/gtk/ui/dialogs/LRClib.blp:178
-msgid ""
-"Synced lyrics are used by default, to use plain, select 'Use plain' from "
-"submenu"
+#: data/gtk/ui/dialogs/LRClib.blp:143
+#, fuzzy
+msgid "Synced lyrics from LRClib"
+msgstr "Nenhuma letra sincronizada encontrada"
+
+#: data/gtk/ui/dialogs/LRClib.blp:170
+#, fuzzy
+msgid "Plain lyrics from LRClib"
+msgstr "Nenhuma letra simples encontrada"
+
+#: data/gtk/ui/dialogs/LRClib.blp:186
+msgid "Imports currently selected lyrics"
 msgstr ""
-"As letras sincronizadas são usadas por padrão, para usar simples, selecione "
-"'Use Plain' do submenu"
 
-#: data/gtk/ui/dialogs/LRClib.blp:181
-msgid "Use plain"
-msgstr "Use simples"
+#: data/gtk/ui/dialogs/LRClib.blp:188
+msgid "Import"
+msgstr ""
 
-#: data/gtk/ui/dialogs/LRClib.blp:182
-msgid "Use synced"
-msgstr "Use sincronizado"
+#: data/gtk/ui/dialogs/LRClib.blp:223
+msgid "Nothing Was Found"
+msgstr ""
 
-#: data/gtk/ui/dialogs/LRClib.blp:189
-msgid "Use"
-msgstr "Usar"
-
-#: data/gtk/ui/dialogs/LRClib.blp:225
-msgid "Nothing was found for this request"
-msgstr "Nada foi encontrado para este pedido"
-
-#: data/gtk/ui/dialogs/LRClib.blp:226
-msgid "Try out another request, maybe there are mistakes in request text."
+#: data/gtk/ui/dialogs/LRClib.blp:224
+#, fuzzy
+msgid "Try out another request, maybe there are mistakes in request text"
 msgstr ""
 "Experimente outra solicitação, talvez haja erros no texto de solicitação."
 
-#: data/gtk/ui/dialogs/LRClib.blp:230
+#: data/gtk/ui/dialogs/LRClib.blp:228
 #, fuzzy
-msgid "Search on LRClib by title, artist and album names"
+msgid "Search LRClib"
+msgstr "Procurar"
+
+#: data/gtk/ui/dialogs/LRClib.blp:229
+#, fuzzy
+msgid "Search songs by title, artist and album"
 msgstr "Pesquise no lrclib por título e nomes de artistas"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
 msgstr "Aplicar"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:51
+#: data/gtk/ui/dialogs/MetadataEditor.blp:80
 msgid "Change cover"
 msgstr "Alterar cobertura"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:57
-msgid "Set cover"
+#: data/gtk/ui/dialogs/MetadataEditor.blp:86
+#, fuzzy
+msgid "Set Cover…"
 msgstr "Capa do conjunto"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:62
-msgid "Remove cover"
+#: data/gtk/ui/dialogs/MetadataEditor.blp:91
+#, fuzzy
+msgid "Remove Cover…"
 msgstr "Remova a tampa"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:109
+#: data/gtk/ui/dialogs/MetadataEditor.blp:123
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Incorporar Letras"
 
-#: data/gtk/ui/dialogs/MetadataEditor.blp:114
-#, fuzzy
+#: data/gtk/ui/dialogs/MetadataEditor.blp:128
 msgid "Delete Lyrics"
-msgstr "Excluir"
+msgstr "Excluir Letras"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
 msgstr "Comportamento"
 
 #: data/gtk/ui/dialogs/Preferences.blp:15
-msgid "Reset quick edit dialog on close"
+#, fuzzy
+msgid "Reset Quick Edit Dialog on Close"
 msgstr "Redefina a caixa de diálogo de edição rápida em fechamento"
 
 #: data/gtk/ui/dialogs/Preferences.blp:16
@@ -665,15 +658,17 @@ msgstr ""
 "ou não"
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
-msgid "Save session on app close"
-msgstr "Salvar sessão no aplicativo fechar"
+#, fuzzy
+msgid "Save Session on App Close"
+msgstr "Salvar sessão ao fechar o app"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
 msgstr "Reabre o último diretório aberto na próxima startup"
 
 #: data/gtk/ui/dialogs/Preferences.blp:25
-msgid "Automatically toggle List View mode"
+#, fuzzy
+msgid "Automatically Toggle List View Mode"
 msgstr "Alternar automaticamente o modo de exibição de lista"
 
 #: data/gtk/ui/dialogs/Preferences.blp:26
@@ -684,7 +679,7 @@ msgstr ""
 "não é grande o suficiente"
 
 #: data/gtk/ui/dialogs/Preferences.blp:30
-msgid "Display compressed covers"
+msgid "Display Compressed Covers"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:31
@@ -694,7 +689,7 @@ msgid ""
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:35
-msgid "Quality level"
+msgid "Quality Level"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:36
@@ -702,7 +697,8 @@ msgid "The higher value, the higher cover quality"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:48
-msgid "Parse directories recursively"
+#, fuzzy
+msgid "Parse Directories Recursively"
 msgstr "Analisar diretórios de forma recursiva"
 
 #: data/gtk/ui/dialogs/Preferences.blp:49
@@ -711,7 +707,8 @@ msgstr ""
 "Examina recursivamente o diretório fornecido em busca de arquivos compatíveis"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
-msgid "Follow symlinks"
+#, fuzzy
+msgid "Follow Symlinks"
 msgstr "Seguir links simbólicos"
 
 #: data/gtk/ui/dialogs/Preferences.blp:53
@@ -751,7 +748,7 @@ msgid "Debug"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
-msgid "Enable Debug logging profile"
+msgid "Enable Debug Logging Profile"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
@@ -760,7 +757,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "NECESSITA DE REINÍCIO"
 
 #: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
@@ -770,138 +767,148 @@ msgstr "Sincronizando"
 
 #: data/gtk/ui/dialogs/Preferences.blp:98
 #, fuzzy
-msgid "Syncing type"
+msgid "Syncing Type"
 msgstr "Sincronizando"
 
 #: data/gtk/ui/dialogs/Preferences.blp:99
-msgid ""
-"Defines the default workflow of syncing process. It may be either Line-by-"
-"Line, or Word-by-Word\n"
-"WORD-BY-WORD ISN'T CAPABLE WITH MOBILE DEVICES"
+msgid "Defines the default workflow of syncing process"
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:102
-#: data/gtk/ui/dialogs/Preferences.blp:115
+#: data/gtk/ui/dialogs/Preferences.blp:126
 msgid "Line-by-Line"
-msgstr ""
+msgstr "Linha por Linha"
 
 #: data/gtk/ui/dialogs/Preferences.blp:103
-#: data/gtk/ui/dialogs/Preferences.blp:141
+#: data/gtk/ui/dialogs/Preferences.blp:152
 msgid "Word-by-Word"
-msgstr ""
+msgstr "Palavra por Palavra"
 
 #: data/gtk/ui/dialogs/Preferences.blp:109
-msgid "Use precise milliseconds"
+msgid "Word-by-Word sync workflow is not supported on mobile devices."
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:120
+#, fuzzy
+msgid "Use Precise Milliseconds"
 msgstr "Use milissegundos precisos"
 
-#: data/gtk/ui/dialogs/Preferences.blp:110
+#: data/gtk/ui/dialogs/Preferences.blp:121
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Use milissegundos de 3 dígitos em vez de 2 dígitos"
-
-#: data/gtk/ui/dialogs/Preferences.blp:118
-#: data/gtk/ui/dialogs/Preferences.blp:144
-msgid "Default re-sync value"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:119
-#: data/gtk/ui/dialogs/Preferences.blp:145
-msgid "Amount of milliseconds default re-sync performs by"
-msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:129
 #: data/gtk/ui/dialogs/Preferences.blp:155
 #, fuzzy
-msgid "Large re-sync value"
+msgid "Default Re-Sync Value"
 msgstr "Linha de sincronização/re-sincronização"
 
 #: data/gtk/ui/dialogs/Preferences.blp:130
 #: data/gtk/ui/dialogs/Preferences.blp:156
+msgid "Amount of milliseconds default re-sync performs by"
+msgstr ""
+
+#: data/gtk/ui/dialogs/Preferences.blp:140
+#: data/gtk/ui/dialogs/Preferences.blp:166
+#, fuzzy
+msgid "Large Re-Sync Value"
+msgstr "Linha de sincronização/re-sincronização"
+
+#: data/gtk/ui/dialogs/Preferences.blp:141
+#: data/gtk/ui/dialogs/Preferences.blp:167
 msgid "Amount of milliseconds large re-sync performs by"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:168
+#: data/gtk/ui/dialogs/Preferences.blp:179
 #, fuzzy
 msgid "File Manipulation"
 msgstr "Manipulação de arquivo automático"
 
-#: data/gtk/ui/dialogs/Preferences.blp:173
-msgid "Auto file manipulation"
+#: data/gtk/ui/dialogs/Preferences.blp:184
+#, fuzzy
+msgid "Auto File Manipulation"
 msgstr "Manipulação de arquivo automático"
 
-#: data/gtk/ui/dialogs/Preferences.blp:174
+#: data/gtk/ui/dialogs/Preferences.blp:185
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Cria e atualiza automaticamente os arquivos quando qualquer uma das linhas "
 "de letras mudou"
 
-#: data/gtk/ui/dialogs/Preferences.blp:183
-msgid "File format"
+#: data/gtk/ui/dialogs/Preferences.blp:194
+#, fuzzy
+msgid "File Format"
 msgstr "Formato de arquivo"
 
-#: data/gtk/ui/dialogs/Preferences.blp:184
+#: data/gtk/ui/dialogs/Preferences.blp:195
 msgid "File format for auto manipulation"
 msgstr "Formato de arquivo para manipulação automática"
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
-msgid "Autosave interval"
+#: data/gtk/ui/dialogs/Preferences.blp:205
+msgid "Autosave Interval"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:195
+#: data/gtk/ui/dialogs/Preferences.blp:206
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:210
-msgid "Save plain LRC too"
-msgstr ""
+#: data/gtk/ui/dialogs/Preferences.blp:221
+#, fuzzy
+msgid "Save Plain LRC Too"
+msgstr "Salvar LRC simples também"
 
-#: data/gtk/ui/dialogs/Preferences.blp:211
+#: data/gtk/ui/dialogs/Preferences.blp:222
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
+"Salva um arquivo LRC simples além de um eLRC. Não funcionará caso o prefixo "
+"de eLRC não estiver definido."
 
-#: data/gtk/ui/dialogs/Preferences.blp:215
-msgid "eLRC prefix"
-msgstr ""
+#: data/gtk/ui/dialogs/Preferences.blp:226
+#, fuzzy
+msgid "eLRC Prefix"
+msgstr "Prefixo de eLRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:224
-#: data/gtk/ui/dialogs/Preferences.blp:281
+#: data/gtk/ui/dialogs/Preferences.blp:235
+#: data/gtk/ui/dialogs/Preferences.blp:292
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
-#: data/gtk/ui/dialogs/Preferences.blp:227
+#: data/gtk/ui/dialogs/Preferences.blp:238
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:237
-msgid "Lyrics embedding"
+#: data/gtk/ui/dialogs/Preferences.blp:248
+msgid "Lyrics Embedding"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:241
-msgid "Embed lyrics within audio file"
+#: data/gtk/ui/dialogs/Preferences.blp:252
+msgid "Embed Lyrics Within Audio File"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:245
-msgid "Use individual synced lyrics tag in Vorbis files"
+#: data/gtk/ui/dialogs/Preferences.blp:256
+msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:246
+#: data/gtk/ui/dialogs/Preferences.blp:257
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
 msgstr ""
 
-#: data/gtk/ui/dialogs/Preferences.blp:251
-msgid "Embed lyrics default format"
-msgstr ""
+#: data/gtk/ui/dialogs/Preferences.blp:262
+#, fuzzy
+msgid "Embed Lyrics Default Format"
+msgstr "Incorporar Letras"
 
-#: data/gtk/ui/dialogs/Preferences.blp:252
+#: data/gtk/ui/dialogs/Preferences.blp:263
 msgid "Brings lyrics to selected format before embedding"
-msgstr ""
+msgstr "Traga as letras para o formato selecionado antes de incorporar"
 
-#: data/gtk/ui/dialogs/Preferences.blp:287
+#: data/gtk/ui/dialogs/Preferences.blp:298
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -911,13 +918,13 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
 #, fuzzy
-msgid "Re-Sync All Lines"
-msgstr "Linha de sincronização/re-sincronização"
+msgid "Re-Sync All Lines?"
+msgstr "Ressincronize Todas as Linhas"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
 msgid ""
 "Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
-"sync backwards"
+"sync backwards."
 msgstr ""
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
@@ -926,118 +933,118 @@ msgid "Milliseconds"
 msgstr "Use milissegundos precisos"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
-#, fuzzy
 msgid "Re-Sync"
-msgstr "Sincronização"
+msgstr "Ressincronização"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:96
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:96
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Sync/Re-sync line"
-msgstr "Linha de sincronização/re-sincronização"
+msgstr "Sincronize/Ressincronize a linha"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:107
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:75
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:74
 msgid "Replay selected line"
 msgstr "Replay Linha selecionada"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:115
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
 #, fuzzy
 msgid "Re-sync selected line back"
 msgstr "Re-sincronizar a linha selecionada 100ms de volta"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:123
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
 #, fuzzy
 msgid "Re-sync selected line forward"
 msgstr "Re-sincronizar a linha selecionada 100ms para a frente"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:135
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:131
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:135
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:105
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:110
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:98
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:102
 msgid "Import from …"
 msgstr "Importar de…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:137
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:156
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:137
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:156
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
 msgid "File"
 msgstr "Arquivo"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:138
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:138
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:157
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
 msgid "Clipboard"
 msgstr "Praça de transferência"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:150
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:154
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:154
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:124
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:129
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:121
 msgid "Export to …"
 msgstr "Exportar para…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:152
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
 msgid "Actions with selected line"
 msgstr "Ações com linha selecionada"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:182
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:158
 msgid "Remove line"
 msgstr "Remova a linha"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:183
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:159
 msgid "Prepend line"
 msgstr "Linha de previsão"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:184
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:160
 msgid "Append line"
 msgstr "Anexar a linha"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:200
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:175
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:179
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:146
 msgid "Utilities"
 msgstr ""
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:202
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:181
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:148
 #, fuzzy
 msgid "Re-sync all"
 msgstr "Linha de sincronização/re-sincronização"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:203
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
 #, fuzzy
 msgid "Edit metadata"
 msgstr "Editar metadados da música"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:204
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:183
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
 msgid "About file"
 msgstr "Sobre o arquivo"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:238
-msgid "Add line"
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:219
+#, fuzzy
+msgid "Add Line"
 msgstr "Adicione a linha"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:115
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:82
 #, fuzzy
 msgid "Re-sync selected word back"
 msgstr "Re-sincronizar a linha selecionada 100ms de volta"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
 #, fuzzy
 msgid "Re-sync selected word forward"
 msgstr "Re-sincronizar a linha selecionada 100ms para a frente"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:215
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
 msgid "Edit"
 msgstr ""
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:241
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:186
 msgid "Sync"
 msgstr "Sincronização"
@@ -1053,7 +1060,8 @@ msgid "Delete"
 msgstr "Excluir"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:42
-msgid "Rename this Save"
+#, fuzzy
+msgid "Rename this Save?"
 msgstr "Renomear este Salvar"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:46
@@ -1080,24 +1088,24 @@ msgstr "Página de sincronização aberta"
 msgid "Lyrics format (if exists)"
 msgstr ""
 
-#: data/gtk/ui/widgets/UIPlayer.blp:102
+#: data/gtk/ui/widgets/UIPlayer.blp:105
 msgid "Play/Pause"
 msgstr ""
 
-#: data/gtk/ui/widgets/UIPlayer.blp:136
+#: data/gtk/ui/widgets/UIPlayer.blp:139
 msgid "Playback settings"
 msgstr ""
 
-#: data/gtk/ui/widgets/UIPlayer.blp:155
+#: data/gtk/ui/widgets/UIPlayer.blp:158
 #, fuzzy
 msgid "Toggle mute"
 msgstr "Alternar pesquisar"
 
-#: data/gtk/ui/widgets/UIPlayer.blp:206
+#: data/gtk/ui/widgets/UIPlayer.blp:209
 msgid "Reset"
 msgstr ""
 
-#: data/gtk/ui/widgets/UIPlayer.blp:219
+#: data/gtk/ui/widgets/UIPlayer.blp:222
 msgid "Toggle song repeat"
 msgstr "Alternar a música repetir"
 
@@ -1161,6 +1169,41 @@ msgstr "Página de sincronização de letras em tela menor"
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;letras;canções;multimídia;mídia;música;sincronização;"
+
+#~ msgid "No source selected yet"
+#~ msgstr "Nenhuma fonte selecionada ainda"
+
+#~ msgid "Open source"
+#~ msgstr "Abrir fonte"
+
+#~ msgid "No saves found yet"
+#~ msgstr "Nenhum fixado encontrado ainda"
+
+#~ msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
+#~ msgid "Show only…"
+#~ msgstr "Apenas mostre…"
+
+#~ msgid "App settings, info and utils"
+#~ msgstr "Configurações, informações e utilitários"
+
+#~ msgid ""
+#~ "Synced lyrics are used by default, to use plain, select 'Use plain' from "
+#~ "submenu"
+#~ msgstr ""
+#~ "As letras sincronizadas são usadas por padrão, para usar simples, "
+#~ "selecione 'Use Plain' do submenu"
+
+#~ msgid "Use plain"
+#~ msgstr "Use simples"
+
+#~ msgid "Use synced"
+#~ msgstr "Use sincronizado"
+
+#~ msgid "Use"
+#~ msgstr "Usar"
+
+#~ msgid "Nothing was found for this request"
+#~ msgstr "Nada foi encontrado para este pedido"
 
 #~ msgid "Re-parse current directory"
 #~ msgstr "Reanalisar o diretório atual"

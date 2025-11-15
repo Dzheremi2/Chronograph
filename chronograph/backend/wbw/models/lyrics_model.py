@@ -134,7 +134,7 @@ class LyricsModel(GObject.Object):
     for i in range(self.lines.get_n_items()):
       yield self.lines.get_item(i)
 
-  def __getitem__(self, index) -> LineModel:
+  def __getitem__(self, index: int) -> LineModel:
     try:
       if (item := self.lines.get_item(index)) is not None:
         return item
