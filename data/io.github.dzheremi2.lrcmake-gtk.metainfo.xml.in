@@ -7,9 +7,31 @@
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
-    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface.</p>
-    <p>It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced functionality) formats.</p>
-    <p>It also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players</p>
+    <p>Chronograph is an open-source application designed for accurately syncing lyrics 
+    with audio timestamps.</p>
+    <p>You may notice that many of music players support synced lyrics which are 
+    highlighted line-by-line or word-by-word while playing? This app was designed to 
+    give the community an ability to be the ones who make these lyrics.</p>
+    <p>Chronograph directly supports publishing to LRCLib. As many FOSS music players 
+    use LRCLib to fetch synchronized lyrics, this integration allows users to easily 
+    contribute their work back to the open-source community.</p>
+    <p>Syncing Modes</p>
+    <ul>
+      <li>Line-by-Line (Primary). Here, every time you do sync action, timestamp is placed 
+      for the whole line of lyrics. This is the most supported format of synced lyrics.</li>
+      <li>Word-by-Word (Advanced): Designed for true karaoke quality. It places a 
+      timestamp for every single word, enabling players to animate lyrics with precision.</li>
+    </ul>
+    <p>Supported Formats</p>
+    <ul>
+      <li>OGG</li>
+      <li>FLAC</li>
+      <li>MP3</li>
+      <li>M4A</li>
+      <li>OPUS</li>
+      <li>WAV</li>
+      <li>AAC (reduced functionality)</li>
+    </ul>
   </description>
 
   <developer id="com.github">

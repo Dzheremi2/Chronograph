@@ -8,11 +8,16 @@
   <name>Chronograph</name>
   <shortdesc xml:lang="en">Sync lyrics of your loved songs</shortdesc>
   <description xml:lang="en">
-This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface. It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced functionality) formats. It also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players
+Chronograph is an open-source application designed for accurately syncing lyrics with 
+audio timestamps. 
+
+Chronograph directly supports publishing to LRCLib. As many FOSS music 
+players use LRCLib to fetch synchronized lyrics, this integration allows users to easily 
+contribute their work back to the open-source community.
   </description>
 
   <homepage rdf:resource="https://github.com/Dzheremi2/Chronograph/" />
-  <download-page rdf:resource="https://github.com/Dzheremi2/Chronograph/" />
+  <download-page rdf:resource="https://flathub.org/en/apps/io.github.dzheremi2.lrcmake-gtk" />
   <bug-database rdf:resource="https://github.com/Dzheremi2/Chronograph/issues" />
 
   <programming-language>Python</programming-language>

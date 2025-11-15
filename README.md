@@ -3,6 +3,8 @@
 <img src="data/icons/hicolor/scalable/apps/io.github.dzheremi2.lrcmake-gtk.svg" width="128" height="128">
 
 # Chronograph
+**_Sync Lyrics of Your Loved Songs_** 🕒
+
 [flathub-url]: https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk
 [installs-img]: https://img.shields.io/flathub/downloads/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&color=gree&logo=flathub
 
@@ -18,11 +20,24 @@
 </div>
 
 ### About Chronograph
-Chronograph is the app for syncing song lyrics by timestamps. 
-Chronograph supports `.ogg`, `.flac`, `.mp3`, `.m4a`, `.opus` and `.wav` media formats.
-Also it supports `.aac` format, but without metadata reading, editing and automatic publishing to the [LRClib](https://lrclib.net).
-You can import lyrics from Clipboard, File or from LRClib and export your lyrics to these destinations.
-Chronograph also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players
+Chronograph is an open-source application designed for accurately syncing lyrics with audio timestamps.
+
+You may notice that many of music players support synced lyrics which are highlighted line-by-line or word-by-word while playing? This app was designed to give the community an ability to be the ones who make these lyrics.
+
+Chronograph directly supports publishing to [LRCLib](https://lrclib.net). As many FOSS music players use LRCLib to fetch synchronized lyrics, this integration allows users to easily contribute their work back to the open-source community.
+
+**Syncing Modes**
+- **Line-by-Line (Primary)**: Here, every time you do sync action, timestamp is placed for the whole line of lyrics. This is the most supported format of synced lyrics.
+- **Word-by-Word (Advanced)**: Designed for true karaoke quality. It places a timestamp for every single word, enabling players to animate lyrics with precision.
+
+**Supported Formats**
+- OGG
+- FLAC
+- MP3
+- M4A
+- OPUS
+- WAV
+- AAC (reduced functionality)
 
 ### Installation
 <a href='https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk'>
