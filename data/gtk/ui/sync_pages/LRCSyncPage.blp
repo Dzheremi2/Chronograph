@@ -57,8 +57,8 @@ template $LRCSyncPage: Adw.NavigationPage {
           orientation: horizontal;
           valign: center;
           spacing: 4;
-          margin-start: 10; // FIXME: Under rewview
-          margin-end: 10; // FIXME: Under rewview
+          margin-start: 10;
+          margin-end: 10;
 
           Button sync_line_button {
             tooltip-text: _("Sync/Re-sync line");
@@ -190,8 +190,6 @@ template $LRCSyncPage: Adw.NavigationPage {
       }
 
       ScrolledWindow sync_lines_scrolled_window {
-        margin-top: 8;
-
         Adw.Clamp {
           orientation: horizontal;
           maximum-size: 600;
@@ -199,21 +197,29 @@ template $LRCSyncPage: Adw.NavigationPage {
 
           Box {
             orientation: vertical;
-            spacing: 8;
-            hexpand: true;
-            margin-start: 10; // FIXME: Under rewview
-            margin-end: 10; // FIXME: Under rewview
 
-            ListBox sync_lines {
-              selection-mode: none;
+            Box {
+              orientation: vertical;
+              spacing: 8;
+              hexpand: true;
+              margin-start: 10;
+              margin-end: 10;
 
-              styles [
-                "boxed-list",
-              ]
+              ListBox sync_lines {
+                margin-top: 8;
+                selection-mode: none;
+                visible: false;
+
+                styles ["boxed-list"]
+              }
             }
 
             Adw.PreferencesGroup {
               margin-bottom: 8;
+              margin-top: 8;
+              margin-start: 10;
+              margin-end: 10;
+
               Adw.ButtonRow {
                 start-icon-name: "add-line-symbolic";
                 title: _("Add Line");

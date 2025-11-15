@@ -24,7 +24,7 @@ gtc = Gtk.Template.Child
 logger = Constants.LOGGER
 lrclib_logger = Constants.LRCLIB_LOGGER
 
-PANGO_HIGHLIGHTER = Pango.AttrList().from_string("0 -1 weight ultrabold")
+PANGO_HIGHLIGHTER = Pango.AttrList.from_string("0 -1 weight ultrabold")
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/sync_pages/LRCSyncPage.ui")
@@ -75,7 +75,7 @@ class LRCSyncPage(Adw.NavigationPage):
       lines = self._lyrics_file.lrc_lyrics.get_normalized_lines()
       self.sync_lines.remove_all()
       for line in lines:
-        self.sync_lines.append(LRCSyncLine(line))
+        self._append_end_line(text=line)  # Workaroud to fix ghosty shadow
 
   @Gtk.Template.Callback()
   def _on_seek_button_released(self, button: Gtk.Button) -> None:
@@ -104,8 +104,9 @@ class LRCSyncPage(Adw.NavigationPage):
     return all(timestamp_pattern.search(line) for line in text.strip().splitlines())
 
   ############### Line Actions ###############
-  def _append_end_line(self, *_args) -> None:
-    self.sync_lines.append(LRCSyncLine())
+  def _append_end_line(self, *_args, **kwargs) -> None:
+    self.sync_lines.append(LRCSyncLine(kwargs["text"] if kwargs else ""))
+    self.sync_lines.set_visible(True)
     logger.debug("New line appended to the end of the sync lines")
 
   def append_line(self, *_args) -> None:
@@ -118,6 +119,7 @@ class LRCSyncPage(Adw.NavigationPage):
           value = adj.get_value()
           sync_line.grab_focus()
           adj.set_value(value)
+          self.sync_lines.set_visible(True)
           logger.debug("New line appended to selected line(%s)", self.selected_line)
           return
 
@@ -127,6 +129,7 @@ class LRCSyncPage(Adw.NavigationPage):
         if line == self.selected_line:
           try:
             self.sync_lines.insert(LRCSyncLine(), index)
+            self.sync_lines.set_visible(True)  # Workaroud to fix ghosty shadow
             logger.debug(
               "New line prepended to selected line(%s)",
               self.selected_line,
@@ -134,12 +137,15 @@ class LRCSyncPage(Adw.NavigationPage):
             return
           except IndexError:
             self.sync_lines.prepend(LRCSyncLine())
+            self.sync_lines.set_visible(True)  # Workaroud to fix ghosty shadow
             logger.debug("New line prepended to the list start")
             return
 
   def _remove_line(self, *_args) -> None:
     if self.selected_line:
       self.sync_lines.remove(self.selected_line)
+      if self.sync_lines.get_row_at_index(0) is None:
+        self.sync_lines.set_visible(False)  # Workaroud to fix ghosty shadow
       logger.debug("Selected line(%s) removed", self.selected_line)
       self.selected_line = None
 
@@ -515,4 +521,6 @@ class LRCSyncLine(Adw.EntryRow):
       page.sync_lines.remove(self)
       if (row := page.sync_lines.get_row_at_index(index - 1)) is not None:
         row.grab_focus()
+      else:
+        page.sync_lines.set_visible(False)  # Workaroud to fix ghosty shadow
       logger.debug("Line(%s) was removed from sync_lines", self)
