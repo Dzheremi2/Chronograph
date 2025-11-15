@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 19:34+0300\n"
-"PO-Revision-Date: 2025-10-08 16:07+0000\n"
-"Last-Translator: Orkun Sürel <orkunsurel@gmail.com>\n"
+"PO-Revision-Date: 2025-11-10 14:51+0000\n"
+"Last-Translator: Erdem Yumuşak <savyum135712@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:411
 msgid "Copied successfully"
@@ -68,21 +68,19 @@ msgstr "Eşzamanlı sözler mevcut değil"
 
 #: chronograph/ui/dialogs/lrclib.py:208
 msgid "No plain lyrics available"
-msgstr "Düz şarkı sözleri yok"
+msgstr "Düz şarkı sözleri mevcut değil"
 
 #: chronograph/ui/dialogs/preferences.py:211
-#, fuzzy
 msgid "Synced Only"
-msgstr "Senkronize"
+msgstr "Sadece senkronize"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
 msgstr ""
 
 #: chronograph/ui/dialogs/preferences.py:213
-#, fuzzy
 msgid "Plain Only"
-msgstr "Düz"
+msgstr "Sadece düz"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:46
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:88
@@ -98,9 +96,8 @@ msgid "Cancel"
 msgstr "İptal"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:108
-#, fuzzy
 msgid "Connection timed out"
-msgstr "LRClib.net bağlantısı zaman aşımına uğradı"
+msgstr "Bağlantı zaman aşımına uğradı."
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:110
 #, fuzzy

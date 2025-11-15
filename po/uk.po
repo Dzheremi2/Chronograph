@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 19:37+0300\n"
-"PO-Revision-Date: 2025-11-01 23:51+0000\n"
+"PO-Revision-Date: 2025-11-04 23:51+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -16,8 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
 "X-Generator: Weblate 5.14.1-dev\n"
 
 #: chronograph/window.py:411
@@ -49,9 +50,8 @@ msgid "Connection Error"
 msgstr "Помилка підключення"
 
 #: chronograph/ui/dialogs/lrclib.py:105
-#, fuzzy
 msgid "Network error occured while connecting to LRClib"
-msgstr "Сталася помилка під час підключення до LRClib.net"
+msgstr "Під час підключення до LRClib сталася помилка мережі"
 
 #: chronograph/ui/dialogs/lrclib.py:111
 msgid "Something went wrong"
@@ -72,23 +72,21 @@ msgid "No plain lyrics available"
 msgstr "Прості слова пісні не доступні"
 
 #: chronograph/ui/dialogs/preferences.py:211
-#, fuzzy
 msgid "Synced Only"
-msgstr "Синхронізовані"
+msgstr "Тільки синхронізовано"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
-msgstr ""
+msgstr "Синхронізовано, повернення до звичайного, якщо недоступно"
 
 #: chronograph/ui/dialogs/preferences.py:213
-#, fuzzy
 msgid "Plain Only"
-msgstr "Прості"
+msgstr "Тільки звичайний"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:46
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:88
 msgid "Fetch"
-msgstr ""
+msgstr "Отримати"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:83
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
@@ -99,50 +97,41 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:108
-#, fuzzy
 msgid "Connection timed out"
-msgstr "Час очікування з'єднання з LRClib.net минув"
+msgstr "Час очікування з'єднання минув"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:110
-#, fuzzy
 msgid "Connection error occurred"
-msgstr "Помилка підключення"
+msgstr "Сталася помилка підключення"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:112
-#, fuzzy
 msgid "An error occurred: "
-msgstr "Сталася невідома помилка: {code}"
+msgstr "Сталася помилка: "
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:118
-#, fuzzy
 msgid "Instrumental track. No lyrics available"
-msgstr "Немає текстів пісень"
+msgstr "Інструментальний трек. Текст пісні недоступний"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:132
-#, fuzzy
 msgid "No synced lyrics found"
-msgstr "Синхронізовані слова пісні не доступні"
+msgstr "Синхронізованих текстів пісень не знайдено"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 #: chronograph/backend/lrclib/lrclib_service.py:410
-#, fuzzy
 msgid "No lyrics found"
-msgstr "Немає текстів пісень для повторної синхронізації"
+msgstr "Текстів пісень не знайдено"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:152
-#, fuzzy
 msgid "No plain lyrics found"
-msgstr "Прості слова пісні не доступні"
+msgstr "Простих текстів пісень не знайдено"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:173
-#, fuzzy
 msgid "Cancelled"
-msgstr "Скасувати"
+msgstr "Скасовано"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-#, fuzzy
 msgid "Pending"
-msgstr "Клавіатурні скорочення"
+msgstr "Очікує на розгляд"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
@@ -177,17 +166,16 @@ msgstr "Сталася невідома помилка: {code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:423
 msgid "Network error occurred while publishing lyrics"
-msgstr ""
+msgstr "Під час публікації тексту пісні сталася помилка мережі"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:424
 #: chronograph/ui/sync_pages/lrc_sync_page.py:432
 msgid "Log"
-msgstr ""
+msgstr "Журнал"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:431
-#, fuzzy
 msgid "An error occurred while publishing lyrics"
-msgstr "Сталася помилка під час підключення до LRClib.net"
+msgstr "Під час публікації тексту пісні сталася помилка"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Seems like not every line is synced"
@@ -317,18 +305,17 @@ msgstr "Прості"
 
 #: chronograph/backend/lrclib/lrclib_service.py:357
 #: chronograph/backend/lrclib/lrclib_service.py:386
-#, fuzzy
 msgid "Fetched successfully"
-msgstr "Успішно опубліковано"
+msgstr "Успішно отримано"
 
 #: chronograph/backend/lrclib/lrclib_service.py:371
 msgid "Fetching using /api/get failed, trying /api/search"
 msgstr ""
+"Не вдалося отримати дані за допомогою /api/get, намагаюся через /api/search"
 
 #: chronograph/backend/lrclib/lrclib_service.py:397
-#, fuzzy
 msgid "No suitable lyrics found"
-msgstr "Збережень ще не знайдено"
+msgstr "Відповідних текстів пісень не знайдено"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -444,7 +431,7 @@ msgstr "Список"
 
 #: data/gtk/window.blp:312
 msgid "Mass Lyrics Downloading"
-msgstr ""
+msgstr "Масове завантаження текстів пісень"
 
 #: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
@@ -718,25 +705,27 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "Mass Downloading"
-msgstr ""
+msgstr "Масове завантаження"
 
 #: data/gtk/ui/dialogs/Preferences.blp:62
 msgid "Max Parallel Downloadings"
-msgstr ""
+msgstr "Максимальна кількість паралельних завантажень"
 
 #: data/gtk/ui/dialogs/Preferences.blp:63
 msgid ""
 "The amount of simultaneous parallel downloadings. High amount may cause "
 "downloading failure if treated as DDoS attack"
 msgstr ""
+"Кількість одночасних паралельних завантажень. Велика кількість може "
+"призвести до збою завантаження, якщо її буде сприйнято як DDoS-атаку"
 
 #: data/gtk/ui/dialogs/Preferences.blp:74
 msgid "Preferred Lyrics Format"
-msgstr ""
+msgstr "Бажаний формат тексту пісень"
 
 #: data/gtk/ui/dialogs/Preferences.blp:75
 msgid "Target lyrics format for LRClib downloading"
-msgstr ""
+msgstr "Цільовий формат текстів пісень для завантаження з LRClib"
 
 #: data/gtk/ui/dialogs/Preferences.blp:80
 msgid "Debug"

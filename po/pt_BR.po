@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 19:34+0300\n"
-"PO-Revision-Date: 2025-05-14 12:01+0000\n"
-"Last-Translator: John Peter Sa <johnppetersa@gmail.com>\n"
+"PO-Revision-Date: 2025-11-12 07:51+0000\n"
+"Last-Translator: vitrola06 <laverdolin@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "chronograph/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:411
 msgid "Copied successfully"
@@ -41,11 +41,11 @@ msgstr "Construa seu próprio dicionário"
 
 #: chronograph/main.py:184
 msgid "Translate the App"
-msgstr ""
+msgstr "Traduza o App"
 
 #: chronograph/ui/dialogs/lrclib.py:103
 msgid "Connection Error"
-msgstr ""
+msgstr "Erro de Conexão"
 
 #: chronograph/ui/dialogs/lrclib.py:105
 msgid "Network error occured while connecting to LRClib"
@@ -53,7 +53,7 @@ msgstr ""
 
 #: chronograph/ui/dialogs/lrclib.py:111
 msgid "Something went wrong"
-msgstr ""
+msgstr "Alguma coisa deu errado"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid ""
@@ -100,45 +100,37 @@ msgid "Connection timed out"
 msgstr ""
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:110
-#, fuzzy
 msgid "Connection error occurred"
-msgstr "Ocorreu um erro desconhecido: "
+msgstr "Ocorreu um erro de conexão"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:112
-#, fuzzy
 msgid "An error occurred: "
-msgstr "Ocorreu um erro desconhecido: "
+msgstr "Um erro ocorreu: "
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:118
-#, fuzzy
 msgid "Instrumental track. No lyrics available"
-msgstr "Não há letras simples disponíveis"
+msgstr "Faixa instrumental. Sem letras disponíveis"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:132
-#, fuzzy
 msgid "No synced lyrics found"
-msgstr "Não há letras sincronizadas disponíveis"
+msgstr "Nenhuma letra sincronizada encontrada"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 #: chronograph/backend/lrclib/lrclib_service.py:410
-#, fuzzy
 msgid "No lyrics found"
-msgstr "Nenhuma defesa encontrada ainda"
+msgstr "Nenhuma letra encontrada"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:152
-#, fuzzy
 msgid "No plain lyrics found"
-msgstr "Não há letras simples disponíveis"
+msgstr "Nenhuma letra simples encontrada"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:173
-#, fuzzy
 msgid "Cancelled"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-#, fuzzy
 msgid "Pending"
-msgstr "Chandings Keybindings"
+msgstr "Pendente"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
@@ -149,13 +141,13 @@ msgstr "Cópia para a área de transferência"
 #: chronograph/ui/sync_pages/lrc_sync_page.py:294
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Letras exportadas para arquivo"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:404
 #, fuzzy, python-brace-format
@@ -168,13 +160,13 @@ msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:412
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Ocorreu um erro desconhecido: "
+msgstr "Ocorreu um erro desconhecido:{code}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:423
 msgid "Network error occurred while publishing lyrics"
-msgstr ""
+msgstr "Ocorreu um erro de rede ao publicar as letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:424
 #: chronograph/ui/sync_pages/lrc_sync_page.py:432
@@ -183,7 +175,7 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:431
 msgid "An error occurred while publishing lyrics"
-msgstr ""
+msgstr "Um erro ocorreu ao publicar as letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:445
 msgid "Seems like not every line is synced"
@@ -191,42 +183,43 @@ msgstr "Parece que nem todas as linhas estão sincronizadas"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:459
 msgid "Unable to publish lyrics"
-msgstr ""
+msgstr "Não é possível publicar as letras"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:461
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set"
 msgstr ""
+"Para publicar as letras a faixa deve ter um título e os campos de artista, "
+"álbum e letras definidos"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Não é possível publicar letras vazias"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Why?"
-msgstr ""
+msgstr "Por quê?"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Não há letras simples disponíveis"
+msgstr "Não há letras disponíveis"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
-msgstr ""
+msgstr "Você não proveu nenhuma letra para sincronização"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:324
 msgid "No lyrics to be re-synced"
-msgstr ""
+msgstr "Nenhuma letra a ser ressincronizada"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:326
 msgid "Open Sync mode to re-sync all words"
-msgstr ""
+msgstr "Abra o modo Sincronizar para ressincronizar todas as palavras"
 
 #: chronograph/ui/widgets/song_card.py:117
 #, fuzzy
@@ -326,9 +319,8 @@ msgid "Fetching using /api/get failed, trying /api/search"
 msgstr ""
 
 #: chronograph/backend/lrclib/lrclib_service.py:397
-#, fuzzy
 msgid "No suitable lyrics found"
-msgstr "Nenhuma defesa encontrada ainda"
+msgstr "Nenhuma letra adequada encontrada"
 
 #. Translators: "source" here doesn't mean FOSS. It means a media source. "source" should be interpretated as "media source"
 #: data/gtk/window.blp:6
@@ -342,7 +334,7 @@ msgstr "Selecione um diretório ou arraste e solte arquivos para carregá-los"
 #. Translators: "Open source" here doesn't mean FOSS. It means a media source. "Open source" should be interpretated as "Open media source"
 #: data/gtk/window.blp:16 data/gtk/window.blp:37
 msgid "Open source"
-msgstr "Código aberto"
+msgstr "Abrir fonte"
 
 #: data/gtk/window.blp:28
 msgid "Empty directory"
@@ -354,11 +346,11 @@ msgstr "Este diretório não possui nenhum arquivo de música suportado"
 
 #: data/gtk/window.blp:49
 msgid "No saves found yet"
-msgstr "Nenhuma defesa encontrada ainda"
+msgstr "Nenhum fixado encontrado ainda"
 
 #: data/gtk/window.blp:51
 msgid "Press pin button to add current directory to the saves"
-msgstr "Pressione o botão PIN para adicionar diretório atual às defesas"
+msgstr "Pressione o botão PIN para adicionar diretório atual aos fixados"
 
 #: data/gtk/window.blp:81 data/gtk/window.blp:311
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:63
@@ -399,19 +391,18 @@ msgid "Toggle search"
 msgstr "Alternar pesquisar"
 
 #: data/gtk/window.blp:245
-#, fuzzy
 msgid "Filter library"
-msgstr "Limpar a biblioteca"
+msgstr "Filtre a biblioteca"
 
 #: data/gtk/window.blp:248
 msgctxt "filter menu secton name. 'Show only…' selected lyric formats"
 msgid "Show only…"
-msgstr ""
+msgstr "Apenas mostre…"
 
 #: data/gtk/window.blp:274 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "App settings, info and utils"
-msgstr "Configurações, informações e utilitários de aplicativos"
+msgstr "Configurações, informações e utilitários"
 
 #: data/gtk/window.blp:278 data/gtk/ui/sync_pages/LRCSyncPage.blp:30
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:30
@@ -421,7 +412,7 @@ msgstr "Organizar"
 #: data/gtk/window.blp:281 data/gtk/ui/sync_pages/LRCSyncPage.blp:33
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "A-Z"
-msgstr "A-z"
+msgstr "A-Z"
 
 #: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:39
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:39
@@ -445,7 +436,7 @@ msgstr "Lista"
 
 #: data/gtk/window.blp:312
 msgid "Mass Lyrics Downloading"
-msgstr ""
+msgstr "Download de Letras em Massa"
 
 #: data/gtk/window.blp:316 data/gtk/ui/sync_pages/LRCSyncPage.blp:67
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:67
@@ -456,7 +447,7 @@ msgstr "Preferências"
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:68
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:68
 msgid "Keybindings"
-msgstr "Chandings Keybindings"
+msgstr "Atalhos"
 
 #: data/gtk/window.blp:318 data/gtk/ui/sync_pages/LRCSyncPage.blp:69
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:69
@@ -469,11 +460,11 @@ msgstr "Limpar a biblioteca"
 
 #: data/gtk/window.blp:342
 msgid "Add current directory to saves"
-msgstr "Adicione o diretório atual às salvamentos"
+msgstr "Adicione o diretório atual aos fixados"
 
 #: data/gtk/window.blp:351
 msgid "Recursive parsing settings changed. Re-parse?"
-msgstr ""
+msgstr "Configurações de análise recursiva alteradas. Reanalisar?"
 
 #: data/gtk/window.blp:352
 msgid "Re-Parse"
@@ -515,17 +506,15 @@ msgstr "Modo de sincronização"
 
 #: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
-msgstr "Sincronização/re-sincronização"
+msgstr "Sincronizar/Ressincronizar"
 
 #: data/gtk/ui/shortcuts-dialog.blp:49
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Replay Linha selecionada"
+msgstr "Passar a linha/palavra selecionada novamente"
 
 #: data/gtk/ui/shortcuts-dialog.blp:54
-#, fuzzy
 msgid "Re-sync default amount of ms back"
-msgstr "Re-sincronizar a linha selecionada 100ms de volta"
+msgstr "Ressincronizar a quantidade padrão de ms"
 
 #: data/gtk/ui/shortcuts-dialog.blp:59
 #, fuzzy
@@ -585,7 +574,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search LRClib for provided title and artist"
-msgstr "Pesquise lrclib pelo título e artista fornecido"
+msgstr "Procure no LRClib pelo título e artista fornecidos"
 
 #: data/gtk/ui/dialogs/LRClib.blp:124
 msgid "Synced"
@@ -643,12 +632,11 @@ msgstr "Remova a tampa"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:109
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Incorporar Letras"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:114
-#, fuzzy
 msgid "Delete Lyrics"
-msgstr "Excluir"
+msgstr "Excluir Letras"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
@@ -666,7 +654,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
 msgid "Save session on app close"
-msgstr "Salvar sessão no aplicativo fechar"
+msgstr "Salvar sessão ao fechar o app"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
@@ -760,7 +748,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "NECESSITA DE REINÍCIO"
 
 #: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
@@ -783,12 +771,12 @@ msgstr ""
 #: data/gtk/ui/dialogs/Preferences.blp:102
 #: data/gtk/ui/dialogs/Preferences.blp:115
 msgid "Line-by-Line"
-msgstr ""
+msgstr "Linha por Linha"
 
 #: data/gtk/ui/dialogs/Preferences.blp:103
 #: data/gtk/ui/dialogs/Preferences.blp:141
 msgid "Word-by-Word"
-msgstr ""
+msgstr "Palavra por Palavra"
 
 #: data/gtk/ui/dialogs/Preferences.blp:109
 msgid "Use precise milliseconds"
@@ -853,23 +841,25 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:210
 msgid "Save plain LRC too"
-msgstr ""
+msgstr "Salvar LRC simples também"
 
 #: data/gtk/ui/dialogs/Preferences.blp:211
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
+"Salva um arquivo LRC simples além de um eLRC. Não funcionará caso o prefixo "
+"de eLRC não estiver definido."
 
 #: data/gtk/ui/dialogs/Preferences.blp:215
 msgid "eLRC prefix"
-msgstr ""
+msgstr "Prefixo de eLRC"
 
 #: data/gtk/ui/dialogs/Preferences.blp:224
 #: data/gtk/ui/dialogs/Preferences.blp:281
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: data/gtk/ui/dialogs/Preferences.blp:227
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
@@ -899,7 +889,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:252
 msgid "Brings lyrics to selected format before embedding"
-msgstr ""
+msgstr "Traga as letras para o formato selecionado antes de incorporar"
 
 #: data/gtk/ui/dialogs/Preferences.blp:287
 msgid ""
@@ -910,9 +900,8 @@ msgid ""
 msgstr ""
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
-#, fuzzy
 msgid "Re-Sync All Lines"
-msgstr "Linha de sincronização/re-sincronização"
+msgstr "Ressincronize Todas as Linhas"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
 msgid ""
@@ -926,14 +915,13 @@ msgid "Milliseconds"
 msgstr "Use milissegundos precisos"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
-#, fuzzy
 msgid "Re-Sync"
-msgstr "Sincronização"
+msgstr "Ressincronização"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:96
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:96
 msgid "Sync/Re-sync line"
-msgstr "Linha de sincronização/re-sincronização"
+msgstr "Sincronize/Ressincronize a linha"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:107
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:107
