@@ -22,10 +22,14 @@ gtc = Gtk.Template.Child
 class MassDownloadingDialog(Adw.Dialog):
   __gtype_name__ = "MassDownloadingDialog"
 
+  no_log_yet: Adw.StatusPage = gtc()
+  already_fetched: Adw.StatusPage = gtc()
+
   progress_revealer: Gtk.Revealer = gtc()
   progress_bar: Gtk.ProgressBar = gtc()
   fetch_log_list_box: Gtk.ListBox = gtc()
-  no_log_yet: Adw.StatusPage = gtc()
+  rewrite_already_existing_switch: Adw.SwitchRow = gtc()
+  fetch_button: Gtk.Button = gtc()
 
   log_items: Gio.ListStore = GObject.Property(type=Gio.ListStore)
 
@@ -38,6 +42,16 @@ class MassDownloadingDialog(Adw.Dialog):
     self.set_property("log_items", store)
     self.fetch_log_list_box.bind_model(self.log_items, self._log_row_factory)
     self._task_cancel_hdl = None
+
+    if Constants.WIN.state.value in (0, 1):
+      self.fetch_button.set_sensitive(False)
+
+    Constants.WIN.connect(
+      "notify::state",
+      lambda *__: self.fetch_button.set_sensitive(False)
+      if Constants.WIN.state.value in (0, 1)
+      else self.fetch_button.set_sensitive(True),
+    )
 
   @Gtk.Template.Callback()
   def _on_fetch_button_clicked(self, button: Gtk.Button) -> None:
@@ -67,7 +81,10 @@ class MassDownloadingDialog(Adw.Dialog):
       medias: list[BaseFile] = [
         item.get_child().model.mfile for item in LibraryModel().library
       ]
-      medias = [media for media in medias.copy() if is_lrc_exist(media.path)]
+      if not self.rewrite_already_existing_switch.get_active():
+        medias = [media for media in medias.copy() if is_lrc_exist(media.path)]
+        if len(medias) == 0:
+          self.fetch_log_list_box.set_placeholder(self.already_fetched)
       self.task = AsyncTask(
         LRClibService().fetch_lyrics_many,
         medias,
