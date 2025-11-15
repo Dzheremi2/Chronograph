@@ -84,6 +84,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
         medias = [media for media in medias.copy() if is_lrc_exist(media.path)]
         if len(medias) == 0:
           self.fetch_log_list_box.set_placeholder(self.already_fetched)
+          return
       self.task = AsyncTask(
         LRClibService().fetch_lyrics_many,
         medias,
