@@ -374,7 +374,7 @@ class LRCSyncPage(Adw.NavigationPage):
       self._autosave_timeout_id = None
     return False
 
-  def _on_page_closed(self, *_args):
+  def _on_page_closed(self, *_args) -> None:
     Constants.WIN.disconnect(self._close_rq_handler_id)
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
@@ -382,15 +382,14 @@ class LRCSyncPage(Adw.NavigationPage):
       logger.debug("Page closed, saving lyrics")
       self._autosave()
     Player().stop()
-    self._player_widget.disconnect_all()
+    self._player_widget.link_teardown()
 
-  def _on_app_close(self, *_):
+  def _on_app_close(self, *_args) -> None:
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.file-manipulation.enabled"):
       logger.debug("App closed, saving lyrics")
       self._autosave()
-    return False
 
   ###############
 

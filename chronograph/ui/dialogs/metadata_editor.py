@@ -6,7 +6,7 @@ from chronograph.backend.file import SongCardModel
 from chronograph.backend.lyrics import Lyrics
 from chronograph.internal import Constants
 from chronograph.ui.widgets.internal.menu_button import ChrMenuButton  # noqa: F401
-from dgutils import Actions
+from dgutils import Actions, Linker
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -14,7 +14,7 @@ logger = Constants.LOGGER
 
 @Gtk.Template.from_resource(Constants.PREFIX + "/gtk/ui/dialogs/MetadataEditor.ui")
 @Actions.from_schema(Constants.PREFIX + "/resources/actions/metadata_editor.yaml")
-class MetadataEditor(Adw.Dialog):
+class MetadataEditor(Adw.Dialog, Linker):
   __gtype_name__ = "MetadataEditor"
 
   cover_image_bin: Adw.Bin = gtc()
@@ -26,23 +26,26 @@ class MetadataEditor(Adw.Dialog):
   lyrics_buttons_box: Gtk.Box = gtc()
 
   def __init__(self, card_model: SongCardModel) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
-    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage  # noqa: PLC0415
+    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage  # noqa: PLC0415
 
     super().__init__()
+    Linker.__init__(self)
     self._is_cover_changed: bool = False
     self._new_cover_path: Optional[str] = ""
     self._card = card_model
     self.title_row.set_text(self._card.title)
     self.artist_row.set_text(self._card.artist)
-    self._card.bind_property(
-      "cover", self.cover_image, "paintable", GObject.BindingFlags.SYNC_CREATE
+    self.new_binding(
+      self._card.bind_property(
+        "cover", self.cover_image, "paintable", GObject.BindingFlags.SYNC_CREATE
+      )
     )
     self.album_row.set_text(self._card.album)
 
     self.hover_controller = Gtk.EventControllerMotion.new()
-    self.hover_controller.connect("enter", self._on_icon_revealer)
-    self.hover_controller.connect("leave", self._on_icon_revealer)
+    self.new_connection(self.hover_controller, "enter", self._on_icon_revealer)
+    self.new_connection(self.hover_controller, "leave", self._on_icon_revealer)
     self.cover_image_bin.add_controller(self.hover_controller)
 
     # Hide "Embed Lyrics" button if launched from library page
@@ -50,17 +53,19 @@ class MetadataEditor(Adw.Dialog):
     if not isinstance(page, (WBWSyncPage, LRCSyncPage)):
       self.lyrics_buttons_box.set_visible(False)
 
+    self.new_connection(self, "closed", lambda *__: self.disconnect_all())
+
   @Gtk.Template.Callback()
   def on_cancel_clicked(self, *_args) -> None:
     """Handle cancel button click"""
     self.close()
-    logger.debug("Metadata Editor(%s) closed", self)
+    logger.debug("Metadata Editor closed")
 
   @Gtk.Template.Callback()
   def on_embed_lyrics_clicked(self, *_args) -> None:
     """Embedding lyrics to the file on button click"""
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
-    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage  # noqa: PLC0415
+    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage  # noqa: PLC0415
 
     page = Constants.WIN.navigation_view.get_visible_page()
     if isinstance(page, WBWSyncPage):
@@ -130,7 +135,7 @@ class MetadataEditor(Adw.Dialog):
     self.close()
 
   def _change_cover(self, *_args) -> None:
-    def _on_change_cover(dialog: Gtk.FileDialog, result: Gio.Task) -> None:
+    def on_change_cover(dialog: Gtk.FileDialog, result: Gio.Task) -> None:
       self._new_cover_path = dialog.open_finish(result).get_path()
       self._is_cover_changed = True
       self.cover_image.set_from_paintable(
@@ -141,7 +146,7 @@ class MetadataEditor(Adw.Dialog):
     dialog = Gtk.FileDialog(
       default_filter=Gtk.FileFilter(mime_types=["image/png", "image/jpeg"])
     )
-    dialog.open(Constants.WIN, None, _on_change_cover)
+    dialog.open(Constants.WIN, None, on_change_cover)
 
   def _remove_cover(self, *_args) -> None:
     self._is_cover_changed = True

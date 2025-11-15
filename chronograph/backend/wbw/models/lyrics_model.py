@@ -23,7 +23,7 @@ class LyricsModel(GObject.Object):
   _eol_handler: int
 
   def __init__(self, lyrics: str) -> None:
-    from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget
+    from chronograph.ui.widgets.wbw.lyrics_widget import LyricsWidget  # noqa: PLC0415
 
     super().__init__()
     store: Gio.ListStore = Gio.ListStore.new(item_type=LineModel)

@@ -10,17 +10,17 @@ class BoxDialog(Adw.Dialog):
   Parameters
   ----------
   label : str
-      Label of the dialog
+    Label of the dialog
   lines_content : tuple[dict]
-      tuple of dicts. Each row is a dict with keys::
+    tuple of dicts. Each row is a dict with keys::
 
-          "title": str # for row title
-          "subtitle": str # for row subtitle
-          "action": { # optional for button
-              "icon": str # for icon_name button property
-              "tooltip": str # for button tooltip
-              "callback": Callable # for on click action
-          }
+      "title": str # for row title
+      "subtitle": str # for row subtitle
+      "action": { # optional for button
+        "icon": str # for icon_name button property
+        "tooltip": str # for button tooltip
+        "callback": Callable # for on click action
+      }
   """
 
   __gtype_name__ = "BoxDialog"

@@ -12,6 +12,7 @@ from chronograph.backend.lrclib.responses import LRClibEntry
 from chronograph.backend.lyrics.lyrics_file import LyricsFile
 from chronograph.backend.media import BaseFile  # noqa: TC001
 from chronograph.internal import Constants, Schema
+from dgutils import Linker
 
 gtc = Gtk.Template.Child
 
@@ -19,7 +20,7 @@ gtc = Gtk.Template.Child
 @Gtk.Template(
   resource_path=Constants.PREFIX + "/gtk/ui/dialogs/MassDownloadingDialog.ui"
 )
-class MassDownloadingDialog(Adw.Dialog):
+class MassDownloadingDialog(Adw.Dialog, Linker):
   __gtype_name__ = "MassDownloadingDialog"
 
   no_log_yet: Adw.StatusPage = gtc()
@@ -37,6 +38,7 @@ class MassDownloadingDialog(Adw.Dialog):
 
   def __init__(self) -> None:
     super().__init__()
+    Linker.__init__(self)
     self.fetch_log_list_box.set_placeholder(self.no_log_yet)
     store = Gio.ListStore.new(item_type=LogEntry)
     self.set_property("log_items", store)
@@ -46,12 +48,14 @@ class MassDownloadingDialog(Adw.Dialog):
     if Constants.WIN.state.value in (0, 1):
       self.fetch_button.set_sensitive(False)
 
-    Constants.WIN.connect(
+    self.new_connection(
+      Constants.WIN,
       "notify::state",
       lambda *__: self.fetch_button.set_sensitive(False)
       if Constants.WIN.state.value in (0, 1)
       else self.fetch_button.set_sensitive(True),
     )
+    self.new_connection(self, "closed", lambda *__: self.disconnect_all())
 
   @Gtk.Template.Callback()
   def _on_fetch_button_clicked(self, button: Gtk.Button) -> None:
@@ -68,12 +72,7 @@ class MassDownloadingDialog(Adw.Dialog):
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
         self.log_items.remove_all()
-        # FIXME: Create a class (in dgutils) wrapper for Handlers to provide an API
-        # methods "disconnect_all" to kill all handlers
-        LRClibService().disconnect(self.fstr)
-        LRClibService().disconnect(self.fmsg)
-        LRClibService().disconnect(self.fst)
-        LRClibService().disconnect(self.fad)
+        self.disconnect_all()
       if getattr(self, "_task_cancel_hdl", None) and getattr(self, "task", None):
         with contextlib.suppress(Exception):
           self.task.disconnect(self._task_cancel_hdl)
@@ -97,13 +96,27 @@ class MassDownloadingDialog(Adw.Dialog):
       self._fetch_going = True
       self.progress_revealer.set_reveal_child(True)
       self.progress_bar.set_fraction(0.0)
-      self.fstr = LRClibService().connect(
-        "fetch-started", lambda _lrclib, path: self.log_items.insert(0, LogEntry(path))
+      self.new_connection(
+        LRClibService(),
+        "fetch-started",
+        lambda _lrclib, path: self.log_items.insert(0, LogEntry(path)),
       )
-      self.fmsg = LRClibService().connect("fetch-message", self._on_fetch_message)
-      self.fst = LRClibService().connect("fetch-state", self._on_fetch_state)
+      self.new_connection(
+        LRClibService(),
+        "fetch-message",
+        self._on_fetch_message,
+      )
+      self.new_connection(
+        LRClibService(),
+        "fetch-state",
+        self._on_fetch_state,
+      )
+      self.new_connection(
+        LRClibService(),
+        "fetch-all-done",
+        on_all_done,
+      )
       button.set_label(_("Cancel"))
-      self.fad = LRClibService().connect("fetch-all-done", on_all_done)
     else:
       self.task.cancel()
       self._fetch_going = False
