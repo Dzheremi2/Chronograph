@@ -149,6 +149,7 @@
 
   <xs:complexType name="releaseType">
     <xs:sequence>
+      <xs:element name="url" type="urlType" minOccurs="0"/>
       <xs:element name="description" type="richText" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="version" type="xs:string" use="required"/>
