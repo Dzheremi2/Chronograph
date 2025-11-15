@@ -362,7 +362,7 @@ class ChronographWindow(Adw.ApplicationWindow):
         Row containing the saved location to load
     """
     try:
-      if row.get_child().path[:-1] != Schema.get("root.state.library.session"):
+      if row.get_child().path != Schema.get("root.state.library.session"):
         logger.info("Loading save '%s'", row.get_child().name)
         row.get_child().load()
     except AttributeError:
@@ -554,7 +554,7 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.sidebar.select_row(row)
             return
       except AttributeError:
-        pass
+        self.sidebar.select_row(None)
 
     state = self._state
     self.open_source_button.set_icon_name("open-source-symbolic")
