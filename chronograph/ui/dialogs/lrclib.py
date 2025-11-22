@@ -48,6 +48,7 @@ class LRClib(Adw.Dialog, Linker):
 
   def __init__(self, title: str = "", artist: str = "", album: str = "") -> None:
     super().__init__()
+    Linker.__init__(self)
 
     self.lrctracks_list_box.set_placeholder(self.search_lrclib_status_page)
     self.title_entry.set_text(title)

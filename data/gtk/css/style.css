@@ -92,6 +92,32 @@ button.lyrics.lrc {
 button.lyrics.elrc {
   background-color: #7b2cbf;
 }
+/* ------------------------------- */
+
+/* Reimplements OSD style from LibAdwaita to not affect associated Gio.Menu */
+menubutton.osd-button-only > button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  box-shadow: none;
+  border-radius: 9999px;
+}
+
+@media (prefers-contrast: more) {
+  menubutton.osd-button-only > button {
+    box-shadow: 0 0 0 1px currentColor;
+  }
+}
+
+menubutton.osd-button-only > button:hover {
+  color: white;
+  background-color: color-mix(in srgb, black calc(0.85 * 65%), currentColor calc(0.15 * 65%));
+}
+
+menubutton.osd-button-only > button:active {
+  color: white;
+  background-color: color-mix(in srgb, black calc(0.75 * 65%), currentColor calc(0.25 * 65%));
+}
 
 @media (prefers-color-scheme: light) {
   button.lyrics.none {
@@ -106,6 +132,7 @@ button.lyrics.elrc {
     color: var(--lyrics-text-bg-dark);
   }
 }
+/* -------------------------------- */
 
 /* List View library mode covers rounding */
 #list_view_row_cover {
