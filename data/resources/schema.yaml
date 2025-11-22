@@ -68,7 +68,7 @@ root:
         default: true
       save-session:
         type: bool
-        default: false
+        default: true
       auto-list-view:
         type: bool
         default: false

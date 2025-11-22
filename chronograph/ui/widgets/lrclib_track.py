@@ -45,11 +45,17 @@ class LRClibTrack(Gtk.Box):
   def _generate_tooltip(self, tooltip: tuple) -> str:
     tooltip_props = ""
     for i, item in enumerate(tooltip):
-      if not isinstance(item, bool):
+      if isinstance(item, bool):
+        string = f"{I18N_STRINGS[i]}: {TRUE_STR if item else FALSE_STR}"
+        tooltip_props += string
+      elif isinstance(item, str):
         string = f"{I18N_STRINGS[i]}: {item}\n"
         tooltip_props += string
-      else:
-        string = f"{I18N_STRINGS[i]}: {TRUE_STR if item else FALSE_STR}"
+      elif isinstance(item, int):
+        minutes, seconds = divmod(item, 60)
+        minutes = minutes % 60
+        timestamp = f"{minutes:02d}:{seconds:02d}"
+        string = f"{I18N_STRINGS[i]}: {timestamp}\n"
         tooltip_props += string
     return tooltip_props
 

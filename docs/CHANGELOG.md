@@ -6,7 +6,9 @@
 </ul>
 <p>Miscellaneous</p>
 <ul>
-  <li>Prepare for GNOME Circle participating. This release remarks by <a href="https://gitlab.gnome.org/Teams/Circle/-/issues/241">Ignacy Kuchciński</a></li>
+  <li>Prepare for GNOME Circle participating. This release remarks by <a href="https://gitlab.gnome.org/Teams/Circle/-/issues/241">
+  Ignacy Kuchciński</a>, <a href="https://gitlab.gnome.org/Teams/Circle/-/issues/241">
+  Martin Abente Lahaye</a></li>
 </ul>
 
 ## 5.3-rc1
