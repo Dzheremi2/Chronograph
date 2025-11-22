@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-15 19:35+0300\n"
-"PO-Revision-Date: 2025-11-04 23:51+0000\n"
+"PO-Revision-Date: 2025-11-17 16:51+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -16,9 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:405
 msgid "Copied successfully"
@@ -129,9 +130,8 @@ msgid "Cancelled"
 msgstr "Скасовано"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:246
-#, fuzzy
 msgid "Fetching"
-msgstr "Отримати"
+msgstr "Отримання"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:283
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
@@ -182,18 +182,16 @@ msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:458
-#, fuzzy
 msgid "Unable to publish lyrics."
-msgstr "Неможливо опублікувати текст пісні"
+msgstr "Неможливо опублікувати текст пісні."
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:460
-#, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
-"Щоб опублікувати текст пісні, для неї необхідно встановити поля назви, "
-"виконавця, альбому та тексту пісні"
+"Щоб опублікувати текст пісні, для треку необхідно встановити поля назви, "
+"виконавця, альбому та тексту пісні."
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:465
 msgid "Close"
@@ -312,14 +310,12 @@ msgid "Fetched successfully"
 msgstr "Успішно отримано"
 
 #: chronograph/backend/lrclib/lrclib_service.py:376
-#, fuzzy
 msgid "Fetch using /api/get failed, trying /api/search"
-msgstr ""
-"Не вдалося отримати дані за допомогою /api/get, намагаюся через /api/search"
+msgstr "Не вдалося отримати дані за допомогою /api/get, намагаюся /api/search"
 
 #: chronograph/backend/lrclib/lrclib_service.py:392
 msgid "Trying search with no album"
-msgstr ""
+msgstr "Пошук без альбому"
 
 #: chronograph/backend/lrclib/lrclib_service.py:402
 #: chronograph/backend/lrclib/lrclib_service.py:414
@@ -328,24 +324,21 @@ msgstr "Відповідних текстів пісень не знайдено
 
 #: data/gtk/window.blp:5
 msgid "No Music"
-msgstr ""
+msgstr "Без музики"
 
 #: data/gtk/window.blp:6
-#, fuzzy
 msgid "Select a directory or drop files to load them"
 msgstr "Виберіть каталог або перетягніть файли, щоб завантажити їх"
 
 #: data/gtk/window.blp:16 data/gtk/window.blp:48
-#, fuzzy
 msgid "Open Directory"
-msgstr "Довідник"
+msgstr "Відкритий каталог"
 
 #: data/gtk/window.blp:22 data/gtk/window.blp:54
 msgid "Open File"
 msgstr "Відкрити файл"
 
 #: data/gtk/window.blp:37
-#, fuzzy
 msgid "Empty Directory"
 msgstr "Порожній каталог"
 
@@ -354,9 +347,8 @@ msgid "This directory doesn't have any supported music files"
 msgstr "У цьому каталозі немає підтримуваних музичних файлів"
 
 #: data/gtk/window.blp:69
-#, fuzzy
 msgid "No Saves"
-msgstr "Збереження"
+msgstr "Без збережень"
 
 #: data/gtk/window.blp:71
 msgid "Press pin button to add current directory to the saves"
@@ -370,7 +362,6 @@ msgid "Quick Editor"
 msgstr "Швидкий редактор"
 
 #: data/gtk/window.blp:120
-#, fuzzy
 msgid "Copy to Clipboard"
 msgstr "Копіювати в буфер обміну"
 
@@ -409,7 +400,7 @@ msgstr "Бібліотека фільтрів"
 #: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
 #: data/gtk/window.blp:291
 msgid "Sort"
@@ -579,41 +570,36 @@ msgid "Synced"
 msgstr "Синхронізовані"
 
 #: data/gtk/ui/dialogs/LRClib.blp:143
-#, fuzzy
 msgid "Synced lyrics from LRClib"
-msgstr "Синхронізованих текстів пісень не знайдено"
+msgstr "Синхронізовані тексти пісень з LRClib"
 
 #: data/gtk/ui/dialogs/LRClib.blp:170
-#, fuzzy
 msgid "Plain lyrics from LRClib"
-msgstr "Простих текстів пісень не знайдено"
+msgstr "Прості тексти пісень з LRClib"
 
 #: data/gtk/ui/dialogs/LRClib.blp:186
 msgid "Imports currently selected lyrics"
-msgstr ""
+msgstr "Імпортує вибрані тексти пісень"
 
 #: data/gtk/ui/dialogs/LRClib.blp:188
 msgid "Import"
-msgstr ""
+msgstr "Імпорт"
 
 #: data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
-msgstr ""
+msgstr "Нічого не знайдено"
 
 #: data/gtk/ui/dialogs/LRClib.blp:224
-#, fuzzy
 msgid "Try out another request, maybe there are mistakes in request text"
-msgstr "Спробуйте інший запит, мабуть у тексті є помилки."
+msgstr "Спробуйте інший запит, можливо, в тексті запиту є помилки"
 
 #: data/gtk/ui/dialogs/LRClib.blp:228
-#, fuzzy
 msgid "Search LRClib"
-msgstr "Шукати"
+msgstr "Пошук у LRClib"
 
 #: data/gtk/ui/dialogs/LRClib.blp:229
-#, fuzzy
 msgid "Search songs by title, artist and album"
-msgstr "Пошук на LRClib за назвою, виконавцем та назвою альбому"
+msgstr "Пошук пісень за назвою, виконавцем та альбомом"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
@@ -624,14 +610,12 @@ msgid "Change cover"
 msgstr "Змінити кришку"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:86
-#, fuzzy
 msgid "Set Cover…"
-msgstr "Набір кришки"
+msgstr "Встановити обкладинку…"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:91
-#, fuzzy
 msgid "Remove Cover…"
-msgstr "Зняти кришку"
+msgstr "Зняти кришку…"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:123
 msgid "Embed Lyrics"
@@ -646,9 +630,8 @@ msgid "Behavior"
 msgstr "Поведінка"
 
 #: data/gtk/ui/dialogs/Preferences.blp:15
-#, fuzzy
 msgid "Reset Quick Edit Dialog on Close"
-msgstr "Скидати зміни швидкого редагування при зачиненні"
+msgstr "Скинути діалогове вікно швидкого редагування після закриття"
 
 #: data/gtk/ui/dialogs/Preferences.blp:16
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
@@ -657,9 +640,8 @@ msgstr ""
 "при зачиненні чи ні"
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
-#, fuzzy
 msgid "Save Session on App Close"
-msgstr "Зберігати сеанс при закритті програми"
+msgstr "Зберегти сеанс при закритті програми"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
@@ -667,9 +649,8 @@ msgstr ""
 "Повторно відкриває останній відкритий каталог під час наступного запуску"
 
 #: data/gtk/ui/dialogs/Preferences.blp:25
-#, fuzzy
 msgid "Automatically Toggle List View Mode"
-msgstr "Автоматично перемикати режим перегляду списку"
+msgstr "Автоматичне перемикання режиму списку"
 
 #: data/gtk/ui/dialogs/Preferences.blp:26
 msgid ""
@@ -678,9 +659,8 @@ msgstr ""
 "Автоматично вмикає режим перегляду списком, якщо екран недостатньо великий"
 
 #: data/gtk/ui/dialogs/Preferences.blp:30
-#, fuzzy
 msgid "Display Compressed Covers"
-msgstr "Показувати стиснуті обкладинки"
+msgstr "Стиснуті обкладинки для дисплеїв"
 
 #: data/gtk/ui/dialogs/Preferences.blp:31
 msgid ""
@@ -691,7 +671,6 @@ msgstr ""
 "Це не впливає на фактичні зображення, що зберігаються у файлах"
 
 #: data/gtk/ui/dialogs/Preferences.blp:35
-#, fuzzy
 msgid "Quality Level"
 msgstr "Рівень якості"
 
@@ -700,7 +679,6 @@ msgid "The higher value, the higher cover quality"
 msgstr "Чим вище значення, тим вища якість покриття"
 
 #: data/gtk/ui/dialogs/Preferences.blp:48
-#, fuzzy
 msgid "Parse Directories Recursively"
 msgstr "Рекурсивний розбір каталогів"
 
@@ -709,7 +687,6 @@ msgid "Scans provided directory for supported files recursively"
 msgstr "Рекурсивно сканує наданий каталог на наявність підтримуваних файлів"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
-#, fuzzy
 msgid "Follow Symlinks"
 msgstr "Слідкуйте за символічними посиланнями"
 
@@ -752,9 +729,8 @@ msgid "Debug"
 msgstr "Налагодження"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
-#, fuzzy
 msgid "Enable Debug Logging Profile"
-msgstr "Увімкнути рівень журналювання Debug"
+msgstr "Увімкнути профіль журналювання налагодження"
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "Expands logging information for debug purposes"
@@ -771,13 +747,12 @@ msgid "Syncing"
 msgstr "Синхронізація"
 
 #: data/gtk/ui/dialogs/Preferences.blp:98
-#, fuzzy
 msgid "Syncing Type"
 msgstr "Тип синхронізації"
 
 #: data/gtk/ui/dialogs/Preferences.blp:99
 msgid "Defines the default workflow of syncing process"
-msgstr ""
+msgstr "Визначає робочий процес за замовчуванням для процесу синхронізації"
 
 #: data/gtk/ui/dialogs/Preferences.blp:102
 #: data/gtk/ui/dialogs/Preferences.blp:126
@@ -792,11 +767,12 @@ msgstr "Слово за словом"
 #: data/gtk/ui/dialogs/Preferences.blp:109
 msgid "Word-by-Word sync workflow is not supported on mobile devices."
 msgstr ""
+"Робочий процес синхронізації слово за словом не підтримується на мобільних "
+"пристроях."
 
 #: data/gtk/ui/dialogs/Preferences.blp:120
-#, fuzzy
 msgid "Use Precise Milliseconds"
-msgstr "Використовувати точніші мілісекунди"
+msgstr "Використовуйте точні мілісекунди"
 
 #: data/gtk/ui/dialogs/Preferences.blp:121
 msgid "Use 3-digit milliseconds instead of 2-digit"
@@ -804,7 +780,6 @@ msgstr "Використовуйте 3-значні мілісекунди за�
 
 #: data/gtk/ui/dialogs/Preferences.blp:129
 #: data/gtk/ui/dialogs/Preferences.blp:155
-#, fuzzy
 msgid "Default Re-Sync Value"
 msgstr "Значення повторної синхронізації за замовчуванням"
 
@@ -817,7 +792,6 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:140
 #: data/gtk/ui/dialogs/Preferences.blp:166
-#, fuzzy
 msgid "Large Re-Sync Value"
 msgstr "Велике значення повторної синхронізації"
 
@@ -831,9 +805,8 @@ msgid "File Manipulation"
 msgstr "Маніпулювання файлами"
 
 #: data/gtk/ui/dialogs/Preferences.blp:184
-#, fuzzy
 msgid "Auto File Manipulation"
-msgstr "Автоматична робота з файлами"
+msgstr "Автоматичне маніпулювання файлами"
 
 #: data/gtk/ui/dialogs/Preferences.blp:185
 msgid ""
@@ -843,7 +816,6 @@ msgstr ""
 "змінюються"
 
 #: data/gtk/ui/dialogs/Preferences.blp:194
-#, fuzzy
 msgid "File Format"
 msgstr "Формат файлу"
 
@@ -852,7 +824,6 @@ msgid "File format for auto manipulation"
 msgstr "Формат файлу для автоматичних маніпуляцій"
 
 #: data/gtk/ui/dialogs/Preferences.blp:205
-#, fuzzy
 msgid "Autosave Interval"
 msgstr "Інтервал автозбереження"
 
@@ -861,9 +832,8 @@ msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Інтервал автозбереження після бездіяльності синхронізації тексту пісні"
 
 #: data/gtk/ui/dialogs/Preferences.blp:221
-#, fuzzy
 msgid "Save Plain LRC Too"
-msgstr "Збережіть також звичайний LRC"
+msgstr "Зберегти також звичайний LRC"
 
 #: data/gtk/ui/dialogs/Preferences.blp:222
 msgid ""
@@ -874,7 +844,6 @@ msgstr ""
 "префікс eLRC не встановлено"
 
 #: data/gtk/ui/dialogs/Preferences.blp:226
-#, fuzzy
 msgid "eLRC Prefix"
 msgstr "Префікс eLRC"
 
@@ -889,20 +858,17 @@ msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr "Префікс, файли eLRC не повинні перешкоджати звичайним LRC-файлам"
 
 #: data/gtk/ui/dialogs/Preferences.blp:248
-#, fuzzy
 msgid "Lyrics Embedding"
 msgstr "Вбудовування текстів пісень"
 
 #: data/gtk/ui/dialogs/Preferences.blp:252
-#, fuzzy
 msgid "Embed Lyrics Within Audio File"
 msgstr "Вбудувати текст пісні в аудіофайл пісні"
 
 #: data/gtk/ui/dialogs/Preferences.blp:256
-#, fuzzy
 msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
 msgstr ""
-"Використовувати окремий тег синхронізованих текстів пісень у файлах Vorbis"
+"Використання окремого тегу синхронізованих текстів пісень у файлах Vorbis"
 
 #: data/gtk/ui/dialogs/Preferences.blp:257
 msgid ""
@@ -913,7 +879,6 @@ msgstr ""
 "Vorbis з можливістю коментарів (ogg, flac, opus)"
 
 #: data/gtk/ui/dialogs/Preferences.blp:262
-#, fuzzy
 msgid "Embed Lyrics Default Format"
 msgstr "Вбудувати текст пісні у форматі за замовчуванням"
 
@@ -935,18 +900,16 @@ msgstr ""
 "Це лише перетворює текст пісні у вибраний формат (eLRC -> LRC -> Plain)"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
-#, fuzzy
 msgid "Re-Sync All Lines?"
-msgstr "Повторно синхронізувати всі лінії"
+msgstr "Повторно синхронізувати всі лінії?"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
-#, fuzzy
 msgid ""
 "Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
 "sync backwards."
 msgstr ""
 "Введіть кількість мілісекунд для повторної синхронізації всіх рядків. "
-"Додайте префікс «-» для повторної синхронізації у зворотному напрямку"
+"Додайте префікс «-» для повторної синхронізації у зворотному напрямку."
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
 msgid "Milliseconds"
@@ -1042,9 +1005,8 @@ msgid "About file"
 msgstr "Про файл"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:219
-#, fuzzy
 msgid "Add Line"
-msgstr "Додайте лінію"
+msgstr "Додати рядок"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:82
 msgid "Re-sync selected word back"
@@ -1074,9 +1036,8 @@ msgid "Delete"
 msgstr "Видалити"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:42
-#, fuzzy
 msgid "Rename this Save?"
-msgstr "Перейменуйте це збереження"
+msgstr "Перейменувати це збереження?"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:46
 msgid "Name"
@@ -1132,6 +1093,8 @@ msgid ""
 "Chronograph is an open-source application designed for accurately syncing "
 "lyrics with audio timestamps."
 msgstr ""
+"Chronograph — це програма з відкритим кодом, розроблена для точної "
+"синхронізації текстів пісень з аудіопозначками часу."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:13
 msgid ""
@@ -1140,6 +1103,10 @@ msgid ""
 "designed to give the community an ability to be the ones who make these "
 "lyrics."
 msgstr ""
+"Ви можете помітити, що багато музичних гравців підтримують синхронізовані "
+"тексти, які висвітлюються лінією за строкою або словом за словами під час "
+"гри. Ця програма була розроблена, щоб дати громаді можливість бути тим, хто "
+"створює ці тексти."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:16
 msgid ""
@@ -1147,11 +1114,14 @@ msgid ""
 "players use LRCLib to fetch synchronized lyrics, this integration allows "
 "users to easily contribute their work back to the open-source community."
 msgstr ""
+"Chronograph безпосередньо підтримує публікацію LRCLib. Оскільки багато "
+"музичних гравців FOSS використовують LRCLib для отримання синхронізованих "
+"текстів, ця інтеграція дозволяє користувачам легко внести свою роботу до "
+"спільноти з відкритим джерелом."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:19
-#, fuzzy
 msgid "Syncing Modes"
-msgstr "Режим синхронізації"
+msgstr "Режими синхронізації"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:21
 msgid ""
@@ -1159,6 +1129,9 @@ msgid ""
 "placed for the whole line of lyrics. This is the most supported format of "
 "synced lyrics."
 msgstr ""
+"Рядок за рядком (основний): Тут щоразу, коли ви виконуєте дію синхронізації, "
+"позначка часу додається для всього рядка тексту пісні. Це найбільш "
+"підтримуваний формат синхронізованих текстів пісень."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:23
 msgid ""
@@ -1166,44 +1139,47 @@ msgid ""
 "timestamp for every single word, enabling players to animate lyrics with "
 "precision."
 msgstr ""
+"Слово за словом (розширений): Розроблено для справжньої якості караоке. "
+"Додає позначку часу для кожного слова, що дозволяє гравцям точно анімувати "
+"тексти пісень."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
 msgid "Supported Formats"
-msgstr ""
+msgstr "Підтримувані формати"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
 msgid "OGG"
-msgstr ""
+msgstr "OGG"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:31
 msgid "FLAC"
-msgstr ""
+msgstr "FLAC"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:33
 msgid "MP3"
-msgstr ""
+msgstr "MP3"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:35
 msgid "M4A"
-msgstr ""
+msgstr "M4A"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:37
 msgid "OPUS"
-msgstr ""
+msgstr "OPUS"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:39
 msgid "WAV"
-msgstr ""
+msgstr "WAV"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
 msgid "AAC (reduced functionality)"
-msgstr ""
+msgstr "AAC (знижена функціональність)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:76
 msgid "Library"
@@ -1235,11 +1211,11 @@ msgstr "Сторінка синхронізації пісень на меншо
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
 "тексти "
 "пісень;інтернет;пісні;мультимедіа;медіа;lrclib;музика;синхронізація;хронограф;"
+""
 
 #~ msgid "Pending"
 #~ msgstr "Очікує на розгляд"
