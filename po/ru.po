@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-15 19:35+0300\n"
-"PO-Revision-Date: 2025-11-15 19:38+0300\n"
+"POT-Creation-Date: 2025-11-22 09:57+0300\n"
+"PO-Revision-Date: 2025-11-22 09:59+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -20,7 +20,11 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: chronograph/window.py:405
+#: chronograph/window.py:43
+msgid "All Supported Media"
+msgstr "Все поддерживаемые форматы"
+
+#: chronograph/window.py:415
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
@@ -129,59 +133,59 @@ msgstr "Отменено"
 msgid "Fetching"
 msgstr "Загрузка"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:283
+#: chronograph/ui/sync_pages/lrc_sync_page.py:289
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:294
+#: chronograph/ui/sync_pages/lrc_sync_page.py:300
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
+#: chronograph/ui/sync_pages/lrc_sync_page.py:301
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Показать"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:403
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успешно опубликовано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:407
+#: chronograph/ui/sync_pages/lrc_sync_page.py:413
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неверный публичный токен: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:411
+#: chronograph/ui/sync_pages/lrc_sync_page.py:417
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Произошла неизвестная ошибка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:422
+#: chronograph/ui/sync_pages/lrc_sync_page.py:428
 msgid "Network error occurred while publishing lyrics"
 msgstr "Ошибка подключения во время публикации"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:423
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#: chronograph/ui/sync_pages/lrc_sync_page.py:429
+#: chronograph/ui/sync_pages/lrc_sync_page.py:437
 msgid "Log"
 msgstr "Журнал"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:430
+#: chronograph/ui/sync_pages/lrc_sync_page.py:436
 msgid "An error occurred while publishing lyrics"
 msgstr "Произошла ошибка при публикации"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:444
+#: chronograph/ui/sync_pages/lrc_sync_page.py:450
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+#: chronograph/ui/sync_pages/lrc_sync_page.py:464
 msgid "Unable to publish lyrics."
 msgstr "Невозможно опубликовать текст."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -189,15 +193,15 @@ msgstr ""
 "Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
 "«Альбом» и синхронизировать слова."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:465
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Close"
 msgstr "Закрыть"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:469
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
 msgid "Cannot publish empty lyrics"
 msgstr "Невозможно опубликовать пустой текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 msgid "Why?"
 msgstr "Почему?"
 
@@ -353,7 +357,7 @@ msgstr ""
 
 #: data/gtk/window.blp:80 data/gtk/window.blp:324
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:29
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:30
 msgid "Quick Editor"
 msgstr "Быстрое форматирование"
 
@@ -394,7 +398,7 @@ msgid "Filter library"
 msgstr "Фильтр библиотеки"
 
 #: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:27
 msgid "Menu"
 msgstr "Меню"
 
@@ -427,18 +431,18 @@ msgid "Mass Lyrics Downloading"
 msgstr "Массовая Загрузка Текстов"
 
 #: data/gtk/window.blp:329 data/gtk/ui/sync_pages/LRCSyncPage.blp:34
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
 msgid "Preferences"
 msgstr "Настройки"
 
 #: data/gtk/window.blp:330 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:35
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
 msgid "Keybindings"
 msgstr "Сочетания клавиш"
 
 #: data/gtk/window.blp:331 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
 msgid "About"
 msgstr "О приложении"
 
@@ -736,7 +740,7 @@ msgstr "ТРЕБУЕТСЯ ПЕРЕЗАПУСК"
 
 #: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:6
 msgid "Syncing"
 msgstr "Синхронизация"
 
@@ -909,12 +913,12 @@ msgid "Re-Sync"
 msgstr "Пересинхронизировать"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:64
 msgid "Sync/Re-sync line"
 msgstr "Синхронизировать/Пересинхронизировать строку"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:75
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:74
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:75
 msgid "Replay selected line"
 msgstr "Воспроизвести строку"
 
@@ -928,29 +932,29 @@ msgstr "Пересинхронизировать текущую строку в�
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:105
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:110
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:98
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:102
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:99
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:103
 msgid "Import from …"
 msgstr "Импортировать из…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
 msgid "File"
 msgstr "Файл"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:106
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:125
 msgid "Clipboard"
 msgstr "Буфер обмена"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:124
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:129
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:121
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:118
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:122
 msgid "Export to …"
 msgstr "Экспортировать в…"
 
@@ -973,43 +977,43 @@ msgstr "Добавить строку ниже"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:146
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:143
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:147
 msgid "Utilities"
 msgstr "Утилиты"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:148
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
 msgid "Re-sync all"
 msgstr "Пересинхронизировать всё"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
 msgid "Edit metadata"
 msgstr "Редактировать метаданные"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:151
 msgid "About file"
 msgstr "Сведения о файле"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:219
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:225
 msgid "Add Line"
 msgstr "Добавить строку"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:82
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:83
 msgid "Re-sync selected word back"
 msgstr "Пересинхронизировать текущее слово назад"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:91
 msgid "Re-sync selected word forward"
 msgstr "Пересинхронизировать текущее слово вперёд"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:183
 msgid "Edit"
 msgstr "Редактирование"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:209
 #: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:186
 msgid "Sync"
 msgstr "Синхронизация"
@@ -1109,10 +1113,22 @@ msgstr ""
 "вносить вклад в эту базу данных."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:19
+msgid ""
+"If you have a large base of music and just want to download lyrics for all "
+"of it, Chronograph also supports mass lyrics downloading. It will try to "
+"find lyrics for each of your track on LRClib and save it depending on your "
+"settings."
+msgstr ""
+"Если у вас есть большая база музыки и вы хотите скачать слова для всех "
+"треков, Хронограф также поддерживает массовую загрузку слов. Он попытается "
+"найти слова для каждого из треков на LRClib и сохранить их в зависимости от "
+"ваших настроек."
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:22
 msgid "Syncing Modes"
 msgstr "Режимы синхронизации"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:21
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:24
 msgid ""
 "Line-by-Line (Primary): Here, every time you do sync action, timestamp is "
 "placed for the whole line of lyrics. This is the most supported format of "
@@ -1122,7 +1138,7 @@ msgstr ""
 "временная метка устанавливается для всей строки сразу. Это наиболее "
 "поддерживаемый формат синхронизированных слов."
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:23
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
 msgid ""
 "Word-by-Word (Advanced): Designed for true karaoke quality. It places a "
 "timestamp for every single word, enabling players to animate lyrics with "
@@ -1132,69 +1148,69 @@ msgstr ""
 "временная метка размещается для каждого слова, позволяя плеерам точно "
 "анимировать слова."
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
 msgid "Supported Formats"
 msgstr "Поддерживаемые форматы"
 
 #. Translators: Remain as is
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:32
 msgid "OGG"
 msgstr "OGG"
 
 #. Translators: Remain as is
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:31
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:34
 msgid "FLAC"
 msgstr "FLAC"
 
 #. Translators: Remain as is
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:33
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:36
 msgid "MP3"
 msgstr "MP3"
 
 #. Translators: Remain as is
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:35
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:38
 msgid "M4A"
 msgstr "M4A"
 
 #. Translators: Remain as is
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:37
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
 msgid "OPUS"
 msgstr "OPUS"
 
 #. Translators: Remain as is
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:39
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:42
 msgid "WAV"
 msgstr "WAV"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:43
 msgid "AAC (reduced functionality)"
 msgstr "AAC (меньше функциональность)"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:76
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:79
 msgid "Library"
 msgstr "Библиотека"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:80
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:83
 msgid "Lyrics syncing page"
 msgstr "Страница синхронизации"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:84
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:87
 msgid "Word-by-Word syncing workflow"
 msgstr "Процесс пословной синхронизации"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:88
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:91
 msgid "Word-by-Word lyrics editor"
 msgstr "Редактор пословного текста"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:92
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:95
 msgid "LRClib import dialog"
 msgstr "Диалог импорта из LRClib"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:96
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:99
 msgid "Library in List View mode"
 msgstr "Библиотека в режиме списка"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:100
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
 msgid "Lyrics syncing page on smaller display"
 msgstr "Страница синхронизации на меньшем дисплее"
 

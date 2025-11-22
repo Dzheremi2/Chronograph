@@ -31,6 +31,8 @@ Chronograph directly supports publishing to [LRCLib](https://lrclib.net). As man
 music players use LRCLib to fetch synchronized lyrics, this integration allows users to 
 easily contribute their work back to the open-source community.
 
+If you have a large base of music and just want to download lyrics for all of it, Chronograph also supports _mass lyrics downloading_. It will try to find lyrics for each of your track on LRClib and save it depending on your settings.
+
 **Syncing Modes**
 - **Line-by-Line (Primary)**: Here, every time you do sync action, timestamp is placed for 
 the whole line of lyrics. This is the most supported format of synced lyrics.
