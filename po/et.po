@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-22 09:57+0300\n"
-"PO-Revision-Date: 2025-11-18 23:51+0000\n"
+"PO-Revision-Date: 2025-11-22 15:51+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -20,9 +20,8 @@ msgstr ""
 "X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:43
-#, fuzzy
 msgid "All Supported Media"
-msgstr "Toetatud vormingud"
+msgstr "Kõik toetatud vormingud"
 
 #: chronograph/window.py:415
 msgid "Copied successfully"
@@ -1125,6 +1124,10 @@ msgid ""
 "find lyrics for each of your track on LRClib and save it depending on your "
 "settings."
 msgstr ""
+"Kui sul on väga suur muusikakogu ja tahad kõikidele lauludele laulusõnu alla "
+"laadida, siis Kronograaf toetab masstöötlust. Rakendus proovib kõigile neist "
+"leida teenusest LRClib õiged sõnad ja leitu salvestada vastavalt sinu "
+"seadistustele."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:22
 msgid "Syncing Modes"
