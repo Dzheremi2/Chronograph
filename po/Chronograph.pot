@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
+"POT-Creation-Date: 2025-11-28 22:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,6 +82,7 @@ msgstr ""
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr ""
 
@@ -881,6 +882,34 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
 msgid "Re-Sync"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+msgid "Mass Download"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+msgid "No Log Available Yet"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64

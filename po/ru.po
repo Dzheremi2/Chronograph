@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
-"PO-Revision-Date: 2025-11-28 17:44+0300\n"
+"POT-Creation-Date: 2025-11-28 22:42+0300\n"
+"PO-Revision-Date: 2025-11-28 22:44+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -85,6 +85,7 @@ msgstr "Только Простые"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr "Загрузить"
 
@@ -911,6 +912,34 @@ msgstr "Миллисекунды"
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
 msgid "Re-Sync"
 msgstr "Пересинхронизировать"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+msgid "Mass Download"
+msgstr "Массовая Загрузка"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr "Перезаписывать уже существующие слова"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr "Будет заменять уже существующие слова в фале на найденные"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+msgid "No Log Available Yet"
+msgstr "Журнала пока нет"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr "Начните поиск, чтобы что-то увидеть"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr "Слова уже найдены"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
+msgstr "Слова для всех треков уже найдены"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63

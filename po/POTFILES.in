@@ -20,6 +20,7 @@ data/gtk/ui/dialogs/LRClib.blp
 data/gtk/ui/dialogs/MetadataEditor.blp
 data/gtk/ui/dialogs/Preferences.blp
 data/gtk/ui/dialogs/ResyncAllAlertDialog.blp
+data/gtk/ui/dialogs/MassDownloadingDialog.blp
 data/gtk/ui/sync_pages/LRCSyncPage.blp
 data/gtk/ui/sync_pages/WBWSyncPage.blp
 data/gtk/ui/widgets/SavedLocation.blp

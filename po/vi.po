@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
+"POT-Creation-Date: 2025-11-28 22:42+0300\n"
 "PO-Revision-Date: 2025-11-24 17:51+0000\n"
 "Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/chronograph/"
@@ -85,6 +85,7 @@ msgstr "Chỉ Đơn Giản"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr "Tìm Nạp"
 
@@ -913,6 +914,36 @@ msgstr "Mili giây"
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
 msgid "Re-Sync"
 msgstr "Đồng bộ lại"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+#, fuzzy
+msgid "Mass Download"
+msgstr "Tải Xuống Hàng Loạt"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+#, fuzzy
+msgid "No Log Available Yet"
+msgstr "Không có lời bài hát nào"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
+msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
