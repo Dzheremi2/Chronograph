@@ -38,6 +38,14 @@ MIME_TYPES = (
   "audio/mp4",
 )
 
+MIME_TYPE_FILTERS = Gio.ListStore.new(Gtk.FileFilter)
+MIME_TYPE_FILTERS.append(
+  Gtk.FileFilter(mime_types=MIME_TYPES, name=_("All Supported Media"))
+)
+for mime in MIME_TYPES:
+  filter_ = Gtk.FileFilter(mime_types=[mime])
+  MIME_TYPE_FILTERS.append(filter_)
+
 
 class WindowState(Enum):
   """Enum for window states
@@ -255,7 +263,9 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def select_files(*_args) -> None:
       logger.debug("Showing files selection dialog")
-      dialog = Gtk.FileDialog(default_filter=Gtk.FileFilter(mime_types=MIME_TYPES))
+      dialog = Gtk.FileDialog(
+        default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS
+      )
       dialog.open_multiple(self, None, on_select_files)
 
     def on_select_files(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:

@@ -3,6 +3,8 @@
 <img src="data/icons/hicolor/scalable/apps/io.github.dzheremi2.lrcmake-gtk.svg" width="128" height="128">
 
 # Chronograph
+**_Sync Lyrics of Your Loved Songs_** 🕒
+
 [flathub-url]: https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk
 [installs-img]: https://img.shields.io/flathub/downloads/io.github.dzheremi2.lrcmake-gtk?style=for-the-badge&color=gree&logo=flathub
 
@@ -18,35 +20,64 @@
 </div>
 
 ### About Chronograph
-Chronograph is the app for syncing song lyrics by timestamps. 
-Chronograph supports `.ogg`, `.flac`, `.mp3`, `.m4a`, `.opus` and `.wav` media formats.
-Also it supports `.aac` format, but without metadata reading, editing and automatic publishing to the [LRClib](https://lrclib.net).
-You can import lyrics from Clipboard, File or from LRClib and export your lyrics to these destinations.
-Chronograph also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players
+Chronograph is an open-source application designed for accurately syncing lyrics with 
+audio timestamps.
+
+You may notice that many of music players support synced lyrics which are highlighted 
+line-by-line or word-by-word while playing? This app was designed to give the community an 
+ability to be the ones who make these lyrics.
+
+Chronograph directly supports publishing to [LRCLib](https://lrclib.net). As many FOSS 
+music players use LRCLib to fetch synchronized lyrics, this integration allows users to 
+easily contribute their work back to the open-source community.
+
+If you have a large base of music and just want to download lyrics for all of it, Chronograph also supports _mass lyrics downloading_. It will try to find lyrics for each of your track on LRClib and save it depending on your settings.
+
+**Syncing Modes**
+- **Line-by-Line (Primary)**: Here, every time you do sync action, timestamp is placed for 
+the whole line of lyrics. This is the most supported format of synced lyrics.
+- **Word-by-Word (Advanced)**: Designed for true karaoke quality. It places a timestamp 
+for every single word, enabling players to animate lyrics with precision.
+
+**Supported Formats**
+- OGG
+- FLAC
+- MP3
+- M4A
+- OPUS
+- WAV
+- AAC (reduced functionality)
 
 ### Installation
 <a href='https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk'>
     <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/>
 </a>
 
-You can download app either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or by downloading and installing bundle from the [latest release](https://github.com/Dzheremi2/Chronograph/releases/latest)
+You can download app either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) 
+or by downloading and installing bundle from the [latest release](https://github.com/Dzheremi2/Chronograph/releases/latest)
 
 ### Releases
 
-Chronograph has three types of releases *stable*, *release candidates (beta)* and *devel (alpha)*
+Chronograph has three types of releases *stable*, *release candidates (beta)* and 
+*devel (alpha)*
 
 #### Stable
 
-Stable releases are available on Sundays (if not a hotfix) if their develepment cycle has ended. Could be downloaded either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) or via [GitHub Releases]((https://github.com/Dzheremi2/Chronograph/releases/latest))
+Stable releases are available on Fridays (if not a hotfix) if their develepment cycle has 
+ended. Could be downloaded either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) 
+or via [GitHub Releases]((https://github.com/Dzheremi2/Chronograph/releases/latest))
 
 #### Release Candidate
 
-RCs are published before the stable release in sunday-awaiting time for users to be able to test them and report bugs before the release happens.
-Could be downloaded only on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/). RCs are marked as `Pre-release`
+RCs are published before the stable release in friday-awaiting time for users to be able 
+to test them and report bugs before the release happens.
+Could be downloaded only on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/). 
+RCs are marked as `Pre-release`
 
 #### Devel
 
-Devel build are formed for every commit on any branch except for `main`. These build are casts of the current development state, so treat them as *Alpha* releases
+Devel build are formed for every commit on any branch except for `main`. These build are 
+casts of the current development state, so treat them as *Alpha* releases
 
 >[!CAUTION]
 >Devel builds may be unstable or don't even launch. Use it at your own risk
@@ -65,15 +96,18 @@ You can help project to be internationalized using [Hosted Weblate](https://host
 ### Plans
 You can see future plans on Projects page of this repo on [Chronograph roadmap.](https://github.com/users/Dzheremi2/projects/2)
 
-If you have an idea or you know a bug, please, open an [issue](https://github.com/Dzheremi2/Chronograph/issues) with you idea/bug and it will be added to roadmap.
+If you have an idea or you know a bug, please, open an [issue](https://github.com/Dzheremi2/Chronograph/issues) 
+with you idea/bug and it will be added to roadmap.
 
-If you want the app to support more file formats, create a feature request about that and attach a sample file.
+If you want the app to support more file formats, create a feature request about that and 
+attach a sample file.
 
 ### Code of Conduct
 The project follows the [GNOME Code of Conduct](https://conduct.gnome.org)
 
 ### Contributing
-All contribution instructions are described in [CONTRIBUTING.md](https://github.com/Dzheremi2/Chronograph/blob/master/CONTRIBUTING.md) file.
+All contribution instructions are described in [CONTRIBUTING.md](https://github.com/Dzheremi2/Chronograph/blob/master/CONTRIBUTING.md) 
+file.
 
 ### Screenshots
 <div align="center">
@@ -91,5 +125,7 @@ All contribution instructions are described in [CONTRIBUTING.md](https://github.
 ![](docs/screenshots/wbwsyncW.png)
 ![](docs/screenshots/wbweditB.png)
 ![](docs/screenshots/wbweditW.png)
+![](docs/screenshots/mdwlB.png)
+![](docs/screenshots/mdwlW.png)
 
 </div> 

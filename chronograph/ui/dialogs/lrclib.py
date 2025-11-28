@@ -10,7 +10,7 @@ from chronograph.internal import Constants
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.lrclib_track import LRClibTrack
-from dgutils.actions import Actions
+from dgutils import Actions, Linker
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -19,7 +19,7 @@ lrclib_logger = Constants.LRCLIB_LOGGER
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/dialogs/LRClib.ui")
 @Actions.from_schema(Constants.PREFIX + "/resources/actions/lrclib.yaml")
-class LRClib(Adw.Dialog):
+class LRClib(Adw.Dialog, Linker):
   __gtype_name__ = "LRClib"
 
   nothing_found_status_page: Adw.StatusPage = gtc()
@@ -48,6 +48,7 @@ class LRClib(Adw.Dialog):
 
   def __init__(self, title: str = "", artist: str = "", album: str = "") -> None:
     super().__init__()
+    Linker.__init__(self)
 
     self.lrctracks_list_box.set_placeholder(self.search_lrclib_status_page)
     self.title_entry.set_text(title)
@@ -56,6 +57,8 @@ class LRClib(Adw.Dialog):
 
     self._on_title_entry_changed(self.title_entry)
     GLib.idle_add(self.import_button.set_sensitive, False)
+
+    self.new_connection(self, "closed", lambda *__: self.disconnect_all())
 
   @Gtk.Template.Callback()
   def _on_title_entry_changed(self, entry: Gtk.Entry) -> None:
@@ -125,13 +128,13 @@ class LRClib(Adw.Dialog):
     artist = self.artist_entry.get_text().strip()
     album = self.album_entry.get_text().strip()
     task = AsyncTask(LRClibService().api_search, title, artist, album)
-    task.connect("task-done", on_search_result)
-    task.connect("error", on_search_failed)
+    self.new_connection(task, "task-done", on_search_result)
+    self.new_connection(task, "error", on_search_failed)
     task.start()
     self.search_button.set_sensitive(False)
 
   def _import_lyrics(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
 
     text = ""
     if self.lyrics_stack.get_visible_child() == self.synced_stack_page:

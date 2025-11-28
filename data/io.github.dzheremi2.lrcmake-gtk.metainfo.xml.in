@@ -4,12 +4,44 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
+  <!-- Translators: App name IS intended to be translated -->
   <name>Chronograph</name>
   <summary>Sync lyrics of your loved songs</summary>
   <description>
-    <p>This app helps you to contribute to the large database of synced lyrics with beautiful GTK4 and LibAdwaita interface.</p>
-    <p>It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced functionality) formats.</p>
-    <p>It also supports Word-by-Word syncing in eLRC format for true karaoke effect in supported players</p>
+    <p>Chronograph is an open-source application designed for accurately syncing lyrics 
+    with audio timestamps.</p>
+    <p>You may notice that many of music players support synced lyrics which are 
+    highlighted line-by-line or word-by-word while playing? This app was designed to 
+    give the community an ability to be the ones who make these lyrics.</p>
+    <p>Chronograph directly supports publishing to LRCLib. As many FOSS music players 
+    use LRCLib to fetch synchronized lyrics, this integration allows users to easily 
+    contribute their work back to the open-source community.</p>
+    <p>If you have a large base of music and just want to download lyrics for all of it, 
+    Chronograph also supports mass lyrics downloading. It will try to find lyrics for each 
+    of your track on LRClib and save it depending on your settings.</p>
+    <p>Syncing Modes</p>
+    <ul>
+      <li>Line-by-Line (Primary): Here, every time you do sync action, timestamp is placed 
+      for the whole line of lyrics. This is the most supported format of synced lyrics.</li>
+      <li>Word-by-Word (Advanced): Designed for true karaoke quality. It places a 
+      timestamp for every single word, enabling players to animate lyrics with precision.</li>
+    </ul>
+    <p>Supported Formats</p>
+    <ul>
+      <!-- Translators: Remain as is -->
+      <li>OGG</li>
+      <!-- Translators: Remain as is -->
+      <li>FLAC</li>
+      <!-- Translators: Remain as is -->
+      <li>MP3</li>
+      <!-- Translators: Remain as is -->
+      <li>M4A</li>
+      <!-- Translators: Remain as is -->
+      <li>OPUS</li>
+      <!-- Translators: Remain as is -->
+      <li>WAV</li>
+      <li>AAC (reduced functionality)</li>
+    </ul>
   </description>
 
   <developer id="com.github">
@@ -38,7 +70,7 @@
     <control>pointing</control>
   </supports>
   <requires>
-    <display_length compare="ge">360</display_length>
+    <display_length compare="ge">362</display_length>
   </requires>
 
   <screenshots>
@@ -63,6 +95,10 @@
       <caption>LRClib import dialog</caption>
     </screenshot>
     <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/mdwlW.png</image>
+      <caption>Mass lyrics downloading dialog</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/libLW.png</image>
       <caption>Library in List View mode</caption>
     </screenshot>
@@ -73,6 +109,23 @@
   </screenshots>
 
   <releases>
+    <release version="5.3" date="2025-11-28">
+      <description translate="no">
+        <p>New features</p>
+        <ul>
+          <li>Ability to mass download lyrics for opened library</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>Correctly handle sidebar Pin rows autoselection on any library operation</li>
+        </ul>
+        <p>Miscellaneous</p>
+        <ul>
+          <li>Prepare for GNOME Circle participating. This release remarks by Ignacy 
+          Kuchciński, Martin Abente Lahaye</li>
+        </ul>
+      </description>
+    </release>
     <release version="5.2" date="2025-10-31">
       <description translate="no">
         <p>New features</p>

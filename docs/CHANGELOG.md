@@ -1,19 +1,18 @@
-## 5.3-rc2
+## 5.3
 
+<p>New features</p>
+<ul>
+  <li>Ability to mass download lyrics for opened library</li>
+</ul>
 <p>Bug fixes</p>
 <ul>
   <li>Correctly handle sidebar Pin rows autoselection on any library operation</li>
 </ul>
 <p>Miscellaneous</p>
 <ul>
-  <li>Prepare for GNOME Circle participating. This release remarks by <a href="https://gitlab.gnome.org/Teams/Circle/-/issues/241">Ignacy Kuchciński</a></li>
-</ul>
-
-## 5.3-rc1
-
-<p>New features</p>
-<ul>
-  <li>Ability to mass download lyrics for opened library</li>
+  <li>Prepare for GNOME Circle participating. This release remarks by <a href="https://gitlab.gnome.org/Teams/Circle/-/issues/241">
+  Ignacy Kuchciński</a>, <a href="https://gitlab.gnome.org/Teams/Circle/-/issues/241">
+  Martin Abente Lahaye</a></li>
 </ul>
 
 ## 5.2

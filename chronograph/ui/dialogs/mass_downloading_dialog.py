@@ -12,6 +12,7 @@ from chronograph.backend.lrclib.responses import LRClibEntry
 from chronograph.backend.lyrics.lyrics_file import LyricsFile
 from chronograph.backend.media import BaseFile  # noqa: TC001
 from chronograph.internal import Constants, Schema
+from dgutils import Linker
 
 gtc = Gtk.Template.Child
 
@@ -19,13 +20,17 @@ gtc = Gtk.Template.Child
 @Gtk.Template(
   resource_path=Constants.PREFIX + "/gtk/ui/dialogs/MassDownloadingDialog.ui"
 )
-class MassDownloadingDialog(Adw.Dialog):
+class MassDownloadingDialog(Adw.Dialog, Linker):
   __gtype_name__ = "MassDownloadingDialog"
+
+  no_log_yet: Adw.StatusPage = gtc()
+  already_fetched: Adw.StatusPage = gtc()
 
   progress_revealer: Gtk.Revealer = gtc()
   progress_bar: Gtk.ProgressBar = gtc()
   fetch_log_list_box: Gtk.ListBox = gtc()
-  no_log_yet: Adw.StatusPage = gtc()
+  rewrite_already_existing_switch: Adw.SwitchRow = gtc()
+  fetch_button: Gtk.Button = gtc()
 
   log_items: Gio.ListStore = GObject.Property(type=Gio.ListStore)
 
@@ -33,11 +38,24 @@ class MassDownloadingDialog(Adw.Dialog):
 
   def __init__(self) -> None:
     super().__init__()
+    Linker.__init__(self)
     self.fetch_log_list_box.set_placeholder(self.no_log_yet)
     store = Gio.ListStore.new(item_type=LogEntry)
     self.set_property("log_items", store)
     self.fetch_log_list_box.bind_model(self.log_items, self._log_row_factory)
     self._task_cancel_hdl = None
+
+    if Constants.WIN.state.value in (0, 1):
+      self.fetch_button.set_sensitive(False)
+
+    self.new_connection(
+      Constants.WIN,
+      "notify::state",
+      lambda *__: self.fetch_button.set_sensitive(False)
+      if Constants.WIN.state.value in (0, 1)
+      else self.fetch_button.set_sensitive(True),
+    )
+    self.new_connection(self, "closed", lambda *__: self.disconnect_all())
 
   @Gtk.Template.Callback()
   def _on_fetch_button_clicked(self, button: Gtk.Button) -> None:
@@ -46,23 +64,27 @@ class MassDownloadingDialog(Adw.Dialog):
       button.set_label(_("Fetch"))
       self.progress_revealer.set_reveal_child(False)
 
+    def is_lrc_exist(media_path: str) -> bool:
+      path = Path(media_path)
+      lrc_path = path.with_suffix(Schema.get("root.settings.file-manipulation.format"))
+      return not lrc_path.exists()
+
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
         self.log_items.remove_all()
-        # FIXME: Create a class (in dgutils) wrapper for Handlers to provide an API
-        # methods "disconnect_all" to kill all handlers
-        LRClibService().disconnect(self.fstr)
-        LRClibService().disconnect(self.fmsg)
-        LRClibService().disconnect(self.fst)
-        LRClibService().disconnect(self.fad)
+        self.disconnect_all()
       if getattr(self, "_task_cancel_hdl", None) and getattr(self, "task", None):
         with contextlib.suppress(Exception):
           self.task.disconnect(self._task_cancel_hdl)
       self._task_cancel_hdl = None
-      medias: list[BaseFile] = []
-      for item in LibraryModel().library:
-        media = item.get_child().model.mfile
-        medias.append(media)
+      medias: list[BaseFile] = [
+        item.get_child().model.mfile for item in LibraryModel().library
+      ]
+      if not self.rewrite_already_existing_switch.get_active():
+        medias = [media for media in medias.copy() if is_lrc_exist(media.path)]
+        if len(medias) == 0:
+          self.fetch_log_list_box.set_placeholder(self.already_fetched)
+          return
       self.task = AsyncTask(
         LRClibService().fetch_lyrics_many,
         medias,
@@ -75,13 +97,27 @@ class MassDownloadingDialog(Adw.Dialog):
       self._fetch_going = True
       self.progress_revealer.set_reveal_child(True)
       self.progress_bar.set_fraction(0.0)
-      self.fstr = LRClibService().connect(
-        "fetch-started", lambda _lrclib, path: self.log_items.insert(0, LogEntry(path))
+      self.new_connection(
+        LRClibService(),
+        "fetch-started",
+        lambda _lrclib, path: self.log_items.insert(0, LogEntry(path)),
       )
-      self.fmsg = LRClibService().connect("fetch-message", self._on_fetch_message)
-      self.fst = LRClibService().connect("fetch-state", self._on_fetch_state)
+      self.new_connection(
+        LRClibService(),
+        "fetch-message",
+        self._on_fetch_message,
+      )
+      self.new_connection(
+        LRClibService(),
+        "fetch-state",
+        self._on_fetch_state,
+      )
+      self.new_connection(
+        LRClibService(),
+        "fetch-all-done",
+        on_all_done,
+      )
       button.set_label(_("Cancel"))
-      self.fad = LRClibService().connect("fetch-all-done", on_all_done)
     else:
       self.task.cancel()
       self._fetch_going = False
@@ -123,7 +159,7 @@ class MassDownloadingDialog(Adw.Dialog):
             )
             match dl_profile:
               case "s":
-                if entry.synced_lyrics.strip() != "":
+                if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
                   lyrics_file.lrc_lyrics.text = entry.synced_lyrics
                   lyrics_file.lrc_lyrics.save()
                   item.props.done = True
@@ -131,7 +167,7 @@ class MassDownloadingDialog(Adw.Dialog):
                 item.props.failed = True
                 item.props.message = _("No synced lyrics found")
               case "s~p":
-                if entry.synced_lyrics.strip() != "":
+                if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
                   lyrics_file.lrc_lyrics.text = entry.synced_lyrics
                   lyrics_file.lrc_lyrics.save()
                   item.props.done = True
@@ -207,6 +243,6 @@ class LogEntry(GObject.Object):
   cancelled: bool = GObject.Property(type=bool, default=False)
   instrumental: bool = GObject.Property(type=bool, default=False)
 
-  def __init__(self, path: str, message: str = _("Pending")) -> None:
+  def __init__(self, path: str, message: str = _("Fetching")) -> None:
     super().__init__(message=message)
     self.path = path

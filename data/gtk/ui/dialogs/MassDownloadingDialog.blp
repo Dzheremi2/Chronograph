@@ -43,12 +43,22 @@ template $MassDownloadingDialog : Adw.Dialog {
         }
 
         [bottom]
+        Adw.PreferencesPage {
+          Adw.PreferencesGroup {
+            Adw.SwitchRow rewrite_already_existing_switch {
+              title: _("Rewrite Already Existing Lyrics");
+              subtitle: _("Will replace already existing lyrics in file to those one found");
+            }
+          }
+        }
+
+        [bottom]
         Box {
           halign: center;
           margin-bottom: 12;
           margin-top: 12;
 
-          Button {
+          Button fetch_button {
             label: _("Fetch");
             clicked => $_on_fetch_button_clicked();
             styles ["pill", "suggested-action"]
@@ -63,4 +73,10 @@ Adw.StatusPage no_log_yet {
   title: _("No Log Available Yet");
   description: _("Start fetching to see something");
   icon-name: "nothing-found-symbolic";
+}
+
+Adw.StatusPage already_fetched {
+  title: _("Lyrics Already Fetched");
+  description: _("Lyrics for all songs are already fetched");
+  icon-name: "chr-check-round-outline-symbolic";
 }

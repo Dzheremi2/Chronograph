@@ -25,6 +25,9 @@ template $SongCard: Box {
         Box {
           orientation: horizontal;
           margin-top: 8;
+          margin-start: 8;
+          margin-bottom: 8;
+          margin-end: 8;
           spacing: 6;
 
           Button play_button {
@@ -164,6 +167,8 @@ Adw.ActionRow list_view_row {
       label: bind lyrics_state_indicator.label;
       visible: bind buttons_revealer_row.visible inverted;
       can-shrink: true;
+      focusable: false;
+      can-focus: false;
       styles ["no-hover", "pill", "small", "lyrics", "none"]
     }
   }

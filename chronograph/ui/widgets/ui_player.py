@@ -5,13 +5,14 @@ from gi.repository import Adw, GObject, Gst, Gtk
 from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
+from dgutils import Linker
 
 gtc = Gtk.Template.Child
 player_logger = Constants.PLAYER_LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/UIPlayer.ui")
-class UIPlayer(Adw.BreakpointBin):
+class UIPlayer(Adw.BreakpointBin, Linker):
   __gtype_name__ = "UIPlayer"
 
   main_clamp: Adw.Clamp = gtc()
@@ -39,6 +40,7 @@ class UIPlayer(Adw.BreakpointBin):
     max_width: int = 600,
   ) -> None:
     super().__init__()
+    Linker.__init__(self)
     Player().set_file(Path(card_model.path))
 
     # Init Playback GUI setup
@@ -52,66 +54,59 @@ class UIPlayer(Adw.BreakpointBin):
       self.volume_button.set_icon_name("chr-vol-mute-symbolic")
 
     # Playback UI Reactivity
-    self.pos_hndl = Player().connect("notify::pos", self._on_pos_changed)
-    self.playing_hndl = Player().connect("notify::playing", self._on_playing_changed)
-    self.volume_hndl = Player().connect(
+    self.new_connection(Player(), "notify::pos", self._on_pos_changed)
+    self.new_connection(Player(), "notify::playing", self._on_playing_changed)
+    self.new_connection(
+      Player(),
       "notify::volume",
       lambda *__: self.volume_label.set_label(
         _("{vol}%").format(vol=int(Player().volume * 100))
       ),
     )
-    self.duration_hndl = Player().connect(
+    self.new_connection(
+      Player(),
       "notify::duration",
       lambda *__: [
         self.position_adj.set_upper(Player().duration / Gst.SECOND),
         self._on_pos_changed(Player(), None),
       ],
     )
-    self.rate_hndl = Player().connect(
+    self.new_connection(
+      Player(),
       "notify::rate",
       lambda *__: self.rate_label.set_label(f"{Player().rate}x"),
     )
-    self.seek_done_hndl = Player()._gst_player.connect("seek-done", self._on_seek_done)  # noqa: SLF001
+    self.new_connection(Player()._gst_player, "seek-done", self._on_seek_done)  # noqa: SLF001
 
     # Info UI reactivity
     self._card = card_model
     self.main_clamp.set_maximum_size(max_width)
     self.main_clamp.set_tightening_threshold(max_width)
 
-    self.title_display_bind = self._card.bind_property(
-      "title_display",
-      self.title_inscr,
-      "text",
-      GObject.BindingFlags.SYNC_CREATE,
+    self.new_binding(
+      self._card.bind_property(
+        "title_display",
+        self.title_inscr,
+        "text",
+        GObject.BindingFlags.SYNC_CREATE,
+      )
     )
-    self.artist_display_bind = self._card.bind_property(
-      "artist_display",
-      self.artist_inscr,
-      "text",
-      GObject.BindingFlags.SYNC_CREATE,
+    self.new_binding(
+      self._card.bind_property(
+        "artist_display",
+        self.artist_inscr,
+        "text",
+        GObject.BindingFlags.SYNC_CREATE,
+      )
     )
-    self.cover_bind = self._card.bind_property(
-      "cover",
-      self.sync_page_cover,
-      "paintable",
-      GObject.BindingFlags.SYNC_CREATE,
+    self.new_binding(
+      self._card.bind_property(
+        "cover",
+        self.sync_page_cover,
+        "paintable",
+        GObject.BindingFlags.SYNC_CREATE,
+      )
     )
-
-  def disconnect_all(self) -> None:
-    """Removes all reactivity from `self`.
-
-    Used on page closure to not update all other `UIPlayer` instances for each media
-    (since Gtk.Widgets are not destroyed and cannot be)
-    """
-    self.disconnect(self.pos_hndl)
-    self.disconnect(self.volume_hndl)
-    self.disconnect(self.playing_hndl)
-    self.disconnect(self.duration_hndl)
-    self.disconnect(self.rate_hndl)
-    self.disconnect(self.seek_done_hndl)
-    self.title_display_bind.unbind()
-    self.artist_display_bind.unbind()
-    self.cover_bind.unbind()
 
   @Gtk.Template.Callback()
   def _toggle_play(self, *_args) -> None:

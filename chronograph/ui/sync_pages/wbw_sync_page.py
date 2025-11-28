@@ -408,7 +408,7 @@ class WBWSyncPage(Adw.NavigationPage):
       logger.debug("Page closed, saving lyrics")
       self._autosave()
     Player().stop()
-    self._player_widget.disconnect_all()
+    self._player_widget.link_teardown()
 
   def _on_app_close(self, *_) -> None:
     if self._autosave_timeout_id:

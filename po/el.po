@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-15 14:33+0300\n"
+"POT-Creation-Date: 2025-11-28 17:41+0300\n"
 "PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -19,50 +19,54 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: chronograph/window.py:405
+#: chronograph/window.py:43
+msgid "All Supported Media"
+msgstr ""
+
+#: chronograph/window.py:415
 msgid "Copied successfully"
 msgstr "Αντιγράφηκε επιτυχώς"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:160
+#: chronograph/main.py:166
 msgid "translator-credits"
 msgstr "Γιάννος Ασημακόπουλος 2025"
 
-#: chronograph/main.py:168
+#: chronograph/main.py:174
 msgid "Inspiration"
 msgstr "Έμπνευση"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:178
+#: chronograph/main.py:184
 msgid "Build your own dictionary"
 msgstr "Φτιάξτε το δικό σας λεξικό"
 
-#: chronograph/main.py:184
+#: chronograph/main.py:190
 msgid "Translate the App"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:108
+#: chronograph/ui/dialogs/lrclib.py:111
 msgid "Connection Error"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:110
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid "Network error occured while connecting to LRClib"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:116
+#: chronograph/ui/dialogs/lrclib.py:119
 msgid "Something went wrong"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:118
+#: chronograph/ui/dialogs/lrclib.py:121
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:194
+#: chronograph/ui/dialogs/lrclib.py:197
 msgid "No synced lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι συγχρονισμένοι στίχοι"
 
-#: chronograph/ui/dialogs/lrclib.py:199
+#: chronograph/ui/dialogs/lrclib.py:202
 msgid "No plain lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
@@ -80,12 +84,12 @@ msgstr ""
 msgid "Plain Only"
 msgstr "Απλά"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:46
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:88
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:64
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:124
 msgid "Fetch"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:83
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:120
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 #: data/gtk/ui/widgets/SavedLocation.blp:51
@@ -93,119 +97,118 @@ msgstr ""
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:108
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 msgid "Connection timed out"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:110
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:146
 #, fuzzy
 msgid "Connection error occurred"
 msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:112
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:148
 #, fuzzy
 msgid "An error occurred: "
 msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:118
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
 #, fuzzy
 msgid "Instrumental track. No lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:168
 #, fuzzy
 msgid "No synced lyrics found"
 msgstr "Δεν υπάρχουν διαθέσιμοι συγχρονισμένοι στίχοι"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
-#: chronograph/backend/lrclib/lrclib_service.py:410
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
+#: chronograph/backend/lrclib/lrclib_service.py:423
 #, fuzzy
 msgid "No lyrics found"
 msgstr "Δεν έχουν βρεθεί ακόμα αποθηκεύσεις"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:188
 #, fuzzy
 msgid "No plain lyrics found"
 msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:173
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:209
 #, fuzzy
 msgid "Cancelled"
 msgstr "Ακύρωση"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:210
-#, fuzzy
-msgid "Pending"
-msgstr "Δεσμοί πλήκτρων"
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:246
+msgid "Fetching"
+msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:283
+#: chronograph/ui/sync_pages/lrc_sync_page.py:289
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:294
+#: chronograph/ui/sync_pages/lrc_sync_page.py:300
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
+#: chronograph/ui/sync_pages/lrc_sync_page.py:301
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:404
+#: chronograph/ui/sync_pages/lrc_sync_page.py:409
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Δημοσιεύθηκε με επιτυχία: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:408
+#: chronograph/ui/sync_pages/lrc_sync_page.py:413
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Λανθασμένο διακριτικό δημοσίευσης: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:412
+#: chronograph/ui/sync_pages/lrc_sync_page.py:417
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:428
 msgid "Network error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:424
-#: chronograph/ui/sync_pages/lrc_sync_page.py:432
+#: chronograph/ui/sync_pages/lrc_sync_page.py:429
+#: chronograph/ui/sync_pages/lrc_sync_page.py:437
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:431
+#: chronograph/ui/sync_pages/lrc_sync_page.py:436
 msgid "An error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:445
+#: chronograph/ui/sync_pages/lrc_sync_page.py:450
 msgid "Seems like not every line is synced"
 msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:459
+#: chronograph/ui/sync_pages/lrc_sync_page.py:464
 msgid "Unable to publish lyrics."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:461
+#: chronograph/ui/sync_pages/lrc_sync_page.py:466
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:475
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 msgid "Why?"
 msgstr ""
 
@@ -277,8 +280,8 @@ msgstr "Ναι"
 msgid "No"
 msgstr "Όχι"
 
-#: chronograph/ui/widgets/ui_player.py:47
-#: chronograph/ui/widgets/ui_player.py:60
+#: chronograph/ui/widgets/ui_player.py:49
+#: chronograph/ui/widgets/ui_player.py:63
 #, python-brace-format
 msgid "{vol}%"
 msgstr ""
@@ -313,17 +316,23 @@ msgstr ""
 msgid "Plain"
 msgstr "Απλά"
 
-#: chronograph/backend/lrclib/lrclib_service.py:357
-#: chronograph/backend/lrclib/lrclib_service.py:386
+#: chronograph/backend/lrclib/lrclib_service.py:368
+#: chronograph/backend/lrclib/lrclib_service.py:396
+#: chronograph/backend/lrclib/lrclib_service.py:409
 #, fuzzy
 msgid "Fetched successfully"
 msgstr "Αντιγράφηκε επιτυχώς"
 
-#: chronograph/backend/lrclib/lrclib_service.py:371
-msgid "Fetching using /api/get failed, trying /api/search"
+#: chronograph/backend/lrclib/lrclib_service.py:376
+msgid "Fetch using /api/get failed, trying /api/search"
 msgstr ""
 
-#: chronograph/backend/lrclib/lrclib_service.py:397
+#: chronograph/backend/lrclib/lrclib_service.py:392
+msgid "Trying search with no album"
+msgstr ""
+
+#: chronograph/backend/lrclib/lrclib_service.py:402
+#: chronograph/backend/lrclib/lrclib_service.py:414
 #, fuzzy
 msgid "No suitable lyrics found"
 msgstr "Δεν έχουν βρεθεί ακόμα αποθηκεύσεις"
@@ -379,8 +388,9 @@ msgstr "Γρήγορος επεξεργαστής"
 msgid "Copy to Clipboard"
 msgstr "Πρόχειρο"
 
+#. Translators: App name IS intended to be translated
 #: data/gtk/window.blp:133 data/gtk/window.blp:195
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:7
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Χρονογράφος"
@@ -1031,7 +1041,7 @@ msgstr "Επεξεργασία μεταδεδομένων τραγουδιού"
 msgid "About file"
 msgstr "Σχετικά με το αρχείο"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:219
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:225
 #, fuzzy
 msgid "Add Line"
 msgstr "Προσθήκη γραμμής"
@@ -1051,7 +1061,7 @@ msgid "Edit"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:186
+#: data/gtk/ui/widgets/SongCard.blp:35 data/gtk/ui/widgets/SongCard.blp:191
 msgid "Sync"
 msgstr "Συγχρονισμός"
 
@@ -1078,19 +1088,19 @@ msgstr "Όνομα"
 msgid "Delete this Save?"
 msgstr "Διαγραφή αυτής της Αποθήκευσης?"
 
-#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:197
+#: data/gtk/ui/widgets/SongCard.blp:46 data/gtk/ui/widgets/SongCard.blp:202
 msgid "Edit song metadata"
 msgstr "Επεξεργασία μεταδεδομένων τραγουδιού"
 
-#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:207
+#: data/gtk/ui/widgets/SongCard.blp:57 data/gtk/ui/widgets/SongCard.blp:212
 msgid "Show song info"
 msgstr "Εμφάνιση πληροφοριών τραγουδιού"
 
-#: data/gtk/ui/widgets/SongCard.blp:68
+#: data/gtk/ui/widgets/SongCard.blp:71
 msgid "Open syncing page"
 msgstr "Άνοιγμα σελίδας συγχρονισμού"
 
-#: data/gtk/ui/widgets/SongCard.blp:121
+#: data/gtk/ui/widgets/SongCard.blp:124
 msgid "Lyrics format (if exists)"
 msgstr ""
 
@@ -1115,66 +1125,148 @@ msgstr ""
 msgid "Toggle song repeat"
 msgstr "Εναλλαγή επανάληψης τραγουδιού"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:9
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
 msgstr "Συγχρονίστε τους στίχους των αγαπημένων σας τραγουδιών"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:10
-#, fuzzy
-msgid ""
-"This app helps you to contribute to the large database of synced lyrics with "
-"beautiful GTK4 and LibAdwaita interface."
-msgstr ""
-"Αυτή η εφαρμογή σας βοηθά να συνεισφέρετε στη μεγάλη βάση δεδομένων των "
-"συγχρονισμένων στίχων με όμορφο περιβάλλον GTK4 και LibAdwaita. Υποστηρίζει "
-"μουσική σε μορφές ogg, flac, mp3, m4a, wav, opus και aac (μειωμένη "
-"λειτουργικότητα)"
-
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:11
 msgid ""
-"It supports music in ogg, flac, mp3, m4a, wav, opus and aac (reduced "
-"functionality) formats."
+"Chronograph is an open-source application designed for accurately syncing "
+"lyrics with audio timestamps."
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:12
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:13
 msgid ""
-"It also supports Word-by-Word syncing in eLRC format for true karaoke effect "
-"in supported players"
+"You may notice that many of music players support synced lyrics which are "
+"highlighted line-by-line or word-by-word while playing? This app was "
+"designed to give the community an ability to be the ones who make these "
+"lyrics."
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:47
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:16
+msgid ""
+"Chronograph directly supports publishing to LRCLib. As many FOSS music "
+"players use LRCLib to fetch synchronized lyrics, this integration allows "
+"users to easily contribute their work back to the open-source community."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:19
+msgid ""
+"If you have a large base of music and just want to download lyrics for all "
+"of it, Chronograph also supports mass lyrics downloading. It will try to "
+"find lyrics for each of your track on LRClib and save it depending on your "
+"settings."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:22
+#, fuzzy
+msgid "Syncing Modes"
+msgstr "Λειτουργία συγχρονισμού"
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:24
+msgid ""
+"Line-by-Line (Primary): Here, every time you do sync action, timestamp is "
+"placed for the whole line of lyrics. This is the most supported format of "
+"synced lyrics."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
+msgid ""
+"Word-by-Word (Advanced): Designed for true karaoke quality. It places a "
+"timestamp for every single word, enabling players to animate lyrics with "
+"precision."
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
+msgid "Supported Formats"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:32
+msgid "OGG"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:34
+msgid "FLAC"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:36
+msgid "MP3"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:38
+msgid "M4A"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
+msgid "OPUS"
+msgstr ""
+
+#. Translators: Remain as is
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:42
+msgid "WAV"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:43
+msgid "AAC (reduced functionality)"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:79
 msgid "Library"
 msgstr "Βιβλιοθήκη"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:51
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:83
 msgid "Lyrics syncing page"
 msgstr "Σειρά συγχρονισμού στίχων"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:55
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:87
 msgid "Word-by-Word syncing workflow"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:59
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:91
 msgid "Word-by-Word lyrics editor"
 msgstr ""
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:63
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:95
 msgid "LRClib import dialog"
 msgstr "Διάλογος εισαγωγής LRClib"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:67
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:99
+msgid "Mass lyrics downloading dialog"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
 msgid "Library in List View mode"
 msgstr "Βιβλιοθήκη σε λειτουργία προβολής λίστας"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:71
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:107
 msgid "Lyrics syncing page on smaller display"
 msgstr "Σελίδα συγχρονισμού στίχων σε μικρότερη οθόνη"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-msgid "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;"
+#, fuzzy
+msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;στίχοι;διαδίκτυο;τραγούδια;πολυμέσα;μέσα;lrclib;μουσική;συγχρονισμός;χρονογράφος;"
+
+#, fuzzy
+#~ msgid "Pending"
+#~ msgstr "Δεσμοί πλήκτρων"
+
+#, fuzzy
+#~ msgid ""
+#~ "This app helps you to contribute to the large database of synced lyrics "
+#~ "with beautiful GTK4 and LibAdwaita interface."
+#~ msgstr ""
+#~ "Αυτή η εφαρμογή σας βοηθά να συνεισφέρετε στη μεγάλη βάση δεδομένων των "
+#~ "συγχρονισμένων στίχων με όμορφο περιβάλλον GTK4 και LibAdwaita. "
+#~ "Υποστηρίζει μουσική σε μορφές ogg, flac, mp3, m4a, wav, opus και aac "
+#~ "(μειωμένη λειτουργικότητα)"
 
 #~ msgid "No source selected yet"
 #~ msgstr "Δεν έχει επιλεγεί ακόμα πηγή"
