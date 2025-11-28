@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-22 09:57+0300\n"
+"POT-Creation-Date: 2025-11-28 17:41+0300\n"
 "PO-Revision-Date: 2025-05-14 22:01+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/chronograph/"
@@ -28,48 +28,48 @@ msgid "Copied successfully"
 msgstr "Kopiointi onnistui"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:160
+#: chronograph/main.py:166
 msgid "translator-credits"
 msgstr ""
 "Jiri Grönroos\n"
 "Ricky Tigg"
 
-#: chronograph/main.py:168
+#: chronograph/main.py:174
 #, fuzzy
 msgid "Inspiration"
 msgstr "Kesto"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:178
+#: chronograph/main.py:184
 msgid "Build your own dictionary"
 msgstr "Rakenna oma sanasto"
 
-#: chronograph/main.py:184
+#: chronograph/main.py:190
 msgid "Translate the App"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:110
+#: chronograph/ui/dialogs/lrclib.py:111
 msgid "Connection Error"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:112
+#: chronograph/ui/dialogs/lrclib.py:113
 msgid "Network error occured while connecting to LRClib"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:118
+#: chronograph/ui/dialogs/lrclib.py:119
 msgid "Something went wrong"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:120
+#: chronograph/ui/dialogs/lrclib.py:121
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:196
+#: chronograph/ui/dialogs/lrclib.py:197
 msgid "No synced lyrics available"
 msgstr "Synkronoituja sanoituksia ei ole saatavilla"
 
-#: chronograph/ui/dialogs/lrclib.py:201
+#: chronograph/ui/dialogs/lrclib.py:202
 msgid "No plain lyrics available"
 msgstr "Raakasanoituksia ei ole saatavilla"
 
@@ -379,7 +379,7 @@ msgstr "Paina nuppineulapainiketta lisätäksesi nykyisen kansion tallennuksiin"
 
 #: data/gtk/window.blp:80 data/gtk/window.blp:324
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:30
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:29
 msgid "Quick Editor"
 msgstr "Pikamuokkain"
 
@@ -422,7 +422,7 @@ msgid "Filter library"
 msgstr "Tyhjennä kirjasto"
 
 #: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:27
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Menu"
 msgstr ""
 
@@ -455,18 +455,18 @@ msgid "Mass Lyrics Downloading"
 msgstr ""
 
 #: data/gtk/window.blp:329 data/gtk/ui/sync_pages/LRCSyncPage.blp:34
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "Preferences"
 msgstr "Asetukset"
 
 #: data/gtk/window.blp:330 data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:35
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
 msgid "Keybindings"
 msgstr "Pikanäppäimet"
 
 #: data/gtk/window.blp:331 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:36
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
 msgid "About"
 msgstr "Tietoja"
 
@@ -774,7 +774,7 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:6
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Synkronoidaan"
 
@@ -946,12 +946,12 @@ msgid "Re-Sync"
 msgstr "Synkronoi"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:64
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Sync/Re-sync line"
 msgstr "Synkronoi rivi"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:75
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:75
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:74
 msgid "Replay selected line"
 msgstr "Toista uudelleen synkronoitu rivi"
 
@@ -967,29 +967,29 @@ msgstr "Synkronoi uudelleen valittu rivi 100 ms eteenpäin"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:105
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:110
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:99
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:103
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:98
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:102
 msgid "Import from …"
 msgstr "Tuo…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
 msgid "File"
 msgstr "Tiedosto"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:106
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:125
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
 msgid "Clipboard"
 msgstr "Leikepöytä"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:124
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:129
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:118
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:122
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:121
 msgid "Export to …"
 msgstr "Vie…"
 
@@ -1012,25 +1012,25 @@ msgstr "Liitä rivi"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:143
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:147
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:146
 msgid "Utilities"
 msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:148
 #, fuzzy
 msgid "Re-sync all"
 msgstr "Synkronoi rivi"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
 #, fuzzy
 msgid "Edit metadata"
 msgstr "Muokkaa kappaleen metatietoja"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:151
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
 msgid "About file"
 msgstr "Tietoja tiedostosta"
 
@@ -1039,22 +1039,22 @@ msgstr "Tietoja tiedostosta"
 msgid "Add Line"
 msgstr "Lisää rivi"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:83
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:82
 #, fuzzy
 msgid "Re-sync selected word back"
 msgstr "Synkronoi uudelleen valittu rivi 100 ms taaksepäin"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:91
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
 #, fuzzy
 msgid "Re-sync selected word forward"
 msgstr "Synkronoi uudelleen valittu rivi 100 ms eteenpäin"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:183
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
 msgid "Edit"
 msgstr ""
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:209
-#: data/gtk/ui/widgets/SongCard.blp:32 data/gtk/ui/widgets/SongCard.blp:186
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
+#: data/gtk/ui/widgets/SongCard.blp:35 data/gtk/ui/widgets/SongCard.blp:191
 msgid "Sync"
 msgstr "Synkronoi"
 
@@ -1081,19 +1081,19 @@ msgstr "Nimi"
 msgid "Delete this Save?"
 msgstr "Poistetaanko tämä tallennus?"
 
-#: data/gtk/ui/widgets/SongCard.blp:43 data/gtk/ui/widgets/SongCard.blp:197
+#: data/gtk/ui/widgets/SongCard.blp:46 data/gtk/ui/widgets/SongCard.blp:202
 msgid "Edit song metadata"
 msgstr "Muokkaa kappaleen metatietoja"
 
-#: data/gtk/ui/widgets/SongCard.blp:54 data/gtk/ui/widgets/SongCard.blp:207
+#: data/gtk/ui/widgets/SongCard.blp:57 data/gtk/ui/widgets/SongCard.blp:212
 msgid "Show song info"
 msgstr "Näytä kappaleen tiedot"
 
-#: data/gtk/ui/widgets/SongCard.blp:68
+#: data/gtk/ui/widgets/SongCard.blp:71
 msgid "Open syncing page"
 msgstr "Avaa synkronointisivu"
 
-#: data/gtk/ui/widgets/SongCard.blp:121
+#: data/gtk/ui/widgets/SongCard.blp:124
 msgid "Lyrics format (if exists)"
 msgstr ""
 
@@ -1230,10 +1230,14 @@ msgid "LRClib import dialog"
 msgstr "LRClib-tuonti-ikkuna"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:99
+msgid "Mass lyrics downloading dialog"
+msgstr ""
+
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
 msgid "Library in List View mode"
 msgstr "Kirjasto luettelonäkymässä"
 
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
+#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:107
 msgid "Lyrics syncing page on smaller display"
 msgstr "Sanoitusten synkronointisivu pienemmällä näytöllä"
 

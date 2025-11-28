@@ -95,6 +95,10 @@
       <caption>LRClib import dialog</caption>
     </screenshot>
     <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/mdwlW.png</image>
+      <caption>Mass lyrics downloading dialog</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
       <image>https://raw.githubusercontent.com/Dzheremi2/Chronograph/refs/heads/main/docs/screenshots/libLW.png</image>
       <caption>Library in List View mode</caption>
     </screenshot>
@@ -105,6 +109,23 @@
   </screenshots>
 
   <releases>
+    <release version="5.3" date="2025-11-28">
+      <description translate="no">
+        <p>New features</p>
+        <ul>
+          <li>Ability to mass download lyrics for opened library</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>Correctly handle sidebar Pin rows autoselection on any library operation</li>
+        </ul>
+        <p>Miscellaneous</p>
+        <ul>
+          <li>Prepare for GNOME Circle participating. This release remarks by Ignacy 
+          Kuchciński, Martin Abente Lahaye</li>
+        </ul>
+      </description>
+    </release>
     <release version="5.2" date="2025-10-31">
       <description translate="no">
         <p>New features</p>

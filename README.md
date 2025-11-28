@@ -125,5 +125,7 @@ file.
 ![](docs/screenshots/wbwsyncW.png)
 ![](docs/screenshots/wbweditB.png)
 ![](docs/screenshots/wbweditW.png)
+![](docs/screenshots/mdwlB.png)
+![](docs/screenshots/mdwlW.png)
 
 </div> 
