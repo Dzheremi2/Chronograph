@@ -1,0 +1,110 @@
+name: Manual Windows Build
+
+on:
+  workflow_dispatch:  # This enables the manual trigger button
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    name: Build Windows Exe
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup MSYS2 (UCRT64)
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            git
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-meson
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-libadwaita
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-python-gobject
+            mingw-w64-ucrt-x86_64-python-pip
+            mingw-w64-ucrt-x86_64-blueprint-compiler
+            mingw-w64-ucrt-x86_64-python-mutagen
+            mingw-w64-ucrt-x86_64-python-requests
+            mingw-w64-ucrt-x86_64-adwaita-icon-theme
+
+      # STEP 1: FIX BROKEN SYMLINKS
+      # This script runs before the build to replace "text-file symlinks" with actual copies.
+      - name: Fix Git Symlinks
+        shell: msys2 {0}
+        run: |
+          python3 -c "
+          import os, shutil
+          print('--- Scanning for broken symlinks ---')
+          for root, _, files in os.walk('.'):
+              for f in files:
+                  p = os.path.join(root, f)
+                  # Git text-symlinks are tiny (<1KB)
+                  if os.path.getsize(p) < 1024:
+                      try:
+                          with open(p, 'r') as link_file: content = link_file.read().strip()
+                          target = os.path.normpath(os.path.join(root, content))
+                          # If the content points to a real file, it's a broken symlink
+                          if os.path.exists(target) and os.path.isfile(target):
+                              print(f'Inflating: {f} -> {content}')
+                              os.remove(p)
+                              shutil.copy2(target, p)
+                      except Exception: pass
+          "
+
+      # STEP 2: PATCH HARDCODED PATHS
+      # This aggressive patch finds '/usr/share/chronograph' and changes it to 'data'
+      # so the app looks in the local folder instead of the Linux system folder.
+      - name: Patch Hardcoded Linux Paths
+        shell: msys2 {0}
+        run: |
+          print("--- Patching Linux paths for Windows ---")
+          # Replace /usr/share/chronograph with ./data
+          grep -rl "/usr/share/chronograph" src/ | xargs sed -i 's|/usr/share/chronograph|./data|g'
+          
+          # Replace /usr/share/icons with ./data/icons
+          grep -rl "/usr/share/icons" src/ | xargs sed -i 's|/usr/share/icons|./data/icons|g'
+          
+          # Replace /app/share (Flatpak specific) with ./data
+          grep -rl "/app/share" src/ | xargs sed -i 's|/app/share|./data|g'
+
+      # STEP 3: BUILD RESOURCES
+      # We run meson compile just to generate the GSettings schemas and compiled UI files
+      - name: Build Resources (Meson)
+        shell: msys2 {0}
+        run: |
+          meson setup build
+          meson compile -C build
+
+      # STEP 4: BUNDLE EXE
+      # PyInstaller creates a single .exe file with all libraries included
+      - name: Bundle with PyInstaller
+        shell: msys2 {0}
+        run: |
+          pip install pyinstaller
+          
+          # Compile schemas manually to ensure they are fresh
+          glib-compile-schemas data/
+          
+          # Build command:
+          # --onefile: Single .exe
+          # --add-data: Includes the data folder inside the exe
+          # --hidden-import: Ensures GTK libraries are found
+          pyinstaller --noconsole --onefile --name Chronograph \
+            --add-data "data:data" \
+            --hidden-import="gi" \
+            --collect-all="mutagen" \
+            --collect-all="requests" \
+            src/main.py
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Chronograph-Windows-exe
+          path: dist/Chronograph.exe
