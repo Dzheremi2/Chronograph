@@ -443,15 +443,16 @@ class ChronographWindow(Adw.ApplicationWindow):
     state : GLib.Variant
         Current view type state
     """
-    action.set_state(state)
-    self.view_state = str(state).strip("'")
-    match self.view_state:
-      case "g":
-        self.library_scrolled_window.set_child(self.library)
-      case "l":
-        self.library_scrolled_window.set_child(self.library_list)
-    logger.debug("View type set to: %s", self.view_state)
-    Schema.set("root.state.library.view", self.view_state)
+    if self.state in (WindowState.LOADED_DIR, WindowState.LOADED_FILES):
+      action.set_state(state)
+      self.view_state = str(state).strip("'")
+      match self.view_state:
+        case "g":
+          self.library_scrolled_window.set_child(self.library)
+        case "l":
+          self.library_scrolled_window.set_child(self.library_list)
+      logger.debug("View type set to: %s", self.view_state)
+      Schema.set("root.state.library.view", self.view_state)
 
   def enter_sync_mode(self, card_model: SongCardModel) -> None:
     """Enters sync mode for the given song card
