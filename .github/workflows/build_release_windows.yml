@@ -1,0 +1,365 @@
+name: Windows Release Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    name: Build Windows Exe
+    
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup MSYS2 (UCRT64 + Cache)
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            git
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-meson
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-libadwaita
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-python-gobject
+            mingw-w64-ucrt-x86_64-python-pip
+            mingw-w64-ucrt-x86_64-blueprint-compiler
+            mingw-w64-ucrt-x86_64-python-mutagen
+            mingw-w64-ucrt-x86_64-python-requests
+            mingw-w64-ucrt-x86_64-adwaita-icon-theme
+            mingw-w64-ucrt-x86_64-desktop-file-utils
+            mingw-w64-ucrt-x86_64-appstream
+            mingw-w64-ucrt-x86_64-file
+            mingw-w64-ucrt-x86_64-gstreamer
+            mingw-w64-ucrt-x86_64-gst-plugins-base
+            mingw-w64-ucrt-x86_64-gst-plugins-good
+            mingw-w64-ucrt-x86_64-gst-plugins-bad
+            mingw-w64-ucrt-x86_64-gst-plugins-ugly
+            mingw-w64-ucrt-x86_64-gst-libav
+            mingw-w64-ucrt-x86_64-imagemagick
+
+      - name: Patch Code and Generate Icon
+        shell: msys2 {0}
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: |
+          cd "$REPO_DIR"
+          
+          # --- 1. PYTHON "SURGEON" SCRIPT (Critical Fixes Only) ---
+          cat > surgeon.py << 'EOF'
+          import os
+          import re
+          import sys
+
+          def patch_file_manager(content):
+              # Fix Path.is_dir() arguments
+              content = re.sub(r'\.is_dir\(\s*follow_symlinks=[^,)]+\s*,?', '.is_dir(', content)
+              content = re.sub(r'\.is_dir\((.*),\s*follow_symlinks=[^,)]+\s*\)', r'.is_dir(\1)', content)
+              content = content.replace(".is_dir(,)", ".is_dir()")
+              
+              # Fix symlinks requiring admin
+              if "os.symlink" in content:
+                  content = content.replace("os.symlink(", "try: os.symlink(")
+                  content = content.replace("target_is_directory=True)", "target_is_directory=True); except OSError: pass")
+              return content
+
+          def patch_sync_page(content, filename):
+              # Fix 1: Export crash (LyricsFile method missing)
+              pattern = r'LyricsFile\(([^)]+)\)\.modify_lyrics\(([^)]+)\)'
+              if re.search(pattern, content):
+                  content = re.sub(pattern, r'Path(\1).write_text(\2, encoding="utf-8")', content)
+
+              # Fix 2: Empty "Save as type" (Missing Filter)
+              if "dialog = Gtk.FileDialog" in content and "default_filter" not in content:
+                  filter_code = """
+          _lrc_filter = Gtk.FileFilter()
+          _lrc_filter.set_name("LRC Lyrics (*.lrc)")
+          _lrc_filter.add_pattern("*.lrc")
+          _filters = Gio.ListStore.new(Gtk.FileFilter)
+          _filters.append(_lrc_filter)
+          dialog.set_filters(_filters)
+          dialog.set_default_filter(_lrc_filter)
+          """
+                  save_call = "dialog.save("
+                  if save_call in content:
+                      parts = content.split(save_call)
+                      content = parts[0] + filter_code + save_call + parts[1]
+              return content
+
+          def patch_main(content):
+              # Translation Fix
+              if "def main" in content and "builtins._" not in content:
+                  content = "import builtins; builtins._ = lambda x: x\n" + content
+
+              # Monkey patch Gio.AppInfo.launch_default_for_uri
+              monkey_patch = """
+          import os
+          import urllib.parse
+          from gi.repository import Gio
+          def _win_launch_uri(uri, context=None, cancellation=None):
+              if uri.startswith("file://"):
+                  try:
+                      path = uri.replace("file://", "")
+                      path = urllib.parse.unquote(path)
+                      os.startfile(path)
+                      return True
+                  except Exception: pass
+              return False
+          Gio.AppInfo.launch_default_for_uri = _win_launch_uri
+          """
+              if "def main" in content and "_win_launch_uri" not in content:
+                  if "from gi.repository import" in content:
+                      last_imp = content.rfind("from gi.repository import")
+                      end_of_line = content.find("\n", last_imp) + 1
+                      content = content[:end_of_line] + monkey_patch + content[end_of_line:]
+                  else:
+                      content = monkey_patch + content
+              return content
+
+          def patch_player(content):
+              # Gst version requirements
+              if "gi.require_version('Gst', '1.0')" not in content:
+                  patch = "import gi\ngi.require_version('Gst', '1.0')\ngi.require_version('GstPlay', '1.0')\n"
+                  if "from gi.repository import" in content:
+                      content = content.replace("from gi.repository import", patch + "from gi.repository import")
+              return content
+
+          def patch_base_file(content):
+              # FIX: Windows File Locking during Save (Stop player before save)
+              if "self.mutagenfile.save()" in content:
+                  replacement = """
+              try:
+                  self.mutagenfile.save()
+              except (PermissionError, OSError):
+                  try:
+                      from chronograph.backend.player import Player
+                      import time
+                      was_playing = Player.playing
+                      pos = Player.gstplayer.props.position 
+                      Player.stop()
+                      time.sleep(0.1)
+                      self.mutagenfile.save()
+                      Player.set_file_path(self.path)
+                      if pos > 0: Player.seek(pos)
+                      if was_playing: Player.play_pause()
+                  except Exception: pass
+          """
+                  content = content.replace("self.mutagenfile.save()", replacement)
+              return content
+
+          def patch_robustness(content, filename):
+              # Force UTF-8
+              if ".read_text()" in content:
+                  content = content.replace(".read_text()", ".read_text(encoding='utf-8')")
+              if ".write_text(" in content and "encoding=" not in content:
+                  content = re.sub(r'\.write_text\(([^)]+)\)', r'.write_text(\1, encoding="utf-8")', content)
+              # Fix Rename (FileExistsError)
+              if ".rename(" in content:
+                  content = content.replace(".rename(", ".replace(")
+              return content
+
+          def process_file(filepath):
+              try:
+                  with open(filepath, 'r', encoding='utf-8') as f:
+                      content = f.read()
+              except UnicodeDecodeError:
+                  return 
+
+              original = content
+              filename = os.path.basename(filepath)
+
+              # Global
+              if "asyncio.EventLoop" in content:
+                  content = content.replace("asyncio.EventLoop", "asyncio.AbstractEventLoop")
+              if ".trash(" in content:
+                  content = re.sub(r'\.trash\s*\(', '.delete(', content)
+
+              content = patch_robustness(content, filename)
+
+              # Specific
+              if filename == "file_manager.py": content = patch_file_manager(content)
+              if filename == "main.py": content = patch_main(content)
+              if filename == "player.py": content = patch_player(content)
+              if filename == "file.py": content = patch_base_file(content)
+              if filename == "lrc_sync_page.py" or filename == "wbw_sync_page.py":
+                  content = patch_sync_page(content, filename)
+
+              if content != original:
+                  with open(filepath, 'w', encoding='utf-8') as f: f.write(content)
+
+          if __name__ == "__main__":
+              for root, _, files in os.walk("."):
+                  for file in files:
+                      if file.endswith(".py") and file != "surgeon.py":
+                          process_file(os.path.join(root, file))
+          EOF
+
+          python3 surgeon.py
+
+          # --- 2. ICON GENERATION ---
+          echo "--- Generating Windows Icon ---"
+          ICON_SVG=$(find data/icons -name "io.github.dzheremi2.lrcmake-gtk.svg" | head -n 1)
+          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | grep "apps" | head -n 1); fi
+          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | head -n 1); fi
+          if [ -n "$ICON_SVG" ]; then
+              magick -background none "$ICON_SVG" -define icon:auto-resize=256,128,64,48,32,16 app.ico
+          fi
+
+          # --- 3. STANDARD PATCHES ---
+          mkdir -p /usr/share/gettext/its
+          cp -r /ucrt64/share/gettext/its/* /usr/share/gettext/its/ || echo "Copy failed"
+          export GETTEXTDATADIRS="/ucrt64/share/gettext"
+          
+          grep -rl "/usr/share/chronograph" chronograph/ | xargs -r sed -i 's|/usr/share/chronograph|./data|g' || true
+          grep -rl "/usr/share/icons" chronograph/ | xargs -r sed -i 's|/usr/share/icons|./data/icons|g' || true
+          grep -rl "/app/share" chronograph/ | xargs -r sed -i 's|/app/share|./data|g' || true
+          find data -name "*.blp" -exec sed -i '/using Gtk 4.0;/a using Gio 2.0;' {} +
+
+          # --- 4. RELEASE RUNNER ---
+          cat > launcher.py <<EOF
+          import sys, os, builtins
+          
+          # Basic stdout setup (even for noconsole it can help preventing some internal crashes)
+          if sys.stdout:
+              try: sys.stdout.reconfigure(encoding='utf-8')
+              except: pass
+
+          # Helper for translation
+          builtins._ = lambda x: x
+
+          try:
+              import gi
+              gi.require_version('Gtk', '4.0')
+              gi.require_version('Adw', '1')
+              from gi.repository import Gtk, Adw
+              Adw.init()
+              from chronograph.main import main
+              main('5.3')
+          except Exception:
+              # In release mode, we exit silently on crash
+              sys.exit(1)
+          EOF
+
+      - name: Build Resources (Meson)
+        shell: msys2 {0}
+        env:
+          REPO_DIR: ${{ github.workspace }}
+          PYTHONUTF8: "1"
+        run: |
+          cd "$REPO_DIR"
+          export GI_TYPELIB_PATH=$(cygpath -m /ucrt64/lib/girepository-1.0)
+          meson setup build
+          meson compile -C build
+
+      - name: Bundle with PyInstaller
+        shell: msys2 {0}
+        env:
+          REPO_DIR: ${{ github.workspace }}
+          PYTHONUTF8: "1"
+        run: |
+          cd "$REPO_DIR"
+          
+          pip install pyinstaller pyyaml mutagen requests pillow python-magic httpx pycairo websockets chardet idna certifi urllib3 --break-system-packages
+          
+          find build -name "internal.py"
+          cp build/chronograph/internal.py chronograph/internal.py || cp build/src/chronograph/internal.py chronograph/internal.py || echo "WARNING: internal.py not found"
+          find build -name "*.gresource"
+          cp build/data/Chronograph.gresource Chronograph.gresource || echo "WARNING: GResource not found"
+          mkdir -p data/resources
+          if [ -f build/data/resources/constants.yaml ]; then
+             cp build/data/resources/constants.yaml data/resources/constants.yaml
+          fi
+
+          gdk-pixbuf-query-loaders | sed 's|"[^"]*[\\/]\([^"\\/]*\.dll\)"|"\1"|' > loaders.cache
+          PIXBUF_DIR=$(cygpath -m /ucrt64/lib/gdk-pixbuf-2.0/2.10.0)
+          GST_PLUGIN_DIR=$(cygpath -m /ucrt64/lib/gstreamer-1.0)
+          GST_SCANNER_BIN=$(find /ucrt64 -name "gst-plugin-scanner.exe" | head -n 1)
+          
+          RSVG_DLL=$(find /ucrt64/bin -name "librsvg-2-*.dll" | head -n 1)
+          XML2_DLL=$(find /ucrt64/bin -name "libxml2-*.dll" | head -n 1)
+          ORC_DLL=$(find /ucrt64/bin -name "liborc-*.dll" | head -n 1)
+          PTHREAD_DLL=$(find /ucrt64/bin -name "libwinpthread-*.dll" | head -n 1)
+          INTL_DLL=$(find /ucrt64/bin -name "libintl-*.dll" | head -n 1)
+          
+          ICON_PATH=$(cygpath -w "$REPO_DIR/app.ico")
+          TYPELIB_PATH=$(cygpath -w /ucrt64/lib/girepository-1.0)
+          GI_OVERRIDES_PATH=$(python3 -c "import gi.overrides; print(gi.overrides.__path__[0])")
+
+          cat > rthook_gi.py <<EOF
+          import os, sys
+          if hasattr(sys, '_MEIPASS'):
+              os.environ['PATH'] = sys._MEIPASS + os.pathsep + os.environ.get('PATH', '')
+              os.environ['GDK_PIXBUF_MODULE_FILE'] = os.path.join(sys._MEIPASS, 'loaders.cache')
+              os.environ['GDK_PIXBUF_MODULEDIR'] = sys._MEIPASS
+              os.environ['GI_TYPELIB_PATH'] = os.path.join(sys._MEIPASS, 'lib', 'girepository-1.0')
+              os.environ['GDK_BACKEND'] = 'win32'
+              gst_plugins = os.path.join(sys._MEIPASS, 'gst-plugins')
+              os.environ['GST_PLUGIN_PATH'] = gst_plugins
+              os.environ['GST_PLUGIN_SYSTEM_PATH'] = gst_plugins
+              os.environ['GST_REGISTRY'] = os.path.join(sys._MEIPASS, 'registry.bin')
+              os.environ['GST_PLUGIN_SCANNER'] = os.path.join(sys._MEIPASS, 'gst-plugin-scanner.exe')
+              try:
+                  import gi
+                  import gi.overrides.Gtk
+                  import gi.overrides.Gio
+                  from gi.repository import Gio
+                  resource_path = os.path.join(sys._MEIPASS, 'Chronograph.gresource')
+                  if os.path.exists(resource_path):
+                      Gio.Resource.load(resource_path)._register()
+              except Exception: pass
+          EOF
+          
+          pyinstaller --noconsole --onefile --name Chronograph \
+            --icon="$ICON_PATH" \
+            --add-data "data:data" \
+            --add-data "dgutils:dgutils" \
+            --add-data "data/resources:data/resources" \
+            --add-data "$TYPELIB_PATH:lib/girepository-1.0" \
+            --add-data "Chronograph.gresource:." \
+            --add-data "$GI_OVERRIDES_PATH:gi/overrides" \
+            --add-data "loaders.cache:." \
+            --add-binary "$PIXBUF_DIR/loaders/*.dll:." \
+            --add-binary "$GST_PLUGIN_DIR/*.dll:gst-plugins" \
+            --add-binary "$GST_SCANNER_BIN:." \
+            --add-binary "$RSVG_DLL:." \
+            --add-binary "$XML2_DLL:." \
+            --add-binary "$ORC_DLL:." \
+            --add-binary "$PTHREAD_DLL:." \
+            --add-binary "$INTL_DLL:." \
+            --runtime-hook="rthook_gi.py" \
+            --hidden-import="gi" \
+            --hidden-import="gi.overrides" \
+            --hidden-import="gi.overrides.Gtk" \
+            --hidden-import="gi.overrides.Gio" \
+            --hidden-import="gi.overrides.GObject" \
+            --hidden-import="gi.repository.Gtk" \
+            --hidden-import="cairo" \
+            --collect-all="mutagen" \
+            --collect-all="requests" \
+            --collect-all="yaml" \
+            --collect-all="PIL" \
+            --collect-all="magic" \
+            --collect-all="httpx" \
+            --collect-all="chardet" \
+            --collect-all="certifi" \
+            --collect-all="idna" \
+            --collect-all="urllib3" \
+            --add-binary "/ucrt64/bin/libmagic-1.dll:." \
+            launcher.py
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Chronograph-Windows-exe
+          path: dist/Chronograph.exe
