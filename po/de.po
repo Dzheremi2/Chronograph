@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-28 22:42+0300\n"
-"PO-Revision-Date: 2025-08-02 17:02+0000\n"
+"PO-Revision-Date: 2025-11-30 14:00+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/de/>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:43
 msgid "All Supported Media"
-msgstr ""
+msgstr "Alle unterstützten Medien"
 
 #: chronograph/window.py:415
 msgid "Copied successfully"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: chronograph/main.py:190
 msgid "Translate the App"
-msgstr ""
+msgstr "App übersetzen"
 
 #: chronograph/ui/dialogs/lrclib.py:111
 msgid "Connection Error"
@@ -71,9 +71,8 @@ msgid "No plain lyrics available"
 msgstr "Keine einfachen Liedtexte verfügbar"
 
 #: chronograph/ui/dialogs/preferences.py:211
-#, fuzzy
 msgid "Synced Only"
-msgstr "Synchronisiert"
+msgstr "Nur synchronisiert"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
@@ -88,7 +87,7 @@ msgstr "Einfach"
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
-msgstr ""
+msgstr "Abrufen"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:120
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
@@ -99,19 +98,16 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
-#, fuzzy
 msgid "Connection timed out"
-msgstr "Verbindungsfehler"
+msgstr "Zeitüberschreitung der Verbindung"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:146
-#, fuzzy
 msgid "Connection error occurred"
-msgstr "Verbindungsfehler"
+msgstr "Verbindungsfehler aufgetreten"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:148
-#, fuzzy
 msgid "An error occurred: "
-msgstr "Unbekannter Fehler aufgetreten: {code}"
+msgstr "Ein Fehler ist aufgetreten: "
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:154
 #, fuzzy
@@ -119,25 +115,21 @@ msgid "Instrumental track. No lyrics available"
 msgstr "Keine einfachen Liedtexte verfügbar"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:168
-#, fuzzy
 msgid "No synced lyrics found"
-msgstr "Keine synchronisierten Liedtexte verfügbar"
+msgstr "Keine synchronisierten Liedtexte gefunden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:180
 #: chronograph/backend/lrclib/lrclib_service.py:423
-#, fuzzy
 msgid "No lyrics found"
-msgstr "Noch keine gespeicherten Ordner vorhanden"
+msgstr "Keine Liedtexte gefunden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:188
-#, fuzzy
 msgid "No plain lyrics found"
-msgstr "Keine einfachen Liedtexte verfügbar"
+msgstr "Keine einfachen Liedtexte gefunden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:209
-#, fuzzy
 msgid "Cancelled"
-msgstr "Abbrechen"
+msgstr "Abgebrochen"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:246
 msgid "Fetching"
@@ -145,14 +137,13 @@ msgstr ""
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:289
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
-#, fuzzy
 msgid "Lyrics exported to clipboard"
-msgstr "In die Zwischenablage kopieren"
+msgstr "Liedtexte in die Zwischenablage exportiert"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:300
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Liedtexte in Datei exportiert"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:301
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
@@ -182,7 +173,7 @@ msgstr ""
 #: chronograph/ui/sync_pages/lrc_sync_page.py:429
 #: chronograph/ui/sync_pages/lrc_sync_page.py:437
 msgid "Log"
-msgstr ""
+msgstr "Protokoll"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:436
 msgid "An error occurred while publishing lyrics"
@@ -215,9 +206,8 @@ msgid "Why?"
 msgstr "Warum?"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Keine einfachen Liedtexte verfügbar"
+msgstr "Keine Liedtexte verfügbar"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
@@ -284,7 +274,7 @@ msgstr "Nein"
 #: chronograph/ui/widgets/ui_player.py:63
 #, python-brace-format
 msgid "{vol}%"
-msgstr ""
+msgstr "{vol} %"
 
 #: chronograph/backend/file/song_card_model.py:12
 msgctxt "song title placeholder"
@@ -305,7 +295,7 @@ msgstr "Unbekannt"
 #: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:263
 msgctxt "means lyrics absence"
 msgid "None"
-msgstr ""
+msgstr "Keine"
 
 #: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:267
 #: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:271
@@ -316,9 +306,8 @@ msgstr "Einfach"
 #: chronograph/backend/lrclib/lrclib_service.py:368
 #: chronograph/backend/lrclib/lrclib_service.py:396
 #: chronograph/backend/lrclib/lrclib_service.py:409
-#, fuzzy
 msgid "Fetched successfully"
-msgstr "Erfolgreich kopiert"
+msgstr "Erfolgreich abgerufen"
 
 #: chronograph/backend/lrclib/lrclib_service.py:376
 msgid "Fetch using /api/get failed, trying /api/search"
@@ -330,13 +319,12 @@ msgstr ""
 
 #: chronograph/backend/lrclib/lrclib_service.py:402
 #: chronograph/backend/lrclib/lrclib_service.py:414
-#, fuzzy
 msgid "No suitable lyrics found"
-msgstr "Noch keine gespeicherten Ordner vorhanden"
+msgstr "Keine passenden Liedtexte gefunden"
 
 #: data/gtk/window.blp:5
 msgid "No Music"
-msgstr ""
+msgstr "Keine Musik"
 
 #: data/gtk/window.blp:6
 #, fuzzy
@@ -344,16 +332,14 @@ msgid "Select a directory or drop files to load them"
 msgstr "Verzeichnis auswählen oder Dateien per Dag-N-Drop öffnen"
 
 #: data/gtk/window.blp:16 data/gtk/window.blp:48
-#, fuzzy
 msgid "Open Directory"
-msgstr "Verzeichnis"
+msgstr "Verzeichnis öffnen"
 
 #: data/gtk/window.blp:22 data/gtk/window.blp:54
 msgid "Open File"
 msgstr "Datei öffnen"
 
 #: data/gtk/window.blp:37
-#, fuzzy
 msgid "Empty Directory"
 msgstr "Leeres Verzeichnis"
 
@@ -376,7 +362,6 @@ msgid "Quick Editor"
 msgstr "Schnelleditor"
 
 #: data/gtk/window.blp:120
-#, fuzzy
 msgid "Copy to Clipboard"
 msgstr "In die Zwischenablage kopieren"
 
@@ -409,14 +394,13 @@ msgid "Toggle search"
 msgstr "Suche umschalten"
 
 #: data/gtk/window.blp:259
-#, fuzzy
 msgid "Filter library"
-msgstr "Bibliothek bereinigen"
+msgstr "Bibliothek filtern"
 
 #: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #: data/gtk/window.blp:291
 msgid "Sort"
@@ -518,9 +502,8 @@ msgid "Sync/Re-sync"
 msgstr "Synchronisierung/Re-Synchronisierung"
 
 #: data/gtk/ui/shortcuts-dialog.blp:49
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Ausgewählte Zeile wiederholen"
+msgstr "Ausgewählte(s) Zeile/Wort wiederholen"
 
 #: data/gtk/ui/shortcuts-dialog.blp:54
 #, fuzzy
@@ -569,19 +552,19 @@ msgstr ""
 
 #: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One word back"
-msgstr ""
+msgstr "Ein Wort zurück"
 
 #: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One word next"
-msgstr ""
+msgstr "Ein Wort vor"
 
 #: data/gtk/ui/shortcuts-dialog.blp:112
 msgid "One line up"
-msgstr ""
+msgstr "Eine Zeile nach oben"
 
 #: data/gtk/ui/shortcuts-dialog.blp:117
 msgid "One line down"
-msgstr ""
+msgstr "Eine Zeile nach unten"
 
 #: data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search LRClib for provided title and artist"
@@ -603,15 +586,15 @@ msgstr "Keine einfachen Liedtexte verfügbar"
 
 #: data/gtk/ui/dialogs/LRClib.blp:186
 msgid "Imports currently selected lyrics"
-msgstr ""
+msgstr "Importiert die aktuell ausgewählten Liedtexte"
 
 #: data/gtk/ui/dialogs/LRClib.blp:188
 msgid "Import"
-msgstr ""
+msgstr "Importieren"
 
 #: data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
-msgstr ""
+msgstr "Es wurde nichts gefunden"
 
 #: data/gtk/ui/dialogs/LRClib.blp:224
 #, fuzzy
@@ -620,9 +603,8 @@ msgstr ""
 "Versuche eine andere Anfrage, vielleicht gibt es Fehler im Anfragetext."
 
 #: data/gtk/ui/dialogs/LRClib.blp:228
-#, fuzzy
 msgid "Search LRClib"
-msgstr "Suchen"
+msgstr "LRClib durchsuchen"
 
 #: data/gtk/ui/dialogs/LRClib.blp:229
 #, fuzzy
@@ -649,12 +631,11 @@ msgstr "Cover entfernen"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:123
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Liedtexte einbetten"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:128
-#, fuzzy
 msgid "Delete Lyrics"
-msgstr "Löschen"
+msgstr "Liedtexte löschen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
@@ -703,7 +684,6 @@ msgid ""
 msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:35
-#, fuzzy
 msgid "Quality Level"
 msgstr "Qualitätsstufe"
 
@@ -964,11 +944,11 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
 msgid "Lyrics Already Fetched"
-msgstr ""
+msgstr "Liedtexte bereits abgerufen"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
 msgid "Lyrics for all songs are already fetched"
-msgstr ""
+msgstr "Liedtexte für alle Lieder wurden bereits abgerufen"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
