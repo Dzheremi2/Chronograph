@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-28 22:42+0300\n"
-"PO-Revision-Date: 2025-11-24 17:51+0000\n"
+"PO-Revision-Date: 2025-11-30 14:00+0000\n"
 "Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/vi/>\n"
@@ -916,34 +916,34 @@ msgid "Re-Sync"
 msgstr "Đồng bộ lại"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
-#, fuzzy
 msgid "Mass Download"
 msgstr "Tải Xuống Hàng Loạt"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
 msgid "Rewrite Already Existing Lyrics"
-msgstr ""
+msgstr "Viết Lại Lời Bài Hát Đã Có"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
 msgid "Will replace already existing lyrics in file to those one found"
 msgstr ""
+"Sẽ thay thế lời bài hát hiện có trong tệp thành những lời bài hát được tìm "
+"thấy"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
-#, fuzzy
 msgid "No Log Available Yet"
-msgstr "Không có lời bài hát nào"
+msgstr "Chưa Có Nhật Ký Nào"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
 msgid "Start fetching to see something"
-msgstr ""
+msgstr "Bắt đầu tìm nạp để xem thứ gì đó"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
 msgid "Lyrics Already Fetched"
-msgstr ""
+msgstr "Lời Bài Hát Đã Được Tìm Nạp"
 
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
 msgid "Lyrics for all songs are already fetched"
-msgstr ""
+msgstr "Lời bài hát cho tất cả các bài hát đã được tải xuống"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
@@ -1240,9 +1240,8 @@ msgid "LRClib import dialog"
 msgstr "Hộp thoại nhập LRClib"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:99
-#, fuzzy
 msgid "Mass lyrics downloading dialog"
-msgstr "Tải Xuống Lời Bài Hát Hàng Loạt"
+msgstr "Hộp thoại tải xuống lời bài hát hàng loạt"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
 msgid "Library in List View mode"
