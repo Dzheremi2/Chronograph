@@ -6,7 +6,7 @@ on:
 jobs:
   build-windows:
     runs-on: windows-latest
-    name: Build Windows Exe
+    name: Build Release Windows
     
     defaults:
       run:
