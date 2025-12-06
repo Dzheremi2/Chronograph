@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-28 22:42+0300\n"
-"PO-Revision-Date: 2025-12-06 09:01+0000\n"
+"PO-Revision-Date: 2025-12-07 01:00+0000\n"
 "Last-Translator: Leandro Paz <leandropaz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "chronograph/chronograph/pt_BR/>\n"
@@ -613,10 +613,9 @@ msgid "Nothing Was Found"
 msgstr "Nada encontrado"
 
 #: data/gtk/ui/dialogs/LRClib.blp:224
-#, fuzzy
 msgid "Try out another request, maybe there are mistakes in request text"
 msgstr ""
-"Experimente outra solicitação, talvez haja erros no texto de solicitação."
+"Experimente outra solicitação, talvez haja erros no texto de solicitação"
 
 #: data/gtk/ui/dialogs/LRClib.blp:228
 #, fuzzy
