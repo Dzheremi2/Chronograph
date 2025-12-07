@@ -248,8 +248,11 @@ class LRCSyncPage(Adw.NavigationPage):
       data = clipboard.read_text_finish(result)
       lines = data.splitlines()
       self.sync_lines.remove_all()
+      should_visible = False
       for _, line in enumerate(lines):
         self.sync_lines.append(LRCSyncLine(line))
+        should_visible = True
+      self.sync_lines.set_visible(should_visible)
       logger.info("Imported lyrics from clipboard")
 
     clipboard = Gdk.Display().get_default().get_clipboard()
@@ -260,8 +263,11 @@ class LRCSyncPage(Adw.NavigationPage):
       path = file_dialog.open_finish(result).get_path()
 
       self.sync_lines.remove_all()
+      should_visible = False
       for _, line in enumerate(Lyrics(Path(path).read_text()).get_normalized_lines()):
         self.sync_lines.append(LRCSyncLine(line))
+        should_visible = True
+      self.sync_lines.set_visible(should_visible)
       logger.info("Imported lyrics from file")
 
     dialog = Gtk.FileDialog(default_filter=Gtk.FileFilter(mime_types=["text/plain"]))
