@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
 "PO-Revision-Date: 2025-05-11 23:07+0000\n"
 "Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/chronograph/"
@@ -62,11 +62,11 @@ msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι συγχρονισμένοι στίχοι"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
 
@@ -86,6 +86,7 @@ msgstr "Απλά"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr ""
 
@@ -141,74 +142,74 @@ msgstr "Ακύρωση"
 msgid "Fetching"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Δημοσιεύθηκε με επιτυχία: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Λανθασμένο διακριτικό δημοσίευσης: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Εμφανίστηκε άγνωστο σφάλμα: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Φαίνεται ότι δεν συγχρονίζεται κάθε γραμμή"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr ""
 
@@ -951,6 +952,35 @@ msgstr "Χρησιμοποιήστε ακριβή χιλιοστά του δευ
 #, fuzzy
 msgid "Re-Sync"
 msgstr "Συγχρονισμός"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+msgid "Mass Download"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+#, fuzzy
+msgid "No Log Available Yet"
+msgstr "Δεν υπάρχουν διαθέσιμοι απλοί στίχοι"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
+msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63

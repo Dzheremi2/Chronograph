@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
-"PO-Revision-Date: 2025-11-22 22:51+0000\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
+"PO-Revision-Date: 2025-11-29 14:00+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -66,11 +66,11 @@ msgid ""
 msgstr ""
 "Під час спроби підключення до сервера бібліотеки LRC сталася невідома помилка"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Синхронізовані слова пісні не доступні"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Прості слова пісні не доступні"
 
@@ -88,6 +88,7 @@ msgstr "Тільки звичайний"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr "Отримати"
 
@@ -136,59 +137,59 @@ msgstr "Скасовано"
 msgid "Fetching"
 msgstr "Отримання"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Текст пісень експортовано в буфер обміну пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Текст пісні експортовано у файл пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Показати"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успішно опубліковано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неправильний токен публікації: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Сталася невідома помилка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr "Під час публікації тексту пісні сталася помилка мережі"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr "Журнал"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr "Під час публікації тексту пісні сталася помилка"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
 msgstr "Неможливо опублікувати текст пісні."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -196,15 +197,15 @@ msgstr ""
 "Щоб опублікувати текст пісні, для треку необхідно встановити поля назви, "
 "виконавця, альбому та тексту пісні."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr "Закрити"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr "Не можна публікувати порожні тексти пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr "Чому?"
 
@@ -922,6 +923,34 @@ msgstr "Мілісекунди"
 msgid "Re-Sync"
 msgstr "Повторна синхронізація"
 
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+msgid "Mass Download"
+msgstr "Масове Завантаження"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr "Перепишіть вже існуючі тексти пісень"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr "Замінить уже існуючі тексти пісень у файлі на знайдені"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+msgid "No Log Available Yet"
+msgstr "Журнал поки що недоступний"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr "Почніть пошук, щоб щось побачити"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr "Текст пісні вже отримано"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
+msgstr "Тексти всіх пісень вже отримано"
+
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Sync/Re-sync line"
@@ -1217,9 +1246,8 @@ msgid "LRClib import dialog"
 msgstr "Діалог імпорту LRClib"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:99
-#, fuzzy
 msgid "Mass lyrics downloading dialog"
-msgstr "Масове завантаження текстів пісень"
+msgstr "Діалогове вікно масового завантаження текстів пісень"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
 msgid "Library in List View mode"

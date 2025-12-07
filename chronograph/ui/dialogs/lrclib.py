@@ -156,8 +156,11 @@ class LRClib(Adw.Dialog, Linker):
         (page := Constants.WIN.navigation_view.get_visible_page()), LRCSyncPage
       ):
         page.sync_lines.remove_all()
+        should_visible = False
         for _, line in enumerate(text.splitlines()):
           page.sync_lines.append(LRCSyncLine(line))
+          should_visible = True
+        page.sync_lines.set_visible(should_visible)
       elif isinstance(
         (page := Constants.WIN.navigation_view.get_visible_page()), WBWSyncPage
       ):

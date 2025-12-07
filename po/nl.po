@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
-"PO-Revision-Date: 2025-08-23 12:02+0000\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
+"PO-Revision-Date: 2025-12-07 18:36+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/nl/>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:43
 msgid "All Supported Media"
-msgstr ""
+msgstr "Alle ondersteunde media"
 
 #: chronograph/window.py:415
 msgid "Copied successfully"
@@ -30,21 +30,22 @@ msgstr "Gekopieerd"
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:166
 msgid "translator-credits"
-msgstr "Heimen Stoffels <vistausss@fastmail.com>"
+msgstr ""
+"Heimen Stoffels <vistausss@fastmail.com>\n"
+"Philip Goto <https://philipgoto.nl>"
 
 #: chronograph/main.py:174
-#, fuzzy
 msgid "Inspiration"
-msgstr "Duur"
+msgstr "Inspiratie"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:184
 msgid "Build your own dictionary"
-msgstr ""
+msgstr "Bouw uw eigen woorden­boek"
 
 #: chronograph/main.py:190
 msgid "Translate the App"
-msgstr ""
+msgstr "Vertaal de app"
 
 #: chronograph/ui/dialogs/lrclib.py:111
 msgid "Connection Error"
@@ -52,43 +53,44 @@ msgstr "Verbindings­fout"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Network error occured while connecting to LRClib"
-msgstr ""
+msgstr "Netwerk­fout bij verbinden met LRClib"
 
 #: chronograph/ui/dialogs/lrclib.py:119
 msgid "Something went wrong"
-msgstr ""
+msgstr "Er is iets misgegaan"
 
 #: chronograph/ui/dialogs/lrclib.py:121
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
+"Er is een onbekende fout opgetreden bij het verbinden met de LRC-bibliotheek­"
+"server"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Er is geen gesynchroniseerde songtekst beschikbaar"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Er is geen songtekst beschikbaar"
 
 #: chronograph/ui/dialogs/preferences.py:211
-#, fuzzy
 msgid "Synced Only"
-msgstr "Gesynchroniseerd"
+msgstr "Alleen gesynchroniseerd"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
-msgstr ""
+msgstr "Gesynchroniseerd, terugvallen op platte tekst indien niet beschikbaar"
 
 #: chronograph/ui/dialogs/preferences.py:213
-#, fuzzy
 msgid "Plain Only"
-msgstr "Platte tekst"
+msgstr "Alleen platte tekst"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
-msgstr ""
+msgstr "Ophalen"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:120
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
@@ -99,140 +101,131 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
-#, fuzzy
 msgid "Connection timed out"
-msgstr "Verbindings­fout"
+msgstr "Verbindings-time-out"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:146
-#, fuzzy
 msgid "Connection error occurred"
-msgstr "Verbindings­fout"
+msgstr "Verbindings­fout opgetreden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:148
-#, fuzzy
 msgid "An error occurred: "
-msgstr "Er is een onbekende fout opgetreden: "
+msgstr "Er is een fout opgetreden: "
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:154
-#, fuzzy
 msgid "Instrumental track. No lyrics available"
-msgstr "Er is geen songtekst beschikbaar"
+msgstr "Instrumentaal nummer. Geen songtekst beschikbaar"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:168
-#, fuzzy
 msgid "No synced lyrics found"
-msgstr "Er is geen gesynchroniseerde songtekst beschikbaar"
+msgstr "Geen gesynchroniseerde songtekst gevonden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:180
 #: chronograph/backend/lrclib/lrclib_service.py:423
-#, fuzzy
 msgid "No lyrics found"
-msgstr "Er zijn geen bewaarde teksten"
+msgstr "Geen songtekst gevonden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:188
-#, fuzzy
 msgid "No plain lyrics found"
-msgstr "Er is geen songtekst beschikbaar"
+msgstr "Geen platte songtekst gevonden"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:209
-#, fuzzy
 msgid "Cancelled"
-msgstr "Annuleren"
+msgstr "Geannuleerd"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:246
 msgid "Fetching"
-msgstr ""
+msgstr "Bezig met ophalen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
-#, fuzzy
 msgid "Lyrics exported to clipboard"
-msgstr "Kopiëren naar klembord"
+msgstr "Songtekst geëxporteerd naar klembord"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Songtekst geëxporteerd naar bestand"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
-msgstr ""
+msgstr "Tonen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
-#, fuzzy, python-brace-format
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
+#, python-brace-format
 msgid "Published successfully: {code}"
-msgstr "Gepubliceerd: "
+msgstr "Succesvol gepubliceerd: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
-#, fuzzy, python-brace-format
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
+#, python-brace-format
 msgid "Incorrect publish token: {code}"
-msgstr "Ongeldige publicatiesleutel: "
+msgstr "Ongeldige publicatie­sleutel: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
-#, fuzzy, python-brace-format
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#, python-brace-format
 msgid "Unknown error occured: {code}"
-msgstr "Er is een onbekende fout opgetreden: "
+msgstr "Er is een onbekende fout opgetreden: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
-msgstr ""
+msgstr "Netwerkfout bij publiceren van songtekst"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
-msgstr ""
+msgstr "Logboek"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het publiceren van de songtekst"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Niet alle regels lijken gesynchroniseerd"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
-msgstr ""
+msgstr "Kan songtekst niet publiceren."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
+"Om de songtekst te publiceren moet het nummer een titel, artiest, album en "
+"songtekst bevatten."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Kan lege songtekst niet publiceren"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
-msgstr ""
+msgstr "Waarom?"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:123
-#, fuzzy
 msgid "No lyrics available"
-msgstr "Er is geen songtekst beschikbaar"
+msgstr "Geen songtekst beschikbaar"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
-msgstr ""
+msgstr "U hebt geen songtekst opgegeven om te synchroniseren"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:324
 msgid "No lyrics to be re-synced"
-msgstr ""
+msgstr "Geen songtekst om opnieuw te synchroniseren"
 
 #: chronograph/ui/sync_pages/wbw_sync_page.py:326
 msgid "Open Sync mode to re-sync all words"
-msgstr ""
+msgstr "Open synchronisatie­modus om alle woorden opnieuw te synchroniseren"
 
 #: chronograph/ui/widgets/song_card.py:117
-#, fuzzy
 msgctxt "song info dialog"
 msgid "About File"
 msgstr "Over bestand"
@@ -262,9 +255,8 @@ msgstr "Locatie"
 #. Translators: Do not translate the curly braces, they are used for formatting
 #: chronograph/ui/widgets/saved_location.py:27
 #: chronograph/ui/widgets/saved_location.py:31
-#, fuzzy
 msgid "Path: {}"
-msgstr "Locatie: "
+msgstr "Locatie: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
@@ -286,22 +278,19 @@ msgstr "Nee"
 #: chronograph/ui/widgets/ui_player.py:63
 #, python-brace-format
 msgid "{vol}%"
-msgstr ""
+msgstr "{vol}%"
 
 #: chronograph/backend/file/song_card_model.py:12
-#, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Onbekend"
 
 #: chronograph/backend/file/song_card_model.py:13
-#, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Onbekend"
 
 #: chronograph/backend/file/song_card_model.py:14
-#, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Onbekend"
@@ -310,7 +299,7 @@ msgstr "Onbekend"
 #: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:263
 msgctxt "means lyrics absence"
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:267
 #: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:271
@@ -321,45 +310,39 @@ msgstr "Platte tekst"
 #: chronograph/backend/lrclib/lrclib_service.py:368
 #: chronograph/backend/lrclib/lrclib_service.py:396
 #: chronograph/backend/lrclib/lrclib_service.py:409
-#, fuzzy
 msgid "Fetched successfully"
-msgstr "Gekopieerd"
+msgstr "Succesvol opgehaald"
 
 #: chronograph/backend/lrclib/lrclib_service.py:376
 msgid "Fetch using /api/get failed, trying /api/search"
-msgstr ""
+msgstr "Ophalen via /api/get mislukt, /api/search wordt geprobeerd"
 
 #: chronograph/backend/lrclib/lrclib_service.py:392
 msgid "Trying search with no album"
-msgstr ""
+msgstr "Zoeken zonder album wordt geprobeerd"
 
 #: chronograph/backend/lrclib/lrclib_service.py:402
 #: chronograph/backend/lrclib/lrclib_service.py:414
-#, fuzzy
 msgid "No suitable lyrics found"
-msgstr "Er zijn geen bewaarde teksten"
+msgstr "Geen geschikte songtekst gevonden"
 
 #: data/gtk/window.blp:5
 msgid "No Music"
-msgstr ""
+msgstr "Geen muziek"
 
 #: data/gtk/window.blp:6
-#, fuzzy
 msgid "Select a directory or drop files to load them"
-msgstr "Kies een map of sleep bestanden hierheen"
+msgstr "Selecteer een map of sleep bestanden hierheen om ze te laden"
 
 #: data/gtk/window.blp:16 data/gtk/window.blp:48
-#, fuzzy
 msgid "Open Directory"
-msgstr "Werkmap"
+msgstr "Map openen"
 
 #: data/gtk/window.blp:22 data/gtk/window.blp:54
-#, fuzzy
 msgid "Open File"
-msgstr "Bestand"
+msgstr "Bestand openen"
 
 #: data/gtk/window.blp:37
-#, fuzzy
 msgid "Empty Directory"
 msgstr "Lege map"
 
@@ -368,13 +351,12 @@ msgid "This directory doesn't have any supported music files"
 msgstr "Deze map bevat geen ondersteunde muziekbestanden"
 
 #: data/gtk/window.blp:69
-#, fuzzy
 msgid "No Saves"
-msgstr "Opgeslagen"
+msgstr "Geen opgeslagen mappen"
 
 #: data/gtk/window.blp:71
 msgid "Press pin button to add current directory to the saves"
-msgstr "Klik op de vastmaakknop om de huidige map te bewaren"
+msgstr "Druk op de vastmaak­knop om de huidige map te bewaren"
 
 #: data/gtk/window.blp:80 data/gtk/window.blp:324
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
@@ -383,9 +365,8 @@ msgid "Quick Editor"
 msgstr "Snelle bewerker"
 
 #: data/gtk/window.blp:120
-#, fuzzy
 msgid "Copy to Clipboard"
-msgstr "Klembord"
+msgstr "Kopiëren naar klembord"
 
 #. Translators: App name IS intended to be translated
 #: data/gtk/window.blp:133 data/gtk/window.blp:195
@@ -412,19 +393,17 @@ msgid "Select a directory or open a file"
 msgstr "Kies een werkmap of open een bestand"
 
 #: data/gtk/window.blp:253 data/gtk/ui/shortcuts-dialog.blp:15
-#, fuzzy
 msgid "Toggle search"
-msgstr "Schakel zijbalk"
+msgstr "Zoeken in-/uitschakelen"
 
 #: data/gtk/window.blp:259
-#, fuzzy
 msgid "Filter library"
-msgstr "Bibliotheek opruimen"
+msgstr "Bibliotheek filteren"
 
 #: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: data/gtk/window.blp:291
 msgid "Sort"
@@ -444,7 +423,7 @@ msgstr "Weergave"
 
 #: data/gtk/window.blp:310
 msgid "Grid"
-msgstr "Grid"
+msgstr "Raster"
 
 #: data/gtk/window.blp:316
 msgid "List"
@@ -452,7 +431,7 @@ msgstr "Lijst"
 
 #: data/gtk/window.blp:325
 msgid "Mass Lyrics Downloading"
-msgstr ""
+msgstr "Bulk­download van songteksten"
 
 #: data/gtk/window.blp:329 data/gtk/ui/sync_pages/LRCSyncPage.blp:34
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
@@ -480,11 +459,11 @@ msgstr "Voeg huidige werkmap toe aan opgeslagen"
 
 #: data/gtk/window.blp:364
 msgid "Recursive parsing settings changed. Re-parse?"
-msgstr ""
+msgstr "Recursieve verwerkings­instellingen gewijzigd. Opnieuw verwerken?"
 
 #: data/gtk/window.blp:365
 msgid "Re-Parse"
-msgstr ""
+msgstr "Opnieuw verwerken"
 
 #: data/gtk/window.blp:380 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
@@ -522,36 +501,31 @@ msgstr "Synchronisatie­modus"
 
 #: data/gtk/ui/shortcuts-dialog.blp:44
 msgid "Sync/Re-sync"
-msgstr ""
+msgstr "(Opnieuw) synchroniseren"
 
 #: data/gtk/ui/shortcuts-dialog.blp:49
-#, fuzzy
 msgid "Replay selected line/word"
-msgstr "Herhaal geselecteerde regel"
+msgstr "Geselecteerde regel/woord opnieuw afspelen"
 
 #: data/gtk/ui/shortcuts-dialog.blp:54
-#, fuzzy
 msgid "Re-sync default amount of ms back"
-msgstr "Re-synchroniseer geselecteerde regel 100ms terug"
+msgstr "Opnieuw synchroniseren standaard­hoeveelheid ms terug"
 
 #: data/gtk/ui/shortcuts-dialog.blp:59
-#, fuzzy
 msgid "Re-sync large amount of ms back"
-msgstr "Re-synchroniseer geselecteerde regel 100ms terug"
+msgstr "Opnieuw synchroniseren grote hoeveelheid ms terug"
 
 #: data/gtk/ui/shortcuts-dialog.blp:64
-#, fuzzy
 msgid "Re-sync default amount of ms forward"
-msgstr "Re-synchroniseer geselecteerde regel 100ms verder"
+msgstr "Opnieuw synchroniseren standaard­hoeveelheid ms vooruit"
 
 #: data/gtk/ui/shortcuts-dialog.blp:69
-#, fuzzy
 msgid "Re-sync large amount of ms forward"
-msgstr "Re-synchroniseer geselecteerde regel 100ms verder"
+msgstr "Opnieuw synchroniseren grote hoeveelheid ms vooruit"
 
 #: data/gtk/ui/shortcuts-dialog.blp:75
 msgid "Line-by-Line line actions"
-msgstr ""
+msgstr "Regel-voor-regel regel­acties"
 
 #: data/gtk/ui/shortcuts-dialog.blp:78
 msgid "Remove selected line"
@@ -559,36 +533,36 @@ msgstr "Verwijder geselecteerde regel"
 
 #: data/gtk/ui/shortcuts-dialog.blp:83
 msgid "Prepend line to selected"
-msgstr ""
+msgstr "Regel voor geselecteerde invoegen"
 
 #: data/gtk/ui/shortcuts-dialog.blp:88
 msgid "Append line to selected"
-msgstr ""
+msgstr "Regel na geselecteerde invoegen"
 
 #: data/gtk/ui/shortcuts-dialog.blp:93
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:161
 msgid "Append line to end"
-msgstr ""
+msgstr "Regel aan einde toevoegen"
 
 #: data/gtk/ui/shortcuts-dialog.blp:99
 msgid "Word-by-Word navigation"
-msgstr ""
+msgstr "Woord-voor-woord navigatie"
 
 #: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One word back"
-msgstr ""
+msgstr "Eén woord terug"
 
 #: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One word next"
-msgstr ""
+msgstr "Eén woord verder"
 
 #: data/gtk/ui/shortcuts-dialog.blp:112
 msgid "One line up"
-msgstr ""
+msgstr "Eén regel omhoog"
 
 #: data/gtk/ui/shortcuts-dialog.blp:117
 msgid "One line down"
-msgstr ""
+msgstr "Eén regel omlaag"
 
 #: data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search LRClib for provided title and artist"
@@ -599,42 +573,37 @@ msgid "Synced"
 msgstr "Gesynchroniseerd"
 
 #: data/gtk/ui/dialogs/LRClib.blp:143
-#, fuzzy
 msgid "Synced lyrics from LRClib"
-msgstr "Er is geen gesynchroniseerde songtekst beschikbaar"
+msgstr "Gesynchroniseerde songtekst van LRClib"
 
 #: data/gtk/ui/dialogs/LRClib.blp:170
-#, fuzzy
 msgid "Plain lyrics from LRClib"
-msgstr "Er is geen songtekst beschikbaar"
+msgstr "Platte songtekst van LRClib"
 
 #: data/gtk/ui/dialogs/LRClib.blp:186
 msgid "Imports currently selected lyrics"
-msgstr ""
+msgstr "Importeert momenteel geselecteerde songtekst"
 
 #: data/gtk/ui/dialogs/LRClib.blp:188
 msgid "Import"
-msgstr ""
+msgstr "Importeren"
 
 #: data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
-msgstr ""
+msgstr "Niets gevonden"
 
 #: data/gtk/ui/dialogs/LRClib.blp:224
-#, fuzzy
 msgid "Try out another request, maybe there are mistakes in request text"
 msgstr ""
-"Probeer een andere zoekopdracht of controleer de opdracht op typfouten."
+"Probeer een andere zoekopdracht, mogelijk zijn er fouten in de zoektekst"
 
 #: data/gtk/ui/dialogs/LRClib.blp:228
-#, fuzzy
 msgid "Search LRClib"
-msgstr "Zoeken"
+msgstr "Zoeken op LRClib"
 
 #: data/gtk/ui/dialogs/LRClib.blp:229
-#, fuzzy
 msgid "Search songs by title, artist and album"
-msgstr "Zoeken op LRClib op titels en artiestnamen"
+msgstr "Zoek nummers op titel, artiest en album"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:22
 msgid "Apply"
@@ -645,32 +614,28 @@ msgid "Change cover"
 msgstr "Verander omslag"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:86
-#, fuzzy
 msgid "Set Cover…"
-msgstr "Plaats omslag"
+msgstr "Omslag instellen…"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:91
-#, fuzzy
 msgid "Remove Cover…"
-msgstr "Verwijder omslag"
+msgstr "Omslag verwijderen…"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:123
 msgid "Embed Lyrics"
-msgstr ""
+msgstr "Songtekst insluiten"
 
 #: data/gtk/ui/dialogs/MetadataEditor.blp:128
-#, fuzzy
 msgid "Delete Lyrics"
-msgstr "Verwijderen"
+msgstr "Songtekst verwijderen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:12
 msgid "Behavior"
 msgstr "Gedrag"
 
 #: data/gtk/ui/dialogs/Preferences.blp:15
-#, fuzzy
 msgid "Reset Quick Edit Dialog on Close"
-msgstr "Reset het snel-aanpassen dialoog venster bij sluiten"
+msgstr "Snelbewerker-dialoogvenster resetten bij sluiten"
 
 #: data/gtk/ui/dialogs/Preferences.blp:16
 msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
@@ -679,18 +644,16 @@ msgstr ""
 "of niet"
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
-#, fuzzy
 msgid "Save Session on App Close"
-msgstr "Sla sessie op bij het sluiten van de app"
+msgstr "Sessie opslaan bij sluiten van app"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
 msgid "Re-opens last opened directory on the next startup"
 msgstr "Opent laatst geopende werkmap opnieuw bij volgende startup"
 
 #: data/gtk/ui/dialogs/Preferences.blp:25
-#, fuzzy
 msgid "Automatically Toggle List View Mode"
-msgstr "Schakel automatisch Weergave Lijst modus"
+msgstr "Lijst­weergave automatisch in-/uitschakelen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:26
 msgid ""
@@ -701,77 +664,86 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:30
 msgid "Display Compressed Covers"
-msgstr ""
+msgstr "Gecomprimeerde omslagen weergeven"
 
 #: data/gtk/ui/dialogs/Preferences.blp:31
 msgid ""
 "May slightly reduce memory consumption.\n"
 "This does not affect actual images stored within files"
 msgstr ""
+"Kan geheugen­gebruik enigszins verminderen.\n"
+"Dit heeft geen invloed op de werkelijke afbeeldingen die in bestanden zijn "
+"opgeslagen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:35
 msgid "Quality Level"
-msgstr ""
+msgstr "Kwaliteits­niveau"
 
 #: data/gtk/ui/dialogs/Preferences.blp:36
 msgid "The higher value, the higher cover quality"
-msgstr ""
+msgstr "Hoe hoger de waarde, hoe hoger de omslagkwaliteit"
 
 #: data/gtk/ui/dialogs/Preferences.blp:48
 msgid "Parse Directories Recursively"
-msgstr ""
+msgstr "Mappen recursief verwerken"
 
 #: data/gtk/ui/dialogs/Preferences.blp:49
 msgid "Scans provided directory for supported files recursively"
-msgstr ""
+msgstr "Doorzoekt opgegeven map recursief naar ondersteunde bestanden"
 
 #: data/gtk/ui/dialogs/Preferences.blp:52
 msgid "Follow Symlinks"
-msgstr ""
+msgstr "Symbolische koppelingen volgen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:53
 msgid ""
 "If a directory has symlinks to other directories, they would be parsed too\n"
 "May cause excessive memory consumption and looping if it has looped symlinks"
 msgstr ""
+"Als een map symbolische koppelingen naar andere mappen bevat, worden deze "
+"ook verwerkt\n"
+"Kan excessief geheugen­gebruik en loops veroorzaken bij rond­verwezen "
+"symbolische koppelingen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "Mass Downloading"
-msgstr ""
+msgstr "In bulk downloaden"
 
 #: data/gtk/ui/dialogs/Preferences.blp:62
 msgid "Max Parallel Downloadings"
-msgstr ""
+msgstr "Maximum parallelle downloads"
 
 #: data/gtk/ui/dialogs/Preferences.blp:63
 msgid ""
 "The amount of simultaneous parallel downloadings. High amount may cause "
 "downloading failure if treated as DDoS attack"
 msgstr ""
+"Het aantal gelijk­tijdige parallelle downloads. Een hoog aantal kan download­"
+"storingen veroorzaken als dit wordt beschouwd als een DDoS-aanval"
 
 #: data/gtk/ui/dialogs/Preferences.blp:74
 msgid "Preferred Lyrics Format"
-msgstr ""
+msgstr "Gewenst songtekst­formaat"
 
 #: data/gtk/ui/dialogs/Preferences.blp:75
 msgid "Target lyrics format for LRClib downloading"
-msgstr ""
+msgstr "Doel­formaat voor songtekst bij downloaden van LRClib"
 
 #: data/gtk/ui/dialogs/Preferences.blp:80
 msgid "Debug"
-msgstr ""
+msgstr "Debuggen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:83
 msgid "Enable Debug Logging Profile"
-msgstr ""
+msgstr "Debug-logprofiel inschakelen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:84
 msgid "Expands logging information for debug purposes"
-msgstr ""
+msgstr "Breidt loginformatie uit voor foutopsporings­doeleinden"
 
 #: data/gtk/ui/dialogs/Preferences.blp:85
 msgid "NEEDS RESTART"
-msgstr ""
+msgstr "OPNIEUW OPSTARTEN VEREIST"
 
 #: data/gtk/ui/dialogs/Preferences.blp:91
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
@@ -780,32 +752,32 @@ msgid "Syncing"
 msgstr "Synchroniseren"
 
 #: data/gtk/ui/dialogs/Preferences.blp:98
-#, fuzzy
 msgid "Syncing Type"
-msgstr "Synchroniseren"
+msgstr "Synchronisatie­type"
 
 #: data/gtk/ui/dialogs/Preferences.blp:99
 msgid "Defines the default workflow of syncing process"
-msgstr ""
+msgstr "Bepaalt de standaard­werkwijze van het synchronisatie­proces"
 
 #: data/gtk/ui/dialogs/Preferences.blp:102
 #: data/gtk/ui/dialogs/Preferences.blp:126
 msgid "Line-by-Line"
-msgstr ""
+msgstr "Regel-voor-regel"
 
 #: data/gtk/ui/dialogs/Preferences.blp:103
 #: data/gtk/ui/dialogs/Preferences.blp:152
 msgid "Word-by-Word"
-msgstr ""
+msgstr "Woord-voor-woord"
 
 #: data/gtk/ui/dialogs/Preferences.blp:109
 msgid "Word-by-Word sync workflow is not supported on mobile devices."
 msgstr ""
+"Woord-voor-woord synchronisatie­werkwijze wordt niet ondersteund op mobiele "
+"apparaten."
 
 #: data/gtk/ui/dialogs/Preferences.blp:120
-#, fuzzy
 msgid "Use Precise Milliseconds"
-msgstr "Gebruik exacte milliseconden"
+msgstr "Precieze milliseconden gebruiken"
 
 #: data/gtk/ui/dialogs/Preferences.blp:121
 msgid "Use 3-digit milliseconds instead of 2-digit"
@@ -813,35 +785,31 @@ msgstr "Gebruik 3-cijferige milliseconden in plaats van 2-cijferige"
 
 #: data/gtk/ui/dialogs/Preferences.blp:129
 #: data/gtk/ui/dialogs/Preferences.blp:155
-#, fuzzy
 msgid "Default Re-Sync Value"
-msgstr "Re-sync 100ms terug"
+msgstr "Standaard­waarde voor opnieuw synchroniseren"
 
 #: data/gtk/ui/dialogs/Preferences.blp:130
 #: data/gtk/ui/dialogs/Preferences.blp:156
 msgid "Amount of milliseconds default re-sync performs by"
-msgstr ""
+msgstr "Aantal milliseconden waarmee standaard opnieuw synchroniseren werkt"
 
 #: data/gtk/ui/dialogs/Preferences.blp:140
 #: data/gtk/ui/dialogs/Preferences.blp:166
-#, fuzzy
 msgid "Large Re-Sync Value"
-msgstr "Re-sync 100ms terug"
+msgstr "Grote waarde voor opnieuw synchroniseren"
 
 #: data/gtk/ui/dialogs/Preferences.blp:141
 #: data/gtk/ui/dialogs/Preferences.blp:167
 msgid "Amount of milliseconds large re-sync performs by"
-msgstr ""
+msgstr "Aantal milliseconden waarmee groot opnieuw synchroniseren werkt"
 
 #: data/gtk/ui/dialogs/Preferences.blp:179
-#, fuzzy
 msgid "File Manipulation"
-msgstr "Automatische bestands manipulatie"
+msgstr "Bestands­manipulatie"
 
 #: data/gtk/ui/dialogs/Preferences.blp:184
-#, fuzzy
 msgid "Auto File Manipulation"
-msgstr "Automatische bestands manipulatie"
+msgstr "Automatische bestands­manipulatie"
 
 #: data/gtk/ui/dialogs/Preferences.blp:185
 msgid ""
@@ -850,7 +818,6 @@ msgstr ""
 "Creëert en updatet automatisch bestanden wanneer tekst regels veranderen"
 
 #: data/gtk/ui/dialogs/Preferences.blp:194
-#, fuzzy
 msgid "File Format"
 msgstr "Bestandsformaat"
 
@@ -860,61 +827,70 @@ msgstr "Bestandsformaat voor auto-manipulatie"
 
 #: data/gtk/ui/dialogs/Preferences.blp:205
 msgid "Autosave Interval"
-msgstr ""
+msgstr "Interval voor automatisch opslaan"
 
 #: data/gtk/ui/dialogs/Preferences.blp:206
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr ""
+"Interval voor automatisch opslaan na inactiviteit bij synchroniseren van "
+"songtekst"
 
 #: data/gtk/ui/dialogs/Preferences.blp:221
 msgid "Save Plain LRC Too"
-msgstr ""
+msgstr "Platte LRC ook opslaan"
 
 #: data/gtk/ui/dialogs/Preferences.blp:222
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
 msgstr ""
+"Slaat een plat LRC-bestand op samen met een eLRC-bestand. Werkt niet als het "
+"eLRC-voorvoegsel niet is ingesteld"
 
 #: data/gtk/ui/dialogs/Preferences.blp:226
 msgid "eLRC Prefix"
-msgstr ""
+msgstr "eLRC-voorvoegsel"
 
 #: data/gtk/ui/dialogs/Preferences.blp:235
 #: data/gtk/ui/dialogs/Preferences.blp:292
 msgctxt "button tooltip; noun"
 msgid "Help"
-msgstr ""
+msgstr "Hulp"
 
 #: data/gtk/ui/dialogs/Preferences.blp:238
 msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
 msgstr ""
+"Een voorvoegsel dat eLRC-bestanden krijgen om niet te conflicteren met "
+"platte LRC-bestanden"
 
 #: data/gtk/ui/dialogs/Preferences.blp:248
 msgid "Lyrics Embedding"
-msgstr ""
+msgstr "Songteksten insluiten"
 
 #: data/gtk/ui/dialogs/Preferences.blp:252
 msgid "Embed Lyrics Within Audio File"
-msgstr ""
+msgstr "Songtekst in audiobestand insluiten"
 
 #: data/gtk/ui/dialogs/Preferences.blp:256
 msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
-msgstr ""
+msgstr "Aparte gesynchroniseerde songtekst­tag gebruiken in Vorbis-bestanden"
 
 #: data/gtk/ui/dialogs/Preferences.blp:257
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
 msgstr ""
+"Schakelt het schrijven van gesynchroniseerde songtekst in een aparte tag in "
+"voor bestanden die Vorbis Comment ondersteunen (ogg, flac, opus)"
 
 #: data/gtk/ui/dialogs/Preferences.blp:262
 msgid "Embed Lyrics Default Format"
-msgstr ""
+msgstr "Standaard­formaat voor ingesloten songtekst"
 
 #: data/gtk/ui/dialogs/Preferences.blp:263
 msgid "Brings lyrics to selected format before embedding"
 msgstr ""
+"Brengt songtekst naar geselecteerde formaat voordat deze wordt ingesloten"
 
 #: data/gtk/ui/dialogs/Preferences.blp:298
 msgid ""
@@ -923,32 +899,68 @@ msgid ""
 "be converted to LRC and then embedded the way you've selected (Vorbis)\n"
 "This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
+"De songtekst wordt naar het geselecteerde formaat gebracht VOORDAT het "
+"insluiten begint.\n"
+"Als u bijvoorbeeld eLRC gebruikt, maar het standaard­formaat is ingesteld op "
+"LRC, dan wordt de songtekst omgezet naar LRC en vervolgens ingesloten op de "
+"door u geselecteerde manier (Vorbis)\n"
+"Dit valt alleen terug op het geselecteerde formaat (eLRC -> LRC -> Platte "
+"tekst)"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
-#, fuzzy
 msgid "Re-Sync All Lines?"
-msgstr "Re-sync 100ms terug"
+msgstr "Alle regels opnieuw synchroniseren?"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:6
 msgid ""
 "Input amount of milliseconds to re-sync all lines. Prefix it with “-” to re-"
 "sync backwards."
 msgstr ""
+"Voer het aantal milli­seconden in om alle regels opnieuw te synchroniseren. "
+"Voeg ‘-’ toe om achteruit te synchroniseren."
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:11
-#, fuzzy
 msgid "Milliseconds"
-msgstr "Gebruik exacte milliseconden"
+msgstr "Milliseconden"
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
-#, fuzzy
 msgid "Re-Sync"
-msgstr "Sync"
+msgstr "Opnieuw synchroniseren"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+msgid "Mass Download"
+msgstr "Bulk­download"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr "Reeds bestaande songteksten overschrijven"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr ""
+"Vervangt reeds bestaande songteksten in het bestand door degene die zijn "
+"gevonden"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+msgid "No Log Available Yet"
+msgstr "Nog geen logboek beschikbaar"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr "Start met ophalen om iets te zien"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr "Songteksten reeds opgehaald"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
+msgstr "Songteksten voor alle nummers zijn al opgehaald"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Sync/Re-sync line"
-msgstr ""
+msgstr "Regel (opnieuw) synchroniseren"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:75
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:74
@@ -956,21 +968,19 @@ msgid "Replay selected line"
 msgstr "Herhaal geselecteerde regel"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:85
-#, fuzzy
 msgid "Re-sync selected line back"
-msgstr "Re-synchroniseer geselecteerde regel 100ms terug"
+msgstr "Geselecteerde regel achteruit synchroniseren"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:95
-#, fuzzy
 msgid "Re-sync selected line forward"
-msgstr "Re-synchroniseer geselecteerde regel 100ms verder"
+msgstr "Geselecteerde regel vooruit synchroniseren"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:105
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:110
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:98
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:102
 msgid "Import from …"
-msgstr "Importeer vanuit …"
+msgstr "Importeren vanuit…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
@@ -991,7 +1001,7 @@ msgstr "Klembord"
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:117
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:121
 msgid "Export to …"
-msgstr "Exporteer naar …"
+msgstr "Exporteren naar…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:152
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
@@ -1000,34 +1010,32 @@ msgstr "Acties met geselecteerde regel"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:158
 msgid "Remove line"
-msgstr "Verwijder regel"
+msgstr "Regel verwijderen"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:159
 msgid "Prepend line"
-msgstr ""
+msgstr "Regel toevoegen vooraan"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:160
 msgid "Append line"
-msgstr ""
+msgstr "Regel toevoegen achteraan"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:146
 msgid "Utilities"
-msgstr ""
+msgstr "Hulp­middelen"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:148
-#, fuzzy
 msgid "Re-sync all"
-msgstr "Re-sync 100ms terug"
+msgstr "Alles opnieuw synchroniseren"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
-#, fuzzy
 msgid "Edit metadata"
-msgstr "wijzig nummer metadata"
+msgstr "Meta­gegevens bewerken"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
@@ -1035,28 +1043,25 @@ msgid "About file"
 msgstr "Over bestand"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:225
-#, fuzzy
 msgid "Add Line"
-msgstr "Voeg regel toe"
+msgstr "Regel toevoegen"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:82
-#, fuzzy
 msgid "Re-sync selected word back"
-msgstr "Re-synchroniseer geselecteerde regel 100ms terug"
+msgstr "Geselecteerd woord achteruit synchroniseren"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:90
-#, fuzzy
 msgid "Re-sync selected word forward"
-msgstr "Re-synchroniseer geselecteerde regel 100ms verder"
+msgstr "Geselecteerd woord vooruit synchroniseren"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
 msgid "Edit"
-msgstr ""
+msgstr "Bewerken"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
 #: data/gtk/ui/widgets/SongCard.blp:35 data/gtk/ui/widgets/SongCard.blp:191
 msgid "Sync"
-msgstr "Sync"
+msgstr "Synchroniseren"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:34
 #: data/gtk/ui/widgets/SavedLocation.blp:52
@@ -1069,13 +1074,12 @@ msgid "Delete"
 msgstr "Verwijderen"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:42
-#, fuzzy
 msgid "Rename this Save?"
-msgstr "Verwijder dit opslagbestand?"
+msgstr "Deze opgeslagen map hernoemen?"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:46
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: data/gtk/ui/widgets/SavedLocation.blp:58
 msgid "Delete this Save?"
@@ -1095,24 +1099,23 @@ msgstr "Open synchronisatie pagina"
 
 #: data/gtk/ui/widgets/SongCard.blp:124
 msgid "Lyrics format (if exists)"
-msgstr ""
+msgstr "Songtekst­formaat (indien aanwezig)"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:105
 msgid "Play/Pause"
-msgstr ""
+msgstr "Afspelen/Pauzeren"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:139
 msgid "Playback settings"
-msgstr ""
+msgstr "Afspeelin­stellingen"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:158
-#, fuzzy
 msgid "Toggle mute"
-msgstr "Schakel zijbalk"
+msgstr "Dempen in-/uitschakelen"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:209
 msgid "Reset"
-msgstr ""
+msgstr "Resetten"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:222
 msgid "Toggle song repeat"
@@ -1121,13 +1124,15 @@ msgstr "Schakel nummer herhaling"
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:9
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:3
 msgid "Sync lyrics of your loved songs"
-msgstr "Synchroniseer de tekst van je favoriete nummers"
+msgstr "Synchroniseer de tekst van uw favoriete nummers"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:11
 msgid ""
 "Chronograph is an open-source application designed for accurately syncing "
 "lyrics with audio timestamps."
 msgstr ""
+"Chronograph is een opensource-app voor het nauwkeurig synchroniseren van "
+"songteksten met audio­tijdstempels."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:13
 msgid ""
@@ -1136,6 +1141,10 @@ msgid ""
 "designed to give the community an ability to be the ones who make these "
 "lyrics."
 msgstr ""
+"Veel muziek­spelers ondersteunen gesynchroniseerde songteksten die tijdens "
+"het afspelen regel-voor-regel of woord-voor-woord worden gemarkeerd. Deze "
+"app is ontworpen om de gemeenschap in staat te stellen deze songteksten zelf "
+"te maken."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:16
 msgid ""
@@ -1143,6 +1152,10 @@ msgid ""
 "players use LRCLib to fetch synchronized lyrics, this integration allows "
 "users to easily contribute their work back to the open-source community."
 msgstr ""
+"Chronograph ondersteunt direct publiceren naar LRCLib. Aangezien veel "
+"opensource-muziekspelers LRCLib gebruiken om gesynchroniseerde songteksten "
+"op te halen, stelt deze integratie gebruikers in staat om hun werk eenvoudig "
+"bij te dragen aan de opensource­gemeenschap."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:19
 msgid ""
@@ -1151,11 +1164,14 @@ msgid ""
 "find lyrics for each of your track on LRClib and save it depending on your "
 "settings."
 msgstr ""
+"Als u een grote muziek­collectie hebt en voor alles songteksten wilt "
+"downloaden, ondersteunt Chronograph ook bulk­download van songteksten. Het "
+"zal proberen voor elk van uw nummers songteksten te vinden op LRClib en deze "
+"op te slaan, afhankelijk van uw instellingen."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:22
-#, fuzzy
 msgid "Syncing Modes"
-msgstr "Synchronisatie­modus"
+msgstr "Synchronisatie­modi"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:24
 msgid ""
@@ -1163,6 +1179,9 @@ msgid ""
 "placed for the whole line of lyrics. This is the most supported format of "
 "synced lyrics."
 msgstr ""
+"Regel-voor-regel (primair): Hierbij wordt bij elke synchronisatie­actie een "
+"tijd­stempel geplaatst voor de hele regel songtekst. Dit is het meest "
+"ondersteunde formaat voor gesynchroniseerde songteksten."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:26
 msgid ""
@@ -1170,44 +1189,47 @@ msgid ""
 "timestamp for every single word, enabling players to animate lyrics with "
 "precision."
 msgstr ""
+"Woord-voor-woord (geavanceerd): Ontworpen voor echte karaoke­kwaliteit. Het "
+"plaatst een tijdstempel voor elk afzonderlijk woord, waardoor spelers "
+"songteksten met precisie kunnen animeren."
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:29
 msgid "Supported Formats"
-msgstr ""
+msgstr "Ondersteunde formaten"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:32
 msgid "OGG"
-msgstr ""
+msgstr "OGG"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:34
 msgid "FLAC"
-msgstr ""
+msgstr "FLAC"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:36
 msgid "MP3"
-msgstr ""
+msgstr "MP3"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:38
 msgid "M4A"
-msgstr ""
+msgstr "M4A"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:40
 msgid "OPUS"
-msgstr ""
+msgstr "OPUS"
 
 #. Translators: Remain as is
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:42
 msgid "WAV"
-msgstr ""
+msgstr "WAV"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:43
 msgid "AAC (reduced functionality)"
-msgstr ""
+msgstr "AAC (beperkte functionaliteit)"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:79
 msgid "Library"
@@ -1219,11 +1241,11 @@ msgstr "Tekst synchronisatie pagina"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:87
 msgid "Word-by-Word syncing workflow"
-msgstr ""
+msgstr "Woord-voor-woord synchronisatie­werkwijze"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:91
 msgid "Word-by-Word lyrics editor"
-msgstr ""
+msgstr "Woord-voor-woord songtekst­bewerker"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:95
 msgid "LRClib import dialog"
@@ -1231,7 +1253,7 @@ msgstr "LRClib importeer dialoog"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:99
 msgid "Mass lyrics downloading dialog"
-msgstr ""
+msgstr "Bulk­download songteksten dialoog­venster"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
 msgid "Library in List View mode"
@@ -1243,9 +1265,8 @@ msgstr "Tekst synchronisatie pagina op kleiner display"
 
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
-#, fuzzy
 msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr "tekst;internet;nummers;multimedia;media;lrclib;muziek;synchronisatie;chronograph;"
+msgstr "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;songtekst;nummers;muziek;synchronisatie;"
 
 #, fuzzy
 #~ msgid "Pending"

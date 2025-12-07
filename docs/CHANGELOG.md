@@ -1,3 +1,11 @@
+## 5.3.1
+
+<p>Bug fixes</p>
+<ul>
+  <li>Changing View Mode with no library opened no more causing a blank screen</li>
+  <li>Sync lines list box no more remain invisible after importing lyrics</li>
+</ul>
+
 ## 5.3
 
 <p>New features</p>

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 17:41+0300\n"
-"PO-Revision-Date: 2025-11-12 07:51+0000\n"
-"Last-Translator: vitrola06 <laverdolin@proton.me>\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
+"PO-Revision-Date: 2025-12-07 01:00+0000\n"
+"Last-Translator: Leandro Paz <leandropaz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "chronograph/chronograph/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: chronograph/window.py:43
 msgid "All Supported Media"
-msgstr ""
+msgstr "Todas as Mídias Suportadas"
 
 #: chronograph/window.py:415
 msgid "Copied successfully"
@@ -53,7 +53,7 @@ msgstr "Erro de Conexão"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Network error occured while connecting to LRClib"
-msgstr ""
+msgstr "Erro de rede ao conectar ao LRClib"
 
 #: chronograph/ui/dialogs/lrclib.py:119
 msgid "Something went wrong"
@@ -62,13 +62,13 @@ msgstr "Alguma coisa deu errado"
 #: chronograph/ui/dialogs/lrclib.py:121
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
-msgstr ""
+msgstr "Erro desconhecido ao tentar conectar ao servidor LRC"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Não há letras sincronizadas disponíveis"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Não há letras simples disponíveis"
 
@@ -79,7 +79,7 @@ msgstr "Sincronizado"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
-msgstr ""
+msgstr "Sincronizado, usar padrão se não estiver disponível"
 
 #: chronograph/ui/dialogs/preferences.py:213
 #, fuzzy
@@ -88,8 +88,9 @@ msgstr "Simples"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
-msgstr ""
+msgstr "Buscar"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:120
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
@@ -101,7 +102,7 @@ msgstr "Cancelar"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 msgid "Connection timed out"
-msgstr ""
+msgstr "Tempo esgotado para conexão"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:146
 msgid "Connection error occurred"
@@ -134,63 +135,63 @@ msgstr "Cancelado"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:246
 msgid "Fetching"
-msgstr ""
+msgstr "Buscando"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Cópia para a área de transferência"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Letras exportadas para arquivo"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Mostrar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Publicado com sucesso: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ocorreu um erro desconhecido:{code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr "Ocorreu um erro de rede ao publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr "Um erro ocorreu ao publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 #, fuzzy
 msgid "Unable to publish lyrics."
 msgstr "Não é possível publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 #, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
@@ -199,15 +200,15 @@ msgstr ""
 "Para publicar as letras a faixa deve ter um título e os campos de artista, "
 "álbum e letras definidos"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr "Fechar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr "Não é possível publicar letras vazias"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr "Por quê?"
 
@@ -306,7 +307,7 @@ msgstr "Desconhecido"
 #: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:263
 msgctxt "means lyrics absence"
 msgid "None"
-msgstr ""
+msgstr "Nenhuma letra"
 
 #: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:267
 #: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:271
@@ -323,11 +324,11 @@ msgstr "Copiado com sucesso"
 
 #: chronograph/backend/lrclib/lrclib_service.py:376
 msgid "Fetch using /api/get failed, trying /api/search"
-msgstr ""
+msgstr "Busca com /api/get falhou, tentando /api/search"
 
 #: chronograph/backend/lrclib/lrclib_service.py:392
 msgid "Trying search with no album"
-msgstr ""
+msgstr "Tentando procurar sem álbum"
 
 #: chronograph/backend/lrclib/lrclib_service.py:402
 #: chronograph/backend/lrclib/lrclib_service.py:414
@@ -336,7 +337,7 @@ msgstr "Nenhuma letra adequada encontrada"
 
 #: data/gtk/window.blp:5
 msgid "No Music"
-msgstr ""
+msgstr "Nenhuma música"
 
 #: data/gtk/window.blp:6
 #, fuzzy
@@ -477,7 +478,7 @@ msgstr "Configurações de análise recursiva alteradas. Reanalisar?"
 
 #: data/gtk/window.blp:365
 msgid "Re-Parse"
-msgstr ""
+msgstr "Analisar novamente"
 
 #: data/gtk/window.blp:380 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
@@ -542,7 +543,7 @@ msgstr "Re-sincronizar a linha selecionada 100ms para a frente"
 
 #: data/gtk/ui/shortcuts-dialog.blp:75
 msgid "Line-by-Line line actions"
-msgstr ""
+msgstr "Ações de linha por linha"
 
 #: data/gtk/ui/shortcuts-dialog.blp:78
 msgid "Remove selected line"
@@ -563,23 +564,23 @@ msgstr "Anexar a linha para terminar"
 
 #: data/gtk/ui/shortcuts-dialog.blp:99
 msgid "Word-by-Word navigation"
-msgstr ""
+msgstr "Navegação de palavra por palavra"
 
 #: data/gtk/ui/shortcuts-dialog.blp:102
 msgid "One word back"
-msgstr ""
+msgstr "Uma palavra para trás"
 
 #: data/gtk/ui/shortcuts-dialog.blp:107
 msgid "One word next"
-msgstr ""
+msgstr "Uma palavra para frente"
 
 #: data/gtk/ui/shortcuts-dialog.blp:112
 msgid "One line up"
-msgstr ""
+msgstr "Uma linha acima"
 
 #: data/gtk/ui/shortcuts-dialog.blp:117
 msgid "One line down"
-msgstr ""
+msgstr "Uma linha abaixo"
 
 #: data/gtk/ui/dialogs/LRClib.blp:78
 msgid "Search LRClib for provided title and artist"
@@ -601,21 +602,20 @@ msgstr "Nenhuma letra simples encontrada"
 
 #: data/gtk/ui/dialogs/LRClib.blp:186
 msgid "Imports currently selected lyrics"
-msgstr ""
+msgstr "Importa letra selecionada"
 
 #: data/gtk/ui/dialogs/LRClib.blp:188
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 #: data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
-msgstr ""
+msgstr "Nada encontrado"
 
 #: data/gtk/ui/dialogs/LRClib.blp:224
-#, fuzzy
 msgid "Try out another request, maybe there are mistakes in request text"
 msgstr ""
-"Experimente outra solicitação, talvez haja erros no texto de solicitação."
+"Experimente outra solicitação, talvez haja erros no texto de solicitação"
 
 #: data/gtk/ui/dialogs/LRClib.blp:228
 #, fuzzy
@@ -946,6 +946,36 @@ msgstr "Use milissegundos precisos"
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:18
 msgid "Re-Sync"
 msgstr "Ressincronização"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:10
+#, fuzzy
+msgid "Mass Download"
+msgstr "Download de Letras em Massa"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:49
+msgid "Rewrite Already Existing Lyrics"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:50
+msgid "Will replace already existing lyrics in file to those one found"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:73
+#, fuzzy
+msgid "No Log Available Yet"
+msgstr "Não há letras disponíveis"
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:74
+msgid "Start fetching to see something"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:79
+msgid "Lyrics Already Fetched"
+msgstr ""
+
+#: data/gtk/ui/dialogs/MassDownloadingDialog.blp:80
+msgid "Lyrics for all songs are already fetched"
+msgstr ""
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
