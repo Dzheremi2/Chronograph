@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:42+0300\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
 "PO-Revision-Date: 2025-11-30 14:00+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -62,11 +62,11 @@ msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr "LRC-serveriga ühenduse loomisel tekkis tundmatu viga"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Sünkroonitud laulusõnad pole saadaval"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Tavalisi laulusõnu pole saadaval"
 
@@ -133,59 +133,59 @@ msgstr "Katkestatud"
 msgid "Fetching"
 msgstr "Laadin"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Laulusõnad on eksporditud lõikelauale"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Laulusõnad on eksporditud faili"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Näita"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Avaldamine õnnestus: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Vigane avaldamise tunnusluba: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Tekkis tundmatu viga: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr "Laulusõnade avaldamisel tekkis võrguviga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr "Logi"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr "Laulusõnade avaldamisel tekkis viga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
 msgstr "Laulusõnade avaldamine ei õnnestu."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -193,15 +193,15 @@ msgstr ""
 "Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
 "väljad olema täidetud."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr "Sulge"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr "Tühje laulusõnu ei saa avaldada"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr "Miks?"
 

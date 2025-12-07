@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:42+0300\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
 "PO-Revision-Date: 2025-12-07 01:00+0000\n"
 "Last-Translator: Leandro Paz <leandropaz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -64,11 +64,11 @@ msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr "Erro desconhecido ao tentar conectar ao servidor LRC"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Não há letras sincronizadas disponíveis"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Não há letras simples disponíveis"
 
@@ -137,61 +137,61 @@ msgstr "Cancelado"
 msgid "Fetching"
 msgstr "Buscando"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Cópia para a área de transferência"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Letras exportadas para arquivo"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Mostrar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Publicado com sucesso: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ocorreu um erro desconhecido:{code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr "Ocorreu um erro de rede ao publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr "Um erro ocorreu ao publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 #, fuzzy
 msgid "Unable to publish lyrics."
 msgstr "Não é possível publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 #, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
@@ -200,15 +200,15 @@ msgstr ""
 "Para publicar as letras a faixa deve ter um título e os campos de artista, "
 "álbum e letras definidos"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr "Fechar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr "Não é possível publicar letras vazias"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr "Por quê?"
 

@@ -109,6 +109,15 @@
   </screenshots>
 
   <releases>
+    <release version="5.3.1" date="2025-12-07">
+      <description translate="no">
+        <p>Bug fixes</p>
+        <ul>
+          <li>Changing View Mode with no library opened no more causing a blank screen</li>
+          <li>Sync lines list box no more remain invisible after importing lyrics</li>
+        </ul>
+      </description>
+    </release>
     <release version="5.3" date="2025-11-28">
       <description translate="no">
         <p>New features</p>

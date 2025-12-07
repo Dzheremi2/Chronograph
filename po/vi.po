@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:42+0300\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
 "PO-Revision-Date: 2025-11-30 14:00+0000\n"
 "Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/chronograph/"
@@ -63,11 +63,11 @@ msgid ""
 msgstr ""
 "Đã xảy ra lỗi không xác định khi cố gắng kết nối với máy chủ thư viện LRC"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Không có lời bài hát được đồng bộ hóa"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Không có lời bài hát đơn giản có sẵn"
 
@@ -134,59 +134,59 @@ msgstr "Đã Hủy"
 msgid "Fetching"
 msgstr "Đang Tìm Nạp"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Lời bài hát được xuất vào bộ nhớ tạm"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Lời bài hát được xuất sang tệp"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Hiển Thị"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Đã xuất bản thành công: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Mã thông báo xuất bản không chính xác: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Đã xảy ra lỗi không xác định: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr "Đã xảy ra lỗi mạng khi xuất bản lời bài hát"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr "Nhật Ký"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr "Đã xảy ra lỗi khi xuất bản lời bài hát"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Có vẻ như không phải mọi dòng đều được đồng bộ hóa"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
 msgstr "Không thể xuất bản lời bài hát."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -194,15 +194,15 @@ msgstr ""
 "Để xuất bản lời bài hát, bản nhạc phải có các trường tiêu đề, nghệ sĩ, album "
 "và lời bài hát."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr "Đóng"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr "Không thể xuất bản lời bài hát trống"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr "Tại sao?"
 

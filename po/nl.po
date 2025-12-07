@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:42+0300\n"
+"POT-Creation-Date: 2025-12-07 21:39+0300\n"
 "PO-Revision-Date: 2025-12-07 18:36+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/chronograph/"
@@ -63,14 +63,14 @@ msgstr "Er is iets misgegaan"
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
-"Er is een onbekende fout opgetreden bij het verbinden met de LRC-"
-"bibliotheek­server"
+"Er is een onbekende fout opgetreden bij het verbinden met de LRC-bibliotheek­"
+"server"
 
-#: chronograph/ui/dialogs/lrclib.py:197
+#: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
 msgstr "Er is geen gesynchroniseerde songtekst beschikbaar"
 
-#: chronograph/ui/dialogs/lrclib.py:202
+#: chronograph/ui/dialogs/lrclib.py:205
 msgid "No plain lyrics available"
 msgstr "Er is geen songtekst beschikbaar"
 
@@ -137,59 +137,59 @@ msgstr "Geannuleerd"
 msgid "Fetching"
 msgstr "Bezig met ophalen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:289
+#: chronograph/ui/sync_pages/lrc_sync_page.py:295
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 msgid "Lyrics exported to clipboard"
 msgstr "Songtekst geëxporteerd naar klembord"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:300
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Songtekst geëxporteerd naar bestand"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:301
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Tonen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:409
+#: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Succesvol gepubliceerd: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:413
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Ongeldige publicatie­sleutel: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:417
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Er is een onbekende fout opgetreden: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:428
+#: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
 msgstr "Netwerkfout bij publiceren van songtekst"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:429
-#: chronograph/ui/sync_pages/lrc_sync_page.py:437
+#: chronograph/ui/sync_pages/lrc_sync_page.py:435
+#: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
 msgstr "Logboek"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:436
+#: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
 msgstr "Er is een fout opgetreden bij het publiceren van de songtekst"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
 msgstr "Niet alle regels lijken gesynchroniseerd"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
 msgstr "Kan songtekst niet publiceren."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:466
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -197,15 +197,15 @@ msgstr ""
 "Om de songtekst te publiceren moet het nummer een titel, artiest, album en "
 "songtekst bevatten."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
 msgstr "Sluiten"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:475
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
 msgstr "Kan lege songtekst niet publiceren"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
 msgstr "Waarom?"
 
@@ -718,8 +718,8 @@ msgid ""
 "The amount of simultaneous parallel downloadings. High amount may cause "
 "downloading failure if treated as DDoS attack"
 msgstr ""
-"Het aantal gelijk­tijdige parallelle downloads. Een hoog aantal kan "
-"download­storingen veroorzaken als dit wordt beschouwd als een DDoS-aanval"
+"Het aantal gelijk­tijdige parallelle downloads. Een hoog aantal kan download­"
+"storingen veroorzaken als dit wordt beschouwd als een DDoS-aanval"
 
 #: data/gtk/ui/dialogs/Preferences.blp:74
 msgid "Preferred Lyrics Format"
@@ -1266,8 +1266,7 @@ msgstr "Tekst synchronisatie pagina op kleiner display"
 #. Translators: Please, do not remove original english keywords. Just add your language translations after these keywords (the last keyword must end with semicolon)
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
-msgstr ""
-"lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;songtekst;nummers;muziek;synchronisatie;"
+msgstr "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;songtekst;nummers;muziek;synchronisatie;"
 
 #, fuzzy
 #~ msgid "Pending"
