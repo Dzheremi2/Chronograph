@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-07 21:39+0300\n"
-"PO-Revision-Date: 2025-03-15 08:47+0000\n"
-"Last-Translator: Džeremi <chichvarov1315@gmail.com>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/lrcmake/"
+"PO-Revision-Date: 2025-12-08 18:00+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: chronograph/window.py:43
 msgid "All Supported Media"
@@ -44,24 +44,26 @@ msgstr ""
 
 #: chronograph/main.py:190
 msgid "Translate the App"
-msgstr ""
+msgstr "Traduci l'App"
 
 #: chronograph/ui/dialogs/lrclib.py:111
 msgid "Connection Error"
-msgstr ""
+msgstr "Errore di connessione"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Network error occured while connecting to LRClib"
-msgstr ""
+msgstr "Si è verificato un errore di rete durante la connessione a LRClib"
 
 #: chronograph/ui/dialogs/lrclib.py:119
 msgid "Something went wrong"
-msgstr ""
+msgstr "Qualcosa è andato storto"
 
 #: chronograph/ui/dialogs/lrclib.py:121
 msgid ""
 "An unknown error occurred while trying to connect to the LRC library server"
 msgstr ""
+"Si è verificato un errore sconosciuto durante il tentativo di connessione al "
+"server della biblioteca LRC"
 
 #: chronograph/ui/dialogs/lrclib.py:200
 msgid "No synced lyrics available"
@@ -152,13 +154,13 @@ msgstr "Copia negli appunti"
 #: chronograph/ui/sync_pages/lrc_sync_page.py:306
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
-msgstr ""
+msgstr "Testi esportati nel file"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:307
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
-msgstr ""
+msgstr "Mostra"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:415
 #, fuzzy, python-brace-format
@@ -177,16 +179,16 @@ msgstr "Si è verificato un errore sconosciuto: "
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:434
 msgid "Network error occurred while publishing lyrics"
-msgstr ""
+msgstr "Si è verificato un errore di rete durante la pubblicazione del testo"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:435
 #: chronograph/ui/sync_pages/lrc_sync_page.py:443
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:442
 msgid "An error occurred while publishing lyrics"
-msgstr ""
+msgstr "Si è verificato un errore durante la pubblicazione del testo"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:456
 msgid "Seems like not every line is synced"
@@ -194,21 +196,23 @@ msgstr "Sembra che non tutte le linee siano sincronizzate"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Unable to publish lyrics."
-msgstr ""
+msgstr "Impossibile pubblicare il testo."
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:472
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
+"Per pubblicare i testi, la traccia deve avere i campi titolo, artista, album "
+"e testo impostati."
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Cannot publish empty lyrics"
-msgstr ""
+msgstr "Non è possibile pubblicare testi vuoti"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:482
 msgid "Why?"
