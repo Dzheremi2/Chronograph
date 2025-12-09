@@ -215,11 +215,11 @@ class LRCSyncPage(Adw.NavigationPage):
     Parameters
     ----------
     ms : int
-        Milliseconds
+      Milliseconds
     backwards : bool, optional
-        Is re-sync back, by default False
+      Is re-sync back, by default False
     """
-    pattern = re.compile(r"\[([^\[\]]+)\] ")
+    pattern = re.compile(r"\[([^\[\]]+)\]")
     for line in self.sync_lines:
       line: LRCSyncLine
       match = pattern.search(line.get_text())
@@ -229,8 +229,8 @@ class LRCSyncPage(Adw.NavigationPage):
       ns = timestamp_to_ns(timestamp)
       ns = (ns - ms * 1_000_000) if backwards else (ns + ms * 1_000_000)
       ns = max(ns, 0)
-      timestamp = ns_to_timestamp(ns)
-      replacement = rf"{timestamp}"
+      timestamp = ns_to_timestamp(ns).strip()
+      replacement = f"{timestamp}"
       line.set_text(re.sub(pattern, replacement, line.get_text()))
     logger.info(
       "All lines were resynced %sms %s",

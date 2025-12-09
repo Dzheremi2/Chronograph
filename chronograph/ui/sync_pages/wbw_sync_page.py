@@ -153,7 +153,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
   ############### Import Actions ###############
   def _import_lrclib(self, *_args) -> None:
-    from chronograph.ui.dialogs.lrclib import LRClib
+    from chronograph.ui.dialogs.lrclib import LRClib  # noqa: PLC0415
 
     lrclib_dialog = LRClib(self._card.title, self._card.artist, self._card.album)
     lrclib_dialog.present(Constants.WIN)
@@ -294,9 +294,9 @@ class WBWSyncPage(Adw.NavigationPage):
     Parameters
     ----------
     ms : int
-        Milliseconds
+      Milliseconds
     backwards : bool, optional
-        Is re-sync back, by default False
+      Is re-sync back, by default False
     """
     for line in self._lyrics_model:
       for word in line:
