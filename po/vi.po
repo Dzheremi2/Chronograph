@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-07 21:39+0300\n"
-"PO-Revision-Date: 2025-12-11 20:03+0000\n"
+"PO-Revision-Date: 2025-12-12 03:00+0000\n"
 "Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/vi/>\n"
@@ -75,15 +75,15 @@ msgstr "Không có lời bài hát đơn giản có sẵn"
 
 #: chronograph/ui/dialogs/preferences.py:211
 msgid "Synced Only"
-msgstr "Chỉ Được Đồng Bộ Hóa"
+msgstr "Chỉ được đồng bộ hóa"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
-msgstr "Đã Đồng Bộ Hóa, Dự Phòng về Đơn Giản nếu Không Có Sẵn"
+msgstr "Đã đồng bộ hóa, dự phòng về đơn giản nếu không có sẵn"
 
 #: chronograph/ui/dialogs/preferences.py:213
 msgid "Plain Only"
-msgstr "Chỉ Đơn Giản"
+msgstr "Chỉ thuần"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
