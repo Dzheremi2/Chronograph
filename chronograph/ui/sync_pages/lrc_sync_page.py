@@ -264,7 +264,9 @@ class LRCSyncPage(Adw.NavigationPage):
 
       self.sync_lines.remove_all()
       should_visible = False
-      for _, line in enumerate(Lyrics(Path(path).read_text()).get_normalized_lines()):
+      for _, line in enumerate(
+        Lyrics(Path(path).read_text(encoding="utf-8")).get_normalized_lines()
+      ):
         self.sync_lines.append(LRCSyncLine(line))
         should_visible = True
       self.sync_lines.set_visible(should_visible)
