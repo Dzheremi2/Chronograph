@@ -3,6 +3,7 @@ on:
   push:
     tags: 
       - "*"
+  workflow_dispatch:
 
 concurrency:
   group: release
@@ -15,10 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download workflow artifact
+      - name: Download Linux artifact
         uses: dawidd6/action-download-artifact@v9
         with:
-          workflow: build-release.yml
+          workflow: build-release-linux.yml
+          commit: ${{ github.sha }}
+
+      - name: Download Windows artifact
+        uses: dawidd6/action-download-artifact@v9
+        with:
+          workflow: build-release-windows.yml
           commit: ${{ github.sha }}
 
       - name: Get release notes
@@ -49,12 +56,18 @@ jobs:
 
       - name: Get tag name
         id: get_tag_name
-        run: echo tag_name=${GITHUB_REF#refs/tags/} >> $GITHUB_OUTPUT
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo tag_name=5.3.1 >> $GITHUB_OUTPUT
+          else
+            echo tag_name=${GITHUB_REF#refs/tags/} >> $GITHUB_OUTPUT
+          fi
 
       - name: Rename release files
         run: |
           mv io.github.dzheremi2.lrcmake-gtk-x86_64/io.github.dzheremi2.lrcmake-gtk.flatpak io.github.dzheremi2.lrcmake-gtk-x86_64.flatpak
           mv io.github.dzheremi2.lrcmake-gtk-aarch64/io.github.dzheremi2.lrcmake-gtk.flatpak io.github.dzheremi2.lrcmake-gtk-aarch64.flatpak
+          mv Chronograph-Windows-exe/Chronograph.exe Chronograph.exe
 
       - name: Publish release
         uses: softprops/action-gh-release@v2.2.1
@@ -62,6 +75,7 @@ jobs:
           files: |
             io.github.dzheremi2.lrcmake-gtk-x86_64.flatpak
             io.github.dzheremi2.lrcmake-gtk-aarch64.flatpak
+            Chronograph.exe
           fail_on_unmatched_files: true
           tag_name: ${{ steps.get_tag_name.outputs.tag_name }}
           body_path: release_notes

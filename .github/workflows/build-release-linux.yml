@@ -1,8 +1,9 @@
-name: Release Bundle
+name: Release Linux Flatpak
 on:
   push:
     branches:
       - "main"
+  workflow_dispatch:
 
 concurrency:
   group: release
