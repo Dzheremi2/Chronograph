@@ -24,7 +24,7 @@ class ConstantsMeta(type):
 class Constants(metaclass=ConstantsMeta):
   _cover_placeholder = None
 
-  # App direcotries
+  # App directories
   match sys.platform:
     case "win32":
       dir = Path(GLib.get_user_config_dir()) / "Chronograph"
