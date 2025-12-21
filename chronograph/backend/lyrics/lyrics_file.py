@@ -51,11 +51,15 @@ class LyricsFile(GObject.Object):
 
     # Setup Lyrics instances for each lyrics format
     self.elrc_lyrics = Lyrics(
-      Path(self.elrc_path).read_text() if Path(self.elrc_path).exists() else ""
+      Path(self.elrc_path).read_text(encoding="utf-8")
+      if Path(self.elrc_path).exists()
+      else ""
     )
     self.elrc_lyrics.connect("save-triggered", self._save_lyrics)
     self.lrc_lyrics = Lyrics(
-      Path(self.lrc_path).read_text() if Path(self.lrc_path).exists() else ""
+      Path(self.lrc_path).read_text(encoding="utf-8")
+      if Path(self.lrc_path).exists()
+      else ""
     )
     self.lrc_lyrics.connect("save-triggered", self._save_lyrics)
 
@@ -177,13 +181,13 @@ class LyricsFile(GObject.Object):
     ):
       if file.get_path() == self.elrc_path:
         self.elrc_lyrics.text = (
-          Lyrics(Path(self.elrc_path).read_text()).text
+          Lyrics(Path(self.elrc_path).read_text(encoding="utf-8")).text
           if Path(self.elrc_path).exists()
           else ""
         )
       elif file.get_path() == self.lrc_path:
         self.lrc_lyrics.text = (
-          Lyrics(Path(self.lrc_path).read_text()).text
+          Lyrics(Path(self.lrc_path).read_text(encoding="utf-8")).text
           if Path(self.lrc_path).exists()
           else ""
         )

@@ -85,7 +85,7 @@ class SavedLocation(Gtk.Box):
       Constants.CACHE_FILE,
       allow_unicode=True,
       sort_keys=False,
-      encoding=None,
+      encoding="utf-8",
     )
     logger.info("'%s' was removed from saves", self.name)
     Constants.WIN.build_sidebar()
@@ -142,7 +142,7 @@ class SavedLocation(Gtk.Box):
         Constants.CACHE,
         Constants.CACHE_FILE,
         sort_keys=False,
-        encoding=None,
+        encoding="utf-8",
         allow_unicode=True,
       )
       Constants.WIN.build_sidebar()

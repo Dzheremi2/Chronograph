@@ -143,7 +143,8 @@ class ChronographApplication(Adw.Application):
         os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")
       ).exists():
         with open(
-          os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")
+          os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log"),
+          encoding="utf-8",
         ) as f:
           return f.read()
       return "No log availble yet"
@@ -159,7 +160,7 @@ class ChronographApplication(Adw.Application):
       (
         "Dzheremi https://github.com/Dzheremi2",
         "Ignacy Kuchciński https://gitlab.gnome.org/ignapk",
-        "Martin Abente Lahaye https://gitlab.gnome.org/tchx84"
+        "Martin Abente Lahaye https://gitlab.gnome.org/tchx84",
       )
     )
     # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
@@ -217,7 +218,7 @@ class ChronographApplication(Adw.Application):
       Constants.CACHE,
       Constants.CACHE_FILE,
       sort_keys=False,
-      encoding=None,
+      encoding="utf-8",
       allow_unicode=True,
     )
     logger.info("Cache saved")
@@ -256,7 +257,7 @@ def main(_version) -> int:
   logger.info("Launching application")
   if "cache.yaml" not in os.listdir(Constants.DATA_DIR):  # noqa: PTH208
     logger.info("The cache file does not exist, creating")
-    file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+")  # noqa: SIM115
+    file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+", encoding="utf-8")  # noqa: SIM115
     file.write("pins: []\ncache_version: 2")
     file.close()
 

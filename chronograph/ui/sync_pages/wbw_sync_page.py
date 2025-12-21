@@ -164,7 +164,7 @@ class WBWSyncPage(Adw.NavigationPage):
       path = file_dialog.open_finish(result).get_path()
 
       buffer = Gtk.TextBuffer()
-      buffer.set_text(Lyrics(Path(path).read_text()).text.strip())
+      buffer.set_text(Lyrics(Path(path).read_text(encoding="utf-8")).text.strip())
       self.edit_view_text_view.set_buffer(buffer)
       logger.info("Imported lyrics from file")
 
