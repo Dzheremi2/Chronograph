@@ -270,6 +270,21 @@ def main(_version) -> int:
   if "session" in Constants.CACHE:
     Constants.CACHE.pop("session", None)
     Constants.CACHE["cache_version"] = 2
+
+  # Remove trailing slash from save paths (idk why I placed it in there before)
+  if any(item["path"].endswith("/") for item in Constants.CACHE["pins"]):
+    for item in Constants.CACHE["pins"]:
+      item["path"] = item["path"][:-1]
+    Constants.CACHE_FILE.seek(0)
+    Constants.CACHE_FILE.truncate(0)
+    yaml.dump(
+      Constants.CACHE,
+      Constants.CACHE_FILE,
+      sort_keys=False,
+      encoding="utf-8",
+      allow_unicode=True,
+    )
+
   Constants.APP = app = ChronographApplication()
 
   return app.run(sys.argv)

@@ -385,7 +385,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR)
       and Schema.get("root.state.library.session") != "None"
     ):
-      dir_path = Schema.get("root.state.library.session") + "/"
+      dir_path = Schema.get("root.state.library.session")
       if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
         Constants.CACHE["pins"].append({"path": dir_path, "name": Path(dir_path).name})
         logger.info("'%s' was added to Saves", dir_path)
@@ -555,7 +555,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def select_saved_location() -> None:
       try:
         for row in self.sidebar:
-          if row.get_child().path == Schema.get("root.state.library.session") + "/":
+          if row.get_child().path == Schema.get("root.state.library.session"):
             self.sidebar.select_row(row)
             return
       except AttributeError:
@@ -564,7 +564,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     state = self._state
 
     # Check for the "Add to Saves" button visibility
-    session_path = Schema.get("root.state.library.session") + "/"
+    session_path = Schema.get("root.state.library.session")
     if state in (WindowState.EMPTY_DIR, WindowState.LOADED_DIR):
       if session_path in [pin["path"] for pin in Constants.CACHE["pins"]]:
         self.add_dir_to_saves_button.set_visible(False)
