@@ -60,7 +60,7 @@ jobs:
         id: get_tag_name
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo tag_name=5.3.1 >> $GITHUB_OUTPUT
+            echo tag_name=v5.3.1 >> $GITHUB_OUTPUT
           else
             echo tag_name=${GITHUB_REF#refs/tags/} >> $GITHUB_OUTPUT
           fi

@@ -346,7 +346,7 @@ jobs:
         run: |
           cd "$REPO_DIR"
           export GI_TYPELIB_PATH=$(cygpath -m /ucrt64/lib/girepository-1.0)
-          meson setup build
+          meson setup build -Dprofile=development
           meson compile -C build
       - name: Bundle with PyInstaller
         shell: msys2 {0}
