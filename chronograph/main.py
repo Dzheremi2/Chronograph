@@ -156,6 +156,11 @@ class ChronographApplication(Adw.Application):
     dialog.set_developers(
       ("Dzheremi https://github.com/Dzheremi2", "ahi https://github.com/ahi6")
     )
+
+    # Should fix app icon missing in dialog on windows
+    if sys.platform == "win32":
+      dialog.set_application_icon("chr-app-icon")
+
     dialog.set_designers(
       (
         "Dzheremi https://github.com/Dzheremi2",
@@ -255,6 +260,7 @@ def main(_version) -> int:
   """App entrypoint"""
   init_logger()
   logger.info("Launching application")
+  logger.info("OS: %s", sys.platform)
   if "cache.yaml" not in os.listdir(Constants.DATA_DIR):  # noqa: PTH208
     logger.info("The cache file does not exist, creating")
     file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+", encoding="utf-8")  # noqa: SIM115
