@@ -244,8 +244,11 @@ jobs:
               import gi
               gi.require_version('Gtk', '4.0')
               gi.require_version('Adw', '1')
-              from gi.repository import Gtk, Adw
+              gi.require_version('Gio', '2.0')
+              from gi.repository import Gtk, Adw, Gio
               Adw.init()
+              resource = Gio.Resource.load(os.path.join(sys._MEIPASS, "Chronograph.gresource"))
+              resource._register()
               from chronograph.main import main
               main('5.3')
           except Exception:

@@ -28,10 +28,9 @@ class Constants:
       CACHE_DIR = Path(GLib.get_user_cache_dir())
 
   # Placeholder if media does not have cover
-  if not hasattr(sys, "_MEIPASS") and "PyInstaller" not in sys.modules:
-    COVER_PLACEHOLDER = Gdk.Texture.new_from_resource(
-      _PREFIX + "/icons/scalable/actions/note-placeholder.svg"
-    )
+  COVER_PLACEHOLDER = Gdk.Texture.new_from_resource(
+    _PREFIX + "/icons/scalable/actions/note-placeholder.svg"
+  )
 
   # Loggers
   LOGGER = logging.getLogger("APP")
