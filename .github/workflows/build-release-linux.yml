@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   flatpak-release:
-    name: Flatpak Release
+    name: Build Release Linux Flatpak
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
       options: --privileged
