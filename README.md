@@ -61,7 +61,7 @@ or by downloading and installing bundle from the [latest release](https://github
 
 #### Windows
 
-Chronograph for Windows is only awailable on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest) since `v5.3.1`
+Chronograph for Windows is only available on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest) since `v5.3.1`
 
 ### Releases
 
