@@ -9,8 +9,21 @@ from dgutils import Schema as _Schema
 
 _PREFIX: str = "@PREFIX@"
 
+# Windows workaround to stop pyinstaller from executing placeholder initiation before
+# resources loaded
+class ConstantsMeta(type):
+  @property
+  def COVER_PLACEHOLDER(cls) -> Gdk.Texture:  # noqa: N802
+    if cls._cover_placeholder is None:
+      cls._cover_placeholder = Gdk.Texture.new_from_resource(
+        _PREFIX + "/icons/scalable/actions/note-placeholder.svg"
+      )
+    return cls._cover_placeholder
 
-class Constants:
+
+class Constants(metaclass=ConstantsMeta):
+  _cover_placeholder = None
+
   # App direcotries
   match sys.platform:
     case "win32":
@@ -26,11 +39,6 @@ class Constants:
       CFG_DIR = Path(GLib.get_user_config_dir())
       DATA_DIR = Path(GLib.get_user_data_dir())
       CACHE_DIR = Path(GLib.get_user_cache_dir())
-
-  # Placeholder if media does not have cover
-  COVER_PLACEHOLDER = Gdk.Texture.new_from_resource(
-    _PREFIX + "/icons/scalable/actions/note-placeholder.svg"
-  )
 
   # Loggers
   LOGGER = logging.getLogger("APP")
