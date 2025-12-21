@@ -49,12 +49,19 @@ for every single word, enabling players to animate lyrics with precision.
 - AAC (reduced functionality)
 
 ### Installation
+
+#### Linux
+
 <a href='https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk'>
     <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/>
 </a>
 
 You can download app either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) 
 or by downloading and installing bundle from the [latest release](https://github.com/Dzheremi2/Chronograph/releases/latest)
+
+#### Windows
+
+Chronograph for Windows is only awailable on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest) since `v5.3.1`
 
 ### Releases
 

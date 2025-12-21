@@ -51,7 +51,9 @@ jobs:
           notes = match.group(1)
           notes = textwrap.dedent(notes).strip()
           with open("release_notes", "w", encoding="utf-8") as f:
+              f.write("## Release Notes\n")
               f.write(notes)
+              f.write("\n\n## Windows Info\nLogs are located at `C:\Users\{username}\AppData\Local\Microsoft\INetCache\chronograph\logs`\nConfig located at `C:\Users\{username}\AppData\Local\chronograph`\nUser data located at `C:\Users\{username}\AppData\Local`, currently it's called `cache.yaml`")
               f.write("\n\nSee [full changelog](https://github.com/Dzheremi2/Chronograph/blob/main/docs/CHANGELOG.md) for previous releases changes")
 
       - name: Get tag name
