@@ -1,15 +1,65 @@
+import logging
 import os
+import sys
 from pathlib import Path
 
-from gi.repository import GLib
+from gi.repository import Gdk, GLib
 
-from dgutils import Constants as _Cnst
 from dgutils import Schema as _Schema
 
 _PREFIX: str = "@PREFIX@"
 
-Constants = _Cnst.from_resource(_PREFIX + "/resources/constants.yaml")
-Schema = _Schema(
-  _PREFIX + "/resources/schema.yaml",
-  Path(os.path.join(GLib.get_user_config_dir(), "chronograph", "schema")),
-)
+
+class Constants:
+  # App direcotries
+  match sys.platform:
+    case "win32":
+      dir = Path(GLib.get_user_config_dir()) / "Chronograph"
+      CFG_DIR = dir / "config"
+      DATA_DIR = dir / "data"
+      CACHE_DIR = dir / "cache"
+      CFG_DIR.mkdir(parents=True, exist_ok=True)
+      DATA_DIR.mkdir(parents=True, exist_ok=True)
+      CACHE_DIR.mkdir(parents=True, exist_ok=True)
+      del dir
+    case "linux":
+      CFG_DIR = Path(GLib.get_user_config_dir())
+      DATA_DIR = Path(GLib.get_user_data_dir())
+      CACHE_DIR = Path(GLib.get_user_cache_dir())
+
+  # Placeholder if media does not have cover
+  if not hasattr(sys, "_MEIPASS") and "PyInstaller" not in sys.modules:
+    COVER_PLACEHOLDER = Gdk.Texture.new_from_resource(
+      _PREFIX + "/icons/scalable/actions/note-placeholder.svg"
+    )
+
+  # Loggers
+  LOGGER = logging.getLogger("APP")
+  PLAYER_LOGGER = logging.getLogger("GST_PLAYER")
+  LRCLIB_LOGGER = logging.getLogger("LRCLIB")
+  FILE_LOGGER = logging.getLogger("FILE_MANAGER")
+
+  # App metadata
+  APP_ID = "@APP_ID@"
+  VERSION = "@VERSION@"
+  PREFIX = "@PREFIX@"
+  CACHEV = int("@CACHEV@")
+
+  # Shared variables
+  APP = None
+  WIN = None
+  CACHE_FILE = None
+  CACHE = None
+
+
+match sys.platform:
+  case "win32":
+    Schema = _Schema(
+      _PREFIX + "/resources/schema.yaml",
+      Constants.CFG_DIR / "schema",
+    )
+  case "linux":
+    Schema = _Schema(
+      _PREFIX + "/resources/schema.yaml",
+      Path(os.path.join(GLib.get_user_config_dir(), "chronograph", "schema")),
+    )
