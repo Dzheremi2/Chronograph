@@ -69,6 +69,8 @@ public methods should have docstrings in numpy docstring format
 ([extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) 
 for automatic docstrings generation)
 
+Usage of reading files must have explicit encoding set to `utf-8`
+
 >[!NOTE]
 >If you're too lazy to do all these things, please, mention it in your pull request 
 >message for the maintainers to do this instead of you.
