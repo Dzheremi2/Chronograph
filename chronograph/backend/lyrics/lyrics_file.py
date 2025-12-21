@@ -158,7 +158,7 @@ class LyricsFile(GObject.Object):
 
     path = Path(self.elrc_path if lyrics is self.elrc_lyrics else self.lrc_path)
     if file_content:
-      path.write_text(file_content)
+      path.write_text(file_content, encoding="utf-8")
     else:
       path.unlink(missing_ok=True)
 
