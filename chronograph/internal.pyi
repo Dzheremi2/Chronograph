@@ -9,7 +9,7 @@ from chronograph.main import ChronographApplication
 from chronograph.window import ChronographWindow
 from dgutils import Schema as Sch
 
-class _Constants:
+class Constants:
   APP_ID: Final[str]
   VERSION: Final[str]
   PREFIX: Final[str]
@@ -29,5 +29,4 @@ class _Constants:
   LRCLIB_LOGGER: Logger
   FILE_LOGGER: Logger
 
-Constants: _Constants
 Schema: Sch

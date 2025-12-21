@@ -21,8 +21,6 @@ blueprints = custom_target('blueprints',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
 
-subdir('resources')
-
 gnome.compile_resources(
   'Chronograph',
   configure_file(

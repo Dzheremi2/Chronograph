@@ -19,7 +19,11 @@ def init_logger() -> None:
   if _LOGGER_INITIALIZED:
     return
 
-  log_dir = Constants.CACHE_DIR / "chronograph" / "logs"
+  match sys.platform:
+    case "win32":
+      log_dir = Constants.CACHE_DIR / "logs"
+    case "linux":
+      log_dir = Constants.CACHE_DIR / "chronograph" / "logs"
   log_dir.mkdir(parents=True, exist_ok=True)
   log_file = log_dir / "chronograph.log"
 
@@ -68,7 +72,7 @@ def init_logger() -> None:
 
   logging.captureWarnings(capture=True)
 
-  def handle_exception(exc_type, exc_value, exc_traceback):
+  def handle_exception(exc_type, exc_value, exc_traceback):  # noqa: ANN001
     exception_logger.error(
       "Unhandled exception",
       exc_info=(exc_type, exc_value, exc_traceback),
