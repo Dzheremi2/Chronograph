@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-07 21:39+0300\n"
-"PO-Revision-Date: 2025-11-30 14:00+0000\n"
+"PO-Revision-Date: 2025-12-12 03:00+0000\n"
 "Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/vi/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: chronograph/window.py:43
 msgid "All Supported Media"
-msgstr "Tất Cả Phương Tiện Được Hỗ Trợ"
+msgstr "Tất cả phương tiện được hỗ trợ"
 
 #: chronograph/window.py:415
 msgid "Copied successfully"
@@ -30,11 +30,13 @@ msgstr "Đã sao chép thành công"
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:166
 msgid "translator-credits"
-msgstr "Loc Huynh https://github.com/hthienloc"
+msgstr ""
+"Vietnam Linux L10n <https://github.com/linux-l10n-vi>\n"
+"Loc Huynh <https://github.com/hthienloc>"
 
 #: chronograph/main.py:174
 msgid "Inspiration"
-msgstr "Cảm Hứng"
+msgstr "Cảm hứng"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
 #: chronograph/main.py:184
@@ -43,11 +45,11 @@ msgstr "Xây dựng từ điển của riêng bạn"
 
 #: chronograph/main.py:190
 msgid "Translate the App"
-msgstr "Dịch Ứng Dụng"
+msgstr "Dịch ứng dụng"
 
 #: chronograph/ui/dialogs/lrclib.py:111
 msgid "Connection Error"
-msgstr "Lỗi Kết Nối"
+msgstr "Lỗi kết nối"
 
 #: chronograph/ui/dialogs/lrclib.py:113
 msgid "Network error occured while connecting to LRClib"
@@ -73,15 +75,15 @@ msgstr "Không có lời bài hát đơn giản có sẵn"
 
 #: chronograph/ui/dialogs/preferences.py:211
 msgid "Synced Only"
-msgstr "Chỉ Được Đồng Bộ Hóa"
+msgstr "Chỉ được đồng bộ hóa"
 
 #: chronograph/ui/dialogs/preferences.py:212
 msgid "Synced, Fallback to Plain If Unavailable"
-msgstr "Đã Đồng Bộ Hóa, Dự Phòng về Đơn Giản nếu Không Có Sẵn"
+msgstr "Đã đồng bộ hóa, dự phòng về đơn giản nếu không có sẵn"
 
 #: chronograph/ui/dialogs/preferences.py:213
 msgid "Plain Only"
-msgstr "Chỉ Đơn Giản"
+msgstr "Chỉ thuần"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:124
