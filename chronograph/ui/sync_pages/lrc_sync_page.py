@@ -329,6 +329,8 @@ class LRCSyncPage(Adw.NavigationPage):
       timestamps: list[int] = []
       for line in self.sync_lines:
         line.set_attributes(None)
+        if not line.get_text().strip():
+          continue
         try:
           timing = timestamp_to_ns(line.get_text())
           lines.append(line)
