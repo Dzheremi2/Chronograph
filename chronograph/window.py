@@ -182,6 +182,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       "revealed",
       GObject.BindingFlags.INVERT_BOOLEAN,
     )
+    Schema.bind("root.state.window.sidebar", self.overlay_split_view, "show-sidebar")
 
   def build_sidebar(self) -> None:
     """Builds the sidebar with saved locations"""

@@ -134,7 +134,7 @@ class LRClib(Adw.Dialog, Linker):
     self.search_button.set_sensitive(False)
 
   def _import_lyrics(self, *_args) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncLine
 
     text = ""
     if self.lyrics_stack.get_visible_child() == self.synced_stack_page:

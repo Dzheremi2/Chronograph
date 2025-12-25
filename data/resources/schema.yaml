@@ -140,3 +140,6 @@ root:
       maximized:
         type: bool
         default: false
+      sidebar:
+        type: bool
+        default: true
