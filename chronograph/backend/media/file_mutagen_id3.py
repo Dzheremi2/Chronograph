@@ -24,7 +24,7 @@ class FileID3(TaggableFile):
 
   __gtype_name__ = "FileID3"
 
-  def compress_images(self) -> None:  # noqa: D102
+  def compress_images(self) -> None:
     if Schema.get("root.settings.general.compressed-covers.enabled"):
       quality = Schema.get("root.settings.general.compressed-covers.level")
       tags = self._mutagen_file.tags

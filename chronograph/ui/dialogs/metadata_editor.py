@@ -26,8 +26,8 @@ class MetadataEditor(Adw.Dialog, Linker):
   lyrics_buttons_box: Gtk.Box = gtc()
 
   def __init__(self, card_model: SongCardModel) -> None:
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage  # noqa: PLC0415
-    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 
     super().__init__()
     Linker.__init__(self)
@@ -64,8 +64,8 @@ class MetadataEditor(Adw.Dialog, Linker):
   @Gtk.Template.Callback()
   def on_embed_lyrics_clicked(self, *_args) -> None:
     """Embedding lyrics to the file on button click"""
-    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage  # noqa: PLC0415
-    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage  # noqa: PLC0415
+    from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+    from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 
     page = Constants.WIN.navigation_view.get_visible_page()
     if isinstance(page, WBWSyncPage):
