@@ -1,3 +1,16 @@
+## 5.3.2
+
+<p>New features</p>
+<ul>
+  <li>Sidebar state now saved on app close</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+  <li>"Re-sync all" action no more stopping at lines without a space after the
+  timestamp</li>
+  <li>App now ignores blank lines during lyric highlighting</li>
+</ul>
+
 ## 5.3.1
 
 <p>Bug fixes</p>
