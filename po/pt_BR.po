@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-07 21:39+0300\n"
+"POT-Creation-Date: 2025-12-26 21:00+0300\n"
 "PO-Revision-Date: 2025-12-07 01:00+0000\n"
 "Last-Translator: Leandro Paz <leandropaz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -23,27 +23,27 @@ msgstr ""
 msgid "All Supported Media"
 msgstr "Todas as Mídias Suportadas"
 
-#: chronograph/window.py:415
+#: chronograph/window.py:416
 msgid "Copied successfully"
 msgstr "Copiado com sucesso"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:166
+#: chronograph/main.py:172
 msgid "translator-credits"
 msgstr ""
 "john peter sa <johnppetersa@gmail.com>\n"
 "burns <ahoradocafezinho@gmail.com>"
 
-#: chronograph/main.py:174
+#: chronograph/main.py:180
 msgid "Inspiration"
 msgstr "Inspiração"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:184
+#: chronograph/main.py:190
 msgid "Build your own dictionary"
 msgstr "Construa seu próprio dicionário"
 
-#: chronograph/main.py:190
+#: chronograph/main.py:196
 msgid "Translate the App"
 msgstr "Traduza o App"
 
@@ -137,61 +137,61 @@ msgstr "Cancelado"
 msgid "Fetching"
 msgstr "Buscando"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:295
+#: chronograph/ui/sync_pages/lrc_sync_page.py:297
 #: chronograph/ui/sync_pages/wbw_sync_page.py:237
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "Cópia para a área de transferência"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:306
+#: chronograph/ui/sync_pages/lrc_sync_page.py:308
 #: chronograph/ui/sync_pages/wbw_sync_page.py:199
 msgid "Lyrics exported to file"
 msgstr "Letras exportadas para arquivo"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:307
+#: chronograph/ui/sync_pages/lrc_sync_page.py:309
 #: chronograph/ui/sync_pages/wbw_sync_page.py:200
 #: chronograph/ui/widgets/song_card.py:133
 msgid "Show"
 msgstr "Mostrar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:415
+#: chronograph/ui/sync_pages/lrc_sync_page.py:419
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Publicado com sucesso: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:419
+#: chronograph/ui/sync_pages/lrc_sync_page.py:423
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Token de publicação incorreto: "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:427
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ocorreu um erro desconhecido:{code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:434
+#: chronograph/ui/sync_pages/lrc_sync_page.py:438
 msgid "Network error occurred while publishing lyrics"
 msgstr "Ocorreu um erro de rede ao publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:435
-#: chronograph/ui/sync_pages/lrc_sync_page.py:443
+#: chronograph/ui/sync_pages/lrc_sync_page.py:439
+#: chronograph/ui/sync_pages/lrc_sync_page.py:447
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:442
+#: chronograph/ui/sync_pages/lrc_sync_page.py:446
 msgid "An error occurred while publishing lyrics"
 msgstr "Um erro ocorreu ao publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:456
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 msgid "Seems like not every line is synced"
 msgstr "Parece que nem todas as linhas estão sincronizadas"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:474
 #, fuzzy
 msgid "Unable to publish lyrics."
 msgstr "Não é possível publicar as letras"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 #, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
@@ -200,15 +200,15 @@ msgstr ""
 "Para publicar as letras a faixa deve ter um título e os campos de artista, "
 "álbum e letras definidos"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
 msgid "Close"
 msgstr "Fechar"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
+#: chronograph/ui/sync_pages/lrc_sync_page.py:485
 msgid "Cannot publish empty lyrics"
 msgstr "Não é possível publicar letras vazias"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:482
+#: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "Why?"
 msgstr "Por quê?"
 
