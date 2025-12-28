@@ -19,7 +19,7 @@
 
 </div>
 
-### About Chronograph
+## About Chronograph
 Chronograph is an open-source application designed for accurately syncing lyrics with 
 audio timestamps.
 
@@ -48,9 +48,11 @@ for every single word, enabling players to animate lyrics with precision.
 - WAV
 - AAC (reduced functionality)
 
-### Installation
+## Installation
 
-#### Linux
+### Linux
+
+#### Flatpak
 
 <a href='https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk'>
     <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/>
@@ -59,29 +61,38 @@ for every single word, enabling players to animate lyrics with precision.
 You can download app either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) 
 or by downloading and installing bundle from the [latest release](https://github.com/Dzheremi2/Chronograph/releases/latest)
 
-#### Windows
+#### Arch Linux
 
-Chronograph for Windows is only available on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest) since `v5.3.1`
+[![AUR](https://img.shields.io/aur/version/chronograph?style=for-the-badge&logo=archlinux
+)](https://aur.archlinux.org/packages/chronograph)
 
-### Releases
+The app is available on [AUR](https://aur.archlinux.org/packages/chronograph) as 
+`chronograph` package made by [Mark Wagie (@yochananmarqos)](https://github.com/yochananmarqos)
+
+### Windows
+
+Chronograph for Windows is only available on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest)
+since `v5.3.1`
+
+## Releases
 
 Chronograph has three types of releases *stable*, *release candidates (beta)* and 
 *devel (alpha)*
 
-#### Stable
+### Stable
 
 Stable releases are available on Fridays (if not a hotfix) if their develepment cycle has 
 ended. Could be downloaded either on [Flathub](https://flathub.org/apps/io.github.dzheremi2.lrcmake-gtk) 
 or via [GitHub Releases]((https://github.com/Dzheremi2/Chronograph/releases/latest))
 
-#### Release Candidate
+### Release Candidate
 
 RCs are published before the stable release in friday-awaiting time for users to be able 
 to test them and report bugs before the release happens.
 Could be downloaded only on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/). 
 RCs are marked as `Pre-release`
 
-#### Devel
+### Devel
 
 Devel build are formed for every commit on any branch except for `main`. These build are 
 casts of the current development state, so treat them as *Alpha* releases
@@ -89,18 +100,18 @@ casts of the current development state, so treat them as *Alpha* releases
 >[!CAUTION]
 >Devel builds may be unstable or don't even launch. Use it at your own risk
 
-### Changelog
+## Changelog
 You can see full changelog for all versions [here](docs/CHANGELOG.md)
 
-### Translation
+## Translation
 You can help project to be internationalized using [Hosted Weblate](https://hosted.weblate.org/projects/chronograph/chronograph/)
 
-##### Translation status
+#### Translation status
 
 [![Состояние перевода](https://hosted.weblate.org/widget/chronograph/chronograph/287x66-black.png)](https://hosted.weblate.org/engage/chronograph/)
 [![Translate state](https://hosted.weblate.org/widget/chronograph/chronograph/multi-auto.svg)](https://hosted.weblate.org/engage/chronograph/)
 
-### Plans
+## Plans
 You can see future plans on Projects page of this repo on [Chronograph roadmap.](https://github.com/users/Dzheremi2/projects/2)
 
 If you have an idea or you know a bug, please, open an [issue](https://github.com/Dzheremi2/Chronograph/issues) 
@@ -109,14 +120,14 @@ with you idea/bug and it will be added to roadmap.
 If you want the app to support more file formats, create a feature request about that and 
 attach a sample file.
 
-### Code of Conduct
+## Code of Conduct
 The project follows the [GNOME Code of Conduct](https://conduct.gnome.org)
 
-### Contributing
+## Contributing
 All contribution instructions are described in [CONTRIBUTING.md](https://github.com/Dzheremi2/Chronograph/blob/master/CONTRIBUTING.md) 
 file.
 
-### Screenshots
+## Screenshots
 <div align="center">
 
 ![](docs/screenshots/libLB.png)
