@@ -170,7 +170,7 @@ class ChronographApplication(Adw.Application):
     )
     # Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
     dialog.set_translator_credits(_("translator-credits"))
-    dialog.set_copyright("© 2024-2025 Dzheremi")
+    dialog.set_copyright("© 2024-2026 Dzheremi")
     dialog.add_legal_section(
       "LRClib",
       "© 2024 tranxuanthang",
