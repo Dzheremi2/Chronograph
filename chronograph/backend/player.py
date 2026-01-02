@@ -1,5 +1,9 @@
 from pathlib import Path
 
+import gi
+
+gi.require_version("Gst", "1.0")
+gi.require_version("GstPlay", "1.0")
 from gi.repository import GObject, Gst, GstPlay, Gtk
 
 from chronograph.internal import Constants, Schema

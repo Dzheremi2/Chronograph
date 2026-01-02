@@ -1,7 +1,11 @@
 import json
 from functools import wraps
 
+import gi
 import yaml
+
+gi.require_version("Gio", "2.0")
+gi.require_version("Gtk", "4.0")
 from gi.repository import Gio, Gtk
 
 
