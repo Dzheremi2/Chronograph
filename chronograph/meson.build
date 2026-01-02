@@ -12,6 +12,7 @@ configure_file(
 )
 install_subdir('ui', install_dir: moduledir)
 install_subdir('backend', install_dir: moduledir)
+install_subdir('db', install_dir: moduledir)
 install_data(
     [
     'main.py',

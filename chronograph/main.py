@@ -5,8 +5,8 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.backend.file import FileManager, LibraryModel
-from chronograph.backend.player import Player
+from chronograph.db import connect_and_create_tables, db, set_db
+from chronograph.db.models import SchemaInfo
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -16,6 +16,8 @@ gi.require_version("Gio", "2.0")
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
+from chronograph.backend.file import FileManager, LibraryModel
+from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
@@ -290,6 +292,12 @@ def main(_version) -> int:
       encoding="utf-8",
       allow_unicode=True,
     )
+
+  # FIXME: Testing: REMOVE
+  set_db(str(Constants.DATA_DIR / "test.db"))
+  connect_and_create_tables()
+  with db():
+    SchemaInfo.insert(key="ver", value="1").on_conflict_replace().execute()
 
   Constants.APP = app = ChronographApplication()
 

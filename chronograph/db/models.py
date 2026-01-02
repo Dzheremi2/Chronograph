@@ -1,0 +1,114 @@
+from peewee import (
+  CompositeKey,
+  DatabaseProxy,
+  ForeignKeyField,
+  IntegerField,
+  Model,
+  TextField,
+)
+from playhouse.sqlite_ext import JSONField
+
+db_proxy = DatabaseProxy()
+
+
+class ChronographDatabase(Model):
+  class Meta:  # noqa: D106
+    database = db_proxy
+
+
+class Track(ChronographDatabase):
+  """
+  ::
+
+    CREATE TABLE IF NOT EXISTS tracks (
+      track_uuid   TEXT PRIMARY KEY,        -- Unique ID of the track
+      imported_at  INTEGER NOT NULL,        -- Time, when track was imported
+      tags_json    JSON NOT NULL DEFAULT [] -- List of tags assigned to the track
+    );
+  """
+
+  track_uuid = TextField(primary_key=True)
+  imported_at = IntegerField()
+  tags_json = JSONField(default=list)
+
+  class Meta:  # noqa: D106
+    table_name = "tracks"
+
+
+class Lyric(ChronographDatabase):
+  """
+  ::
+
+    CREATE TABLE IF NOT EXISTS lyrics (
+      lyrics_uuid  TEXT PRIMARY KEY,         -- Unique ID of the lyric
+      format       TEXT NOT NULL,            -- Lyric format (LRC, eLRC, TTML, SRT, ...)
+      content      TEXT NOT NULL DEFAULT '', -- Lyric text
+      created_at   INTEGER NOT NULL,         -- Creation time
+      updated_at   INTEGER                   -- Last modified time
+    );
+  """
+
+  lyrics_uuid = TextField(primary_key=True)
+  format = TextField()
+  content = TextField(default="")
+  created_at = IntegerField()
+  updated_at = IntegerField(null=True)
+
+  class Meta:  # noqa: D106
+    table_name = "lyrics"
+    indexes = ((("format",), False),)
+
+
+class TrackLyric(ChronographDatabase):
+  """
+  ::
+
+    CREATE TABLE IF NOT EXISTS track_lyrics (
+      track_uuid   TEXT NOT NULL,            -- Unique ID of the track
+      lyrics_uuid  TEXT NOT NULL,            -- Unique ID of the lyric
+      PRIMARY KEY (track_uuid, lyrics_uuid), -- Unique ID of the binding
+      -- Automatically detele binding if track or lyric was deleted
+      FOREIGN KEY (track_uuid) REFERENCES tracks(track_uuid) ON DELETE CASCADE,
+      FOREIGN KEY (lyrics_uuid) REFERENCES lyrics(lyrics_uuid) ON DELETE CASCADE
+    );
+  """
+
+  track = ForeignKeyField(
+    Track,
+    field=Track.track_uuid,
+    backref="track_lyrics",
+    on_delete="CASCADE",
+    column_name="track_uuid",
+  )
+  lyric = ForeignKeyField(
+    Lyric,
+    field=Lyric.lyrics_uuid,
+    backref="track_lyrics",
+    on_delete="CASCADE",
+    column_name="lyrics_uuid",
+  )
+
+  class Meta:  # noqa: D106
+    table_name = "track_lyrics"
+    primary_key = CompositeKey("track", "lyric")
+    indexes = (
+      (("track",), False),
+      (("lyric",), False),
+    )
+
+
+class SchemaInfo(ChronographDatabase):
+  """
+  ::
+
+    CREATE TABLE IF NOT EXISTS schema_info (
+      key   TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
+  """
+
+  key = TextField(primary_key=True)
+  value = TextField()
+
+  class Meta:  # noqa: D106
+    table_name = "schema_info"
