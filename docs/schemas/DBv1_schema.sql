@@ -4,6 +4,7 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS tracks (
   track_uuid   TEXT PRIMARY KEY,        -- Unique ID of the track
   imported_at  INTEGER NOT NULL,        -- Time, when track was imported
+  format       TEXT NOT NULL,           -- Format of the media
   tags_json    JSON NOT NULL DEFAULT [] -- List of tags assigned to the track
 );
 

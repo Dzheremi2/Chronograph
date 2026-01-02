@@ -5,8 +5,10 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.db import connect_and_create_tables, db, set_db
-from chronograph.db.models import SchemaInfo
+from chronograph.backend.db import set_db
+from chronograph.backend.db.models import Track
+from chronograph.backend.file.library_manager import LibraryManager
+from chronograph.backend.file_parsers import parse_dir, parse_files
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -131,6 +133,10 @@ class ChronographApplication(Adw.Application):
       LibraryModel().open_files(self.paths)
     else:
       Constants.WIN.set_property("state", WindowState.EMPTY)
+
+    set_db(
+      Schema.get("root.state.library.last-library") + "/library.db"
+    ).connect_and_create_tables()
 
     Constants.WIN.present()
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
@@ -266,7 +272,7 @@ def main(_version) -> int:
   if "cache.yaml" not in os.listdir(Constants.DATA_DIR):  # noqa: PTH208
     logger.info("The cache file does not exist, creating")
     file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+", encoding="utf-8")  # noqa: SIM115
-    file.write("pins: []\ncache_version: 2")
+    file.write("pins: []\nlibs: []\ncache_version: 3")
     file.close()
 
   Constants.CACHE_FILE = open(  # noqa: SIM115
@@ -294,10 +300,24 @@ def main(_version) -> int:
     )
 
   # FIXME: Testing: REMOVE
-  set_db(str(Constants.DATA_DIR / "test.db"))
-  connect_and_create_tables()
-  with db():
-    SchemaInfo.insert(key="ver", value="1").on_conflict_replace().execute()
+  # set_db(str(Constants.DATA_DIR / "test.db"))
+  # connect_and_create_tables()
+  # with db():
+  #   SchemaInfo.insert(key="ver", value="1").on_conflict_replace().execute()
+  # LibraryManager.new_library(Path("/home/dzheremi/.tmp"))
+  # Schema.set(
+  #   "root.state.library.last-library", "/home/dzheremi/.tmp/ChronographLibrary"
+  # )
+  # set_db(
+  #   "/home/dzheremi/.tmp/ChronographLibrary/library.db"
+  # ).connect_and_create_tables()
+  # LibraryManager.current_library = "/home/dzheremi/.tmp/ChronographLibrary"
+  # LibraryManager.import_files(
+  #   [
+  #     Path(media.path) for media in parse_files(parse_dir("/home/dzheremi/Music/Test2"))
+  #   ],
+  # )
+  # LibraryManager.delete_files([track.track_uuid for track in Track.select()])
 
   Constants.APP = app = ChronographApplication()
 

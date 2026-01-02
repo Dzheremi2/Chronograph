@@ -23,12 +23,14 @@ class Track(ChronographDatabase):
     CREATE TABLE IF NOT EXISTS tracks (
       track_uuid   TEXT PRIMARY KEY,        -- Unique ID of the track
       imported_at  INTEGER NOT NULL,        -- Time, when track was imported
+      format       TEXT NOT NULL,           -- Format of the media
       tags_json    JSON NOT NULL DEFAULT [] -- List of tags assigned to the track
     );
   """
 
   track_uuid = TextField(primary_key=True)
   imported_at = IntegerField()
+  format = TextField()
   tags_json = JSONField(default=list)
 
   class Meta:  # noqa: D106

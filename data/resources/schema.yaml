@@ -124,12 +124,15 @@ root:
         type: str
         enum: [g, l]
         default: g
-      session:
+      session: # FIXME: REMOVE
         type: str
         default: None
       filter:
         type: str
         default: "1:1:1:1" # encoded string none:plain:lrc:elrc. 0 for disabled, 1 for enabled
+      last-library:
+        type: str
+        default: None
     window:
       height:
         type: int
