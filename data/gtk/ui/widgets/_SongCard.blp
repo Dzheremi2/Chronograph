@@ -74,17 +74,35 @@ template $SongCard: Box {
         Box {
           orientation: vertical;
 
-          Image cover_img {
-            name: "cover";
-            width-request: 160;
-            height-request: 160;
-            hexpand: true;
-            vexpand: true;
-            overflow: hidden;
-            icon-name: "note-placeholder";
-            pixel-size: 160;
-            
-            styles ["rounded"]
+          Stack cover_loading_stack {
+            hhomogeneous: true;
+            transition-duration: 200;
+            transition-type: crossfade;
+
+            Image cover_placeholder {
+              name: "cover";
+              width-request: 160;
+              height-request: 160;
+              hexpand: true;
+              vexpand: true;
+              overflow: hidden;
+              icon-name: "note-placeholder";
+              pixel-size: 160;
+              
+              styles ["rounded"]
+            }
+
+            Image cover_img {
+              name: "image-cover";
+              width-request: 160;
+              height-request: 160;
+              hexpand: true;
+              vexpand: true;
+              overflow: hidden;
+              pixel-size: 160;
+
+              styles ["rounded"]
+            }
           }
 
           Label title_label {

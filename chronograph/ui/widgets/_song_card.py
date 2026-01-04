@@ -1,4 +1,6 @@
-from gi.repository import GObject, Gtk
+from typing import Optional
+
+from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.internal import Constants
@@ -16,6 +18,8 @@ class SongCard(Gtk.Box, Linker):
   metadata_editor_button: Gtk.Button = gtc()
   info_button: Gtk.Button = gtc()
   cover_button: Gtk.Button = gtc()
+  cover_loading_stack: Gtk.Stack = gtc()
+  cover_placeholder: Gtk.Image = gtc()
   cover_img: Gtk.Image = gtc()
   title_label: Gtk.Label = gtc()
   artist_label: Gtk.Label = gtc()
@@ -57,8 +61,16 @@ class SongCard(Gtk.Box, Linker):
     self.new_connection(self.cover_button, "clicked", self._load, model)
 
   def unbind(self) -> None:
-    self.cover_img.set_from_paintable(None)
+    self.set_cover(None)
     self.link_teardown()
+
+  def set_cover(self, cover: Optional[Gdk.Texture] = None) -> None:
+    if cover:
+      self.cover_img.set_from_paintable(cover)
+      self.cover_loading_stack.set_visible_child(self.cover_img)
+    else:
+      self.cover_loading_stack.set_visible_child(self.cover_placeholder)
+      self.cover_img.set_from_paintable(None)
 
   # TODO:
   def _load(self, _btn, model: SongCardModel) -> None:

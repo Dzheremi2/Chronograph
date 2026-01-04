@@ -63,12 +63,12 @@ def _process_cover_queue() -> None:
         if req.state.token == req.token and req.state.fut is f:
           req.state.fut = None
           try:
-            tex = f.result()
+            tex: Gdk.Texture = f.result()
           except Exception:
             tex = None
 
           if tex is not None:
-            req.card.cover_img.set_from_paintable(tex)
+            req.card.set_cover(tex)
 
         _process_cover_queue()
         return GLib.SOURCE_REMOVE
@@ -116,7 +116,7 @@ class Library(Gtk.GridView):
     st.token += 1
     token = st.token
 
-    card.cover_img.set_from_paintable(Constants.COVER_PLACEHOLDER)
+    card.set_cover(None)
     card.bind(model)
 
     if st.fut is not None:
