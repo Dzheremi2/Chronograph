@@ -2,10 +2,9 @@ import contextlib
 from typing import Optional
 
 import mutagen
-from gi.repository import Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, GLib
 
 from chronograph.backend.lyrics import Lyrics
-from chronograph.internal import Constants
 from dgutils.decorators import baseclass
 
 
@@ -60,23 +59,23 @@ class BaseFile:
     with contextlib.suppress(Exception):
       self._duration = self._mutagen_file.info.length
 
-  def get_cover_texture(self) -> Gdk.Texture:
+  def get_cover_texture(self) -> Optional[Gdk.Texture]:
     """Prepares a Gdk.Texture for setting to SongCard.paintable
 
     Returns
     -------
-    Gdk.Texture
-        Gdk.Texture or a placeholder texture if no cover is set
+    Optional[Gdk.Texture]
+      `Gdk.Texture` or `None` if no cover is set
     """
     if self._cover:
       loader = GdkPixbuf.PixbufLoader.new()
-      loader.write(self._cover)
+      loader.write_bytes(GLib.Bytes.new(self._cover))
       loader.close()
       pixbuf = loader.get_pixbuf()
 
       scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
       return Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
-    return Constants.COVER_PLACEHOLDER
+    return None
 
   @property
   def title(self) -> str:

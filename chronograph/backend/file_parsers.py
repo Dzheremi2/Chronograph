@@ -2,8 +2,9 @@
 
 import os
 from pathlib import Path
-from typing import Union
+from typing import Iterable, Iterator, Optional, Union
 
+from chronograph.backend.media.file import BaseFile
 from chronograph.backend.media.file_mutagen_id3 import FileID3
 from chronograph.backend.media.file_mutagen_mp4 import FileMP4
 from chronograph.backend.media.file_mutagen_vorbis import FileVorbis
@@ -12,32 +13,55 @@ from chronograph.internal import Schema
 
 
 def parse_files(
-  paths: tuple[str],
-) -> tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable], ...]:
+  paths: Iterable[str],
+) -> Iterator[BaseFile]:
   """Generates a tuple of mutagen files from a list of paths
 
   Parameters
   ----------
-  paths : tuple[str]
-      Paths to files
+  paths : Iterable[str]
+    Paths to files
 
   Returns
   -------
-  tuple[Union[FileID3, FileVorbis, FileMP4, FileUntaggable]]
-      Returns a tuple of mutagen files or an empty tuple if no files
+  Iterator[BaseFile]
+    Returns a tuple of mutagen files or an empty tuple if no files
   """
-  mutagen_files = []
-  for path in paths:
-    if Path(path).suffix in (".ogg", ".flac", ".opus"):
-      mutagen_files.append(FileVorbis(path))
-    elif Path(path).suffix in (".mp3", ".wav"):
-      mutagen_files.append(FileID3(path))
-    elif Path(path).suffix in (".m4a",):
-      mutagen_files.append(FileMP4(path))
-    elif Path(path).suffix in (".aac", ".AAC"):
-      mutagen_files.append(FileUntaggable(path))
+  for file in paths:
+    path = Path(file)
+    if path.suffix in (".ogg", ".flac", ".opus"):
+      yield FileVorbis(file)
+    if path.suffix in (".mp3", ".wav"):
+      yield FileID3(file)
+    if path.suffix in (".m4a",):
+      yield FileMP4(file)
+    if path.suffix in (".aac", ".AAC"):
+      yield FileUntaggable(file)
 
-  return tuple(mutagen_files)
+
+def parse_file(file: Union[str, Path]) -> Optional[BaseFile]:
+  """Generates a single mutagen file realization depending on file suffix
+
+  Parameters
+  ----------
+  file : str
+    Path to file
+
+  Returns
+  -------
+  BaseFile
+    Returns mutagen file realization or `None`
+  """
+  path = Path(file)
+  if path.suffix in (".ogg", ".flac", ".opus"):
+    return FileVorbis(file)
+  if path.suffix in (".mp3", ".wav"):
+    return FileID3(file)
+  if path.suffix in (".m4a",):
+    return FileMP4(file)
+  if path.suffix in (".aac", ".AAC"):
+    return FileUntaggable(file)
+  return None
 
 
 def parse_dir(path: str) -> tuple[str, ...]:
@@ -46,12 +70,12 @@ def parse_dir(path: str) -> tuple[str, ...]:
   Parameters
   ----------
   path : str
-      root directory path
+    root directory path
 
   Returns
   -------
   tuple[str]
-      tuple of leaf paths
+    tuple of leaf paths
   """
   path: Path = Path(path)
   files = []

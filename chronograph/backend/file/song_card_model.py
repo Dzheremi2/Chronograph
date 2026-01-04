@@ -15,7 +15,7 @@ _album_placeholder = C_("song album placeholder", "Unknown")
 
 
 class SongCardModel(GObject.Object):
-  __gtype_name__ = "SongCardModel"
+  __gtype_name__ = "SongCardModel1"
   __gsignals__ = {"lyr-format-changed": (GObject.SignalFlags.RUN_FIRST, None, (int,))}
 
   # Properties without exclicit getters/setters

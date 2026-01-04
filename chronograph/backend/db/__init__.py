@@ -1,4 +1,3 @@
-import contextlib
 from typing import Optional, Union
 
 from peewee import ConnectionContext, SqliteDatabase, _atomic
@@ -8,7 +7,14 @@ from .models import Lyric, SchemaInfo, Track, TrackLyric, db_proxy
 _db: Optional[SqliteDatabase] = None
 
 
-def set_db(path: str):  # noqa: ANN201, D103
+def set_db(path: str):  # noqa: ANN201
+  """Set DB to a given file
+
+  Parameters
+  ----------
+  path : str
+    Path to a DB file
+  """
   global _db
   if _db is not None and not _db.is_closed():
     _db.close()
@@ -27,5 +33,12 @@ def set_db(path: str):  # noqa: ANN201, D103
   return Factory()
 
 
-def db(atomic: bool = False) -> Union[ConnectionContext, _atomic]:  # noqa: D103
+def db(atomic: bool = False) -> Union[ConnectionContext, _atomic]:
+  """Use with `with` block to properly make transactions
+
+  Parameters
+  ----------
+  atomic : bool, optional
+    Should it use `db_proxy.atomic()` or not, by default False
+  """
   return db_proxy.atomic() if atomic else db_proxy.connection_context()

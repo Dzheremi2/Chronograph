@@ -116,23 +116,23 @@ class ChronographApplication(Adw.Application):
       "maximized",
     )
 
-    if Schema.get("root.settings.general.auto-list-view"):
-      self.lookup_action("view_type").set_enabled(False)
-    else:
-      self.lookup_action("view_type").set_enabled(True)
+    # if Schema.get("root.settings.general.auto-list-view"):
+    #   self.lookup_action("view_type").set_enabled(False)
+    # else:
+    #   self.lookup_action("view_type").set_enabled(True)
 
-    if (
-      (path := Schema.get("root.state.library.session")) != "None"
-      and Path(Schema.get("root.state.library.session")).exists()
-      and len(self.paths) == 0
-    ):
-      logger.info("Loading last opened session: '%s'", path)
-      LibraryModel().open_dir(path)
-    elif len(self.paths) != 0:
-      logger.info("Opening requested files")
-      LibraryModel().open_files(self.paths)
-    else:
-      Constants.WIN.set_property("state", WindowState.EMPTY)
+    # if (
+    #   (path := Schema.get("root.state.library.session")) != "None"
+    #   and Path(Schema.get("root.state.library.session")).exists()
+    #   and len(self.paths) == 0
+    # ):
+    #   logger.info("Loading last opened session: '%s'", path)
+    #   LibraryModel().open_dir(path)
+    # elif len(self.paths) != 0:
+    #   logger.info("Opening requested files")
+    #   LibraryModel().open_files(self.paths)
+    # else:
+    #   Constants.WIN.set_property("state", WindowState.EMPTY)
 
     set_db(
       Schema.get("root.state.library.last-library") + "/library.db"

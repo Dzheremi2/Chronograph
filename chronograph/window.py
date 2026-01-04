@@ -23,6 +23,7 @@ from chronograph.ui.dialogs.mass_downloading_dialog import MassDownloadingDialog
 from chronograph.ui.dialogs.preferences import ChronographPreferences
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+from chronograph.ui.widgets.library import Library
 from chronograph.ui.widgets.saved_location import SavedLocation
 
 gtc = Gtk.Template.Child
@@ -93,7 +94,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   clean_files_button: Gtk.Button = gtc()
   library_overlay: Gtk.Overlay = gtc()
   library_scrolled_window: Gtk.ScrolledWindow = gtc()
-  library: Gtk.FlowBox = gtc()
+  library: Library = gtc()
 
   # Quick Editor
   quick_edit_dialog: Adw.Dialog = gtc()
@@ -132,10 +133,10 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.search_bar.connect_entry(self.search_entry)
 
     # Set sort and filter functions for the library
-    self.library.set_sort_func(invalidate_sort_flowbox)
-    self.library.set_filter_func(invalidate_filter_flowbox)
-    self.library_list.set_sort_func(invalidate_sort_listbox)
-    self.library_list.set_filter_func(invalidate_filter_listbox)
+    # self.library.set_sort_func(invalidate_sort_flowbox)
+    # self.library.set_filter_func(invalidate_filter_flowbox)
+    # self.library_list.set_sort_func(invalidate_sort_listbox)
+    # self.library_list.set_filter_func(invalidate_filter_listbox)
 
     # Drag'N'Drop setup
     self.drop_target = Gtk.DropTarget(

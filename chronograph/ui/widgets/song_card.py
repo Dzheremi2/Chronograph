@@ -16,7 +16,7 @@ logger = Constants.LOGGER
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/SongCard.ui")
 class SongCard(Gtk.Box):
-  __gtype_name__ = "SongCard"
+  __gtype_name__ = "SongCard1"
 
   buttons_revealer: Gtk.Revealer = gtc()
   play_button: Gtk.Button = gtc()
