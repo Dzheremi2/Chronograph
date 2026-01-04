@@ -25,9 +25,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   automatic_list_view_switch: Adw.SwitchRow = gtc()
   recursive_parsing_switch: Adw.ExpanderRow = gtc()
   follow_symlinks_switch: Adw.SwitchRow = gtc()
-  load_compressed_covers_switch: Adw.ExpanderRow = gtc()
-  compress_level_spin: Adw.SpinRow = gtc()
-  compress_level_adjustment: Gtk.Adjustment = gtc()
   parallel_downloadings_adj: Gtk.Adjustment = gtc()
   preferred_format_combo_row: Adw.ComboRow = gtc()
   enable_debug_logging_switch: Adw.SwitchRow = gtc()
@@ -89,16 +86,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       "root.settings.general.recursive-parsing.follow-symlinks",
       self.follow_symlinks_switch,
       "active",
-    )
-    Schema.bind(
-      "root.settings.general.compressed-covers.enabled",
-      self.load_compressed_covers_switch,
-      "enable-expansion",
-    )
-    Schema.bind(
-      "root.settings.general.compressed-covers.level",
-      self.compress_level_adjustment,
-      "value",
     )
     Schema.bind(
       "root.settings.file-manipulation.throttling",

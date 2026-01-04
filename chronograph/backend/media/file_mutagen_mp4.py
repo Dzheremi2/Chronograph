@@ -1,8 +1,6 @@
-import io
 from typing import Optional
 
 from mutagen.mp4 import MP4Cover
-from PIL import Image
 
 from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
@@ -26,23 +24,6 @@ class FileMP4(TaggableFile):
   """
 
   __gtype_name__ = "FileMP4"
-
-  def compress_images(self) -> None:  # noqa: D102
-    if Schema.get("root.settings.general.compressed-covers.enabled"):
-      quality = Schema.get("root.settings.general.compressed-covers.level")
-      tags = self._mutagen_file.tags
-      if tags is None or "covr" not in tags:
-        return
-
-      bytes_origin = tags["covr"][0]
-
-      with Image.open(io.BytesIO(bytes_origin)) as img:
-        buffer = io.BytesIO()
-        img.convert("RGB").save(buffer, format="JPEG", quality=quality, optimize=True)
-        bytes_compressed = buffer.getvalue()
-
-      tags["covr"][0] = MP4Cover(bytes_compressed, imageformat=MP4Cover.FORMAT_JPEG)
-      self.cover = tags["covr"][0]
 
   def load_cover(self) -> None:
     """Extracts cover from song file. If no cover, then sets cover as `icon`"""
@@ -130,7 +111,7 @@ class FileMP4(TaggableFile):
     self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         if self._mutagen_file.tags is None:

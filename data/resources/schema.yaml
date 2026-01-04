@@ -72,15 +72,6 @@ root:
       auto-list-view:
         type: bool
         default: false
-      compressed-covers:
-        enabled:
-          type: bool
-          default: false
-        level:
-          type: int
-          min: 1
-          max: 95
-          default: 75
       recursive-parsing:
         enabled:
           type: bool

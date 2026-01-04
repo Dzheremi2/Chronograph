@@ -1,9 +1,7 @@
 import contextlib
-import io
 from typing import Optional
 
-from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1, USLT
-from PIL import Image
+from mutagen.id3 import APIC, TALB, TIT2, TPE1, USLT
 
 from chronograph.backend.lyrics import Lyrics, LyricsFormat
 from chronograph.internal import Schema
@@ -23,31 +21,6 @@ class FileID3(TaggableFile):
   """
 
   __gtype_name__ = "FileID3"
-
-  def compress_images(self) -> None:
-    if Schema.get("root.settings.general.compressed-covers.enabled"):
-      quality = Schema.get("root.settings.general.compressed-covers.level")
-      tags = self._mutagen_file.tags
-      if not isinstance(tags, ID3):
-        return
-      apics = [key for key in tags if key.startswith("APIC")]
-      for key in apics:
-        apic = tags[key]
-        bytes_origin = apic.data
-
-        with Image.open(io.BytesIO(bytes_origin)) as img:
-          buffer = io.BytesIO()
-          img.convert("RGB").save(buffer, format="JPEG", quality=quality, optimize=True)
-          bytes_compressed = buffer.getvalue()
-
-        apic_compressed = APIC(
-          mime="image/jpeg",
-          encoding=apic.encoding,
-          type=apic.type,
-          desc=apic.desc,
-          data=bytes_compressed,
-        )
-        tags[key] = apic_compressed
 
   def load_cover(self) -> None:
     """Extracts cover from song file. If no cover, then sets cover as `icon`"""
@@ -145,7 +118,7 @@ class FileID3(TaggableFile):
         self._mutagen_file.tags.add(TALB(text=[new_val]))
     setattr(self, tags_conjunction[tag_name], new_val)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:  # noqa: D102
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         target_format = LyricsFormat[

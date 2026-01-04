@@ -134,9 +134,9 @@ class ChronographApplication(Adw.Application):
     # else:
     #   Constants.WIN.set_property("state", WindowState.EMPTY)
 
-    set_db(
-      Schema.get("root.state.library.last-library") + "/library.db"
-    ).connect_and_create_tables()
+    # set_db(
+    #   Schema.get("root.state.library.last-library") + "/library.db"
+    # ).connect_and_create_tables()
 
     Constants.WIN.present()
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))

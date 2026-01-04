@@ -128,13 +128,6 @@ class BaseFile:
     """Duration of the song in nanoseconds"""
     return int(self._duration * 1_000_000_000) if self._duration else 0
 
-  def compress_images(self) -> None:
-    """Makes the loaded MutagenFile instance to have compressed covers without saving to the file
-
-    Should be implemented in file specific child classes
-    """
-    raise NotImplementedError(self.path)
-
   def load_str_data(self) -> None:
     """Reads the string data from file and binds it to the instance
 
@@ -203,6 +196,5 @@ class TaggableFile(BaseFile):
 
   def __init__(self, path: str) -> None:
     super().__init__(path)
-    self.compress_images()
     self.load_cover()
     self.load_str_data()
