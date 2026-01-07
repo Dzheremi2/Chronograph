@@ -7,6 +7,7 @@ import yaml
 
 from chronograph.backend.db import set_db
 from chronograph.backend.db.models import Track
+from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file_parsers import parse_dir, parse_files
 
@@ -70,6 +71,12 @@ class ChronographApplication(Adw.Application):
     else:
       Constants.WIN = win
     logger.debug("Window was created")
+
+    # FIXME: Testing: Remove
+    for file in parse_files(parse_dir("/home/dzheremi/Music/LRCLIB") * 10):
+      Constants.WIN.library.cards_model.append(
+        SongCardModel(Path(file.path), Path(file.path).name)
+      )
 
     # fmt: off
     self.create_actions(

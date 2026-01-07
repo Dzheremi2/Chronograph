@@ -8,12 +8,6 @@ from typing import Callable, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.file import LibraryModel, SongCardModel
-from chronograph.backend.invalidators import (
-  invalidate_filter_flowbox,
-  invalidate_filter_listbox,
-  invalidate_sort_flowbox,
-  invalidate_sort_listbox,
-)
 from chronograph.backend.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
@@ -131,12 +125,6 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     # Connect the search entry to the search bar
     self.search_bar.connect_entry(self.search_entry)
-
-    # Set sort and filter functions for the library
-    # self.library.set_sort_func(invalidate_sort_flowbox)
-    # self.library.set_filter_func(invalidate_filter_flowbox)
-    # self.library_list.set_sort_func(invalidate_sort_listbox)
-    # self.library_list.set_filter_func(invalidate_filter_listbox)
 
     # Drag'N'Drop setup
     self.drop_target = Gtk.DropTarget(
@@ -377,8 +365,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   @Gtk.Template.Callback()
   def on_search_changed(self, *_args) -> None:
     """Calls `self.library.filter_func` to filter the library based on the search entry text"""
-    self.library.invalidate_filter()
-    self.library_list.invalidate_filter()
+    self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
   @Gtk.Template.Callback()
   def on_add_dir_to_saves_button_clicked(self, *_args) -> None:
@@ -430,8 +417,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     """
     action.set_state(state)
     self.sort_state = str(state).strip("'")
-    self.library.invalidate_sort()
-    self.library_list.invalidate_sort()
+    self.library.sorter.changed(Gtk.SorterChange.DIFFERENT)
     logger.debug("Sort state set to: %s", self.sort_state)
     Schema.set("root.state.library.sorting", self.sort_state)
 

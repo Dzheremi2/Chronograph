@@ -6,7 +6,8 @@ from typing import Optional
 from gi.repository import Gdk, Gio, GLib, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
-from chronograph.backend.file_parsers import parse_dir, parse_file, parse_files
+from chronograph.backend.file_parsers import parse_file
+from chronograph.internal import Constants
 from chronograph.ui.widgets._song_card import SongCard
 
 
@@ -93,8 +94,18 @@ class Library(Gtk.GridView):
     self._adaptive_columns = 0
     self._last_width = 0
     self.add_css_class("library-grid")
-    self.list_model = Gio.ListStore.new(SongCardModel)
-    self.grid_model = Gtk.NoSelection.new(self.list_model)
+
+    self.cards_model = Gio.ListStore.new(SongCardModel)
+
+    self.card_sort_model = Gtk.SortListModel(model=self.cards_model)
+    self.sorter = Gtk.CustomSorter.new(self._cards_sorter_func)
+    self.card_sort_model.set_sorter(self.sorter)
+
+    self.card_filter_model = Gtk.FilterListModel(model=self.card_sort_model)
+    self.filter = Gtk.CustomFilter.new(self._cards_filter_func)
+    self.card_filter_model.set_filter(self.filter)
+
+    self.grid_model = Gtk.NoSelection.new(self.card_filter_model)
 
     self.grid_factory = Gtk.SignalListItemFactory()
     self.grid_factory.connect("setup", self._on_setup)
@@ -107,9 +118,6 @@ class Library(Gtk.GridView):
     self.set_max_columns(1)
     self.add_tick_callback(self._on_tick_update_columns)
 
-    for file in parse_files(parse_dir("/home/dzheremi/Music/LRCLIB") * 10):
-      self.list_model.append(SongCardModel(Path(file.path), Path(file.path).name))
-
   def _on_setup(self, _factory, list_item: Gtk.ListItem) -> None:
     card = SongCard()
     card._cover_state = _CoverState()  # noqa: SLF001
@@ -117,25 +125,6 @@ class Library(Gtk.GridView):
     list_item.set_focusable(False)
     list_item.set_selectable(False)
     list_item.set_activatable(False)
-
-  def _on_tick_update_columns(self, *_args) -> bool:
-    width = self.get_allocated_width()
-    if width != self._last_width:
-      self._last_width = width
-      self._update_max_columns(width)
-    return GLib.SOURCE_CONTINUE
-
-  def _update_max_columns(self, available_width: int) -> None:
-    if available_width <= 0:
-      return
-
-    item_width = self._CARD_WIDTH + self._CARD_GAP
-    columns = max(1, available_width // item_width)
-    columns = min(columns, self._MAX_COLUMNS_CAP)
-
-    if columns != self._adaptive_columns:
-      self._adaptive_columns = columns
-      self.set_max_columns(columns)
 
   def _on_bind(self, _factory, list_item: Gtk.ListItem) -> None:
     card: SongCard = list_item.get_child()
@@ -180,3 +169,43 @@ class Library(Gtk.GridView):
         st.fut = None
       card.unbind()
     list_item.set_child(None)
+
+  def _on_tick_update_columns(self, *_args) -> bool:
+    width = self.get_allocated_width()
+    if width != self._last_width:
+      self._last_width = width
+      self._update_max_columns(width)
+    return GLib.SOURCE_CONTINUE
+
+  def _update_max_columns(self, available_width: int) -> None:
+    if available_width <= 0:
+      return
+
+    item_width = self._CARD_WIDTH + self._CARD_GAP
+    columns = max(1, available_width // item_width)
+    columns = min(columns, self._MAX_COLUMNS_CAP)
+
+    if columns != self._adaptive_columns:
+      self._adaptive_columns = columns
+      self.set_max_columns(columns)
+
+  # TODO: Extend with "Last added" sorting argument
+  def _cards_sorter_func(
+    self, model1: SongCardModel, model2: SongCardModel, *_args
+  ) -> int:
+    order = None
+
+    if Constants.WIN.sort_state == "a-z":
+      order = False
+    elif Constants.WIN.sort_state == "z-a":
+      order = True
+
+    return ((model1.title_display > model2.title_display) ^ order) * 2 - 1
+
+  # TODO: Extend with filtering by AvailableLyrics
+  def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
+    text = Constants.WIN.search_entry.get_text().lower()
+    text_matches = (
+      text in model.title_display.lower() or text in model.artist_display.lower()
+    )
+    return not (text != "" and not text_matches)
