@@ -121,10 +121,14 @@ class AsyncTask(GObject.Object):
     Parameters
     ----------
     progress : float
-        Progress value from the coroutine
+      Progress value from the coroutine
     """
     progress = max(0.0, min(1.0, progress))
+    GLib.idle_add(self._set_progress, progress)
+
+  def _set_progress(self, progress: float) -> bool:
     self.props.progress = progress
+    return GLib.SOURCE_REMOVE
 
   def cancel(self) -> None:
     """Cancels the running coroutine if it support cancellable"""

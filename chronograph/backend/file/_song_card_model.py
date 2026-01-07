@@ -27,8 +27,10 @@ class SongCardModel(GObject.Object):
   def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
     self.mediafile = mediafile
     self.uuid = uuid
-    super().__init__(duration=parse_file(mediafile).duration, **kwargs)
     media = parse_file(mediafile)
+    if media is None:
+      raise ValueError(f"Unsupported media file: {mediafile}")
+    super().__init__(duration=media.duration, **kwargs)
     self._title = media.title or ""
     self._artist = media.artist or ""
     self._album = media.album or ""

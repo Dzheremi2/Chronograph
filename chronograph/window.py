@@ -2,17 +2,26 @@
 # TODO: Implement LRC metatags support
 
 from enum import Enum
+from gettext import ngettext
 from pathlib import Path
 from typing import Callable, Optional, Union
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
-from chronograph.backend.file import LibraryModel, SongCardModel
+from chronograph.backend.asynchronous.async_task import AsyncTask
+from chronograph.backend.file import LibraryModel
+from chronograph.backend.file import SongCardModel as LegacySongCardModel
+from chronograph.backend.file._song_card_model import (
+  SongCardModel as LibrarySongCardModel,
+)
+from chronograph.backend.file.library_manager import LibraryManager
+from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
 )
 from chronograph.internal import Constants, Schema
+from chronograph.ui.dialogs.importing_dialog import ImportingDialog
 from chronograph.ui.dialogs.mass_downloading_dialog import MassDownloadingDialog
 from chronograph.ui.dialogs.preferences import ChronographPreferences
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
@@ -83,12 +92,10 @@ class ChronographWindow(Adw.ApplicationWindow):
   sidebar: Gtk.ListBox = gtc()
   open_source_button: Gtk.MenuButton = gtc()
   left_buttons_revealer: Gtk.Revealer = gtc()
-  reparse_alert_banner: Adw.Banner = gtc()
   search_bar: Gtk.SearchBar = gtc()
   search_entry: Gtk.SearchEntry = gtc()
   right_buttons_revealer: Gtk.Revealer = gtc()
   add_dir_to_saves_button: Gtk.Button = gtc()
-  clean_files_button: Gtk.Button = gtc()
   library_overlay: Gtk.Overlay = gtc()
   library_scrolled_window: Gtk.ScrolledWindow = gtc()
   library_stack: Gtk.Stack = gtc()
@@ -113,6 +120,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     super().__init__(**kwargs)
 
     logger.debug("Creating window")
+    self._import_task: Optional[AsyncTask] = None
+    self._import_dialog: Optional[ImportingDialog] = None
 
     self.library_list = Gtk.ListBox(
       css_classes=("navigation-sidebar",), selection_mode=Gtk.SelectionMode.NONE
@@ -169,12 +178,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.connect("notify::filter-lrc", self._on_filter_state)
     self.connect("notify::filter-elrc", self._on_filter_state)
 
-    self.bind_property(
-      "reparse_action_done",
-      self.reparse_alert_banner,
-      "revealed",
-      GObject.BindingFlags.INVERT_BOOLEAN,
-    )
     Schema.bind("root.state.window.sidebar", self.overlay_split_view, "show-sidebar")
 
   def build_sidebar(self) -> None:
@@ -225,11 +228,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     preferences.present(self)
     logger.debug("Showing preferences")
 
-  @Gtk.Template.Callback()
-  def clean_files_button_clicked(self, *_args) -> None:
-    """Triggered on clean library button press"""
-    LibraryModel().reset_library()
-
   ############### Actions for opening files and directories ###############
   def on_select_dir_action(self, *_args) -> None:
     """Selects a directory to open in the library"""
@@ -246,7 +244,11 @@ class ChronographWindow(Adw.ApplicationWindow):
         _dir = file_dialog.select_folder_finish(result)
         if _dir is not None:
           dir_path = _dir.get_path()
-          LibraryModel().open_dir(dir_path)
+          if dir_path and (Path(dir_path) / "is_chr_library").exists():
+            self.open_library(dir_path)
+          elif dir_path:
+            LibraryManager.current_library = None
+            LibraryModel().open_dir(dir_path)
       except GLib.GError:
         pass
 
@@ -266,7 +268,10 @@ class ChronographWindow(Adw.ApplicationWindow):
       try:
         files = [file.get_path() for file in file_dialog.open_multiple_finish(result)]
         if files is not None:
-          LibraryModel().open_files(files)
+          if LibraryManager.current_library is not None:
+            self.import_files_to_library(files)
+          else:
+            LibraryModel().open_files(files)
       except GLib.GError:
         pass
 
@@ -305,7 +310,10 @@ class ChronographWindow(Adw.ApplicationWindow):
   ) -> None:
     files = [file.get_path() for file in value.get_files()]
     logger.info("DND recieved files: %s\n", "\n".join(files))
-    LibraryModel().open_files(files)
+    if LibraryManager.current_library is not None:
+      self.import_files_to_library(files)
+    else:
+      LibraryModel().open_files(files)
     self._on_drag_leave()
 
   def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
@@ -347,6 +355,110 @@ class ChronographWindow(Adw.ApplicationWindow):
     return True
 
   ##############################
+
+  def open_library(self, path: str) -> bool:
+    if not LibraryManager.open_library(path):
+      self.show_toast(_("Selected folder is not a Chronograph Library"))
+      return False
+
+    Schema.set("root.state.library.last-library", path)
+    Schema.set("root.state.library.session", path)
+    self._load_library_tracks()
+    self.state = WindowState.LOADED_DIR
+    return True
+
+  def _load_library_tracks(self) -> None:
+    if LibraryManager.current_library is None:
+      self.library.clear()
+      return
+
+    self.library.clear()
+    cards: list[LibrarySongCardModel] = []
+
+    for track in LibraryManager.list_tracks():
+      media_path = LibraryManager.track_path(track.track_uuid, track.format)
+      if media_path.exists() and parse_file(media_path) is not None:
+        cards.append(LibrarySongCardModel(media_path, track.track_uuid))
+
+    if cards:
+      self.library.add_cards(cards)
+    else:
+      self.library.card_filter_model.notify("n-items")
+
+  def import_files_to_library(self, files: list[str]) -> None:
+    if LibraryManager.current_library is None:
+      self.show_toast(_("Open a library to import files"))
+      return
+
+    if self._import_task is not None:
+      self.show_toast(_("Import already in progress"))
+      return
+
+    pending_files = [Path(file) for file in files if file]
+    if not pending_files:
+      self.show_toast(_("No supported files were imported"))
+      return
+
+    self._import_dialog = ImportingDialog(len(pending_files))
+    self._import_dialog.present(self)
+
+    self._import_task = AsyncTask(
+      LibraryManager.import_files_async,
+      pending_files,
+      do_use_progress=True,
+      do_use_cancellable=False,
+    )
+
+    def on_progress(task: AsyncTask, *_args) -> None:
+      if self._import_dialog is None:
+        return
+      progress = task.props.progress
+      imported_count = min(
+        len(pending_files), max(0, round(progress * len(pending_files)))
+      )
+      self._import_dialog.set_progress(progress, imported_count)
+
+    def on_done(_task, imported: list[tuple[str, str]]) -> None:
+      self._import_task = None
+      if self._import_dialog is not None:
+        self._import_dialog.close()
+        self._import_dialog = None
+
+      if not imported:
+        self.show_toast(_("No supported files were imported"))
+        return
+
+      cards: list[LibrarySongCardModel] = []
+      for track_uuid, track_format in imported:
+        media_path = LibraryManager.track_path(track_uuid, track_format)
+        if media_path.exists():
+          cards.append(LibrarySongCardModel(media_path, track_uuid))
+
+      if cards:
+        self.library.add_cards(cards)
+      else:
+        self.library.card_filter_model.notify("n-items")
+
+      self.show_toast(
+        ngettext(
+          "Imported {} track",
+          "Imported {} tracks",
+          len(imported),
+        ).format(len(imported))
+      )
+
+    def on_error(_task, error: Exception) -> None:
+      self._import_task = None
+      if self._import_dialog is not None:
+        self._import_dialog.close()
+        self._import_dialog = None
+      logger.error("Import failed: %s", error)
+      self.show_toast(_("Import failed"))
+
+    self._import_task.connect("notify::progress", on_progress)
+    self._import_task.connect("task-done", on_done)
+    self._import_task.connect("error", on_error)
+    self._import_task.start()
 
   @Gtk.Template.Callback()
   def load_save(self, _list_box: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:
@@ -446,12 +558,12 @@ class ChronographWindow(Adw.ApplicationWindow):
       logger.debug("View type set to: %s", self.view_state)
       Schema.set("root.state.library.view", self.view_state)
 
-  def enter_sync_mode(self, card_model: SongCardModel) -> None:
+  def enter_sync_mode(self, card_model: LegacySongCardModel) -> None:
     """Enters sync mode for the given song card
 
     Parameters
     ----------
-    card_model : SongCardModel
+    card_model : LegacySongCardModel
       Card model with all necessary data for sync page
     """
     if Schema.get("root.settings.syncing.sync-type") == "lrc":
@@ -523,12 +635,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     Schema.set("root.state.library.filter", encode_filter_schema(nn, pp, ll, ee))
     self.library.invalidate_filter()
     self.library_list.invalidate_filter()
-
-  @Gtk.Template.Callback()
-  def _on_reparse_banner_button_clicked(self, _banner: Adw.Banner) -> None:
-    self.reparse_action_done = not self.reparse_action_done
-    GLib.idle_add(LibraryModel().reparse_library)
-    ChronographPreferences().on_reparse_banner_button_clicked()
 
   ############### WindowState related methods ###############
   @GObject.Property()

@@ -115,7 +115,7 @@ root:
         type: str
         enum: [g, l]
         default: g
-      session: # FIXME: REMOVE
+      session: # FIXME: REMOVE as deprecated
         type: str
         default: None
       filter:

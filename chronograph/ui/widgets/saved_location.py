@@ -1,7 +1,10 @@
+from pathlib import Path
+
 import yaml
 from gi.repository import Adw, Gio, GObject, Gtk
 
 from chronograph.backend.file import LibraryModel
+from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.internal import Constants, Schema
 
 gtc = Gtk.Template.Child
@@ -53,7 +56,11 @@ class SavedLocation(Gtk.Box):
   def load(self) -> None:
     """Loads the saved location"""
     if self.path != Schema.get("root.state.library.session"):
-      LibraryModel().open_dir(self.path)
+      if (Path(self.path) / "is_chr_library").exists():
+        Constants.WIN.open_library(self.path)
+      else:
+        LibraryManager.current_library = None
+        LibraryModel().open_dir(self.path)
       Constants.WIN.sidebar.select_row(self.get_parent())
 
   @Gtk.Template.Callback()

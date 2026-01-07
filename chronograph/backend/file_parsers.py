@@ -29,13 +29,14 @@ def parse_files(
   """
   for file in paths:
     path = Path(file)
-    if path.suffix in (".ogg", ".flac", ".opus"):
+    suffix = path.suffix.lower()
+    if suffix in (".ogg", ".flac", ".opus"):
       yield FileVorbis(file)
-    if path.suffix in (".mp3", ".wav"):
+    if suffix in (".mp3", ".wav"):
       yield FileID3(file)
-    if path.suffix in (".m4a",):
+    if suffix in (".m4a",):
       yield FileMP4(file)
-    if path.suffix in (".aac", ".AAC"):
+    if suffix in (".aac",):
       yield FileUntaggable(file)
 
 
@@ -53,13 +54,14 @@ def parse_file(file: Union[str, Path]) -> Optional[BaseFile]:
     Returns mutagen file realization or `None`
   """
   path = Path(file)
-  if path.suffix in (".ogg", ".flac", ".opus"):
+  suffix = path.suffix.lower()
+  if suffix in (".ogg", ".flac", ".opus"):
     return FileVorbis(file)
-  if path.suffix in (".mp3", ".wav"):
+  if suffix in (".mp3", ".wav"):
     return FileID3(file)
-  if path.suffix in (".m4a",):
+  if suffix in (".m4a",):
     return FileMP4(file)
-  if path.suffix in (".aac", ".AAC"):
+  if suffix in (".aac",):
     return FileUntaggable(file)
   return None
 

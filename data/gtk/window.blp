@@ -335,13 +335,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                 }
 
                 [end]
-                Button clean_files_button {
-                  icon-name: "clean-files-symbolic";
-                  tooltip-text: _("Clean the library");
-                  clicked => $clean_files_button_clicked();
-                }
-
-                [end]
                 Revealer right_buttons_revealer {
                   transition-type: none;
                   valign: start;
@@ -357,14 +350,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
                     }
                   }
                 }
-              }
-
-              [top]
-              Adw.Banner reparse_alert_banner {
-                title: _("Recursive parsing settings changed. Re-parse?");
-                button-label: _("Re-Parse");
-                button-style: suggested;
-                button-clicked => $_on_reparse_banner_button_clicked();
               }
 
               [top]
@@ -406,6 +391,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                       Button {
                         label: _("Import…");
+                        action-name: "win.select_files";
 
                         styles ["pill", "suggested-action"]
                       }

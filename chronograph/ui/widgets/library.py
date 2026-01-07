@@ -223,3 +223,12 @@ class Library(Gtk.GridView):
       Constants.WIN.library_stack.set_visible_child(
         Constants.WIN.library_scrolled_window
       )
+
+  def clear(self) -> None:
+    self.cards_model.remove_all()
+    self.card_filter_model.notify("n-items")
+
+  def add_cards(self, cards: list[SongCardModel]) -> None:
+    for card in cards:
+      self.cards_model.append(card)
+    self.card_filter_model.notify("n-items")

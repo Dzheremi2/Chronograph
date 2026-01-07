@@ -5,11 +5,6 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.backend.db import set_db
-from chronograph.backend.db.models import Track
-from chronograph.backend.file._song_card_model import SongCardModel
-from chronograph.backend.file.library_manager import LibraryManager
-from chronograph.backend.file_parsers import parse_dir, parse_files
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -72,12 +67,22 @@ class ChronographApplication(Adw.Application):
       Constants.WIN = win
     logger.debug("Window was created")
 
-    # FIXME: Testing: Remove
-    for file in parse_files(parse_dir("/home/dzheremi/Music/LRCLIB") * 10):
-      Constants.WIN.library.cards_model.append(
-        SongCardModel(Path(file.path), Path(file.path).name)
-      )
-    Constants.WIN.library.card_filter_model.notify("n-items")
+    last_library = Schema.get("root.state.library.last-library")
+    last_library_path = Path(last_library) if last_library else None
+    if (
+      last_library_path
+      and last_library != "None"
+      and (last_library_path / "is_chr_library").exists()
+      and Constants.WIN.open_library(last_library)
+    ):
+      if self.paths:
+        Constants.WIN.import_files_to_library(self.paths)
+        self.paths = []
+    elif self.paths:
+      LibraryModel().open_files(self.paths)
+      self.paths = []
+    else:
+      Constants.WIN.set_property("state", WindowState.EMPTY)
 
     # fmt: off
     self.create_actions(

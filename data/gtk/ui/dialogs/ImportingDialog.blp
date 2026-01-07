@@ -1,0 +1,53 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $ImportingDialog : Adw.Dialog {
+  content-height: 200;
+  content-width: 420;
+  width-request: 1;
+  height-request: 1;
+
+  Adw.Clamp {
+    orientation: horizontal;
+    tightening-threshold: 420;
+    maximum-size: 420;
+
+    Adw.Clamp {
+      orientation: vertical;
+      tightening-threshold: 240;
+      maximum-size: 240;
+
+      Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {}
+
+        Box {
+          orientation: vertical;
+          margin-top: 12;
+          margin-bottom: 18;
+          margin-start: 18;
+          margin-end: 18;
+          spacing: 12;
+
+          Label import_status_label {
+            label: _("Importing…");
+            wrap: true;
+
+            styles ["title-3"]
+          }
+
+          Label import_detail_label {
+            label: _("Preparing…");
+            wrap: true;
+            xalign: 0.0;
+          }
+
+          ProgressBar import_progress_bar {
+            hexpand: true;
+            fraction: 0.0;
+          }
+        }
+      }
+    }
+  }
+}
