@@ -1,10 +1,14 @@
+from typing import Optional
+
 from peewee import (
+  BooleanField,
   CompositeKey,
   DatabaseProxy,
   ForeignKeyField,
   IntegerField,
   Model,
   TextField,
+  fn,
 )
 from playhouse.sqlite_ext import JSONField
 
@@ -36,23 +40,34 @@ class Track(ChronographDatabase):
   class Meta:  # noqa: D106
     table_name = "tracks"
 
+  @property
+  def latest_lyric_update(self) -> Optional[int]:
+    query = (
+      Lyric.select(fn.MAX(Lyric.updated_at))
+      .join(TrackLyric)
+      .where(TrackLyric.track == self)
+    )
+    return query.scalar()
+
 
 class Lyric(ChronographDatabase):
   """
   ::
 
     CREATE TABLE IF NOT EXISTS lyrics (
-      lyrics_uuid  TEXT PRIMARY KEY,         -- Unique ID of the lyric
-      format       TEXT NOT NULL,            -- Lyric format (LRC, eLRC, TTML, SRT, ...)
-      content      TEXT NOT NULL DEFAULT '', -- Lyric text
-      created_at   INTEGER NOT NULL,         -- Creation time
-      updated_at   INTEGER                   -- Last modified time
+      lyrics_uuid  TEXT PRIMARY KEY,               -- Unique ID of the lyric
+      format       TEXT NOT NULL,                  -- Lyric format (LRC, eLRC, TTML, SRT, ...)
+      content      TEXT NOT NULL DEFAULT '',       -- Lyric text
+      finished     BOOLEAN NOT NULL DEFAULT FALSE, -- State of the lyric synchronization
+      created_at   INTEGER NOT NULL,               -- Creation time
+      updated_at   INTEGER                         -- Last modified time
     );
   """
 
   lyrics_uuid = TextField(primary_key=True)
   format = TextField()
   content = TextField(default="")
+  finished = BooleanField(default=False)
   created_at = IntegerField()
   updated_at = IntegerField(null=True)
 

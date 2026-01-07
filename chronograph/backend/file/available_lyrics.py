@@ -37,12 +37,14 @@ class AvailableLyrics(GObject.GFlags):
       if flag == AvailableLyrics.NONE:
         return None
 
-    return [label for flag, label in _FLAG_LABLES.items() if value & flag]
+    return [label for flag, label in _FLAG_LABELS.items() if value & flag]
 
 
-_FLAG_LABLES = {
+_FLAG_LABELS = {
   AvailableLyrics.NONE: C_("means lyrics absence", "None"),
   AvailableLyrics.PLAIN: _("Plain"),
   AvailableLyrics.LRC: "LRC",
   AvailableLyrics.ELRC: "eLRC",
 }
+
+TEXT_LABELS = {"plain": _("Plain"), "lrc": "LRCL", "elrc": "eLRC"}

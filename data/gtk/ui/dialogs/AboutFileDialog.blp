@@ -1,0 +1,244 @@
+using Gtk 4.0;
+using Adw 1;
+
+
+template $AboutFileDialog : Adw.Dialog {
+  width-request: 1;
+  height-request: 1;
+  content-height: 600;
+  content-width: 500;
+
+  Adw.NavigationView nav_view {
+    Adw.NavigationPage main_nav_page {
+      title: _("About File");
+
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 500;
+        tightening-threshold: 500;
+
+        Adw.Clamp {
+          orientation: vertical;
+          maximum-size: 600;
+          tightening-threshold: 600;
+
+          Adw.ToolbarView {
+            [top]
+            Adw.HeaderBar {}
+
+            [top]
+            Box {
+              orientation: vertical;
+              spacing: 12;
+              margin-bottom: 16;
+              margin-end: 16;
+              margin-start: 16;
+              margin-top: 16;
+
+              Box {
+                spacing: 12;
+
+                Adw.Clamp {
+                  hexpand: false;
+                  orientation: horizontal;
+                  maximum-size: 160;
+
+                  Adw.Clamp {
+                    orientation: horizontal;
+                    maximum-size: 160;
+                    vexpand: false;
+
+                    Image cover_image {
+                      width-request: 160;
+                      height-request: 160;
+                      hexpand: true;
+                      vexpand: true;
+                      overflow: hidden;
+                      valign: center;
+                      icon-name: "note-placeholder";
+                      pixel-size: 160;
+
+                      styles ["rounded"]
+                    }
+                  }
+                }
+
+                Box {
+                  orientation: vertical;
+
+                  ListBox {
+                    hexpand: true;
+
+                    styles [
+                      "boxed-list",
+                    ]
+
+                    Adw.ActionRow title_info_row {
+                      title: _("Title");
+                      subtitle: _("Test");
+                      activatable: false;
+                      selectable: false;
+
+                      styles ["property"]
+                    }
+
+                    Adw.ActionRow artist_info_row {
+                      title: _("Artist");
+                      subtitle: _("Test");
+                      activatable: false;
+                      selectable: false;
+
+                      styles ["property"]
+                    }
+
+                    Adw.ActionRow album_info_row {
+                      title: _("Album");
+                      subtitle: _("Test");
+                      activatable: false;
+                      selectable: false;
+
+                      styles ["property"]
+                    }
+                  }
+                }
+              }
+
+              ListBox {
+                Adw.ActionRow import_info_row {
+                  title: _("Imported at");
+                  subtitle: _("12.01.2026, 14:41.41");
+                  selectable: false;
+
+                  styles ["property"]
+                }
+                
+                Adw.ActionRow modified_info_row {
+                  title: _("Last Modified");
+                  subtitle: _("12.01.2026, 15:00.12");
+                  selectable: false;
+                  
+                  styles ["property"]
+                }
+
+                styles ["boxed-list"]
+              }
+
+              ListBox {
+                Adw.ActionRow available_lyrics_button {
+                  title: _("Avaiable Lyrics");
+                  selectable: false;
+                  activatable: true;
+
+                  [suffix]
+                  Image {
+                    icon-name: "chr-right-large-symbolic";
+                  }
+                }
+
+                styles ["boxed-list"]
+              }
+
+              ListBox {
+                Adw.ButtonRow {
+                  title: _("Delete File");
+
+                  styles ["destructive-action"]
+                }
+
+                styles ["boxed-list"]
+              }
+            }
+
+            [bottom]
+            Box {
+              halign: center;
+              margin-bottom: 16;
+
+              Button save_button {
+                label: _("Save");
+                sensitive: false;
+
+                styles ["pill", "suggested-action"]
+              }
+            }
+          }
+        }
+      }
+    }
+
+    Adw.NavigationPage lyr_nav_page {
+      title: _("Available Lyrics");
+
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 500;
+        tightening-threshold: 500;
+
+        Adw.Clamp {
+          orientation: vertical;
+          maximum-size: 600;
+          tightening-threshold: 600;
+
+          Adw.ToolbarView {
+            [top]
+            Adw.HeaderBar {}
+
+            Adw.PreferencesGroup {
+              // FIXME: Cleanup all `self` content. Using dynamic creation
+              margin-bottom: 16;
+              margin-end: 16;
+              margin-top: 16;
+              margin-start: 16;
+
+              Adw.ActionRow plain_lyric_row {
+                title: _("Plain");
+
+                [suffix]
+                Button {
+                  icon-name: "chr-check-round-outline-symbolic";
+
+                  styles ["no-hover", "flat"]
+                }
+
+                [suffix]
+                Box {
+                  valign: center;
+                  spacing: 4;
+
+                  MenuButton {
+                    icon-name: "import-from-symbolic";
+                    menu-model: menu {
+                      section {
+                        label: _("Import From…");
+
+                        item (_("LRClib"), "act")
+                        item (_("Other Lyric"), "act2")
+                      }
+                    };
+
+                    styles ["flat"]
+                  }
+
+                  MenuButton {
+                    icon-name: "export-to-symbolic";
+                    menu-model: menu {
+                      section {
+                        label: _("Export To…");
+
+                        item (_("LRClib"), "act")
+                        item (_("File"), "act2")
+                        item (_("Clipboard"), "act3")
+                      }
+                    };
+
+                    styles ["flat"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

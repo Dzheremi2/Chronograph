@@ -1,8 +1,10 @@
+from datetime import datetime
 from gettext import pgettext as C_
 from pathlib import Path
 
 from gi.repository import Gdk, GObject, Gtk
 
+from chronograph.backend.db.models import Track
 from chronograph.backend.file import AvailableLyrics
 from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.media.file import BaseFile
@@ -25,8 +27,8 @@ class SongCardModel(GObject.Object):
   )
 
   def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
-    self.mediafile = mediafile
-    self.uuid = uuid
+    self.mediafile: Path = mediafile
+    self.uuid: str = uuid
     media = parse_file(mediafile)
     if media is None:
       raise ValueError(f"Unsupported media file: {mediafile}")
@@ -94,3 +96,17 @@ class SongCardModel(GObject.Object):
     if (tx := self.media().get_cover_texture()) is not None:
       return tx
     return Constants.COVER_PLACEHOLDER
+
+  @GObject.Property(type=str)
+  def imported_at(self) -> str:
+    value: int = Track.get_by_id(self.uuid).imported_at
+    return datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
+
+  @GObject.Property(type=str, default="---")
+  def last_modified(self) -> str:
+    value = Track.get_by_id(self.uuid).latest_lyric_update
+    return (
+      datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
+      if value is not None
+      else "---"
+    )

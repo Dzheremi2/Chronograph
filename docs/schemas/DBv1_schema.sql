@@ -10,11 +10,12 @@ CREATE TABLE IF NOT EXISTS tracks (
 
 -- Lyrics library, extendable when new formats added
 CREATE TABLE IF NOT EXISTS lyrics (
-  lyrics_uuid  TEXT PRIMARY KEY,         -- Unique ID of the lyric
-  format       TEXT NOT NULL,            -- Lyric format (LRC, eLRC, TTML, SRT, ...)
-  content      TEXT NOT NULL DEFAULT '', -- Lyric text
-  created_at   INTEGER NOT NULL,         -- Creation time
-  updated_at   INTEGER                   -- Last modified time
+  lyrics_uuid  TEXT PRIMARY KEY,               -- Unique ID of the lyric
+  format       TEXT NOT NULL,                  -- Lyric format (LRC, eLRC, TTML, SRT, ...)
+  content      TEXT NOT NULL DEFAULT '',       -- Lyric text
+  finished     BOOLEAN NOT NULL DEFAULT FALSE, -- State of the lyric synchronization
+  created_at   INTEGER NOT NULL,               -- Creation time
+  updated_at   INTEGER                         -- Last modified time
 );
 
 -- many-to-many binding of lyrics and tracks
@@ -33,6 +34,6 @@ CREATE INDEX IF NOT EXISTS idx_lyrics_format       ON lyrics(format);
 
 -- DB Metainfo
 CREATE TABLE IF NOT EXISTS schema_info (
-  key   TEXT PRIMARY KEY,
-  value TEXT NOT NULL
+  key    TEXT PRIMARY KEY,
+  value  TEXT NOT NULL
 );

@@ -4,6 +4,7 @@ from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.internal import Constants
+from chronograph.ui.dialogs.about_file_dialog import AboutFileDialog
 from chronograph.ui.dialogs.metadata_editor import MetadataEditor
 from dgutils import Linker
 
@@ -78,9 +79,8 @@ class SongCard(Gtk.Box, Linker):
 
   # TODO:
   def _show_info(self, _btn, model: SongCardModel) -> None:
-    pass
+    AboutFileDialog(model).present(Constants.WIN)
 
-  # TODO:
   def _open_metadata_editor(self, _btn, model: SongCardModel) -> None:
     MetadataEditor(model).present(Constants.WIN)
 
