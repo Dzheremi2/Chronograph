@@ -392,21 +392,30 @@ template $ChronographWindow : Adw.ApplicationWindow {
               }
 
               Overlay library_overlay {
-                ScrolledWindow library_scrolled_window {
-                  // FlowBox library {
-                  //   homogeneous: true;
-                  //   halign: center;
-                  //   max-children-per-line: 100;
-                  //   valign: start;
-                  //   column-spacing: 12;
-                  //   row-spacing: 12;
-                  //   margin-top: 12;
-                  //   margin-bottom: 12;
-                  //   margin-end: 12;
-                  //   margin-start: 12;
-                  //   selection-mode: none;
-                  // }
-                  $Library library {}
+                Stack library_stack {
+                  ScrolledWindow library_scrolled_window {
+                    $Library library {} // (Gtk.GridView) -> See ../../chronograph/ui/widgets/library.py
+                  }
+
+                  Adw.StatusPage empty_library {
+                    title: _("Library is Empty");
+                    description: _("Your current Library is empty. Import files right now or open another Library");
+
+                    child: Box {
+                      halign: center;
+
+                      Button {
+                        label: _("Import…");
+
+                        styles ["pill", "suggested-action"]
+                      }
+                    };
+                  }
+
+                  Adw.StatusPage empty_filter_results {
+                    title: _("Nothing Was Found");
+                    description: _("No songs found for your request. Try out another one");
+                  }
                 }
               }
             }

@@ -104,6 +104,7 @@ class Library(Gtk.GridView):
     self.card_filter_model = Gtk.FilterListModel(model=self.card_sort_model)
     self.filter = Gtk.CustomFilter.new(self._cards_filter_func)
     self.card_filter_model.set_filter(self.filter)
+    self.card_filter_model.connect("notify::n-items", self._on_filter_items)
 
     self.grid_model = Gtk.NoSelection.new(self.card_filter_model)
 
@@ -209,3 +210,16 @@ class Library(Gtk.GridView):
       text in model.title_display.lower() or text in model.artist_display.lower()
     )
     return not (text != "" and not text_matches)
+
+  def _on_filter_items(self, *_args) -> None:
+    items_filter = self.card_filter_model.get_property("n-items")
+    items_all = self.cards_model.get_property("n-items")
+
+    if items_filter == 0 and items_all != 0:
+      Constants.WIN.library_stack.set_visible_child(Constants.WIN.empty_filter_results)
+    elif items_filter == 0 and items_all == 0:
+      Constants.WIN.library_stack.set_visible_child(Constants.WIN.empty_library)
+    else:
+      Constants.WIN.library_stack.set_visible_child(
+        Constants.WIN.library_scrolled_window
+      )

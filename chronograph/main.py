@@ -77,6 +77,7 @@ class ChronographApplication(Adw.Application):
       Constants.WIN.library.cards_model.append(
         SongCardModel(Path(file.path), Path(file.path).name)
       )
+    Constants.WIN.library.card_filter_model.notify("n-items")
 
     # fmt: off
     self.create_actions(

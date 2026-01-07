@@ -70,6 +70,9 @@ class ChronographWindow(Adw.ApplicationWindow):
   empty_directory: Adw.StatusPage = gtc()
   no_saves_found_status: Adw.StatusPage = gtc()
 
+  empty_library: Adw.StatusPage = gtc()
+  empty_filter_results: Adw.StatusPage = gtc()
+
   # Library view widgets
   dnd_area_revealer: Gtk.Revealer = gtc()
   toast_overlay: Adw.ToastOverlay = gtc()
@@ -88,6 +91,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   clean_files_button: Gtk.Button = gtc()
   library_overlay: Gtk.Overlay = gtc()
   library_scrolled_window: Gtk.ScrolledWindow = gtc()
+  library_stack: Gtk.Stack = gtc()
   library: Library = gtc()
 
   # Quick Editor
