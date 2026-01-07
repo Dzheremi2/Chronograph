@@ -2,7 +2,7 @@ from typing import Optional
 
 from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
-from chronograph.backend.file import SongCardModel
+from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.backend.lyrics import Lyrics
 from chronograph.internal import Constants
 from chronograph.ui.widgets.internal.menu_button import ChrMenuButton  # noqa: F401
@@ -53,7 +53,10 @@ class MetadataEditor(Adw.Dialog, Linker):
     if not isinstance(page, (WBWSyncPage, LRCSyncPage)):
       self.lyrics_buttons_box.set_visible(False)
 
-    self.new_connection(self, "closed", lambda *__: self.disconnect_all())
+  def close(self) -> bool:
+    self.link_teardown()
+    self._card = None
+    return super().close()
 
   @Gtk.Template.Callback()
   def on_cancel_clicked(self, *_args) -> None:
@@ -98,9 +101,9 @@ class MetadataEditor(Adw.Dialog, Linker):
   def save(self, *_args) -> None:
     """Save metadata changes"""
     if self._is_cover_changed:
-      self._card.mfile.set_cover(self._new_cover_path)
-      self._card.widget.cover_img.set_from_paintable(self._card.cover)
+      self._card.media().set_cover(self._new_cover_path).save()
       self._card.notify("cover")
+      self.cover_image.set_from_paintable(self._card.cover)
       logger.info(
         "Cover for '%s -- %s / %s' was saved",
         self._card.title_display,
@@ -131,7 +134,6 @@ class MetadataEditor(Adw.Dialog, Linker):
         self._card.artist_display,
         self._card.album_display,
       )
-    self._card.save()
     self.close()
 
   def _change_cover(self, *_args) -> None:

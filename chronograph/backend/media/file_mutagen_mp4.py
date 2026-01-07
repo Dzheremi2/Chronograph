@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Self
 
 from mutagen.mp4 import MP4Cover
 
@@ -20,13 +20,12 @@ class FileMP4(TaggableFile):
   Parameters
   ----------
   path : str
-      A path to the file for loading
+    A path to the file for loading
   """
 
   __gtype_name__ = "FileMP4"
 
   def load_cover(self) -> None:
-    """Extracts cover from song file. If no cover, then sets cover as `icon`"""
     if (
       "covr" not in self._mutagen_file.tags
       or not self._mutagen_file.tags["covr"]
@@ -39,7 +38,6 @@ class FileMP4(TaggableFile):
         self.cover = picture
 
   def load_str_data(self) -> None:
-    """Sets all string data from tags. If data is unavailable, then sets `Unknown`"""
     if self._mutagen_file.tags is not None:
       try:
         if (_title := self._mutagen_file.tags["\xa9nam"]) is not None:
@@ -59,14 +57,7 @@ class FileMP4(TaggableFile):
       except KeyError:
         pass
 
-  def set_cover(self, img_path: Optional[str]) -> None:
-    """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
-
-    Parameters
-    ----------
-    img_path : str | None
-        path to image or None if cover should be deleted
-    """
+  def set_cover(self, img_path: Optional[str]) -> Self:
     if img_path is not None:
       cover_bytes = open(img_path, "rb").read()  # noqa: SIM115
       if self._mutagen_file.tags:
@@ -88,30 +79,17 @@ class FileMP4(TaggableFile):
         else:
           self._mutagen_file.add_tags()
       self.cover = None
+    return self
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
-    r"""Sets string tags to provided value
-
-    Parameters
-    ----------
-    tag_name : str
-
-    ::
-
-        "TIT2" -> [_title, "\xa9nam"]
-        "TPE1" -> [_artist, "\xa9ART"]
-        "TALB" -> [_album, "\xa9alb"]
-
-    new_val : str
-        new value for setting
-    """
+  def set_str_data(self, tag_name: str, new_val: str) -> Self:
     if self._mutagen_file.tags is None:
       self._mutagen_file.add_tags()
 
     self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
+    return self
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> Self:
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         if self._mutagen_file.tags is None:
@@ -127,7 +105,7 @@ class FileMP4(TaggableFile):
 
         self._mutagen_file.tags["\xa9lyr"] = text
         self.save()
-      return
+      return self
 
     try:
       if self._mutagen_file.tags is not None:
@@ -136,3 +114,4 @@ class FileMP4(TaggableFile):
       pass
 
     self.save()
+    return self

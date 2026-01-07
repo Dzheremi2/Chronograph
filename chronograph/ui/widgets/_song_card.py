@@ -4,6 +4,7 @@ from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.internal import Constants
+from chronograph.ui.dialogs.metadata_editor import MetadataEditor
 from dgutils import Linker
 
 gtc = Gtk.Template.Child
@@ -81,7 +82,7 @@ class SongCard(Gtk.Box, Linker):
 
   # TODO:
   def _open_metadata_editor(self, _btn, model: SongCardModel) -> None:
-    pass
+    MetadataEditor(model).present(Constants.WIN)
 
   def _toggle_buttons(self, *_args) -> None:
     self.buttons_revealer.set_reveal_child(not self.buttons_revealer.get_reveal_child())

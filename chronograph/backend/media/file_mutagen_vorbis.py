@@ -1,7 +1,7 @@
 import base64
 import contextlib
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Self
 
 import magic
 from mutagen.flac import FLAC, Picture
@@ -26,13 +26,12 @@ class FileVorbis(TaggableFile):
   Parameters
   ----------
   path : str
-      A path to file for loading
+    A path to file for loading
   """
 
   __gtype_name__ = "FileVorbis"
 
   def load_cover(self) -> None:
-    """Loads cover for Vorbis format audio"""
     if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:
       if self._mutagen_file.pictures[0].data is not None:
         self._cover = self._mutagen_file.pictures[0].data
@@ -58,14 +57,7 @@ class FileVorbis(TaggableFile):
     else:
       self._cover = None
 
-  def load_str_data(self, tags: list = ["title", "artist", "album"]) -> None:  # noqa: B006
-    """Loads title, artist and album for Vorbis media format
-
-    Parameters
-    ----------
-    tags : list, persistent
-        list of tags for parsing in vorbis comment, by default `["title", "artist", "album"]`
-    """
+  def load_str_data(self, tags: list = ("title", "artist", "album")) -> None:
     if self._mutagen_file.tags is not None:
       for tag in tags:
         try:
@@ -88,14 +80,7 @@ class FileVorbis(TaggableFile):
     if self._title == "Unknown":
       self._title = Path(self._path).name
 
-  def set_cover(self, img_path: Optional[str]) -> None:
-    """Sets `self._mutagen_file` cover to specified image or removing it if image specified as `None`
-
-    Parameters
-    ----------
-    img_path : str | None
-        path to image or None if cover should be deleted
-    """
+  def set_cover(self, img_path: Optional[str]) -> Self:
     if img_path is not None:
       if isinstance(self._mutagen_file, FLAC):
         self._mutagen_file.clear_pictures()
@@ -133,30 +118,17 @@ class FileVorbis(TaggableFile):
       if "metadata_block_picture" in self._mutagen_file:
         self._mutagen_file["metadata_block_picture"] = []
         self._cover = None
+    return self
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
-    """Sets string tags to provided value
-
-    Parameters
-    ----------
-    tag_name : str
-
-    ::
-
-      "TIT2" -> [_title, "title"]
-      "TPE1" -> [_artist, "artist"]
-      "TALB" -> [_album, "album"]
-
-    new_val : str
-        new value for setting
-    """
+  def set_str_data(self, tag_name: str, new_val: str) -> Self:
     if tags_conjunction[tag_name][1].upper() in self._mutagen_file.tags:
       self._mutagen_file.tags[tags_conjunction[tag_name][1].upper()] = new_val
     else:
       self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
+    return self
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> Self:
     if lyrics is not None:
       if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
         target_format = LyricsFormat[
@@ -175,7 +147,7 @@ class FileVorbis(TaggableFile):
 
           self._mutagen_file.tags["LYRICS"] = text
         self.save()
-      return
+      return self
 
     with contextlib.suppress(KeyError):
       del self._mutagen_file.tags["UNSYNCEDLYRICS"]
@@ -184,3 +156,4 @@ class FileVorbis(TaggableFile):
       del self._mutagen_file.tags["LYRICS"]
 
     self.save()
+    return self

@@ -1,4 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor
 from gettext import pgettext as C_
 from pathlib import Path
 
@@ -6,12 +5,12 @@ from gi.repository import Gdk, GObject, Gtk
 
 from chronograph.backend.file import AvailableLyrics
 from chronograph.backend.file_parsers import parse_file
+from chronograph.backend.media.file import BaseFile
+from chronograph.internal import Constants
 
 _title_palceholder = C_("song title placeholder", "Unknown")
 _artist_placeholder = C_("song artist placeholder", "Unknown")
 _album_placeholder = C_("song album placeholder", "Unknown")
-
-_COVER_POOL = ThreadPoolExecutor(max_workers=6, thread_name_prefix="cover")
 
 
 class SongCardModel(GObject.Object):
@@ -34,13 +33,25 @@ class SongCardModel(GObject.Object):
     self._artist = media.artist or ""
     self._album = media.album or ""
 
+  def media(self) -> BaseFile:
+    """Opens a new connection to a mediafile.
+
+    Please, do not store references to result of this function if you're not forced to.
+
+    Returns
+    -------
+    BaseFile
+      A fresh instance of `BaseFile` depending on mutagen realization
+    """
+    return parse_file(self.mediafile)
+
   @GObject.Property(type=str, default="")
   def title(self) -> str:
     return self._title
 
   @title.setter
   def title(self, title: str) -> None:
-    parse_file(self.mediafile).set_str_data("TIT2", title)
+    self.media().set_str_data("TIT2", title).save()
     self._title = title
     self.notify("title_display")
 
@@ -54,7 +65,7 @@ class SongCardModel(GObject.Object):
 
   @artist.setter
   def artist(self, artist: str) -> None:
-    parse_file(self.mediafile).set_str_data("TPE1", artist)
+    self.media().set_str_data("TPE1", artist).save()
     self._artist = artist
     self.notify("artist_display")
 
@@ -68,7 +79,7 @@ class SongCardModel(GObject.Object):
 
   @album.setter
   def album(self, album: str) -> None:
-    parse_file(self.mediafile).set_str_data("TALB", album)
+    self.media().set_str_data("TALB", album).save()
     self._album = album
     self.notify("album_display")
 
@@ -78,4 +89,6 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=Gdk.Texture)
   def cover(self) -> Gdk.Texture:
-    return parse_file(self.mediafile).get_cover_texture()
+    if (tx := self.media().get_cover_texture()) is not None:
+      return tx
+    return Constants.COVER_PLACEHOLDER

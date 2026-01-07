@@ -1,5 +1,5 @@
 import contextlib
-from typing import Optional
+from typing import Optional, Self
 
 import mutagen
 from gi.repository import Gdk, GdkPixbuf, GLib
@@ -43,9 +43,10 @@ class BaseFile:
     self._path: str = path
     self.load_from_file(path)
 
-  def save(self) -> None:
+  def save(self) -> Self:
     """Saves the changes to the file"""
     self._mutagen_file.save()
+    return self
 
   def load_from_file(self, path: str) -> None:
     """Generates mutagen file instance for path
@@ -53,7 +54,7 @@ class BaseFile:
     Parameters
     ----------
     path : str
-        /path/to/file
+      /path/to/file
     """
     self._mutagen_file = mutagen.File(path)
     with contextlib.suppress(Exception):
@@ -142,7 +143,7 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
+  def set_str_data(self, tag_name: str, new_val: str) -> Self:
     """Sets the provided tag in ID3 format to the provided value
 
     Parameters
@@ -156,7 +157,7 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def set_cover(self, img_path: Optional[str]) -> None:
+  def set_cover(self, img_path: Optional[str]) -> Self:
     """Sets the cover of the instance to a provided image
 
     Parameters
@@ -168,7 +169,7 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> Self:
     """Embeds the lyrics to the corresponding tags in realization
 
     Parameters
