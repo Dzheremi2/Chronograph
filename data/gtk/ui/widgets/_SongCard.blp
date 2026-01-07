@@ -128,21 +128,6 @@ template $SongCard: Box {
             margin-end: 8;
             use-markup: false;
           }
-
-          Box {
-            margin-start: 8;
-            margin-bottom: 4;
-            margin-end: 8;
-
-            Button lyrics_state_indicator {
-              tooltip-text: _("Lyrics format (if exists)");
-              label: "None";
-              can-shrink: true;
-              focusable: false;
-              can-focus: false;
-              styles ["no-hover", "pill", "small", "lyrics", "none"]
-            }
-          }
         }
 
         styles [
@@ -158,7 +143,6 @@ Adw.ActionRow list_view_row {
   use-markup: false;
   subtitle-lines: 1;
   title-lines: 1;
-  activatable-widget: lyrics_state_indicator;
 
   [prefix]
   Image cover_img_row {
@@ -170,20 +154,6 @@ Adw.ActionRow list_view_row {
     height-request: 40;
     pixel-size: 40;
     icon-name: "note-placeholder";
-  }
-
-  [suffix]
-  Box {
-    valign: center;
-    Button lyrics_state_indicator_row {
-      tooltip-text: bind lyrics_state_indicator.tooltip-text;
-      label: bind lyrics_state_indicator.label;
-      visible: bind buttons_revealer_row.visible inverted;
-      can-shrink: true;
-      focusable: false;
-      can-focus: false;
-      styles ["no-hover", "pill", "small", "lyrics", "none"]
-    }
   }
 
   [suffix]

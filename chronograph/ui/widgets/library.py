@@ -7,7 +7,6 @@ from gi.repository import Gdk, Gio, GLib, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.backend.file_parsers import parse_dir, parse_file, parse_files
-from chronograph.internal import Constants
 from chronograph.ui.widgets._song_card import SongCard
 
 
@@ -85,9 +84,15 @@ def _drop_pending_for_state(state: _CoverState) -> None:
 
 class Library(Gtk.GridView):
   __gtype_name__ = "Library"
+  _CARD_WIDTH = 160
+  _CARD_GAP = 12
+  _MAX_COLUMNS_CAP = 12
 
   def __init__(self) -> None:
-    super().__init__(max_columns=9999999)
+    super().__init__()
+    self._adaptive_columns = 0
+    self._last_width = 0
+    self.add_css_class("library-grid")
     self.list_model = Gio.ListStore.new(SongCardModel)
     self.grid_model = Gtk.NoSelection.new(self.list_model)
 
@@ -99,6 +104,8 @@ class Library(Gtk.GridView):
 
     self.set_model(self.grid_model)
     self.set_factory(self.grid_factory)
+    self.set_max_columns(1)
+    self.add_tick_callback(self._on_tick_update_columns)
 
     for file in parse_files(parse_dir("/home/dzheremi/Music/LRCLIB") * 10):
       self.list_model.append(SongCardModel(Path(file.path), Path(file.path).name))
@@ -107,6 +114,28 @@ class Library(Gtk.GridView):
     card = SongCard()
     card._cover_state = _CoverState()  # noqa: SLF001
     list_item.set_child(card)
+    list_item.set_focusable(False)
+    list_item.set_selectable(False)
+    list_item.set_activatable(False)
+
+  def _on_tick_update_columns(self, *_args) -> bool:
+    width = self.get_allocated_width()
+    if width != self._last_width:
+      self._last_width = width
+      self._update_max_columns(width)
+    return GLib.SOURCE_CONTINUE
+
+  def _update_max_columns(self, available_width: int) -> None:
+    if available_width <= 0:
+      return
+
+    item_width = self._CARD_WIDTH + self._CARD_GAP
+    columns = max(1, available_width // item_width)
+    columns = min(columns, self._MAX_COLUMNS_CAP)
+
+    if columns != self._adaptive_columns:
+      self._adaptive_columns = columns
+      self.set_max_columns(columns)
 
   def _on_bind(self, _factory, list_item: Gtk.ListItem) -> None:
     card: SongCard = list_item.get_child()
@@ -116,7 +145,6 @@ class Library(Gtk.GridView):
     st.token += 1
     token = st.token
 
-    card.set_cover(None)
     card.bind(model)
 
     if st.fut is not None:
@@ -132,8 +160,6 @@ class Library(Gtk.GridView):
     card: SongCard = list_item.get_child()
     if not card:
       return
-
-    card.cover_img.set_from_paintable(Constants.COVER_PLACEHOLDER)
 
     st: _CoverState = card._cover_state  # noqa: SLF001
     if st.fut is not None:

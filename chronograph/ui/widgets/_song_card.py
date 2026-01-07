@@ -23,7 +23,6 @@ class SongCard(Gtk.Box, Linker):
   cover_img: Gtk.Image = gtc()
   title_label: Gtk.Label = gtc()
   artist_label: Gtk.Label = gtc()
-  lyrics_state_indicator: Gtk.Button = gtc()
 
   def __init__(self) -> None:
     super().__init__()
@@ -65,7 +64,7 @@ class SongCard(Gtk.Box, Linker):
     self.link_teardown()
 
   def set_cover(self, cover: Optional[Gdk.Texture] = None) -> None:
-    if cover:
+    if cover is not None:
       self.cover_img.set_from_paintable(cover)
       self.cover_loading_stack.set_visible_child(self.cover_img)
     else:
