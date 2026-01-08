@@ -184,58 +184,11 @@ template $AboutFileDialog : Adw.Dialog {
             [top]
             Adw.HeaderBar {}
 
-            Adw.PreferencesGroup {
-              // FIXME: Cleanup all `self` content. Using dynamic creation
+            Adw.PreferencesGroup available_lyrics_group {
               margin-bottom: 16;
               margin-end: 16;
               margin-top: 16;
               margin-start: 16;
-
-              Adw.ActionRow plain_lyric_row {
-                title: _("Plain");
-
-                [suffix]
-                Button {
-                  icon-name: "chr-check-round-outline-symbolic";
-
-                  styles ["no-hover", "flat"]
-                }
-
-                [suffix]
-                Box {
-                  valign: center;
-                  spacing: 4;
-
-                  MenuButton {
-                    icon-name: "import-from-symbolic";
-                    menu-model: menu {
-                      section {
-                        label: _("Import From…");
-
-                        item (_("LRClib"), "act")
-                        item (_("Other Lyric"), "act2")
-                      }
-                    };
-
-                    styles ["flat"]
-                  }
-
-                  MenuButton {
-                    icon-name: "export-to-symbolic";
-                    menu-model: menu {
-                      section {
-                        label: _("Export To…");
-
-                        item (_("LRClib"), "act")
-                        item (_("File"), "act2")
-                        item (_("Clipboard"), "act3")
-                      }
-                    };
-
-                    styles ["flat"]
-                  }
-                }
-              }
             }
           }
         }

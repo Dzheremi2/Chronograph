@@ -62,7 +62,6 @@ flowboxchild:active { /* To "fix" Adwaita 1.8 Gtk.FlowBox fix */
   background: initial;
   background-image: initial;
   box-shadow: none;
-  color: initial;
   outline: none; 
 }
 

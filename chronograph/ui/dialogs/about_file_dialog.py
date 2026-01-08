@@ -1,8 +1,10 @@
 from gi.repository import Adw, GObject, Gtk
 
+from chronograph.backend.db.models import TrackLyric
 from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.internal import Constants
+from chronograph.ui.widgets.lyric_row import LyricRow
 from dgutils import Linker
 
 gtc = Gtk.Template.Child
@@ -24,6 +26,8 @@ class AboutFileDialog(Adw.Dialog, Linker):
   modified_info_row: Adw.ActionRow = gtc()
   available_lyrics_button: Adw.ActionRow = gtc()
   save_button: Gtk.Button = gtc()
+
+  available_lyrics_group: Adw.PreferencesGroup = gtc()
 
   def __init__(self, model: SongCardModel) -> None:
     super().__init__()
@@ -78,6 +82,7 @@ class AboutFileDialog(Adw.Dialog, Linker):
         GObject.BindingFlags.SYNC_CREATE,
       )
     )
+    self._populate_available_lyrics()
 
   def close(self) -> bool:
     self.unbind_all()
@@ -86,6 +91,17 @@ class AboutFileDialog(Adw.Dialog, Linker):
 
   def _on_available_lyrics_button_clicked(self, *_args) -> None:
     self.nav_view.push(self.lyr_nav_page)
+
+  def _populate_available_lyrics(self) -> None:
+    is_any = False
+    for track_lyric in TrackLyric.select(TrackLyric.lyric).where(
+      TrackLyric.track == self._model.uuid
+    ):
+      is_any = True
+      self.available_lyrics_group.add(LyricRow(track_lyric.lyric))
+    if not is_any:
+      self.available_lyrics_button.set_sensitive(False)
+      self.available_lyrics_button.set_title(_("No Lyrics Available"))
 
   @Gtk.Template.Callback()
   def _on_delete_file_button_clicked(self, *_args) -> None:
