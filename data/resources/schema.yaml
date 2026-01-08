@@ -66,19 +66,12 @@ root:
       reset-quick-editor:
         type: bool
         default: true
-      save-session:
+      save-library:
         type: bool
         default: true
       auto-list-view:
         type: bool
         default: false
-      recursive-parsing:
-        enabled:
-          type: bool
-          default: false
-        follow-symlinks:
-          type: bool
-          default: false
       debug-profile:
         type: bool
         default: false

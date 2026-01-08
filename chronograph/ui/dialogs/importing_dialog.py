@@ -24,5 +24,5 @@ class ImportingDialog(Adw.Dialog, Linker):
     clamped = max(0.0, min(1.0, progress))
     self.import_progress_bar.set_fraction(clamped)
     self.import_detail_label.set_text(
-      _("Imported {}/{}").format(imported, self._total)
+      _("Imported {imported}/{total}").format(imported=imported, total=self._total)
     )

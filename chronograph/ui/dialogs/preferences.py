@@ -16,15 +16,13 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   auto_file_manipulation_switch: Adw.SwitchRow = gtc()
   auto_file_manipulation_format: Adw.ComboRow = gtc()
   autosave_throttling_adjustment: Gtk.Adjustment = gtc()
-  save_session_on_quit_switch: Adw.SwitchRow = gtc()
+  save_library_on_quit_switch: Adw.SwitchRow = gtc()
   precise_milliseconds_switch: Adw.SwitchRow = gtc()
   lbl_default_seek_adj: Gtk.Adjustment = gtc()
   lbl_large_seek_adj: Gtk.Adjustment = gtc()
   wbw_default_seek_adj: Gtk.Adjustment = gtc()
   wbw_large_seek_adj: Gtk.Adjustment = gtc()
   automatic_list_view_switch: Adw.SwitchRow = gtc()
-  recursive_parsing_switch: Adw.ExpanderRow = gtc()
-  follow_symlinks_switch: Adw.SwitchRow = gtc()
   parallel_downloadings_adj: Gtk.Adjustment = gtc()
   preferred_format_combo_row: Adw.ComboRow = gtc()
   enable_debug_logging_switch: Adw.SwitchRow = gtc()
@@ -63,8 +61,8 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       "active",
     )
     Schema.bind(
-      "root.settings.general.save-session",
-      self.save_session_on_quit_switch,
+      "root.settings.general.save-library",
+      self.save_library_on_quit_switch,
       "active",
     )
     Schema.bind(
@@ -75,16 +73,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
     Schema.bind(
       "root.settings.general.auto-list-view",
       self.automatic_list_view_switch,
-      "active",
-    )
-    Schema.bind(
-      "root.settings.general.recursive-parsing.enabled",
-      self.recursive_parsing_switch,
-      "enable-expansion",
-    )
-    Schema.bind(
-      "root.settings.general.recursive-parsing.follow-symlinks",
-      self.follow_symlinks_switch,
       "active",
     )
     Schema.bind(
@@ -169,15 +157,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
     elif Schema.get("root.settings.syncing.sync-type") == "wbw":
       self.syncing_type_combo_row.set_selected(1)
 
-    self._parse_recursively = self.recursive_parsing_switch.get_enable_expansion()
-    self._follow_symlinks = self.follow_symlinks_switch.get_active()
-    self.recursive_parsing_switch.connect(
-      "notify::enable-expansion", self._on_resursive_parsing_changed
-    )
-    self.follow_symlinks_switch.connect(
-      "notify::active", self._on_resursive_parsing_changed
-    )
-
   def _setup_mass_downloading_preferred_format(self) -> None:
     def update_mass_downloading_preferred_format_schema(
       combo_row: Adw.ComboRow, _pspec
@@ -229,13 +208,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       Constants.WIN.reparse_action_done = not any(
         (self._parse_recursively_unapplied, self._follow_symlinks_unapplied)
       )
-
-  def on_reparse_banner_button_clicked(self) -> None:
-    """Called on Window Re-parse banner button clicked to save new states of preferences as new default"""
-    self._parse_recursively = self.recursive_parsing_switch.get_enable_expansion()
-    self._follow_symlinks = self.follow_symlinks_switch.get_active()
-    self._parse_recursively_unapplied = False
-    self._follow_symlinks_unapplied = False
 
   def _update_auto_file_format_schema(self, *_args) -> None:
     selected = self.auto_file_manipulation_format.get_selected()

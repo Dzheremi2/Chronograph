@@ -16,25 +16,14 @@ template $ChronographPreferences : Adw.PreferencesDialog {
         subtitle: _("Choose, if quick edit dialog text should be cleaned after exit or not");
       }
 
-      Adw.SwitchRow save_session_on_quit_switch {
-        title: _("Save Session on App Close");
-        subtitle: _("Re-opens last opened directory on the next startup");
+      Adw.SwitchRow save_library_on_quit_switch {
+        title: _("Save Library on App Close");
+        subtitle: _("Re-opens last opened Library on the next startup");
       }
 
       Adw.SwitchRow automatic_list_view_switch {
         title: _("Automatically Toggle List View Mode");
         subtitle: _("Automatically toggles List View mode when display size is not big enough");
-      }
-
-      Adw.ExpanderRow recursive_parsing_switch {
-        show-enable-switch: true;
-        title: _("Parse Directories Recursively");
-        subtitle: _("Scans provided directory for supported files recursively");
-
-        Adw.SwitchRow follow_symlinks_switch {
-          title: _("Follow Symlinks");
-          subtitle: _("If a directory has symlinks to other directories, they would be parsed too\nMay cause excessive memory consumption and looping if it has looped symlinks");
-        }
       }
     }
 
