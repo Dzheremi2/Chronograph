@@ -6,6 +6,8 @@
   --border-radius-lg: 12px;
   --border-radius-sm: 6px;
   --rounded-frame-bg: #eeeeee;
+  --chip-bg-color: var(--card-bg-color, var(--window-bg-color));
+  --chip-fg-color: var(--card-fg-color, var(--window-fg-color));
 }
 
 .rounded, /* For just 12px rounded borders */
@@ -53,7 +55,7 @@ textview.placeholder-text {
   color: #ffffff;
 }
 
-.no-hover:hover, /* 
+.no-hover:hover, /*
 To use buttons as icons display.
 Will only work with flat buttons without some extended setting
 */
@@ -72,6 +74,18 @@ button.pill.small {
   margin: 0;
   padding: 1px 12px;
 }
+
+/* Make tag buttons static */
+button.pill.small.tag-button,
+button.pill.small.tag-button:hover,
+button.pill.small.tag-button:active,
+button.pill.small.tag-button:checked {
+  background-color: var(--chip-bg-color);
+  color: var(--chip-fg-color);
+  background-image: none;
+  box-shadow: none;
+}
+
 
 /* Reimplements OSD style from LibAdwaita to not affect associated Gio.Menu */
 menubutton.osd-button-only > button {

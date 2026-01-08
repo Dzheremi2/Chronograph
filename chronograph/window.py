@@ -97,7 +97,6 @@ class ChronographWindow(Adw.ApplicationWindow):
   right_buttons_revealer: Gtk.Revealer = gtc()
   proceed_bulk_delete_button_revealer: Gtk.Revealer = gtc()
   enable_bulk_delete_button: Gtk.ToggleButton = gtc()
-  add_dir_to_saves_button: Gtk.Button = gtc()
   library_overlay: Gtk.Overlay = gtc()
   library_scrolled_window: Gtk.ScrolledWindow = gtc()
   library_stack: Gtk.Stack = gtc()
@@ -498,20 +497,6 @@ class ChronographWindow(Adw.ApplicationWindow):
   def _on_bulk_delete_mode_toggled(self, *_args) -> None:
     self.library.set_bulk_delete_mode(self.enable_bulk_delete_button.get_active())
 
-  @Gtk.Template.Callback()
-  def on_add_dir_to_saves_button_clicked(self, *_args) -> None:
-    """Adds the current directory to the saved locations in the sidebar"""
-    if (
-      self.state in (WindowState.LOADED_DIR, WindowState.EMPTY_DIR)
-      and Schema.get("root.state.library.session") != "None"
-    ):
-      dir_path = Schema.get("root.state.library.session")
-      if dir_path not in [pin["path"] for pin in Constants.CACHE["pins"]]:
-        Constants.CACHE["pins"].append({"path": dir_path, "name": Path(dir_path).name})
-        logger.info("'%s' was added to Saves", dir_path)
-        self.add_dir_to_saves_button.set_visible(False)
-        self.build_sidebar()
-
   ################# Quick Editor ###############
 
   def on_open_quick_editor_action(self, *_args) -> None:
@@ -665,31 +650,13 @@ class ChronographWindow(Adw.ApplicationWindow):
       self._state = WindowState(value)
 
   def _state_changed(self, *_args) -> None:
-    def select_saved_location() -> None:
-      try:
-        for row in self.sidebar:
-          if row.get_child().path == Schema.get("root.state.library.session"):
-            self.sidebar.select_row(row)
-            return
-      except AttributeError:
-        self.sidebar.select_row(None)
-
     state = self._state
-
-    # Check for the "Add to Saves" button visibility
-    session_path = Schema.get("root.state.library.session")
-    if state in (WindowState.EMPTY_DIR, WindowState.LOADED_DIR):
-      if session_path in [pin["path"] for pin in Constants.CACHE["pins"]]:
-        self.add_dir_to_saves_button.set_visible(False)
-      else:
-        self.add_dir_to_saves_button.set_visible(True)
 
     match state:
       case WindowState.EMPTY:
         self.library_scrolled_window.set_child(self.no_source_opened)
         self.right_buttons_revealer.set_reveal_child(False)
         self.left_buttons_revealer.set_reveal_child(False)
-        self.clean_files_button.set_visible(False)
         Schema.set("root.state.library.session", "None")
         self.sidebar.select_row(None)
         self.open_source_button.set_visible(False)
@@ -697,12 +664,10 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.library_scrolled_window.set_child(self.empty_directory)
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(False)
-        self.clean_files_button.set_visible(False)
         self.open_source_button.set_visible(False)
         # Calling it to reset reparse settings states to their new values, if changed
         # while window state was not dir related
         ChronographPreferences().on_reparse_banner_button_clicked()
-        select_saved_location()
       case WindowState.LOADED_DIR:
         match Schema.get("root.state.library.view"):
           case "g":
@@ -711,12 +676,10 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.library_scrolled_window.set_child(self.library_list)
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(True)
-        self.clean_files_button.set_visible(False)
         self.open_source_button.set_visible(True)
         # Calling it to reset reparse settings states to their new values, if changed
         # while window state was not dir related
         ChronographPreferences().on_reparse_banner_button_clicked()
-        select_saved_location()
       case WindowState.LOADED_FILES:
         match Schema.get("root.state.library.view"):
           case "g":
@@ -724,8 +687,7 @@ class ChronographWindow(Adw.ApplicationWindow):
           case "l":
             self.library_scrolled_window.set_child(self.library_list)
         Schema.set("root.state.library.session", "None")
-        self.right_buttons_revealer.set_reveal_child(False)
-        self.clean_files_button.set_visible(True)
+        self.right_buttons_revealer.set_reveal_child(False) 
         self.open_source_button.set_visible(True)
         self.sidebar.select_row(None)
     logger.debug("Window state was set to: %s", self.state)

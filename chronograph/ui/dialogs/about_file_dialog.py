@@ -1,6 +1,8 @@
+import json
+
 from gi.repository import Adw, GObject, Gtk
 
-from chronograph.backend.db.models import TrackLyric
+from chronograph.backend.db.models import SchemaInfo, Track, TrackLyric
 from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.internal import Constants
@@ -22,6 +24,7 @@ class AboutFileDialog(Adw.Dialog, Linker):
   title_info_row: Adw.ActionRow = gtc()
   artist_info_row: Adw.ActionRow = gtc()
   album_info_row: Adw.ActionRow = gtc()
+  tags_wrap_box: Adw.WrapBox = gtc()
   import_info_row: Adw.ActionRow = gtc()
   modified_info_row: Adw.ActionRow = gtc()
   available_lyrics_button: Adw.ActionRow = gtc()
@@ -33,6 +36,13 @@ class AboutFileDialog(Adw.Dialog, Linker):
     super().__init__()
     Linker.__init__(self)
     self._model = model
+    self._tags_add_button = Gtk.Button(
+      icon_name="add-line-symbolic",
+      valign=Gtk.Align.CENTER,
+      css_classes=["pill", "small"],
+      tooltip_text=_("Assign tag"),
+    )
+    self._tags_add_button.connect("clicked", self._on_tags_add_button_clicked)
     self.available_lyrics_button.connect(
       "activated", self._on_available_lyrics_button_clicked
     )
@@ -82,6 +92,7 @@ class AboutFileDialog(Adw.Dialog, Linker):
         GObject.BindingFlags.SYNC_CREATE,
       )
     )
+    self._populate_tags()
     self._populate_available_lyrics()
 
   def close(self) -> bool:
@@ -102,6 +113,253 @@ class AboutFileDialog(Adw.Dialog, Linker):
     if not is_any:
       self.available_lyrics_button.set_sensitive(False)
       self.available_lyrics_button.set_title(_("No Lyrics Available"))
+
+  def _populate_tags(self) -> None:
+    track_tags = self._get_track_tags()
+    registered_tags = set(self._get_registered_tags())
+    self._clear_wrap_box(self.tags_wrap_box)
+    for tag in track_tags:
+      if registered_tags and tag not in registered_tags:
+        continue
+      self.tags_wrap_box.append(self._build_tag_button(tag))
+    self.tags_wrap_box.append(self._tags_add_button)
+
+  def _on_tags_add_button_clicked(self, *_args) -> None:
+    dialog = Adw.Dialog(content_height=400, content_width=500)
+    dialog.set_title(_("Select Tag"))
+
+    track_tags = set(self._get_track_tags())
+    available_tags = [
+      tag for tag in self._get_registered_tags() if tag not in track_tags
+    ]
+
+    box = Gtk.Box(
+      orientation=Gtk.Orientation.VERTICAL,
+      spacing=12,
+      margin_top=16,
+      margin_bottom=16,
+      margin_start=16,
+      margin_end=16,
+    )
+    self._tag_dialog_box = box
+    self._tag_dialog_group = Adw.PreferencesGroup()
+    self._tag_dialog_scrolled = Gtk.ScrolledWindow(
+      vexpand=True, hscrollbar_policy=Gtk.PolicyType.NEVER
+    )
+    self._tag_dialog_scrolled.set_child(self._tag_dialog_group)
+    self._tag_dialog_status_page = Adw.StatusPage(
+      title=_("No Tags Available"),
+      description=_("There's no tags registered yet or all tags were assigned"),
+      vexpand=True,
+    )
+
+    for tag in available_tags:
+      self._tag_dialog_group.add(self._build_tag_row(tag, dialog))
+
+    if available_tags:
+      self._show_tag_group()
+    else:
+      self._show_tag_status_page()
+
+    add_button_box = Gtk.Box(halign=Gtk.Align.CENTER)
+    add_button = Gtk.Button(
+      label=_("Add New Tag"), css_classes=["pill", "suggested-action"]
+    )
+    add_button.connect("clicked", self._present_tag_registration_alert, dialog)
+    add_button_box.append(add_button)
+    box.append(add_button_box)
+
+    clamp = Adw.Clamp(maximum_size=480, tightening_threshold=480)
+    clamp.set_child(box)
+
+    view = Adw.ToolbarView()
+    view.add_top_bar(Adw.HeaderBar())
+    view.set_content(clamp)
+
+    dialog.set_child(view)
+    dialog.connect("closed", self._clear_tag_dialog_refs)
+    dialog.present(self)
+
+  def _present_tag_registration_alert(
+    self,
+    _btn,
+    parent: Adw.Dialog,
+  ) -> None:
+    entry = Gtk.Entry(placeholder_text=_("Tag name…"))
+    alert = Adw.AlertDialog(
+      heading=_("Add New Tag"),
+      default_response="cancel",
+      close_response="cancel",
+    )
+    alert.add_response("cancel", _("Cancel"))
+    alert.add_response("add", _("Add"))
+    alert.set_response_appearance("add", Adw.ResponseAppearance.SUGGESTED)
+    alert.set_extra_child(entry)
+    entry.connect("activate", lambda *__: alert.emit("response", "add"))
+
+    def on_response(alert: Adw.AlertDialog, response: str) -> None:
+      if response != "add":
+        return
+      tag = entry.get_text().strip()
+      if not tag:
+        return
+      registered_tags = self._get_registered_tags()
+      if tag not in registered_tags:
+        registered_tags.append(tag)
+        self._set_registered_tags(registered_tags)
+      track_tags = set(self._get_track_tags())
+      if tag in track_tags:
+        return
+      self._show_tag_group()
+      if self._tag_dialog_group is not None:
+        self._tag_dialog_group.add(self._build_tag_row(tag, parent))
+      if alert.is_visible():
+        alert.close()
+
+    alert.connect("response", on_response)
+    alert.present(parent)
+    entry.grab_focus()
+
+  def _build_tag_row(self, tag: str, dialog: Adw.Dialog) -> Adw.ActionRow:
+    row = Adw.ActionRow(title=tag, activatable=True, selectable=False, use_markup=False)
+    row.connect("activated", self._on_tag_row_activated, tag, dialog)
+    delete_button = Gtk.Button(
+      icon_name="clean-files-symbolic",
+      css_classes=["destructive-action"],
+      valign=Gtk.Align.CENTER,
+    )
+    delete_button.connect("clicked", self._delete_tag, tag, row)
+    row.add_suffix(delete_button)
+    return row
+
+  def _on_tag_row_activated(self, _row, tag: str, dialog: Adw.Dialog) -> None:
+    self._assign_tag(tag)
+    dialog.close()
+
+  def _delete_tag(
+    self,
+    _btn,
+    tag: str,
+    row: Adw.ActionRow,
+  ) -> None:
+    tag = tag.strip()
+    if not tag:
+      return
+    registered_tags = self._get_registered_tags()
+    if tag not in registered_tags:
+      return
+    registered_tags.remove(tag)
+    self._set_registered_tags(registered_tags)
+    for track in Track.select(Track.track_uuid, Track.tags_json):
+      if not track.tags_json or tag not in track.tags_json:
+        continue
+      updated = [val for val in track.tags_json if val != tag]
+      Track.update(tags_json=updated).where(
+        Track.track_uuid == track.track_uuid
+      ).execute()
+    if row.get_parent() is not None and self._tag_dialog_group is not None:
+      self._tag_dialog_group.remove(row)
+    if self._tag_dialog_group is not None and self._tag_dialog_group.get_row(0) is None:
+      self._show_tag_status_page()
+    self._populate_tags()
+
+  def _show_tag_group(self) -> None:
+    if (
+      self._tag_dialog_box is None
+      or self._tag_dialog_group is None
+      or self._tag_dialog_scrolled is None
+    ):
+      return
+    if (
+      self._tag_dialog_status_page is not None
+      and self._tag_dialog_status_page.get_parent() is not None
+    ):
+      self._tag_dialog_box.remove(self._tag_dialog_status_page)
+    if self._tag_dialog_scrolled.get_parent() is None:
+      self._tag_dialog_box.prepend(self._tag_dialog_scrolled)
+
+  def _show_tag_status_page(self) -> None:
+    if (
+      self._tag_dialog_box is None
+      or self._tag_dialog_status_page is None
+      or self._tag_dialog_scrolled is None
+    ):
+      return
+    if (
+      self._tag_dialog_scrolled is not None
+      and self._tag_dialog_scrolled.get_parent() is not None
+    ):
+      self._tag_dialog_box.remove(self._tag_dialog_scrolled)
+    if self._tag_dialog_status_page.get_parent() is None:
+      self._tag_dialog_box.prepend(self._tag_dialog_status_page)
+
+  def _clear_tag_dialog_refs(self, *_args) -> None:
+    self._tag_dialog_box = None
+    self._tag_dialog_group = None
+    self._tag_dialog_status_page = None
+    self._tag_dialog_scrolled = None
+
+  def _assign_tag(self, tag: str) -> None:
+    tag = tag.strip()
+    if not tag:
+      return
+    track_tags = self._get_track_tags()
+    if tag in track_tags:
+      return
+    track_tags.append(tag)
+    Track.update(tags_json=track_tags).where(
+      Track.track_uuid == self._model.uuid
+    ).execute()
+    self._populate_tags()
+
+  def _build_tag_button(self, tag: str) -> Gtk.Button:
+    button = Gtk.Button(
+      label=tag,
+      valign=Gtk.Align.CENTER,
+      css_classes=["pill", "small"],
+    )
+    button.set_tooltip_text(_("Click to unassign"))
+    button.connect("clicked", lambda *_: self._unassign_tag(tag))
+    return button
+
+  def _unassign_tag(self, tag: str) -> None:
+    tag = tag.strip()
+    if not tag:
+      return
+    track_tags = self._get_track_tags()
+    if tag not in track_tags:
+      return
+    track_tags.remove(tag)
+    Track.update(tags_json=track_tags).where(
+      Track.track_uuid == self._model.uuid
+    ).execute()
+    self._populate_tags()
+
+  def _get_track_tags(self) -> list[str]:
+    return list(Track.get_by_id(self._model.uuid).tags_json or [])
+
+  def _get_registered_tags(self) -> list[str]:
+    try:
+      raw = SchemaInfo.get_by_id("tags").value
+    except SchemaInfo.DoesNotExist:
+      return []
+    try:
+      tags = json.loads(raw)
+    except (json.JSONDecodeError, TypeError):
+      return []
+    return tags if isinstance(tags, list) else []
+
+  def _set_registered_tags(self, tags: list[str]) -> None:
+    SchemaInfo.insert(
+      key="tags", value=json.dumps(tags)
+    ).on_conflict_replace().execute()
+
+  def _clear_wrap_box(self, box: Adw.WrapBox) -> None:
+    child = box.get_first_child()
+    while child is not None:
+      next_child = child.get_next_sibling()
+      box.remove(child)
+      child = next_child
 
   @Gtk.Template.Callback()
   def _on_delete_file_button_clicked(self, *_args) -> None:

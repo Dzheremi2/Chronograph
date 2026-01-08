@@ -22,14 +22,14 @@ class ChronographDatabase(Model):
 
 class Track(ChronographDatabase):
   """
-  ::
+  SQL::
 
     CREATE TABLE IF NOT EXISTS tracks (
       track_uuid   TEXT PRIMARY KEY,        -- Unique ID of the track
       imported_at  INTEGER NOT NULL,        -- Time, when track was imported
       format       TEXT NOT NULL,           -- Format of the media
       tags_json    JSON NOT NULL DEFAULT [] -- List of tags assigned to the track
-    );
+    )
   """
 
   track_uuid = TextField(primary_key=True)
@@ -52,7 +52,7 @@ class Track(ChronographDatabase):
 
 class Lyric(ChronographDatabase):
   """
-  ::
+  SQL::
 
     CREATE TABLE IF NOT EXISTS lyrics (
       lyrics_uuid  TEXT PRIMARY KEY,               -- Unique ID of the lyric
@@ -61,7 +61,7 @@ class Lyric(ChronographDatabase):
       finished     BOOLEAN NOT NULL DEFAULT FALSE, -- State of the lyric synchronization
       created_at   INTEGER NOT NULL,               -- Creation time
       updated_at   INTEGER                         -- Last modified time
-    );
+    )
   """
 
   lyrics_uuid = TextField(primary_key=True)
@@ -78,7 +78,7 @@ class Lyric(ChronographDatabase):
 
 class TrackLyric(ChronographDatabase):
   """
-  ::
+  SQL::
 
     CREATE TABLE IF NOT EXISTS track_lyrics (
       track_uuid   TEXT NOT NULL,            -- Unique ID of the track
@@ -87,7 +87,7 @@ class TrackLyric(ChronographDatabase):
       -- Automatically detele binding if track or lyric was deleted
       FOREIGN KEY (track_uuid) REFERENCES tracks(track_uuid) ON DELETE CASCADE,
       FOREIGN KEY (lyrics_uuid) REFERENCES lyrics(lyrics_uuid) ON DELETE CASCADE
-    );
+    )
   """
 
   track = ForeignKeyField(
@@ -116,12 +116,17 @@ class TrackLyric(ChronographDatabase):
 
 class SchemaInfo(ChronographDatabase):
   """
-  ::
+  SQL::
 
     CREATE TABLE IF NOT EXISTS schema_info (
       key   TEXT PRIMARY KEY,
       value TEXT NOT NULL
-    );
+    )
+
+  Current specs:
+
+    version: int(repr as str) = "1"
+    tags: JSON<str>(repr as str) = "[]"
   """
 
   key = TextField(primary_key=True)

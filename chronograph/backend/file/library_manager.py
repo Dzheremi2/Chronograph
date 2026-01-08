@@ -248,6 +248,7 @@ class LibraryManager:
 
     with db(atomic=True):
       SchemaInfo.insert(key="version", value="1").execute()
+      SchemaInfo.insert(key="tags", value="[]").execute()
 
     return lib_root
 
