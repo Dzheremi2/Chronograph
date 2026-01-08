@@ -95,6 +95,8 @@ class ChronographWindow(Adw.ApplicationWindow):
   search_bar: Gtk.SearchBar = gtc()
   search_entry: Gtk.SearchEntry = gtc()
   right_buttons_revealer: Gtk.Revealer = gtc()
+  proceed_bulk_delete_button_revealer: Gtk.Revealer = gtc()
+  enable_bulk_delete_button: Gtk.ToggleButton = gtc()
   add_dir_to_saves_button: Gtk.Button = gtc()
   library_overlay: Gtk.Overlay = gtc()
   library_scrolled_window: Gtk.ScrolledWindow = gtc()
@@ -482,6 +484,19 @@ class ChronographWindow(Adw.ApplicationWindow):
   def on_search_changed(self, *_args) -> None:
     """Calls `self.library.filter_func` to filter the library based on the search entry text"""
     self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
+
+  @Gtk.Template.Callback()
+  def on_proceed_bulk_delete_button_clicked(self, *_args) -> None:
+    deleted = self.library.bulk_delete_selected()
+    self.enable_bulk_delete_button.set_active(False)
+    self.show_toast(_("Deleted {n} files").format(n=deleted))
+
+  def is_bulk_delete_mode(self) -> bool:
+    return self.enable_bulk_delete_button.get_active()
+
+  @Gtk.Template.Callback()
+  def _on_bulk_delete_mode_toggled(self, *_args) -> None:
+    self.library.set_bulk_delete_mode(self.enable_bulk_delete_button.get_active())
 
   @Gtk.Template.Callback()
   def on_add_dir_to_saves_button_clicked(self, *_args) -> None:

@@ -145,3 +145,8 @@ gridview.library-grid {
   padding: 0;
   margin: 6px;
 }
+
+.bulk-delete-selected {
+  background-color: rgba(192, 28, 40, 0.18);
+  box-shadow: inset 0 0 0 2px rgba(192, 28, 40, 0.9);
+}

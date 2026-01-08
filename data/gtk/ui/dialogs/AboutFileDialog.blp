@@ -141,6 +141,7 @@ template $AboutFileDialog : Adw.Dialog {
               ListBox {
                 Adw.ButtonRow {
                   title: _("Delete File");
+                  activated => $_on_delete_file_button_clicked();
 
                   styles ["destructive-action"]
                 }

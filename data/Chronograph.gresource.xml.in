@@ -76,6 +76,7 @@
     <file alias="chr-exclamation-mark-symbolic.svg">icons/icons/symbolic/chr-exclamation-mark-symbolic.svg</file>
     <file alias="chr-check-round-outline-symbolic.svg">icons/icons/symbolic/chr-check-round-outline-symbolic.svg</file>
     <file alias="chr-right-large-symbolic.svg">icons/icons/symbolic/chr-right-large-symbolic.svg</file>
+    <file alias="chr-toggle-selection-symbolic.svg">icons/icons/symbolic/chr-toggle-selection-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

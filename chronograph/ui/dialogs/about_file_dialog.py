@@ -1,6 +1,7 @@
 from gi.repository import Adw, GObject, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
+from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.internal import Constants
 from dgutils import Linker
 
@@ -85,3 +86,24 @@ class AboutFileDialog(Adw.Dialog, Linker):
 
   def _on_available_lyrics_button_clicked(self, *_args) -> None:
     self.nav_view.push(self.lyr_nav_page)
+
+  @Gtk.Template.Callback()
+  def _on_delete_file_button_clicked(self, *_args) -> None:
+    track_uuid: str = self._model.uuid
+    title: str = self._model.title_display
+    artist: str = self._model.artist_display
+
+    LibraryManager.delete_files([track_uuid])
+
+    cards_model = Constants.WIN.library.cards_model
+    for index in range(cards_model.get_n_items()):
+      card: SongCardModel = cards_model.get_item(index)
+      if card is not None and card.uuid == track_uuid:
+        cards_model.remove(index)
+        break
+
+    Constants.WIN.library.card_filter_model.notify("n-items")
+    Constants.WIN.show_toast(
+      _('File "{title} — {artist}" was deleted').format(title=title, artist=artist), 2
+    )
+    self.close()

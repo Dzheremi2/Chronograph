@@ -23,17 +23,20 @@ class SongCard(Gtk.Box, Linker):
   cover_loading_stack: Gtk.Stack = gtc()
   cover_placeholder: Gtk.Image = gtc()
   cover_img: Gtk.Image = gtc()
+  detele_icon_img: Gtk.Image = gtc()
   title_label: Gtk.Label = gtc()
   artist_label: Gtk.Label = gtc()
 
   def __init__(self) -> None:
     super().__init__()
     Linker.__init__(self)
+    self._bulk_selected = False
 
     self.event_controller_motion = Gtk.EventControllerMotion.new()
     self.add_controller(self.event_controller_motion)
 
   def bind(self, model: SongCardModel) -> None:
+    self._model = model
     # Bind properties
     self.new_binding(
       model.bind_property(
@@ -63,21 +66,38 @@ class SongCard(Gtk.Box, Linker):
 
   def unbind(self) -> None:
     self.set_cover(None)
+    self._model = None
     self.link_teardown()
 
   def set_cover(self, cover: Optional[Gdk.Texture] = None) -> None:
     if cover is not None:
       self.cover_img.set_from_paintable(cover)
+    else:
+      self.cover_img.set_from_paintable(None)
+    if self._bulk_selected:
+      return
+    if cover is not None:
       self.cover_loading_stack.set_visible_child(self.cover_img)
     else:
       self.cover_loading_stack.set_visible_child(self.cover_placeholder)
-      self.cover_img.set_from_paintable(None)
 
-  # TODO:
+  def set_bulk_selected(self, selected: bool) -> None:
+    self._bulk_selected = selected
+    if selected:
+      self.cover_button.add_css_class("bulk-delete-selected")
+      self.cover_loading_stack.set_visible_child(self.detele_icon_img)
+    else:
+      self.cover_button.remove_css_class("bulk-delete-selected")
+      if self.cover_img.get_paintable() is not None:
+        self.cover_loading_stack.set_visible_child(self.cover_img)
+      else:
+        self.cover_loading_stack.set_visible_child(self.cover_placeholder)
+
   def _load(self, _btn, model: SongCardModel) -> None:
-    pass
+    if Constants.WIN.is_bulk_delete_mode():
+      Constants.WIN.library.toggle_bulk_selection(self, model)
+      return
 
-  # TODO:
   def _show_info(self, _btn, model: SongCardModel) -> None:
     AboutFileDialog(model).present(Constants.WIN)
 

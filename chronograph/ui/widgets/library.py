@@ -6,6 +6,7 @@ from typing import Optional
 from gi.repository import Gdk, Gio, GLib, Gtk
 
 from chronograph.backend.file._song_card_model import SongCardModel
+from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file_parsers import parse_file
 from chronograph.internal import Constants
 from chronograph.ui.widgets._song_card import SongCard
@@ -93,6 +94,9 @@ class Library(Gtk.GridView):
     super().__init__()
     self._adaptive_columns = 0
     self._last_width = 0
+    self._bulk_delete_mode = False
+    self._bulk_selected_uuids: set[str] = set()
+    self._bound_cards: set[SongCard] = set()
     self.add_css_class("library-grid")
 
     self.cards_model = Gio.ListStore.new(SongCardModel)
@@ -136,6 +140,8 @@ class Library(Gtk.GridView):
     token = st.token
 
     card.bind(model)
+    card.set_bulk_selected(model.uuid in self._bulk_selected_uuids)
+    self._bound_cards.add(card)
 
     if st.fut is not None:
       st.fut.cancel()
@@ -157,7 +163,9 @@ class Library(Gtk.GridView):
       st.fut = None
     _drop_pending_for_state(st)
 
+    card.set_bulk_selected(False)
     card.unbind()
+    self._bound_cards.discard(card)
 
   def _on_teardown(self, _factory, list_item: Gtk.ListItem) -> None:
     card: SongCard = list_item.get_child()
@@ -169,6 +177,7 @@ class Library(Gtk.GridView):
         st.fut.cancel()
         st.fut = None
       card.unbind()
+      self._bound_cards.discard(card)
     list_item.set_child(None)
 
   def _on_tick_update_columns(self, *_args) -> bool:
@@ -226,9 +235,47 @@ class Library(Gtk.GridView):
 
   def clear(self) -> None:
     self.cards_model.remove_all()
+    self._clear_bulk_selection()
     self.card_filter_model.notify("n-items")
 
   def add_cards(self, cards: list[SongCardModel]) -> None:
     for card in cards:
       self.cards_model.append(card)
     self.card_filter_model.notify("n-items")
+
+  def set_bulk_delete_mode(self, enabled: bool) -> None:
+    self._bulk_delete_mode = enabled
+    if not enabled:
+      self._clear_bulk_selection()
+
+  def toggle_bulk_selection(self, card: SongCard, model: SongCardModel) -> None:
+    if not self._bulk_delete_mode:
+      return
+    track_uuid = model.uuid
+    if track_uuid in self._bulk_selected_uuids:
+      self._bulk_selected_uuids.remove(track_uuid)
+      card.set_bulk_selected(False)
+    else:
+      self._bulk_selected_uuids.add(track_uuid)
+      card.set_bulk_selected(True)
+
+  def _clear_bulk_selection(self) -> None:
+    for card in list(self._bound_cards):
+      card.set_bulk_selected(False)
+    self._bulk_selected_uuids.clear()
+
+  def bulk_delete_selected(self) -> int:
+    if not self._bulk_selected_uuids:
+      return 0
+    uuids = list(self._bulk_selected_uuids)
+    deleted = LibraryManager.delete_files(uuids)
+
+    uuids_set = set(uuids)
+    for index in range(self.cards_model.get_n_items() - 1, -1, -1):
+      card = self.cards_model.get_item(index)
+      if card is not None and card.uuid in uuids_set:
+        self.cards_model.remove(index)
+
+    self.card_filter_model.notify("n-items")
+    self._clear_bulk_selection()
+    return deleted

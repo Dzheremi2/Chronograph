@@ -343,6 +343,30 @@ template $ChronographWindow : Adw.ApplicationWindow {
                   Box {
                     orientation: horizontal;
 
+                    Box {
+                      spacing: 4;
+
+                      Revealer proceed_bulk_delete_button_revealer {
+                        transition-type: slide_right;
+                        transition-duration: 200;
+                        reveal-child: bind enable_bulk_delete_button.active bidirectional;
+
+                        Button {
+                          icon-name: "clean-files-symbolic";
+                          tooltip-text: _("Delete selected files");
+                          clicked => $on_proceed_bulk_delete_button_clicked();
+
+                          styles ["destructive-action"]
+                        }
+                      }
+
+                      ToggleButton enable_bulk_delete_button {
+                        icon-name: "chr-toggle-selection-symbolic";
+                        tooltip-text: _("Enable bulk deletion mode");
+                        toggled => $_on_bulk_delete_mode_toggled();
+                      }
+                    }
+
                     Button add_dir_to_saves_button {
                       icon-name: "pin-dir-symbolic";
                       tooltip-text: _("Add current directory to saves");
