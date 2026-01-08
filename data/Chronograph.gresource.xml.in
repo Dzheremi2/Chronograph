@@ -4,7 +4,6 @@
     <file preprocess="xml-stripblanks">@APP_ID@.metainfo.xml</file>
     <file preprocess="xml-stripblanks">gtk/window.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/SongCard.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/widgets/_SongCard.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/BoxDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/LRClibTrack.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/Preferences.ui</file>

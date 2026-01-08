@@ -39,6 +39,15 @@ class AvailableLyrics(GObject.GFlags):
 
     return [label for flag, label in _FLAG_LABELS.items() if value & flag]
 
+  @staticmethod
+  def from_formats(formats: list[str]) -> "AvailableLyrics":
+    flags = AvailableLyrics.NONE
+    for fmt in formats:
+      flag = FORMAT_TO_FLAG.get(fmt.lower())
+      if flag is not None:
+        flags |= flag
+    return flags
+
 
 _FLAG_LABELS = {
   AvailableLyrics.NONE: C_("means lyrics absence", "None"),
@@ -47,4 +56,11 @@ _FLAG_LABELS = {
   AvailableLyrics.ELRC: "eLRC",
 }
 
-TEXT_LABELS = {"plain": _("Plain"), "lrc": "LRCL", "elrc": "eLRC"}
+FORMAT_TO_FLAG = {
+  "plain": AvailableLyrics.PLAIN,
+  "lrc": AvailableLyrics.LRC,
+  "elrc": AvailableLyrics.ELRC,
+}
+FLAG_TO_FORMAT = {flag: fmt for fmt, flag in FORMAT_TO_FLAG.items()}
+
+TEXT_LABELS = {"plain": _("Plain"), "lrc": "LRC", "elrc": "eLRC"}

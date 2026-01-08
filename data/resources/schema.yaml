@@ -1,22 +1,15 @@
 # yaml-language-server: $schema=../../docs/schemas/Schema-schema.json
 root:
   settings:
-    file-manipulation:
+    do-lyrics-db-updates:
       enabled:
         type: bool
         default: true
-      format:
-        type: str
-        enum: [.lrc, .txt]
-        default: .lrc
       throttling:
         type: float
         min: 1.0
         max: 10.0
         default: 5.0
-      elrc-prefix:
-        type: str
-        default: eLRC-
       lrc-along-elrc:
         type: bool
         default: true
@@ -108,9 +101,6 @@ root:
         type: str
         enum: [g, l]
         default: g
-      session: # FIXME: REMOVE as deprecated
-        type: str
-        default: None
       filter:
         type: str
         default: "1:1:1:1" # encoded string none:plain:lrc:elrc. 0 for disabled, 1 for enabled

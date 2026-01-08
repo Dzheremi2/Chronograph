@@ -162,17 +162,6 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       title: _("General");
       sensitive: bind auto_file_manipulation_switch.active;
 
-      Adw.ComboRow auto_file_manipulation_format {
-        title: _("File Format");
-        subtitle: _("File format for auto manipulation");
-        model: StringList formats {
-          strings [
-            ".lrc",
-            ".txt"
-          ]
-        };
-      }
-
       Adw.SpinRow autosave_throttling_spin {
         title: _("Autosave Interval");
         subtitle: _("Autosave interval after lyrics syncing inactivity");
@@ -192,27 +181,6 @@ template $ChronographPreferences : Adw.PreferencesDialog {
       Adw.SwitchRow save_plain_lrc_also_switch_row {
         title: _("Save Plain LRC Too");
         subtitle: _("Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't set");
-      }
-
-      Adw.EntryRow elrc_prefix_entry_row {
-        title: _("eLRC Prefix");
-        sensitive: bind save_plain_lrc_also_switch_row.active;
-
-        [suffix]
-        Gtk.MenuButton {
-          valign: center;
-          halign: center;
-          direction: up;
-          icon-name: "info-button-symbolic";
-          tooltip-text: C_("button tooltip; noun", "Help");
-          popover: Popover {
-            child: Label {
-              label: _("A prefix, eLRC files will have to not interfere with plain LRC ones");
-            };
-          };
-
-          styles ["flat"]
-        }
       }
     }
 

@@ -13,7 +13,6 @@ gi.require_version("Gio", "2.0")
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
-from chronograph.backend.file import FileManager, LibraryModel
 from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
@@ -78,7 +77,7 @@ class ChronographApplication(Adw.Application):
         Constants.WIN.import_files_to_library(self.paths)
         self.paths = []
     elif self.paths:
-      LibraryModel().open_files(self.paths)
+      Constants.WIN.show_toast(_("Open a library before importing files"), 3)
       self.paths = []
     else:
       Constants.WIN.set_property("state", WindowState.EMPTY)
@@ -127,28 +126,6 @@ class ChronographApplication(Adw.Application):
       Constants.WIN,
       "maximized",
     )
-
-    # if Schema.get("root.settings.general.auto-list-view"):
-    #   self.lookup_action("view_type").set_enabled(False)
-    # else:
-    #   self.lookup_action("view_type").set_enabled(True)
-
-    # if (
-    #   (path := Schema.get("root.state.library.session")) != "None"
-    #   and Path(Schema.get("root.state.library.session")).exists()
-    #   and len(self.paths) == 0
-    # ):
-    #   logger.info("Loading last opened session: '%s'", path)
-    #   LibraryModel().open_dir(path)
-    # elif len(self.paths) != 0:
-    #   logger.info("Opening requested files")
-    #   LibraryModel().open_files(self.paths)
-    # else:
-    #   Constants.WIN.set_property("state", WindowState.EMPTY)
-
-    # set_db(
-    #   Schema.get("root.state.library.last-library") + "/library.db"
-    # ).connect_and_create_tables()
 
     Constants.WIN.present()
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
@@ -231,10 +208,9 @@ class ChronographApplication(Adw.Application):
   def do_shutdown(self) -> None:
     """Called on app closure. Proceeds all on exit operations"""
     Player().stop()
-    FileManager().kill_all_monitors()
-    if not Schema.get("root.settings.general.save-session"):
-      logger.info("Resetting session")
-      Schema.set("root.state.library.session", "None")
+    if not Schema.get("root.settings.general.save-library"):
+      logger.info("Resetting last library")
+      Schema.set("root.state.library.last-library", "None")
     Schema._save()  # noqa: SLF001
 
     Constants.CACHE_FILE.seek(0)

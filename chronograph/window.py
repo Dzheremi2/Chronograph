@@ -11,12 +11,8 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
 from chronograph.backend.db.models import SchemaInfo
-from chronograph.backend.file import LibraryModel
-from chronograph.backend.file import SongCardModel as LegacySongCardModel
-from chronograph.backend.file._song_card_model import (
-  SongCardModel as LibrarySongCardModel,
-)
 from chronograph.backend.file.library_manager import LibraryManager
+from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.miscellaneous import (
   decode_filter_schema,
@@ -267,8 +263,7 @@ class ChronographWindow(Adw.ApplicationWindow):
           if dir_path and (Path(dir_path) / "is_chr_library").exists():
             self.open_library(dir_path)
           elif dir_path:
-            LibraryManager.current_library = None
-            LibraryModel().open_dir(dir_path)
+            self.show_toast(_("Only Chronograph libraries are supported"), 3)
       except GLib.GError:
         pass
 
@@ -291,7 +286,7 @@ class ChronographWindow(Adw.ApplicationWindow):
           if LibraryManager.current_library is not None:
             self.import_files_to_library(files)
           else:
-            LibraryModel().open_files(files)
+            self.show_toast(_("Open a library before importing files"), 3)
       except GLib.GError:
         pass
 
@@ -333,7 +328,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     if LibraryManager.current_library is not None:
       self.import_files_to_library(files)
     else:
-      LibraryModel().open_files(files)
+      self.show_toast(_("Open a library before importing files"), 3)
     self._on_drag_leave()
 
   def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
@@ -382,7 +377,6 @@ class ChronographWindow(Adw.ApplicationWindow):
       return False
 
     Schema.set("root.state.library.last-library", path)
-    Schema.set("root.state.library.session", path)
     self._load_library_tracks()
     self.build_sidebar()
     self.state = WindowState.LOADED_DIR
@@ -394,12 +388,12 @@ class ChronographWindow(Adw.ApplicationWindow):
       return
 
     self.library.clear()
-    cards: list[LibrarySongCardModel] = []
+    cards: list[SongCardModel] = []
 
     for track in LibraryManager.list_tracks():
       media_path = LibraryManager.track_path(track.track_uuid, track.format)
       if media_path.exists() and parse_file(media_path) is not None:
-        cards.append(LibrarySongCardModel(media_path, track.track_uuid))
+        cards.append(SongCardModel(media_path, track.track_uuid))
 
     if cards:
       self.library.add_cards(cards)
@@ -449,11 +443,11 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.show_toast(_("No supported files were imported"))
         return
 
-      cards: list[LibrarySongCardModel] = []
+      cards: list[SongCardModel] = []
       for track_uuid, track_format in imported:
         media_path = LibraryManager.track_path(track_uuid, track_format)
         if media_path.exists():
-          cards.append(LibrarySongCardModel(media_path, track_uuid))
+          cards.append(SongCardModel(media_path, track_uuid))
 
       if cards:
         self.library.add_cards(cards)
@@ -579,12 +573,12 @@ class ChronographWindow(Adw.ApplicationWindow):
       logger.debug("View type set to: %s", self.view_state)
       Schema.set("root.state.library.view", self.view_state)
 
-  def enter_sync_mode(self, card_model: LegacySongCardModel) -> None:
+  def enter_sync_mode(self, card_model: SongCardModel) -> None:
     """Enters sync mode for the given song card
 
     Parameters
     ----------
-    card_model : LegacySongCardModel
+    card_model : SongCardModel
       Card model with all necessary data for sync page
     """
     if Schema.get("root.settings.syncing.sync-type") == "lrc":
@@ -654,8 +648,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     ll = self.lookup_action("filter_lrc").get_state().get_boolean()
     ee = self.lookup_action("filter_elrc").get_state().get_boolean()
     Schema.set("root.state.library.filter", encode_filter_schema(nn, pp, ll, ee))
-    self.library.invalidate_filter()
-    self.library_list.invalidate_filter()
+    self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
   ############### WindowState related methods ###############
   @GObject.Property()
@@ -678,7 +671,6 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.library_scrolled_window.set_child(self.no_source_opened)
         self.right_buttons_revealer.set_reveal_child(False)
         self.left_buttons_revealer.set_reveal_child(False)
-        Schema.set("root.state.library.session", "None")
         self.sidebar.select_row(None)
         self.open_source_button.set_visible(False)
       case WindowState.EMPTY_DIR:
@@ -701,7 +693,6 @@ class ChronographWindow(Adw.ApplicationWindow):
             self.library_scrolled_window.set_child(self.library)
           case "l":
             self.library_scrolled_window.set_child(self.library_list)
-        Schema.set("root.state.library.session", "None")
         self.right_buttons_revealer.set_reveal_child(False)
         self.open_source_button.set_visible(True)
         self.sidebar.select_row(None)

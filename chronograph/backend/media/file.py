@@ -4,7 +4,7 @@ from typing import Optional, Self
 import mutagen
 from gi.repository import Gdk, GdkPixbuf, GLib
 
-from chronograph.backend.lyrics import Lyrics
+from chronograph.backend.lyrics.interfaces import LyricsBase
 from dgutils.decorators import baseclass
 
 
@@ -169,12 +169,12 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> Self:
+  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:
     """Embeds the lyrics to the corresponding tags in realization
 
     Parameters
     ----------
-    lyrics : Optional[str]
+    lyrics : Optional[StartLyrics]
         lyrics, if `None` lyrics removed
     force : bool, by default `False`
         Allows to embed lyrics independently of schema settings

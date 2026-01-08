@@ -1,3 +1,4 @@
+import contextlib
 from concurrent.futures import Future, ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
@@ -5,11 +6,12 @@ from typing import Optional
 
 from gi.repository import Gdk, Gio, GLib, Gtk
 
-from chronograph.backend.file._song_card_model import SongCardModel
+from chronograph.backend.file.available_lyrics import AvailableLyrics
 from chronograph.backend.file.library_manager import LibraryManager
+from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.file_parsers import parse_file
 from chronograph.internal import Constants
-from chronograph.ui.widgets._song_card import SongCard
+from chronograph.ui.widgets.song_card import SongCard
 
 
 @dataclass
@@ -143,6 +145,11 @@ class Library(Gtk.GridView):
     card.set_bulk_selected(model.uuid in self._bulk_selected_uuids)
     self._bound_cards.add(card)
 
+    card._lyrics_filter_handler = model.connect(  # noqa: SLF001
+      "notify::available-lyrics",
+      lambda *_: self.filter.changed(Gtk.FilterChange.DIFFERENT),
+    )
+
     if st.fut is not None:
       st.fut.cancel()
       st.fut = None
@@ -156,6 +163,7 @@ class Library(Gtk.GridView):
     card: SongCard = list_item.get_child()
     if not card:
       return
+    model: SongCardModel = list_item.get_item()
 
     st: _CoverState = card._cover_state  # noqa: SLF001
     if st.fut is not None:
@@ -165,6 +173,10 @@ class Library(Gtk.GridView):
 
     card.set_bulk_selected(False)
     card.unbind()
+    if model and hasattr(card, "_lyrics_filter_handler"):
+      with contextlib.suppress(Exception):
+        model.disconnect(card._lyrics_filter_handler)  # noqa: SLF001
+      card._lyrics_filter_handler = None  # noqa: SLF001
     self._bound_cards.discard(card)
 
   def _on_teardown(self, _factory, list_item: Gtk.ListItem) -> None:
@@ -212,15 +224,29 @@ class Library(Gtk.GridView):
 
     return ((model1.title_display > model2.title_display) ^ order) * 2 - 1
 
-  # TODO: Extend with filtering by AvailableLyrics (see ../../backend/file/available_lyrics.py)
   def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
     text = Constants.WIN.search_entry.get_text().lower()
     text_matches = (
       text in model.title_display.lower() or text in model.artist_display.lower()
     )
-    tag_filter = getattr(Constants.WIN, "active_tag_filter", None)
+    tag_filter = Constants.WIN.active_tag_filter
     if tag_filter and tag_filter not in model.tags:
       return False
+
+    flags = model.available_lyrics
+    if flags == AvailableLyrics.NONE:
+      if not Constants.WIN.filter_none:
+        return False
+    else:
+      match_any = False
+      if Constants.WIN.filter_plain and flags & AvailableLyrics.PLAIN:
+        match_any = True
+      if Constants.WIN.filter_lrc and flags & AvailableLyrics.LRC:
+        match_any = True
+      if Constants.WIN.filter_elrc and flags & AvailableLyrics.ELRC:
+        match_any = True
+      if not match_any:
+        return False
     return not (text != "" and not text_matches)
 
   def _on_filter_items(self, *_args) -> None:

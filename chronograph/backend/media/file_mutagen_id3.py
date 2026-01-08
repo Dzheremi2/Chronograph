@@ -3,7 +3,9 @@ from typing import Optional, Self
 
 from mutagen.id3 import APIC, TALB, TIT2, TPE1, USLT
 
-from chronograph.backend.lyrics import Lyrics, LyricsFormat
+from chronograph.backend.lyrics import LyricsConversionError
+from chronograph.backend.lyrics.formats import FORMAT_ORDER
+from chronograph.backend.lyrics.interfaces import LyricsBase
 from chronograph.internal import Schema
 
 from .file import TaggableFile
@@ -96,16 +98,20 @@ class FileID3(TaggableFile):
     setattr(self, tags_conjunction[tag_name], new_val)
     return self
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> Self:
+  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:
     if lyrics is not None:
-      if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
-        target_format = LyricsFormat[
-          Schema.get("root.settings.file-manipulation.embed-lyrics.default").upper()
-        ]
-        target_format = LyricsFormat.from_int(
-          min(target_format.value, lyrics.format.value)
-        )
-        text = lyrics.of_format(target_format)
+      if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled") or force:
+        target = Schema.get(
+          "root.settings.do-lyrics-db-updates.embed-lyrics.default"
+        ).lower()
+        source = lyrics.format
+        target_rank = FORMAT_ORDER.get(target, 0)
+        source_rank = FORMAT_ORDER.get(source, 0)
+        chosen = target if target_rank <= source_rank else source
+        try:
+          text = lyrics.as_format(chosen)
+        except LyricsConversionError:
+          text = lyrics.as_format(source)
         try:
           self._mutagen_file.tags["USLT"].text = text
         except KeyError:

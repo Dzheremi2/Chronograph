@@ -41,7 +41,8 @@ class UIPlayer(Adw.BreakpointBin, Linker):
   ) -> None:
     super().__init__()
     Linker.__init__(self)
-    Player().set_file(Path(card_model.path))
+    media_path = card_model.mediafile
+    Player().set_file(media_path)
 
     # Init Playback GUI setup
     vol = int(Player().volume * 100)
@@ -107,6 +108,10 @@ class UIPlayer(Adw.BreakpointBin, Linker):
         GObject.BindingFlags.SYNC_CREATE,
       )
     )
+
+  def link_teardown(self) -> None:
+    super().link_teardown()
+    self._card = None
 
   @Gtk.Template.Callback()
   def _toggle_play(self, *_args) -> None:

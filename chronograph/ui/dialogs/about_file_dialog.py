@@ -3,8 +3,8 @@ import json
 from gi.repository import Adw, GObject, Gtk
 
 from chronograph.backend.db.models import SchemaInfo, Track, TrackLyric
-from chronograph.backend.file._song_card_model import SongCardModel
 from chronograph.backend.file.library_manager import LibraryManager
+from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.internal import Constants
 from chronograph.ui.widgets.lyric_row import LyricRow
 from dgutils import Linker

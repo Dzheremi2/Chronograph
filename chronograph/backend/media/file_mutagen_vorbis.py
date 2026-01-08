@@ -8,7 +8,9 @@ from mutagen.flac import FLAC, Picture
 from mutagen.flac import error as FLACError
 from PIL import Image
 
-from chronograph.backend.lyrics import Lyrics, LyricsFormat
+from chronograph.backend.lyrics import LyricsConversionError
+from chronograph.backend.lyrics.formats import FORMAT_ORDER
+from chronograph.backend.lyrics.interfaces import LyricsBase
 from chronograph.internal import Schema
 
 from .file import TaggableFile
@@ -128,22 +130,24 @@ class FileVorbis(TaggableFile):
     setattr(self, tags_conjunction[tag_name][0], new_val)
     return self
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> Self:
+  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:
     if lyrics is not None:
-      if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled") or force:
-        target_format = LyricsFormat[
-          Schema.get("root.settings.file-manipulation.embed-lyrics.default").upper()
-        ]
-        target_format = LyricsFormat.from_int(
-          min(target_format.value, lyrics.format.value)
-        )
-        text = lyrics.of_format(target_format)
-        if not Schema.get("root.settings.file-manipulation.embed-lyrics.vorbis"):
+      if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled") or force:
+        target = Schema.get(
+          "root.settings.do-lyrics-db-updates.embed-lyrics.default"
+        ).lower()
+        source = lyrics.format
+        target_rank = FORMAT_ORDER.get(target, 0)
+        source_rank = FORMAT_ORDER.get(source, 0)
+        chosen = target if target_rank <= source_rank else source
+        try:
+          text = lyrics.as_format(chosen)
+        except LyricsConversionError:
+          text = lyrics.as_format(source)
+        if not Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.vorbis"):
           self._mutagen_file.tags["UNSYNCEDLYRICS"] = text
         else:
-          self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics.of_format(
-            LyricsFormat.PLAIN
-          )
+          self._mutagen_file.tags["UNSYNCEDLYRICS"] = lyrics.as_format("plain")
 
           self._mutagen_file.tags["LYRICS"] = text
         self.save()

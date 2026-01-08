@@ -2,7 +2,6 @@ blueprints = custom_target('blueprints',
   input: files(
     'gtk/window.blp',
     'gtk/ui/widgets/SongCard.blp',
-    'gtk/ui/widgets/_SongCard.blp',
     'gtk/ui/dialogs/BoxDialog.blp',
     'gtk/ui/dialogs/LRClib.blp',
     'gtk/ui/widgets/LRClibTrack.blp',
