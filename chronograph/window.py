@@ -1,6 +1,7 @@
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement LRC metatags support
 
+import json
 from enum import Enum
 from gettext import ngettext
 from pathlib import Path
@@ -9,6 +10,7 @@ from typing import Callable, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
+from chronograph.backend.db.models import SchemaInfo
 from chronograph.backend.file import LibraryModel
 from chronograph.backend.file import SongCardModel as LegacySongCardModel
 from chronograph.backend.file._song_card_model import (
@@ -26,8 +28,8 @@ from chronograph.ui.dialogs.mass_downloading_dialog import MassDownloadingDialog
 from chronograph.ui.dialogs.preferences import ChronographPreferences
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
+from chronograph.ui.widgets.bookmark import Bookmark
 from chronograph.ui.widgets.library import Library
-from chronograph.ui.widgets.saved_location import SavedLocation
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -151,8 +153,10 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.drop_target.connect("drop", self._on_drag_drop)
     self.add_controller(self.drop_target)
 
-    # Building up the sidebar with saved locations
-    self.build_sidebar()
+    # Building up the sidebar with tag bookmarks
+    self.active_tag_filter: Optional[str] = None
+    self._sidebar_selection_changed = False
+    self.sidebar.set_placeholder(self.no_saves_found_status)
 
     # Setup filter by lyrics format
     (
@@ -182,15 +186,30 @@ class ChronographWindow(Adw.ApplicationWindow):
     Schema.bind("root.state.window.sidebar", self.overlay_split_view, "show-sidebar")
 
   def build_sidebar(self) -> None:
-    """Builds the sidebar with saved locations"""
+    """Builds the sidebar with tag bookmarks"""
     logger.debug("Building the sidebar")
     self.sidebar.remove_all()
-    Constants.CACHE["pins"] = [
-      pin for pin in Constants.CACHE["pins"] if Path(pin["path"]).exists()
-    ]
-    for pin in Constants.CACHE["pins"]:
-      self.sidebar.append(SavedLocation(pin["path"], pin["name"]))
+    if LibraryManager.current_library is None:
+      self.active_tag_filter = None
+      return
+    tags = self._get_registered_tags()
+    for tag in tags:
+      self.sidebar.append(Bookmark(tag))
     self.sidebar.set_placeholder(self.no_saves_found_status)
+    if self.active_tag_filter and self.active_tag_filter not in tags:
+      self.active_tag_filter = None
+      self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
+
+  def _get_registered_tags(self) -> list[str]:
+    try:
+      raw = SchemaInfo.get_by_id("tags").value
+    except (SchemaInfo.DoesNotExist, AttributeError):
+      return []
+    try:
+      tags = json.loads(raw)
+    except (json.JSONDecodeError, TypeError):
+      return []
+    return tags if isinstance(tags, list) else []
 
   def on_toggle_sidebar_action(self, *_args) -> None:
     """Toggle sidebar visibility"""
@@ -365,6 +384,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     Schema.set("root.state.library.last-library", path)
     Schema.set("root.state.library.session", path)
     self._load_library_tracks()
+    self.build_sidebar()
     self.state = WindowState.LOADED_DIR
     return True
 
@@ -462,22 +482,23 @@ class ChronographWindow(Adw.ApplicationWindow):
     self._import_task.start()
 
   @Gtk.Template.Callback()
-  def load_save(self, _list_box: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:
-    """Loads a saved location from the sidebar
+  def _on_sidebar_tag_selected(self, _list_box, row: Gtk.ListBoxRow) -> None:
+    self._sidebar_selection_changed = True
+    if row is None or row.get_child() is None:
+      self.active_tag_filter = None
+    else:
+      self.active_tag_filter = row.get_child().tag
+    self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
-    Parameters
-    ----------
-    _list_box : Gtk.ListBox
-        List box containing saved locations
-    row : Gtk.ListBoxRow
-        Row containing the saved location to load
-    """
-    try:
-      if row.get_child().path != Schema.get("root.state.library.session"):
-        logger.info("Loading save '%s'", row.get_child().name)
-        row.get_child().load()
-    except AttributeError:
-      pass
+  @Gtk.Template.Callback()
+  def _on_sidebar_tag_activated(self, _list_box, row: Gtk.ListBoxRow) -> None:
+    if self._sidebar_selection_changed:
+      self._sidebar_selection_changed = False
+      return
+    if row is None:
+      return
+    if self.sidebar.get_selected_row() is row:
+      self.sidebar.unselect_row(row)
 
   @Gtk.Template.Callback()
   def on_search_changed(self, *_args) -> None:
@@ -687,7 +708,7 @@ class ChronographWindow(Adw.ApplicationWindow):
           case "l":
             self.library_scrolled_window.set_child(self.library_list)
         Schema.set("root.state.library.session", "None")
-        self.right_buttons_revealer.set_reveal_child(False) 
+        self.right_buttons_revealer.set_reveal_child(False)
         self.open_source_button.set_visible(True)
         self.sidebar.select_row(None)
     logger.debug("Window state was set to: %s", self.state)

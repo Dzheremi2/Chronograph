@@ -8,7 +8,6 @@ chronograph/ui/dialogs/mass_downloading_dialog.py
 chronograph/ui/sync_pages/lrc_sync_page.py
 chronograph/ui/sync_pages/wbw_sync_page.py
 chronograph/ui/widgets/song_card.py
-chronograph/ui/widgets/saved_location.py
 chronograph/ui/widgets/lrclib_track.py
 chronograph/ui/widgets/ui_player.py
 chronograph/backend/file/song_card_model.py
@@ -23,7 +22,6 @@ data/gtk/ui/dialogs/ResyncAllAlertDialog.blp
 data/gtk/ui/dialogs/MassDownloadingDialog.blp
 data/gtk/ui/sync_pages/LRCSyncPage.blp
 data/gtk/ui/sync_pages/WBWSyncPage.blp
-data/gtk/ui/widgets/SavedLocation.blp
 data/gtk/ui/widgets/SongCard.blp
 data/gtk/ui/widgets/UIPlayer.blp
 data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in

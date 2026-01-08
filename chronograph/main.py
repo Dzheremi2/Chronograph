@@ -5,7 +5,6 @@ from pathlib import Path
 import gi
 import yaml
 
-
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("GstPlay", "1.0")
@@ -311,26 +310,6 @@ def main(_version) -> int:
       encoding="utf-8",
       allow_unicode=True,
     )
-
-  # FIXME: Testing: REMOVE
-  # set_db(str(Constants.DATA_DIR / "test.db"))
-  # connect_and_create_tables()
-  # with db():
-  #   SchemaInfo.insert(key="ver", value="1").on_conflict_replace().execute()
-  # LibraryManager.new_library(Path("/home/dzheremi/.tmp"))
-  # Schema.set(
-  #   "root.state.library.last-library", "/home/dzheremi/.tmp/ChronographLibrary"
-  # )
-  # set_db(
-  #   "/home/dzheremi/.tmp/ChronographLibrary/library.db"
-  # ).connect_and_create_tables()
-  # LibraryManager.current_library = "/home/dzheremi/.tmp/ChronographLibrary"
-  # LibraryManager.import_files(
-  #   [
-  #     Path(media.path) for media in parse_files(parse_dir("/home/dzheremi/Music/Test2"))
-  #   ],
-  # )
-  # LibraryManager.delete_files([track.track_uuid for track in Track.select()])
 
   Constants.APP = app = ChronographApplication()
 

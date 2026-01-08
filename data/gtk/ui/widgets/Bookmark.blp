@@ -1,0 +1,25 @@
+using Gtk 4.0;
+
+template $Bookmark: Box {
+  orientation: horizontal;
+  margin-start: 8;
+  margin-top: 4;
+  margin-end: 4;
+  margin-bottom: 4;
+  spacing: 8;
+  height-request: 34;
+
+  Image {
+    icon-name: "chr-tag-outline-symbolic";
+  }
+
+  Label title {
+    halign: start;
+    label: "Tag";
+    ellipsize: end;
+    use-markup: false;
+    hexpand: true;
+
+    styles ["heading"]
+  }
+}

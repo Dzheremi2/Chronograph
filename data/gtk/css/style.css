@@ -75,17 +75,6 @@ button.pill.small {
   padding: 1px 12px;
 }
 
-/* Make tag buttons static */
-button.pill.small.tag-button,
-button.pill.small.tag-button:hover,
-button.pill.small.tag-button:active,
-button.pill.small.tag-button:checked {
-  background-color: var(--chip-bg-color);
-  color: var(--chip-fg-color);
-  background-image: none;
-  box-shadow: none;
-}
-
 
 /* Reimplements OSD style from LibAdwaita to not affect associated Gio.Menu */
 menubutton.osd-button-only > button {

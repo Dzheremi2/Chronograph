@@ -212,12 +212,15 @@ class Library(Gtk.GridView):
 
     return ((model1.title_display > model2.title_display) ^ order) * 2 - 1
 
-  # TODO: Extend with filtering by AvailableLyrics
+  # TODO: Extend with filtering by AvailableLyrics (see ../../backend/file/available_lyrics.py)
   def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
     text = Constants.WIN.search_entry.get_text().lower()
     text_matches = (
       text in model.title_display.lower() or text in model.artist_display.lower()
     )
+    tag_filter = getattr(Constants.WIN, "active_tag_filter", None)
+    if tag_filter and tag_filter not in model.tags:
+      return False
     return not (text != "" and not text_matches)
 
   def _on_filter_items(self, *_args) -> None:

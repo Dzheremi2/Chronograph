@@ -257,11 +257,16 @@ class AboutFileDialog(Adw.Dialog, Linker):
       Track.update(tags_json=updated).where(
         Track.track_uuid == track.track_uuid
       ).execute()
+    current_tags = list(self._model.tags or [])
+    if tag in current_tags:
+      current_tags = [val for val in current_tags if val != tag]
+      self._model.tags = current_tags
     if row.get_parent() is not None and self._tag_dialog_group is not None:
       self._tag_dialog_group.remove(row)
     if self._tag_dialog_group is not None and self._tag_dialog_group.get_row(0) is None:
       self._show_tag_status_page()
     self._populate_tags()
+    self._refresh_library_filter()
 
   def _show_tag_group(self) -> None:
     if (
@@ -303,14 +308,13 @@ class AboutFileDialog(Adw.Dialog, Linker):
     tag = tag.strip()
     if not tag:
       return
-    track_tags = self._get_track_tags()
+    track_tags = list(self._model.tags or [])
     if tag in track_tags:
       return
     track_tags.append(tag)
-    Track.update(tags_json=track_tags).where(
-      Track.track_uuid == self._model.uuid
-    ).execute()
+    self._model.tags = track_tags
     self._populate_tags()
+    self._refresh_library_filter()
 
   def _build_tag_button(self, tag: str) -> Gtk.Button:
     button = Gtk.Button(
@@ -319,24 +323,26 @@ class AboutFileDialog(Adw.Dialog, Linker):
       css_classes=["pill", "small"],
     )
     button.set_tooltip_text(_("Click to unassign"))
-    button.connect("clicked", lambda *_: self._unassign_tag(tag))
+    button.connect("clicked", self._unassign_tag, tag)
     return button
 
-  def _unassign_tag(self, tag: str) -> None:
+  def _unassign_tag(self, _btn, tag: str) -> None:
     tag = tag.strip()
     if not tag:
       return
-    track_tags = self._get_track_tags()
+    track_tags = list(self._model.tags or [])
     if tag not in track_tags:
       return
     track_tags.remove(tag)
-    Track.update(tags_json=track_tags).where(
-      Track.track_uuid == self._model.uuid
-    ).execute()
+    self._model.tags = track_tags
     self._populate_tags()
+    self._refresh_library_filter()
 
   def _get_track_tags(self) -> list[str]:
-    return list(Track.get_by_id(self._model.uuid).tags_json or [])
+    return list(self._model.tags or [])
+
+  def _refresh_library_filter(self) -> None:
+    Constants.WIN.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
   def _get_registered_tags(self) -> list[str]:
     try:
@@ -353,6 +359,7 @@ class AboutFileDialog(Adw.Dialog, Linker):
     SchemaInfo.insert(
       key="tags", value=json.dumps(tags)
     ).on_conflict_replace().execute()
+    Constants.WIN.build_sidebar()
 
   def _clear_wrap_box(self, box: Adw.WrapBox) -> None:
     child = box.get_first_child()

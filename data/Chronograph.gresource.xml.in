@@ -14,7 +14,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/MassDownloadingDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/ImportingDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/AboutFileDialog.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/widgets/SavedLocation.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/Bookmark.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/UIPlayer.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/WBWSyncPage.ui</file>
@@ -77,6 +77,7 @@
     <file alias="chr-check-round-outline-symbolic.svg">icons/icons/symbolic/chr-check-round-outline-symbolic.svg</file>
     <file alias="chr-right-large-symbolic.svg">icons/icons/symbolic/chr-right-large-symbolic.svg</file>
     <file alias="chr-toggle-selection-symbolic.svg">icons/icons/symbolic/chr-toggle-selection-symbolic.svg</file>
+    <file alias="chr-tag-outline-symbolic.svg">icons/icons/symbolic/chr-tag-outline-symbolic.svg</file>
     <file alias="note-placeholder.svg">icons/icons/scalable/note-placeholder.svg</file>
   </gresource>
 </gresources>

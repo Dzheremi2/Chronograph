@@ -22,13 +22,11 @@ class SongCardModel(GObject.Object):
   available_lyrics: AvailableLyrics = GObject.Property(
     type=AvailableLyrics, default=AvailableLyrics.NONE
   )
-  tags: Gtk.StringList = GObject.Property(
-    type=Gtk.StringList, default=Gtk.StringList.new()
-  )
 
   def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
     self.mediafile: Path = mediafile
     self.uuid: str = uuid
+    self._tags = list(Track.get_by_id(self.uuid).tags_json or [])
     media = parse_file(mediafile)
     if media is None:
       raise ValueError(f"Unsupported media file: {mediafile}")
@@ -110,3 +108,16 @@ class SongCardModel(GObject.Object):
       if value is not None
       else "---"
     )
+
+  @GObject.Property(type=object)
+  def tags(self) -> list[str]:
+    return list(self._tags)
+
+  @tags.setter
+  def tags(self, tags: list[str]) -> None:
+    tags = list(tags or [])
+    if tags == self._tags:
+      return
+    Track.update(tags_json=tags).where(Track.track_uuid == self.uuid).execute()
+    self._tags = tags
+    self.notify("tags")

@@ -214,7 +214,9 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                 ScrolledWindow sidebar_window {
                   ListBox sidebar {
-                    row-activated => $load_save();
+                    row-selected => $_on_sidebar_tag_selected();
+                    row-activated => $_on_sidebar_tag_activated();
+                    selection-mode: single;
 
                     styles ["navigation-sidebar"]
                   }
