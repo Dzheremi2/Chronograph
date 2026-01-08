@@ -605,15 +605,15 @@ class ChronographWindow(Adw.ApplicationWindow):
     Parameters
     ----------
     msg : str
-        Message to show in the toast
+      Message to show in the toast
     timeout : int, optional
-        Timeout for the toast in seconds, defaults to 5
+      Timeout for the toast in seconds, defaults to 5
     button_label : str, optional
-        Label for the button, if any
+      Label for the button, if any
     button_callback : Callable, optional
-        Callback for the button, if any
+      Callback for the button, if any
     """
-    toast = Adw.Toast(title=msg, timeout=timeout)
+    toast = Adw.Toast(title=msg, timeout=timeout, use_markup=False)
     if button_label and button_callback:
       toast.set_button_label(button_label)
       toast.connect("button-clicked", button_callback)
