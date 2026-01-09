@@ -43,7 +43,6 @@ jobs:
             mingw-w64-ucrt-x86_64-blueprint-compiler
             mingw-w64-ucrt-x86_64-python-mutagen
             mingw-w64-ucrt-x86_64-python-requests
-            mingw-w64-ucrt-x86_64-python-peewee
             mingw-w64-ucrt-x86_64-adwaita-icon-theme
             mingw-w64-ucrt-x86_64-desktop-file-utils
             mingw-w64-ucrt-x86_64-appstream
@@ -88,7 +87,7 @@ jobs:
         run: |
           cd "$REPO_DIR"
           
-          pip install pyinstaller pyyaml mutagen requests pillow python-magic httpx pycairo websockets chardet idna certifi urllib3 --break-system-packages
+          pip install pyinstaller pyyaml mutagen requests pillow python-magic httpx peewee pycairo websockets chardet idna certifi urllib3 --break-system-packages
           
           find build -name "internal.py"
           cp build/chronograph/internal.py chronograph/internal.py || cp build/src/chronograph/internal.py chronograph/internal.py || echo "WARNING: internal.py not found"

@@ -85,16 +85,12 @@ jobs:
         run: |
           cd "$REPO_DIR"
           
-          pip install pyinstaller pyyaml mutagen requests pillow python-magic httpx pycairo websockets chardet idna certifi urllib3 --break-system-packages
+          pip install pyinstaller pyyaml mutagen requests pillow python-magic httpx peewee pycairo websockets chardet idna certifi urllib3 --break-system-packages
           
           find build -name "internal.py"
           cp build/chronograph/internal.py chronograph/internal.py || cp build/src/chronograph/internal.py chronograph/internal.py || echo "WARNING: internal.py not found"
           find build -name "*.gresource"
           cp build/data/Chronograph.gresource Chronograph.gresource || echo "WARNING: GResource not found"
-          mkdir -p data/resources
-          if [ -f build/data/resources/constants.yaml ]; then
-             cp build/data/resources/constants.yaml data/resources/constants.yaml
-          fi
 
           gdk-pixbuf-query-loaders | sed 's|"[^"]*[\\/]\([^"\\/]*\.dll\)"|"\1"|' > loaders.cache
           PIXBUF_DIR=$(cygpath -m /ucrt64/lib/gdk-pixbuf-2.0/2.10.0)
@@ -166,6 +162,7 @@ jobs:
             --collect-all="PIL" \
             --collect-all="magic" \
             --collect-all="httpx" \
+            --collect-all="peewee" \
             --collect-all="chardet" \
             --collect-all="certifi" \
             --collect-all="idna" \
