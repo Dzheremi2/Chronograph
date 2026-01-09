@@ -5,6 +5,9 @@ from uuid import uuid4
 from chronograph.backend.db import db
 from chronograph.backend.db.models import Lyric, TrackLyric
 from chronograph.backend.lyrics.formats import ElrcLyrics, LrcLyrics, PlainLyrics
+from chronograph.internal import Constants
+
+logger = Constants.DB_LOGGER
 
 
 def _get_track_lyric(track_uuid: str, fmt: str) -> Optional[Lyric]:
@@ -102,11 +105,13 @@ def save_track_lyric(track_uuid: str, fmt: str, content: str) -> Optional[Lyric]
         updated_at=now,
       )
       TrackLyric.create(track=track_uuid, lyric=lyric.lyrics_uuid)
+      logger.debug("Lyric created: track=%s format=%s", track_uuid, fmt)
     else:
       lyric.content = content
       lyric.finished = finished
       lyric.updated_at = now
       lyric.save()
+      logger.debug("Lyric updated: track=%s format=%s", track_uuid, fmt)
   return lyric
 
 
@@ -128,3 +133,4 @@ def delete_track_lyric(track_uuid: str, fmt: str) -> None:
       (TrackLyric.track == track_uuid) & (TrackLyric.lyric == lyric.lyrics_uuid)
     ).execute()
     Lyric.delete_by_id(lyric.lyrics_uuid)
+    logger.info("Lyric deleted: track=%s format=%s", track_uuid, fmt)

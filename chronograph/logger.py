@@ -65,6 +65,11 @@ def init_logger() -> None:
   file_logger.addHandler(file_handler)
   file_logger.addHandler(console_handler)
 
+  db_logger = logging.getLogger("DB")
+  db_logger.setLevel(log_level)
+  db_logger.addHandler(file_handler)
+  db_logger.addHandler(console_handler)
+
   exception_logger = logging.getLogger("EXCEPTION")
   exception_logger.setLevel(log_level)
   exception_logger.addHandler(file_handler)

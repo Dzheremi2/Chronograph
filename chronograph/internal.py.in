@@ -50,6 +50,7 @@ class Constants(metaclass=ConstantsMeta):
   PLAYER_LOGGER = logging.getLogger("GST_PLAYER")
   LRCLIB_LOGGER = logging.getLogger("LRCLIB")
   FILE_LOGGER = logging.getLogger("FILE_MANAGER")
+  DB_LOGGER = logging.getLogger("DB")
 
   # App metadata
   APP_ID = "@APP_ID@"

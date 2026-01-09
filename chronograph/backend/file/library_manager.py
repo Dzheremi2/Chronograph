@@ -9,6 +9,9 @@ from uuid import uuid4
 from chronograph.backend.db import db, set_db
 from chronograph.backend.db.models import SchemaInfo, Track
 from chronograph.backend.file_parsers import parse_file
+from chronograph.internal import Constants
+
+logger = Constants.DB_LOGGER
 
 
 class LibraryManager:
@@ -36,6 +39,7 @@ class LibraryManager:
       set_db(str(db_path)).connect_and_create_tables()
 
       LibraryManager.current_library = lib_root
+      logger.info("Connected library at: %s", lib_root)
       return True
     return False
 
@@ -67,6 +71,7 @@ class LibraryManager:
       result = LibraryManager._import_one(src, content_dir, move)
       if result:
         imported.append(result)
+    logger.info("Imported %d files", len(imported))
     return imported
 
   @staticmethod
@@ -98,6 +103,7 @@ class LibraryManager:
 
     if on_progress:
       on_progress(1.0)
+    logger.info("Imported %d files", len(imported))
     return imported
 
   @staticmethod
@@ -142,13 +148,14 @@ class LibraryManager:
           Track.delete_by_id(str(uuid))
         raise
 
+      logger.debug("Imported file: %s as %s", src, dest)
       return (src, str(uuid), fmt)
     except Exception:
       try:
         if tmp and tmp.exists():
           tmp.unlink(missing_ok=True)
-      except Exception as e:
-        print(e)  # FIXME: REMOVE
+      except Exception:
+        logger.exception("Import cleanup failed: %s")
     return None
 
   @staticmethod
@@ -188,9 +195,10 @@ class LibraryManager:
         if rows or file_deleted:
           deleted += 1
 
-      except Exception as e:
-        print(e)  # FIXME: REMOVE
+      except Exception:
+        logger.exception("Failed to delete file or DB record: %s")
 
+    logger.info("Deleted %d files", deleted)
     return deleted
 
   @staticmethod
@@ -252,6 +260,7 @@ class LibraryManager:
       SchemaInfo.insert(key="version", value="1").execute()
       SchemaInfo.insert(key="tags", value="[]").execute()
 
+    logger.info("Created new library at: %s", lib_root)
     return lib_root
 
   @staticmethod

@@ -2,7 +2,10 @@ from typing import Optional, Union
 
 from peewee import ConnectionContext, SqliteDatabase, _atomic
 
+from chronograph.internal import Constants
 from .models import Lyric, SchemaInfo, Track, TrackLyric, db_proxy
+
+logger = Constants.DB_LOGGER
 
 _db: Optional[SqliteDatabase] = None
 
@@ -21,6 +24,7 @@ def set_db(path: str):  # noqa: ANN201
 
   _db = SqliteDatabase(path, pragmas={"foreign_keys": 1})
   db_proxy.initialize(_db)
+  logger.debug("Database configured: %s", path)
 
   class Factory:
     def connect_and_create_tables(_self) -> None:  # noqa: N805
@@ -30,6 +34,7 @@ def set_db(path: str):  # noqa: ANN201
 
       _db.connect(reuse_if_open=True)
       _db.create_tables([Track, Lyric, TrackLyric, SchemaInfo])
+      logger.debug("Database tables ensured: %s", _db.database)
 
   return Factory()
 
