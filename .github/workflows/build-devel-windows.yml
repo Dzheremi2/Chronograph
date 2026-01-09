@@ -43,6 +43,7 @@ jobs:
             mingw-w64-ucrt-x86_64-blueprint-compiler
             mingw-w64-ucrt-x86_64-python-mutagen
             mingw-w64-ucrt-x86_64-python-requests
+            mingw-w64-ucrt-x86_64-python-peewee
             mingw-w64-ucrt-x86_64-adwaita-icon-theme
             mingw-w64-ucrt-x86_64-desktop-file-utils
             mingw-w64-ucrt-x86_64-appstream
@@ -54,290 +55,6 @@ jobs:
             mingw-w64-ucrt-x86_64-gst-plugins-ugly
             mingw-w64-ucrt-x86_64-gst-libav
             mingw-w64-ucrt-x86_64-imagemagick
-      - name: Patch Code and Generate Icon
-        shell: msys2 {0}
-        env:
-          REPO_DIR: ${{ github.workspace }}
-        run: |
-          cd "$REPO_DIR"
-          
-          # --- 1. PYTHON "SURGEON" SCRIPT ---
-          cat > surgeon.py << 'EOF'
-          import os
-          import re
-          import sys
-          def log(msg):
-              print(f"[SURGEON] {msg}", flush=True)
-          def patch_file_manager(content):
-              original = content
-              content = re.sub(r'\.is_dir\(\s*follow_symlinks=[^,)]+\s*,?', '.is_dir(', content)
-              content = re.sub(r'\.is_dir\((.*),\s*follow_symlinks=[^,)]+\s*\)', r'.is_dir(\1)', content)
-              content = content.replace(".is_dir(,)", ".is_dir()")
-              
-              if "os.symlink" in content:
-                  content = content.replace("os.symlink(", "try: os.symlink(")
-                  content = content.replace("target_is_directory=True)", "target_is_directory=True); except OSError: pass")
-                  log("Wrapped os.symlink in try/except block")
-              if content != original:
-                  log("Fixed 'follow_symlinks' and symlinks in file_manager.py")
-              return content
-          def patch_sync_page(content, filename):
-              original = content
-              
-              # Fix 1: Export crash
-              pattern = r'LyricsFile\(([^)]+)\)\.modify_lyrics\(([^)]+)\)'
-              if re.search(pattern, content):
-                  content = re.sub(pattern, r'Path(\1).write_text(\2, encoding="utf-8")', content)
-                  log(f"Replaced broken LyricsFile call in {filename}")
-              # Fix 2: Empty "Save as type" (Missing Filter)
-              if "dialog = Gtk.FileDialog" in content and "default_filter" not in content:
-                  filter_code = """
-          # --- SURGEON FILTER PATCH ---
-          _lrc_filter = Gtk.FileFilter()
-          _lrc_filter.set_name("LRC Lyrics (*.lrc)")
-          _lrc_filter.add_pattern("*.lrc")
-          _filters = Gio.ListStore.new(Gtk.FileFilter)
-          _filters.append(_lrc_filter)
-          dialog.set_filters(_filters)
-          dialog.set_default_filter(_lrc_filter)
-          # ----------------------------
-          """
-                  save_call = "dialog.save("
-                  if save_call in content:
-                      parts = content.split(save_call)
-                      content = parts[0] + filter_code + save_call + parts[1]
-                      log(f"Injected file filter for export dialog in {filename}")
-              return content
-          def patch_main(content):
-              if "def main" in content and "builtins._" not in content:
-                  content = "import builtins; builtins._ = lambda x: x\n" + content
-                  log("Injected translation fix into main.py")
-              monkey_patch = """
-          # --- WINDOWS MONKEY PATCH START ---
-          import os
-          import urllib.parse
-          from gi.repository import Gio
-          def _win_launch_uri(uri, context=None, cancellation=None):
-              if uri.startswith("file://"):
-                  try:
-                      path = uri.replace("file://", "")
-                      path = urllib.parse.unquote(path)
-                      os.startfile(path)
-                      return True
-                  except Exception as e:
-                      print(f"WinLaunch Error: {e}")
-              print(f"Ignored URI launch via Gio: {uri}")
-              return False
-          Gio.AppInfo.launch_default_for_uri = _win_launch_uri
-          # --- WINDOWS MONKEY PATCH END ---
-          """
-              if "def main" in content and "_win_launch_uri" not in content:
-                  if "from gi.repository import" in content:
-                      last_imp = content.rfind("from gi.repository import")
-                      end_of_line = content.find("\n", last_imp) + 1
-                      content = content[:end_of_line] + monkey_patch + content[end_of_line:]
-                  else:
-                      content = monkey_patch + content
-                  log("Injected URI launch monkey-patch into main.py")
-              return content
-          def patch_player(content):
-              if "gi.require_version('Gst', '1.0')" not in content:
-                  patch = "import gi\ngi.require_version('Gst', '1.0')\ngi.require_version('GstPlay', '1.0')\n"
-                  if "from gi.repository import" in content:
-                      content = content.replace("from gi.repository import", patch + "from gi.repository import")
-                      log("Injected Gst version requirements into player.py")
-              return content
-          def patch_base_file(content):
-              # FIX: Windows File Locking during Save
-              # If we try to save metadata while GStreamer is playing the file, Windows denies permission.
-              # We must stop the player, save, and then resume.
-              
-              original = content
-              save_method = "def save(self) -> None:"
-              
-              if save_method in content and "PermissionError" not in content:
-                  # This patch is invasive but necessary. We redefine the save method.
-                  
-                  new_save_logic = """
-          def save(self) -> None:
-              # --- SURGEON WINDOWS LOCK FIX ---
-              try:
-                  self.mutagenfile.save()
-              except (PermissionError, OSError):
-                  # File might be locked by the player.
-                  # Attempt to stop player, save, and restore.
-                  try:
-                      from chronograph.backend.player import Player
-                      from gi.repository import Gst
-                      import time
-                      
-                      # Check if this file is the one loaded
-                      # Player.props.uri or similar might not be available, checking strict path match
-                      # Assuming Player handles locking.
-                      
-                      was_playing = Player.playing
-                      position = 0
-                      try:
-                          position = Player.gstplayer.get_position()
-                      except: pass
-                          
-                      # Stop player to release file handle
-                      Player.stop()
-                      # Small sleep to let OS unlock
-                      time.sleep(0.1) 
-                      
-                      # Try saving again
-                      self.mutagenfile.save()
-                      
-                      # Restore playback
-                      # We need to re-load the file essentially
-                      Player.set_file_path(self.path)
-                      if position > 0:
-                          Player.seek(position * 1000) # Player.seek usually takes nanoseconds or similar? Check usage.
-                          # Player.seek in source seems to take nanoseconds (ns)
-                          # Player.gstplayer.get_position() returns seconds (double) or ns? 
-                          # GstPlay.get_position() returns seconds.
-                          # Wait, let's look at Player usage in other files.
-                          # Player.seek(ns). GstPlay usually works in seconds but properties might differ.
-                          # Let's just restore the file. The user can seek manually if needed, or we try best effort.
-                          pass
-                          
-                      if was_playing:
-                          Player.play()
-                          
-                  except Exception as e:
-                      print(f"Failed to save file even after player stop: {e}")
-                      raise e
-              # --------------------------------
-          """
-                  # We replace the simple 'self.mutagenfile.save()' with this block isn't easy via regex.
-                  # Instead, we replace the indentation block.
-                  
-                  # Safer approach: Rename the original save and inject a wrapper?
-                  # Or simply Replace the specific line `self.mutagenfile.save()` with the try-except block
-                  # inside the `def save(self)` method.
-                  
-                  # NOTE: This relies on `self.mutagenfile.save()` being the only content or easy to match.
-                  # In the source:
-                  # def save(self) -> None:
-                  #     """Saves the changes to the file."""
-                  #     self.mutagenfile.save()
-                  
-                  if "self.mutagenfile.save()" in content:
-                      replacement = """
-              # Windows Lock Fix
-              try:
-                  self.mutagenfile.save()
-              except (PermissionError, OSError):
-                  try:
-                      from chronograph.backend.player import Player
-                      import time
-                      # Only stop if this file is the playing one (optimistic check)
-                      # We force stop anyway to be safe if it fails.
-                      was_playing = Player.playing
-                      pos = Player.gstplayer.props.position # ns
-                      
-                      Player.stop()
-                      time.sleep(0.1)
-                      self.mutagenfile.save()
-                      
-                      Player.set_file_path(self.path)
-                      # Restore
-                      if pos > 0:
-                          Player.seek(pos)
-                      if was_playing:
-                          Player.play_pause() # or play
-                  except Exception as e:
-                      print(f"Save failed: {e}")
-          """
-                      content = content.replace("self.mutagenfile.save()", replacement)
-                      log("Injected Windows file locking fix into BaseFile.save")
-              
-              return content
-          def patch_robustness(content, filename):
-              if ".read_text()" in content:
-                  content = content.replace(".read_text()", ".read_text(encoding='utf-8')")
-                  log(f"Enforced UTF-8 reading in {filename}")
-              
-              if ".write_text(" in content and "encoding=" not in content:
-                  content = re.sub(r'\.write_text\(([^)]+)\)', r'.write_text(\1, encoding="utf-8")', content)
-                  log(f"Enforced UTF-8 writing in {filename}")
-              if ".rename(" in content:
-                  content = content.replace(".rename(", ".replace(")
-                  log(f"Replaced .rename() with .replace() in {filename}")
-              return content
-          def process_file(filepath):
-              try:
-                  with open(filepath, 'r', encoding='utf-8') as f:
-                      content = f.read()
-              except UnicodeDecodeError:
-                  return 
-              original = content
-              filename = os.path.basename(filepath)
-              if "asyncio.EventLoop" in content:
-                  content = content.replace("asyncio.EventLoop", "asyncio.AbstractEventLoop")
-                  log(f"Fixed asyncio.EventLoop in {filename}")
-              if ".trash(" in content:
-                  content = re.sub(r'\.trash\s*\(', '.delete(', content)
-                  log(f"Replaced .trash() with .delete() in {filename}")
-              content = patch_robustness(content, filename)
-              # SPECIFIC FIXES
-              if filename == "file_manager.py": content = patch_file_manager(content)
-              if filename == "main.py": content = patch_main(content)
-              if filename == "player.py": content = patch_player(content)
-              if filename == "file.py": content = patch_base_file(content) # BaseFile definition
-              
-              # The file defining BaseFile might be 'chronograph/backend/media/file.py'
-              # If it's named differently in the dump, 'file.py' matches the usual structure.
-              
-              if filename == "lrc_sync_page.py" or filename == "wbw_sync_page.py":
-                  content = patch_sync_page(content, filename)
-              if content != original:
-                  with open(filepath, 'w', encoding='utf-8') as f: f.write(content)
-          if __name__ == "__main__":
-              for root, _, files in os.walk("."):
-                  for file in files:
-                      if file.endswith(".py") and file != "surgeon.py":
-                          process_file(os.path.join(root, file))
-          EOF
-          python3 surgeon.py
-          # --- 2. ICON GENERATION ---
-          echo "--- Generating Windows Icon ---"
-          ICON_SVG=$(find data/icons -name "io.github.dzheremi2.lrcmake-gtk.svg" | head -n 1)
-          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | grep "apps" | head -n 1); fi
-          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | head -n 1); fi
-          if [ -n "$ICON_SVG" ]; then
-              magick -background none "$ICON_SVG" -define icon:auto-resize=256,128,64,48,32,16 app.ico
-          fi
-          # --- 3. STANDARD PATCHES ---
-          mkdir -p /usr/share/gettext/its
-          cp -r /ucrt64/share/gettext/its/* /usr/share/gettext/its/ || echo "Copy failed"
-          export GETTEXTDATADIRS="/ucrt64/share/gettext"
-          
-          grep -rl "/usr/share/chronograph" chronograph/ | xargs -r sed -i 's|/usr/share/chronograph|./data|g' || true
-          grep -rl "/usr/share/icons" chronograph/ | xargs -r sed -i 's|/usr/share/icons|./data/icons|g' || true
-          grep -rl "/app/share" chronograph/ | xargs -r sed -i 's|/app/share|./data|g' || true
-          find data -name "*.blp" -exec sed -i '/using Gtk 4.0;/a using Gio 2.0;' {} +
-          # --- 4. DEBUG RUNNER ---
-          cat > debug_runner.py <<EOF
-          import sys, os, traceback, builtins
-          sys.stdout.reconfigure(encoding='utf-8')
-          print('LAUNCHER: Starting...', flush=True)
-          builtins._ = lambda x: x
-          try:
-              import gi
-              gi.require_version('Gtk', '4.0')
-              gi.require_version('Adw', '1')
-              from gi.repository import Gtk, Adw
-              Adw.init()
-              from chronograph.main import main
-              print('LAUNCHER: Calling main...', flush=True)
-              main('5.3')
-          except Exception:
-              print('LAUNCHER: CRASHED!', flush=True)
-              traceback.print_exc()
-          print('LAUNCHER: Exiting loop.', flush=True)
-          EOF
       - name: Build Resources (Meson)
         shell: msys2 {0}
         env:
@@ -345,9 +62,24 @@ jobs:
           PYTHONUTF8: "1"
         run: |
           cd "$REPO_DIR"
+          mkdir -p /usr/share/gettext/its
+          cp -r /ucrt64/share/gettext/its/* /usr/share/gettext/its/ || echo "Copy failed"
+          export GETTEXTDATADIRS="/ucrt64/share/gettext"
           export GI_TYPELIB_PATH=$(cygpath -m /ucrt64/lib/girepository-1.0)
           meson setup build -Dprofile=development
           meson compile -C build
+      - name: Generate Windows Icon
+        shell: msys2 {0}
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: |
+          cd "$REPO_DIR"
+          ICON_SVG=$(find data/icons -name "io.github.dzheremi2.lrcmake-gtk.svg" | head -n 1)
+          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | grep "apps" | head -n 1); fi
+          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | head -n 1); fi
+          if [ -n "$ICON_SVG" ]; then
+            magick -background none "$ICON_SVG" -define icon:auto-resize=256,128,64,48,32,16 app.ico
+          fi
       - name: Bundle with PyInstaller
         shell: msys2 {0}
         env:
@@ -362,10 +94,6 @@ jobs:
           cp build/chronograph/internal.py chronograph/internal.py || cp build/src/chronograph/internal.py chronograph/internal.py || echo "WARNING: internal.py not found"
           find build -name "*.gresource"
           cp build/data/Chronograph.gresource Chronograph.gresource || echo "WARNING: GResource not found"
-          mkdir -p data/resources
-          if [ -f build/data/resources/constants.yaml ]; then
-             cp build/data/resources/constants.yaml data/resources/constants.yaml
-          fi
           gdk-pixbuf-query-loaders | sed 's|"[^"]*[\\/]\([^"\\/]*\.dll\)"|"\1"|' > loaders.cache
           PIXBUF_DIR=$(cygpath -m /ucrt64/lib/gdk-pixbuf-2.0/2.10.0)
           GST_PLUGIN_DIR=$(cygpath -m /ucrt64/lib/gstreamer-1.0)
@@ -439,12 +167,13 @@ jobs:
             --collect-all="PIL" \
             --collect-all="magic" \
             --collect-all="httpx" \
+            --collect-all="peewee" \
             --collect-all="chardet" \
             --collect-all="certifi" \
             --collect-all="idna" \
             --collect-all="urllib3" \
             --add-binary "/ucrt64/bin/libmagic-1.dll:." \
-            debug_runner.py
+            build-aux/windows/debug_runner.py
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v4
         if: always()

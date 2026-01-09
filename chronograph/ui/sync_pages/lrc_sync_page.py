@@ -1,6 +1,5 @@
 """Sync page for LRC format syncing"""
 
-import os
 import re
 import traceback
 from pathlib import Path
@@ -25,6 +24,7 @@ from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.ui_player import UIPlayer
+from chronograph.utils.launch import launch_path
 from dgutils import Actions
 
 gtc = Gtk.Template.Child
@@ -323,18 +323,26 @@ class LRCSyncPage(Adw.NavigationPage):
       Constants.WIN.show_toast(
         _("Lyrics exported to file"),
         button_label=_("Show"),
-        button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
-          f"file://{Path(filepath).parent}"
-        ),
+        button_callback=lambda *__: launch_path(Path(filepath).parent),
       )
 
     lyrics = ""
     for line in self.sync_lines:
       lyrics += line.get_text() + "\n"
-    dialog = Gtk.FileDialog(
-      initial_name=Path(self._file.path).stem
-      + Schema.get("root.settings.do-lyrics-db-updates.format")
-    )
+    suffix = Schema.get("root.settings.do-lyrics-db-updates.format")
+    if not suffix:
+      suffix = ".lrc"
+    elif not suffix.startswith("."):
+      suffix = f".{suffix}"
+    pattern = f"*{suffix}"
+    file_filter = Gtk.FileFilter()
+    file_filter.set_name(_("Lyrics ({pattern})").format(pattern=pattern))
+    file_filter.add_pattern(pattern)
+    filters = Gio.ListStore.new(Gtk.FileFilter)
+    filters.append(file_filter)
+    dialog = Gtk.FileDialog(initial_name=Path(self._file.path).stem + suffix)
+    dialog.set_filters(filters)
+    dialog.set_default_filter(file_filter)
     dialog.save(Constants.WIN, None, on_export_file_selected, lyrics)
 
   ###############
@@ -465,22 +473,19 @@ class LRCSyncPage(Adw.NavigationPage):
 
     def on_publish_failed(_service, error: Exception) -> None:
       nonlocal err_handler
+      log_path = Path(Constants.CACHE_DIR) / "chronograph" / "logs" / "chronograph.log"
       match error:
         case APIRequestError():
           Constants.WIN.show_toast(
             _("Network error occurred while publishing lyrics"),
             button_label=_("Log"),
-            button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
-              f"file://{os.path.join(Constants.CACHE_DIR, 'chronograph', 'logs', 'chronograph.log')}"
-            ),
+            button_callback=lambda *__: launch_path(log_path),
           )
         case __:
           Constants.WIN.show_toast(
             _("An error occurred while publishing lyrics"),
             button_label=_("Log"),
-            button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
-              f"file://{os.path.join(Constants.CACHE_DIR, 'chronograph', 'logs', 'chronograph.log')}"
-            ),
+            button_callback=lambda *__: launch_path(log_path),
           )
       LRClibService().disconnect(err_handler)
       self.export_lyrics_button.set_sensitive(True)

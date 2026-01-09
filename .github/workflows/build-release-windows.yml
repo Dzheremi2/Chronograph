@@ -51,208 +51,6 @@ jobs:
             mingw-w64-ucrt-x86_64-gst-libav
             mingw-w64-ucrt-x86_64-imagemagick
 
-      - name: Patch Code and Generate Icon
-        shell: msys2 {0}
-        env:
-          REPO_DIR: ${{ github.workspace }}
-        run: |
-          cd "$REPO_DIR"
-          
-          # --- 1. PYTHON "SURGEON" SCRIPT (Critical Fixes Only) ---
-          cat > surgeon.py << 'EOF'
-          import os
-          import re
-          import sys
-
-          def patch_file_manager(content):
-              # Fix Path.is_dir() arguments
-              content = re.sub(r'\.is_dir\(\s*follow_symlinks=[^,)]+\s*,?', '.is_dir(', content)
-              content = re.sub(r'\.is_dir\((.*),\s*follow_symlinks=[^,)]+\s*\)', r'.is_dir(\1)', content)
-              content = content.replace(".is_dir(,)", ".is_dir()")
-              
-              # Fix symlinks requiring admin
-              if "os.symlink" in content:
-                  content = content.replace("os.symlink(", "try: os.symlink(")
-                  content = content.replace("target_is_directory=True)", "target_is_directory=True); except OSError: pass")
-              return content
-
-          def patch_sync_page(content, filename):
-              # Fix 1: Export crash (LyricsFile method missing)
-              pattern = r'LyricsFile\(([^)]+)\)\.modify_lyrics\(([^)]+)\)'
-              if re.search(pattern, content):
-                  content = re.sub(pattern, r'Path(\1).write_text(\2, encoding="utf-8")', content)
-
-              # Fix 2: Empty "Save as type" (Missing Filter)
-              if "dialog = Gtk.FileDialog" in content and "default_filter" not in content:
-                  filter_code = """
-          _lrc_filter = Gtk.FileFilter()
-          _lrc_filter.set_name("LRC Lyrics (*.lrc)")
-          _lrc_filter.add_pattern("*.lrc")
-          _filters = Gio.ListStore.new(Gtk.FileFilter)
-          _filters.append(_lrc_filter)
-          dialog.set_filters(_filters)
-          dialog.set_default_filter(_lrc_filter)
-          """
-                  save_call = "dialog.save("
-                  if save_call in content:
-                      parts = content.split(save_call)
-                      content = parts[0] + filter_code + save_call + parts[1]
-              return content
-
-          def patch_main(content):
-              # Translation Fix
-              if "def main" in content and "builtins._" not in content:
-                  content = "import builtins; builtins._ = lambda x: x\n" + content
-
-              # Monkey patch Gio.AppInfo.launch_default_for_uri
-              monkey_patch = """
-          import os
-          import urllib.parse
-          from gi.repository import Gio
-          def _win_launch_uri(uri, context=None, cancellation=None):
-              if uri.startswith("file://"):
-                  try:
-                      path = uri.replace("file://", "")
-                      path = urllib.parse.unquote(path)
-                      os.startfile(path)
-                      return True
-                  except Exception: pass
-              return False
-          Gio.AppInfo.launch_default_for_uri = _win_launch_uri
-          """
-              if "def main" in content and "_win_launch_uri" not in content:
-                  if "from gi.repository import" in content:
-                      last_imp = content.rfind("from gi.repository import")
-                      end_of_line = content.find("\n", last_imp) + 1
-                      content = content[:end_of_line] + monkey_patch + content[end_of_line:]
-                  else:
-                      content = monkey_patch + content
-              return content
-
-          def patch_player(content):
-              # Gst version requirements
-              if "gi.require_version('Gst', '1.0')" not in content:
-                  patch = "import gi\ngi.require_version('Gst', '1.0')\ngi.require_version('GstPlay', '1.0')\n"
-                  if "from gi.repository import" in content:
-                      content = content.replace("from gi.repository import", patch + "from gi.repository import")
-              return content
-
-          def patch_base_file(content):
-              # FIX: Windows File Locking during Save (Stop player before save)
-              if "self.mutagenfile.save()" in content:
-                  replacement = """
-              try:
-                  self.mutagenfile.save()
-              except (PermissionError, OSError):
-                  try:
-                      from chronograph.backend.player import Player
-                      import time
-                      was_playing = Player.playing
-                      pos = Player.gstplayer.props.position 
-                      Player.stop()
-                      time.sleep(0.1)
-                      self.mutagenfile.save()
-                      Player.set_file_path(self.path)
-                      if pos > 0: Player.seek(pos)
-                      if was_playing: Player.play_pause()
-                  except Exception: pass
-          """
-                  content = content.replace("self.mutagenfile.save()", replacement)
-              return content
-
-          def patch_robustness(content, filename):
-              # Force UTF-8
-              if ".read_text()" in content:
-                  content = content.replace(".read_text()", ".read_text(encoding='utf-8')")
-              if ".write_text(" in content and "encoding=" not in content:
-                  content = re.sub(r'\.write_text\(([^)]+)\)', r'.write_text(\1, encoding="utf-8")', content)
-              # Fix Rename (FileExistsError)
-              if ".rename(" in content:
-                  content = content.replace(".rename(", ".replace(")
-              return content
-
-          def process_file(filepath):
-              try:
-                  with open(filepath, 'r', encoding='utf-8') as f:
-                      content = f.read()
-              except UnicodeDecodeError:
-                  return 
-
-              original = content
-              filename = os.path.basename(filepath)
-
-              # Global
-              if "asyncio.EventLoop" in content:
-                  content = content.replace("asyncio.EventLoop", "asyncio.AbstractEventLoop")
-              if ".trash(" in content:
-                  content = re.sub(r'\.trash\s*\(', '.delete(', content)
-
-              content = patch_robustness(content, filename)
-
-              # Specific
-              if filename == "file_manager.py": content = patch_file_manager(content)
-              if filename == "main.py": content = patch_main(content)
-              if filename == "player.py": content = patch_player(content)
-              if filename == "file.py": content = patch_base_file(content)
-              if filename == "lrc_sync_page.py" or filename == "wbw_sync_page.py":
-                  content = patch_sync_page(content, filename)
-
-              if content != original:
-                  with open(filepath, 'w', encoding='utf-8') as f: f.write(content)
-
-          if __name__ == "__main__":
-              for root, _, files in os.walk("."):
-                  for file in files:
-                      if file.endswith(".py") and file != "surgeon.py":
-                          process_file(os.path.join(root, file))
-          EOF
-
-          python3 surgeon.py
-
-          # --- 2. ICON GENERATION ---
-          echo "--- Generating Windows Icon ---"
-          ICON_SVG=$(find data/icons -name "io.github.dzheremi2.lrcmake-gtk.svg" | head -n 1)
-          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | grep "apps" | head -n 1); fi
-          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | head -n 1); fi
-          if [ -n "$ICON_SVG" ]; then
-              magick -background none "$ICON_SVG" -define icon:auto-resize=256,128,64,48,32,16 app.ico
-          fi
-
-          # --- 3. STANDARD PATCHES ---
-          mkdir -p /usr/share/gettext/its
-          cp -r /ucrt64/share/gettext/its/* /usr/share/gettext/its/ || echo "Copy failed"
-          export GETTEXTDATADIRS="/ucrt64/share/gettext"
-          
-          grep -rl "/usr/share/chronograph" chronograph/ | xargs -r sed -i 's|/usr/share/chronograph|./data|g' || true
-          grep -rl "/usr/share/icons" chronograph/ | xargs -r sed -i 's|/usr/share/icons|./data/icons|g' || true
-          grep -rl "/app/share" chronograph/ | xargs -r sed -i 's|/app/share|./data|g' || true
-          find data -name "*.blp" -exec sed -i '/using Gtk 4.0;/a using Gio 2.0;' {} +
-
-          # --- 4. RELEASE RUNNER ---
-          cat > launcher.py <<EOF
-          import sys, os, builtins
-          
-          # Basic stdout setup (even for noconsole it can help preventing some internal crashes)
-          if sys.stdout:
-              try: sys.stdout.reconfigure(encoding='utf-8')
-              except: pass
-
-          # Helper for translation
-          builtins._ = lambda x: x
-
-          try:
-              import gi
-              gi.require_version('Gtk', '4.0')
-              gi.require_version('Adw', '1')
-              from gi.repository import Gtk, Adw, Gio
-              Adw.init()
-              from chronograph.main import main
-              main('5.3')
-          except Exception:
-              # In release mode, we exit silently on crash
-              sys.exit(1)
-          EOF
-
       - name: Build Resources (Meson)
         shell: msys2 {0}
         env:
@@ -260,9 +58,24 @@ jobs:
           PYTHONUTF8: "1"
         run: |
           cd "$REPO_DIR"
+          mkdir -p /usr/share/gettext/its
+          cp -r /ucrt64/share/gettext/its/* /usr/share/gettext/its/ || echo "Copy failed"
+          export GETTEXTDATADIRS="/ucrt64/share/gettext"
           export GI_TYPELIB_PATH=$(cygpath -m /ucrt64/lib/girepository-1.0)
           meson setup build
           meson compile -C build
+      - name: Generate Windows Icon
+        shell: msys2 {0}
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: |
+          cd "$REPO_DIR"
+          ICON_SVG=$(find data/icons -name "io.github.dzheremi2.lrcmake-gtk.svg" | head -n 1)
+          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | grep "apps" | head -n 1); fi
+          if [ -z "$ICON_SVG" ]; then ICON_SVG=$(find data/icons -name "*.svg" | head -n 1); fi
+          if [ -n "$ICON_SVG" ]; then
+            magick -background none "$ICON_SVG" -define icon:auto-resize=256,128,64,48,32,16 app.ico
+          fi
 
       - name: Bundle with PyInstaller
         shell: msys2 {0}
@@ -358,7 +171,7 @@ jobs:
             --collect-all="idna" \
             --collect-all="urllib3" \
             --add-binary "/ucrt64/bin/libmagic-1.dll:." \
-            launcher.py
+            build-aux/windows/launcher.py
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v4

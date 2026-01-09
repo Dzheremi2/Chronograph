@@ -22,6 +22,7 @@ from chronograph.backend.wbw.models.lyrics_model import LyricsModel
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.ui_player import UIPlayer
+from chronograph.utils.launch import launch_path
 from dgutils import Actions
 
 gtc = Gtk.Template.Child
@@ -217,9 +218,7 @@ class WBWSyncPage(Adw.NavigationPage):
       Constants.WIN.show_toast(
         _("Lyrics exported to file"),
         button_label=_("Show"),
-        button_callback=lambda *_: Gio.AppInfo.launch_default_for_uri(
-          f"file://{Path(filepath).parent}"
-        ),
+        button_callback=lambda *_: launch_path(Path(filepath).parent),
       )
 
     if self._current_page == self.edit_view_stack_page:
@@ -234,10 +233,20 @@ class WBWSyncPage(Adw.NavigationPage):
     else:
       lyrics_obj = None
 
-    dialog = Gtk.FileDialog(
-      initial_name=Path(self._file.path).stem
-      + Schema.get("root.settings.do-lyrics-db-updates.format")
-    )
+    suffix = Schema.get("root.settings.do-lyrics-db-updates.format")
+    if not suffix:
+      suffix = ".lrc"
+    elif not suffix.startswith("."):
+      suffix = f".{suffix}"
+    pattern = f"*{suffix}"
+    file_filter = Gtk.FileFilter()
+    file_filter.set_name(_("Lyrics ({pattern})").format(pattern=pattern))
+    file_filter.add_pattern(pattern)
+    filters = Gio.ListStore.new(Gtk.FileFilter)
+    filters.append(file_filter)
+    dialog = Gtk.FileDialog(initial_name=Path(self._file.path).stem + suffix)
+    dialog.set_filters(filters)
+    dialog.set_default_filter(file_filter)
     dialog.save(Constants.WIN, None, on_export_file_selected, lyrics_obj)
 
   def _export_clipboard(self, *_args) -> None:

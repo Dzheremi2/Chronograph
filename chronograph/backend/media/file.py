@@ -1,4 +1,7 @@
 import contextlib
+import sys
+import time
+from pathlib import Path
 from typing import Optional, Self
 
 import mutagen
@@ -45,7 +48,41 @@ class BaseFile:
 
   def save(self) -> Self:
     """Saves the changes to the file"""
-    self._mutagen_file.save()
+    try:
+      self._mutagen_file.save()
+      return self
+    except (PermissionError, OSError) as exc:
+      if sys.platform != "win32":
+        raise
+
+      try:
+        from gi.repository import Gst
+
+        from chronograph.backend.player import Player
+      except Exception:
+        raise exc from exc
+
+      player = Player()
+      current_uri = player._gst_player.props.uri  # noqa: SLF001
+      target_uri = Path(self._path).absolute().as_uri()
+      if current_uri != target_uri:
+        raise exc from exc
+
+      was_playing = player.playing
+      pos_ns = player._gst_player.props.position  # noqa: SLF001
+      player.stop()
+      time.sleep(0.05)
+
+      try:
+        self._mutagen_file.save()
+      finally:
+        player.set_file(Path(self._path))
+        if pos_ns > 0:
+          player.seek(int(pos_ns / Gst.MSECOND))
+        if was_playing:
+          player.set_property("playing", True)
+          player.play_pause()
+
     return self
 
   def load_from_file(self, path: str) -> None:

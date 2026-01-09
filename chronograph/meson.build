@@ -12,8 +12,10 @@ configure_file(
 )
 install_subdir('ui', install_dir: moduledir)
 install_subdir('backend', install_dir: moduledir)
+install_subdir('utils', install_dir: moduledir)
 install_data(
     [
+    '__init__.py',
     'main.py',
     'window.py',
     'logger.py',
