@@ -31,7 +31,7 @@ class AvailableLyrics(GObject.GFlags):
     Returns
     -------
     Optional[list[str]]
-      `None` if no lyric formats avaialble, `list[str]` of translated strings otherwise
+      `None` if no lyric formats available, `list[str]` of translated strings otherwise
     """
     for flag in value:
       if flag == AvailableLyrics.NONE:

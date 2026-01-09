@@ -95,8 +95,10 @@ root:
         enum: [a-z, z-a]
         default: a-z
       filter:
-        type: str
-        default: "1:1:1:1" # encoded string none:plain:lrc:elrc. 0 for disabled, 1 for enabled
+        type: int
+        min: 0
+        max: 15
+        default: 15 # encoded flags none/plain/lrc/elrc in bit order 0..3
       last-library:
         type: str
         default: None

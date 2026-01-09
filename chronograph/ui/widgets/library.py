@@ -238,14 +238,14 @@ class Library(Gtk.GridView):
       if not Constants.WIN.filter_none:
         return False
     else:
-      match_any = False
-      if Constants.WIN.filter_plain and flags & AvailableLyrics.PLAIN:
-        match_any = True
-      if Constants.WIN.filter_lrc and flags & AvailableLyrics.LRC:
-        match_any = True
-      if Constants.WIN.filter_elrc and flags & AvailableLyrics.ELRC:
-        match_any = True
-      if not match_any:
+      allowed = AvailableLyrics.NONE
+      if Constants.WIN.filter_plain:
+        allowed |= AvailableLyrics.PLAIN
+      if Constants.WIN.filter_lrc:
+        allowed |= AvailableLyrics.LRC
+      if Constants.WIN.filter_elrc:
+        allowed |= AvailableLyrics.ELRC
+      if not (flags & allowed):
         return False
     return not (text != "" and not text_matches)
 

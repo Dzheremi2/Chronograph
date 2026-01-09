@@ -11,14 +11,11 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
 from chronograph.backend.db.models import SchemaInfo
+from chronograph.backend.file.available_lyrics import AvailableLyrics
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lyrics import save_track_lyric
-from chronograph.backend.miscellaneous import (
-  decode_filter_schema,
-  encode_filter_schema,
-)
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.import_dialog import ImportDialog
 from chronograph.ui.dialogs.importing_dialog import ImportingDialog
@@ -32,6 +29,12 @@ from chronograph.ui.widgets.tag_row import TagRow
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
+
+FILTER_NONE = 1 << 0
+FILTER_PLAIN = int(AvailableLyrics.PLAIN) << 1
+FILTER_LRC = int(AvailableLyrics.LRC) << 1
+FILTER_ELRC = int(AvailableLyrics.ELRC) << 1
+FILTER_ALL = FILTER_NONE | FILTER_PLAIN | FILTER_LRC | FILTER_ELRC
 
 MIME_TYPES = (
   "audio/mpeg",
@@ -142,17 +145,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.sidebar.set_placeholder(self.no_saves_found_status)
 
     # Setup filter by lyrics format
-    (
-      self.props.filter_none,
-      self.props.filter_plain,
-      self.props.filter_lrc,
-      self.props.filter_elrc,
-    ) = (
-      decode_filter_schema(0),
-      decode_filter_schema(1),
-      decode_filter_schema(2),
-      decode_filter_schema(3),
-    )
+    filter_flags = Schema.get("root.state.library.filter")
+    self.props.filter_none = bool(filter_flags & FILTER_NONE)
+    self.props.filter_plain = bool(filter_flags & FILTER_PLAIN)
+    self.props.filter_lrc = bool(filter_flags & FILTER_LRC)
+    self.props.filter_elrc = bool(filter_flags & FILTER_ELRC)
     filter_none_action = Gio.PropertyAction.new("filter_none", self, "filter_none")
     self.add_action(filter_none_action)
     filter_plain_action = Gio.PropertyAction.new("filter_plain", self, "filter_plain")
@@ -699,7 +696,16 @@ class ChronographWindow(Adw.ApplicationWindow):
     pp = self.lookup_action("filter_plain").get_state().get_boolean()
     ll = self.lookup_action("filter_lrc").get_state().get_boolean()
     ee = self.lookup_action("filter_elrc").get_state().get_boolean()
-    Schema.set("root.state.library.filter", encode_filter_schema(nn, pp, ll, ee))
+    flags = 0
+    if nn:
+      flags |= FILTER_NONE
+    if pp:
+      flags |= FILTER_PLAIN
+    if ll:
+      flags |= FILTER_LRC
+    if ee:
+      flags |= FILTER_ELRC
+    Schema.set("root.state.library.filter", flags)
     self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
   ############### WindowState related methods ###############
