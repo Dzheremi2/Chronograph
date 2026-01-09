@@ -1,3 +1,19 @@
+## 49-rc1
+
+<p>New Library approach: Previously, Chronograph has manipulated different
+  directories user stores files in. Now we move from this approach to new Library.
+  You select a folder in which you want to create a new library, then import files
+  in it, and Chronograph then uses this Library and its files. All lyrics are now
+  storing in database, so it's now easier to implement new lyric formats such
+  as TTML, SRT, ASS, since we now don't encounter numerous interfere of lyric
+  files (eLRC uses the same format as LRC).</p>
+<p>Since most of the users, I guess would only use one library, it has tags you can
+  assign to a track in a Library. Sidebar, which previously stored saved locations
+  (directories) now stores tags and allow fast filtering among them.</p>
+<p>These are removed: List View mode, all files related settings.</p>
+<p>Don't forget to check Preferences after update, since many changes were made to the app
+  schema</p>
+
 ## 5.3.2
 
 <p>New features</p>

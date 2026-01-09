@@ -149,10 +149,13 @@
       <description translate="no">
         <p>New features</p>
         <ul>
-          <li>Library now live updates for opened directory files changes, so re-parse button was removed</li>
-          <li>This live update for all types of event: Adding a new file or directory to a directory, Removing file or directory from a directory</li>
+          <li>Library now live updates for opened directory files changes, so re-parse
+            button was removed</li>
+          <li>This live update for all types of event: Adding a new file or directory to a
+            directory, Removing file or directory from a directory</li>
           <li>It also works with symlinks if corresponding preference is enabled</li>
-          <li>Show banner with suggestion to re-parse directory if any parsing related setting changed</li>
+          <li>Show banner with suggestion to re-parse directory if any parsing related
+            setting changed</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
@@ -167,7 +170,9 @@
           <li>Album searching field for LRClib import dialog</li>
           <li>LRClib import dialog search fields autofill</li>
           <li>Ability to shift all sync points at once by a given amount of milliseconds</li>
-          <li>New second type of re-sync operation. Now, if Ctrl held, the re-sync operation uses "large" milliseconds amount. Default and Large ms amount could be set via preferences</li>
+          <li>New second type of re-sync operation. Now, if Ctrl held, the re-sync
+            operation uses "large" milliseconds amount. Default and Large ms amount could
+            be set via preferences</li>
           <li>Album name is now shown on results in LRClib import dialog</li>
         </ul>
         <p>Bug fixes</p>
@@ -177,7 +182,9 @@
         </ul>
         <p>Miscellaneous</p>
         <ul>
-          <li>Users are now prohibited to search LRClib with "title" field empty in LRClib import dialog. "title" is a mandatory parameter according to LRClib documentation</li>
+          <li>Users are now prohibited to search LRClib with "title" field empty in LRClib
+            import dialog. "title" is a mandatory parameter according to LRClib
+            documentation</li>
         </ul>
       </description>
     </release>
@@ -194,8 +201,10 @@
       <description translate="no">
         <p>5.0 Hotfix</p>
         <ul>
-          <li>Correctly change loaded lyrics on external file change if that file has LRC metatags</li>
-          <li>Correctly handle lyric file update on "Replace" operations (Replace file dialog in File managers)</li>
+          <li>Correctly change loaded lyrics on external file change if that file has LRC
+            metatags</li>
+          <li>Correctly handle lyric file update on "Replace" operations (Replace file
+            dialog in File managers)</li>
         </ul>
       </description>
     </release>
@@ -206,13 +215,15 @@
           <li>New GStreamer based player</li>
           <li>Advanced volume control with state saving</li>
           <li>Playback rate control. Useful for syncing quickly sung songs</li>
-          <li>Now all items in library have chips at the bottom showing the highest available lyrics format for this media resource</li>
+          <li>Now all items in library have chips at the bottom showing the highest
+            available lyrics format for this media resource</li>
           <li>Filtering library by lyrics format</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
           <li>Fixed symlinks respective media files parsing</li>
-          <li>Drag'n'Drop now will reject files if there's no any supported formats in drop attempt</li>
+          <li>Drag'n'Drop now will reject files if there's no any supported formats in
+            drop attempt</li>
         </ul>
       </description>
     </release>
@@ -220,7 +231,8 @@
       <description translate="no">
         <p>Hotfix</p>
         <ul>
-          <li>Previously, LRClib publisher always ends with an error cause of programmatical error</li>
+          <li>Previously, LRClib publisher always ends with an error cause of
+            programmatical error</li>
           <li>FLAC files without album cover now correctly display cover placeholder</li>
         </ul>
       </description>
@@ -247,7 +259,8 @@
         </ul>
         <p>Bug fixes</p>
         <ul>
-          <li>If you have files opened independently (not a directory) and Open/Drag-n-Drop new ones, the previous won't be removed</li>
+          <li>If you have files opened independently (not a directory) and
+            Open/Drag-n-Drop new ones, the previous won't be removed</li>
           <li>"Add to Saves" button now won't be visible if app startup with saved session</li>
           <li>Saved Location now properly selecting on app startup with saved session</li>
         </ul>
@@ -257,18 +270,24 @@
       <description translate="no">
         <p>New features</p>
         <ul>
-          <li>Added ability to embed lyrics to the audio file. It works automatically and manually (from the Sync Page)</li>
+          <li>Added ability to embed lyrics to the audio file. It works automatically and
+            manually (from the Sync Page)</li>
           <li>Added "Show" button to the "Path" row in About File dialog</li>
           <li>Preferences are now have searching ability</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
-          <li>eLRC prefixed files now won't create if "Save LRC along eLRC" preference is disabled. Instead, eLRC lyrics will be written to just .lrc file</li>
+          <li>eLRC prefixed files now won't create if "Save LRC along eLRC" preference is
+            disabled. Instead, eLRC lyrics will be written to just .lrc file</li>
         </ul>
         <p>Miscellaneous</p>
         <ul>
-          <li>Line in lyrics editor on Word-by-Word sync page are now not wrapping for better distinguish of line borders</li>
-          <li>The app preferences storing method changed... again. So your preferences will reset after the update. Please, consider to reconfigure the app preferences after the update. Sorry for that. Hope preferences schema won't change ever again :(</li>
+          <li>Line in lyrics editor on Word-by-Word sync page are now not wrapping for
+            better distinguish of line borders</li>
+          <li>The app preferences storing method changed... again. So your preferences
+            will reset after the update. Please, consider to reconfigure the app
+            preferences after the update. Sorry for that. Hope preferences schema won't
+            change ever again :(</li>
         </ul>
         <p>Translation</p>
         <ul>
@@ -280,17 +299,23 @@
       <description translate="no">
         <p>A new eLRC format support!</p>
         <p>Added support for advanced syncing Word-by-Word (WBW).</p>
-        <p>WBW syncing has 2 steps: Edit the lyrics you gonna sync and... sync them. Editing lyrics while syncing is not possible in WBW mode.</p>
-        <p>Unfortunately, LRClib does not have support for eLRC lyrics, so WBW lyrics aren't possible to upload to LRClib :(</p>
-        <p>Navigation in WBW syncing mode happens by using Alt+{arrow_keys}, so using WBW on mobile will be too overwhelming, so it's not recommended.</p>
-        <p>If the lyrics you've provided are partially synced then the app will start the synchronization from the first unsynced word.</p>
-        <p>Now there will be two types of files: eLRCs with eLRC prefix set up and plain .lrc</p>
+        <p>WBW syncing has 2 steps: Edit the lyrics you gonna sync and... sync them.
+          Editing lyrics while syncing is not possible in WBW mode.</p>
+        <p>Unfortunately, LRClib does not have support for eLRC lyrics, so WBW lyrics
+          aren't possible to upload to LRClib :(</p>
+        <p>Navigation in WBW syncing mode happens by using Alt+{arrow_keys}, so using WBW
+          on mobile will be too overwhelming, so it's not recommended.</p>
+        <p>If the lyrics you've provided are partially synced then the app will start the
+          synchronization from the first unsynced word.</p>
+        <p>Now there will be two types of files: eLRCs with eLRC prefix set up and plain
+          .lrc</p>
         <p>Don't forget to check Preferences after the update :)</p>
       </description>
     </release>
     <release version="3.0.1" date="2025-08-10">
       <description translate="no">
-        <p>Apologies for all Ukrainian app users. Previously, Ukrainian language was not available cause of misspelled langcode (UA instead of UK)</p>
+        <p>Apologies for all Ukrainian app users. Previously, Ukrainian language was not
+          available cause of misspelled langcode (UA instead of UK)</p>
         <p>Translations</p>
         <ul>
           <li>Fixed Ukrainian translation</li>
@@ -320,9 +345,13 @@
       <description translate="no">
         <p>Bug fixes</p>
         <ul>
-          <li>Now if .lrc file has metatags inside of it, they wouldn't be parsed and used in the viewer, but will still present in the file and wouldn't be erased on lyrics change</li>
-          <li>Scroll position of the lyrics editor now not resetting when using Enter-press line appending</li>
-          <li>Fixed bug when Chronograph failed to open if saved session directory does not exist anymore</li>
+          <li>Now if .lrc file has metatags inside of it, they wouldn't be parsed and used
+            in the viewer, but will still present in the file and wouldn't be erased on
+            lyrics change</li>
+          <li>Scroll position of the lyrics editor now not resetting when using
+            Enter-press line appending</li>
+          <li>Fixed bug when Chronograph failed to open if saved session directory does
+            not exist anymore</li>
         </ul>
       </description>
     </release>
@@ -330,11 +359,14 @@
       <description translate="no">
         <p>New features</p>
         <ul>
-          <li>Added preference for enabling cover images compression. Using scale from 1 to 95 where lower value means lower cover quality. May also slightly reduce memory consumption</li>
+          <li>Added preference for enabling cover images compression. Using scale from 1
+            to 95 where lower value means lower cover quality. May also slightly reduce
+            memory consumption</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
-          <li>Highly reduced the memory consumption by decreasing the size of the tracks covers</li>
+          <li>Highly reduced the memory consumption by decreasing the size of the tracks
+            covers</li>
           <li>Fixed publishing plain lyrics to LRClib</li>
         </ul>
       </description>
@@ -372,7 +404,9 @@
       <description translate="no">
         <p>Bug fixes &amp; Common text editor like behavior</p>
         <ul>
-          <li>Now sync lines have behavior like common text editor. When pressing Backspace on an empty line, it deletes. When pressing Enter while in line, the new line added below and focused</li>
+          <li>Now sync lines have behavior like common text editor. When pressing
+            Backspace on an empty line, it deletes. When pressing Enter while in line,
+            the new line added below and focused</li>
         </ul>
       </description>
     </release>
@@ -388,7 +422,8 @@
       <description translate="no">
         <p>GNOME Platform 48 &amp; New features</p>
         <ul>
-          <li>Now you can add separate file to the library by opening them or by Drag-N-Dropping them into the window</li>
+          <li>Now you can add separate file to the library by opening them or by
+            Drag-N-Dropping them into the window</li>
           <li>App now using GNOME Platform 48 meaning now it's using Adwaita 1.7</li>
           <li>New beautiful Adwaita 1.7 switcher in LRClib import dialog</li>
           <li>Added Dutch translation</li>
@@ -410,7 +445,8 @@
       <description translate="no">
         <p>New features and bug fixes</p>
         <ul>
-          <li>Now, if empty directory was parsed, the specific status page will inform user about that</li>
+          <li>Now, if empty directory was parsed, the specific status page will inform
+            user about that</li>
           <li>Fixes for precise milliseconds from previous release</li>
           <li>Pin button now wouldn't appear if opened directory is already in saves</li>
           <li>Translators for your language are now mentioned in the "About App"</li>
@@ -453,7 +489,8 @@
         <p>LRClib import now available</p>
         <ul>
           <li>Added LRClib to import from menu</li>
-          <li>Search synced/plain lyrics by title and artist and import it to editor for resyncing/syncing respectively</li>
+          <li>Search synced/plain lyrics by title and artist and import it to editor for
+            resyncing/syncing respectively</li>
         </ul>
       </description>
     </release>
@@ -461,7 +498,8 @@
       <description translate="no">
         <p>Important bug fixes</p>
         <ul>
-          <li>fix: fixed various bugs caused by absence of needed flatpak sanbox permissions</li>
+          <li>fix: fixed various bugs caused by absence of needed flatpak sanbox
+            permissions</li>
           <li>fix: blocked ability to publish lyrics if any field is "Unknown"</li>
           <li>fix: fixed note icon on song cards if there is no cover in metainfo of file</li>
         </ul>
@@ -496,7 +534,8 @@
           <li>Added abylity for exporting lyrics to .lrc file</li>
           <li>Added preferenced dialog</li>
           <li>Added "Automatic File Manipulation" preference</li>
-          <li>Files with the same names as songs and with .lrc extension now can be loaded and saved automatically on lines content change</li>
+          <li>Files with the same names as songs and with .lrc extension now can be loaded
+            and saved automatically on lines content change</li>
           <li>fix: library now scrolling vertically</li>
         </ul>
       </description>
@@ -521,7 +560,8 @@
       <description translate="no">
         <p>Introduce i18n</p>
         <ul>
-          <li>Added internationalization. Contributors can use Hosted Weblate how transtating to their language.</li>
+          <li>Added internationalization. Contributors can use Hosted Weblate how
+            transtating to their language.</li>
         </ul>
       </description>
     </release>
