@@ -616,7 +616,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     """Delete all items selected in bulk mode."""
     deleted = self.library.bulk_delete_selected()
     self.enable_bulk_delete_button.set_active(False)
-    self.show_toast(_("Deleted {n} files").format(n=deleted))
+    self.show_toast(
+      ngettext("Deleted {deleted} file", "Deleted {deleted} files", deleted).format(
+        deleted=deleted
+      )
+    )
 
   def is_bulk_delete_mode(self) -> bool:
     """Return whether bulk delete mode is active.
