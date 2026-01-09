@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 21:00+0300\n"
+"POT-Creation-Date: 2026-01-09 22:39+0300\n"
 "PO-Revision-Date: 2025-11-29 14:00+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
@@ -20,31 +20,80 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.15-dev\n"
 
-#: chronograph/window.py:43
+#: chronograph/window.py:51
 msgid "All Supported Media"
 msgstr "Усі підтримувані медіа"
 
-#: chronograph/window.py:416
+#: chronograph/window.py:250
+msgid "Only Chronograph libraries are supported"
+msgstr ""
+
+#: chronograph/window.py:299
+#, fuzzy
+msgid "Failed to create library"
+msgstr "Бібліотека фільтрів"
+
+#: chronograph/window.py:313 chronograph/window.py:368 chronograph/main.py:80
+msgid "Open a library before importing files"
+msgstr ""
+
+#: chronograph/window.py:425
+msgid "Selected folder is not a Chronograph Library"
+msgstr ""
+
+#: chronograph/window.py:474
+msgid "Open a library to import files"
+msgstr ""
+
+#: chronograph/window.py:478
+msgid "Import already in progress"
+msgstr ""
+
+#: chronograph/window.py:483 chronograph/window.py:513
+msgid "No supported files were imported"
+msgstr ""
+
+#: chronograph/window.py:535
+msgid "Imported {} track"
+msgid_plural "Imported {} tracks"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: chronograph/window.py:547
+#, fuzzy
+msgid "Import failed"
+msgstr "Імпорт"
+
+#: chronograph/window.py:620
+#, python-brace-format
+msgid "Deleted {deleted} file"
+msgid_plural "Deleted {deleted} files"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: chronograph/window.py:659
 msgid "Copied successfully"
 msgstr "Успішно опубліковано"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:172
+#: chronograph/main.py:163
 msgid "translator-credits"
 msgstr ""
 "Максим Горпиніч\n"
 "antiascii"
 
-#: chronograph/main.py:180
+#: chronograph/main.py:171
 msgid "Inspiration"
 msgstr "Натхнення"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:190
+#: chronograph/main.py:181
 msgid "Build your own dictionary"
 msgstr "Створіть власний словник"
 
-#: chronograph/main.py:196
+#: chronograph/main.py:187
 msgid "Translate the App"
 msgstr "Перекласти додаток"
 
@@ -74,122 +123,181 @@ msgstr "Синхронізовані слова пісні не доступні
 msgid "No plain lyrics available"
 msgstr "Прості слова пісні не доступні"
 
-#: chronograph/ui/dialogs/preferences.py:211
+#: chronograph/ui/dialogs/preferences.py:147
 msgid "Synced Only"
 msgstr "Тільки синхронізовано"
 
-#: chronograph/ui/dialogs/preferences.py:212
+#: chronograph/ui/dialogs/preferences.py:148
 msgid "Synced, Fallback to Plain If Unavailable"
 msgstr "Синхронізовано, повернення до звичайного, якщо недоступно"
 
-#: chronograph/ui/dialogs/preferences.py:213
+#: chronograph/ui/dialogs/preferences.py:149
 msgid "Plain Only"
 msgstr "Тільки звичайний"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:64
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:124
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr "Отримати"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:120
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:128
+#: chronograph/ui/dialogs/tag_registration_dialog.py:22
+#: chronograph/ui/widgets/tag_row.py:60 chronograph/ui/widgets/tag_row.py:87
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
-#: data/gtk/ui/widgets/SavedLocation.blp:51
-#: data/gtk/ui/widgets/SavedLocation.blp:63
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
 msgid "Connection timed out"
 msgstr "Час очікування з'єднання минув"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:146
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
 msgid "Connection error occurred"
 msgstr "Сталася помилка підключення"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:148
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:156
 msgid "An error occurred: "
 msgstr "Сталася помилка: "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:162
 msgid "Instrumental track. No lyrics available"
 msgstr "Інструментальний трек. Текст пісні недоступний"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:168
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:170
+msgid "Track is missing from library"
+msgstr ""
+
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
 msgid "No synced lyrics found"
 msgstr "Синхронізованих текстів пісень не знайдено"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:192
 #: chronograph/backend/lrclib/lrclib_service.py:423
 msgid "No lyrics found"
 msgstr "Текстів пісень не знайдено"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:188
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:200
 msgid "No plain lyrics found"
 msgstr "Простих текстів пісень не знайдено"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:209
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:221
 msgid "Cancelled"
 msgstr "Скасовано"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:246
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:269
 msgid "Fetching"
 msgstr "Отримання"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:297
-#: chronograph/ui/sync_pages/wbw_sync_page.py:237
+#: chronograph/ui/dialogs/tag_registration_dialog.py:15
+#: chronograph/ui/dialogs/about_file_dialog.py:173
+msgid "Add New Tag"
+msgstr ""
+
+#: chronograph/ui/dialogs/tag_registration_dialog.py:20
+msgid "Tag name…"
+msgstr ""
+
+#: chronograph/ui/dialogs/tag_registration_dialog.py:23
+msgid "Add"
+msgstr ""
+
+#: chronograph/ui/dialogs/about_file_dialog.py:43
+msgid "Assign tag"
+msgstr ""
+
+#: chronograph/ui/dialogs/about_file_dialog.py:122
+#, fuzzy
+msgid "No Lyrics Available"
+msgstr "Немає текстів пісень"
+
+#: chronograph/ui/dialogs/about_file_dialog.py:136
+#, fuzzy
+msgid "Select Tag"
+msgstr "Виберіть файли"
+
+#: chronograph/ui/dialogs/about_file_dialog.py:158
+#, fuzzy
+msgid "No Tags Available"
+msgstr "Журнал поки що недоступний"
+
+#: chronograph/ui/dialogs/about_file_dialog.py:159
+msgid "There's no tags registered yet or all tags were assigned"
+msgstr ""
+
+#: chronograph/ui/dialogs/about_file_dialog.py:302
+msgid "Click to unassign"
+msgstr ""
+
+#: chronograph/ui/dialogs/about_file_dialog.py:365
+#, python-brace-format
+msgid "File \"{title} — {artist}\" was deleted"
+msgstr ""
+
+#: chronograph/ui/dialogs/importing_dialog.py:36
+#, python-brace-format
+msgid "Imported {imported}/{total}"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:310
+#: chronograph/ui/sync_pages/wbw_sync_page.py:266
 msgid "Lyrics exported to clipboard"
 msgstr "Текст пісень експортовано в буфер обміну пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:308
-#: chronograph/ui/sync_pages/wbw_sync_page.py:199
+#: chronograph/ui/sync_pages/lrc_sync_page.py:324
+#: chronograph/ui/sync_pages/wbw_sync_page.py:219
 msgid "Lyrics exported to file"
 msgstr "Текст пісні експортовано у файл пісні"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:309
-#: chronograph/ui/sync_pages/wbw_sync_page.py:200
-#: chronograph/ui/widgets/song_card.py:133
+#: chronograph/ui/sync_pages/lrc_sync_page.py:325
+#: chronograph/ui/sync_pages/wbw_sync_page.py:220
 msgid "Show"
 msgstr "Показати"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:419
+#: chronograph/ui/sync_pages/lrc_sync_page.py:339
+#: chronograph/ui/sync_pages/wbw_sync_page.py:243
+#, python-brace-format
+msgid "Lyrics ({pattern})"
+msgstr ""
+
+#: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успішно опубліковано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:423
+#: chronograph/ui/sync_pages/lrc_sync_page.py:464
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неправильний токен публікації: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:427
+#: chronograph/ui/sync_pages/lrc_sync_page.py:468
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Сталася невідома помилка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:438
+#: chronograph/ui/sync_pages/lrc_sync_page.py:480
 msgid "Network error occurred while publishing lyrics"
 msgstr "Під час публікації тексту пісні сталася помилка мережі"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:439
-#: chronograph/ui/sync_pages/lrc_sync_page.py:447
+#: chronograph/ui/sync_pages/lrc_sync_page.py:481
+#: chronograph/ui/sync_pages/lrc_sync_page.py:487
 msgid "Log"
 msgstr "Журнал"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:446
+#: chronograph/ui/sync_pages/lrc_sync_page.py:486
 msgid "An error occurred while publishing lyrics"
 msgstr "Під час публікації тексту пісні сталася помилка"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:501
 msgid "Seems like not every line is synced"
 msgstr "Схоже, що не всі рядки синхронізовані"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:474
+#: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid "Unable to publish lyrics."
 msgstr "Неможливо опублікувати текст пісні."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:517
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -197,70 +305,55 @@ msgstr ""
 "Щоб опублікувати текст пісні, для треку необхідно встановити поля назви, "
 "виконавця, альбому та тексту пісні."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
+#: chronograph/ui/sync_pages/lrc_sync_page.py:522
 msgid "Close"
 msgstr "Закрити"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:485
+#: chronograph/ui/sync_pages/lrc_sync_page.py:526
 msgid "Cannot publish empty lyrics"
 msgstr "Не можна публікувати порожні тексти пісень"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+#: chronograph/ui/sync_pages/lrc_sync_page.py:527
 msgid "Why?"
 msgstr "Чому?"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:123
+#: chronograph/ui/sync_pages/wbw_sync_page.py:129
 msgid "No lyrics available"
 msgstr "Немає текстів пісень"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:124
+#: chronograph/ui/sync_pages/wbw_sync_page.py:130
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Ви не надали жодного тексту пісні для синхронізації"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:324
+#: chronograph/ui/sync_pages/wbw_sync_page.py:353
 msgid "No lyrics to be re-synced"
 msgstr "Немає текстів пісень для повторної синхронізації"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:326
+#: chronograph/ui/sync_pages/wbw_sync_page.py:355
 msgid "Open Sync mode to re-sync all words"
 msgstr "Відкрийте режим синхронізації, щоб повторно синхронізувати всі слова"
 
-#: chronograph/ui/widgets/song_card.py:117
-msgctxt "song info dialog"
-msgid "About File"
-msgstr "Про Файл"
-
-#: chronograph/ui/widgets/song_card.py:120
 #: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
 #: data/gtk/ui/dialogs/MetadataEditor.blp:109
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:79
 msgid "Title"
 msgstr "Назва"
 
-#: chronograph/ui/widgets/song_card.py:124
 #: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
 #: data/gtk/ui/dialogs/MetadataEditor.blp:113
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:89
 msgid "Artist"
 msgstr "Виконавець"
-
-#: chronograph/ui/widgets/song_card.py:127
-#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
-#: data/gtk/ui/dialogs/MetadataEditor.blp:117
-msgid "Album"
-msgstr "Альбом"
-
-#: chronograph/ui/widgets/song_card.py:129
-msgid "Path"
-msgstr "Шлях"
-
-#. Translators: Do not translate the curly braces, they are used for formatting
-#: chronograph/ui/widgets/saved_location.py:27
-#: chronograph/ui/widgets/saved_location.py:31
-msgid "Path: {}"
-msgstr "Шлях: {}"
 
 #: chronograph/ui/widgets/lrclib_track.py:12
 msgid "Duration"
 msgstr "Тривалість"
+
+#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
+#: data/gtk/ui/dialogs/MetadataEditor.blp:117
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:99
+msgid "Album"
+msgstr "Альбом"
 
 #: chronograph/ui/widgets/lrclib_track.py:14
 msgid "Is instrumental"
@@ -274,36 +367,90 @@ msgstr "Так"
 msgid "No"
 msgstr "Ні"
 
-#: chronograph/ui/widgets/ui_player.py:49
-#: chronograph/ui/widgets/ui_player.py:63
+#: chronograph/ui/widgets/ui_player.py:48
+#: chronograph/ui/widgets/ui_player.py:62
 #, python-brace-format
 msgid "{vol}%"
 msgstr "{vol}%"
 
-#: chronograph/backend/file/song_card_model.py:12
+#: chronograph/ui/widgets/lyric_row.py:28
+#, fuzzy
+msgid "LRClib"
+msgstr "Пошук у LRClib"
+
+#: chronograph/ui/widgets/lyric_row.py:29
+#, fuzzy
+msgid "Other Lyric"
+msgstr "Видалити текст пісні"
+
+#: chronograph/ui/widgets/lyric_row.py:30
+#, fuzzy
+msgid "Import From…"
+msgstr "Імпорт з…"
+
+#: chronograph/ui/widgets/lyric_row.py:37
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
+msgid "File"
+msgstr "Файл"
+
+#: chronograph/ui/widgets/lyric_row.py:38
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
+msgid "Clipboard"
+msgstr "Буфер обміну"
+
+#: chronograph/ui/widgets/lyric_row.py:39
+#, fuzzy
+msgid "Export To…"
+msgstr "Експорт до…"
+
+#: chronograph/ui/widgets/tag_row.py:44 chronograph/ui/widgets/tag_row.py:61
+msgid "Rename"
+msgstr "Перейменувати"
+
+#: chronograph/ui/widgets/tag_row.py:45 chronograph/ui/widgets/tag_row.py:88
+msgid "Delete"
+msgstr "Видалити"
+
+#: chronograph/ui/widgets/tag_row.py:56
+#, fuzzy
+msgid "Rename Tag"
+msgstr "Перейменувати"
+
+#: chronograph/ui/widgets/tag_row.py:83
+#, fuzzy
+msgid "Delete Tag?"
+msgstr "Видалити"
+
+#: chronograph/backend/file/song_card_model.py:13
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: chronograph/backend/file/song_card_model.py:13
+#: chronograph/backend/file/song_card_model.py:14
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: chronograph/backend/file/song_card_model.py:14
+#: chronograph/backend/file/song_card_model.py:15
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: chronograph/backend/file/song_card_model.py:25
-#: chronograph/backend/lyrics/lyrics_format.py:62 data/gtk/window.blp:263
+#: chronograph/backend/file/available_lyrics.py:65 data/gtk/window.blp:273
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr "Нічого"
 
-#: chronograph/backend/lyrics/lyrics_format.py:63 data/gtk/window.blp:267
-#: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:271
-#: data/gtk/ui/dialogs/Preferences.blp:273
+#: chronograph/backend/file/available_lyrics.py:66
+#: chronograph/backend/file/available_lyrics.py:78 data/gtk/window.blp:277
+#: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:206
+#: data/gtk/ui/dialogs/Preferences.blp:208
 msgid "Plain"
 msgstr "Прості"
 
@@ -326,161 +473,161 @@ msgstr "Пошук без альбому"
 msgid "No suitable lyrics found"
 msgstr "Відповідних текстів пісень не знайдено"
 
-#: data/gtk/window.blp:5
-msgid "No Music"
-msgstr "Без музики"
-
 #: data/gtk/window.blp:6
-msgid "Select a directory or drop files to load them"
-msgstr "Виберіть каталог або перетягніть файли, щоб завантажити їх"
+msgid "No Tags"
+msgstr ""
 
-#: data/gtk/window.blp:16 data/gtk/window.blp:48
-msgid "Open Directory"
-msgstr "Відкритий каталог"
-
-#: data/gtk/window.blp:22 data/gtk/window.blp:54
-msgid "Open File"
-msgstr "Відкрити файл"
-
-#: data/gtk/window.blp:37
-msgid "Empty Directory"
-msgstr "Порожній каталог"
-
-#: data/gtk/window.blp:38
-msgid "This directory doesn't have any supported music files"
-msgstr "У цьому каталозі немає підтримуваних музичних файлів"
-
-#: data/gtk/window.blp:69
-msgid "No Saves"
-msgstr "Без збережень"
-
-#: data/gtk/window.blp:71
-msgid "Press pin button to add current directory to the saves"
+#: data/gtk/window.blp:8
+#, fuzzy
+msgid "Press plus button to register a new Tag"
 msgstr ""
 "Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
 
-#: data/gtk/window.blp:80 data/gtk/window.blp:324
+#: data/gtk/window.blp:17 data/gtk/window.blp:319
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:29
 msgid "Quick Editor"
 msgstr "Швидкий редактор"
 
-#: data/gtk/window.blp:120
+#: data/gtk/window.blp:57
 msgid "Copy to Clipboard"
 msgstr "Копіювати в буфер обміну"
 
 #. Translators: App name IS intended to be translated
-#: data/gtk/window.blp:133 data/gtk/window.blp:195
+#: data/gtk/window.blp:70 data/gtk/window.blp:162 data/gtk/window.blp:195
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:8
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:2
 msgid "Chronograph"
 msgstr "Хронограф"
 
-#: data/gtk/window.blp:181
+#: data/gtk/window.blp:117
 msgid "Drop files here to open them"
 msgstr "Перетягніть файли сюди, щоб відкрити їх"
 
-#: data/gtk/window.blp:202
-msgid "Saves"
-msgstr "Збереження"
-
-#: data/gtk/window.blp:210 data/gtk/window.blp:231
-#: data/gtk/ui/shortcuts-dialog.blp:35
-msgid "Toggle sidebar"
-msgstr "Перемкнути бічну панель"
-
-#: data/gtk/window.blp:238
-msgid "Select a directory or open a file"
-msgstr "Обрати теки або відкрити файл"
-
-#: data/gtk/window.blp:253 data/gtk/ui/shortcuts-dialog.blp:15
-msgid "Toggle search"
-msgstr "Увімкнути пошук"
-
-#: data/gtk/window.blp:259
-msgid "Filter library"
-msgstr "Бібліотека фільтрів"
-
-#: data/gtk/window.blp:287 data/gtk/ui/sync_pages/LRCSyncPage.blp:26
+#: data/gtk/window.blp:143 data/gtk/window.blp:297
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:26
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:26
 msgid "Menu"
 msgstr "Меню"
 
-#: data/gtk/window.blp:291
-msgid "Sort"
-msgstr "Сортувати"
-
-#: data/gtk/window.blp:294
-msgid "A-Z"
-msgstr "А-Я"
-
-#: data/gtk/window.blp:300
-msgid "Z-A"
-msgstr "Я-А"
-
-#: data/gtk/window.blp:307
-msgid "View"
-msgstr "Переглянути"
-
-#: data/gtk/window.blp:310
-msgid "Grid"
-msgstr "Сітка"
-
-#: data/gtk/window.blp:316
-msgid "List"
-msgstr "Список"
-
-#: data/gtk/window.blp:325
-msgid "Mass Lyrics Downloading"
-msgstr "Масове завантаження текстів пісень"
-
-#: data/gtk/window.blp:329 data/gtk/ui/sync_pages/LRCSyncPage.blp:34
+#: data/gtk/window.blp:147 data/gtk/window.blp:324
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:34
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: data/gtk/window.blp:330 data/gtk/ui/shortcuts-dialog.blp:30
+#: data/gtk/window.blp:148 data/gtk/window.blp:325
+#: data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:35
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
 msgid "Keybindings"
 msgstr "Клавіатурні скорочення"
 
-#: data/gtk/window.blp:331 data/gtk/ui/sync_pages/LRCSyncPage.blp:36
+#: data/gtk/window.blp:149 data/gtk/window.blp:326
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
 msgid "About"
 msgstr "Про додаток"
 
-#: data/gtk/window.blp:340
-msgid "Clean the library"
+#: data/gtk/window.blp:163
+msgid "Open or create Library to start syncing"
+msgstr ""
+
+#: data/gtk/window.blp:171 data/gtk/window.blp:434
+#, fuzzy
+msgid "Open Library"
+msgstr "Бібліотека"
+
+#: data/gtk/window.blp:180
+#, fuzzy
+msgid "Create Library"
 msgstr "Приберіть бібліотеку"
 
-#: data/gtk/window.blp:355
-msgid "Add current directory to saves"
-msgstr "Додати поточний каталог до збереження"
+#: data/gtk/window.blp:202
+msgid "Tags"
+msgstr ""
 
-#: data/gtk/window.blp:364
-msgid "Recursive parsing settings changed. Re-parse?"
-msgstr "Налаштування рекурсивного розбору змінено. Повторити розбір?"
+#: data/gtk/window.blp:210 data/gtk/window.blp:241
+#: data/gtk/ui/shortcuts-dialog.blp:35
+msgid "Toggle sidebar"
+msgstr "Перемкнути бічну панель"
 
-#: data/gtk/window.blp:365
-msgid "Re-Parse"
-msgstr "Повторний розбір"
+#: data/gtk/window.blp:217
+msgid "Register tag"
+msgstr ""
 
-#: data/gtk/window.blp:380 data/gtk/ui/dialogs/LRClib.blp:80
+#: data/gtk/window.blp:248
+msgid "Import files or open a library"
+msgstr ""
+
+#: data/gtk/window.blp:263 data/gtk/ui/shortcuts-dialog.blp:15
+msgid "Toggle search"
+msgstr "Увімкнути пошук"
+
+#: data/gtk/window.blp:269
+msgid "Filter library"
+msgstr "Бібліотека фільтрів"
+
+#: data/gtk/window.blp:301
+msgid "Sort"
+msgstr "Сортувати"
+
+#: data/gtk/window.blp:304
+msgid "A-Z"
+msgstr "А-Я"
+
+#: data/gtk/window.blp:310
+msgid "Z-A"
+msgstr "Я-А"
+
+#: data/gtk/window.blp:320
+msgid "Mass Lyrics Downloading"
+msgstr "Масове завантаження текстів пісень"
+
+#: data/gtk/window.blp:351
+#, fuzzy
+msgid "Delete selected files"
+msgstr "Видалити обраний рядок"
+
+#: data/gtk/window.blp:360
+msgid "Enable bulk deletion mode"
+msgstr ""
+
+#: data/gtk/window.blp:378 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
 msgstr "Шукати"
 
-#: data/gtk/window.blp:421
-msgid "Directory"
-msgstr "Довідник"
+#: data/gtk/window.blp:399
+#, fuzzy
+msgid "Library is Empty"
+msgstr "Перегляд бібліотеки у світлому стилі"
 
-#: data/gtk/window.blp:422
-msgid "Files"
-msgstr "Файли"
+#: data/gtk/window.blp:400
+msgid ""
+"Your current Library is empty. Import files right now or open another Library"
+msgstr ""
+
+#: data/gtk/window.blp:407
+#, fuzzy
+msgid "Import…"
+msgstr "Імпорт"
+
+#: data/gtk/window.blp:417 data/gtk/ui/dialogs/LRClib.blp:223
+msgid "Nothing Was Found"
+msgstr "Нічого не знайдено"
+
+#: data/gtk/window.blp:418
+msgid "No songs found for your request. Try out another one"
+msgstr ""
+
+#: data/gtk/window.blp:433 data/gtk/ui/dialogs/ImportDialog.blp:10
+#, fuzzy
+msgid "Import Files"
+msgstr "Імпорт"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
-#: data/gtk/ui/dialogs/Preferences.blp:95
-#: data/gtk/ui/dialogs/Preferences.blp:190
+#: data/gtk/ui/dialogs/Preferences.blp:62
+#: data/gtk/ui/dialogs/Preferences.blp:157
 msgid "General"
 msgstr "Загальні"
 
@@ -489,12 +636,14 @@ msgid "Quit"
 msgstr "Вийти"
 
 #: data/gtk/ui/shortcuts-dialog.blp:20
-msgid "Select directory"
-msgstr "Виберіть каталог"
+#, fuzzy
+msgid "Open library"
+msgstr "Бібліотека фільтрів"
 
 #: data/gtk/ui/shortcuts-dialog.blp:25
-msgid "Select files"
-msgstr "Виберіть файли"
+#, fuzzy
+msgid "Import files"
+msgstr "Імпорт"
 
 #: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
@@ -585,13 +734,9 @@ msgstr "Прості тексти пісень з LRClib"
 msgid "Imports currently selected lyrics"
 msgstr "Імпортує вибрані тексти пісень"
 
-#: data/gtk/ui/dialogs/LRClib.blp:188
+#: data/gtk/ui/dialogs/LRClib.blp:188 data/gtk/ui/dialogs/ImportDialog.blp:61
 msgid "Import"
 msgstr "Імпорт"
-
-#: data/gtk/ui/dialogs/LRClib.blp:223
-msgid "Nothing Was Found"
-msgstr "Нічого не знайдено"
 
 #: data/gtk/ui/dialogs/LRClib.blp:224
 msgid "Try out another request, maybe there are mistakes in request text"
@@ -644,75 +789,25 @@ msgstr ""
 "при зачиненні чи ні"
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
-msgid "Save Session on App Close"
+#, fuzzy
+msgid "Save Library on App Close"
 msgstr "Зберегти сеанс при закритті програми"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
-msgid "Re-opens last opened directory on the next startup"
+#, fuzzy
+msgid "Re-opens last opened Library on the next startup"
 msgstr ""
 "Повторно відкриває останній відкритий каталог під час наступного запуску"
 
-#: data/gtk/ui/dialogs/Preferences.blp:25
-msgid "Automatically Toggle List View Mode"
-msgstr "Автоматичне перемикання режиму списку"
-
 #: data/gtk/ui/dialogs/Preferences.blp:26
-msgid ""
-"Automatically toggles List View mode when display size is not big enough"
-msgstr ""
-"Автоматично вмикає режим перегляду списком, якщо екран недостатньо великий"
-
-#: data/gtk/ui/dialogs/Preferences.blp:30
-msgid "Display Compressed Covers"
-msgstr "Стиснуті обкладинки для дисплеїв"
-
-#: data/gtk/ui/dialogs/Preferences.blp:31
-msgid ""
-"May slightly reduce memory consumption.\n"
-"This does not affect actual images stored within files"
-msgstr ""
-"Може дещо зменшити споживання пам'яті.\n"
-"Це не впливає на фактичні зображення, що зберігаються у файлах"
-
-#: data/gtk/ui/dialogs/Preferences.blp:35
-msgid "Quality Level"
-msgstr "Рівень якості"
-
-#: data/gtk/ui/dialogs/Preferences.blp:36
-msgid "The higher value, the higher cover quality"
-msgstr "Чим вище значення, тим вища якість покриття"
-
-#: data/gtk/ui/dialogs/Preferences.blp:48
-msgid "Parse Directories Recursively"
-msgstr "Рекурсивний розбір каталогів"
-
-#: data/gtk/ui/dialogs/Preferences.blp:49
-msgid "Scans provided directory for supported files recursively"
-msgstr "Рекурсивно сканує наданий каталог на наявність підтримуваних файлів"
-
-#: data/gtk/ui/dialogs/Preferences.blp:52
-msgid "Follow Symlinks"
-msgstr "Слідкуйте за символічними посиланнями"
-
-#: data/gtk/ui/dialogs/Preferences.blp:53
-msgid ""
-"If a directory has symlinks to other directories, they would be parsed too\n"
-"May cause excessive memory consumption and looping if it has looped symlinks"
-msgstr ""
-"Якщо каталог містить символічні посилання на інші каталоги, вони також "
-"будуть проаналізовані.\n"
-"Може спричинити надмірне споживання пам'яті та зациклення, якщо він містить "
-"зациклені символічні посилання"
-
-#: data/gtk/ui/dialogs/Preferences.blp:59
 msgid "Mass Downloading"
 msgstr "Масове завантаження"
 
-#: data/gtk/ui/dialogs/Preferences.blp:62
+#: data/gtk/ui/dialogs/Preferences.blp:29
 msgid "Max Parallel Downloadings"
 msgstr "Максимальна кількість паралельних завантажень"
 
-#: data/gtk/ui/dialogs/Preferences.blp:63
+#: data/gtk/ui/dialogs/Preferences.blp:30
 msgid ""
 "The amount of simultaneous parallel downloadings. High amount may cause "
 "downloading failure if treated as DDoS attack"
@@ -720,126 +815,118 @@ msgstr ""
 "Кількість одночасних паралельних завантажень. Велика кількість може "
 "призвести до збою завантаження, якщо її буде сприйнято як DDoS-атаку"
 
-#: data/gtk/ui/dialogs/Preferences.blp:74
+#: data/gtk/ui/dialogs/Preferences.blp:41
 msgid "Preferred Lyrics Format"
 msgstr "Бажаний формат тексту пісень"
 
-#: data/gtk/ui/dialogs/Preferences.blp:75
+#: data/gtk/ui/dialogs/Preferences.blp:42
 msgid "Target lyrics format for LRClib downloading"
 msgstr "Цільовий формат текстів пісень для завантаження з LRClib"
 
-#: data/gtk/ui/dialogs/Preferences.blp:80
+#: data/gtk/ui/dialogs/Preferences.blp:47
 msgid "Debug"
 msgstr "Налагодження"
 
-#: data/gtk/ui/dialogs/Preferences.blp:83
+#: data/gtk/ui/dialogs/Preferences.blp:50
 msgid "Enable Debug Logging Profile"
 msgstr "Увімкнути профіль журналювання налагодження"
 
-#: data/gtk/ui/dialogs/Preferences.blp:84
+#: data/gtk/ui/dialogs/Preferences.blp:51
 msgid "Expands logging information for debug purposes"
 msgstr "Розширює інформацію журналу для цілей налагодження"
 
-#: data/gtk/ui/dialogs/Preferences.blp:85
+#: data/gtk/ui/dialogs/Preferences.blp:52
 msgid "NEEDS RESTART"
 msgstr "ПОТРЕБУЄ ПЕРЕЗАПУСКУ"
 
-#: data/gtk/ui/dialogs/Preferences.blp:91
+#: data/gtk/ui/dialogs/Preferences.blp:58
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:5
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:5
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: data/gtk/ui/dialogs/Preferences.blp:98
+#: data/gtk/ui/dialogs/Preferences.blp:65
 msgid "Syncing Type"
 msgstr "Тип синхронізації"
 
-#: data/gtk/ui/dialogs/Preferences.blp:99
+#: data/gtk/ui/dialogs/Preferences.blp:66
 msgid "Defines the default workflow of syncing process"
 msgstr "Визначає робочий процес за замовчуванням для процесу синхронізації"
 
-#: data/gtk/ui/dialogs/Preferences.blp:102
-#: data/gtk/ui/dialogs/Preferences.blp:126
+#: data/gtk/ui/dialogs/Preferences.blp:69
+#: data/gtk/ui/dialogs/Preferences.blp:93
 msgid "Line-by-Line"
 msgstr "Рядок за рядком"
 
-#: data/gtk/ui/dialogs/Preferences.blp:103
-#: data/gtk/ui/dialogs/Preferences.blp:152
+#: data/gtk/ui/dialogs/Preferences.blp:70
+#: data/gtk/ui/dialogs/Preferences.blp:119
 msgid "Word-by-Word"
 msgstr "Слово за словом"
 
-#: data/gtk/ui/dialogs/Preferences.blp:109
+#: data/gtk/ui/dialogs/Preferences.blp:76
 msgid "Word-by-Word sync workflow is not supported on mobile devices."
 msgstr ""
 "Робочий процес синхронізації слово за словом не підтримується на мобільних "
 "пристроях."
 
-#: data/gtk/ui/dialogs/Preferences.blp:120
+#: data/gtk/ui/dialogs/Preferences.blp:87
 msgid "Use Precise Milliseconds"
 msgstr "Використовуйте точні мілісекунди"
 
-#: data/gtk/ui/dialogs/Preferences.blp:121
+#: data/gtk/ui/dialogs/Preferences.blp:88
 msgid "Use 3-digit milliseconds instead of 2-digit"
 msgstr "Використовуйте 3-значні мілісекунди замість 2-значних"
 
-#: data/gtk/ui/dialogs/Preferences.blp:129
-#: data/gtk/ui/dialogs/Preferences.blp:155
+#: data/gtk/ui/dialogs/Preferences.blp:96
+#: data/gtk/ui/dialogs/Preferences.blp:122
 msgid "Default Re-Sync Value"
 msgstr "Значення повторної синхронізації за замовчуванням"
 
-#: data/gtk/ui/dialogs/Preferences.blp:130
-#: data/gtk/ui/dialogs/Preferences.blp:156
+#: data/gtk/ui/dialogs/Preferences.blp:97
+#: data/gtk/ui/dialogs/Preferences.blp:123
 msgid "Amount of milliseconds default re-sync performs by"
 msgstr ""
 "Кількість мілісекунд, яку виконується для повторної синхронізації за "
 "замовчуванням"
 
-#: data/gtk/ui/dialogs/Preferences.blp:140
-#: data/gtk/ui/dialogs/Preferences.blp:166
+#: data/gtk/ui/dialogs/Preferences.blp:107
+#: data/gtk/ui/dialogs/Preferences.blp:133
 msgid "Large Re-Sync Value"
 msgstr "Велике значення повторної синхронізації"
 
-#: data/gtk/ui/dialogs/Preferences.blp:141
-#: data/gtk/ui/dialogs/Preferences.blp:167
+#: data/gtk/ui/dialogs/Preferences.blp:108
+#: data/gtk/ui/dialogs/Preferences.blp:134
 msgid "Amount of milliseconds large re-sync performs by"
 msgstr "Кількість мілісекунд, яку виконує велика повторна синхронізація"
 
-#: data/gtk/ui/dialogs/Preferences.blp:179
+#: data/gtk/ui/dialogs/Preferences.blp:146
 msgid "File Manipulation"
 msgstr "Маніпулювання файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:184
+#: data/gtk/ui/dialogs/Preferences.blp:151
 msgid "Auto File Manipulation"
 msgstr "Автоматичне маніпулювання файлами"
 
-#: data/gtk/ui/dialogs/Preferences.blp:185
+#: data/gtk/ui/dialogs/Preferences.blp:152
 msgid ""
 "Automatically creates and updates files when any of lyrics lines changed"
 msgstr ""
 "Автоматично створювати та оновлювати файли коли будь-які рядки пісні "
 "змінюються"
 
-#: data/gtk/ui/dialogs/Preferences.blp:194
-msgid "File Format"
-msgstr "Формат файлу"
-
-#: data/gtk/ui/dialogs/Preferences.blp:195
-msgid "File format for auto manipulation"
-msgstr "Формат файлу для автоматичних маніпуляцій"
-
-#: data/gtk/ui/dialogs/Preferences.blp:205
+#: data/gtk/ui/dialogs/Preferences.blp:161
 msgid "Autosave Interval"
 msgstr "Інтервал автозбереження"
 
-#: data/gtk/ui/dialogs/Preferences.blp:206
+#: data/gtk/ui/dialogs/Preferences.blp:162
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Інтервал автозбереження після бездіяльності синхронізації тексту пісні"
 
-#: data/gtk/ui/dialogs/Preferences.blp:221
+#: data/gtk/ui/dialogs/Preferences.blp:177
 msgid "Save Plain LRC Too"
 msgstr "Зберегти також звичайний LRC"
 
-#: data/gtk/ui/dialogs/Preferences.blp:222
+#: data/gtk/ui/dialogs/Preferences.blp:178
 msgid ""
 "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
 "set"
@@ -847,34 +934,20 @@ msgstr ""
 "Зберігає звичайний файл LRC разом із файлом eLRC. Не працюватиме, якщо "
 "префікс eLRC не встановлено"
 
-#: data/gtk/ui/dialogs/Preferences.blp:226
-msgid "eLRC Prefix"
-msgstr "Префікс eLRC"
-
-#: data/gtk/ui/dialogs/Preferences.blp:235
-#: data/gtk/ui/dialogs/Preferences.blp:292
-msgctxt "button tooltip; noun"
-msgid "Help"
-msgstr "Допомога"
-
-#: data/gtk/ui/dialogs/Preferences.blp:238
-msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
-msgstr "Префікс, файли eLRC не повинні перешкоджати звичайним LRC-файлам"
-
-#: data/gtk/ui/dialogs/Preferences.blp:248
+#: data/gtk/ui/dialogs/Preferences.blp:183
 msgid "Lyrics Embedding"
 msgstr "Вбудовування текстів пісень"
 
-#: data/gtk/ui/dialogs/Preferences.blp:252
+#: data/gtk/ui/dialogs/Preferences.blp:187
 msgid "Embed Lyrics Within Audio File"
 msgstr "Вбудувати текст пісні в аудіофайл пісні"
 
-#: data/gtk/ui/dialogs/Preferences.blp:256
+#: data/gtk/ui/dialogs/Preferences.blp:191
 msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
 msgstr ""
 "Використання окремого тегу синхронізованих текстів пісень у файлах Vorbis"
 
-#: data/gtk/ui/dialogs/Preferences.blp:257
+#: data/gtk/ui/dialogs/Preferences.blp:192
 msgid ""
 "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
 "files (ogg, flac, opus)"
@@ -882,15 +955,20 @@ msgstr ""
 "Дозволяє записувати синхронізовані тексти пісень в окремий тег у файлах "
 "Vorbis з можливістю коментарів (ogg, flac, opus)"
 
-#: data/gtk/ui/dialogs/Preferences.blp:262
+#: data/gtk/ui/dialogs/Preferences.blp:197
 msgid "Embed Lyrics Default Format"
 msgstr "Вбудувати текст пісні у форматі за замовчуванням"
 
-#: data/gtk/ui/dialogs/Preferences.blp:263
+#: data/gtk/ui/dialogs/Preferences.blp:198
 msgid "Brings lyrics to selected format before embedding"
 msgstr "Перетворює текст пісні у вибраний формат перед вбудовуванням"
 
-#: data/gtk/ui/dialogs/Preferences.blp:298
+#: data/gtk/ui/dialogs/Preferences.blp:227
+msgctxt "button tooltip; noun"
+msgid "Help"
+msgstr "Допомога"
+
+#: data/gtk/ui/dialogs/Preferences.blp:233
 msgid ""
 "The lyrics would be brought to selected format BEFORE the embedding starts.\n"
 "If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
@@ -951,6 +1029,70 @@ msgstr "Текст пісні вже отримано"
 msgid "Lyrics for all songs are already fetched"
 msgstr "Тексти всіх пісень вже отримано"
 
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:13
+#, fuzzy
+msgid "About File"
+msgstr "Про Файл"
+
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:118
+#, fuzzy
+msgid "Imported at"
+msgstr "Імпорт"
+
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:126
+msgid "Last Modified"
+msgstr ""
+
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:138
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:169
+#, fuzzy
+msgid "Available Lyrics"
+msgstr "Вбудувати текст пісні"
+
+#: data/gtk/ui/dialogs/AboutFileDialog.blp:153
+#, fuzzy
+msgid "Delete File"
+msgstr "Видалити"
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:35
+msgid "Import Settings"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:39
+msgid "Import With Lyrics"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:40
+msgid "Also import lyric files if they have the same name"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:43
+#, fuzzy
+msgid "eLRC prefix"
+msgstr "Префікс eLRC"
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:44
+msgid "Remain empty if not used"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:49
+#, fuzzy
+msgid "Move Files"
+msgstr "Файли"
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:50
+msgid "Moves files to the import location instead of copying them"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ImportingDialog.blp:33
+#, fuzzy
+msgid "Importing…"
+msgstr "Імпорт"
+
+#: data/gtk/ui/dialogs/ImportingDialog.blp:40
+msgid "Preparing…"
+msgstr ""
+
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
 msgid "Sync/Re-sync line"
@@ -975,20 +1117,6 @@ msgstr "Повторно синхронізувати вибраний рядо�
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:102
 msgid "Import from …"
 msgstr "Імпорт з…"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
-msgid "File"
-msgstr "Файл"
-
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
-msgid "Clipboard"
-msgstr "Буфер обміну"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:124
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:129
@@ -1053,47 +1181,21 @@ msgid "Edit"
 msgstr "Редагувати"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
-#: data/gtk/ui/widgets/SongCard.blp:35 data/gtk/ui/widgets/SongCard.blp:191
+#: data/gtk/ui/widgets/SongCard.blp:35
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: data/gtk/ui/widgets/SavedLocation.blp:34
-#: data/gtk/ui/widgets/SavedLocation.blp:52
-msgid "Rename"
-msgstr "Перейменувати"
-
-#: data/gtk/ui/widgets/SavedLocation.blp:35
-#: data/gtk/ui/widgets/SavedLocation.blp:64
-msgid "Delete"
-msgstr "Видалити"
-
-#: data/gtk/ui/widgets/SavedLocation.blp:42
-msgid "Rename this Save?"
-msgstr "Перейменувати це збереження?"
-
-#: data/gtk/ui/widgets/SavedLocation.blp:46
-msgid "Name"
-msgstr "Ім'я"
-
-#: data/gtk/ui/widgets/SavedLocation.blp:58
-msgid "Delete this Save?"
-msgstr "Видалити це збереження?"
-
-#: data/gtk/ui/widgets/SongCard.blp:46 data/gtk/ui/widgets/SongCard.blp:202
+#: data/gtk/ui/widgets/SongCard.blp:45
 msgid "Edit song metadata"
 msgstr "Редагувати метадані пісні"
 
-#: data/gtk/ui/widgets/SongCard.blp:57 data/gtk/ui/widgets/SongCard.blp:212
+#: data/gtk/ui/widgets/SongCard.blp:55
 msgid "Show song info"
 msgstr "Показати інформацію про пісню"
 
-#: data/gtk/ui/widgets/SongCard.blp:71
+#: data/gtk/ui/widgets/SongCard.blp:68
 msgid "Open syncing page"
 msgstr "Відкрити сторінку синхронізації"
-
-#: data/gtk/ui/widgets/SongCard.blp:124
-msgid "Lyrics format (if exists)"
-msgstr "Формат тексту пісні (якщо існує)"
 
 #: data/gtk/ui/widgets/UIPlayer.blp:105
 msgid "Play/Pause"
@@ -1250,10 +1352,6 @@ msgid "Mass lyrics downloading dialog"
 msgstr "Діалогове вікно масового завантаження текстів пісень"
 
 #: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:103
-msgid "Library in List View mode"
-msgstr "Бібліотека в режимі перегляду списку"
-
-#: data/io.github.dzheremi2.lrcmake-gtk.metainfo.xml.in:107
 msgid "Lyrics syncing page on smaller display"
 msgstr "Сторінка синхронізації пісень на меншому дисплеї"
 
@@ -1263,6 +1361,135 @@ msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
 "тексти "
 "пісень;інтернет;пісні;мультимедіа;медіа;lrclib;музика;синхронізація;хронограф;"
+
+#, fuzzy
+#~ msgid "Avaiable Lyrics"
+#~ msgstr "Вбудувати текст пісні"
+
+#~ msgid "Path"
+#~ msgstr "Шлях"
+
+#~ msgid "Path: {}"
+#~ msgstr "Шлях: {}"
+
+#~ msgid "No Music"
+#~ msgstr "Без музики"
+
+#~ msgid "Select a directory or drop files to load them"
+#~ msgstr "Виберіть каталог або перетягніть файли, щоб завантажити їх"
+
+#~ msgid "Open Directory"
+#~ msgstr "Відкритий каталог"
+
+#~ msgid "Open File"
+#~ msgstr "Відкрити файл"
+
+#~ msgid "Empty Directory"
+#~ msgstr "Порожній каталог"
+
+#~ msgid "This directory doesn't have any supported music files"
+#~ msgstr "У цьому каталозі немає підтримуваних музичних файлів"
+
+#~ msgid "No Saves"
+#~ msgstr "Без збережень"
+
+#~ msgid "Saves"
+#~ msgstr "Збереження"
+
+#~ msgid "Select a directory or open a file"
+#~ msgstr "Обрати теки або відкрити файл"
+
+#~ msgid "View"
+#~ msgstr "Переглянути"
+
+#~ msgid "Grid"
+#~ msgstr "Сітка"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
+#~ msgid "Add current directory to saves"
+#~ msgstr "Додати поточний каталог до збереження"
+
+#~ msgid "Recursive parsing settings changed. Re-parse?"
+#~ msgstr "Налаштування рекурсивного розбору змінено. Повторити розбір?"
+
+#~ msgid "Re-Parse"
+#~ msgstr "Повторний розбір"
+
+#~ msgid "Directory"
+#~ msgstr "Довідник"
+
+#~ msgid "Select directory"
+#~ msgstr "Виберіть каталог"
+
+#~ msgid "Automatically Toggle List View Mode"
+#~ msgstr "Автоматичне перемикання режиму списку"
+
+#~ msgid ""
+#~ "Automatically toggles List View mode when display size is not big enough"
+#~ msgstr ""
+#~ "Автоматично вмикає режим перегляду списком, якщо екран недостатньо великий"
+
+#~ msgid "Display Compressed Covers"
+#~ msgstr "Стиснуті обкладинки для дисплеїв"
+
+#~ msgid ""
+#~ "May slightly reduce memory consumption.\n"
+#~ "This does not affect actual images stored within files"
+#~ msgstr ""
+#~ "Може дещо зменшити споживання пам'яті.\n"
+#~ "Це не впливає на фактичні зображення, що зберігаються у файлах"
+
+#~ msgid "Quality Level"
+#~ msgstr "Рівень якості"
+
+#~ msgid "The higher value, the higher cover quality"
+#~ msgstr "Чим вище значення, тим вища якість покриття"
+
+#~ msgid "Parse Directories Recursively"
+#~ msgstr "Рекурсивний розбір каталогів"
+
+#~ msgid "Scans provided directory for supported files recursively"
+#~ msgstr "Рекурсивно сканує наданий каталог на наявність підтримуваних файлів"
+
+#~ msgid "Follow Symlinks"
+#~ msgstr "Слідкуйте за символічними посиланнями"
+
+#~ msgid ""
+#~ "If a directory has symlinks to other directories, they would be parsed "
+#~ "too\n"
+#~ "May cause excessive memory consumption and looping if it has looped "
+#~ "symlinks"
+#~ msgstr ""
+#~ "Якщо каталог містить символічні посилання на інші каталоги, вони також "
+#~ "будуть проаналізовані.\n"
+#~ "Може спричинити надмірне споживання пам'яті та зациклення, якщо він "
+#~ "містить зациклені символічні посилання"
+
+#~ msgid "File Format"
+#~ msgstr "Формат файлу"
+
+#~ msgid "File format for auto manipulation"
+#~ msgstr "Формат файлу для автоматичних маніпуляцій"
+
+#~ msgid "A prefix, eLRC files will have to not interfere with plain LRC ones"
+#~ msgstr "Префікс, файли eLRC не повинні перешкоджати звичайним LRC-файлам"
+
+#~ msgid "Rename this Save?"
+#~ msgstr "Перейменувати це збереження?"
+
+#~ msgid "Name"
+#~ msgstr "Ім'я"
+
+#~ msgid "Delete this Save?"
+#~ msgstr "Видалити це збереження?"
+
+#~ msgid "Lyrics format (if exists)"
+#~ msgstr "Формат тексту пісні (якщо існує)"
+
+#~ msgid "Library in List View mode"
+#~ msgstr "Бібліотека в режимі перегляду списку"
 
 #~ msgid "Pending"
 #~ msgstr "Очікує на розгляд"
@@ -1407,9 +1634,6 @@ msgstr ""
 
 #~ msgid "Dialog with opened file details view"
 #~ msgstr "Перегляд діалогового вікна з подробицями про файл"
-
-#~ msgid "Library view light"
-#~ msgstr "Перегляд бібліотеки у світлому стилі"
 
 #~ msgid "Dialog with opened file details view light"
 #~ msgstr "Перегляд діалогового вікна з подробицями про файл у світлому стилі"
