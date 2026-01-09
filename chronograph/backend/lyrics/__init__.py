@@ -1,7 +1,25 @@
 """Lyrics related module"""
 
-from .lyrics import Lyrics, LyricsHierarchyConversion
-from .lyrics_file import LyricsFile
-from .lyrics_format import LyricsFormat
+from .formats import ElrcLyrics, LrcLyrics, PlainLyrics, detect_start_lyrics
+from .interfaces import EndLyrics, LyricsBase, LyricsConversionError, StartLyrics
+from .store import (
+  delete_track_lyric,
+  get_track_lyric,
+  get_track_lyrics,
+  save_track_lyric,
+)
 
-__all__ = ["Lyrics", "LyricsFile", "LyricsFormat", "LyricsHierarchyConversion"]
+__all__ = [
+  "ElrcLyrics",
+  "EndLyrics",
+  "LrcLyrics",
+  "LyricsBase",
+  "LyricsConversionError",
+  "PlainLyrics",
+  "StartLyrics",
+  "delete_track_lyric",
+  "detect_start_lyrics",
+  "get_track_lyric",
+  "get_track_lyrics",
+  "save_track_lyric",
+]

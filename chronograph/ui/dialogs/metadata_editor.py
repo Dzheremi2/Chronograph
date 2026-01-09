@@ -2,8 +2,8 @@ from typing import Optional
 
 from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
-from chronograph.backend.file import SongCardModel
-from chronograph.backend.lyrics import Lyrics
+from chronograph.backend.file.song_card_model import SongCardModel
+from chronograph.backend.lyrics import ElrcLyrics, detect_start_lyrics
 from chronograph.internal import Constants
 from chronograph.ui.widgets.internal.menu_button import ChrMenuButton  # noqa: F401
 from dgutils import Actions, Linker
@@ -53,7 +53,17 @@ class MetadataEditor(Adw.Dialog, Linker):
     if not isinstance(page, (WBWSyncPage, LRCSyncPage)):
       self.lyrics_buttons_box.set_visible(False)
 
-    self.new_connection(self, "closed", lambda *__: self.disconnect_all())
+  def close(self) -> bool:
+    """Close the dialog and release bindings.
+
+    Returns
+    -------
+    bool
+      True if the close request was accepted.
+    """
+    self.link_teardown()
+    self._card = None
+    return super().close()
 
   @Gtk.Template.Callback()
   def on_cancel_clicked(self, *_args) -> None:
@@ -72,7 +82,7 @@ class MetadataEditor(Adw.Dialog, Linker):
       if (
         page.modes.get_page(page.modes.get_visible_child()) == page.edit_view_stack_page
       ):
-        lyrics = Lyrics(
+        lyrics = detect_start_lyrics(
           page.edit_view_text_view.get_buffer().get_text(
             page.edit_view_text_view.get_buffer().get_start_iter(),
             page.edit_view_text_view.get_buffer().get_end_iter(),
@@ -80,27 +90,27 @@ class MetadataEditor(Adw.Dialog, Linker):
           )
         )
       else:
-        lyrics = Lyrics.from_tokens(page._lyrics_model.get_tokens())  # noqa: SLF001
-      self._card.mfile.embed_lyrics(lyrics, force=True)
+        lyrics = ElrcLyrics.from_tokens(page._lyrics_model.get_tokens())  # noqa: SLF001
+      self._card.media().embed_lyrics(lyrics, force=True)
     elif isinstance(page, LRCSyncPage):
       lyrics = [line.get_text() for line in page.sync_lines]
-      lyrics = Lyrics("\n".join(lyrics).strip())
-      self._card.mfile.embed_lyrics(lyrics, force=True)
+      lyrics = detect_start_lyrics("\n".join(lyrics).strip())
+      self._card.media().embed_lyrics(lyrics, force=True)
     else:
       logger.debug("Prevented lyrics embedding from library page")
 
   @Gtk.Template.Callback()
   def on_delete_lyrics_clicked(self, *_args) -> None:
     """Triggered on delete lyrics button click. Removes embeded lyrics from media file"""
-    self._card.mfile.embed_lyrics(None)
+    self._card.media().embed_lyrics(None)
 
   @Gtk.Template.Callback()
   def save(self, *_args) -> None:
     """Save metadata changes"""
     if self._is_cover_changed:
-      self._card.mfile.set_cover(self._new_cover_path)
-      self._card.widget.cover_img.set_from_paintable(self._card.cover)
+      self._card.media().set_cover(self._new_cover_path).save()
       self._card.notify("cover")
+      self.cover_image.set_from_paintable(self._card.cover)
       logger.info(
         "Cover for '%s -- %s / %s' was saved",
         self._card.title_display,
@@ -131,7 +141,6 @@ class MetadataEditor(Adw.Dialog, Linker):
         self._card.artist_display,
         self._card.album_display,
       )
-    self._card.save()
     self.close()
 
   def _change_cover(self, *_args) -> None:

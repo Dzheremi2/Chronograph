@@ -1,13 +1,14 @@
+from datetime import datetime
 from gettext import pgettext as C_
-from typing import Union
+from pathlib import Path
 
 from gi.repository import Gdk, GObject
 
-from chronograph.backend.file import FileManager
-from chronograph.backend.file_parsers import parse_files
-from chronograph.backend.lyrics import LyricsFile, LyricsFormat
-from chronograph.backend.media import FileID3, FileMP4, FileUntaggable, FileVorbis
-from chronograph.internal import Constants, Schema
+from chronograph.backend.db.models import Lyric, Track, TrackLyric
+from chronograph.backend.file import AvailableLyrics
+from chronograph.backend.file_parsers import parse_file
+from chronograph.backend.media.file import BaseFile
+from chronograph.internal import Constants
 
 _title_palceholder = C_("song title placeholder", "Unknown")
 _artist_placeholder = C_("song artist placeholder", "Unknown")
@@ -16,128 +17,122 @@ _album_placeholder = C_("song album placeholder", "Unknown")
 
 class SongCardModel(GObject.Object):
   __gtype_name__ = "SongCardModel"
-  __gsignals__ = {"lyr-format-changed": (GObject.SignalFlags.RUN_FIRST, None, (int,))}
 
-  # Properties without exclicit getters/setters
-  path: str = GObject.Property(type=str, default="")
   duration: int = GObject.Property(type=int, default=0)
-  lyrics_format: str = GObject.Property(
-    type=str, default=C_("means lyrics absence", "None")
+  available_lyrics: AvailableLyrics = GObject.Property(
+    type=AvailableLyrics, default=AvailableLyrics.NONE
   )
 
-  def __init__(
-    self,
-    media_file: Union[FileID3, FileVorbis, FileMP4, FileUntaggable],
-    lyrics_file: LyricsFile,
-  ) -> None:
-    from chronograph.ui.widgets.song_card import SongCard
+  def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
+    self.mediafile: Path = mediafile
+    self.uuid: str = uuid
+    self._tags = list(Track.get_by_id(self.uuid).tags_json or [])
+    media = parse_file(mediafile)
+    if media is None:
+      raise ValueError(f"Unsupported media file: {mediafile}")
+    super().__init__(duration=media.duration, **kwargs)
+    self._title = media.title or ""
+    self._artist = media.artist or ""
+    self._album = media.album or ""
+    self.refresh_available_lyrics()
 
-    self.mfile = media_file
-    self.lyrics_file = lyrics_file
+  def media(self) -> BaseFile:
+    """Opens a new connection to a mediafile.
 
-    super().__init__(
-      title=media_file.title or "",
-      title_display=media_file.title or _title_palceholder,
-      artist=media_file.artist or "",
-      artist_display=media_file.artist or _artist_placeholder,
-      album=media_file.album or "",
-      album_display=media_file.album or _album_placeholder,
-      cover=media_file.get_cover_texture(),
-      path=media_file.path,
-      duration=media_file.duration,
-      lyrics_format=LyricsFormat.translate(lyrics_file.highest_format),
-    )
+    Please, do not store references to result of this function if you're not forced to.
 
-    FileManager().connect("renamed", self._on_any_file_renamed)
-    FileManager().connect("deleted", self._on_any_file_deleted)
-    self.lyrics_file.connect("notify::highest-format", self._lyrics_fmt_changed)
+    Returns
+    -------
+    BaseFile
+      A fresh instance of `BaseFile` depending on mutagen realization
+    """
+    return parse_file(self.mediafile)
 
-    self.widget = SongCard(self)
-
-  def save(self) -> None:
-    """Save changes to the file"""
-    self.mfile.save()
-
-  def _lyrics_fmt_changed(self, lyrics_file: LyricsFile, _pspec) -> None:
-    fmt_val: int = lyrics_file.highest_format
-    self.set_property("lyrics_format", LyricsFormat.translate(fmt_val))
-    self.emit("lyr-format-changed", fmt_val)
-
-  def _on_any_file_renamed(self, _file_manager, new_path: str, old_path: str) -> None:
-    if old_path == self.path:
-      self.set_property("path", new_path)
-      self.mfile = parse_files([new_path])[0]
-
-      # Rename associated lyrics files
-      lrc_suffix = Schema.get("root.settings.file-manipulation.format")
-      elrc_prefix = Schema.get("root.settings.file-manipulation.elrc-prefix")
-      lrc_path = self.lyrics_file.media_bind_path.with_suffix(lrc_suffix)
-      elrc_path = self.lyrics_file.media_bind_path.with_name(
-        elrc_prefix + self.lyrics_file.media_bind_path.name
-      ).with_suffix(lrc_suffix)
-      self.lyrics_file.set_property("lrc-path", str(lrc_path))
-      self.lyrics_file.set_property("elrc-path", str(elrc_path))
-
-  def _on_any_file_deleted(self, _file_manager, deleted_file: str) -> None:
-    if self.path == deleted_file:
-      Constants.WIN.library.remove(self.widget)
-      Constants.WIN.library_list.remove(self.widget.get_list_mode())
+  @GObject.Property(type=str)
+  def path(self) -> str:
+    return str(self.mediafile)
 
   @GObject.Property(type=str, default="")
   def title(self) -> str:
-    """Title of the song"""
-    return self.mfile.title or ""
+    return self._title
 
   @title.setter
-  def title(self, new_title: str) -> None:
-    try:
-      self.mfile.set_str_data("TIT2", new_title)
-      self.notify("title_display")
-    except NotImplementedError:
-      pass
+  def title(self, title: str) -> None:
+    self.media().set_str_data("TIT2", title).save()
+    self._title = title
+    self.notify("title_display")
 
   @GObject.Property(type=str, default=_title_palceholder)
   def title_display(self) -> str:
-    """Displayable title of the song"""
-    return self.mfile.title or _title_palceholder
+    return self.title or _title_palceholder
 
   @GObject.Property(type=str, default="")
   def artist(self) -> str:
-    """Artist of the song"""
-    return self.mfile.artist or ""
+    return self._artist
 
   @artist.setter
-  def artist(self, new_artist: str) -> None:
-    try:
-      self.mfile.set_str_data("TPE1", new_artist)
-      self.notify("artist_display")
-    except NotImplementedError:
-      pass
+  def artist(self, artist: str) -> None:
+    self.media().set_str_data("TPE1", artist).save()
+    self._artist = artist
+    self.notify("artist_display")
 
   @GObject.Property(type=str, default=_artist_placeholder)
   def artist_display(self) -> str:
-    """Displayable artist of the song"""
-    return self.mfile.artist or _artist_placeholder
+    return self.artist or _artist_placeholder
 
   @GObject.Property(type=str, default="")
   def album(self) -> str:
-    """Album of the song"""
-    return self.mfile.album or ""
+    return self._album
 
   @album.setter
-  def album(self, new_album: str) -> None:
-    try:
-      self.mfile.set_str_data("TALB", new_album)
-      self.notify("album_display")
-    except NotImplementedError:
-      pass
+  def album(self, album: str) -> None:
+    self.media().set_str_data("TALB", album).save()
+    self._album = album
+    self.notify("album_display")
 
   @GObject.Property(type=str, default=_album_placeholder)
   def album_display(self) -> str:
-    """Displayable album of the song"""
-    return self.mfile.album or _album_placeholder
+    return self.album or _album_placeholder
 
-  @GObject.Property(type=Gdk.Texture, default=Constants.COVER_PLACEHOLDER)
+  @GObject.Property(type=Gdk.Texture)
   def cover(self) -> Gdk.Texture:
-    """Cover of the song"""
-    return self.mfile.get_cover_texture()
+    if (tx := self.media().get_cover_texture()) is not None:
+      return tx
+    return Constants.COVER_PLACEHOLDER
+
+  @GObject.Property(type=str)
+  def imported_at(self) -> str:
+    value: int = Track.get_by_id(self.uuid).imported_at
+    return datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
+
+  @GObject.Property(type=str, default="---")
+  def last_modified(self) -> str:
+    value = Track.get_by_id(self.uuid).latest_lyric_update
+    return (
+      datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
+      if value is not None
+      else "---"
+    )
+
+  @GObject.Property(type=object)
+  def tags(self) -> list[str]:
+    return list(self._tags)
+
+  @tags.setter
+  def tags(self, tags: list[str]) -> None:
+    tags = list(tags or [])
+    if tags == self._tags:
+      return
+    Track.update(tags_json=tags).where(Track.track_uuid == self.uuid).execute()
+    self._tags = tags
+    self.notify("tags")
+
+  def refresh_available_lyrics(self) -> None:
+    """Refreshes the `available_lyrics` property based on linked lyrics in the database."""
+    formats = [
+      item.format
+      for item in Lyric.select(Lyric.format)
+      .join(TrackLyric)
+      .where(TrackLyric.track == self.uuid)
+    ]
+    self.set_property("available_lyrics", AvailableLyrics.from_formats(formats))

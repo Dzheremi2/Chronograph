@@ -130,9 +130,7 @@ file.
 ## Screenshots
 <div align="center">
 
-![](docs/screenshots/libLB.png)
 ![](docs/screenshots/libW.png)
-![](docs/screenshots/libLW.png)
 ![](docs/screenshots/syncB.png)
 ![](docs/screenshots/syncCB.png)
 ![](docs/screenshots/syncW.png)

@@ -31,5 +31,6 @@ class Constants(metaclass=ConstantsMeta):
   PLAYER_LOGGER: Logger
   LRCLIB_LOGGER: Logger
   FILE_LOGGER: Logger
+  DB_LOGGER: Logger
 
 Schema: Sch

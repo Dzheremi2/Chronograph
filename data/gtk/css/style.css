@@ -6,6 +6,8 @@
   --border-radius-lg: 12px;
   --border-radius-sm: 6px;
   --rounded-frame-bg: #eeeeee;
+  --chip-bg-color: var(--card-bg-color, var(--window-bg-color));
+  --chip-fg-color: var(--card-fg-color, var(--window-fg-color));
 }
 
 .rounded, /* For just 12px rounded borders */
@@ -53,7 +55,7 @@ textview.placeholder-text {
   color: #ffffff;
 }
 
-.no-hover:hover, /* 
+.no-hover:hover, /*
 To use buttons as icons display.
 Will only work with flat buttons without some extended setting
 */
@@ -62,7 +64,6 @@ flowboxchild:active { /* To "fix" Adwaita 1.8 Gtk.FlowBox fix */
   background: initial;
   background-image: initial;
   box-shadow: none;
-  color: initial;
   outline: none; 
 }
 
@@ -74,25 +75,6 @@ button.pill.small {
   padding: 1px 12px;
 }
 
-/* Lyrics format chips for SongCard */
-button.lyrics.lrc,
-button.lyrics.elrc {
-  color: var(--lyrics-text-bg-dark);
-}
-
-button.lyrics.plain {
-  color: var(--lyrics-text-bg-light);
-  background-color: #cd9309;
-}
-
-button.lyrics.lrc {
-  background-color: #26a269;
-}
-
-button.lyrics.elrc {
-  background-color: #7b2cbf;
-}
-/* ------------------------------- */
 
 /* Reimplements OSD style from LibAdwaita to not affect associated Gio.Menu */
 menubutton.osd-button-only > button {
@@ -102,18 +84,15 @@ menubutton.osd-button-only > button {
   box-shadow: none;
   border-radius: 9999px;
 }
-
 @media (prefers-contrast: more) {
   menubutton.osd-button-only > button {
     box-shadow: 0 0 0 1px currentColor;
   }
 }
-
 menubutton.osd-button-only > button:hover {
   color: white;
   background-color: color-mix(in srgb, black calc(0.85 * 65%), currentColor calc(0.15 * 65%));
 }
-
 menubutton.osd-button-only > button:active {
   color: white;
   background-color: color-mix(in srgb, black calc(0.75 * 65%), currentColor calc(0.25 * 65%));
@@ -134,11 +113,6 @@ menubutton.osd-button-only > button:active {
 }
 /* -------------------------------- */
 
-/* List View library mode covers rounding */
-#list_view_row_cover {
-  border-radius: var(--border-radius-sm); 
-}
-
 /* From Ear Tag src https://gitlab.gnome.org/World/eartag/-/blob/main/src/style.css?ref_type=heads */
 /* To remove cover button default highlight in MetadataEditor dialog with revealer with pen icon inside*/
 .album-cover {
@@ -147,18 +121,29 @@ menubutton.osd-button-only > button:active {
 	      0px 6px 32px rgba(0,0,0,0.1);
 	border-radius: 12px;
 }
-
 .album-cover button {
 	padding: 0;
 	margin: 0;
 	outline-offset: 3px;
 }
-
 .album-cover * {
 	border-radius: 12px;
 }
-
 .album-cover .hover-highlight {
   background-color: rgba(56, 56, 56, 0.5);
   color: #fff;
+}
+
+
+/* Used to re-create FlowBoxish look as it was before */
+gridview.library-grid {
+  background-color: var(--window-bg-color);
+  color: var(--window-fg-color);
+  padding: 0;
+  margin: 6px;
+}
+
+.bulk-delete-selected {
+  background-color: rgba(192, 28, 40, 0.18);
+  box-shadow: inset 0 0 0 2px rgba(192, 28, 40, 0.9);
 }

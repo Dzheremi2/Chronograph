@@ -1,21 +1,18 @@
-from gettext import pgettext as C_
-from pathlib import Path
+from typing import Optional
 
-from gi.repository import Adw, Gio, GObject, Gtk
+from gi.repository import Gdk, GObject, Gtk
 
-from chronograph.backend.file import SongCardModel
-from chronograph.backend.lyrics import LyricsFormat
-from chronograph.backend.media import FileUntaggable
+from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.internal import Constants
-from chronograph.ui.dialogs.box_dialog import BoxDialog
+from chronograph.ui.dialogs.about_file_dialog import AboutFileDialog
 from chronograph.ui.dialogs.metadata_editor import MetadataEditor
+from dgutils import Linker
 
 gtc = Gtk.Template.Child
-logger = Constants.LOGGER
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/ui/widgets/SongCard.ui")
-class SongCard(Gtk.Box):
+class SongCard(Gtk.Box, Linker):
   __gtype_name__ = "SongCard"
 
   buttons_revealer: Gtk.Revealer = gtc()
@@ -23,180 +20,112 @@ class SongCard(Gtk.Box):
   metadata_editor_button: Gtk.Button = gtc()
   info_button: Gtk.Button = gtc()
   cover_button: Gtk.Button = gtc()
+  cover_loading_stack: Gtk.Stack = gtc()
+  cover_placeholder: Gtk.Image = gtc()
   cover_img: Gtk.Image = gtc()
+  detele_icon_img: Gtk.Image = gtc()
   title_label: Gtk.Label = gtc()
   artist_label: Gtk.Label = gtc()
-  lyrics_state_indicator: Gtk.Button = gtc()
 
-  list_view_row: Adw.ActionRow = gtc()
-  cover_img_row: Gtk.Image = gtc()
-  lyrics_state_indicator_row: Gtk.Button = gtc()
-  buttons_revealer_row: Gtk.Revealer = gtc()
-  row_metadata_editor_button: Gtk.Button = gtc()
-
-  def __init__(self, model: SongCardModel) -> None:
+  def __init__(self) -> None:
     super().__init__()
-    self.model = model
-    # Setup UI reactivity
-    self.model.bind_property(
-      "title_display",
-      self.title_label,
-      "label",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    self.model.bind_property(
-      "title_display",
-      self.list_view_row,
-      "title",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    self.model.bind_property(
-      "artist_display",
-      self.artist_label,
-      "label",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    self.model.bind_property(
-      "artist_display",
-      self.list_view_row,
-      "subtitle",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    self.cover_img.set_from_paintable(self.model.cover)
-    self.model.bind_property(
-      "cover",
-      self.cover_img,
-      "paintable",
-      GObject.BindingFlags.DEFAULT,
-    )
-    self.model.bind_property(
-      "cover",
-      self.cover_img_row,
-      "paintable",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    self.model.bind_property(
-      "lyrics_format",
-      self.lyrics_state_indicator,
-      "label",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    self.model.bind_property(
-      "lyrics_format",
-      self.lyrics_state_indicator_row,
-      "label",
-      GObject.BindingFlags.SYNC_CREATE,
-    )
-    # Call for initial state
-    self._on_lyr_format_changed(None, self.model.lyrics_file.highest_format)
-    self.model.connect("lyr-format-changed", self._on_lyr_format_changed)
+    Linker.__init__(self)
+    self._bulk_selected = False
 
-    # Setup buttons interaction
     self.event_controller_motion = Gtk.EventControllerMotion.new()
     self.add_controller(self.event_controller_motion)
-    self.event_controller_motion.connect("enter", self._toggle_buttons)
-    self.event_controller_motion.connect("leave", self._toggle_buttons)
-    event_controller_motion_row = Gtk.EventControllerMotion.new()
-    self.list_view_row.add_controller(event_controller_motion_row)
-    event_controller_motion_row.connect("enter", self._toggle_buttons_row)
-    event_controller_motion_row.connect("leave", self._toggle_buttons_row)
 
-    if isinstance(self.model.mfile, FileUntaggable):
-      self.metadata_editor_button.set_visible(False)
-      self.row_metadata_editor_button.set_visible(False)
+  def bind(self, model: SongCardModel) -> None:
+    """Bind a model and connect UI signal handlers.
 
-  @Gtk.Template.Callback()
-  def load(self, *_args) -> None:
-    """Triggered when SongCard was clicked. Opens sync page"""
-    Constants.WIN.enter_sync_mode(self.model)
-
-  @Gtk.Template.Callback()
-  def show_info(self, *_args) -> None:
-    """Shows song info dialog"""
-    BoxDialog(
-      C_("song info dialog", "About File"),
-      (
-        {
-          "title": _("Title"),
-          "subtitle": self.model.title_display,
-        },
-        {
-          "title": _("Artist"),
-          "subtitle": self.model.artist_display,
-        },
-        {"title": _("Album"), "subtitle": self.model.album_display},
-        {
-          "title": _("Path"),
-          "subtitle": self.model.path,
-          "action": {
-            "icon": "open-source-symbolic",
-            "tooltip": _("Show"),
-            "callback": lambda _: Gio.AppInfo.launch_default_for_uri(
-              f"file://{Path(self.model.path).parent}"
-            ),
-          },
-        },
-      ),
-    ).present(Constants.WIN)
-    logger.debug(
-      "File info dialog for '%s -- %s' was shown",
-      self.model.title_display,
-      self.model.artist_display,
-    )
-
-  @Gtk.Template.Callback()
-  def open_metadata_editor(self, *_args) -> None:
-    """Open metadata editor dialog"""
-    logger.debug(
-      "Opening metadata editor for '%s -- %s'",
-      self.model.title_display,
-      self.model.artist_display,
-    )
-    MetadataEditor(self.model).present(Constants.WIN)
-
-  def get_list_mode(self) -> Adw.ActionRow:
-    """Returns an ActionRow used for List view mode
-
-    Returns
-    -------
-    Adw.ActionRow
-        Widget
+    Parameters
+    ----------
+    model : SongCardModel
+      Model to display and interact with.
     """
-    return self.list_view_row
+    self._model = model
+    # Bind properties
+    self.new_binding(
+      model.bind_property(
+        "title_display", self.title_label, "label", GObject.BindingFlags.SYNC_CREATE
+      )
+    )
+    self.new_binding(
+      model.bind_property(
+        "artist_display", self.artist_label, "label", GObject.BindingFlags.SYNC_CREATE
+      )
+    )
+    self.new_binding(model.bind_property("cover", self.cover_img, "paintable"))
+
+    # Connect motion controller
+    self.new_connection(self.event_controller_motion, "enter", self._toggle_buttons)
+    self.new_connection(self.event_controller_motion, "leave", self._toggle_buttons)
+
+    # Connect buttons
+    self.new_connection(self.play_button, "clicked", self._load, model)
+    self.new_connection(self.info_button, "clicked", self._show_info, model)
+    self.new_connection(
+      self.metadata_editor_button, "clicked", self._open_metadata_editor, model
+    )
+
+    # Connect main cover button
+    self.new_connection(self.cover_button, "clicked", self._load, model)
+
+  def unbind(self) -> None:
+    """Clear bindings and release model references."""
+    self.set_cover(None)
+    self._model = None
+    self.link_teardown()
+
+  def set_cover(self, cover: Optional[Gdk.Texture] = None) -> None:
+    """Update the cover image and placeholder state.
+
+    Parameters
+    ----------
+    cover : Optional[Gdk.Texture], optional
+      Cover texture to display, or None to show placeholder.
+    """
+    if cover is not None:
+      self.cover_img.set_from_paintable(cover)
+    else:
+      self.cover_img.set_from_paintable(None)
+    if self._bulk_selected:
+      return
+    if cover is not None:
+      self.cover_loading_stack.set_visible_child(self.cover_img)
+    else:
+      self.cover_loading_stack.set_visible_child(self.cover_placeholder)
+
+  def set_bulk_selected(self, selected: bool) -> None:
+    """Toggle bulk selection visual state.
+
+    Parameters
+    ----------
+    selected : bool
+      Whether the card is selected in bulk mode.
+    """
+    self._bulk_selected = selected
+    if selected:
+      self.cover_button.add_css_class("bulk-delete-selected")
+      self.cover_loading_stack.set_visible_child(self.detele_icon_img)
+    else:
+      self.cover_button.remove_css_class("bulk-delete-selected")
+      if self.cover_img.get_paintable() is not None:
+        self.cover_loading_stack.set_visible_child(self.cover_img)
+      else:
+        self.cover_loading_stack.set_visible_child(self.cover_placeholder)
+
+  def _load(self, _btn, model: SongCardModel) -> None:
+    if Constants.WIN.is_bulk_delete_mode():
+      Constants.WIN.library.toggle_bulk_selection(self, model)
+      return
+    Constants.WIN.enter_sync_mode(model)
+
+  def _show_info(self, _btn, model: SongCardModel) -> None:
+    AboutFileDialog(model).present(Constants.WIN)
+
+  def _open_metadata_editor(self, _btn, model: SongCardModel) -> None:
+    MetadataEditor(model).present(Constants.WIN)
 
   def _toggle_buttons(self, *_args) -> None:
     self.buttons_revealer.set_reveal_child(not self.buttons_revealer.get_reveal_child())
-
-  def _toggle_buttons_row(self, *_args) -> None:
-    self.buttons_revealer_row.set_visible(not self.buttons_revealer_row.get_visible())
-
-  def _on_lyr_format_changed(self, _model, lyrics_fmt: int) -> None:
-    match lyrics_fmt:
-      case LyricsFormat.NONE.value:
-        self.lyrics_state_indicator.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "none"]
-        )
-        self.lyrics_state_indicator_row.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "none"]
-        )
-      case LyricsFormat.PLAIN.value:
-        self.lyrics_state_indicator.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "plain"]
-        )
-        self.lyrics_state_indicator_row.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "plain"]
-        )
-      case LyricsFormat.LRC.value:
-        self.lyrics_state_indicator.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "lrc"]
-        )
-        self.lyrics_state_indicator_row.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "lrc"]
-        )
-      case LyricsFormat.ELRC.value:
-        self.lyrics_state_indicator.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "elrc"]
-        )
-        self.lyrics_state_indicator_row.set_css_classes(
-          ["no-hover", "pill", "small", "lyrics", "elrc"]
-        )

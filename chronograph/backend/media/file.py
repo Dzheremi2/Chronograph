@@ -1,11 +1,10 @@
 import contextlib
-from typing import Optional
+from typing import Optional, Self
 
 import mutagen
-from gi.repository import Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, GLib
 
-from chronograph.backend.lyrics import Lyrics
-from chronograph.internal import Constants
+from chronograph.backend.lyrics.interfaces import LyricsBase
 from dgutils.decorators import baseclass
 
 
@@ -44,9 +43,10 @@ class BaseFile:
     self._path: str = path
     self.load_from_file(path)
 
-  def save(self) -> None:
+  def save(self) -> Self:
     """Saves the changes to the file"""
     self._mutagen_file.save()
+    return self
 
   def load_from_file(self, path: str) -> None:
     """Generates mutagen file instance for path
@@ -54,29 +54,29 @@ class BaseFile:
     Parameters
     ----------
     path : str
-        /path/to/file
+      /path/to/file
     """
     self._mutagen_file = mutagen.File(path)
     with contextlib.suppress(Exception):
       self._duration = self._mutagen_file.info.length
 
-  def get_cover_texture(self) -> Gdk.Texture:
+  def get_cover_texture(self) -> Optional[Gdk.Texture]:
     """Prepares a Gdk.Texture for setting to SongCard.paintable
 
     Returns
     -------
-    Gdk.Texture
-        Gdk.Texture or a placeholder texture if no cover is set
+    Optional[Gdk.Texture]
+      `Gdk.Texture` or `None` if no cover is set
     """
     if self._cover:
       loader = GdkPixbuf.PixbufLoader.new()
-      loader.write(self._cover)
+      loader.write_bytes(GLib.Bytes.new(self._cover))
       loader.close()
       pixbuf = loader.get_pixbuf()
 
       scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
       return Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
-    return Constants.COVER_PLACEHOLDER
+    return None
 
   @property
   def title(self) -> str:
@@ -129,13 +129,6 @@ class BaseFile:
     """Duration of the song in nanoseconds"""
     return int(self._duration * 1_000_000_000) if self._duration else 0
 
-  def compress_images(self) -> None:
-    """Makes the loaded MutagenFile instance to have compressed covers without saving to the file
-
-    Should be implemented in file specific child classes
-    """
-    raise NotImplementedError(self.path)
-
   def load_str_data(self) -> None:
     """Reads the string data from file and binds it to the instance
 
@@ -150,7 +143,7 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def set_str_data(self, tag_name: str, new_val: str) -> None:
+  def set_str_data(self, tag_name: str, new_val: str) -> Self:
     """Sets the provided tag in ID3 format to the provided value
 
     Parameters
@@ -164,7 +157,7 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def set_cover(self, img_path: Optional[str]) -> None:
+  def set_cover(self, img_path: Optional[str]) -> Self:
     """Sets the cover of the instance to a provided image
 
     Parameters
@@ -176,12 +169,12 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def embed_lyrics(self, lyrics: Optional[Lyrics], *, force: bool = False) -> None:
+  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:
     """Embeds the lyrics to the corresponding tags in realization
 
     Parameters
     ----------
-    lyrics : Optional[str]
+    lyrics : Optional[StartLyrics]
         lyrics, if `None` lyrics removed
     force : bool, by default `False`
         Allows to embed lyrics independently of schema settings
@@ -204,6 +197,5 @@ class TaggableFile(BaseFile):
 
   def __init__(self, path: str) -> None:
     super().__init__(path)
-    self.compress_images()
     self.load_cover()
     self.load_str_data()

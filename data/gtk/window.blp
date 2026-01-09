@@ -1,74 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-Adw.StatusPage no_source_opened {
-  title: _("No Music");
-  description: _("Select a directory or drop files to load them");
-  icon-name: "chr-app-icon";
-
-  Box {
-    halign: center;
-    hexpand: true;
-    orientation: vertical;
-    spacing: 12;
-
-    Button open_dir_btn {
-      label: _("Open Directory");
-      action-name: "win.select_dir";
-      styles ["pill", "suggested-action"]
-    }
-
-    Button load_files_btn {
-      label: _("Open File");
-      action-name: "win.select_files";
-      styles ["pill"]
-    }
-  }
-}
-
-SizeGroup {
-  widgets [
-    open_dir_btn,
-    load_files_btn
-  ]
-}
-
-Adw.StatusPage empty_directory {
-  title: _("Empty Directory");
-  description: _("This directory doesn't have any supported music files");
-  icon-name: "chr-app-icon";
-
-  Box {
-    halign: center;
-    hexpand: true;
-    orientation: vertical;
-    spacing: 12;
-
-    Button open_dir_btn_empty_dir {
-      label: _("Open Directory");
-      action-name: "win.select_dir";
-      styles ["pill", "suggested-action"]
-    }
-
-    Button load_files_btn_empty_dir {
-      label: _("Open File");
-      action-name: "win.select_files";
-      styles ["pill"]
-    }
-  }
-}
-
-SizeGroup {
-  widgets [
-    open_dir_btn_empty_dir,
-    load_files_btn_empty_dir
-  ]
-}
 
 Adw.StatusPage no_saves_found_status {
-  title: _("No Saves");
+  title: _("No Tags");
   icon-name: "nothing-found-symbolic";
-  description: _("Press pin button to add current directory to the saves");
+  description: _("Press plus button to register a new Tag");
 
   styles ["compact"]
 }
@@ -133,7 +70,6 @@ template $ChronographWindow : Adw.ApplicationWindow {
   title: _("Chronograph");
   width-request: 362;
   height-request: 100;
-  notify::default-width => $toggle_list_view();
 
   Adw.Breakpoint {
     condition ("max-width: 564px")
@@ -190,221 +126,297 @@ template $ChronographWindow : Adw.ApplicationWindow {
     }
 
     Adw.ToastOverlay toast_overlay {
-      Adw.NavigationView navigation_view {
-        Adw.NavigationPage library_nav_page {
-          title: _("Chronograph");
+      Stack window_state_stack {
+        transition-type: crossfade;
 
-          Adw.OverlaySplitView overlay_split_view {
-            sidebar-width-fraction: .2;
+        Box no_library_view {
+          orientation: vertical;
 
-            [sidebar]
-            Adw.NavigationPage sidebar_nav_page {
-              title: _("Saves");
+          Adw.HeaderBar {
+            title-widget: Label {};
 
-              Adw.ToolbarView {
-                [top]
-                Adw.HeaderBar {
-                  [start]
-                  Button {
-                    icon-name: "toggle-sidebar-symbolic";
-                    tooltip-text: _("Toggle sidebar");
-                    action-name: "win.toggle_sidebar";
-                  }
+            styles ["flat"]
+
+            [end]
+            MenuButton {
+              icon-name: "app-menu-symbolic";
+              tooltip-text: _("Menu");
+              primary: true;
+              menu-model: menu {
+                section {
+                  item (_("Preferences"), "win.show_preferences")
+                  item (_("Keybindings"), "app.shortcuts")
+                  item (_("About"), "app.about")
                 }
+              };
+            }
+          }
 
-                ScrolledWindow sidebar_window {
-                  ListBox sidebar {
-                    row-activated => $load_save();
+          Adw.Bin {
+            WindowHandle {
+              hexpand: true;
+              vexpand: true;
 
-                    styles ["navigation-sidebar"]
+              Adw.StatusPage {
+                icon-name: "chr-app-icon";
+                title: _("Chronograph");
+                description: _("Open or create Library to start syncing");
+
+                Box {
+                  orientation: vertical;
+                  halign: center;
+                  spacing: 12;
+
+                  Button open_library_button {
+                    label: _("Open Library");
+                    halign: center;
+                    focusable: true;
+                    action-name: "win.open_library";
+
+                    styles ["pill", "suggested-action"]
+                  }
+
+                  Button create_library_button {
+                    label: _("Create Library");
+                    halign: center;
+                    focusable: true;
+                    action-name: "win.create_library";
+
+                    styles ["pill"]
                   }
                 }
               }
             }
+          }
+        }
 
-            Adw.ToolbarView library_view {
-              [top]
-              Adw.HeaderBar header_bar {
-                [start]
-                Button show_sidebar_button {
-                  icon-name: "toggle-sidebar-symbolic";
-                  tooltip-text: _("Toggle sidebar");
-                  action-name: "win.toggle_sidebar";
-                  visible: bind overlay_split_view.show-sidebar inverted;
-                }
+        Adw.NavigationView navigation_view {
+          Adw.NavigationPage library_nav_page {
+            title: _("Chronograph");
 
-                MenuButton open_source_button {
-                  icon-name: "open-source-symbolic";
-                  tooltip-text: _("Select a directory or open a file");
-                  menu-model: open_source_menu;
-                }
+            Adw.OverlaySplitView overlay_split_view {
+              sidebar-width-fraction: .2;
 
-                [start]
-                Revealer left_buttons_revealer {
-                  transition-type: none;
-                  valign: start;
-                  halign: start;
+              [sidebar]
+              Adw.NavigationPage sidebar_nav_page {
+                title: _("Tags");
 
-                  Box {
-                    spacing: 4;
-
-                    ToggleButton toggle_search_button {
-                      icon-name: "search-symbolic";
-                      tooltip-text: _("Toggle search");
-                      action-name: "win.toggle_search";
+                Adw.ToolbarView {
+                  [top]
+                  Adw.HeaderBar {
+                    [start]
+                    Button {
+                      icon-name: "toggle-sidebar-symbolic";
+                      tooltip-text: _("Toggle sidebar");
+                      action-name: "win.toggle_sidebar";
                     }
 
-                    MenuButton {
-                      icon-name: "chr-filter-symbolic";
-                      tooltip-text: _("Filter library");
-                      menu-model: menu {
-                        section {
-                          item {
-                            label: C_("means lyrics absence", "None");
-                            action: "win.filter_none";
+                    [end]
+                    Button {
+                      icon-name: "add-line-symbolic";
+                      tooltip-text: _("Register tag");
+                      action-name: "win.register_tag";
+                    }
+                  }
+
+                  ScrolledWindow sidebar_window {
+                    ListBox sidebar {
+                      row-selected => $_on_sidebar_tag_selected();
+                      row-activated => $_on_sidebar_tag_activated();
+                      activate-on-single-click: true;
+                      selection-mode: single;
+
+                      styles ["navigation-sidebar"]
+                    }
+                  }
+                }
+              }
+
+              Adw.ToolbarView library_view {
+                [top]
+                Adw.HeaderBar header_bar {
+                  [start]
+                  Button show_sidebar_button {
+                    icon-name: "toggle-sidebar-symbolic";
+                    tooltip-text: _("Toggle sidebar");
+                    action-name: "win.toggle_sidebar";
+                    visible: bind overlay_split_view.show-sidebar inverted;
+                  }
+
+                  MenuButton open_source_button {
+                    icon-name: "open-source-symbolic";
+                    tooltip-text: _("Import files or open a library");
+                    menu-model: open_source_menu;
+                  }
+
+                  [start]
+                  Revealer left_buttons_revealer {
+                    transition-type: none;
+                    valign: start;
+                    halign: start;
+
+                    Box {
+                      spacing: 4;
+
+                      ToggleButton toggle_search_button {
+                        icon-name: "search-symbolic";
+                        tooltip-text: _("Toggle search");
+                        action-name: "win.toggle_search";
+                      }
+
+                      MenuButton {
+                        icon-name: "chr-filter-symbolic";
+                        tooltip-text: _("Filter library");
+                        menu-model: menu {
+                          section {
+                            item {
+                              label: C_("means lyrics absence", "None");
+                              action: "win.filter_none";
+                            }
+                            item {
+                              label: _("Plain");
+                              action: "win.filter_plain";
+                            }
+                            item {
+                              label: "LRC";
+                              action: "win.filter_lrc";
+                            }
+                            item {
+                              label: "eLRC";
+                              action: "win.filter_elrc";
+                            }
                           }
+                        };
+                      }
+                    }
+                  }
+
+                  [end]
+                  MenuButton {
+                    icon-name: "app-menu-symbolic";
+                    tooltip-text: _("Menu");
+                    menu-model: menu about_app {
+                      section {
+                        submenu {
+                          label: _("Sort");
+
                           item {
-                            label: _("Plain");
-                            action: "win.filter_plain";
+                            label: _("A-Z");
+                            action: "app.sort_type";
+                            target: "a-z";
                           }
+
                           item {
-                            label: "LRC";
-                            action: "win.filter_lrc";
+                            label: _("Z-A");
+                            action: "app.sort_type";
+                            target: "z-a";
                           }
-                          item {
-                            label: "eLRC";
-                            action: "win.filter_elrc";
+                        }
+
+                      }
+
+                      section {
+                        item (_("Quick Editor"), "win.open_quick_editor")
+                        item (_("Mass Lyrics Downloading"), "win.open_mass_downloading")
+                      }
+
+                      section {
+                        item (_("Preferences"), "win.show_preferences")
+                        item (_("Keybindings"), "app.shortcuts")
+                        item (_("About"), "app.about")
+                      }
+                    };
+                    primary: true;
+                  }
+
+                  [end]
+                  Revealer right_buttons_revealer {
+                    transition-type: none;
+                    valign: start;
+                    halign: start;
+
+                    Box {
+                      orientation: horizontal;
+
+                      Box {
+                        spacing: 4;
+
+                        Revealer proceed_bulk_delete_button_revealer {
+                          transition-type: slide_right;
+                          transition-duration: 200;
+                          reveal-child: bind enable_bulk_delete_button.active bidirectional;
+
+                          Button {
+                            icon-name: "clean-files-symbolic";
+                            tooltip-text: _("Delete selected files");
+                            clicked => $on_proceed_bulk_delete_button_clicked();
+
+                            styles ["destructive-action"]
                           }
+                        }
+
+                        ToggleButton enable_bulk_delete_button {
+                          icon-name: "chr-toggle-selection-symbolic";
+                          tooltip-text: _("Enable bulk deletion mode");
+                          toggled => $_on_bulk_delete_mode_toggled();
+                        }
+                      }
+                    }
+                  }
+                }
+
+                [top]
+                SearchBar search_bar {
+                  search-mode-enabled: bind toggle_search_button.active bidirectional;
+                  key-capture-widget: navigation_view;
+
+                  Adw.Clamp {
+                    maximum-size: 500;
+                    tightening-threshold: 500;
+
+                    SearchEntry search_entry {
+                      placeholder-text: _("Search");
+                      changed => $on_search_changed();
+                      hexpand: true;
+
+                      ShortcutController {
+                        Shortcut {
+                          trigger: "Escape";
+                          action: "action(win.toggle_search)";
+                        }
+                      }
+                    }
+                  }
+                }
+
+                Overlay library_overlay {
+                  Stack library_stack {
+                    ScrolledWindow library_scrolled_window {
+                      $Library library {} // (Gtk.GridView) -> See ../../chronograph/ui/widgets/library.py
+                    }
+
+                    Adw.StatusPage empty_library {
+                      title: _("Library is Empty");
+                      description: _("Your current Library is empty. Import files right now or open another Library");
+                      icon-name: "import-from-symbolic";
+
+                      child: Box {
+                        halign: center;
+
+                        Button {
+                          label: _("Import…");
+                          action-name: "win.import_files";
+
+                          styles ["pill", "suggested-action"]
                         }
                       };
                     }
-                  }
-                }
 
-                [end]
-                MenuButton {
-                  icon-name: "app-menu-symbolic";
-                  tooltip-text: _("Menu");
-                  menu-model: menu about_app {
-                    section {
-                      submenu {
-                        label: _("Sort");
-
-                        item {
-                          label: _("A-Z");
-                          action: "app.sort_type";
-                          target: "a-z";
-                        }
-
-                        item {
-                          label: _("Z-A");
-                          action: "app.sort_type";
-                          target: "z-a";
-                        }
-                      }
-
-                      submenu {
-                        label: _("View");
-
-                        item {
-                          label: _("Grid");
-                          action: "app.view_type";
-                          target: "g";
-                        }
-
-                        item {
-                          label: _("List");
-                          action: "app.view_type";
-                          target: "l";
-                        }
-                      }
+                    Adw.StatusPage empty_filter_results {
+                      icon-name: "nothing-found-symbolic";
+                      title: _("Nothing Was Found");
+                      description: _("No songs found for your request. Try out another one");
                     }
-
-                    section {
-                      item (_("Quick Editor"), "win.open_quick_editor")
-                      item (_("Mass Lyrics Downloading"), "win.open_mass_downloading")
-                    }
-
-                    section {
-                      item (_("Preferences"), "win.show_preferences")
-                      item (_("Keybindings"), "app.shortcuts")
-                      item (_("About"), "app.about")
-                    }
-                  };
-                  primary: true;
-                }
-
-                [end]
-                Button clean_files_button {
-                  icon-name: "clean-files-symbolic";
-                  tooltip-text: _("Clean the library");
-                  clicked => $clean_files_button_clicked();
-                }
-
-                [end]
-                Revealer right_buttons_revealer {
-                  transition-type: none;
-                  valign: start;
-                  halign: start;
-
-                  Box {
-                    orientation: horizontal;
-
-                    Button add_dir_to_saves_button {
-                      icon-name: "pin-dir-symbolic";
-                      tooltip-text: _("Add current directory to saves");
-                      clicked => $on_add_dir_to_saves_button_clicked();
-                    }
-                  }
-                }
-              }
-
-              [top]
-              Adw.Banner reparse_alert_banner {
-                title: _("Recursive parsing settings changed. Re-parse?");
-                button-label: _("Re-Parse");
-                button-style: suggested;
-                button-clicked => $_on_reparse_banner_button_clicked();
-              }
-
-              [top]
-              SearchBar search_bar {
-                search-mode-enabled: bind toggle_search_button.active bidirectional;
-                key-capture-widget: navigation_view;
-
-                Adw.Clamp {
-                  maximum-size: 500;
-                  tightening-threshold: 500;
-
-                  SearchEntry search_entry {
-                    placeholder-text: _("Search");
-                    changed => $on_search_changed();
-                    hexpand: true;
-
-                    ShortcutController {
-                      Shortcut {
-                        trigger: "Escape";
-                        action: "action(win.toggle_search)";
-                      }
-                    }
-                  }
-                }
-              }
-
-              Overlay library_overlay {
-                ScrolledWindow library_scrolled_window {
-                  FlowBox library {
-                    homogeneous: true;
-                    halign: center;
-                    max-children-per-line: 100;
-                    valign: start;
-                    column-spacing: 12;
-                    row-spacing: 12;
-                    margin-top: 12;
-                    margin-bottom: 12;
-                    margin-end: 12;
-                    margin-start: 12;
-                    selection-mode: none;
                   }
                 }
               }
@@ -418,7 +430,14 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
 menu open_source_menu {
   section {
-    item (_("Directory"), "win.select_dir")
-    item (_("Files"), "win.select_files")
+    item (_("Import Files"), "win.import_files")
+    item (_("Open Library"), "win.open_library")
   }
+}
+
+SizeGroup {
+  widgets [
+    open_library_button,
+    create_library_button
+  ]
 }

@@ -9,10 +9,17 @@ from typing import Literal, Optional
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
-from chronograph.backend.file import SongCardModel
+from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.lrclib.exceptions import APIRequestError
 from chronograph.backend.lrclib.lrclib_service import LRClibService
-from chronograph.backend.lyrics import Lyrics, LyricsFile, LyricsFormat
+from chronograph.backend.lyrics import (
+  ElrcLyrics,
+  LrcLyrics,
+  delete_track_lyric,
+  detect_start_lyrics,
+  get_track_lyrics,
+  save_track_lyric,
+)
 from chronograph.backend.media import FileUntaggable
 from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
@@ -50,8 +57,8 @@ class LRCSyncPage(Adw.NavigationPage):
 
     super().__init__()
     self._card = card_model
-    self._lyrics_file = card_model.lyrics_file
-    self._file = card_model.mfile
+    self._track_uuid = card_model.uuid
+    self._file = card_model.media()
     self._card.bind_property(
       "title_display", self, "title", GObject.BindingFlags.SYNC_CREATE
     )
@@ -67,15 +74,20 @@ class LRCSyncPage(Adw.NavigationPage):
       "close-request", self._on_app_close
     )
 
-    # Automatically load the lyrics file if it exists
-    if (
-      Schema.get("root.settings.file-manipulation.enabled")
-      and self._lyrics_file.lrc_lyrics.text != ""
-    ):
-      lines = self._lyrics_file.lrc_lyrics.get_normalized_lines()
+    # Automatically load lyrics from DB if available
+    lyrics_map = get_track_lyrics(self._track_uuid)
+    source_text = ""
+    if (lyric := lyrics_map.get("lrc")) is not None or (
+      lyric := lyrics_map.get("plain")
+    ) is not None:
+      source_text = lyric.content
+
+    if source_text:
+      lyrics = detect_start_lyrics(source_text)
+      lines = lyrics.normalized_lines()
       self.sync_lines.remove_all()
       for line in lines:
-        self._append_end_line(text=line)  # Workaroud to fix ghosty shadow
+        self._append_end_line(text=line)  # Workaround to fix ghosty shadow
 
   @Gtk.Template.Callback()
   def _on_seek_button_released(self, button: Gtk.Button) -> None:
@@ -264,9 +276,10 @@ class LRCSyncPage(Adw.NavigationPage):
 
       self.sync_lines.remove_all()
       should_visible = False
-      for _, line in enumerate(
-        Lyrics(Path(path).read_text(encoding="utf-8")).get_normalized_lines()
-      ):
+      lyrics = detect_start_lyrics(Path(path).read_text(encoding="utf-8"))
+      if isinstance(lyrics, ElrcLyrics):
+        lyrics = LrcLyrics(lyrics.as_format("lrc"))
+      for _, line in enumerate(lyrics.normalized_lines()):
         self.sync_lines.append(LRCSyncLine(line))
         should_visible = True
       self.sync_lines.set_visible(should_visible)
@@ -301,7 +314,10 @@ class LRCSyncPage(Adw.NavigationPage):
       file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
     ) -> None:
       filepath = file_dialog.save_finish(result).get_path()
-      LyricsFile(filepath).modify_lyrics(lyrics)
+      lyrics_obj = detect_start_lyrics(lyrics)
+      if isinstance(lyrics_obj, ElrcLyrics):
+        lyrics_obj = LrcLyrics(lyrics_obj.as_format("lrc"))
+      Path(filepath).write_text(lyrics_obj.to_file_text(), encoding="utf-8")
       logger.info("Lyrics exported to file: '%s'", filepath)
 
       Constants.WIN.show_toast(
@@ -317,7 +333,7 @@ class LRCSyncPage(Adw.NavigationPage):
       lyrics += line.get_text() + "\n"
     dialog = Gtk.FileDialog(
       initial_name=Path(self._file.path).stem
-      + Schema.get("root.settings.file-manipulation.format")
+      + Schema.get("root.settings.do-lyrics-db-updates.format")
     )
     dialog.save(Constants.WIN, None, on_export_file_selected, lyrics)
 
@@ -368,22 +384,39 @@ class LRCSyncPage(Adw.NavigationPage):
     """Resets throttling timer of `_autosave` call"""
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
-    if Schema.get("root.settings.file-manipulation.enabled"):
+    if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       self._autosave_timeout_id = GLib.timeout_add(
-        Schema.get("root.settings.file-manipulation.throttling") * 1000,
+        Schema.get("root.settings.do-lyrics-db-updates.throttling") * 1000,
         self._autosave,
       )
 
   def _autosave(self) -> Literal[False]:
-    if Schema.get("root.settings.file-manipulation.enabled"):
+    if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       try:
-        lyrics = [line.get_text() for line in self.sync_lines]
-        self._lyrics_file.lrc_lyrics.text = "\n".join(lyrics).strip()
-        self._lyrics_file.lrc_lyrics.save()
-        if Schema.get("root.settings.file-manipulation.embed-lyrics.enabled"):
-          self._file.embed_lyrics(
-            self._lyrics_file.lrc_lyrics if self._lyrics_file.lrc_lyrics.text else None
+        lyrics_lines = [line.get_text() for line in self.sync_lines]
+        lyrics_text = "\n".join(lyrics_lines).strip()
+        lyrics_obj = detect_start_lyrics(lyrics_text)
+        if isinstance(lyrics_obj, ElrcLyrics):
+          lyrics_obj = LrcLyrics(lyrics_obj.as_format("lrc"))
+
+        if lyrics_obj.format == "lrc":
+          save_track_lyric(
+            self._track_uuid,
+            "lrc",
+            lyrics_obj.text,
           )
+          delete_track_lyric(self._track_uuid, "plain")
+        else:
+          save_track_lyric(
+            self._track_uuid,
+            "plain",
+            lyrics_obj.text,
+          )
+          delete_track_lyric(self._track_uuid, "lrc")
+
+        if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled"):
+          self._file.embed_lyrics(lyrics_obj if lyrics_text else None)
+        self._card.refresh_available_lyrics()
         logger.debug("Lyrics autosaved successfully")
       except Exception:
         logger.warning("Autosave failed: %s", traceback.format_exc())
@@ -394,7 +427,7 @@ class LRCSyncPage(Adw.NavigationPage):
     Constants.WIN.disconnect(self._close_rq_handler_id)
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
-    if Schema.get("root.settings.file-manipulation.enabled"):
+    if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       logger.debug("Page closed, saving lyrics")
       self._autosave()
     Player().stop()
@@ -403,7 +436,7 @@ class LRCSyncPage(Adw.NavigationPage):
   def _on_app_close(self, *_args) -> None:
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
-    if Schema.get("root.settings.file-manipulation.enabled"):
+    if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       logger.debug("App closed, saving lyrics")
       self._autosave()
 
@@ -453,8 +486,11 @@ class LRCSyncPage(Adw.NavigationPage):
       self.export_lyrics_button.set_sensitive(True)
       self.export_lyrics_button.set_icon_name("export-to-symbolic")
 
-    lyrics = Lyrics("\n".join(line.get_text() for line in self.sync_lines).rstrip("\n"))
-    plain_lyrics = lyrics.of_format(LyricsFormat.PLAIN)
+    lyrics_text = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+    lyrics_obj = detect_start_lyrics(lyrics_text)
+    if isinstance(lyrics_obj, ElrcLyrics):
+      lyrics_obj = LrcLyrics(lyrics_obj.as_format("lrc"))
+    plain_lyrics = lyrics_obj.as_format("plain")
     if not self.is_all_lines_synced():
       Constants.WIN.show_toast(
         _("Seems like not every line is synced"),
@@ -466,7 +502,7 @@ class LRCSyncPage(Adw.NavigationPage):
     try:
       handler = LRClibService().connect("publish-done", on_publish_done)
       err_handler = LRClibService().connect("publish-failed", on_publish_failed)
-      LRClibService().publish(card_model.mfile, plain_lyrics, lyrics.text)
+      LRClibService().publish(card_model.media(), plain_lyrics, lyrics_obj.text)
     except AttributeError:
 
       def reason(*_args) -> None:
@@ -489,6 +525,16 @@ class LRCSyncPage(Adw.NavigationPage):
       return
 
   ###############
+
+  def _show_info(self, *_args) -> None:
+    from chronograph.ui.dialogs.about_file_dialog import AboutFileDialog
+
+    AboutFileDialog(self._card).present(Constants.WIN)
+
+  def _open_metadata_editor(self, *_args) -> None:
+    from chronograph.ui.dialogs.metadata_editor import MetadataEditor
+
+    MetadataEditor(self._card).present(Constants.WIN)
 
 
 class LRCSyncLine(Adw.EntryRow):

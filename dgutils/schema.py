@@ -1,11 +1,12 @@
 import json
 from pathlib import Path
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Optional, Union
 
 import yaml
 from gi.repository import Gio, GObject
 
 Transform = Callable[[Any], Any]
+SupportedTypes = Union[bool, str, int, float]
 
 
 class Schema(GObject.GObject):
@@ -21,7 +22,7 @@ class Schema(GObject.GObject):
     if changed:
       self._save()
 
-  def get(self, dotted_path: str) -> Any:
+  def get(self, dotted_path: str) -> SupportedTypes:
     """Returns a value assigned to a given schema keypath
 
     Parameters
@@ -37,7 +38,7 @@ class Schema(GObject.GObject):
     node, key = self._resolve_parent_and_key(self._data, dotted_path)
     return node[key]
 
-  def set(self, dotted_path: str, value: Any) -> None:
+  def set(self, dotted_path: str, value: SupportedTypes) -> None:
     """Sets a given value to a given keypath
 
     Parameters

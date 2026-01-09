@@ -1,0 +1,196 @@
+using Gtk 4.0;
+using Adw 1;
+
+
+template $AboutFileDialog : Adw.Dialog {
+  width-request: 1;
+  height-request: 1;
+  content-height: 600;
+  content-width: 500;
+
+  Adw.NavigationView nav_view {
+    Adw.NavigationPage main_nav_page {
+      title: _("About File");
+
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 500;
+        tightening-threshold: 500;
+
+        Adw.Clamp {
+          orientation: vertical;
+          maximum-size: 600;
+          tightening-threshold: 600;
+
+          Adw.ToolbarView {
+            [top]
+            Adw.HeaderBar {}
+
+            ScrolledWindow {
+              propagate-natural-height: true;
+
+              Box {
+                orientation: vertical;
+                spacing: 12;
+                margin-bottom: 16;
+                margin-end: 16;
+                margin-start: 16;
+                margin-top: 16;
+
+                Box {
+                  spacing: 12;
+
+                  Adw.Clamp {
+                    hexpand: false;
+                    orientation: horizontal;
+                    maximum-size: 160;
+
+                    Adw.Clamp {
+                      orientation: horizontal;
+                      maximum-size: 160;
+                      vexpand: false;
+
+                      Image cover_image {
+                        width-request: 160;
+                        height-request: 160;
+                        hexpand: true;
+                        vexpand: true;
+                        overflow: hidden;
+                        valign: center;
+                        icon-name: "note-placeholder";
+                        pixel-size: 160;
+
+                        styles ["rounded"]
+                      }
+                    }
+                  }
+
+                  Box {
+                    orientation: vertical;
+
+                    ListBox {
+                      hexpand: true;
+
+                      styles [
+                        "boxed-list",
+                      ]
+
+                      Adw.ActionRow title_info_row {
+                        title: _("Title");
+                        subtitle: "Title";
+                        activatable: false;
+                        selectable: false;
+                        use-markup: false;
+
+                        styles ["property"]
+                      }
+
+                      Adw.ActionRow artist_info_row {
+                        title: _("Artist");
+                        subtitle: "Artist";
+                        activatable: false;
+                        selectable: false;
+                        use-markup: false;
+
+                        styles ["property"]
+                      }
+
+                      Adw.ActionRow album_info_row {
+                        title: _("Album");
+                        subtitle: "Album";
+                        activatable: false;
+                        selectable: false;
+                        use-markup: false;
+
+                        styles ["property"]
+                      }
+                    }
+                  }
+                }
+
+                Adw.WrapBox tags_wrap_box {
+                  child-spacing: 4;
+                  line-spacing: 4;
+                }
+
+                ListBox {
+                  Adw.ActionRow import_info_row {
+                    title: _("Imported at");
+                    subtitle: "00.00.0000, 00:00.00";
+                    selectable: false;
+
+                    styles ["property"]
+                  }
+                  
+                  Adw.ActionRow modified_info_row {
+                    title: _("Last Modified");
+                    subtitle: "00.00.0000, 00:00.00";
+                    selectable: false;
+                    
+                    styles ["property"]
+                  }
+
+                  styles ["boxed-list"]
+                }
+
+                ListBox {
+                  Adw.ActionRow available_lyrics_button {
+                    title: _("Avaiable Lyrics");
+                    selectable: false;
+                    activatable: true;
+
+                    [suffix]
+                    Image {
+                      icon-name: "chr-right-large-symbolic";
+                    }
+                  }
+
+                  styles ["boxed-list"]
+                }
+
+                ListBox {
+                  Adw.ButtonRow {
+                    title: _("Delete File");
+                    activated => $_on_delete_file_button_clicked();
+
+                    styles ["destructive-action"]
+                  }
+
+                  styles ["boxed-list"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    Adw.NavigationPage lyr_nav_page {
+      title: _("Available Lyrics");
+
+      Adw.Clamp {
+        orientation: horizontal;
+        maximum-size: 500;
+        tightening-threshold: 500;
+
+        Adw.Clamp {
+          orientation: vertical;
+          maximum-size: 600;
+          tightening-threshold: 600;
+
+          Adw.ToolbarView {
+            [top]
+            Adw.HeaderBar {}
+
+            Adw.PreferencesGroup available_lyrics_group {
+              margin-bottom: 16;
+              margin-end: 16;
+              margin-top: 16;
+              margin-start: 16;
+            }
+          }
+        }
+      }
+    }
+  }
+}

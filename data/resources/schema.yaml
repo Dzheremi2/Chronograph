@@ -1,22 +1,15 @@
 # yaml-language-server: $schema=../../docs/schemas/Schema-schema.json
 root:
   settings:
-    file-manipulation:
+    do-lyrics-db-updates:
       enabled:
         type: bool
         default: true
-      format:
-        type: str
-        enum: [.lrc, .txt]
-        default: .lrc
       throttling:
         type: float
         min: 1.0
         max: 10.0
         default: 5.0
-      elrc-prefix:
-        type: str
-        default: eLRC-
       lrc-along-elrc:
         type: bool
         default: true
@@ -66,28 +59,9 @@ root:
       reset-quick-editor:
         type: bool
         default: true
-      save-session:
+      save-library:
         type: bool
         default: true
-      auto-list-view:
-        type: bool
-        default: false
-      compressed-covers:
-        enabled:
-          type: bool
-          default: false
-        level:
-          type: int
-          min: 1
-          max: 95
-          default: 75
-      recursive-parsing:
-        enabled:
-          type: bool
-          default: false
-        follow-symlinks:
-          type: bool
-          default: false
       debug-profile:
         type: bool
         default: false
@@ -120,16 +94,14 @@ root:
         type: str
         enum: [a-z, z-a]
         default: a-z
-      view:
-        type: str
-        enum: [g, l]
-        default: g
-      session:
+      filter:
+        type: int
+        min: 0
+        max: 15
+        default: 15 # encoded flags none/plain/lrc/elrc in bit order 0..3
+      last-library:
         type: str
         default: None
-      filter:
-        type: str
-        default: "1:1:1:1" # encoded string none:plain:lrc:elrc. 0 for disabled, 1 for enabled
     window:
       height:
         type: int

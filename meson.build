@@ -11,6 +11,7 @@ python = import('python')
 py_installation = python.find_installation('python3')
 
 cachev = 2
+dbver = 1
 python = import('python')
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 
@@ -28,6 +29,7 @@ conf.set('PYTHON', python.find_installation('python3').full_path())
 conf.set('APP_ID', app_id)
 conf.set('PREFIX', prefix)
 conf.set('CACHEV', cachev)
+conf.set('DBVER', dbver)
 conf.set('VERSION', meson.project_version())
 conf.set('localedir', join_paths(get_option('prefix') / get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)

@@ -1,15 +1,15 @@
 import contextlib
-from pathlib import Path
 from typing import Optional, Union
 
 import httpx
 from gi.repository import Adw, Gio, GObject, Gtk
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
-from chronograph.backend.file.library_model import LibraryModel
+from chronograph.backend.file.library_manager import LibraryManager
+from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lrclib.lrclib_service import FetchStates, LRClibService
 from chronograph.backend.lrclib.responses import LRClibEntry
-from chronograph.backend.lyrics.lyrics_file import LyricsFile
+from chronograph.backend.lyrics import get_track_lyric, save_track_lyric
 from chronograph.backend.media import BaseFile  # noqa: TC001
 from chronograph.internal import Constants, Schema
 from dgutils import Linker
@@ -64,10 +64,8 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
       button.set_label(_("Fetch"))
       self.progress_revealer.set_reveal_child(False)
 
-    def is_lrc_exist(media_path: str) -> bool:
-      path = Path(media_path)
-      lrc_path = path.with_suffix(Schema.get("root.settings.file-manipulation.format"))
-      return not lrc_path.exists()
+    def is_lrc_missing(track_uuid: str) -> bool:
+      return get_track_lyric(track_uuid, "lrc") is None
 
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
@@ -77,14 +75,24 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
         with contextlib.suppress(Exception):
           self.task.disconnect(self._task_cancel_hdl)
       self._task_cancel_hdl = None
-      medias: list[BaseFile] = [
-        item.get_child().model.mfile for item in LibraryModel().library
-      ]
-      if not self.rewrite_already_existing_switch.get_active():
-        medias = [media for media in medias.copy() if is_lrc_exist(media.path)]
-        if len(medias) == 0:
-          self.fetch_log_list_box.set_placeholder(self.already_fetched)
-          return
+      if LibraryManager.current_library is None:
+        return
+      medias: list[BaseFile] = []
+      self._path_to_uuid: dict[str, str] = {}
+      for track in LibraryManager.list_tracks():
+        media_path = LibraryManager.track_path(track.track_uuid, track.format)
+        media = parse_file(media_path)
+        if media is None:
+          continue
+        if not self.rewrite_already_existing_switch.get_active() and not is_lrc_missing(
+          track.track_uuid
+        ):
+          continue
+        medias.append(media)
+        self._path_to_uuid[media.path] = track.track_uuid
+      if len(medias) == 0:
+        self.fetch_log_list_box.set_placeholder(self.already_fetched)
+        return
       self.task = AsyncTask(
         LRClibService().fetch_lyrics_many,
         medias,
@@ -153,35 +161,39 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
               item.props.instrumental = True
               item.props.message = _("Instrumental track. No lyrics available")
               return
-            lyrics_file = LyricsFile(Path(path))
             dl_profile = Schema.get(
               "root.settings.general.mass-downloading.preferred-format"
             )
+            track_uuid = getattr(self, "_path_to_uuid", {}).get(path)
+            if not track_uuid:
+              item.props.failed = True
+              item.props.message = _("Track is missing from library")
+              return
             match dl_profile:
               case "s":
                 if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
-                  lyrics_file.lrc_lyrics.text = entry.synced_lyrics
-                  lyrics_file.lrc_lyrics.save()
+                  save_track_lyric(track_uuid, "lrc", entry.synced_lyrics)
+                  self._refresh_card(track_uuid)
                   item.props.done = True
                   return
                 item.props.failed = True
                 item.props.message = _("No synced lyrics found")
               case "s~p":
                 if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
-                  lyrics_file.lrc_lyrics.text = entry.synced_lyrics
-                  lyrics_file.lrc_lyrics.save()
+                  save_track_lyric(track_uuid, "lrc", entry.synced_lyrics)
+                  self._refresh_card(track_uuid)
                   item.props.done = True
                 elif entry.plain_lyrics.strip() != "":
-                  lyrics_file.lrc_lyrics.text = entry.plain_lyrics
-                  lyrics_file.lrc_lyrics.save()
+                  save_track_lyric(track_uuid, "plain", entry.plain_lyrics)
+                  self._refresh_card(track_uuid)
                   item.props.done = True
                 else:
                   item.props.failed = True
                   item.props.message = _("No lyrics found")
               case "p":
                 if entry.plain_lyrics.strip() != "":
-                  lyrics_file.lrc_lyrics.text = entry.plain_lyrics
-                  lyrics_file.lrc_lyrics.save()
+                  save_track_lyric(track_uuid, "plain", entry.plain_lyrics)
+                  self._refresh_card(track_uuid)
                   item.props.done = True
                   return
                 item.props.failed = True
@@ -207,6 +219,17 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
       ):
         item.set_property("cancelled", True)
         item.set_property("message", _("Cancelled"))
+
+  def _refresh_card(self, track_uuid: str) -> None:
+    try:
+      cards = Constants.WIN.library.cards_model
+    except AttributeError:
+      return
+    for index in range(cards.get_n_items()):
+      model = cards.get_item(index)
+      if model and model.uuid == track_uuid:
+        model.refresh_available_lyrics()
+        break
 
   def _log_row_factory(self, item: "LogEntry") -> Adw.ActionRow:
     row = Adw.ActionRow(title=item.path, subtitle=item.message, use_markup=False)

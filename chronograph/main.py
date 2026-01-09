@@ -5,9 +5,6 @@ from pathlib import Path
 import gi
 import yaml
 
-from chronograph.backend.file import FileManager, LibraryModel
-from chronograph.backend.player import Player
-
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("GstPlay", "1.0")
@@ -16,6 +13,7 @@ gi.require_version("Gio", "2.0")
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gst, Gtk
 
+from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
 from chronograph.logger import init_logger
 from chronograph.window import ChronographWindow, WindowState
@@ -67,14 +65,33 @@ class ChronographApplication(Adw.Application):
       Constants.WIN = win
     logger.debug("Window was created")
 
+    last_library = Schema.get("root.state.library.last-library")
+    last_library_path = Path(last_library) if last_library else None
+    if (
+      last_library_path
+      and last_library != "None"
+      and (last_library_path / "is_chr_library").exists()
+      and Constants.WIN.open_library(last_library)
+    ):
+      if self.paths:
+        Constants.WIN.import_files_to_library(self.paths)
+        self.paths = []
+    elif self.paths:
+      Constants.WIN.show_toast(_("Open a library before importing files"), 3)
+      self.paths = []
+    else:
+      Constants.WIN.set_property("state", WindowState.NO_LIBRARY)
+
     # fmt: off
     self.create_actions(
       {
         ("quit", ("<primary>q", "<primary>w")),
         ("toggle_sidebar", ("F9",), Constants.WIN),
         ("toggle_search", ("<primary>f",), Constants.WIN),
-        ("select_dir", ("<primary><shift>o",), Constants.WIN),
-        ("select_files", ("<primary>o",), Constants.WIN),
+        ("open_library", ("<primary><shift>o",), Constants.WIN),
+        ("import_files", ("<primary>o",), Constants.WIN),
+        ("create_library", (), Constants.WIN),
+        ("register_tag", (), Constants.WIN),
         ("show_preferences", ("<primary>comma",), Constants.WIN),
         ("open_quick_editor", (), Constants.WIN),
         ("open_mass_downloading", (), Constants.WIN),
@@ -92,14 +109,6 @@ class ChronographApplication(Adw.Application):
     sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
     self.add_action(sorting_action)
 
-    view_action = Gio.SimpleAction.new_stateful(
-      "view_type",
-      GLib.VariantType.new("s"),
-      GLib.Variant("s", Schema.get("root.state.library.view")),
-    )
-    view_action.connect("activate", Constants.WIN.on_view_type_action)
-    self.add_action(view_action)
-
     Schema.bind("root.state.window.width", Constants.WIN, "default-width")
     Schema.bind(
       "root.state.window.height",
@@ -111,24 +120,6 @@ class ChronographApplication(Adw.Application):
       Constants.WIN,
       "maximized",
     )
-
-    if Schema.get("root.settings.general.auto-list-view"):
-      self.lookup_action("view_type").set_enabled(False)
-    else:
-      self.lookup_action("view_type").set_enabled(True)
-
-    if (
-      (path := Schema.get("root.state.library.session")) != "None"
-      and Path(Schema.get("root.state.library.session")).exists()
-      and len(self.paths) == 0
-    ):
-      logger.info("Loading last opened session: '%s'", path)
-      LibraryModel().open_dir(path)
-    elif len(self.paths) != 0:
-      logger.info("Opening requested files")
-      LibraryModel().open_files(self.paths)
-    else:
-      Constants.WIN.set_property("state", WindowState.EMPTY)
 
     Constants.WIN.present()
     Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
@@ -211,10 +202,9 @@ class ChronographApplication(Adw.Application):
   def do_shutdown(self) -> None:
     """Called on app closure. Proceeds all on exit operations"""
     Player().stop()
-    FileManager().kill_all_monitors()
-    if not Schema.get("root.settings.general.save-session"):
-      logger.info("Resetting session")
-      Schema.set("root.state.library.session", "None")
+    if not Schema.get("root.settings.general.save-library"):
+      logger.info("Resetting last library")
+      Schema.set("root.state.library.last-library", "None")
     Schema._save()  # noqa: SLF001
 
     Constants.CACHE_FILE.seek(0)
@@ -264,7 +254,7 @@ def main(_version) -> int:
   if "cache.yaml" not in os.listdir(Constants.DATA_DIR):  # noqa: PTH208
     logger.info("The cache file does not exist, creating")
     file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+", encoding="utf-8")  # noqa: SIM115
-    file.write("pins: []\ncache_version: 2")
+    file.write("pins: []\nlibs: []\ncache_version: 3")
     file.close()
 
   Constants.CACHE_FILE = open(  # noqa: SIM115
