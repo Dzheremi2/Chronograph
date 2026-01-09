@@ -216,6 +216,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
                   ListBox sidebar {
                     row-selected => $_on_sidebar_tag_selected();
                     row-activated => $_on_sidebar_tag_activated();
+                    activate-on-single-click: true;
                     selection-mode: single;
 
                     styles ["navigation-sidebar"]

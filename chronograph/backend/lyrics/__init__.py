@@ -1,7 +1,7 @@
 """Lyrics related module"""
 
 from .formats import ElrcLyrics, LrcLyrics, PlainLyrics, detect_start_lyrics
-from .interfaces import EndLyrics, LyricsConversionError, StartLyrics
+from .interfaces import EndLyrics, LyricsBase, LyricsConversionError, StartLyrics
 from .store import (
   delete_track_lyric,
   get_track_lyric,
@@ -13,6 +13,7 @@ __all__ = [
   "ElrcLyrics",
   "EndLyrics",
   "LrcLyrics",
+  "LyricsBase",
   "LyricsConversionError",
   "PlainLyrics",
   "StartLyrics",

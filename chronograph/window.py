@@ -151,7 +151,6 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     # Building up the sidebar with tag bookmarks
     self.active_tag_filter: Optional[str] = None
-    self._sidebar_selection_changed = False
     self.sidebar.set_placeholder(self.no_saves_found_status)
 
     # Setup filter by lyrics format
@@ -477,22 +476,23 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   @Gtk.Template.Callback()
   def _on_sidebar_tag_selected(self, _list_box, row: Gtk.ListBoxRow) -> None:
-    self._sidebar_selection_changed = True
     if row is None or row.get_child() is None:
       self.active_tag_filter = None
-    else:
-      self.active_tag_filter = row.get_child().tag
-    self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
+      self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
   @Gtk.Template.Callback()
   def _on_sidebar_tag_activated(self, _list_box, row: Gtk.ListBoxRow) -> None:
-    if self._sidebar_selection_changed:
-      self._sidebar_selection_changed = False
-      return
     if row is None:
       return
-    if self.sidebar.get_selected_row() is row:
+    child = row.get_child()
+    if child is None:
+      return
+    tag = child.tag
+    if self.active_tag_filter == tag:
       self.sidebar.unselect_row(row)
+      return
+    self.active_tag_filter = tag
+    self.library.filter.changed(Gtk.FilterChange.DIFFERENT)
 
   @Gtk.Template.Callback()
   def on_search_changed(self, *_args) -> None:
