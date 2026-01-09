@@ -145,4 +145,11 @@ class EndLyrics(LyricsBase):
   """Lyrics formats that use start and end tags (e.g., SRT/ASS/TTML)."""
 
   def to_file_text(self) -> str:
+    """Return file-compatible text for export.
+
+    Returns
+    -------
+    str
+      Text content suitable for writing to a file.
+    """
     return self._text.strip()

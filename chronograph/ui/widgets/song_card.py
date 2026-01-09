@@ -36,6 +36,13 @@ class SongCard(Gtk.Box, Linker):
     self.add_controller(self.event_controller_motion)
 
   def bind(self, model: SongCardModel) -> None:
+    """Bind a model and connect UI signal handlers.
+
+    Parameters
+    ----------
+    model : SongCardModel
+      Model to display and interact with.
+    """
     self._model = model
     # Bind properties
     self.new_binding(
@@ -65,11 +72,19 @@ class SongCard(Gtk.Box, Linker):
     self.new_connection(self.cover_button, "clicked", self._load, model)
 
   def unbind(self) -> None:
+    """Clear bindings and release model references."""
     self.set_cover(None)
     self._model = None
     self.link_teardown()
 
   def set_cover(self, cover: Optional[Gdk.Texture] = None) -> None:
+    """Update the cover image and placeholder state.
+
+    Parameters
+    ----------
+    cover : Optional[Gdk.Texture], optional
+      Cover texture to display, or None to show placeholder.
+    """
     if cover is not None:
       self.cover_img.set_from_paintable(cover)
     else:
@@ -82,6 +97,13 @@ class SongCard(Gtk.Box, Linker):
       self.cover_loading_stack.set_visible_child(self.cover_placeholder)
 
   def set_bulk_selected(self, selected: bool) -> None:
+    """Toggle bulk selection visual state.
+
+    Parameters
+    ----------
+    selected : bool
+      Whether the card is selected in bulk mode.
+    """
     self._bulk_selected = selected
     if selected:
       self.cover_button.add_css_class("bulk-delete-selected")

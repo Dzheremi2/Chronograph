@@ -42,6 +42,13 @@ class Track(ChronographDatabase):
 
   @property
   def latest_lyric_update(self) -> Optional[int]:
+    """Return the latest lyric update timestamp for this track.
+
+    Returns
+    -------
+    Optional[int]
+      Max `updated_at` timestamp across linked lyrics, or None if absent.
+    """
     query = (
       Lyric.select(fn.MAX(Lyric.updated_at))
       .join(TrackLyric)

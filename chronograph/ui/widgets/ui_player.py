@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from gi.repository import Adw, GObject, Gst, Gtk
 
 from chronograph.backend.file.song_card_model import SongCardModel
@@ -110,6 +108,7 @@ class UIPlayer(Adw.BreakpointBin, Linker):
     )
 
   def link_teardown(self) -> None:
+    """Release bindings and clear the current card reference."""
     super().link_teardown()
     self._card = None
 

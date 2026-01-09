@@ -263,21 +263,45 @@ class Library(Gtk.GridView):
       )
 
   def clear(self) -> None:
+    """Remove all cards and reset selection state."""
     self.cards_model.remove_all()
     self._clear_bulk_selection()
     self.card_filter_model.notify("n-items")
 
   def add_cards(self, cards: list[SongCardModel]) -> None:
+    """Append multiple cards to the library.
+
+    Parameters
+    ----------
+    cards : list[SongCardModel]
+      Card models to add.
+    """
     for card in cards:
       self.cards_model.append(card)
     self.card_filter_model.notify("n-items")
 
   def set_bulk_delete_mode(self, enabled: bool) -> None:
+    """Enable or disable bulk delete mode.
+
+    Parameters
+    ----------
+    enabled : bool
+      Whether bulk selection mode is active.
+    """
     self._bulk_delete_mode = enabled
     if not enabled:
       self._clear_bulk_selection()
 
   def toggle_bulk_selection(self, card: SongCard, model: SongCardModel) -> None:
+    """Toggle selection state for a card in bulk mode.
+
+    Parameters
+    ----------
+    card : SongCard
+      Card widget to update.
+    model : SongCardModel
+      Model backing the card.
+    """
     if not self._bulk_delete_mode:
       return
     track_uuid = model.uuid
@@ -294,6 +318,13 @@ class Library(Gtk.GridView):
     self._bulk_selected_uuids.clear()
 
   def bulk_delete_selected(self) -> int:
+    """Delete all selected cards and return count.
+
+    Returns
+    -------
+    int
+      Number of deleted items.
+    """
     if not self._bulk_selected_uuids:
       return 0
     uuids = list(self._bulk_selected_uuids)

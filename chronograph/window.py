@@ -409,6 +409,18 @@ class ChronographWindow(Adw.ApplicationWindow):
   ##############################
 
   def open_library(self, path: str) -> bool:
+    """Open a library directory and load its contents.
+
+    Parameters
+    ----------
+    path : str
+      Path to the library root.
+
+    Returns
+    -------
+    bool
+      True if the library opened successfully.
+    """
     if not LibraryManager.open_library(path):
       self.show_toast(_("Selected folder is not a Chronograph Library"))
       return False
@@ -445,6 +457,19 @@ class ChronographWindow(Adw.ApplicationWindow):
     import_with_lyrics: bool = True,
     elrc_prefix: str = "",
   ) -> None:
+    """Import media files into the current library.
+
+    Parameters
+    ----------
+    files : list[str]
+      Source file paths to import.
+    move : bool, optional
+      Whether to move files instead of copying.
+    import_with_lyrics : bool, optional
+      Whether to also import matching lyric files.
+    elrc_prefix : str, optional
+      Prefix for eLRC lyric files.
+    """
     if LibraryManager.current_library is None:
       self.show_toast(_("Open a library to import files"))
       return
@@ -588,11 +613,19 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   @Gtk.Template.Callback()
   def on_proceed_bulk_delete_button_clicked(self, *_args) -> None:
+    """Delete all items selected in bulk mode."""
     deleted = self.library.bulk_delete_selected()
     self.enable_bulk_delete_button.set_active(False)
     self.show_toast(_("Deleted {n} files").format(n=deleted))
 
   def is_bulk_delete_mode(self) -> bool:
+    """Return whether bulk delete mode is active.
+
+    Returns
+    -------
+    bool
+      True if bulk delete mode is enabled.
+    """
     return self.enable_bulk_delete_button.get_active()
 
   @Gtk.Template.Callback()
@@ -716,6 +749,13 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   @state.setter
   def state(self, value: Union[WindowState, int]) -> None:
+    """Set the current window state.
+
+    Parameters
+    ----------
+    value : Union[WindowState, int]
+      New window state value.
+    """
     if isinstance(value, WindowState):
       self._state = value
     else:

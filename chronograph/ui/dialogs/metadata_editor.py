@@ -54,6 +54,13 @@ class MetadataEditor(Adw.Dialog, Linker):
       self.lyrics_buttons_box.set_visible(False)
 
   def close(self) -> bool:
+    """Close the dialog and release bindings.
+
+    Returns
+    -------
+    bool
+      True if the close request was accepted.
+    """
     self.link_teardown()
     self._card = None
     return super().close()

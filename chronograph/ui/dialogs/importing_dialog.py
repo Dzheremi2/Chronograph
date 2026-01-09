@@ -21,6 +21,15 @@ class ImportingDialog(Adw.Dialog, Linker):
     self.set_progress(0.0, 0)
 
   def set_progress(self, progress: float, imported: int) -> None:
+    """Update progress UI for the import operation.
+
+    Parameters
+    ----------
+    progress : float
+      Fraction of completion between 0.0 and 1.0.
+    imported : int
+      Number of imported items so far.
+    """
     clamped = max(0.0, min(1.0, progress))
     self.import_progress_bar.set_fraction(clamped)
     self.import_detail_label.set_text(

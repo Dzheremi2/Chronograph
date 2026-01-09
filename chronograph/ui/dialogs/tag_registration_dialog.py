@@ -26,6 +26,13 @@ class TagRegistrationDialog(Adw.AlertDialog):
     self.connect("response", self._on_response)
 
   def present(self, parent: Gtk.Widget) -> None:
+    """Present the dialog and focus the entry.
+
+    Parameters
+    ----------
+    parent : Gtk.Widget
+      Parent widget for modal presentation.
+    """
     super().present(parent)
     self._entry.grab_focus()
 

@@ -41,6 +41,18 @@ class AvailableLyrics(GObject.GFlags):
 
   @staticmethod
   def from_formats(formats: list[str]) -> "AvailableLyrics":
+    """Build flags from a list of lyric format strings.
+
+    Parameters
+    ----------
+    formats : list[str]
+      List of format identifiers like "plain", "lrc", "elrc".
+
+    Returns
+    -------
+    AvailableLyrics
+      Combined flags representing the provided formats.
+    """
     flags = AvailableLyrics.NONE
     for fmt in formats:
       flag = FORMAT_TO_FLAG.get(fmt.lower())

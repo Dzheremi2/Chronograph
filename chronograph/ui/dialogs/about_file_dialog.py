@@ -96,6 +96,13 @@ class AboutFileDialog(Adw.Dialog, Linker):
     self._populate_available_lyrics()
 
   def close(self) -> bool:
+    """Close the dialog and release model bindings.
+
+    Returns
+    -------
+    bool
+      True if the close request was accepted.
+    """
     self.unbind_all()
     self._model = None
     super().close()

@@ -128,6 +128,7 @@ class SongCardModel(GObject.Object):
     self.notify("tags")
 
   def refresh_available_lyrics(self) -> None:
+    """Refreshes the `available_lyrics` property based on linked lyrics in the database."""
     formats = [
       item.format
       for item in Lyric.select(Lyric.format)

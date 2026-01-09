@@ -17,12 +17,38 @@ def _get_track_lyric(track_uuid: str, fmt: str) -> Optional[Lyric]:
 
 
 def get_track_lyrics(track_uuid: str) -> dict[str, Lyric]:
+  """Return all lyrics for a track keyed by format.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID.
+
+  Returns
+  -------
+  dict[str, Lyric]
+    Mapping from format to Lyric model.
+  """
   with db():
     query = Lyric.select().join(TrackLyric).where(TrackLyric.track == track_uuid)
     return {lyric.format: lyric for lyric in query}
 
 
 def get_track_lyric(track_uuid: str, fmt: str) -> Optional[Lyric]:
+  """Return a single lyric for a track by format.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID.
+  fmt : str
+    Lyric format identifier.
+
+  Returns
+  -------
+  Optional[Lyric]
+    Lyric model or None when missing.
+  """
   with db():
     return _get_track_lyric(track_uuid, fmt)
 
@@ -39,6 +65,22 @@ def _build_lyrics(fmt: str, content: str):
 
 
 def save_track_lyric(track_uuid: str, fmt: str, content: str) -> Optional[Lyric]:
+  """Create or update a lyric entry for a track.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID.
+  fmt : str
+    Lyric format identifier.
+  content : str
+    Lyric text content.
+
+  Returns
+  -------
+  Optional[Lyric]
+    Saved lyric model, or None if content is empty.
+  """
   content = content.strip()
   if not content:
     delete_track_lyric(track_uuid, fmt)
@@ -69,6 +111,15 @@ def save_track_lyric(track_uuid: str, fmt: str, content: str) -> Optional[Lyric]
 
 
 def delete_track_lyric(track_uuid: str, fmt: str) -> None:
+  """Delete a lyric entry for a track by format.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID.
+  fmt : str
+    Lyric format identifier.
+  """
   with db(atomic=True):
     lyric = _get_track_lyric(track_uuid, fmt)
     if lyric is None:

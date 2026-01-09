@@ -24,6 +24,7 @@ def set_db(path: str):  # noqa: ANN201
 
   class Factory:
     def connect_and_create_tables(_self) -> None:  # noqa: N805
+      """Connect to the database and ensure core tables exist."""
       if _db is None:
         raise RuntimeError("Database is not set. Call set_db(path) first.")
 

@@ -17,6 +17,18 @@ _LRC_HINT = re.compile(r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]")
 
 
 def detect_start_lyrics(text: str) -> StartLyrics:
+  """Detect the most likely lyrics format from raw text.
+
+  Parameters
+  ----------
+  text : str
+    Raw lyrics text to inspect.
+
+  Returns
+  -------
+  StartLyrics
+    Instance matching detected format (plain, lrc, or elrc).
+  """
   if _ELRC_HINT.search(text):
     return ElrcLyrics(text)
   if _LRC_HINT.search(text):
@@ -28,12 +40,36 @@ class PlainLyrics(StartLyrics):
   format = "plain"
 
   def as_format(self, target: str) -> str:
+    """Convert plain lyrics to the requested format.
+
+    Parameters
+    ----------
+    target : str
+      Target format identifier.
+
+    Returns
+    -------
+    str
+      Converted lyrics text.
+
+    Raises
+    ------
+    LyricsConversionError
+      If conversion is unsupported.
+    """
     target = target.lower()
     if target == "plain":
       return self.text
     raise LyricsConversionError(f"Cannot convert from {self.format} to {target}.")
 
   def is_finished(self) -> bool:
+    """Return whether plain lyrics are considered fully synced.
+
+    Returns
+    -------
+    bool
+      Always False for plain lyrics.
+    """
     return False
 
 
@@ -42,6 +78,23 @@ class LrcLyrics(StartLyrics):
   _LINE_TIMESTAMP = re.compile(r"^\s*\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]")
 
   def as_format(self, target: str) -> str:
+    """Convert LRC lyrics to the requested format.
+
+    Parameters
+    ----------
+    target : str
+      Target format identifier.
+
+    Returns
+    -------
+    str
+      Converted lyrics text.
+
+    Raises
+    ------
+    LyricsConversionError
+      If conversion is unsupported.
+    """
     target = target.lower()
     if target == "lrc":
       return self.text
@@ -50,6 +103,13 @@ class LrcLyrics(StartLyrics):
     raise LyricsConversionError(f"Cannot convert from {self.format} to {target}.")
 
   def is_finished(self) -> bool:
+    """Check whether all lines have timestamps.
+
+    Returns
+    -------
+    bool
+      True if each non-empty line has a timestamp.
+    """
     if not self.text.strip():
       return False
     for line in self._text.splitlines():
@@ -71,6 +131,23 @@ class ElrcLyrics(StartLyrics):
   _SPACER = "\u00a0"
 
   def as_format(self, target: str) -> str:
+    """Convert eLRC lyrics to the requested format.
+
+    Parameters
+    ----------
+    target : str
+      Target format identifier.
+
+    Returns
+    -------
+    str
+      Converted lyrics text.
+
+    Raises
+    ------
+    LyricsConversionError
+      If conversion is unsupported.
+    """
     target = target.lower()
     if target == "elrc":
       return self.text
@@ -81,6 +158,13 @@ class ElrcLyrics(StartLyrics):
     raise LyricsConversionError(f"Cannot convert from {self.format} to {target}.")
 
   def is_finished(self) -> bool:
+    """Check whether all words have timestamps.
+
+    Returns
+    -------
+    bool
+      True if every word token includes a timestamp.
+    """
     if not self.text.strip():
       return False
     for raw_line in self._text.splitlines():
@@ -116,6 +200,18 @@ class ElrcLyrics(StartLyrics):
 
   @classmethod
   def from_tokens(cls, lines: tuple[tuple[WordToken, ...], ...]) -> "ElrcLyrics":
+    """Build eLRC lyrics from word token lines.
+
+    Parameters
+    ----------
+    lines : tuple[tuple[WordToken, ...], ...]
+      Tokenized lines with timestamps and words.
+
+    Returns
+    -------
+    ElrcLyrics
+      Constructed lyrics instance.
+    """
     out_lines: list[str] = []
 
     for line_tokens in lines:
