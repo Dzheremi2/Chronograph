@@ -13,13 +13,13 @@ Adw.StatusPage no_source_opened {
     spacing: 12;
 
     Button open_dir_btn {
-      label: _("Open Directory");
+      label: _("Open Library");
       action-name: "win.select_dir";
       styles ["pill", "suggested-action"]
     }
 
     Button load_files_btn {
-      label: _("Open File");
+      label: _("Import Files");
       action-name: "win.select_files";
       styles ["pill"]
     }
@@ -45,13 +45,13 @@ Adw.StatusPage empty_directory {
     spacing: 12;
 
     Button open_dir_btn_empty_dir {
-      label: _("Open Directory");
+      label: _("Open Library");
       action-name: "win.select_dir";
       styles ["pill", "suggested-action"]
     }
 
     Button load_files_btn_empty_dir {
-      label: _("Open File");
+      label: _("Import Files");
       action-name: "win.select_files";
       styles ["pill"]
     }
@@ -237,7 +237,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
                 MenuButton open_source_button {
                   icon-name: "open-source-symbolic";
-                  tooltip-text: _("Select a directory or open a file");
+                  tooltip-text: _("Import files or open a library");
                   menu-model: open_source_menu;
                 }
 
@@ -419,7 +419,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
 menu open_source_menu {
   section {
-    item (_("Directory"), "win.select_dir")
-    item (_("Files"), "win.select_files")
+    item (_("Import Files"), "win.select_files")
+    item (_("Open Library"), "win.select_dir")
   }
 }

@@ -14,11 +14,13 @@ from chronograph.backend.db.models import SchemaInfo
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.file_parsers import parse_file
+from chronograph.backend.lyrics import save_track_lyric
 from chronograph.backend.miscellaneous import (
   decode_filter_schema,
   encode_filter_schema,
 )
 from chronograph.internal import Constants, Schema
+from chronograph.ui.dialogs.import_dialog import ImportDialog
 from chronograph.ui.dialogs.importing_dialog import ImportingDialog
 from chronograph.ui.dialogs.mass_downloading_dialog import MassDownloadingDialog
 from chronograph.ui.dialogs.preferences import ChronographPreferences
@@ -275,16 +277,36 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     def on_select_files(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
       try:
-        files = [file.get_path() for file in file_dialog.open_multiple_finish(result)]
-        if files is not None:
-          if LibraryManager.current_library is not None:
-            self.import_files_to_library(files)
-          else:
-            self.show_toast(_("Open a library before importing files"), 3)
+        files = [
+          file.get_path() for file in file_dialog.open_multiple_finish(result) if file
+        ]
+        if files:
+          self._open_import_dialog(files)
       except GLib.GError:
         pass
 
     select_files()
+
+  def _open_import_dialog(self, files: list[str]) -> None:
+    if LibraryManager.current_library is None:
+      self.show_toast(_("Open a library before importing files"), 3)
+      return
+
+    dialog = ImportDialog(
+      files,
+      self._on_import_dialog_confirmed,
+    )
+    dialog.present(self)
+
+  def _on_import_dialog_confirmed(
+    self, files: list[str], import_with_lyrics: bool, elrc_prefix: str, move: bool
+  ) -> None:
+    self.import_files_to_library(
+      files,
+      move=move,
+      import_with_lyrics=import_with_lyrics,
+      elrc_prefix=elrc_prefix,
+    )
 
   ##############################
 
@@ -394,7 +416,14 @@ class ChronographWindow(Adw.ApplicationWindow):
     else:
       self.library.card_filter_model.notify("n-items")
 
-  def import_files_to_library(self, files: list[str]) -> None:
+  def import_files_to_library(
+    self,
+    files: list[str],
+    *,
+    move: bool = False,
+    import_with_lyrics: bool = True,
+    elrc_prefix: str = "",
+  ) -> None:
     if LibraryManager.current_library is None:
       self.show_toast(_("Open a library to import files"))
       return
@@ -414,6 +443,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     self._import_task = AsyncTask(
       LibraryManager.import_files_async,
       pending_files,
+      move,
       do_use_progress=True,
       do_use_cancellable=False,
     )
@@ -427,7 +457,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       )
       self._import_dialog.set_progress(progress, imported_count)
 
-    def on_done(_task, imported: list[tuple[str, str]]) -> None:
+    def on_done(_task, imported: list[tuple[Path, str, str]]) -> None:
       self._import_task = None
       if self._import_dialog is not None:
         self._import_dialog.close()
@@ -438,7 +468,13 @@ class ChronographWindow(Adw.ApplicationWindow):
         return
 
       cards: list[SongCardModel] = []
-      for track_uuid, track_format in imported:
+      for src_path, track_uuid, track_format in imported:
+        self._import_track_lyrics(
+          track_uuid,
+          src_path,
+          import_with_lyrics,
+          elrc_prefix,
+        )
         media_path = LibraryManager.track_path(track_uuid, track_format)
         if media_path.exists():
           cards.append(SongCardModel(media_path, track_uuid))
@@ -468,6 +504,41 @@ class ChronographWindow(Adw.ApplicationWindow):
     self._import_task.connect("task-done", on_done)
     self._import_task.connect("error", on_error)
     self._import_task.start()
+
+  def _import_track_lyrics(
+    self,
+    track_uuid: str,
+    source_path: Path,
+    import_with_lyrics: bool,
+    elrc_prefix: str,
+  ) -> None:
+    if not import_with_lyrics:
+      return
+
+    lyric_path = source_path.with_suffix(".lrc")
+    self._import_lyrics_from_path(track_uuid, lyric_path, "lrc")
+
+    elrc_prefix = elrc_prefix.strip()
+    if not elrc_prefix:
+      return
+
+    prefixed_path = source_path.with_name(f"{elrc_prefix}{source_path.stem}.lrc")
+    self._import_lyrics_from_path(track_uuid, prefixed_path, "elrc")
+
+  def _import_lyrics_from_path(
+    self, track_uuid: str, lyric_path: Path, fmt: str
+  ) -> None:
+    if not lyric_path.exists():
+      return
+    try:
+      content = lyric_path.read_text(encoding="utf-8")
+    except Exception as exc:
+      logger.warning("Failed to read lyrics from '%s': %s", lyric_path, exc)
+      return
+    try:
+      save_track_lyric(track_uuid, fmt, content)
+    except Exception as exc:
+      logger.warning("Failed to import lyrics from '%s': %s", lyric_path, exc)
 
   @Gtk.Template.Callback()
   def _on_sidebar_tag_selected(self, _list_box, row: Gtk.ListBoxRow) -> None:

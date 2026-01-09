@@ -40,7 +40,9 @@ class LibraryManager:
     return False
 
   @staticmethod
-  def import_files(files: list[Path], move: bool = False) -> list[tuple[str, str]]:
+  def import_files(
+    files: list[Path], move: bool = False
+  ) -> list[tuple[Path, str, str]]:
     """Imports given files to library
 
     Parameters
@@ -52,10 +54,10 @@ class LibraryManager:
 
     Returns
     -------
-    list[tuple[str, str]]
-      List of imported track UUIDs with their stored formats
+    list[tuple[Path, str, str]]
+      List of imported source paths with their track UUIDs and stored formats
     """
-    imported: list[tuple[str, str]] = []
+    imported: list[tuple[Path, str, str]] = []
     lib_root = LibraryManager._require_library()
 
     content_dir = lib_root / "content"
@@ -73,9 +75,9 @@ class LibraryManager:
     move: bool = False,
     on_progress: Optional[Callable[[float], None]] = None,
     cancellable: Optional[threading.Event] = None,
-  ) -> list[tuple[str, str]]:
+  ) -> list[tuple[Path, str, str]]:
     """Imports files in a background task with progress updates."""
-    imported: list[tuple[str, str]] = []
+    imported: list[tuple[Path, str, str]] = []
     lib_root = LibraryManager._require_library()
 
     content_dir = lib_root / "content"
@@ -101,7 +103,7 @@ class LibraryManager:
   @staticmethod
   def _import_one(
     src: Path, content_dir: Path, move: bool
-  ) -> Optional[tuple[str, str]]:
+  ) -> Optional[tuple[Path, str, str]]:
     tmp: Optional[Path] = None
     try:
       if not src.exists() or not src.is_file():
@@ -140,7 +142,7 @@ class LibraryManager:
           Track.delete_by_id(str(uuid))
         raise
 
-      return (str(uuid), fmt)
+      return (src, str(uuid), fmt)
     except Exception:
       try:
         if tmp and tmp.exists():

@@ -1,0 +1,69 @@
+using Gtk 4.0;
+using Adw 1;
+
+
+template $ImportDialog : Adw.Dialog {
+  content-height: 600;
+  content-width: 500;
+  width-request: 1;
+  height-request: 1;
+  title: _("Import Files");
+
+  Adw.Clamp {
+    orientation: horizontal;
+    maximum-size: 500;
+    tightening-threshold: 500;
+
+    Adw.Clamp {
+      orientation: vertical;
+      maximum-size: 600;
+      tightening-threshold: 600;
+
+      Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {}
+
+        Adw.PreferencesPage {
+          Adw.PreferencesGroup file_list_group {
+            vexpand: true;
+          }
+        }
+
+        [bottom]
+        Adw.PreferencesPage {
+          Adw.PreferencesGroup {
+            title: _("Import Settings");
+
+            Adw.ExpanderRow import_with_lyrics_switch {
+              show-enable-switch: true;
+              title: _("Import With Lyrics");
+              subtitle: _("Also import lyric files if they have the same name");
+
+              Adw.EntryRow elrc_prefix_entry {
+                title: _("eLRC prefix");
+                tooltip-text: _("Remain empty if not used");
+              }
+            }
+
+            Adw.SwitchRow move_files_switch {
+              title: _("Move Files");
+              subtitle: _("Moves files to the import location instead of copying them");
+            }
+          }
+        }
+
+        [bottom]
+        Box {
+          halign: center;
+          margin-bottom: 16;
+
+          Button import_button {
+            label: _("Import");
+
+            styles ["pill", "suggested-action"]
+          }
+        }
+      }
+    }
+  }
+}
