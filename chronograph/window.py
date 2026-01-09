@@ -113,7 +113,6 @@ class ChronographWindow(Adw.ApplicationWindow):
   reparse_action_done: bool = GObject.Property(type=bool, default=True)
 
   sort_state: str = Schema.get("root.state.library.sorting")
-  view_state: str = Schema.get("root.state.library.view")
 
   def __init__(self, **kwargs) -> None:
     super().__init__(**kwargs)
@@ -121,10 +120,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     logger.debug("Creating window")
     self._import_task: Optional[AsyncTask] = None
     self._import_dialog: Optional[ImportingDialog] = None
-
-    self.library_list = Gtk.ListBox(
-      css_classes=("navigation-sidebar",), selection_mode=Gtk.SelectionMode.NONE
-    )
 
     # Apply devel window decorations
     if Constants.APP_ID.endswith(".Devel"):
@@ -552,27 +547,6 @@ class ChronographWindow(Adw.ApplicationWindow):
     logger.debug("Sort state set to: %s", self.sort_state)
     Schema.set("root.state.library.sorting", self.sort_state)
 
-  def on_view_type_action(self, action: Gio.SimpleAction, state: GLib.Variant) -> None:
-    """Sets view type state for `self.library_list` and invalidates sorting
-
-    Parameters
-    ----------
-    action : Gio.SimpleAction
-        Action which triggered this function
-    state : GLib.Variant
-        Current view type state
-    """
-    if self.state in (WindowState.LOADED_DIR, WindowState.LOADED_FILES):
-      action.set_state(state)
-      self.view_state = str(state).strip("'")
-      match self.view_state:
-        case "g":
-          self.library_scrolled_window.set_child(self.library)
-        case "l":
-          self.library_scrolled_window.set_child(self.library_list)
-      logger.debug("View type set to: %s", self.view_state)
-      Schema.set("root.state.library.view", self.view_state)
-
   def enter_sync_mode(self, card_model: SongCardModel) -> None:
     """Enters sync mode for the given song card
 
@@ -625,23 +599,6 @@ class ChronographWindow(Adw.ApplicationWindow):
       timeout,
     )
 
-  @Gtk.Template.Callback()
-  def toggle_list_view(self, *_args) -> None:
-    """Triggered on window resize to determine used view mode if auto-list-view enabled"""
-    if Schema.get("root.settings.general.auto-list-view") and (
-      self.library_scrolled_window.get_child().get_child() != self.no_source_opened
-      and self.library_scrolled_window.get_child().get_child() != self.empty_directory
-      and self.is_visible()
-    ):
-      if self.get_width() <= 564:
-        self.library_scrolled_window.set_child(self.library_list)
-        Schema.set("root.state.library.view", "l")
-        Constants.APP.lookup_action("view_type").set_state(GLib.Variant.new_string("l"))
-      else:
-        self.library_scrolled_window.set_child(self.library)
-        Schema.set("root.state.library.view", "g")
-        Constants.APP.lookup_action("view_type").set_state(GLib.Variant.new_string("g"))
-
   def _on_filter_state(self, _obj, _pspec) -> None:
     nn = self.lookup_action("filter_none").get_state().get_boolean()
     pp = self.lookup_action("filter_plain").get_state().get_boolean()
@@ -679,20 +636,12 @@ class ChronographWindow(Adw.ApplicationWindow):
         self.left_buttons_revealer.set_reveal_child(False)
         self.open_source_button.set_visible(False)
       case WindowState.LOADED_DIR:
-        match Schema.get("root.state.library.view"):
-          case "g":
-            self.library_scrolled_window.set_child(self.library)
-          case "l":
-            self.library_scrolled_window.set_child(self.library_list)
+        self.library_scrolled_window.set_child(self.library)
         self.right_buttons_revealer.set_reveal_child(True)
         self.left_buttons_revealer.set_reveal_child(True)
         self.open_source_button.set_visible(True)
       case WindowState.LOADED_FILES:
-        match Schema.get("root.state.library.view"):
-          case "g":
-            self.library_scrolled_window.set_child(self.library)
-          case "l":
-            self.library_scrolled_window.set_child(self.library_list)
+        self.library_scrolled_window.set_child(self.library)
         self.right_buttons_revealer.set_reveal_child(False)
         self.open_source_button.set_visible(True)
         self.sidebar.select_row(None)

@@ -107,14 +107,6 @@ class ChronographApplication(Adw.Application):
     sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
     self.add_action(sorting_action)
 
-    view_action = Gio.SimpleAction.new_stateful(
-      "view_type",
-      GLib.VariantType.new("s"),
-      GLib.Variant("s", Schema.get("root.state.library.view")),
-    )
-    view_action.connect("activate", Constants.WIN.on_view_type_action)
-    self.add_action(view_action)
-
     Schema.bind("root.state.window.width", Constants.WIN, "default-width")
     Schema.bind(
       "root.state.window.height",

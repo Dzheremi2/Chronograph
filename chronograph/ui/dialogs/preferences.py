@@ -18,7 +18,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   lbl_large_seek_adj: Gtk.Adjustment = gtc()
   wbw_default_seek_adj: Gtk.Adjustment = gtc()
   wbw_large_seek_adj: Gtk.Adjustment = gtc()
-  automatic_list_view_switch: Adw.SwitchRow = gtc()
   parallel_downloadings_adj: Gtk.Adjustment = gtc()
   preferred_format_combo_row: Adw.ComboRow = gtc()
   enable_debug_logging_switch: Adw.SwitchRow = gtc()
@@ -31,9 +30,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   def __init__(self) -> None:
     super().__init__()
 
-    self.automatic_list_view_switch.connect(
-      "notify::active", self._set_view_switcher_inactive
-    )
     self.syncing_type_combo_row.connect(
       "notify::selected", self._update_sync_type_schema
     )
@@ -52,11 +48,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
     Schema.bind(
       "root.settings.syncing.precise",
       self.precise_milliseconds_switch,
-      "active",
-    )
-    Schema.bind(
-      "root.settings.general.auto-list-view",
-      self.automatic_list_view_switch,
       "active",
     )
     Schema.bind(
@@ -173,9 +164,3 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       Schema.set("root.settings.syncing.sync-type", "lrc")
     elif selected == 1:
       Schema.set("root.settings.syncing.sync-type", "wbw")
-
-  def _set_view_switcher_inactive(self, *_args) -> None:
-    if self.automatic_list_view_switch.get_active():
-      Constants.APP.lookup_action("view_type").set_enabled(False)
-    else:
-      Constants.APP.lookup_action("view_type").set_enabled(True)

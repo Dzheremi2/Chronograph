@@ -62,9 +62,6 @@ root:
       save-library:
         type: bool
         default: true
-      auto-list-view:
-        type: bool
-        default: false
       debug-profile:
         type: bool
         default: false
@@ -97,10 +94,6 @@ root:
         type: str
         enum: [a-z, z-a]
         default: a-z
-      view:
-        type: str
-        enum: [g, l]
-        default: g
       filter:
         type: str
         default: "1:1:1:1" # encoded string none:plain:lrc:elrc. 0 for disabled, 1 for enabled

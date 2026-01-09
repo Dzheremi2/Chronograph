@@ -113,11 +113,6 @@ menubutton.osd-button-only > button:active {
 }
 /* -------------------------------- */
 
-/* List View library mode covers rounding */
-#list_view_row_cover {
-  border-radius: var(--border-radius-sm); 
-}
-
 /* From Ear Tag src https://gitlab.gnome.org/World/eartag/-/blob/main/src/style.css?ref_type=heads */
 /* To remove cover button default highlight in MetadataEditor dialog with revealer with pen icon inside*/
 .album-cover {
