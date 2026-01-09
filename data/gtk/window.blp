@@ -3,9 +3,9 @@ using Adw 1;
 
 
 Adw.StatusPage no_saves_found_status {
-  title: _("No Saves");
+  title: _("No Tags");
   icon-name: "nothing-found-symbolic";
-  description: _("Press pin button to add current directory to the saves");
+  description: _("Press plus button to register a new Tag");
 
   styles ["compact"]
 }
@@ -199,7 +199,7 @@ template $ChronographWindow : Adw.ApplicationWindow {
 
               [sidebar]
               Adw.NavigationPage sidebar_nav_page {
-                title: _("Saves");
+                title: _("Tags");
 
                 Adw.ToolbarView {
                   [top]
@@ -209,6 +209,13 @@ template $ChronographWindow : Adw.ApplicationWindow {
                       icon-name: "toggle-sidebar-symbolic";
                       tooltip-text: _("Toggle sidebar");
                       action-name: "win.toggle_sidebar";
+                    }
+
+                    [end]
+                    Button {
+                      icon-name: "add-line-symbolic";
+                      tooltip-text: _("Register tag");
+                      action-name: "win.register_tag";
                     }
                   }
 

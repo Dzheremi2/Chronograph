@@ -6,6 +6,7 @@ from chronograph.backend.db.models import SchemaInfo, Track, TrackLyric
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.internal import Constants
+from chronograph.ui.dialogs.tag_registration_dialog import TagRegistrationDialog
 from chronograph.ui.widgets.lyric_row import LyricRow
 from dgutils import Linker
 
@@ -164,7 +165,7 @@ class AboutFileDialog(Adw.Dialog, Linker):
     add_button = Gtk.Button(
       label=_("Add New Tag"), css_classes=["pill", "suggested-action"]
     )
-    add_button.connect("clicked", self._present_tag_registration_alert, dialog)
+    add_button.connect("clicked", self._on_register_tag_clicked, dialog)
     add_button_box.append(add_button)
     box.append(add_button_box)
 
@@ -179,45 +180,15 @@ class AboutFileDialog(Adw.Dialog, Linker):
     dialog.connect("closed", self._clear_tag_dialog_refs)
     dialog.present(self)
 
-  def _present_tag_registration_alert(
-    self,
-    _btn,
-    parent: Adw.Dialog,
-  ) -> None:
-    entry = Gtk.Entry(placeholder_text=_("Tag name…"))
-    alert = Adw.AlertDialog(
-      heading=_("Add New Tag"),
-      default_response="cancel",
-      close_response="cancel",
-    )
-    alert.add_response("cancel", _("Cancel"))
-    alert.add_response("add", _("Add"))
-    alert.set_response_appearance("add", Adw.ResponseAppearance.SUGGESTED)
-    alert.set_extra_child(entry)
-    entry.connect("activate", lambda *__: alert.emit("response", "add"))
-
-    def on_response(alert: Adw.AlertDialog, response: str) -> None:
-      if response != "add":
-        return
-      tag = entry.get_text().strip()
-      if not tag:
-        return
-      registered_tags = self._get_registered_tags()
-      if tag not in registered_tags:
-        registered_tags.append(tag)
-        self._set_registered_tags(registered_tags)
-      track_tags = set(self._get_track_tags())
-      if tag in track_tags:
+  def _on_register_tag_clicked(self, _btn, parent: Adw.Dialog) -> None:
+    def on_registered(tag: str) -> None:
+      if tag in set(self._get_track_tags()):
         return
       self._show_tag_group()
       if self._tag_dialog_group is not None:
         self._tag_dialog_group.add(self._build_tag_row(tag, parent))
-      if alert.is_visible():
-        alert.close()
 
-    alert.connect("response", on_response)
-    alert.present(parent)
-    entry.grab_focus()
+    TagRegistrationDialog(on_registered=on_registered).present(parent)
 
   def _build_tag_row(self, tag: str, dialog: Adw.Dialog) -> Adw.ActionRow:
     row = Adw.ActionRow(title=tag, activatable=True, selectable=False, use_markup=False)

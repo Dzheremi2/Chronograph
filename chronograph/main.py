@@ -91,6 +91,7 @@ class ChronographApplication(Adw.Application):
         ("open_library", ("<primary><shift>o",), Constants.WIN),
         ("import_files", ("<primary>o",), Constants.WIN),
         ("create_library", (), Constants.WIN),
+        ("register_tag", (), Constants.WIN),
         ("show_preferences", ("<primary>comma",), Constants.WIN),
         ("open_quick_editor", (), Constants.WIN),
         ("open_mass_downloading", (), Constants.WIN),

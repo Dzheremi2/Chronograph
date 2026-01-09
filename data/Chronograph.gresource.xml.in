@@ -14,7 +14,7 @@
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/ImportingDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/ImportDialog.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/dialogs/AboutFileDialog.ui</file>
-    <file preprocess="xml-stripblanks">gtk/ui/widgets/Bookmark.ui</file>
+    <file preprocess="xml-stripblanks">gtk/ui/widgets/TagRow.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/widgets/UIPlayer.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/LRCSyncPage.ui</file>
     <file preprocess="xml-stripblanks">gtk/ui/sync_pages/WBWSyncPage.ui</file>

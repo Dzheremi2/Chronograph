@@ -24,10 +24,11 @@ from chronograph.ui.dialogs.import_dialog import ImportDialog
 from chronograph.ui.dialogs.importing_dialog import ImportingDialog
 from chronograph.ui.dialogs.mass_downloading_dialog import MassDownloadingDialog
 from chronograph.ui.dialogs.preferences import ChronographPreferences
+from chronograph.ui.dialogs.tag_registration_dialog import TagRegistrationDialog
 from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
-from chronograph.ui.widgets.bookmark import Bookmark
 from chronograph.ui.widgets.library import Library
+from chronograph.ui.widgets.tag_row import TagRow
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -176,7 +177,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       return
     tags = self._get_registered_tags()
     for tag in tags:
-      self.sidebar.append(Bookmark(tag))
+      self.sidebar.append(TagRow(tag))
     self.sidebar.set_placeholder(self.no_saves_found_status)
     if self.active_tag_filter and self.active_tag_filter not in tags:
       self.active_tag_filter = None
@@ -305,6 +306,10 @@ class ChronographWindow(Adw.ApplicationWindow):
         pass
 
     select_dir()
+
+  def on_register_tag_action(self, *_args) -> None:
+    """Shows tag registration dialog"""
+    TagRegistrationDialog().present(self)
 
   def _open_import_dialog(self, files: list[str]) -> None:
     if LibraryManager.current_library is None:
