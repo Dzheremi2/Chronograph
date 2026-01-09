@@ -400,14 +400,17 @@ class WBWSyncPage(Adw.NavigationPage):
 
         if Schema.get(
           "root.settings.do-lyrics-db-updates.lrc-along-elrc"
-        ) and lyrics_obj.format in ("lrc", "elrc"):
-          lrc_text = lyrics_obj.as_format("lrc")
-          save_track_lyric(
-            self._track_uuid,
-            "lrc",
-            lrc_text,
-          )
-          logger.debug("LRC lyrics autosaved successfully")
+        ) and isinstance(lyrics_obj, ElrcLyrics):
+          if lyrics_obj.is_finished():
+            lrc_text = lyrics_obj.as_format("lrc")
+            save_track_lyric(
+              self._track_uuid,
+              "lrc",
+              lrc_text,
+            )
+            logger.debug("LRC lyrics autosaved successfully")
+          else:
+            logger.debug("Skipped LRC autosave for unfinished eLRC lyrics")
 
         if isinstance(lyrics_obj, ElrcLyrics):
           save_track_lyric(

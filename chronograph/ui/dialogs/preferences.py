@@ -22,6 +22,7 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   preferred_format_combo_row: Adw.ComboRow = gtc()
   enable_debug_logging_switch: Adw.SwitchRow = gtc()
   syncing_type_combo_row: Adw.ComboRow = gtc()
+  do_lyrics_db_updates_switch: Adw.SwitchRow = gtc()
   save_plain_lrc_also_switch_row: Adw.SwitchRow = gtc()
   embed_lyrics_switch: Adw.ExpanderRow = gtc()
   use_individual_synced_tag_vorbis_switch: Adw.SwitchRow = gtc()
@@ -35,6 +36,11 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
     )
     self._setup_mass_downloading_preferred_format()
 
+    Schema.bind(
+      "root.settings.do-lyrics-db-updates.enabled",
+      self.do_lyrics_db_updates_switch,
+      "active",
+    )
     Schema.bind(
       "root.settings.general.reset-quick-editor",
       self.reset_quick_edit_switch,

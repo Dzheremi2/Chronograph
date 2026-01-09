@@ -147,7 +147,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
     icon-name: "chr-file-symbolic";
 
     Adw.PreferencesGroup {
-      Adw.SwitchRow auto_file_manipulation_switch {
+      Adw.SwitchRow do_lyrics_db_updates_switch {
         title: _("Auto File Manipulation");
         subtitle: _("Automatically creates and updates files when any of lyrics lines changed");
       }
@@ -155,7 +155,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
     Adw.PreferencesGroup {
       title: _("General");
-      sensitive: bind auto_file_manipulation_switch.active;
+      sensitive: bind do_lyrics_db_updates_switch.active;
 
       Adw.SpinRow autosave_throttling_spin {
         title: _("Autosave Interval");
@@ -171,7 +171,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
     Adw.PreferencesGroup {
       title: "eLRC";
-      sensitive: bind auto_file_manipulation_switch.active;
+      sensitive: bind do_lyrics_db_updates_switch.active;
 
       Adw.SwitchRow save_plain_lrc_also_switch_row {
         title: _("Save Plain LRC Too");
@@ -181,7 +181,7 @@ template $ChronographPreferences : Adw.PreferencesDialog {
 
     Adw.PreferencesGroup {
       title: _("Lyrics Embedding");
-      sensitive: bind auto_file_manipulation_switch.active;
+      sensitive: bind do_lyrics_db_updates_switch.active;
 
       Adw.ExpanderRow embed_lyrics_switch {
         title: _("Embed Lyrics Within Audio File");
