@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: release
+  group: release-linux-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   flatpak-release:
