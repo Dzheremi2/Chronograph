@@ -26,7 +26,6 @@ template $AboutFileDialog : Adw.Dialog {
             [top]
             Adw.HeaderBar {}
 
-            [top]
             ScrolledWindow {
               propagate-natural-height: true;
 
@@ -159,19 +158,6 @@ template $AboutFileDialog : Adw.Dialog {
 
                   styles ["boxed-list"]
                 }
-              }
-            }
-
-            [bottom]
-            Box {
-              halign: center;
-              margin-bottom: 16;
-
-              Button save_button {
-                label: _("Save");
-                sensitive: false;
-
-                styles ["pill", "suggested-action"]
               }
             }
           }

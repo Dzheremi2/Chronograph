@@ -52,20 +52,11 @@ for mime in MIME_TYPES:
 
 
 class WindowState(Enum):
-  """Enum for window states
+  """Enum for window states"""
 
-  ::
-
-      EMPTY -> "No dir nor files opened"
-      EMPTY_DIR -> "Opened an empty dir"
-      LOADED_DIR -> "Opened a non-empty dir"
-      LOADED_FILES -> "Opened a bunch of files separately from the dir"
-  """
-
-  EMPTY = 0
-  EMPTY_DIR = 1
-  LOADED_DIR = 2
-  LOADED_FILES = 3
+  NO_LIBRARY = 0
+  EMPTY_LIBRARY = 1
+  LIBRARY = 2
 
 
 @Gtk.Template(resource_path=Constants.PREFIX + "/gtk/window.ui")
@@ -75,16 +66,15 @@ class ChronographWindow(Adw.ApplicationWindow):
   __gtype_name__ = "ChronographWindow"
 
   # Status pages
-  no_source_opened: Adw.StatusPage = gtc()
-  empty_directory: Adw.StatusPage = gtc()
   no_saves_found_status: Adw.StatusPage = gtc()
-
   empty_library: Adw.StatusPage = gtc()
   empty_filter_results: Adw.StatusPage = gtc()
 
   # Library view widgets
   dnd_area_revealer: Gtk.Revealer = gtc()
   toast_overlay: Adw.ToastOverlay = gtc()
+  window_state_stack: Gtk.Stack = gtc()
+  no_library_view: Gtk.Box = gtc()
   navigation_view: Adw.NavigationView = gtc()
   library_nav_page: Adw.NavigationPage = gtc()
   overlay_split_view: Adw.OverlaySplitView = gtc()
@@ -129,7 +119,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       self.add_css_class("devel")
 
     # Create a WindowState property for automatic window UI state updates
-    self._state: WindowState = WindowState.EMPTY
+    self._state: WindowState = WindowState.NO_LIBRARY
     self.connect("notify::state", self._state_changed)
 
     # Connect the search entry to the search bar
@@ -217,7 +207,7 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   def on_toggle_search_action(self, *_args) -> None:
     """Toggles search field of `self`"""
-    if self.state in (WindowState.EMPTY, WindowState.EMPTY_DIR):
+    if self.state in (WindowState.NO_LIBRARY, WindowState.EMPTY_LIBRARY):
       return
 
     if self.navigation_view.get_visible_page() == self.library_nav_page:
@@ -241,7 +231,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     logger.debug("Showing preferences")
 
   ############### Actions for opening files and directories ###############
-  def on_select_dir_action(self, *_args) -> None:
+  def on_open_library_action(self, *_args) -> None:
     """Selects a directory to open in the library"""
 
     def select_dir() -> None:
@@ -265,8 +255,8 @@ class ChronographWindow(Adw.ApplicationWindow):
 
     select_dir()
 
-  def on_select_files_action(self, *_args) -> None:
-    """Selects files to open in the library"""
+  def on_import_files_action(self, *_args) -> None:
+    """Selects files to import into the library"""
 
     def select_files(*_args) -> None:
       logger.debug("Showing files selection dialog")
@@ -286,6 +276,35 @@ class ChronographWindow(Adw.ApplicationWindow):
         pass
 
     select_files()
+
+  def on_create_library_action(self, *_args) -> None:
+    """Creates a new library in a selected directory"""
+
+    def select_dir() -> None:
+      logger.debug("Showing library creation dialog")
+      dialog = Gtk.FileDialog(
+        default_filter=Gtk.FileFilter(mime_types=["inode/directory"])
+      )
+      dialog.select_folder(self, None, on_selected_dir)
+
+    def on_selected_dir(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
+      try:
+        _dir = file_dialog.select_folder_finish(result)
+        if _dir is not None:
+          dir_path = _dir.get_path()
+          if not dir_path:
+            return
+          try:
+            library_path = LibraryManager.new_library(Path(dir_path))
+          except Exception:
+            logger.exception("Failed to create library: %s")
+            self.show_toast(_("Failed to create library"), 3)
+            return
+          self.open_library(str(library_path))
+      except GLib.GError:
+        pass
+
+    select_dir()
 
   def _open_import_dialog(self, files: list[str]) -> None:
     if LibraryManager.current_library is None:
@@ -395,7 +414,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     Schema.set("root.state.library.last-library", path)
     self._load_library_tracks()
     self.build_sidebar()
-    self.state = WindowState.LOADED_DIR
+    self.state = WindowState.LIBRARY
     return True
 
   def _load_library_tracks(self) -> None:
@@ -693,27 +712,14 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   def _state_changed(self, *_args) -> None:
     state = self._state
+    is_no_library = state == WindowState.NO_LIBRARY
+    self.window_state_stack.set_visible_child(
+      self.no_library_view if is_no_library else self.navigation_view
+    )
 
-    match state:
-      case WindowState.EMPTY:
-        self.library_scrolled_window.set_child(self.no_source_opened)
-        self.right_buttons_revealer.set_reveal_child(False)
-        self.left_buttons_revealer.set_reveal_child(False)
-        self.sidebar.select_row(None)
-        self.open_source_button.set_visible(False)
-      case WindowState.EMPTY_DIR:
-        self.library_scrolled_window.set_child(self.empty_directory)
-        self.right_buttons_revealer.set_reveal_child(True)
-        self.left_buttons_revealer.set_reveal_child(False)
-        self.open_source_button.set_visible(False)
-      case WindowState.LOADED_DIR:
-        self.library_scrolled_window.set_child(self.library)
-        self.right_buttons_revealer.set_reveal_child(True)
-        self.left_buttons_revealer.set_reveal_child(True)
-        self.open_source_button.set_visible(True)
-      case WindowState.LOADED_FILES:
-        self.library_scrolled_window.set_child(self.library)
-        self.right_buttons_revealer.set_reveal_child(False)
-        self.open_source_button.set_visible(True)
-        self.sidebar.select_row(None)
+    self.left_buttons_revealer.set_reveal_child(state == WindowState.LIBRARY)
+    self.right_buttons_revealer.set_reveal_child(state == WindowState.LIBRARY)
+
+    if is_no_library:
+      self.sidebar.select_row(None)
     logger.debug("Window state was set to: %s", self.state)

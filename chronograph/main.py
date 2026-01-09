@@ -80,7 +80,7 @@ class ChronographApplication(Adw.Application):
       Constants.WIN.show_toast(_("Open a library before importing files"), 3)
       self.paths = []
     else:
-      Constants.WIN.set_property("state", WindowState.EMPTY)
+      Constants.WIN.set_property("state", WindowState.NO_LIBRARY)
 
     # fmt: off
     self.create_actions(
@@ -88,8 +88,9 @@ class ChronographApplication(Adw.Application):
         ("quit", ("<primary>q", "<primary>w")),
         ("toggle_sidebar", ("F9",), Constants.WIN),
         ("toggle_search", ("<primary>f",), Constants.WIN),
-        ("select_dir", ("<primary><shift>o",), Constants.WIN),
-        ("select_files", ("<primary>o",), Constants.WIN),
+        ("open_library", ("<primary><shift>o",), Constants.WIN),
+        ("import_files", ("<primary>o",), Constants.WIN),
+        ("create_library", (), Constants.WIN),
         ("show_preferences", ("<primary>comma",), Constants.WIN),
         ("open_quick_editor", (), Constants.WIN),
         ("open_mass_downloading", (), Constants.WIN),

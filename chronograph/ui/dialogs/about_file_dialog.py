@@ -28,7 +28,6 @@ class AboutFileDialog(Adw.Dialog, Linker):
   import_info_row: Adw.ActionRow = gtc()
   modified_info_row: Adw.ActionRow = gtc()
   available_lyrics_button: Adw.ActionRow = gtc()
-  save_button: Gtk.Button = gtc()
 
   available_lyrics_group: Adw.PreferencesGroup = gtc()
 
