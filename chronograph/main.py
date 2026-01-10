@@ -259,35 +259,10 @@ def main(_version) -> int:
   init_logger()
   logger.info("Launching application")
   logger.info("OS: %s", sys.platform)
-  if "cache.yaml" not in os.listdir(Constants.DATA_DIR):  # noqa: PTH208
-    logger.info("The cache file does not exist, creating")
-    file = open(str(Constants.DATA_DIR) + "/cache.yaml", "x+", encoding="utf-8")  # noqa: SIM115
-    file.write("pins: []\nlibs: []\ncache_version: 3")
-    file.close()
 
-  Constants.CACHE_FILE = open(  # noqa: SIM115
-    str(Constants.DATA_DIR) + "/cache.yaml", "r+", encoding="utf-8"
-  )
-  Constants.CACHE = yaml.safe_load(Constants.CACHE_FILE)
-  logger.info("Cache loaded successfully")
-
-  if "session" in Constants.CACHE:
-    Constants.CACHE.pop("session", None)
-    Constants.CACHE["cache_version"] = 2
-
-  # Remove trailing slash from save paths (idk why I placed it in there before)
-  if any(item["path"].endswith("/") for item in Constants.CACHE["pins"]):
-    for item in Constants.CACHE["pins"]:
-      item["path"] = item["path"][:-1]
-    Constants.CACHE_FILE.seek(0)
-    Constants.CACHE_FILE.truncate(0)
-    yaml.dump(
-      Constants.CACHE,
-      Constants.CACHE_FILE,
-      sort_keys=False,
-      encoding="utf-8",
-      allow_unicode=True,
-    )
+  # Cache is deprecated from v49
+  if (Constants.DATA_DIR / "cache.yaml").exists():
+    (Constants.DATA_DIR / "cache.yaml").unlink(missing_ok=True)
 
   Constants.APP = app = ChronographApplication()
 
