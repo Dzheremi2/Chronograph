@@ -26,7 +26,9 @@ class SongCardModel(GObject.Object):
   def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
     self.mediafile: Path = mediafile
     self.uuid: str = uuid
-    self._tags = list(Track.get_by_id(self.uuid).tags_json or [])
+    track = Track.get_by_id(self.uuid)
+    self._tags = list(track.tags_json or [])
+    self._imported_at = int(track.imported_at)
     media = parse_file(mediafile)
     if media is None:
       raise ValueError(f"Unsupported media file: {mediafile}")
@@ -102,8 +104,12 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str)
   def imported_at(self) -> str:
-    value: int = Track.get_by_id(self.uuid).imported_at
+    value = self._imported_at
     return datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
+
+  @GObject.Property(type=int)
+  def imported_at_ts(self) -> int:
+    return self._imported_at
 
   @GObject.Property(type=str, default="---")
   def last_modified(self) -> str:

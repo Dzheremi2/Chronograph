@@ -211,7 +211,6 @@ class Library(Gtk.GridView):
       self._adaptive_columns = columns
       self.set_max_columns(columns)
 
-  # TODO: Extend with "Last added" sorting argument
   def _cards_sorter_func(
     self, model1: SongCardModel, model2: SongCardModel, *_args
   ) -> int:
@@ -229,6 +228,8 @@ class Library(Gtk.GridView):
         return ((model1.artist_display > model2.artist_display) ^ order) * 2 - 1
       case "album":
         return ((model1.album_display > model2.album_display) ^ order) * 2 - 1
+      case "last-added":
+        return ((model1.imported_at_ts > model2.imported_at_ts) ^ order) * 2 - 1
 
   def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
     text = Constants.WIN.search_entry.get_text().lower()

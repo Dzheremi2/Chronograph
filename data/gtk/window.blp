@@ -318,6 +318,12 @@ template $ChronographWindow : Adw.ApplicationWindow {
                               action: "app.sort_type";
                               target: "album";
                             }
+
+                            item {
+                              label: _("Last Added");
+                              action: "app.sort_type";
+                              target: "last-added";
+                            }
                           }
 
                           section {

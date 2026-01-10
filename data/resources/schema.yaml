@@ -93,7 +93,7 @@ root:
       sorting:
         sort-type:
           type: str
-          enum: [title, artist, album]
+          enum: [title, artist, album, last-added]
           default: title
         sort-mode:
           type: str

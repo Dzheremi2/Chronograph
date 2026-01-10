@@ -670,7 +670,8 @@ class ChronographWindow(Adw.ApplicationWindow):
       Action that was triggered ("sort_type" or "sort_mode")
     state : GLib.Variant
       New state of the action
-      ("title", "artist" or "album" for "sort_type" and "a-z", "z-a" for "sort_mode")
+      ("title", "artist", "album" or "last-added" for "sort_type"
+      and "a-z", "z-a" for "sort_mode")
     """
     action.set_state(state)
     if action.get_name() == "sort_type":
