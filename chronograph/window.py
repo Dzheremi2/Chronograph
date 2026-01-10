@@ -108,7 +108,8 @@ class ChronographWindow(Adw.ApplicationWindow):
   filter_elrc: bool = GObject.Property(type=bool, default=True)
   reparse_action_done: bool = GObject.Property(type=bool, default=True)
 
-  sort_state: str = Schema.get("root.state.library.sorting")
+  sort_mode: str = Schema.get("root.state.library.sorting.sort-mode")
+  sort_type: str = Schema.get("root.state.library.sorting.sort-type")
 
   def __init__(self, **kwargs) -> None:
     super().__init__(**kwargs)
@@ -661,20 +662,26 @@ class ChronographWindow(Adw.ApplicationWindow):
   #################
 
   def on_sort_type_action(self, action: Gio.SimpleAction, state: GLib.Variant) -> None:
-    """Changes the sorting state of the library in GSchema and updates the library
+    """Changes the sorting state of the library in Schema and updates the library
 
     Parameters
     ----------
     action : Gio.SimpleAction
-        Action that was triggered
+      Action that was triggered ("sort_type" or "sort_mode")
     state : GLib.Variant
-        New state of the action ("a-z", "z-a")
+      New state of the action
+      ("title", "artist" or "album" for "sort_type" and "a-z", "z-a" for "sort_mode")
     """
     action.set_state(state)
-    self.sort_state = str(state).strip("'")
+    if action.get_name() == "sort_type":
+      self.sort_type = str(state).strip("'")
+      Schema.set("root.state.library.sorting.sort-type", self.sort_type)
+      logger.debug("Sort type set to: %s", self.sort_type)
+    elif action.get_name() == "sort_mode":
+      self.sort_mode = str(state).strip("'")
+      Schema.set("root.state.library.sorting.sort-mode", self.sort_mode)
+      logger.debug("Sort mode set to: %s", self.sort_mode)
     self.library.sorter.changed(Gtk.SorterChange.DIFFERENT)
-    logger.debug("Sort state set to: %s", self.sort_state)
-    Schema.set("root.state.library.sorting", self.sort_state)
 
   def enter_sync_mode(self, card_model: SongCardModel) -> None:
     """Enters sync mode for the given song card

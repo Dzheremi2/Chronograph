@@ -91,9 +91,14 @@ root:
         default: false
     library:
       sorting:
-        type: str
-        enum: [a-z, z-a]
-        default: a-z
+        sort-type:
+          type: str
+          enum: [title, artist, album]
+          default: title
+        sort-mode:
+          type: str
+          enum: [a-z, z-a]
+          default: a-z
       filter:
         type: int
         min: 0

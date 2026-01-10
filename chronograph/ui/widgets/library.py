@@ -217,12 +217,18 @@ class Library(Gtk.GridView):
   ) -> int:
     order = None
 
-    if Constants.WIN.sort_state == "a-z":
+    if Constants.WIN.sort_mode == "a-z":
       order = False
-    elif Constants.WIN.sort_state == "z-a":
+    elif Constants.WIN.sort_mode == "z-a":
       order = True
 
-    return ((model1.title_display > model2.title_display) ^ order) * 2 - 1
+    match Constants.WIN.sort_type:
+      case "title":
+        return ((model1.title_display > model2.title_display) ^ order) * 2 - 1
+      case "artist":
+        return ((model1.artist_display > model2.artist_display) ^ order) * 2 - 1
+      case "album":
+        return ((model1.album_display > model2.album_display) ^ order) * 2 - 1
 
   def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
     text = Constants.WIN.search_entry.get_text().lower()

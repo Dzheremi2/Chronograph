@@ -300,16 +300,38 @@ template $ChronographWindow : Adw.ApplicationWindow {
                         submenu {
                           label: _("Sort");
 
-                          item {
-                            label: _("A-Z");
-                            action: "app.sort_type";
-                            target: "a-z";
+                          section {
+                            item {
+                              label: _("Title");
+                              action: "app.sort_type";
+                              target: "title";
+                            }
+                            
+                            item {
+                              label: _("Artist");
+                              action: "app.sort_type";
+                              target: "artist";
+                            }
+
+                            item {
+                              label: _("Album");
+                              action: "app.sort_type";
+                              target: "album";
+                            }
                           }
 
-                          item {
-                            label: _("Z-A");
-                            action: "app.sort_type";
-                            target: "z-a";
+                          section {
+                            item {
+                              label: _("A-Z");
+                              action: "app.sort_mode";
+                              target: "a-z";
+                            }
+
+                            item {
+                              label: _("Z-A");
+                              action: "app.sort_mode";
+                              target: "z-a";
+                            }
                           }
                         }
 

@@ -101,13 +101,21 @@ class ChronographApplication(Adw.Application):
     # fmt: on
     self.set_accels_for_action("win.show-help-overlay", ("<primary>question",))
 
-    sorting_action = Gio.SimpleAction.new_stateful(
+    sort_type_action = Gio.SimpleAction.new_stateful(
       "sort_type",
       GLib.VariantType.new("s"),
-      GLib.Variant("s", Schema.get("root.state.library.sorting")),
+      GLib.Variant("s", Schema.get("root.state.library.sorting.sort-type")),
     )
-    sorting_action.connect("activate", Constants.WIN.on_sort_type_action)
-    self.add_action(sorting_action)
+    sort_type_action.connect("activate", Constants.WIN.on_sort_type_action)
+    self.add_action(sort_type_action)
+
+    sort_mode_action = Gio.SimpleAction.new_stateful(
+      "sort_mode",
+      GLib.VariantType.new("s"),
+      GLib.Variant("s", Schema.get("root.state.library.sorting.sort-mode")),
+    )
+    sort_mode_action.connect("activate", Constants.WIN.on_sort_type_action)
+    self.add_action(sort_mode_action)
 
     Schema.bind("root.state.window.width", Constants.WIN, "default-width")
     Schema.bind(
