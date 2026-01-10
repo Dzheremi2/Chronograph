@@ -57,7 +57,7 @@ class Constants(metaclass=ConstantsMeta):
   VERSION = "@VERSION@"
   PREFIX = "@PREFIX@"
   CACHEV = int("@CACHEV@")
-  DB_VER = int("@DBVER@")
+  DB_VER = "@DBVER@"
 
   # Shared variables
   APP = None

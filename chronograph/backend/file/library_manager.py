@@ -257,7 +257,7 @@ class LibraryManager:
     set_db(str(db_path)).connect_and_create_tables()
 
     with db(atomic=True):
-      SchemaInfo.insert(key="version", value="1").execute()
+      SchemaInfo.insert(key="version", value=Constants.DB_VER).execute()
       SchemaInfo.insert(key="tags", value="[]").execute()
 
     logger.info("Created new library at: %s", lib_root)

@@ -18,6 +18,7 @@ class Constants(metaclass=ConstantsMeta):
   VERSION: Final[str]
   PREFIX: Final[str]
   CACHEV: Final[int]
+  DB_VER: Final[str]
 
   APP: Final[ChronographApplication]
   WIN: Final[ChronographWindow]
