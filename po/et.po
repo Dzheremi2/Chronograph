@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 22:39+0300\n"
-"PO-Revision-Date: 2025-11-30 14:00+0000\n"
+"PO-Revision-Date: 2026-01-12 00:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: chronograph/window.py:51
 msgid "All Supported Media"
@@ -25,50 +25,48 @@ msgstr "Kõik toetatud vormingud"
 
 #: chronograph/window.py:250
 msgid "Only Chronograph libraries are supported"
-msgstr ""
+msgstr "Toetatud on vaid Kronograafi teegid"
 
 #: chronograph/window.py:299
-#, fuzzy
 msgid "Failed to create library"
-msgstr "Filtreeri muusikakogu"
+msgstr "Muusikakogu loomine ei õnnestunud"
 
 #: chronograph/window.py:313 chronograph/window.py:368 chronograph/main.py:80
 msgid "Open a library before importing files"
-msgstr ""
+msgstr "Enne failide importimist ava muusikakogu"
 
 #: chronograph/window.py:425
 msgid "Selected folder is not a Chronograph Library"
-msgstr ""
+msgstr "Valitud kaust pole Kronograafi muusikakogu"
 
 #: chronograph/window.py:474
 msgid "Open a library to import files"
-msgstr ""
+msgstr "Failide importimiseks ava muusikakogu"
 
 #: chronograph/window.py:478
 msgid "Import already in progress"
-msgstr ""
+msgstr "Importimine on juba töös"
 
 #: chronograph/window.py:483 chronograph/window.py:513
 msgid "No supported files were imported"
-msgstr ""
+msgstr "Ühtegi toetatud faili pole imporditud"
 
 #: chronograph/window.py:535
 msgid "Imported {} track"
 msgid_plural "Imported {} tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importisin {} loo"
+msgstr[1] "Importisin {} lugu"
 
 #: chronograph/window.py:547
-#, fuzzy
 msgid "Import failed"
-msgstr "Impordi"
+msgstr "Importimine ei õnnestunud"
 
 #: chronograph/window.py:620
 #, python-brace-format
 msgid "Deleted {deleted} file"
 msgid_plural "Deleted {deleted} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kustutasin {deleted} faili"
+msgstr[1] "Kustutasin {deleted} faili"
 
 #: chronograph/window.py:659
 msgid "Copied successfully"
@@ -77,7 +75,7 @@ msgstr "Kopeerimine õnnestus"
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
 #: chronograph/main.py:163
 msgid "translator-credits"
-msgstr "Priit Jõerüüt 2025"
+msgstr "Priit Jõerüüt 2025-2026"
 
 #: chronograph/main.py:171
 msgid "Inspiration"
@@ -161,7 +159,7 @@ msgstr "Instrumentaalpala. Laulusõnu pole saadaval"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:170
 msgid "Track is missing from library"
-msgstr ""
+msgstr "Lugu on muusikakogust puudu"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:180
 msgid "No synced lyrics found"
@@ -187,52 +185,50 @@ msgstr "Laadin"
 #: chronograph/ui/dialogs/tag_registration_dialog.py:15
 #: chronograph/ui/dialogs/about_file_dialog.py:173
 msgid "Add New Tag"
-msgstr ""
+msgstr "Lisa uus silt"
 
 #: chronograph/ui/dialogs/tag_registration_dialog.py:20
 msgid "Tag name…"
-msgstr ""
+msgstr "Sildi nimi…"
 
 #: chronograph/ui/dialogs/tag_registration_dialog.py:23
 msgid "Add"
-msgstr ""
+msgstr "Lisa"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:43
 msgid "Assign tag"
-msgstr ""
+msgstr "Määra silt"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:122
-#, fuzzy
 msgid "No Lyrics Available"
 msgstr "Laulusõnu pole saadaval"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:136
-#, fuzzy
 msgid "Select Tag"
-msgstr "Vali failid"
+msgstr "Vali silt"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:158
-#, fuzzy
 msgid "No Tags Available"
-msgstr "Logi pole veel saadaval"
+msgstr "Silte pole saadaval"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:159
 msgid "There's no tags registered yet or all tags were assigned"
 msgstr ""
+"Sa pole veel ühtegi silti registreerinud või kõik sildid on juba määratud"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:302
 msgid "Click to unassign"
-msgstr ""
+msgstr "Määramise eemaldamiseks klõpsa"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:365
 #, python-brace-format
 msgid "File \"{title} — {artist}\" was deleted"
-msgstr ""
+msgstr "„{title} - {artist}“ fail on kustutatud"
 
 #: chronograph/ui/dialogs/importing_dialog.py:36
 #, python-brace-format
 msgid "Imported {imported}/{total}"
-msgstr ""
+msgstr "Imporditud: {imported}/{total}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:310
 #: chronograph/ui/sync_pages/wbw_sync_page.py:266
@@ -253,7 +249,7 @@ msgstr "Näita"
 #: chronograph/ui/sync_pages/wbw_sync_page.py:243
 #, python-brace-format
 msgid "Lyrics ({pattern})"
-msgstr ""
+msgstr "Laulusõnad: ({pattern})"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, python-brace-format
@@ -368,19 +364,16 @@ msgid "{vol}%"
 msgstr "{vol}%"
 
 #: chronograph/ui/widgets/lyric_row.py:28
-#, fuzzy
 msgid "LRClib"
-msgstr "Otsi teenusest LRClib"
+msgstr "LRClib"
 
 #: chronograph/ui/widgets/lyric_row.py:29
-#, fuzzy
 msgid "Other Lyric"
-msgstr "Kustuta laulusõnad"
+msgstr "Muud laulusõnad"
 
 #: chronograph/ui/widgets/lyric_row.py:30
-#, fuzzy
 msgid "Import From…"
-msgstr "Impordi…"
+msgstr "Impordi allikast…"
 
 #: chronograph/ui/widgets/lyric_row.py:37
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
@@ -399,7 +392,6 @@ msgid "Clipboard"
 msgstr "Lõikelaud"
 
 #: chronograph/ui/widgets/lyric_row.py:39
-#, fuzzy
 msgid "Export To…"
 msgstr "Ekspordi…"
 
@@ -412,14 +404,12 @@ msgid "Delete"
 msgstr "Kustuta"
 
 #: chronograph/ui/widgets/tag_row.py:56
-#, fuzzy
 msgid "Rename Tag"
-msgstr "Muuda nime"
+msgstr "Muuda sildi nime"
 
 #: chronograph/ui/widgets/tag_row.py:83
-#, fuzzy
 msgid "Delete Tag?"
-msgstr "Kustuta"
+msgstr "Kas kustutad sildi?"
 
 #: chronograph/backend/file/song_card_model.py:13
 msgctxt "song title placeholder"
@@ -470,12 +460,11 @@ msgstr "Sobilikke laulusõnu ei leidunud"
 
 #: data/gtk/window.blp:6
 msgid "No Tags"
-msgstr ""
+msgstr "Silte pole"
 
 #: data/gtk/window.blp:8
-#, fuzzy
 msgid "Press plus button to register a new Tag"
-msgstr "Vajutades nööpnõela ikooni, saad lisada kausta lemmikute hulka"
+msgstr "Uue sildi registreerimiseks vajuta plussiga nuppu"
 
 #: data/gtk/window.blp:17 data/gtk/window.blp:319
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
@@ -525,21 +514,19 @@ msgstr "Rakenduse teave"
 
 #: data/gtk/window.blp:163
 msgid "Open or create Library to start syncing"
-msgstr ""
+msgstr "Sünkroonimise alustamiseks ava või loo muusikakogu"
 
 #: data/gtk/window.blp:171 data/gtk/window.blp:434
-#, fuzzy
 msgid "Open Library"
-msgstr "Muusikakogu"
+msgstr "Ava muusikakogu"
 
 #: data/gtk/window.blp:180
-#, fuzzy
 msgid "Create Library"
-msgstr "Tühjenda muusikakogu"
+msgstr "Loo muusikakogu"
 
 #: data/gtk/window.blp:202
 msgid "Tags"
-msgstr ""
+msgstr "Sildid"
 
 #: data/gtk/window.blp:210 data/gtk/window.blp:241
 #: data/gtk/ui/shortcuts-dialog.blp:35
@@ -548,11 +535,11 @@ msgstr "Külgpaan sisse/välja"
 
 #: data/gtk/window.blp:217
 msgid "Register tag"
-msgstr ""
+msgstr "Registreeri silt"
 
 #: data/gtk/window.blp:248
 msgid "Import files or open a library"
-msgstr ""
+msgstr "Impordi faile või ava muusikakogu"
 
 #: data/gtk/window.blp:263 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
@@ -579,32 +566,31 @@ msgid "Mass Lyrics Downloading"
 msgstr "Laulusõnade allalaadimine pakktöötlusena"
 
 #: data/gtk/window.blp:351
-#, fuzzy
 msgid "Delete selected files"
-msgstr "Eemalda valitud laulurida"
+msgstr "Kustuta valitud failid"
 
 #: data/gtk/window.blp:360
 msgid "Enable bulk deletion mode"
-msgstr ""
+msgstr "Kasuta masseemaldamise režiimi"
 
 #: data/gtk/window.blp:378 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
 msgstr "Otsi"
 
 #: data/gtk/window.blp:399
-#, fuzzy
 msgid "Library is Empty"
-msgstr "Muusikakogu"
+msgstr "Muusikakogu on tühi"
 
 #: data/gtk/window.blp:400
 msgid ""
 "Your current Library is empty. Import files right now or open another Library"
 msgstr ""
+"Sinu praegune muusikakogu on tühi. Palun impordi faile või ava mõni muu "
+"muusikakogu"
 
 #: data/gtk/window.blp:407
-#, fuzzy
 msgid "Import…"
-msgstr "Impordi"
+msgstr "Importimine…"
 
 #: data/gtk/window.blp:417 data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
@@ -612,12 +598,11 @@ msgstr "Ei leidunud mitte midagi"
 
 #: data/gtk/window.blp:418
 msgid "No songs found for your request. Try out another one"
-msgstr ""
+msgstr "Sinu päringule ei vasta ühtegi laulu. Palun proovi midagi muud"
 
 #: data/gtk/window.blp:433 data/gtk/ui/dialogs/ImportDialog.blp:10
-#, fuzzy
 msgid "Import Files"
-msgstr "Impordi"
+msgstr "Impordi faile"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:62
@@ -630,14 +615,12 @@ msgid "Quit"
 msgstr "Välju"
 
 #: data/gtk/ui/shortcuts-dialog.blp:20
-#, fuzzy
 msgid "Open library"
-msgstr "Filtreeri muusikakogu"
+msgstr "Ava muusikakogu"
 
 #: data/gtk/ui/shortcuts-dialog.blp:25
-#, fuzzy
 msgid "Import files"
-msgstr "Impordi"
+msgstr "Impordi faile"
 
 #: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
@@ -781,14 +764,12 @@ msgid "Choose, if quick edit dialog text should be cleaned after exit or not"
 msgstr "Vali, kas sulgemisel peaks tühjendama kiirmuutmise vaate"
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
-#, fuzzy
 msgid "Save Library on App Close"
-msgstr "Rakenduse sulgemisel salvesta sessioon"
+msgstr "Rakenduse sulgemisel salvesta muusikakogu"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
-#, fuzzy
 msgid "Re-opens last opened Library on the next startup"
-msgstr "Järgmisel käivitamisel on viimati avatud kaust meeles"
+msgstr "Järgmisel käivitamisel on viimati avatud muusikakogu meeles"
 
 #: data/gtk/ui/dialogs/Preferences.blp:26
 msgid "Mass Downloading"
@@ -1018,68 +999,61 @@ msgid "Lyrics for all songs are already fetched"
 msgstr "Kõik laulusõnad on juba laaditud"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:13
-#, fuzzy
 msgid "About File"
 msgstr "Faili teave"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:118
-#, fuzzy
 msgid "Imported at"
-msgstr "Impordi"
+msgstr "Imporditud"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:126
 msgid "Last Modified"
-msgstr ""
+msgstr "Viimati muudetud"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:138
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:169
-#, fuzzy
 msgid "Available Lyrics"
-msgstr "Lõimitud laulusõnad"
+msgstr "Saadaval laulusõnad"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:153
-#, fuzzy
 msgid "Delete File"
-msgstr "Kustuta"
+msgstr "Kustuta fail"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:35
 msgid "Import Settings"
-msgstr ""
+msgstr "Impordi seadistused"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:39
 msgid "Import With Lyrics"
-msgstr ""
+msgstr "Impordi koos laulusõnadega"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:40
 msgid "Also import lyric files if they have the same name"
-msgstr ""
+msgstr "Impordi ka need laulusõnade failid, mille nimi kattub muusikafailiga"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:43
-#, fuzzy
 msgid "eLRC prefix"
 msgstr "eLRC prefiks"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:44
 msgid "Remain empty if not used"
-msgstr ""
+msgstr "Kui pole kasutusel, siis jääb tühjaks"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:49
-#, fuzzy
 msgid "Move Files"
-msgstr "Failid"
+msgstr "Teisalda faile"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:50
 msgid "Moves files to the import location instead of copying them"
-msgstr ""
+msgstr "Kopeerimise asemel teisaldab failid impordikausta"
 
 #: data/gtk/ui/dialogs/ImportingDialog.blp:33
-#, fuzzy
 msgid "Importing…"
-msgstr "Impordi"
+msgstr "Impordin…"
 
 #: data/gtk/ui/dialogs/ImportingDialog.blp:40
 msgid "Preparing…"
-msgstr ""
+msgstr "Valmistun…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
