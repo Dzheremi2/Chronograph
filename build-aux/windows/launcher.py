@@ -1,7 +1,7 @@
 import sys  # noqa: INP001
 
-from chronograph.internal import Constants
-from chronograph.main import main
+from ...chronograph.internal import Constants  # noqa: TID252
+from ...chronograph.main import main  # noqa: TID252
 
 if __name__ == "__main__":
   try:
