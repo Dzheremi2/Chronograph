@@ -1,5 +1,6 @@
 import asyncio
 import shutil
+import sys
 import threading
 import time
 from pathlib import Path
@@ -93,9 +94,12 @@ class LibraryManager:
       if cancellable and cancellable.is_set():
         break
 
-      result = await asyncio.to_thread(
-        LibraryManager._import_one, src, content_dir, move
-      )
+      if sys.platform == "win32":
+        result = LibraryManager._import_one(src, content_dir, move)
+      elif sys.platform == "linux":
+        result = await asyncio.to_thread(
+          LibraryManager._import_one, src, content_dir, move
+        )
       if result:
         imported.append(result)
       if on_progress:
