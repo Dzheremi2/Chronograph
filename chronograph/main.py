@@ -1,9 +1,7 @@
-import os
 import sys
 from pathlib import Path
 
 import gi
-import yaml
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -138,13 +136,13 @@ class ChronographApplication(Adw.Application):
     """Shows About App dialog"""
 
     def _get_debug_info() -> str:
-      if Path(
-        os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log")
-      ).exists():
-        with open(
-          os.path.join(Constants.CACHE_DIR, "chronograph", "logs", "chronograph.log"),
-          encoding="utf-8",
-        ) as f:
+      match sys.platform:
+        case "linux":
+          file = Constants.CACHE_DIR / "chronograph" / "logs" / "chronograph.log"
+        case "win32":
+          file = Constants.CACHE_DIR / "logs" / "chronograph.log"
+      if file.exists():
+        with open(file, encoding="utf-8") as f:
           return f.read()
       return "No log availble yet"
 
@@ -215,17 +213,8 @@ class ChronographApplication(Adw.Application):
       Schema.set("root.state.library.last-library", "None")
     Schema._save()  # noqa: SLF001
 
-    Constants.CACHE_FILE.seek(0)
-    Constants.CACHE_FILE.truncate(0)
-    yaml.dump(
-      Constants.CACHE,
-      Constants.CACHE_FILE,
-      sort_keys=False,
-      encoding="utf-8",
-      allow_unicode=True,
-    )
-    logger.info("Cache saved")
     logger.info("App was closed")
+    Gtk.Application.do_shutdown(self)
 
   def create_actions(self, actions: set) -> None:
     """Creates actions for provided scope with provided accels

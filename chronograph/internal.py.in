@@ -62,9 +62,6 @@ class Constants(metaclass=ConstantsMeta):
   # Shared variables
   APP = None
   WIN = None
-  CACHE_FILE = None
-  CACHE = None
-
 
 match sys.platform:
   case "win32":

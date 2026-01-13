@@ -22,8 +22,6 @@ class Constants(metaclass=ConstantsMeta):
 
   APP: Final[ChronographApplication]
   WIN: Final[ChronographWindow]
-  CACHE_FILE: Final[TextIOWrapper]
-  CACHE: dict
 
   CFG_DIR: Final[Path]
   DATA_DIR: Final[Path]
