@@ -71,15 +71,11 @@ The app is available on [AUR](https://aur.archlinux.org/packages/chronograph) as
 
 #### AppImage
 
-AppImages are available on GitHub Releases from version 49
+AppImage is only available on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest)
+since `v49`
 
 >[!TIP]
->AppImage builds are generated using GNOME SDK 49 to keep library versions aligned.
->To build locally:
->
->`./build-aux/appimage/build.sh`
->
->Output is placed in `_build/appimage/dist/`.
+>See how to build AppImage [here](https://github.com/Dzheremi2/Chronograph/blob/devel/build-aux/appimage/README.md)
 
 ### Windows
 

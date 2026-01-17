@@ -43,9 +43,24 @@ This will add you to the `Translators` section in the `About App` for your langu
 ![](docs/screenshots/translator-credits.png)
 
 ## Build
+
+### Flatpak
+
 In VSCode you can install [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) 
 extension, select needed manifest (should be `build-aux/flatpak/io.github.dzheremi2.lrcmake_gtk.Devel.yaml`) 
 and then use `Flatpak: Build` command from VSCode command palette.
+
+### AppImage
+
+1. Install the SDK:
+  `flatpak install flathub org.gnome.Sdk//49`
+2. Run the build script:
+  `./build-aux/appimage/build.sh`
+
+The AppImage will be placed in `_build/appimage/dist/`.
+
+To build the development profile, run:
+`./build-aux/appimage/build.sh development`
 
 ##### Dependencies:
 org.gnome.Platform (v49)
@@ -64,12 +79,63 @@ The main IDE for developing this project is VSCode. Extensions for both these ar
 available on VSCode Marketplace. The current configuration is embedded within the repo 
 (`.vscode/settings.json`)
 
-All new methods should be type hinted, static variables should be type hinted too. All 
-public methods should have docstrings in numpy docstring format 
+### Type Hints and Docstrings
+All new methods and static variables should have type annotations. All public methods and 
+functions must have docstrings in NumPy format 
 ([extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) 
-for automatic docstrings generation)
+for automatic docstrings generation). If a public method has arguments that are not 
+suppressed, they must be described in the docstring.
 
-Usage of reading files must have explicit encoding set to `utf-8`
+### Visibility and Access Control
+Methods and functions that are only used within their class or module must be marked as 
+private by prefixing them with an underscore (`_method_name`). Only expose public APIs 
+through unprefixed method names.
+
+### Docstring Format Requirements
+Follow these specific rules when writing docstrings in NumPy format:
+
+- All parameter descriptions and type annotations must appear in a `Parameters` section
+- All return descriptions and type annotations must appear in a `Returns` section
+- Exception documentation must appear in a `Raises` section
+- Use 2 spaces for indentation between section headers and their content
+
+When describing parameters and returns, follow this structure:
+```
+Parameters
+----------
+param_name : type
+  Description of the parameter.
+
+Returns
+-------
+return_type
+  Description of what is returned.
+```
+
+### Type Annotations
+- Every function argument must have an explicit type annotation, except for arguments you 
+  intend to suppress from the public interface
+- If a function suppresses all its arguments except `self` (if applicable), add `*_args` 
+  after the last non-suppressed argument to explicitly indicate this
+- Every function must have an explicit return type annotation, even if it returns `None`
+- Use `Union` from the `typing` module for union types instead of Python's built-in 
+  union syntax (`|`)
+
+### Properties
+Docstrings for properties should only be added to the property getter. The docstring 
+should contain only the property description without listing parameters or return type 
+information. This project uses two property patterns:
+- Python's built-in `@property` decorator
+- GTK's `GObject.Property` for GTK-related properties
+
+### Abstract Methods
+If a method is declared in an abstract base class that your class inherits from, do not 
+add a docstring to the implementation—the abstract method's docstring is already available 
+and will be inherited.
+
+### Formatting
+- Use 2-space indentation throughout the codebase
+- When reading files, always explicitly set encoding to `utf-8`
 
 >[!NOTE]
 >If you're too lazy to do all these things, please, mention it in your pull request 
