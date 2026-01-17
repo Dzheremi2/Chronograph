@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 22:39+0300\n"
-"PO-Revision-Date: 2025-11-29 14:00+0000\n"
+"PO-Revision-Date: 2026-01-10 03:01+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: chronograph/window.py:51
 msgid "All Supported Media"
@@ -26,52 +26,50 @@ msgstr "Усі підтримувані медіа"
 
 #: chronograph/window.py:250
 msgid "Only Chronograph libraries are supported"
-msgstr ""
+msgstr "Підтримуються лише бібліотеки Chronograph"
 
 #: chronograph/window.py:299
-#, fuzzy
 msgid "Failed to create library"
-msgstr "Бібліотека фільтрів"
+msgstr "Не вдалося створити бібліотеку"
 
 #: chronograph/window.py:313 chronograph/window.py:368 chronograph/main.py:80
 msgid "Open a library before importing files"
-msgstr ""
+msgstr "Відкрийте бібліотеку перед імпортом файлів"
 
 #: chronograph/window.py:425
 msgid "Selected folder is not a Chronograph Library"
-msgstr ""
+msgstr "Вибрана папка не є бібліотекою хронографів"
 
 #: chronograph/window.py:474
 msgid "Open a library to import files"
-msgstr ""
+msgstr "Відкрийте бібліотеку для імпорту файлів"
 
 #: chronograph/window.py:478
 msgid "Import already in progress"
-msgstr ""
+msgstr "Імпорт вже триває"
 
 #: chronograph/window.py:483 chronograph/window.py:513
 msgid "No supported files were imported"
-msgstr ""
+msgstr "Не імпортовано жодних підтримуваних файлів"
 
 #: chronograph/window.py:535
 msgid "Imported {} track"
 msgid_plural "Imported {} tracks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Імпортовано {} треку"
+msgstr[1] "Імпортовано {} треки"
+msgstr[2] "Імпортовано {} треків"
 
 #: chronograph/window.py:547
-#, fuzzy
 msgid "Import failed"
-msgstr "Імпорт"
+msgstr "Імпорт не вдалося"
 
 #: chronograph/window.py:620
 #, python-brace-format
 msgid "Deleted {deleted} file"
 msgid_plural "Deleted {deleted} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Видалено файл {deleted}"
+msgstr[1] "Видалено {deleted} файли"
+msgstr[2] "Видалено {deleted} файлів"
 
 #: chronograph/window.py:659
 msgid "Copied successfully"
@@ -167,7 +165,7 @@ msgstr "Інструментальний трек. Текст пісні нед�
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:170
 msgid "Track is missing from library"
-msgstr ""
+msgstr "Трек відсутній у бібліотеці"
 
 #: chronograph/ui/dialogs/mass_downloading_dialog.py:180
 msgid "No synced lyrics found"
@@ -193,52 +191,49 @@ msgstr "Отримання"
 #: chronograph/ui/dialogs/tag_registration_dialog.py:15
 #: chronograph/ui/dialogs/about_file_dialog.py:173
 msgid "Add New Tag"
-msgstr ""
+msgstr "Додати новий тег"
 
 #: chronograph/ui/dialogs/tag_registration_dialog.py:20
 msgid "Tag name…"
-msgstr ""
+msgstr "Назва тегу…"
 
 #: chronograph/ui/dialogs/tag_registration_dialog.py:23
 msgid "Add"
-msgstr ""
+msgstr "Додати"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:43
 msgid "Assign tag"
-msgstr ""
+msgstr "Призначити тег"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:122
-#, fuzzy
 msgid "No Lyrics Available"
-msgstr "Немає текстів пісень"
+msgstr "Текст пісень недоступний"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:136
-#, fuzzy
 msgid "Select Tag"
-msgstr "Виберіть файли"
+msgstr "Виберіть тег"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:158
-#, fuzzy
 msgid "No Tags Available"
-msgstr "Журнал поки що недоступний"
+msgstr "Теги недоступні"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:159
 msgid "There's no tags registered yet or all tags were assigned"
-msgstr ""
+msgstr "Ще немає зареєстрованих тегів або всі теги призначено"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:302
 msgid "Click to unassign"
-msgstr ""
+msgstr "Натисніть, щоб скасувати призначення"
 
 #: chronograph/ui/dialogs/about_file_dialog.py:365
 #, python-brace-format
 msgid "File \"{title} — {artist}\" was deleted"
-msgstr ""
+msgstr "Файл «{title} — {artist}» видалено"
 
 #: chronograph/ui/dialogs/importing_dialog.py:36
 #, python-brace-format
 msgid "Imported {imported}/{total}"
-msgstr ""
+msgstr "Імпортовано {imported}/{total}"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:310
 #: chronograph/ui/sync_pages/wbw_sync_page.py:266
@@ -259,7 +254,7 @@ msgstr "Показати"
 #: chronograph/ui/sync_pages/wbw_sync_page.py:243
 #, python-brace-format
 msgid "Lyrics ({pattern})"
-msgstr ""
+msgstr "Тексти пісень ({pattern})"
 
 #: chronograph/ui/sync_pages/lrc_sync_page.py:460
 #, python-brace-format
@@ -374,17 +369,14 @@ msgid "{vol}%"
 msgstr "{vol}%"
 
 #: chronograph/ui/widgets/lyric_row.py:28
-#, fuzzy
 msgid "LRClib"
-msgstr "Пошук у LRClib"
+msgstr "LRClib"
 
 #: chronograph/ui/widgets/lyric_row.py:29
-#, fuzzy
 msgid "Other Lyric"
-msgstr "Видалити текст пісні"
+msgstr "Інші тексти пісень"
 
 #: chronograph/ui/widgets/lyric_row.py:30
-#, fuzzy
 msgid "Import From…"
 msgstr "Імпорт з…"
 
@@ -405,9 +397,8 @@ msgid "Clipboard"
 msgstr "Буфер обміну"
 
 #: chronograph/ui/widgets/lyric_row.py:39
-#, fuzzy
 msgid "Export To…"
-msgstr "Експорт до…"
+msgstr "Експортувати до…"
 
 #: chronograph/ui/widgets/tag_row.py:44 chronograph/ui/widgets/tag_row.py:61
 msgid "Rename"
@@ -418,14 +409,12 @@ msgid "Delete"
 msgstr "Видалити"
 
 #: chronograph/ui/widgets/tag_row.py:56
-#, fuzzy
 msgid "Rename Tag"
-msgstr "Перейменувати"
+msgstr "Перейменувати тег"
 
 #: chronograph/ui/widgets/tag_row.py:83
-#, fuzzy
 msgid "Delete Tag?"
-msgstr "Видалити"
+msgstr "Видалити тег?"
 
 #: chronograph/backend/file/song_card_model.py:13
 msgctxt "song title placeholder"
@@ -475,13 +464,11 @@ msgstr "Відповідних текстів пісень не знайдено
 
 #: data/gtk/window.blp:6
 msgid "No Tags"
-msgstr ""
+msgstr "Без тегів"
 
 #: data/gtk/window.blp:8
-#, fuzzy
 msgid "Press plus button to register a new Tag"
-msgstr ""
-"Натисніть кнопку закріплення, щоб додати поточний каталог до збереження"
+msgstr "Натисніть кнопку з плюсом, щоб зареєструвати новий тег"
 
 #: data/gtk/window.blp:17 data/gtk/window.blp:319
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
@@ -531,21 +518,19 @@ msgstr "Про додаток"
 
 #: data/gtk/window.blp:163
 msgid "Open or create Library to start syncing"
-msgstr ""
+msgstr "Відкрийте або створіть бібліотеку, щоб розпочати синхронізацію"
 
 #: data/gtk/window.blp:171 data/gtk/window.blp:434
-#, fuzzy
 msgid "Open Library"
-msgstr "Бібліотека"
+msgstr "Відкрита Бібліотека"
 
 #: data/gtk/window.blp:180
-#, fuzzy
 msgid "Create Library"
-msgstr "Приберіть бібліотеку"
+msgstr "Створити бібліотеку"
 
 #: data/gtk/window.blp:202
 msgid "Tags"
-msgstr ""
+msgstr "Теги"
 
 #: data/gtk/window.blp:210 data/gtk/window.blp:241
 #: data/gtk/ui/shortcuts-dialog.blp:35
@@ -554,11 +539,11 @@ msgstr "Перемкнути бічну панель"
 
 #: data/gtk/window.blp:217
 msgid "Register tag"
-msgstr ""
+msgstr "Зареєструвати тег"
 
 #: data/gtk/window.blp:248
 msgid "Import files or open a library"
-msgstr ""
+msgstr "Імпорт файлів або відкриття бібліотеки"
 
 #: data/gtk/window.blp:263 data/gtk/ui/shortcuts-dialog.blp:15
 msgid "Toggle search"
@@ -585,32 +570,31 @@ msgid "Mass Lyrics Downloading"
 msgstr "Масове завантаження текстів пісень"
 
 #: data/gtk/window.blp:351
-#, fuzzy
 msgid "Delete selected files"
-msgstr "Видалити обраний рядок"
+msgstr "Видалити вибрані файли"
 
 #: data/gtk/window.blp:360
 msgid "Enable bulk deletion mode"
-msgstr ""
+msgstr "Увімкнути режим масового видалення"
 
 #: data/gtk/window.blp:378 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
 msgstr "Шукати"
 
 #: data/gtk/window.blp:399
-#, fuzzy
 msgid "Library is Empty"
-msgstr "Перегляд бібліотеки у світлому стилі"
+msgstr "Бібліотека порожня"
 
 #: data/gtk/window.blp:400
 msgid ""
 "Your current Library is empty. Import files right now or open another Library"
 msgstr ""
+"Ваша поточна бібліотека порожня. Імпортуйте файли просто зараз або відкрийте "
+"іншу бібліотеку"
 
 #: data/gtk/window.blp:407
-#, fuzzy
 msgid "Import…"
-msgstr "Імпорт"
+msgstr "Імпорт…"
 
 #: data/gtk/window.blp:417 data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
@@ -618,12 +602,11 @@ msgstr "Нічого не знайдено"
 
 #: data/gtk/window.blp:418
 msgid "No songs found for your request. Try out another one"
-msgstr ""
+msgstr "За вашим запитом не знайдено пісень. Спробуйте іншу"
 
 #: data/gtk/window.blp:433 data/gtk/ui/dialogs/ImportDialog.blp:10
-#, fuzzy
 msgid "Import Files"
-msgstr "Імпорт"
+msgstr "Імпорт Файлів"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:62
@@ -636,14 +619,12 @@ msgid "Quit"
 msgstr "Вийти"
 
 #: data/gtk/ui/shortcuts-dialog.blp:20
-#, fuzzy
 msgid "Open library"
-msgstr "Бібліотека фільтрів"
+msgstr "Відкрита бібліотека"
 
 #: data/gtk/ui/shortcuts-dialog.blp:25
-#, fuzzy
 msgid "Import files"
-msgstr "Імпорт"
+msgstr "Імпорт файлів"
 
 #: data/gtk/ui/shortcuts-dialog.blp:41
 msgid "Sync mode"
@@ -789,15 +770,13 @@ msgstr ""
 "при зачиненні чи ні"
 
 #: data/gtk/ui/dialogs/Preferences.blp:20
-#, fuzzy
 msgid "Save Library on App Close"
-msgstr "Зберегти сеанс при закритті програми"
+msgstr "Зберегти бібліотеку під час закриття програми"
 
 #: data/gtk/ui/dialogs/Preferences.blp:21
-#, fuzzy
 msgid "Re-opens last opened Library on the next startup"
 msgstr ""
-"Повторно відкриває останній відкритий каталог під час наступного запуску"
+"Повторно відкриває останню відкриту бібліотеку під час наступного запуску"
 
 #: data/gtk/ui/dialogs/Preferences.blp:26
 msgid "Mass Downloading"
@@ -1030,68 +1009,61 @@ msgid "Lyrics for all songs are already fetched"
 msgstr "Тексти всіх пісень вже отримано"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:13
-#, fuzzy
 msgid "About File"
-msgstr "Про Файл"
+msgstr "Про файл"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:118
-#, fuzzy
 msgid "Imported at"
-msgstr "Імпорт"
+msgstr "Імпортовано о"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:126
 msgid "Last Modified"
-msgstr ""
+msgstr "Остання зміна"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:138
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:169
-#, fuzzy
 msgid "Available Lyrics"
-msgstr "Вбудувати текст пісні"
+msgstr "Доступні тексти пісень"
 
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:153
-#, fuzzy
 msgid "Delete File"
-msgstr "Видалити"
+msgstr "Видалити файл"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:35
 msgid "Import Settings"
-msgstr ""
+msgstr "Налаштування імпорту"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:39
 msgid "Import With Lyrics"
-msgstr ""
+msgstr "Імпорт із текстами пісень"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:40
 msgid "Also import lyric files if they have the same name"
-msgstr ""
+msgstr "Також імпортувати файли текстів пісень, якщо вони мають однакові назви"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:43
-#, fuzzy
 msgid "eLRC prefix"
 msgstr "Префікс eLRC"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:44
 msgid "Remain empty if not used"
-msgstr ""
+msgstr "Залишатися порожнім, якщо не використовується"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:49
-#, fuzzy
 msgid "Move Files"
-msgstr "Файли"
+msgstr "Переміщення файлів"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:50
 msgid "Moves files to the import location instead of copying them"
-msgstr ""
+msgstr "Переміщує файли до місця імпорту замість їх копіювання"
 
 #: data/gtk/ui/dialogs/ImportingDialog.blp:33
-#, fuzzy
 msgid "Importing…"
-msgstr "Імпорт"
+msgstr "Імпортуємо…"
 
 #: data/gtk/ui/dialogs/ImportingDialog.blp:40
 msgid "Preparing…"
-msgstr ""
+msgstr "Підготовка…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:64
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:63
@@ -1116,7 +1088,7 @@ msgstr "Повторно синхронізувати вибраний рядо�
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:98
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:102
 msgid "Import from …"
-msgstr "Імпорт з…"
+msgstr "Імпорт З…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:124
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:129
@@ -1162,7 +1134,7 @@ msgstr "Редагувати метадані"
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
 msgid "About file"
-msgstr "Про файл"
+msgstr "Про Файл"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:225
 msgid "Add Line"
