@@ -2,9 +2,12 @@ from typing import Optional, Self
 
 from mutagen.mp4 import MP4Cover
 
-from chronograph.backend.lyrics import LyricsConversionError
-from chronograph.backend.lyrics.formats import FORMAT_ORDER
-from chronograph.backend.lyrics.interfaces import LyricsBase
+from chronograph.backend.lyrics import (
+  ChronieLyrics,
+  LyricsConversionError,
+  choose_export_format,
+  export_chronie,
+)
 from chronograph.internal import Schema
 
 from .file import TaggableFile
@@ -91,26 +94,28 @@ class FileMP4(TaggableFile):
     setattr(self, tags_conjunction[tag_name][0], new_val)
     return self
 
-  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:
+  def embed_lyrics(
+    self, lyrics: Optional[ChronieLyrics], *, force: bool = False
+  ) -> Self:
+    if not force:
+      return self
     if lyrics is not None:
-      if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled") or force:
-        if self._mutagen_file.tags is None:
-          self._mutagen_file.add_tags()
+      if self._mutagen_file.tags is None:
+        self._mutagen_file.add_tags()
 
-        target = Schema.get(
-          "root.settings.do-lyrics-db-updates.embed-lyrics.default"
-        ).lower()
-        source = lyrics.format
-        target_rank = FORMAT_ORDER.get(target, 0)
-        source_rank = FORMAT_ORDER.get(source, 0)
-        chosen = target if target_rank <= source_rank else source
-        try:
-          text = lyrics.as_format(chosen)
-        except LyricsConversionError:
-          text = lyrics.as_format(source)
+      target = Schema.get(
+        "root.settings.do-lyrics-db-updates.embed-lyrics.default"
+      ).lower()
+      chosen = choose_export_format(lyrics, target)
+      if chosen is None:
+        return self
+      try:
+        text = export_chronie(lyrics, chosen)
+      except LyricsConversionError:
+        text = export_chronie(lyrics, "plain")
 
-        self._mutagen_file.tags["\xa9lyr"] = text
-        self.save()
+      self._mutagen_file.tags["\xa9lyr"] = text
+      self.save()
       return self
 
     try:

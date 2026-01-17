@@ -7,7 +7,7 @@ from typing import Optional, Self
 import mutagen
 from gi.repository import Gdk, GdkPixbuf, GLib
 
-from chronograph.backend.lyrics.interfaces import LyricsBase
+from chronograph.backend.lyrics.chronie import ChronieLyrics
 from dgutils.decorators import baseclass
 
 
@@ -42,8 +42,8 @@ class BaseFile:
   _duration: float = None
   _cover_updated: bool = False
 
-  def __init__(self, path: str) -> None:
-    self._path: str = path
+  def __init__(self, path: Path) -> None:
+    self._path: Path = path
     self.load_from_file(path)
 
   def save(self) -> Self:
@@ -206,15 +206,17 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:
+  def embed_lyrics(
+    self, lyrics: Optional[ChronieLyrics], *, force: bool = False
+  ) -> Self:
     """Embeds the lyrics to the corresponding tags in realization
 
     Parameters
     ----------
-    lyrics : Optional[StartLyrics]
-        lyrics, if `None` lyrics removed
+    lyrics : Optional[ChronieLyrics]
+      Chronie lyrics, if `None` lyrics removed
     force : bool, by default `False`
-        Allows to embed lyrics independently of schema settings
+      Allows to embed lyrics independently of schema settings
 
     Should be implemented in file specific child classes
     """
@@ -232,7 +234,7 @@ class TaggableFile(BaseFile):
 
   __gtype_name__ = "TaggableFile"
 
-  def __init__(self, path: str) -> None:
+  def __init__(self, path: Path) -> None:
     super().__init__(path)
     self.load_cover()
     self.load_str_data()

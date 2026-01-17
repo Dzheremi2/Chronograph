@@ -4,9 +4,10 @@ from pathlib import Path
 
 from gi.repository import Gdk, GObject
 
-from chronograph.backend.db.models import Lyric, Track, TrackLyric
+from chronograph.backend.db.models import Track
 from chronograph.backend.file import AvailableLyrics
 from chronograph.backend.file_parsers import parse_file
+from chronograph.backend.lyrics import get_track_lyric
 from chronograph.backend.media.file import BaseFile
 from chronograph.internal import Constants
 
@@ -26,7 +27,7 @@ class SongCardModel(GObject.Object):
   def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
     self.mediafile: Path = mediafile
     self.uuid: str = uuid
-    track = Track.get_by_id(self.uuid)
+    track: Track = Track.get_by_id(self.uuid)
     self._tags = list(track.tags_json or [])
     self._imported_at = int(track.imported_at)
     media = parse_file(mediafile)
@@ -135,10 +136,6 @@ class SongCardModel(GObject.Object):
 
   def refresh_available_lyrics(self) -> None:
     """Refreshes the `available_lyrics` property based on linked lyrics in the database."""
-    formats = [
-      item.format
-      for item in Lyric.select(Lyric.format)
-      .join(TrackLyric)
-      .where(TrackLyric.track == self.uuid)
-    ]
+    chronie = get_track_lyric(self.uuid)
+    formats = chronie.exportable_formats() if chronie else []
     self.set_property("available_lyrics", AvailableLyrics.from_formats(formats))

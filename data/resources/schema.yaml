@@ -10,13 +10,7 @@ root:
         min: 1.0
         max: 10.0
         default: 5.0
-      lrc-along-elrc:
-        type: bool
-        default: true
-      embed-lyrics:
-        enabled:
-          type: bool
-          default: false
+      embed-lyrics: # TODO: Remove and replace with export option
         default:
           type: str
           enum: [plain, lrc, elrc]

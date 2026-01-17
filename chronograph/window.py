@@ -15,7 +15,7 @@ from chronograph.backend.file.available_lyrics import AvailableLyrics
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.file_parsers import parse_file
-from chronograph.backend.lyrics import save_track_lyric
+from chronograph.backend.lyrics import chronie_from_text, save_track_lyric
 from chronograph.internal import Constants, Schema
 from chronograph.ui.dialogs.import_dialog import ImportDialog
 from chronograph.ui.dialogs.importing_dialog import ImportingDialog
@@ -563,18 +563,18 @@ class ChronographWindow(Adw.ApplicationWindow):
       return
 
     lyric_path = source_path.with_suffix(".lrc")
-    self._import_lyrics_from_path(track_uuid, lyric_path, "lrc")
+    self._import_lyrics_from_path(track_uuid, lyric_path)
 
     elrc_prefix = elrc_prefix.strip()
     if not elrc_prefix:
       return
 
     prefixed_path = source_path.with_name(f"{elrc_prefix}{source_path.stem}.lrc")
-    self._import_lyrics_from_path(track_uuid, prefixed_path, "elrc")
+    self._import_lyrics_from_path(track_uuid, prefixed_path)
 
-  def _import_lyrics_from_path(
-    self, track_uuid: str, lyric_path: Path, fmt: str
-  ) -> None:
+  def _import_lyrics_from_path(self, track_uuid: str, lyric_path: Path) -> None:
+    if not Schema.get("root.settings.do-lyrics-db-updates.enabled"):
+      return
     if not lyric_path.exists():
       return
     try:
@@ -583,7 +583,10 @@ class ChronographWindow(Adw.ApplicationWindow):
       logger.warning("Failed to read lyrics from '%s': %s", lyric_path, exc)
       return
     try:
-      save_track_lyric(track_uuid, fmt, content)
+      chronie = chronie_from_text(content)
+      if not chronie:
+        return
+      save_track_lyric(track_uuid, chronie)
     except Exception as exc:
       logger.warning("Failed to import lyrics from '%s': %s", lyric_path, exc)
 

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from gettext import pgettext as C_
 from typing import Optional
 
@@ -5,11 +7,7 @@ from gi.repository import GObject
 
 
 class AvailableLyrics(GObject.GFlags):
-  """Flags for using in SongCardModel
-
-  Using `this.to_strings(value)` get the list of translated names of available lyric
-  formats for this SongCardModel
-  """
+  """Flags for available export formats for a track."""
 
   __gtype_name__ = "AvailableLyrics"
 
@@ -20,8 +18,8 @@ class AvailableLyrics(GObject.GFlags):
   # TODO: To be extended
 
   @staticmethod
-  def to_strings(value: "AvailableLyrics") -> Optional[list[str]]:
-    """Returns a list of translated names of lyric formats depending on a given flags
+  def to_strings(value: AvailableLyrics) -> Optional[list[str]]:
+    """Returns a list of translated names of lyric formats for given flags.
 
     Parameters
     ----------
@@ -40,7 +38,7 @@ class AvailableLyrics(GObject.GFlags):
     return [label for flag, label in _FLAG_LABELS.items() if value & flag]
 
   @staticmethod
-  def from_formats(formats: list[str]) -> "AvailableLyrics":
+  def from_formats(formats: list[str]) -> AvailableLyrics:
     """Build flags from a list of lyric format strings.
 
     Parameters

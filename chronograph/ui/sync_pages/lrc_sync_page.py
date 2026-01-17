@@ -12,13 +12,15 @@ from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.lrclib.exceptions import APIRequestError
 from chronograph.backend.lrclib.lrclib_service import LRClibService
 from chronograph.backend.lyrics import (
-  ElrcLyrics,
   LrcLyrics,
+  PlainLyrics,
+  chronie_from_text,
   delete_track_lyric,
-  detect_start_lyrics,
-  get_track_lyrics,
+  get_track_lyric,
+  merge_lbl_chronie,
   save_track_lyric,
 )
+from chronograph.backend.lyrics.interfaces import LyricFormat
 from chronograph.backend.media import FileUntaggable
 from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
@@ -75,19 +77,13 @@ class LRCSyncPage(Adw.NavigationPage):
     )
 
     # Automatically load lyrics from DB if available
-    lyrics_map = get_track_lyrics(self._track_uuid)
-    source_text = ""
-    if (lyric := lyrics_map.get("lrc")) is not None or (
-      lyric := lyrics_map.get("plain")
-    ) is not None:
-      source_text = lyric.content
-
-    if source_text:
-      lyrics = detect_start_lyrics(source_text)
+    chronie = get_track_lyric(self._track_uuid)
+    if chronie:
+      lyrics = LrcLyrics.from_chronie(chronie)
       lines = lyrics.normalized_lines()
       self.sync_lines.remove_all()
       for line in lines:
-        self._append_end_line(text=line)  # Workaround to fix ghosty shadow
+        self._append_end_line(text=line)
 
   @Gtk.Template.Callback()
   def _on_seek_button_released(self, button: Gtk.Button) -> None:
@@ -258,10 +254,11 @@ class LRCSyncPage(Adw.NavigationPage):
       _clipboard, result: Gio.Task, clipboard: Gdk.Clipboard
     ) -> None:
       data = clipboard.read_text_finish(result)
-      lines = data.splitlines()
+      data = data or ""
+      lyrics = LrcLyrics.from_chronie(chronie_from_text(data))
       self.sync_lines.remove_all()
       should_visible = False
-      for _, line in enumerate(lines):
+      for _, line in enumerate(lyrics.normalized_lines()):
         self.sync_lines.append(LRCSyncLine(line))
         should_visible = True
       self.sync_lines.set_visible(should_visible)
@@ -276,9 +273,8 @@ class LRCSyncPage(Adw.NavigationPage):
 
       self.sync_lines.remove_all()
       should_visible = False
-      lyrics = detect_start_lyrics(Path(path).read_text(encoding="utf-8"))
-      if isinstance(lyrics, ElrcLyrics):
-        lyrics = LrcLyrics(lyrics.as_format("lrc"))
+      chronie = chronie_from_text(Path(path).read_text(encoding="utf-8"))
+      lyrics = LrcLyrics.from_chronie(chronie)
       for _, line in enumerate(lyrics.normalized_lines()):
         self.sync_lines.append(LRCSyncLine(line))
         should_visible = True
@@ -311,13 +307,15 @@ class LRCSyncPage(Adw.NavigationPage):
 
   def _export_file(self, *_args) -> None:
     def on_export_file_selected(
-      file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics: str
+      file_dialog: Gtk.FileDialog, result: Gio.Task, chronie: LyricFormat
     ) -> None:
       filepath = file_dialog.save_finish(result).get_path()
-      lyrics_obj = detect_start_lyrics(lyrics)
-      if isinstance(lyrics_obj, ElrcLyrics):
-        lyrics_obj = LrcLyrics(lyrics_obj.as_format("lrc"))
-      Path(filepath).write_text(lyrics_obj.to_file_text(), encoding="utf-8")
+      suffix = Path(filepath).suffix.lower()
+      if suffix == ".chron":
+        text = chronie.to_file_text()
+      else:
+        text = LrcLyrics.from_chronie(chronie).to_file_text()
+      Path(filepath).write_text(text, encoding="utf-8")
       logger.info("Lyrics exported to file: '%s'", filepath)
 
       Constants.WIN.show_toast(
@@ -326,22 +324,26 @@ class LRCSyncPage(Adw.NavigationPage):
         button_callback=lambda *__: launch_path(Path(filepath).parent),
       )
 
-    lyrics = ""
-    for line in self.sync_lines:
-      lyrics += line.get_text() + "\n"
-    suffix = ".lrc"
-    pattern = f"*{suffix}"
-    file_filter = Gtk.FileFilter()
-    file_filter.set_name(_("Lyrics ({pattern})").format(pattern=pattern))
-    file_filter.add_pattern(pattern)
+    lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+    chronie = chronie_from_text(lyrics)
+
+    lrc_filter = Gtk.FileFilter()
+    lrc_filter.set_name(_("Lyrics ({pattern})").format(pattern="*.lrc"))
+    lrc_filter.add_pattern("*.lrc")
+    chron_filter = Gtk.FileFilter()
+    chron_filter.set_name("Chronie (*.chron)")
+    chron_filter.add_pattern("*.chron")
+
     filters = Gio.ListStore.new(Gtk.FileFilter)
-    filters.append(file_filter)
+    filters.append(lrc_filter)
+    filters.append(chron_filter)
+
     dialog = Gtk.FileDialog(
-      initial_name=f"{self._card.artist_display} - {self._card.title_display}" + suffix
+      initial_name=f"{self._card.artist_display} - {self._card.title_display}.lrc"
     )
     dialog.set_filters(filters)
-    dialog.set_default_filter(file_filter)
-    dialog.save(Constants.WIN, None, on_export_file_selected, lyrics)
+    dialog.set_default_filter(lrc_filter)
+    dialog.save(Constants.WIN, None, on_export_file_selected, chronie)
 
   ###############
 
@@ -401,27 +403,17 @@ class LRCSyncPage(Adw.NavigationPage):
       try:
         lyrics_lines = [line.get_text() for line in self.sync_lines]
         lyrics_text = "\n".join(lyrics_lines).strip()
-        lyrics_obj = detect_start_lyrics(lyrics_text)
-        if isinstance(lyrics_obj, ElrcLyrics):
-          lyrics_obj = LrcLyrics(lyrics_obj.as_format("lrc"))
+        if not lyrics_text.strip():
+          delete_track_lyric(self._track_uuid)
+          self._card.refresh_available_lyrics()
+          self._autosave_timeout_id = None
+          return False
 
-        if lyrics_obj.format == "lrc":
-          save_track_lyric(
-            self._track_uuid,
-            "lrc",
-            lyrics_obj.text,
-          )
-          delete_track_lyric(self._track_uuid, "plain")
-        else:
-          save_track_lyric(
-            self._track_uuid,
-            "plain",
-            lyrics_obj.text,
-          )
-          delete_track_lyric(self._track_uuid, "lrc")
+        incoming = LrcLyrics(lyrics_text).to_chronie()
+        existing = get_track_lyric(self._track_uuid)
+        chronie = merge_lbl_chronie(existing, incoming)
+        save_track_lyric(self._track_uuid, chronie)
 
-        if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled"):
-          self._file.embed_lyrics(lyrics_obj if lyrics_text else None)
         self._card.refresh_available_lyrics()
         logger.debug("Lyrics autosaved successfully")
       except Exception:
@@ -490,10 +482,9 @@ class LRCSyncPage(Adw.NavigationPage):
       self.export_lyrics_button.set_icon_name("export-to-symbolic")
 
     lyrics_text = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
-    lyrics_obj = detect_start_lyrics(lyrics_text)
-    if isinstance(lyrics_obj, ElrcLyrics):
-      lyrics_obj = LrcLyrics(lyrics_obj.as_format("lrc"))
-    plain_lyrics = lyrics_obj.as_format("plain")
+    chronie = chronie_from_text(lyrics_text)
+    lyrics_obj = LrcLyrics.from_chronie(chronie)
+    plain_lyrics = PlainLyrics.from_chronie(chronie).text
     if not self.is_all_lines_synced():
       Constants.WIN.show_toast(
         _("Seems like not every line is synced"),

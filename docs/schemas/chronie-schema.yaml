@@ -1,0 +1,23 @@
+- line: Model house life meltdown
+  timings: # (or null)
+    start: 61000 # in ms
+    end: 62990 # in ms (or null)
+  words: null
+
+- line: Still a modern dream let down
+  words:
+    - word: Still
+      timings: # (or null)
+        start: 63486 # in ms
+        end: 63621 # in ms (or null)
+    - word: a
+      timings: # (or null)
+        start: 64037 # in ms
+        end: 64102 # in ms (or null)
+    # ...
+
+- line: You know I'm dying out here
+  timings: # (or null)
+    start: 66561
+    end: null
+  words: null

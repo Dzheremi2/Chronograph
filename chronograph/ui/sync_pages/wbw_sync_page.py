@@ -10,12 +10,13 @@ from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
 from chronograph.backend.file import SongCardModel
 from chronograph.backend.lyrics import (
   ElrcLyrics,
+  chronie_from_text,
+  chronie_from_tokens,
   delete_track_lyric,
-  detect_start_lyrics,
-  get_track_lyrics,
+  get_track_lyric,
+  merge_wbw_chronie,
   save_track_lyric,
 )
-from chronograph.backend.lyrics.interfaces import LyricsBase
 from chronograph.backend.media import FileUntaggable
 from chronograph.backend.player import Player
 from chronograph.backend.wbw.models.lyrics_model import LyricsModel
@@ -81,17 +82,9 @@ class WBWSyncPage(Adw.NavigationPage):
     self.connect("hidden", self._on_page_closed)
 
     # Automatically load lyrics from DB if available
-    lyrics_map = get_track_lyrics(self._track_uuid)
-    source_text = ""
-    if (
-      (lyric := lyrics_map.get("elrc")) is not None
-      or (lyric := lyrics_map.get("lrc")) is not None
-      or (lyric := lyrics_map.get("plain")) is not None
-    ):
-      source_text = lyric.content
-
-    if source_text:
-      lyrics = detect_start_lyrics(source_text)
+    chronie = get_track_lyric(self._track_uuid)
+    if chronie:
+      lyrics = ElrcLyrics.from_chronie(chronie)
       buffer = Gtk.TextBuffer()
       buffer.set_text("\n".join(lyrics.normalized_lines()).strip())
       self.edit_view_text_view.set_buffer(buffer)
@@ -136,7 +129,8 @@ class WBWSyncPage(Adw.NavigationPage):
       prev_page == self.sync_view_stack_page and new_page == self.edit_view_stack_page
     ):
       try:
-        lyrics = ElrcLyrics.from_tokens(self._lyrics_model.get_tokens()).text
+        chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+        lyrics = ElrcLyrics.from_chronie(chronie).text
         buffer = Gtk.TextBuffer()
         buffer.set_text(lyrics)
         self.edit_view_text_view.set_buffer(buffer)
@@ -169,7 +163,8 @@ class WBWSyncPage(Adw.NavigationPage):
     def on_selected_lyrics_file(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
       path = file_dialog.open_finish(result).get_path()
 
-      lyrics = detect_start_lyrics(Path(path).read_text(encoding="utf-8"))
+      chronie = chronie_from_text(Path(path).read_text(encoding="utf-8"))
+      lyrics = ElrcLyrics.from_chronie(chronie)
       buffer = Gtk.TextBuffer()
       buffer.set_text("\n".join(lyrics.normalized_lines()).strip())
       self.edit_view_text_view.set_buffer(buffer)
@@ -183,8 +178,11 @@ class WBWSyncPage(Adw.NavigationPage):
       _clipboard, result: Gio.Task, clipboard: Gdk.Clipboard
     ) -> None:
       data = clipboard.read_text_finish(result)
+      data = data or ""
+      chronie = chronie_from_text(data)
+      lyrics = ElrcLyrics.from_chronie(chronie)
       buffer = Gtk.TextBuffer()
-      buffer.set_text(data)
+      buffer.set_text("\n".join(lyrics.normalized_lines()).strip())
       self.edit_view_text_view.set_buffer(buffer)
       logger.info("Imported lyrics from clipboard")
 
@@ -206,13 +204,18 @@ class WBWSyncPage(Adw.NavigationPage):
   ############### Export Actions ###############
   def _export_file(self, *_args) -> None:
     def on_export_file_selected(
-      file_dialog: Gtk.FileDialog, result: Gio.Task, lyrics_obj: LyricsBase
+      file_dialog: Gtk.FileDialog, result: Gio.Task, chronie: object
     ) -> None:
       filepath = file_dialog.save_finish(result).get_path()
-      if lyrics_obj is not None:
-        Path(filepath).write_text(lyrics_obj.to_file_text(), encoding="utf-8")
-      else:
+      if not chronie:
         Path(filepath).write_text("", encoding="utf-8")
+      else:
+        suffix = Path(filepath).suffix.lower()
+        if suffix == ".chron":
+          text = chronie.to_file_text()
+        else:
+          text = ElrcLyrics.from_chronie(chronie).to_file_text()
+        Path(filepath).write_text(text, encoding="utf-8")
       logger.info("Lyrics exported to file: '%s'", filepath)
 
       Constants.WIN.show_toast(
@@ -227,25 +230,29 @@ class WBWSyncPage(Adw.NavigationPage):
         self.edit_view_text_view.get_buffer().get_end_iter(),
         include_hidden_chars=False,
       )
-      lyrics_obj = detect_start_lyrics(lyrics)
+      chronie = chronie_from_text(lyrics)
     elif not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-      lyrics_obj = ElrcLyrics.from_tokens(self._lyrics_model.get_tokens())
+      chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
     else:
-      lyrics_obj = None
+      chronie = None
 
-    suffix = ".lrc"
-    pattern = f"*{suffix}"
-    file_filter = Gtk.FileFilter()
-    file_filter.set_name(_("Lyrics ({pattern})").format(pattern=pattern))
-    file_filter.add_pattern(pattern)
+    lrc_filter = Gtk.FileFilter()
+    lrc_filter.set_name(_("Lyrics ({pattern})").format(pattern="*.lrc"))
+    lrc_filter.add_pattern("*.lrc")
+    chron_filter = Gtk.FileFilter()
+    chron_filter.set_name(_("Chronie ({pattern})").format(pattern="*.chron"))
+    chron_filter.add_pattern("*.chron")
+
     filters = Gio.ListStore.new(Gtk.FileFilter)
-    filters.append(file_filter)
+    filters.append(lrc_filter)
+    filters.append(chron_filter)
+
     dialog = Gtk.FileDialog(
-      initial_name=f"{self._card.artist_display} - {self._card.title_display}" + suffix
+      initial_name=f"{self._card.artist_display} - {self._card.title_display}.lrc"
     )
     dialog.set_filters(filters)
-    dialog.set_default_filter(file_filter)
-    dialog.save(Constants.WIN, None, on_export_file_selected, lyrics_obj)
+    dialog.set_default_filter(lrc_filter)
+    dialog.save(Constants.WIN, None, on_export_file_selected, chronie)
 
   def _export_clipboard(self, *_args) -> None:
     if self._current_page == self.edit_view_stack_page:
@@ -255,7 +262,8 @@ class WBWSyncPage(Adw.NavigationPage):
         include_hidden_chars=False,
       )
     elif not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-      lyrics = ElrcLyrics.from_tokens(self._lyrics_model.get_tokens()).text
+      chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+      lyrics = ElrcLyrics.from_chronie(chronie).text
     else:
       lyrics = ""
     clipboard = Gdk.Display().get_default().get_clipboard()
@@ -393,43 +401,20 @@ class WBWSyncPage(Adw.NavigationPage):
             self.edit_view_text_view.get_buffer().get_end_iter(),
             include_hidden_chars=False,
           )
-          lyrics_obj = detect_start_lyrics(lyrics_text)
+          chronie = chronie_from_text(lyrics_text)
         else:
-          lyrics_obj = ElrcLyrics.from_tokens(self._lyrics_model.get_tokens())
+          chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
 
-        if not lyrics_obj.text.strip():
-          delete_track_lyric(self._track_uuid, "elrc")
-          if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled"):
-            self._file.embed_lyrics(None)
+        if not chronie:
+          delete_track_lyric(self._track_uuid)
           self._card.refresh_available_lyrics()
           self._autosave_timeout_id = None
           return False
 
-        if Schema.get(
-          "root.settings.do-lyrics-db-updates.lrc-along-elrc"
-        ) and isinstance(lyrics_obj, ElrcLyrics):
-          if lyrics_obj.is_finished():
-            lrc_text = lyrics_obj.as_format("lrc")
-            save_track_lyric(
-              self._track_uuid,
-              "lrc",
-              lrc_text,
-            )
-            logger.debug("LRC lyrics autosaved successfully")
-          else:
-            logger.debug("Skipped LRC autosave for unfinished eLRC lyrics")
-
-        if isinstance(lyrics_obj, ElrcLyrics):
-          save_track_lyric(
-            self._track_uuid,
-            "elrc",
-            lyrics_obj.text,
-          )
-          if Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.enabled"):
-            self._file.embed_lyrics(lyrics_obj)
-          logger.debug("eLRC lyrics autosaved successfully")
-        else:
-          logger.debug("Prevented overwriting eLRC lyrics with LRC or Plain")
+        existing = get_track_lyric(self._track_uuid)
+        chronie = merge_wbw_chronie(existing, chronie)
+        save_track_lyric(self._track_uuid, chronie)
+        logger.debug("Lyrics autosaved successfully")
 
         self._card.refresh_available_lyrics()
       except AttributeError:

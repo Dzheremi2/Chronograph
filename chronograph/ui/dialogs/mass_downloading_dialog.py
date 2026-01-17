@@ -1,4 +1,5 @@
 import contextlib
+from pathlib import Path
 from typing import Optional, Union
 
 import httpx
@@ -9,7 +10,11 @@ from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lrclib.lrclib_service import FetchStates, LRClibService
 from chronograph.backend.lrclib.responses import LRClibEntry
-from chronograph.backend.lyrics import get_track_lyric, save_track_lyric
+from chronograph.backend.lyrics import (
+  chronie_from_text,
+  get_track_lyric,
+  save_track_lyric,
+)
 from chronograph.backend.media import BaseFile  # noqa: TC001
 from chronograph.internal import Constants, Schema
 from dgutils import Linker
@@ -57,6 +62,10 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
     )
     self.new_connection(self, "closed", lambda *__: self.disconnect_all())
 
+  @staticmethod
+  def _normalize_path(path: Union[str, Path]) -> str:
+    return str(Path(path))
+
   @Gtk.Template.Callback()
   def _on_fetch_button_clicked(self, button: Gtk.Button) -> None:
     def on_all_done(*_args) -> None:
@@ -65,7 +74,8 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
       self.progress_revealer.set_reveal_child(False)
 
     def is_lrc_missing(track_uuid: str) -> bool:
-      return get_track_lyric(track_uuid, "lrc") is None
+      chronie = get_track_lyric(track_uuid)
+      return not (chronie and "lrc" in chronie.exportable_formats())
 
     if not self._fetch_going:
       if self.log_items.get_n_items() != 0:
@@ -89,7 +99,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
         ):
           continue
         medias.append(media)
-        self._path_to_uuid[media.path] = track.track_uuid
+        self._path_to_uuid[self._normalize_path(media.path)] = track.track_uuid
       if len(medias) == 0:
         self.fetch_log_list_box.set_placeholder(self.already_fetched)
         return
@@ -108,7 +118,9 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
       self.new_connection(
         LRClibService(),
         "fetch-started",
-        lambda _lrclib, path: self.log_items.insert(0, LogEntry(path)),
+        lambda _lrclib, path: self.log_items.insert(
+          0, LogEntry(self._normalize_path(path))
+        ),
       )
       self.new_connection(
         LRClibService(),
@@ -141,6 +153,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
     state: FetchStates,
     entry: Optional[Union[LRClibEntry, Exception]],
   ) -> None:
+    path = self._normalize_path(path)
     if entry is None:
       state = FetchStates.FAILED
     for item in self.log_items:
@@ -164,7 +177,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
             dl_profile = Schema.get(
               "root.settings.general.mass-downloading.preferred-format"
             )
-            track_uuid = getattr(self, "_path_to_uuid", {}).get(path)
+            track_uuid = self._path_to_uuid.get(path)
             if not track_uuid:
               item.props.failed = True
               item.props.message = _("Track is missing from library")
@@ -172,7 +185,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
             match dl_profile:
               case "s":
                 if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
-                  save_track_lyric(track_uuid, "lrc", entry.synced_lyrics)
+                  save_track_lyric(track_uuid, chronie_from_text(entry.synced_lyrics))
                   self._refresh_card(track_uuid)
                   item.props.done = True
                   return
@@ -180,11 +193,11 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
                 item.props.message = _("No synced lyrics found")
               case "s~p":
                 if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
-                  save_track_lyric(track_uuid, "lrc", entry.synced_lyrics)
+                  save_track_lyric(track_uuid, chronie_from_text(entry.synced_lyrics))
                   self._refresh_card(track_uuid)
                   item.props.done = True
                 elif entry.plain_lyrics.strip() != "":
-                  save_track_lyric(track_uuid, "plain", entry.plain_lyrics)
+                  save_track_lyric(track_uuid, chronie_from_text(entry.plain_lyrics))
                   self._refresh_card(track_uuid)
                   item.props.done = True
                 else:
@@ -192,7 +205,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
                   item.props.message = _("No lyrics found")
               case "p":
                 if entry.plain_lyrics.strip() != "":
-                  save_track_lyric(track_uuid, "plain", entry.plain_lyrics)
+                  save_track_lyric(track_uuid, chronie_from_text(entry.plain_lyrics))
                   self._refresh_card(track_uuid)
                   item.props.done = True
                   return
@@ -204,6 +217,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
         break
 
   def _on_fetch_message(self, _lrclib, path: str, message: str) -> None:
+    path = self._normalize_path(path)
     for item in self.log_items:
       if item.path == path:
         item.set_property("message", message)

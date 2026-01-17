@@ -23,10 +23,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
   enable_debug_logging_switch: Adw.SwitchRow = gtc()
   syncing_type_combo_row: Adw.ComboRow = gtc()
   do_lyrics_db_updates_switch: Adw.SwitchRow = gtc()
-  save_plain_lrc_also_switch_row: Adw.SwitchRow = gtc()
-  embed_lyrics_switch: Adw.ExpanderRow = gtc()
-  use_individual_synced_tag_vorbis_switch: Adw.SwitchRow = gtc()
-  embed_lyrics_default_toggle_group: Adw.ToggleGroup = gtc()
 
   def __init__(self) -> None:
     super().__init__()
@@ -65,26 +61,6 @@ class ChronographPreferences(Adw.PreferencesDialog, metaclass=GSingleton):
       "root.settings.general.debug-profile",
       self.enable_debug_logging_switch,
       "active",
-    )
-    Schema.bind(
-      "root.settings.do-lyrics-db-updates.lrc-along-elrc",
-      self.save_plain_lrc_also_switch_row,
-      "active",
-    )
-    Schema.bind(
-      "root.settings.do-lyrics-db-updates.embed-lyrics.vorbis",
-      self.use_individual_synced_tag_vorbis_switch,
-      "active",
-    )
-    Schema.bind(
-      "root.settings.do-lyrics-db-updates.embed-lyrics.default",
-      self.embed_lyrics_default_toggle_group,
-      "active-name",
-    )
-    Schema.bind(
-      "root.settings.do-lyrics-db-updates.embed-lyrics.enabled",
-      self.embed_lyrics_switch,
-      "enable-expansion",
     )
     Schema.bind(
       "root.settings.syncing.seek.lbl.def",

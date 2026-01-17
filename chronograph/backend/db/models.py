@@ -63,8 +63,7 @@ class Lyric(ChronographDatabase):
 
     CREATE TABLE IF NOT EXISTS lyrics (
       lyrics_uuid  TEXT PRIMARY KEY,               -- Unique ID of the lyric
-      format       TEXT NOT NULL,                  -- Lyric format (LRC, eLRC, TTML, SRT, ...)
-      content      TEXT NOT NULL DEFAULT '',       -- Lyric text
+      content      TEXT NOT NULL DEFAULT '',       -- Chronie JSON lyrics
       finished     BOOLEAN NOT NULL DEFAULT FALSE, -- State of the lyric synchronization
       created_at   INTEGER NOT NULL,               -- Creation time
       updated_at   INTEGER                         -- Last modified time
@@ -72,7 +71,6 @@ class Lyric(ChronographDatabase):
   """
 
   lyrics_uuid = TextField(primary_key=True)
-  format = TextField()
   content = TextField(default="")
   finished = BooleanField(default=False)
   created_at = IntegerField()
@@ -80,7 +78,6 @@ class Lyric(ChronographDatabase):
 
   class Meta:  # noqa: D106
     table_name = "lyrics"
-    indexes = ((("format",), False),)
 
 
 class TrackLyric(ChronographDatabase):

@@ -8,11 +8,10 @@ CREATE TABLE IF NOT EXISTS tracks (
   tags_json    JSON NOT NULL DEFAULT [] -- List of tags assigned to the track
 );
 
--- Lyrics library, extendable when new formats added
+-- Lyrics library stored as Chronie JSON
 CREATE TABLE IF NOT EXISTS lyrics (
   lyrics_uuid  TEXT PRIMARY KEY,               -- Unique ID of the lyric
-  format       TEXT NOT NULL,                  -- Lyric format (LRC, eLRC, TTML, SRT, ...)
-  content      TEXT NOT NULL DEFAULT '',       -- Lyric text
+  content      TEXT NOT NULL DEFAULT '',       -- Chronie JSON lyrics
   finished     BOOLEAN NOT NULL DEFAULT FALSE, -- State of the lyric synchronization
   created_at   INTEGER NOT NULL,               -- Creation time
   updated_at   INTEGER                         -- Last modified time
@@ -30,7 +29,6 @@ CREATE TABLE IF NOT EXISTS track_lyrics (
 
 CREATE INDEX IF NOT EXISTS idx_track_lyrics_track  ON track_lyrics(track_uuid);
 CREATE INDEX IF NOT EXISTS idx_track_lyrics_lyrics ON track_lyrics(lyrics_uuid);
-CREATE INDEX IF NOT EXISTS idx_lyrics_format       ON lyrics(format);
 
 -- DB Metainfo
 CREATE TABLE IF NOT EXISTS schema_info (

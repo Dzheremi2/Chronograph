@@ -1,6 +1,6 @@
 from typing import Optional, Self
 
-from chronograph.backend.lyrics import LyricsBase
+from chronograph.backend.lyrics import ChronieLyrics
 
 from .file import BaseFile
 
@@ -13,5 +13,7 @@ class FileUntaggable(BaseFile):
 
     self.cover = None
 
-  def embed_lyrics(self, lyrics: Optional[LyricsBase], *, force: bool = False) -> Self:  # noqa: ARG002
+  def embed_lyrics(self, lyrics: Optional[ChronieLyrics], *, force: bool = False) -> Self:  # noqa: ARG002
+    if not force:
+      return self
     return self

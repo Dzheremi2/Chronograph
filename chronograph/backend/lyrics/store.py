@@ -1,136 +1,106 @@
+import contextlib
 import time
-from typing import Optional
+from typing import Optional, Union
 from uuid import uuid4
 
 from chronograph.backend.db import db
 from chronograph.backend.db.models import Lyric, TrackLyric
-from chronograph.backend.lyrics.formats import ElrcLyrics, LrcLyrics, PlainLyrics
+from chronograph.backend.lyrics.chronie import ChronieLyrics
+from chronograph.backend.lyrics.formats import chronie_from_text, detect_lyric_format
+from chronograph.backend.lyrics.interfaces import LyricFormat
 from chronograph.internal import Constants
 
 logger = Constants.DB_LOGGER
 
 
-def _get_track_lyric(track_uuid: str, fmt: str) -> Optional[Lyric]:
-  return (
+def _get_track_lyric_model(track_uuid: str) -> Optional[Lyric]:
+  query = (
     Lyric.select()
     .join(TrackLyric)
-    .where((TrackLyric.track == track_uuid) & (Lyric.format == fmt))
-    .get_or_none()
+    .where(TrackLyric.track == track_uuid)
+    .order_by(Lyric.updated_at.desc(), Lyric.created_at.desc())
   )
+  return query.first()
 
 
-def get_track_lyrics(track_uuid: str) -> dict[str, Lyric]:
-  """Return all lyrics for a track keyed by format.
-
-  Parameters
-  ----------
-  track_uuid : str
-    Track UUID.
-
-  Returns
-  -------
-  dict[str, Lyric]
-    Mapping from format to Lyric model.
-  """
+def get_track_lyric(track_uuid: str) -> Optional[ChronieLyrics]:
+  """Return Chronie lyrics for a track."""
   with db():
-    query = Lyric.select().join(TrackLyric).where(TrackLyric.track == track_uuid)
-    return {lyric.format: lyric for lyric in query}
+    lyric = _get_track_lyric_model(track_uuid)
+    if lyric is None:
+      return None
+    return _load_chronie(lyric.content)
 
 
-def get_track_lyric(track_uuid: str, fmt: str) -> Optional[Lyric]:
-  """Return a single lyric for a track by format.
-
-  Parameters
-  ----------
-  track_uuid : str
-    Track UUID.
-  fmt : str
-    Lyric format identifier.
-
-  Returns
-  -------
-  Optional[Lyric]
-    Lyric model or None when missing.
-  """
-  with db():
-    return _get_track_lyric(track_uuid, fmt)
-
-
-def _build_lyrics(fmt: str, content: str):
-  fmt = fmt.lower()
-  if fmt == "plain":
-    return PlainLyrics(content)
-  if fmt == "lrc":
-    return LrcLyrics(content)
-  if fmt == "elrc":
-    return ElrcLyrics(content)
-  return None
-
-
-def save_track_lyric(track_uuid: str, fmt: str, content: str) -> Optional[Lyric]:
-  """Create or update a lyric entry for a track.
-
-  Parameters
-  ----------
-  track_uuid : str
-    Track UUID.
-  fmt : str
-    Lyric format identifier.
-  content : str
-    Lyric text content.
-
-  Returns
-  -------
-  Optional[Lyric]
-    Saved lyric model, or None if content is empty.
-  """
-  content = content.strip()
-  if not content:
-    delete_track_lyric(track_uuid, fmt)
+def save_track_lyric(
+  track_uuid: str, lyrics: Union[ChronieLyrics, LyricFormat, str]
+) -> Optional[Lyric]:
+  """Create or update Chronie lyrics for a track."""
+  chronie = _coerce_chronie(lyrics)
+  if chronie is None or not chronie:
+    delete_track_lyric(track_uuid)
     return None
 
-  lyrics_obj = _build_lyrics(fmt, content)
-  finished = lyrics_obj.is_finished() if lyrics_obj else False
-
+  content = chronie.to_json()
+  finished = chronie.is_finished()
   now = int(time.time())
+
   with db(atomic=True):
-    lyric = _get_track_lyric(track_uuid, fmt)
+    lyric = _get_track_lyric_model(track_uuid)
     if lyric is None:
       lyric = Lyric.create(
         lyrics_uuid=str(uuid4()),
-        format=fmt,
         content=content,
         finished=finished,
         created_at=now,
         updated_at=now,
       )
       TrackLyric.create(track=track_uuid, lyric=lyric.lyrics_uuid)
-      logger.debug("Lyric created: track=%s format=%s", track_uuid, fmt)
+      logger.debug("Lyric created: track=%s", track_uuid)
     else:
       lyric.content = content
       lyric.finished = finished
       lyric.updated_at = now
       lyric.save()
-      logger.debug("Lyric updated: track=%s format=%s", track_uuid, fmt)
+      logger.debug("Lyric updated: track=%s", track_uuid)
   return lyric
 
 
-def delete_track_lyric(track_uuid: str, fmt: str) -> None:
-  """Delete a lyric entry for a track by format.
-
-  Parameters
-  ----------
-  track_uuid : str
-    Track UUID.
-  fmt : str
-    Lyric format identifier.
-  """
+def delete_track_lyric(track_uuid: str) -> None:
+  """Delete lyrics for a track."""
   with db(atomic=True):
-    lyric = _get_track_lyric(track_uuid, fmt)
-    if lyric is None:
+    lyric_ids = [
+      row.lyric
+      for row in TrackLyric.select(TrackLyric.lyric).where(
+        TrackLyric.track == track_uuid
+      )
+    ]
+    if not lyric_ids:
       return
-    TrackLyric.delete().where(
-      (TrackLyric.track == track_uuid) & (TrackLyric.lyric == lyric.lyrics_uuid)
-    ).execute()
-    Lyric.delete_by_id(lyric.lyrics_uuid)
-    logger.info("Lyric deleted: track=%s format=%s", track_uuid, fmt)
+    TrackLyric.delete().where(TrackLyric.track == track_uuid).execute()
+    Lyric.delete().where(Lyric.lyrics_uuid.in_(lyric_ids)).execute()
+    logger.info("Lyrics deleted: track=%s", track_uuid)
+
+
+def _coerce_chronie(
+  lyrics: Union[ChronieLyrics, LyricFormat, str],
+) -> Optional[ChronieLyrics]:
+  if isinstance(lyrics, ChronieLyrics):
+    return lyrics
+  if isinstance(lyrics, LyricFormat):
+    return lyrics.to_chronie()
+  if isinstance(lyrics, str):
+    return chronie_from_text(lyrics)
+  return None
+
+
+def _load_chronie(content: str) -> Optional[ChronieLyrics]:
+  if not content or not content.strip():
+    return None
+  with contextlib.suppress(Exception):
+    return ChronieLyrics.from_json(content)
+  with contextlib.suppress(Exception):
+    return ChronieLyrics.from_yaml(content)
+  with contextlib.suppress(Exception):
+    return detect_lyric_format(content).to_chronie()
+  return None

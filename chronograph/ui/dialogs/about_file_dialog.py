@@ -2,9 +2,10 @@ import json
 
 from gi.repository import Adw, GObject, Gtk
 
-from chronograph.backend.db.models import SchemaInfo, Track, TrackLyric
+from chronograph.backend.db.models import SchemaInfo, Track
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel
+from chronograph.backend.lyrics import get_track_lyric
 from chronograph.internal import Constants
 from chronograph.ui.dialogs.tag_registration_dialog import TagRegistrationDialog
 from chronograph.ui.widgets.lyric_row import LyricRow
@@ -111,15 +112,15 @@ class AboutFileDialog(Adw.Dialog, Linker):
     self.nav_view.push(self.lyr_nav_page)
 
   def _populate_available_lyrics(self) -> None:
-    is_any = False
-    for track_lyric in TrackLyric.select(TrackLyric.lyric).where(
-      TrackLyric.track == self._model.uuid
-    ):
-      is_any = True
-      self.available_lyrics_group.add(LyricRow(track_lyric.lyric))
-    if not is_any:
+    chronie = get_track_lyric(self._model.uuid)
+    if not chronie:
       self.available_lyrics_button.set_sensitive(False)
       self.available_lyrics_button.set_title(_("No Lyrics Available"))
+      return
+
+    available = set(chronie.exportable_formats())
+    for fmt in ("plain", "lrc", "elrc"):
+      self.available_lyrics_group.add(LyricRow(fmt, available=fmt in available))
 
   def _populate_tags(self) -> None:
     track_tags = self._get_track_tags()
