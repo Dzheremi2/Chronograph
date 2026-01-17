@@ -233,11 +233,7 @@ class WBWSyncPage(Adw.NavigationPage):
     else:
       lyrics_obj = None
 
-    suffix = Schema.get("root.settings.do-lyrics-db-updates.format")
-    if not suffix:
-      suffix = ".lrc"
-    elif not suffix.startswith("."):
-      suffix = f".{suffix}"
+    suffix = ".lrc"
     pattern = f"*{suffix}"
     file_filter = Gtk.FileFilter()
     file_filter.set_name(_("Lyrics ({pattern})").format(pattern=pattern))
