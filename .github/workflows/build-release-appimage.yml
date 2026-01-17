@@ -1,0 +1,31 @@
+name: Release Linux AppImage
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+
+concurrency:
+  group: release-appimage-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  appimage-release:
+    name: Build Release AppImage
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
+      options: --privileged
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build AppImage
+        env:
+          CHRONOGRAPH_APPIMAGE_SDK: "1"
+        run: ./build-aux/appimage/build-in-sdk.sh
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Chronograph-AppImage
+          path: _build/appimage/dist/*.AppImage

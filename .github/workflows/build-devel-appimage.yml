@@ -1,0 +1,35 @@
+name: Devel Linux AppImage
+on:
+  push:
+    branches:
+      - "**"
+      - "!main"
+  pull_request:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+concurrency:
+  group: devel-appimage
+
+jobs:
+  appimage-devel:
+    name: Build Devel AppImage
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
+      options: --privileged
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build AppImage
+        env:
+          CHRONOGRAPH_APPIMAGE_SDK: "1"
+          CHRONOGRAPH_PROFILE: "development"
+        run: ./build-aux/appimage/build-in-sdk.sh
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Chronograph-AppImage-Devel
+          path: _build/appimage/dist/*.AppImage

@@ -10,6 +10,12 @@ VERSION = "@VERSION@"
 pkgdatadir = "@pkgdatadir@"
 localedir = "@localedir@"
 
+# Used in AppImage builds
+appdir = os.environ.get("APPDIR")
+if appdir:
+  pkgdatadir = os.path.join(appdir, "usr", "share", "chronograph")
+  localedir = os.path.join(appdir, "usr", "share", "locale")
+
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 locale.bindtextdomain("Chronograph", localedir)

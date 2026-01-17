@@ -69,6 +69,18 @@ or by downloading and installing bundle from the [latest release](https://github
 The app is available on [AUR](https://aur.archlinux.org/packages/chronograph) as 
 `chronograph` package made by [Mark Wagie (@yochananmarqos)](https://github.com/yochananmarqos)
 
+#### AppImage
+
+AppImages are available on GitHub Releases from version 49
+
+>[!TIP]
+>AppImage builds are generated using GNOME SDK 49 to keep library versions aligned.
+>To build locally:
+>
+>`./build-aux/appimage/build.sh`
+>
+>Output is placed in `_build/appimage/dist/`.
+
 ### Windows
 
 Chronograph for Windows is only available on [GitHub Releases](https://github.com/Dzheremi2/Chronograph/releases/latest)
