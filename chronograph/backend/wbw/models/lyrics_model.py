@@ -40,7 +40,7 @@ class LyricsModel(GObject.Object):
     Parameters
     ----------
     index : int
-        Index of line that should be set as current
+      Index of line that should be set as current
     """
     if index == self.cindex:
       return
@@ -96,7 +96,7 @@ class LyricsModel(GObject.Object):
     Returns
     -------
     LineModel
-        Current line
+      Current line
     """
     return self[self.cindex]
 
@@ -106,7 +106,7 @@ class LyricsModel(GObject.Object):
     Returns
     -------
     WordModel
-        Current word in current line
+      Current word in current line
     """
     return self.get_current_line().get_current_word()
 
@@ -116,7 +116,7 @@ class LyricsModel(GObject.Object):
     Returns
     -------
     tuple[tuple[WordToken, ...], ...]
-        Lyrics(tuple) with lines(tuple) with words(WordToken)
+      Lyrics(tuple) with lines(tuple) with words(WordToken)
     """
     lines = []
     for line_model in self:

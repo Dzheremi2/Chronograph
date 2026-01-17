@@ -1,3 +1,5 @@
+from typing import Iterable
+
 from chronograph.backend.lyrics.chronie import (
   ChronieLine,
   ChronieLyrics,
@@ -8,8 +10,19 @@ from chronograph.backend.lyrics.formats.utils import is_spacer, token_start_ms
 from chronograph.backend.wbw.tokens import WordToken
 
 
-def chronie_from_tokens(lines: tuple[tuple[WordToken, ...], ...]) -> ChronieLyrics:
-  """Convert WBW tokens into Chronie lyrics."""
+def chronie_from_tokens(lines: Iterable[Iterable[WordToken]]) -> ChronieLyrics:
+  """Convert WBW tokens into Chronie lyrics.
+
+  Parameters
+  ----------
+  lines : Iterable[Iterable[WordToken]]
+    Tokenized word lines from the WBW model.
+
+  Returns
+  -------
+  ChronieLyrics
+    Chronie lyrics constructed from tokens.
+  """
   out_lines: list[ChronieLine] = []
 
   for line_tokens in lines:

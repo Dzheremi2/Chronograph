@@ -49,6 +49,13 @@ class ChronieLyrics(LyricFormat):
     return has_lines
 
   def is_lbl_finished(self) -> bool:
+    """Check if all non-empty lines have a start timestamp.
+
+    Returns
+    -------
+    bool
+      `True` if line-by-line sync is complete.
+    """
     has_lines = False
     for line in self.lines:
       if not _line_has_text(line):
@@ -59,6 +66,13 @@ class ChronieLyrics(LyricFormat):
     return has_lines
 
   def is_wbw_finished(self) -> bool:
+    """Check if all non-empty words have a start timestamp.
+
+    Returns
+    -------
+    bool
+      `True` if word-by-word sync is complete.
+    """
     has_words = False
     for line in self.lines:
       if not _line_has_text(line):
@@ -74,6 +88,13 @@ class ChronieLyrics(LyricFormat):
     return has_words
 
   def exportable_formats(self) -> list[str]:
+    """List available export formats for the current timing state.
+
+    Returns
+    -------
+    list[str]
+      Format names that can be exported from this Chronie data.
+    """
     if not self:
       return []
     formats = ["plain"]
@@ -84,9 +105,23 @@ class ChronieLyrics(LyricFormat):
     return formats
 
   def to_dicts(self) -> list[dict[str, Any]]:
+    """Serialize Chronie lines into Python dictionaries.
+
+    Returns
+    -------
+    list[dict[str, Any]]
+      List of line dictionaries.
+    """
     return [line.to_dict() for line in self.lines]
 
   def to_json(self) -> str:
+    """Serialize Chronie data into compact JSON.
+
+    Returns
+    -------
+    str
+      JSON string representation.
+    """
     return json.dumps(self.to_dicts(), ensure_ascii=False, separators=(",", ":"))
 
   def to_file_text(self) -> str:
@@ -94,6 +129,18 @@ class ChronieLyrics(LyricFormat):
 
   @classmethod
   def from_dicts(cls, data: Any) -> ChronieLyrics:
+    """Create ChronieLyrics from parsed dictionaries.
+
+    Parameters
+    ----------
+    data : Any
+      Parsed Chronie list structure.
+
+    Returns
+    -------
+    ChronieLyrics
+      Parsed ChronieLyrics instance.
+    """
     if not isinstance(data, list):
       raise TypeError("Chronie data must be a list")
     lines: list[ChronieLine] = []
@@ -106,11 +153,35 @@ class ChronieLyrics(LyricFormat):
 
   @classmethod
   def from_json(cls, text: str) -> ChronieLyrics:
+    """Create ChronieLyrics from JSON text.
+
+    Parameters
+    ----------
+    text : str
+      JSON string representing Chronie data.
+
+    Returns
+    -------
+    ChronieLyrics
+      Parsed ChronieLyrics instance.
+    """
     data = json.loads(text)
     return cls.from_dicts(data)
 
   @classmethod
   def from_yaml(cls, text: str) -> ChronieLyrics:
+    """Create ChronieLyrics from YAML text.
+
+    Parameters
+    ----------
+    text : str
+      YAML string representing Chronie data.
+
+    Returns
+    -------
+    ChronieLyrics
+      Parsed ChronieLyrics instance.
+    """
     data = yaml.safe_load(text) or []
     return cls.from_dicts(data)
 

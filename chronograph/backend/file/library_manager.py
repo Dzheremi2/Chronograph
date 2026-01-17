@@ -82,7 +82,24 @@ class LibraryManager:
     on_progress: Optional[Callable[[float], None]] = None,
     cancellable: Optional[threading.Event] = None,
   ) -> list[tuple[Path, str, str]]:
-    """Imports files in a background task with progress updates."""
+    """Imports files in a background task with progress updates.
+
+    Parameters
+    ----------
+    files : list[Path]
+      Files to import into the current library.
+    move : bool, optional
+      Whether to move files instead of copying them.
+    on_progress : Optional[Callable[[float], None]], optional
+      Callback receiving progress in range 0..1.
+    cancellable : Optional[threading.Event], optional
+      Event used to cancel the import loop.
+
+    Returns
+    -------
+    list[tuple[Path, str, str]]
+      Imported source paths with their track UUIDs and formats.
+    """
     imported: list[tuple[Path, str, str]] = []
     lib_root = LibraryManager._require_library()
 
@@ -214,7 +231,20 @@ class LibraryManager:
 
   @staticmethod
   def track_path(track_uuid: str, track_format: Optional[str] = None) -> Path:
-    """Builds a content path for the given track data"""
+    """Build a content path for a given track.
+
+    Parameters
+    ----------
+    track_uuid : str
+      Track UUID stored in the database.
+    track_format : Optional[str], optional
+      Expected file format or suffix to check first.
+
+    Returns
+    -------
+    Path
+      Path to the file in the library content directory.
+    """
     lib_root = LibraryManager._require_library()
     content_dir = lib_root / "content"
 

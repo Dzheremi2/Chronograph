@@ -1,4 +1,3 @@
-from io import TextIOWrapper
 from logging import Logger
 from pathlib import Path
 from typing import Final

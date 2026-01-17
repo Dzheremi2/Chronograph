@@ -7,10 +7,36 @@ _TAG_PAIR_RE = re.compile(r"\[(?P<key>[A-Za-z][A-Za-z0-9_-]*):(?P<val>.*?)\]")
 
 
 def normalize_lines(text: str) -> list[str]:
+  """Normalize timed lines by inserting a space after timestamps.
+
+  Parameters
+  ----------
+  text : str
+    Lyrics text to normalize.
+
+  Returns
+  -------
+  list[str]
+    Normalized lines.
+  """
   return [_TIMED_LINE_RE.sub(r"\1 \2", line) for line in text.splitlines()]
 
 
 def join_meta(text: str, meta: dict[str, Any]) -> str:
+  """Prepend metadata tags to the lyrics text.
+
+  Parameters
+  ----------
+  text : str
+    Lyrics text without metadata tags.
+  meta : dict[str, Any]
+    Metadata mapping to serialize as tags.
+
+  Returns
+  -------
+  str
+    Lyrics text with tags prepended.
+  """
   out_tags: list[str] = []
   for tag, val in meta.items():
     if tag == "length":
@@ -30,6 +56,18 @@ def join_meta(text: str, meta: dict[str, Any]) -> str:
 
 
 def parse_meta(text: str) -> dict[str, Any]:
+  """Parse LRC-style metadata tags from text.
+
+  Parameters
+  ----------
+  text : str
+    Lyrics text containing metadata tags.
+
+  Returns
+  -------
+  dict[str, Any]
+    Parsed metadata key-value pairs.
+  """
   out: dict[str, Any] = {}
 
   for line in text.splitlines():
@@ -50,6 +88,18 @@ def parse_meta(text: str) -> dict[str, Any]:
 
 
 def strip_meta(text: str) -> str:
+  """Remove LRC-style metadata tags from text.
+
+  Parameters
+  ----------
+  text : str
+    Lyrics text with tags.
+
+  Returns
+  -------
+  str
+    Lyrics text without metadata tags.
+  """
   out: list[str] = []
 
   for line in text.splitlines():

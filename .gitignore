@@ -10,3 +10,4 @@ io.github.dzheremi2.lrcmake-gtk.flatpak
 io.github.dzheremi2.lrcmake_gtk.Devel.flatpak
 io.github.dzheremi2.lrcmake_gtk.Devel.yaml
 .ruff_cache/
+AGENTS.md

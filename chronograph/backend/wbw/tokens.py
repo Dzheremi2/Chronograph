@@ -15,7 +15,7 @@ class TokenBase:
     Raises
     ------
     TypeError
-        If the token has no time specified
+      If the token has no time specified
     """
     if self.time is not None:
       return self.time

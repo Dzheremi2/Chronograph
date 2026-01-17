@@ -105,7 +105,7 @@ class LRCSyncPage(Adw.NavigationPage):
     Returns
     -------
     bool
-        If all lines have timestamp
+      If all lines have timestamp
     """
     text = "\n".join([line.get_text() for line in self.sync_lines])
     timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2,3}]")

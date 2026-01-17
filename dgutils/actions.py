@@ -88,7 +88,20 @@ class Actions:
 
   @classmethod
   def from_schema(cls, path: str, encoding: str = "yaml"):
-    """Class decorator: load schema from GResource and build actions after `__init__`."""
+    """Create a class decorator from a GResource actions schema.
+
+    Parameters
+    ----------
+    path : str
+      GResource path to the actions schema file.
+    encoding : str, optional
+      Schema encoding format (``yaml`` or ``json``).
+
+    Returns
+    -------
+    Callable
+      Class decorator that wires actions after `__init__`.
+    """
 
     def class_decorator(target_cls):
       original_init = target_cls.__init__

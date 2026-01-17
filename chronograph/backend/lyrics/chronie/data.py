@@ -12,12 +12,31 @@ class ChronieTimings:
   end: Optional[int] = None
 
   def to_dict(self) -> Optional[dict[str, Optional[int]]]:
+    """Serialize timings to a dictionary.
+
+    Returns
+    -------
+    Optional[dict[str, Optional[int]]]
+      Mapping with `start`/`end` or `None` if both are missing.
+    """
     if self.start is None and self.end is None:
       return None
     return {"start": self.start, "end": self.end}
 
   @classmethod
   def from_dict(cls, data: Optional[dict[str, Any]]) -> Optional[ChronieTimings]:
+    """Create timings from a dictionary.
+
+    Parameters
+    ----------
+    data : Optional[dict[str, Any]]
+      Mapping with `start` and/or `end` fields.
+
+    Returns
+    -------
+    Optional[ChronieTimings]
+      Parsed timings or `None` when no timing values are present.
+    """
     if not isinstance(data, dict):
       return None
     start = _coerce_ms(data.get("start"))
@@ -35,6 +54,13 @@ class ChronieWord:
   timings: Optional[ChronieTimings] = None
 
   def to_dict(self) -> dict[str, Any]:
+    """Serialize the word into a dictionary.
+
+    Returns
+    -------
+    dict[str, Any]
+      Mapping with `word` and optional timing data.
+    """
     return {
       "word": self.word,
       "timings": self.timings.to_dict() if self.timings else None,
@@ -42,6 +68,18 @@ class ChronieWord:
 
   @classmethod
   def from_dict(cls, data: dict[str, Any]) -> Optional[ChronieWord]:
+    """Create a word entry from a dictionary.
+
+    Parameters
+    ----------
+    data : dict[str, Any]
+      Mapping with word text and optional timing data.
+
+    Returns
+    -------
+    Optional[ChronieWord]
+      Parsed word or `None` if input is invalid.
+    """
     if not isinstance(data, dict):
       return None
     word = data.get("word")
@@ -60,6 +98,13 @@ class ChronieLine:
   words: Optional[list[ChronieWord]] = None
 
   def to_dict(self) -> dict[str, Any]:
+    """Serialize the line into a dictionary.
+
+    Returns
+    -------
+    dict[str, Any]
+      Mapping with line text, timings, and optional words.
+    """
     return {
       "line": self.line,
       "timings": self.timings.to_dict() if self.timings else None,
@@ -68,6 +113,18 @@ class ChronieLine:
 
   @classmethod
   def from_dict(cls, data: dict[str, Any]) -> Optional[ChronieLine]:
+    """Create a line entry from a dictionary.
+
+    Parameters
+    ----------
+    data : dict[str, Any]
+      Mapping with line text, timings, and optional words.
+
+    Returns
+    -------
+    Optional[ChronieLine]
+      Parsed line or `None` if input is invalid.
+    """
     if not isinstance(data, dict):
       return None
     line = data.get("line", "")

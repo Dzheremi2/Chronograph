@@ -54,7 +54,7 @@ class LineModel(GObject.Object):
     Parameters
     ----------
     index : int
-        Index of the word to be highlighted
+      Index of the word to be highlighted
     """
     if index == self.cindex:
       return
@@ -86,7 +86,7 @@ class LineModel(GObject.Object):
     Parameters
     ----------
     is_current_line : bool
-        True if this line is current, False otherwise
+      True if this line is current, False otherwise
     """
     for word in self:
       word.set_property("active", is_current_line)

@@ -10,6 +10,7 @@ class ChrMenuButton(Gtk.ToggleButton):
 
   @GObject.Property(type=Gtk.Popover)
   def popover(self) -> Gtk.Popover:
+    """Attached popover."""
     return self._popover
 
   @popover.setter
@@ -24,6 +25,7 @@ class ChrMenuButton(Gtk.ToggleButton):
 
   @GObject.Property(type=Gtk.Widget)
   def child(self) -> Gtk.Widget:
+    """Current child widget."""
     return self.get_child()
 
   @child.setter

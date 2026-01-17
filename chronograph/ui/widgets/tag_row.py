@@ -23,6 +23,7 @@ class TagRow(Gtk.Box):
 
   @GObject.Property(type=str, default="")
   def tag(self) -> str:
+    """Current tag value."""
     return self._tag
 
   def _setup_menu_popover(self) -> None:

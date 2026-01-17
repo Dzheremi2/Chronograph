@@ -17,8 +17,8 @@ class BaseFile:
 
   Parameters
   ----------
-  path : str
-      A path to file for loading
+  path : Path
+    A path to file for loading
 
   Props
   --------
@@ -117,7 +117,7 @@ class BaseFile:
 
   @property
   def title(self) -> str:
-    """The title of the song"""
+    """Title of the song."""
     return self._title
 
   @title.setter
@@ -126,7 +126,7 @@ class BaseFile:
 
   @property
   def artist(self) -> str:
-    """The artist of the song"""
+    """Artist of the song."""
     return self._artist
 
   @artist.setter
@@ -135,7 +135,7 @@ class BaseFile:
 
   @property
   def album(self) -> str:
-    """The album of the song"""
+    """Album of the song."""
     return self._album
 
   @album.setter
@@ -144,7 +144,7 @@ class BaseFile:
 
   @property
   def cover(self) -> bytes:
-    """The cover of the song"""
+    """Cover image bytes."""
     return self._cover
 
   @cover.setter
@@ -153,17 +153,17 @@ class BaseFile:
 
   @property
   def path(self) -> str:
-    """Path to the media file"""
+    """Path to the media file."""
     return self._path
 
   @property
   def duration(self) -> int:
-    """Duration of the song"""
+    """Duration of the song in seconds."""
     return round(self._duration)
 
   @property
   def duration_ns(self) -> int:
-    """Duration of the song in nanoseconds"""
+    """Duration of the song in nanoseconds."""
     return int(self._duration * 1_000_000_000) if self._duration else 0
 
   def load_str_data(self) -> None:
@@ -186,9 +186,9 @@ class BaseFile:
     Parameters
     ----------
     tag_name : str
-        ID3 tag (must work in all realizations using TAGS_CONJUNCTION)
+      ID3 tag (must work in all realizations using TAGS_CONJUNCTION)
     new_val : str
-        value to be set
+      value to be set
 
     Should be implemented in file specific child classes
     """
@@ -200,7 +200,7 @@ class BaseFile:
     Parameters
     ----------
     img_path : Optional[str]
-        /path/to/an/image
+      /path/to/an/image
 
     Should be implemented in file specific child classes
     """
@@ -228,8 +228,8 @@ class TaggableFile(BaseFile):
 
   Parameters
   ----------
-  path : str
-      A path to file for loading
+  path : Path
+    A path to file for loading
   """
 
   __gtype_name__ = "TaggableFile"

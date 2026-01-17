@@ -7,7 +7,20 @@ from chronograph.backend.lyrics.formats.utils import merge_timings
 def merge_lbl_chronie(
   existing: Optional[ChronieLyrics], incoming: ChronieLyrics
 ) -> ChronieLyrics:
-  """Merge line-level updates into Chronie, preserving word data and end timings."""
+  """Merge line-level updates into Chronie, preserving word data and end timings.
+
+  Parameters
+  ----------
+  existing : Optional[ChronieLyrics]
+    Existing Chronie lyrics to merge into.
+  incoming : ChronieLyrics
+    Incoming line-level updates.
+
+  Returns
+  -------
+  ChronieLyrics
+    Merged Chronie lyrics.
+  """
   if existing is None:
     return incoming
 
@@ -35,7 +48,20 @@ def merge_lbl_chronie(
 def merge_wbw_chronie(
   existing: Optional[ChronieLyrics], incoming: ChronieLyrics
 ) -> ChronieLyrics:
-  """Merge word-level updates into Chronie, preserving end timings."""
+  """Merge word-level updates into Chronie, preserving end timings.
+
+  Parameters
+  ----------
+  existing : Optional[ChronieLyrics]
+    Existing Chronie lyrics to merge into.
+  incoming : ChronieLyrics
+    Incoming word-level updates.
+
+  Returns
+  -------
+  ChronieLyrics
+    Merged Chronie lyrics.
+  """
   if existing is None:
     return incoming
 

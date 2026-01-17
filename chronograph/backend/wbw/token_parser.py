@@ -1,6 +1,6 @@
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Union
 
 from chronograph.backend.wbw.tokens import LineToken, WordToken
 
@@ -28,18 +28,18 @@ class TokenParser:
     return (int(m) * 60 + int(s)) * 1000 + whole_ms
 
   @staticmethod
-  def parse_lines(data: Path | str) -> tuple[LineToken, ...]:
+  def parse_lines(data: Union[Path, str]) -> tuple[LineToken, ...]:
     """Generates a tuple of Separate `LineToken`s dataclasses
 
     Parameters
     ----------
-    data : Path | str
-        Path to a file or a string with all lyrics
+    data : Union[Path, str]
+      Path to a file or a string with all lyrics
 
     Returns
     -------
     tuple[LineToken, ...]
-        `LineToken`s dataclasses tuple
+      `LineToken`s dataclasses tuple
     """
 
     def _strip_all_timestamps(string: str) -> str:
@@ -73,18 +73,18 @@ class TokenParser:
     return tuple(out)
 
   @staticmethod
-  def parse_words(line: LineToken | str) -> tuple[WordToken, ...]:
+  def parse_words(line: Union[LineToken, str]) -> tuple[WordToken, ...]:
     """Generates a tuple of `WordToken`s dataclasses
 
     Parameters
     ----------
-    line : LineToken | str
-        A line to parse
+    line : Union[LineToken, str]
+      A line to parse
 
     Returns
     -------
     tuple[WordToken, ...]
-        Tuple of `WordToken` dataclasses
+      Tuple of `WordToken` dataclasses
     """
     raw = line.line if hasattr(line, "line") else line
     pos = 0

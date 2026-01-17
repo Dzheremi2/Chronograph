@@ -340,7 +340,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     Parameters
     ----------
     revealer : Gtk.Revealer
-        revealer to hide
+      revealer to hide
     """
     revealer.set_visible(revealer.props.child_revealed)
 

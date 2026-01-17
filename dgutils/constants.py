@@ -9,6 +9,18 @@ from gi.repository import Gio
 class Constants:
   @classmethod
   def from_resource(cls, resource_path: str) -> "Constants":
+    """Create a Constants instance from a GResource YAML file.
+
+    Parameters
+    ----------
+    resource_path : str
+      GResource path to the YAML file.
+
+    Returns
+    -------
+    Constants
+      Populated constants instance.
+    """
     data = cls._load_yaml_from_resource(resource_path)
     instance = cls()
     instance._populate_from_data(data)

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
@@ -19,18 +21,47 @@ class LyricFormat(ABC):
   format: str = ""
 
   @abstractmethod
-  def to_chronie(self) -> "ChronieLyrics":
-    """Convert the format into Chronie lyrics."""
+  def to_chronie(self) -> ChronieLyrics:
+    """Convert the format into Chronie lyrics.
+
+    Returns
+    -------
+    ChronieLyrics
+      Chronie representation of the lyrics.
+    """
 
   @classmethod
   @abstractmethod
-  def from_chronie(cls, chronie: "ChronieLyrics") -> "LyricFormat":
-    """Build the format from Chronie lyrics."""
+  def from_chronie(cls, chronie: ChronieLyrics) -> LyricFormat:
+    """Build the format from Chronie lyrics.
+
+    Parameters
+    ----------
+    chronie : ChronieLyrics
+      Chronie lyrics to convert from.
+
+    Returns
+    -------
+    LyricFormat
+      New format instance.
+    """
 
   @abstractmethod
   def is_finished(self) -> bool:
-    """Return True if the lyrics are fully synchronized for this format."""
+    """Return True if the lyrics are fully synchronized for this format.
+
+    Returns
+    -------
+    bool
+      `True` if the format has complete timing data.
+    """
 
   @abstractmethod
   def to_file_text(self) -> str:
-    """Return the lyrics in the format's file text representation."""
+    """Return the lyrics in the format's file text representation.
+
+    Returns
+    -------
+    str
+      Lyrics serialized to the format's file representation.
+    """

@@ -1,3 +1,5 @@
+from typing import Literal
+
 from chronograph.backend.lyrics.chronie import ChronieLine, ChronieLyrics
 from chronograph.backend.lyrics.interfaces import LyricFormat
 
@@ -10,6 +12,13 @@ class PlainLyrics(LyricFormat):
 
   @property
   def text(self) -> str:
+    """Return the raw plain lyrics text.
+
+    Returns
+    -------
+    str
+      Plain lyrics text.
+    """
     return self._text
 
   def to_file_text(self) -> str:
@@ -32,5 +41,5 @@ class PlainLyrics(LyricFormat):
         lines.append("")
     return cls("\n".join(lines))
 
-  def is_finished(self) -> bool:
+  def is_finished(self) -> Literal[False]:
     return False

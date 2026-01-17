@@ -3,6 +3,7 @@ from typing import Optional, Union
 from peewee import ConnectionContext, SqliteDatabase, _atomic
 
 from chronograph.internal import Constants
+
 from .models import Lyric, SchemaInfo, Track, TrackLyric, db_proxy
 
 logger = Constants.DB_LOGGER

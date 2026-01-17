@@ -24,7 +24,18 @@ def _get_track_lyric_model(track_uuid: str) -> Optional[Lyric]:
 
 
 def get_track_lyric(track_uuid: str) -> Optional[ChronieLyrics]:
-  """Return Chronie lyrics for a track."""
+  """Return Chronie lyrics for a track.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID to query.
+
+  Returns
+  -------
+  Optional[ChronieLyrics]
+    Chronie lyrics or `None` if missing.
+  """
   with db():
     lyric = _get_track_lyric_model(track_uuid)
     if lyric is None:
@@ -35,7 +46,20 @@ def get_track_lyric(track_uuid: str) -> Optional[ChronieLyrics]:
 def save_track_lyric(
   track_uuid: str, lyrics: Union[ChronieLyrics, LyricFormat, str]
 ) -> Optional[Lyric]:
-  """Create or update Chronie lyrics for a track."""
+  """Create or update Chronie lyrics for a track.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID to update.
+  lyrics : Union[ChronieLyrics, LyricFormat, str]
+    Lyrics to save, in Chronie or any supported format.
+
+  Returns
+  -------
+  Optional[Lyric]
+    Created or updated Lyric model, or `None` if deleted.
+  """
   chronie = _coerce_chronie(lyrics)
   if chronie is None or not chronie:
     delete_track_lyric(track_uuid)
@@ -67,7 +91,13 @@ def save_track_lyric(
 
 
 def delete_track_lyric(track_uuid: str) -> None:
-  """Delete lyrics for a track."""
+  """Delete lyrics for a track.
+
+  Parameters
+  ----------
+  track_uuid : str
+    Track UUID to delete lyrics for.
+  """
   with db(atomic=True):
     lyric_ids = [
       row.lyric

@@ -42,9 +42,23 @@ class ElrcLyrics(LyricFormat):
 
   @property
   def text(self) -> str:
+    """Return the raw eLRC text without metadata tags.
+
+    Returns
+    -------
+    str
+      eLRC lyrics text without meta tags.
+    """
     return self._text
 
   def normalized_lines(self) -> list[str]:
+    """Return eLRC lines with normalized timestamp spacing.
+
+    Returns
+    -------
+    list[str]
+      Normalized lines.
+    """
     return normalize_lines(self._text)
 
   def to_file_text(self) -> str:

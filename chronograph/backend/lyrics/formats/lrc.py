@@ -31,9 +31,23 @@ class LrcLyrics(LyricFormat):
 
   @property
   def text(self) -> str:
+    """Return the raw LRC text without metadata tags.
+
+    Returns
+    -------
+    str
+      LRC lyrics text without meta tags.
+    """
     return self._text
 
   def normalized_lines(self) -> list[str]:
+    """Return LRC lines with normalized timestamp spacing.
+
+    Returns
+    -------
+    list[str]
+      Normalized lines.
+    """
     return normalize_lines(self._text)
 
   def to_file_text(self) -> str:

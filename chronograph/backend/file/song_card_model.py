@@ -53,10 +53,12 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str)
   def path(self) -> str:
+    """Media file path as a string."""
     return str(self.mediafile)
 
   @GObject.Property(type=str, default="")
   def title(self) -> str:
+    """Raw title from tags."""
     return self._title
 
   @title.setter
@@ -67,10 +69,12 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default=_title_palceholder)
   def title_display(self) -> str:
+    """Title or a placeholder for display."""
     return self.title or _title_palceholder
 
   @GObject.Property(type=str, default="")
   def artist(self) -> str:
+    """Raw artist from tags."""
     return self._artist
 
   @artist.setter
@@ -81,10 +85,12 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default=_artist_placeholder)
   def artist_display(self) -> str:
+    """Artist or a placeholder for display."""
     return self.artist or _artist_placeholder
 
   @GObject.Property(type=str, default="")
   def album(self) -> str:
+    """Raw album from tags."""
     return self._album
 
   @album.setter
@@ -95,25 +101,30 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=str, default=_album_placeholder)
   def album_display(self) -> str:
+    """Album or a placeholder for display."""
     return self.album or _album_placeholder
 
   @GObject.Property(type=Gdk.Texture)
   def cover(self) -> Gdk.Texture:
+    """Cover texture or a placeholder."""
     if (tx := self.media().get_cover_texture()) is not None:
       return tx
     return Constants.COVER_PLACEHOLDER
 
   @GObject.Property(type=str)
   def imported_at(self) -> str:
+    """Formatted import timestamp."""
     value = self._imported_at
     return datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
 
   @GObject.Property(type=int)
   def imported_at_ts(self) -> int:
+    """Raw import timestamp."""
     return self._imported_at
 
   @GObject.Property(type=str, default="---")
   def last_modified(self) -> str:
+    """Formatted last-lyrics update timestamp."""
     value = Track.get_by_id(self.uuid).latest_lyric_update
     return (
       datetime.fromtimestamp(float(value)).strftime("%d.%m.%Y, %H:%M.%S")  # noqa: DTZ006
@@ -123,6 +134,7 @@ class SongCardModel(GObject.Object):
 
   @GObject.Property(type=object)
   def tags(self) -> list[str]:
+    """List of tags for this track."""
     return list(self._tags)
 
   @tags.setter

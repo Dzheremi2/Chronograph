@@ -40,9 +40,9 @@ class ChronographApplication(Adw.Application):
     Parameters
     ----------
     app : self
-        app itself
+      app itself
     files : list
-        files passed from the file manager
+      files passed from the file manager
     """
     for file in files:
       path = file.get_path()
@@ -217,12 +217,13 @@ class ChronographApplication(Adw.Application):
     Gtk.Application.do_shutdown(self)
 
   def create_actions(self, actions: set) -> None:
-    """Creates actions for provided scope with provided accels
+    """Create actions for the application or window scope.
 
-    Args:
-        actions (set): Actions in format ("name", ("accels",), scope)
-
-        accels, scope: optional
+    Parameters
+    ----------
+    actions : set
+      Actions in the form ``(name, (accels,), scope)`` where accel and scope
+      are optional.
     """
     for action in actions:
       simple_action = Gio.SimpleAction.new(action[0], None)

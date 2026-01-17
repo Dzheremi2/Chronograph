@@ -6,7 +6,18 @@ from chronograph.internal import Schema
 
 
 def ns_to_timestamp(ns: int) -> str:
-  """Convert microseconds to timestamp format"""
+  """Convert nanoseconds to a timestamp token.
+
+  Parameters
+  ----------
+  ns : int
+    Position in nanoseconds.
+
+  Returns
+  -------
+  str
+    LRC-style timestamp token with brackets.
+  """
   ms = ns // 1_000_000  # get milliseconds
   match Schema.get("root.settings.syncing.precise"):
     case True:
@@ -22,7 +33,12 @@ def timestamp_to_ns(text: str) -> int:
   Parameters
   ----------
   text : str
-      A Line-by-Line lyrics line
+    A Line-by-Line lyrics line
+
+  Returns
+  -------
+  int
+    Position in nanoseconds.
   """
   pattern = r"\[([^\[\]]+)\]"
   match = re.search(pattern, text)

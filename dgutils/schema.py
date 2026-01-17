@@ -28,12 +28,12 @@ class Schema(GObject.GObject):
     Parameters
     ----------
     dotted_path : str
-        path.to.the.key
+      path.to.the.key
 
     Returns
     -------
     Any
-        Value of the keypath
+      Value of the keypath
     """
     node, key = self._resolve_parent_and_key(self._data, dotted_path)
     return node[key]
@@ -44,9 +44,9 @@ class Schema(GObject.GObject):
     Parameters
     ----------
     dotted_path : str
-        path.to.the.key
+      path.to.the.key
     value : Any
-        Value
+      Value
     """
     valid_value = self._validate_single_value(dotted_path, value)
     node, key = self._resolve_parent_and_key(self._data, dotted_path)
@@ -72,31 +72,31 @@ class Schema(GObject.GObject):
     Parameters
     ----------
     dotted_path : str
-        path.to.the.key
+      path.to.the.key
     target : GObject.Object
-        Target GObject
+      Target GObject
     prop : str
-        Property name on target GObject
+      Property name on target GObject
     bidirectional : bool, optional
-        Should the sync be bidirectional, by default True
+      Should the sync be bidirectional, by default True
     sync_create : bool, optional
-        Should widget be synced with the value on bind, by default True
+      Should widget be synced with the value on bind, by default True
     transform_to : Optional[Transform], optional
-        A transform method for `schema -> gobject` operation, by default None
+      A transform method for `schema -> gobject` operation, by default None
     transform_from : Optional[Transform], optional
-        A transform method for `gobject -> schema` operations, by default None
+      A transform method for `gobject -> schema` operations, by default None
     preserve_cursor : bool, optional
-        Protects cursor from being reset for text input widgets. Disables widget reflections on schema outside-of-binding changes. By default False
+      Protects cursor from being reset for text input widgets. Disables widget reflections on schema outside-of-binding changes. By default False
 
     Returns
     -------
     Binding | None
-        If preserve_cursor not used, returns a `Binding` object with `unbind()` method
+      If preserve_cursor not used, returns a `Binding` object with `unbind()` method
 
     Raises
     ------
     AttributeError
-        Raised if target GObject doesn't have provided property
+      Raised if target GObject doesn't have provided property
     """
     if target.find_property(prop) is None:
       raise AttributeError(f"{type(target).__name__} has no GObject property '{prop}'")

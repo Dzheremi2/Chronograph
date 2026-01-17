@@ -144,7 +144,7 @@ class Player(GObject.Object, metaclass=GSingleton):
     Parameters
     ----------
     file : Path
-        A file to play
+      A file to play
     """
     self._gst_player.props.uri = file.as_uri()
     logger.info("File “%s” set to player", str(file))
@@ -173,7 +173,7 @@ class Player(GObject.Object, metaclass=GSingleton):
     Parameters
     ----------
     new_pos : int
-        Position in milliseconds
+      Position in milliseconds
     """
     pos = new_pos * Gst.MSECOND
     self._gst_player.pipeline.seek(

@@ -20,7 +20,18 @@ _LRC_HINT = re.compile(r"\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\]")
 
 
 def detect_lyric_format(text: str) -> LyricFormat:
-  """Detect the most likely lyric format from text."""
+  """Detect the most likely lyric format from text.
+
+  Parameters
+  ----------
+  text : str
+    Source lyrics text.
+
+  Returns
+  -------
+  LyricFormat
+    Parsed lyrics format instance.
+  """
   chronie = _parse_chronie_yaml(text)
   if chronie is not None:
     return chronie
@@ -32,11 +43,36 @@ def detect_lyric_format(text: str) -> LyricFormat:
 
 
 def chronie_from_text(text: str) -> ChronieLyrics:
-  """Convert text in any supported format to Chronie lyrics."""
+  """Convert text in any supported format to Chronie lyrics.
+
+  Parameters
+  ----------
+  text : str
+    Source lyrics text.
+
+  Returns
+  -------
+  ChronieLyrics
+    Parsed Chronie lyrics.
+  """
   return detect_lyric_format(text).to_chronie()
 
 
 def format_from_chronie(chronie: ChronieLyrics, fmt: str) -> LyricFormat:
+  """Convert Chronie lyrics into a specific export format.
+
+  Parameters
+  ----------
+  chronie : ChronieLyrics
+    Chronie lyrics to convert.
+  fmt : str
+    Target format name.
+
+  Returns
+  -------
+  LyricFormat
+    Lyrics in the requested format.
+  """
   fmt = fmt.lower()
   if fmt == "plain":
     return PlainLyrics.from_chronie(chronie)
@@ -50,12 +86,38 @@ def format_from_chronie(chronie: ChronieLyrics, fmt: str) -> LyricFormat:
 
 
 def export_chronie(chronie: ChronieLyrics, fmt: str) -> str:
-  """Export Chronie lyrics into a requested format text."""
+  """Export Chronie lyrics into a requested format text.
+
+  Parameters
+  ----------
+  chronie : ChronieLyrics
+    Chronie lyrics to export.
+  fmt : str
+    Target format name.
+
+  Returns
+  -------
+  str
+    Text representation in the requested format.
+  """
   return format_from_chronie(chronie, fmt).to_file_text()
 
 
 def choose_export_format(chronie: ChronieLyrics, target: str) -> Optional[str]:
-  """Pick a best available export format based on target preference."""
+  """Pick a best available export format based on target preference.
+
+  Parameters
+  ----------
+  chronie : ChronieLyrics
+    Chronie lyrics to evaluate.
+  target : str
+    Preferred format name.
+
+  Returns
+  -------
+  Optional[str]
+    Selected export format name, or `None` if unavailable.
+  """
   available = chronie.exportable_formats()
   if not available:
     return None
