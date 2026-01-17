@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-09 22:39+0300\n"
+"POT-Creation-Date: 2026-01-17 20:40+0300\n"
 "PO-Revision-Date: 2025-09-14 16:54+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/chronograph/"
@@ -23,71 +23,71 @@ msgstr ""
 msgid "All Supported Media"
 msgstr ""
 
-#: chronograph/window.py:250
+#: chronograph/window.py:251
 msgid "Only Chronograph libraries are supported"
 msgstr ""
 
-#: chronograph/window.py:299
+#: chronograph/window.py:300
 #, fuzzy
 msgid "Failed to create library"
 msgstr "Könyvtár törlése"
 
-#: chronograph/window.py:313 chronograph/window.py:368 chronograph/main.py:80
+#: chronograph/window.py:314 chronograph/window.py:369 chronograph/main.py:78
 msgid "Open a library before importing files"
 msgstr ""
 
-#: chronograph/window.py:425
+#: chronograph/window.py:426
 msgid "Selected folder is not a Chronograph Library"
 msgstr ""
 
-#: chronograph/window.py:474
+#: chronograph/window.py:475
 msgid "Open a library to import files"
 msgstr ""
 
-#: chronograph/window.py:478
+#: chronograph/window.py:479
 msgid "Import already in progress"
 msgstr ""
 
-#: chronograph/window.py:483 chronograph/window.py:513
+#: chronograph/window.py:484 chronograph/window.py:514
 msgid "No supported files were imported"
 msgstr ""
 
-#: chronograph/window.py:535
+#: chronograph/window.py:536
 msgid "Imported {} track"
 msgid_plural "Imported {} tracks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: chronograph/window.py:547
+#: chronograph/window.py:548
 msgid "Import failed"
 msgstr ""
 
-#: chronograph/window.py:620
+#: chronograph/window.py:624
 #, python-brace-format
 msgid "Deleted {deleted} file"
 msgid_plural "Deleted {deleted} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: chronograph/window.py:659
+#: chronograph/window.py:663
 msgid "Copied successfully"
 msgstr "Sikeresen másolva"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:163
+#: chronograph/main.py:169
 msgid "translator-credits"
 msgstr "Benedek Dévényi <rdbende@proton.me>"
 
-#: chronograph/main.py:171
+#: chronograph/main.py:177
 msgid "Inspiration"
 msgstr "Inspiráció"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:181
+#: chronograph/main.py:187
 msgid "Build your own dictionary"
 msgstr "Állítsd össze a saját szótáradat"
 
-#: chronograph/main.py:187
+#: chronograph/main.py:193
 msgid "Translate the App"
 msgstr "Segítség a fordításban"
 
@@ -118,85 +118,85 @@ msgstr "Nincs elérhető szinkronizált dalszöveg"
 msgid "No plain lyrics available"
 msgstr "Nincs elérhető egyszerű dalszöveg"
 
-#: chronograph/ui/dialogs/preferences.py:147
+#: chronograph/ui/dialogs/preferences.py:123
 #, fuzzy
 msgid "Synced Only"
 msgstr "Szinkronizált"
 
-#: chronograph/ui/dialogs/preferences.py:148
+#: chronograph/ui/dialogs/preferences.py:124
 msgid "Synced, Fallback to Plain If Unavailable"
 msgstr ""
 
-#: chronograph/ui/dialogs/preferences.py:149
+#: chronograph/ui/dialogs/preferences.py:125
 #, fuzzy
 msgid "Plain Only"
 msgstr "Egyszerű"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:64
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:73
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:128
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:140
 #: chronograph/ui/dialogs/tag_registration_dialog.py:22
-#: chronograph/ui/widgets/tag_row.py:60 chronograph/ui/widgets/tag_row.py:87
+#: chronograph/ui/widgets/tag_row.py:61 chronograph/ui/widgets/tag_row.py:88
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:165
 #, fuzzy
 msgid "Connection timed out"
 msgstr "Kapcsolódás az LRClib.net szerverhez időtúllépés miatt megszakadt"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:167
 #, fuzzy
 msgid "Connection error occurred"
 msgstr "Kapcsolati hiba"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:156
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:169
 #, fuzzy
 msgid "An error occurred: "
 msgstr "Ismeretlen hiba történt: {code}"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:162
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:175
 #, fuzzy
 msgid "Instrumental track. No lyrics available"
 msgstr "Nincs elérhető dalszöveg"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:170
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:183
 msgid "Track is missing from library"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:193
 #, fuzzy
 msgid "No synced lyrics found"
 msgstr "Nincs elérhető szinkronizált dalszöveg"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:192
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:205
 #: chronograph/backend/lrclib/lrclib_service.py:423
 #, fuzzy
 msgid "No lyrics found"
 msgstr "Még nincs egy mentés sem"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:200
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:213
 #, fuzzy
 msgid "No plain lyrics found"
 msgstr "Nincs elérhető egyszerű dalszöveg"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:221
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:235
 #, fuzzy
 msgid "Cancelled"
 msgstr "Mégsem"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:269
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:283
 msgid "Fetching"
 msgstr ""
 
 #: chronograph/ui/dialogs/tag_registration_dialog.py:15
-#: chronograph/ui/dialogs/about_file_dialog.py:173
+#: chronograph/ui/dialogs/about_file_dialog.py:174
 msgid "Add New Tag"
 msgstr ""
 
@@ -208,34 +208,34 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:43
+#: chronograph/ui/dialogs/about_file_dialog.py:44
 msgid "Assign tag"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:122
+#: chronograph/ui/dialogs/about_file_dialog.py:118
 #, fuzzy
 msgid "No Lyrics Available"
 msgstr "Nincs elérhető dalszöveg"
 
-#: chronograph/ui/dialogs/about_file_dialog.py:136
+#: chronograph/ui/dialogs/about_file_dialog.py:137
 #, fuzzy
 msgid "Select Tag"
 msgstr "Fájlok kiválasztása"
 
-#: chronograph/ui/dialogs/about_file_dialog.py:158
+#: chronograph/ui/dialogs/about_file_dialog.py:159
 #, fuzzy
 msgid "No Tags Available"
 msgstr "Nincs elérhető dalszöveg"
 
-#: chronograph/ui/dialogs/about_file_dialog.py:159
+#: chronograph/ui/dialogs/about_file_dialog.py:160
 msgid "There's no tags registered yet or all tags were assigned"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:302
+#: chronograph/ui/dialogs/about_file_dialog.py:303
 msgid "Click to unassign"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:365
+#: chronograph/ui/dialogs/about_file_dialog.py:366
 #, python-brace-format
 msgid "File \"{title} — {artist}\" was deleted"
 msgstr ""
@@ -245,66 +245,66 @@ msgstr ""
 msgid "Imported {imported}/{total}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:310
-#: chronograph/ui/sync_pages/wbw_sync_page.py:266
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
+#: chronograph/ui/sync_pages/wbw_sync_page.py:272
 msgid "Lyrics exported to clipboard"
 msgstr "Dalszöveg másolva a vágólapra"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:324
-#: chronograph/ui/sync_pages/wbw_sync_page.py:219
+#: chronograph/ui/sync_pages/lrc_sync_page.py:322
+#: chronograph/ui/sync_pages/wbw_sync_page.py:222
 msgid "Lyrics exported to file"
 msgstr "Dalszöveg mentve fájlba"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:325
-#: chronograph/ui/sync_pages/wbw_sync_page.py:220
+#: chronograph/ui/sync_pages/lrc_sync_page.py:323
+#: chronograph/ui/sync_pages/wbw_sync_page.py:223
 msgid "Show"
 msgstr "Mutatás"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:339
-#: chronograph/ui/sync_pages/wbw_sync_page.py:243
+#: chronograph/ui/sync_pages/lrc_sync_page.py:331
+#: chronograph/ui/sync_pages/wbw_sync_page.py:240
 #, python-brace-format
 msgid "Lyrics ({pattern})"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:450
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Sikeresen közzétéve: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:454
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Érvénytelen közzétételi token: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:468
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Ismeretlen hiba történt: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:480
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Network error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 #, fuzzy
 msgid "An error occurred while publishing lyrics"
 msgstr "Hiba történt az LRClib.net serverhez való csatlakozás során"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:501
+#: chronograph/ui/sync_pages/lrc_sync_page.py:490
 msgid "Seems like not every line is synced"
 msgstr "Úgy tűnik, nincs minden sor szinkronizálva"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 #, fuzzy
 msgid "Unable to publish lyrics."
 msgstr "A dalszöveg közzététele sikertelen"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:517
+#: chronograph/ui/sync_pages/lrc_sync_page.py:506
 #, fuzzy
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
@@ -313,42 +313,42 @@ msgstr ""
 "A dalszövegek közzétételéhez a számnak rendelkeznie kell cím, előadól, album "
 "és dalszöveg mezőkkel"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:522
+#: chronograph/ui/sync_pages/lrc_sync_page.py:511
 msgid "Close"
 msgstr "Bezárás"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:526
+#: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid "Cannot publish empty lyrics"
 msgstr "Üres dalszövegeket nem lehet közzétenni"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:527
+#: chronograph/ui/sync_pages/lrc_sync_page.py:516
 msgid "Why?"
 msgstr "Miért?"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:129
+#: chronograph/ui/sync_pages/wbw_sync_page.py:122
 msgid "No lyrics available"
 msgstr "Nincs elérhető dalszöveg"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:130
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Nem adtál meg dalszöveget a szinkronizációhoz"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:353
+#: chronograph/ui/sync_pages/wbw_sync_page.py:359
 msgid "No lyrics to be re-synced"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:355
+#: chronograph/ui/sync_pages/wbw_sync_page.py:361
 msgid "Open Sync mode to re-sync all words"
 msgstr ""
 
-#: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
-#: data/gtk/ui/dialogs/MetadataEditor.blp:109
+#: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/window.blp:305
+#: data/gtk/ui/dialogs/LRClib.blp:61 data/gtk/ui/dialogs/MetadataEditor.blp:109
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:79
 msgid "Title"
 msgstr "Cím"
 
-#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
-#: data/gtk/ui/dialogs/MetadataEditor.blp:113
+#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/window.blp:311
+#: data/gtk/ui/dialogs/LRClib.blp:66 data/gtk/ui/dialogs/MetadataEditor.blp:113
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:89
 msgid "Artist"
 msgstr "Előadó"
@@ -357,8 +357,8 @@ msgstr "Előadó"
 msgid "Duration"
 msgstr "Hossz"
 
-#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
-#: data/gtk/ui/dialogs/MetadataEditor.blp:117
+#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/window.blp:317
+#: data/gtk/ui/dialogs/LRClib.blp:70 data/gtk/ui/dialogs/MetadataEditor.blp:117
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:99
 msgid "Album"
 msgstr "Album"
@@ -381,22 +381,7 @@ msgstr "Nem"
 msgid "{vol}%"
 msgstr ""
 
-#: chronograph/ui/widgets/lyric_row.py:28
-#, fuzzy
-msgid "LRClib"
-msgstr "Keresés"
-
-#: chronograph/ui/widgets/lyric_row.py:29
-#, fuzzy
-msgid "Other Lyric"
-msgstr "Dalszövegek beágyazása"
-
-#: chronograph/ui/widgets/lyric_row.py:30
-#, fuzzy
-msgid "Import From…"
-msgstr "Betöltés…"
-
-#: chronograph/ui/widgets/lyric_row.py:37
+#: chronograph/ui/widgets/lyric_row.py:27
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
@@ -404,7 +389,7 @@ msgstr "Betöltés…"
 msgid "File"
 msgstr "Fájl"
 
-#: chronograph/ui/widgets/lyric_row.py:38
+#: chronograph/ui/widgets/lyric_row.py:28
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
@@ -412,53 +397,52 @@ msgstr "Fájl"
 msgid "Clipboard"
 msgstr "Vágólap"
 
-#: chronograph/ui/widgets/lyric_row.py:39
+#: chronograph/ui/widgets/lyric_row.py:29
 #, fuzzy
-msgid "Export To…"
+msgid "TBI Export To…"
 msgstr "Exportálás…"
 
-#: chronograph/ui/widgets/tag_row.py:44 chronograph/ui/widgets/tag_row.py:61
+#: chronograph/ui/widgets/tag_row.py:45 chronograph/ui/widgets/tag_row.py:62
 msgid "Rename"
 msgstr "Átnevezés"
 
-#: chronograph/ui/widgets/tag_row.py:45 chronograph/ui/widgets/tag_row.py:88
+#: chronograph/ui/widgets/tag_row.py:46 chronograph/ui/widgets/tag_row.py:89
 msgid "Delete"
 msgstr "Törlés"
 
-#: chronograph/ui/widgets/tag_row.py:56
+#: chronograph/ui/widgets/tag_row.py:57
 #, fuzzy
 msgid "Rename Tag"
 msgstr "Átnevezés"
 
-#: chronograph/ui/widgets/tag_row.py:83
+#: chronograph/ui/widgets/tag_row.py:84
 #, fuzzy
 msgid "Delete Tag?"
 msgstr "Törlés"
 
-#: chronograph/backend/file/song_card_model.py:13
+#: chronograph/backend/file/song_card_model.py:14
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/backend/file/song_card_model.py:14
+#: chronograph/backend/file/song_card_model.py:15
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/backend/file/song_card_model.py:15
+#: chronograph/backend/file/song_card_model.py:16
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: chronograph/backend/file/available_lyrics.py:65 data/gtk/window.blp:273
+#: chronograph/backend/file/available_lyrics.py:63 data/gtk/window.blp:273
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/backend/file/available_lyrics.py:66
-#: chronograph/backend/file/available_lyrics.py:78 data/gtk/window.blp:277
-#: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:206
-#: data/gtk/ui/dialogs/Preferences.blp:208
+#: chronograph/backend/file/available_lyrics.py:64
+#: chronograph/backend/file/available_lyrics.py:76 data/gtk/window.blp:277
+#: data/gtk/ui/dialogs/LRClib.blp:154
 msgid "Plain"
 msgstr "Egyszerű"
 
@@ -492,7 +476,7 @@ msgstr ""
 msgid "Press plus button to register a new Tag"
 msgstr "Használd a kitűzés gombot a jelenlegi mappa mentésekhez adásához"
 
-#: data/gtk/window.blp:17 data/gtk/window.blp:319
+#: data/gtk/window.blp:17 data/gtk/window.blp:347
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:29
 msgid "Quick Editor"
@@ -520,20 +504,20 @@ msgstr "Ejts ide fájlokat a megnyitáshoz"
 msgid "Menu"
 msgstr ""
 
-#: data/gtk/window.blp:147 data/gtk/window.blp:324
+#: data/gtk/window.blp:147 data/gtk/window.blp:352
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:34
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: data/gtk/window.blp:148 data/gtk/window.blp:325
+#: data/gtk/window.blp:148 data/gtk/window.blp:353
 #: data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:35
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
 msgid "Keybindings"
 msgstr "Gyorsbillentyűk megnyitása"
 
-#: data/gtk/window.blp:149 data/gtk/window.blp:326
+#: data/gtk/window.blp:149 data/gtk/window.blp:354
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
 msgid "About"
@@ -543,7 +527,7 @@ msgstr "A Chronograph névjegye"
 msgid "Open or create Library to start syncing"
 msgstr ""
 
-#: data/gtk/window.blp:171 data/gtk/window.blp:434
+#: data/gtk/window.blp:171 data/gtk/window.blp:462
 #, fuzzy
 msgid "Open Library"
 msgstr "Könyvtár"
@@ -583,58 +567,67 @@ msgstr "Könyvtár törlése"
 msgid "Sort"
 msgstr "Rendezés"
 
-#: data/gtk/window.blp:304
+#: data/gtk/window.blp:323
+msgid "Last Added"
+msgstr ""
+
+#: data/gtk/window.blp:331
 msgid "A-Z"
 msgstr "A-Z"
 
-#: data/gtk/window.blp:310
+#: data/gtk/window.blp:337
 msgid "Z-A"
 msgstr "Z-A"
 
-#: data/gtk/window.blp:320
+#: data/gtk/window.blp:348
 msgid "Mass Lyrics Downloading"
 msgstr ""
 
-#: data/gtk/window.blp:351
+#: data/gtk/window.blp:379
 #, fuzzy
 msgid "Delete selected files"
 msgstr "Kijelölt sor törlése"
 
-#: data/gtk/window.blp:360
+#: data/gtk/window.blp:388
 msgid "Enable bulk deletion mode"
 msgstr ""
 
-#: data/gtk/window.blp:378 data/gtk/ui/dialogs/LRClib.blp:80
+#: data/gtk/window.blp:406 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
 msgstr "Keresés"
 
-#: data/gtk/window.blp:399
+#: data/gtk/window.blp:427
 #, fuzzy
 msgid "Library is Empty"
 msgstr "Könyvtár"
 
-#: data/gtk/window.blp:400
+#: data/gtk/window.blp:428
 msgid ""
 "Your current Library is empty. Import files right now or open another Library"
 msgstr ""
 
-#: data/gtk/window.blp:407
+#: data/gtk/window.blp:435
 #, fuzzy
 msgid "Import…"
 msgstr "Betöltés…"
 
-#: data/gtk/window.blp:417 data/gtk/ui/dialogs/LRClib.blp:223
+#: data/gtk/window.blp:445 data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
 msgstr ""
 
-#: data/gtk/window.blp:418
+#: data/gtk/window.blp:446
 msgid "No songs found for your request. Try out another one"
 msgstr ""
 
-#: data/gtk/window.blp:433 data/gtk/ui/dialogs/ImportDialog.blp:10
+#: data/gtk/window.blp:461 data/gtk/ui/dialogs/ImportDialog.blp:10
 #, fuzzy
 msgid "Import Files"
 msgstr "Fájl adatai"
+
+#: data/gtk/window.blp:466
+#, fuzzy
+msgid "Create New Library"
+msgstr "Könyvtár törlése"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:62
@@ -944,64 +937,6 @@ msgstr "Automatikus mentés időköze"
 #: data/gtk/ui/dialogs/Preferences.blp:162
 msgid "Autosave interval after lyrics syncing inactivity"
 msgstr "Automatikus mentés időköze az utolsó aktivitás után"
-
-#: data/gtk/ui/dialogs/Preferences.blp:177
-#, fuzzy
-msgid "Save Plain LRC Too"
-msgstr "A sima LRC fájlt is mentse"
-
-#: data/gtk/ui/dialogs/Preferences.blp:178
-msgid ""
-"Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
-"set"
-msgstr ""
-"Elmenti a sima LRC fájlt is az eLRC fájl mellett. Csak akkor működik, ha az "
-"eLRC előtag be van állítva"
-
-#: data/gtk/ui/dialogs/Preferences.blp:183
-#, fuzzy
-msgid "Lyrics Embedding"
-msgstr "Dalszöveg beágyazás"
-
-#: data/gtk/ui/dialogs/Preferences.blp:187
-#, fuzzy
-msgid "Embed Lyrics Within Audio File"
-msgstr "Dalszövegek beágyazása az audio fájlokba"
-
-#: data/gtk/ui/dialogs/Preferences.blp:191
-#, fuzzy
-msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
-msgstr "Önálló szinkronizált dalszöveg címke használata Vorbis fájlokban"
-
-#: data/gtk/ui/dialogs/Preferences.blp:192
-msgid ""
-"Enables writing synced lyrics into separate tag in Vorbis Comment capable "
-"files (ogg, flac, opus)"
-msgstr ""
-"Lehetővé teszi a szinkronizált dalszövegek külön címkébe történő írását a "
-"Vorbis Comment kompatibilis fájlokban (ogg, flac, opus)"
-
-#: data/gtk/ui/dialogs/Preferences.blp:197
-#, fuzzy
-msgid "Embed Lyrics Default Format"
-msgstr "Dalszövegek beágyazása"
-
-#: data/gtk/ui/dialogs/Preferences.blp:198
-msgid "Brings lyrics to selected format before embedding"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:227
-msgctxt "button tooltip; noun"
-msgid "Help"
-msgstr "Súgó"
-
-#: data/gtk/ui/dialogs/Preferences.blp:233
-msgid ""
-"The lyrics would be brought to selected format BEFORE the embedding starts.\n"
-"If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
-"be converted to LRC and then embedded the way you've selected (Vorbis)\n"
-"This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
-msgstr ""
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
 #, fuzzy
@@ -1372,6 +1307,56 @@ msgstr "Dalszöveg szinkronizálási nézet kisebb kijelzőn"
 #, fuzzy
 msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr "lyrics;internet;songs;multimedia;media;lrclib;music;syncing;chronograph;dalszöveg;számok;dalok;média;multimédia;zene;szinkronizálás;kronográf;"
+
+#, fuzzy
+#~ msgid "LRClib"
+#~ msgstr "Keresés"
+
+#, fuzzy
+#~ msgid "Other Lyric"
+#~ msgstr "Dalszövegek beágyazása"
+
+#, fuzzy
+#~ msgid "Import From…"
+#~ msgstr "Betöltés…"
+
+#, fuzzy
+#~ msgid "Save Plain LRC Too"
+#~ msgstr "A sima LRC fájlt is mentse"
+
+#~ msgid ""
+#~ "Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix "
+#~ "isn't set"
+#~ msgstr ""
+#~ "Elmenti a sima LRC fájlt is az eLRC fájl mellett. Csak akkor működik, ha "
+#~ "az eLRC előtag be van állítva"
+
+#, fuzzy
+#~ msgid "Lyrics Embedding"
+#~ msgstr "Dalszöveg beágyazás"
+
+#, fuzzy
+#~ msgid "Embed Lyrics Within Audio File"
+#~ msgstr "Dalszövegek beágyazása az audio fájlokba"
+
+#, fuzzy
+#~ msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
+#~ msgstr "Önálló szinkronizált dalszöveg címke használata Vorbis fájlokban"
+
+#~ msgid ""
+#~ "Enables writing synced lyrics into separate tag in Vorbis Comment capable "
+#~ "files (ogg, flac, opus)"
+#~ msgstr ""
+#~ "Lehetővé teszi a szinkronizált dalszövegek külön címkébe történő írását a "
+#~ "Vorbis Comment kompatibilis fájlokban (ogg, flac, opus)"
+
+#, fuzzy
+#~ msgid "Embed Lyrics Default Format"
+#~ msgstr "Dalszövegek beágyazása"
+
+#~ msgctxt "button tooltip; noun"
+#~ msgid "Help"
+#~ msgstr "Súgó"
 
 #, fuzzy
 #~ msgid "Avaiable Lyrics"

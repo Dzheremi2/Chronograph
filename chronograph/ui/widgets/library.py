@@ -229,7 +229,7 @@ class Library(Gtk.GridView):
       case "album":
         return ((model1.album_display > model2.album_display) ^ order) * 2 - 1
       case "last-added":
-        return ((model1.imported_at_ts > model2.imported_at_ts) ^ order) * 2 - 1
+        return ((model1.imported_at_ts > model2.imported_at_ts) ^ (not order)) * 2 - 1
 
   def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
     text = Constants.WIN.search_entry.get_text().lower()

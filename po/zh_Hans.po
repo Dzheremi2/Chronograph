@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-09 22:39+0300\n"
+"POT-Creation-Date: 2026-01-17 20:40+0300\n"
 "PO-Revision-Date: 2025-04-28 22:10+0000\n"
 "Last-Translator: mevius <mevius.3301@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -23,69 +23,69 @@ msgstr ""
 msgid "All Supported Media"
 msgstr ""
 
-#: chronograph/window.py:250
+#: chronograph/window.py:251
 msgid "Only Chronograph libraries are supported"
 msgstr ""
 
-#: chronograph/window.py:299
+#: chronograph/window.py:300
 msgid "Failed to create library"
 msgstr ""
 
-#: chronograph/window.py:313 chronograph/window.py:368 chronograph/main.py:80
+#: chronograph/window.py:314 chronograph/window.py:369 chronograph/main.py:78
 msgid "Open a library before importing files"
 msgstr ""
 
-#: chronograph/window.py:425
+#: chronograph/window.py:426
 msgid "Selected folder is not a Chronograph Library"
 msgstr ""
 
-#: chronograph/window.py:474
+#: chronograph/window.py:475
 msgid "Open a library to import files"
 msgstr ""
 
-#: chronograph/window.py:478
+#: chronograph/window.py:479
 msgid "Import already in progress"
 msgstr ""
 
-#: chronograph/window.py:483 chronograph/window.py:513
+#: chronograph/window.py:484 chronograph/window.py:514
 msgid "No supported files were imported"
 msgstr ""
 
-#: chronograph/window.py:535
+#: chronograph/window.py:536
 msgid "Imported {} track"
 msgid_plural "Imported {} tracks"
 msgstr[0] ""
 
-#: chronograph/window.py:547
+#: chronograph/window.py:548
 msgid "Import failed"
 msgstr ""
 
-#: chronograph/window.py:620
+#: chronograph/window.py:624
 #, python-brace-format
 msgid "Deleted {deleted} file"
 msgid_plural "Deleted {deleted} files"
 msgstr[0] ""
 
-#: chronograph/window.py:659
+#: chronograph/window.py:663
 msgid "Copied successfully"
 msgstr "已成功复制"
 
 #. Translators: Add Your Name, Your Name <your.email@example.com>, or Your Name https://your-site.com for it to show up in the About dialog. PLEASE, DON'T DELETE PREVIOUS TRANSLATORS CREDITS AND SEPARATE YOURSELF BY NEWLINE `\n` METASYMBOL
-#: chronograph/main.py:163
+#: chronograph/main.py:169
 msgid "translator-credits"
 msgstr "Mevius<mevius.3301@gmail.com>"
 
-#: chronograph/main.py:171
+#: chronograph/main.py:177
 #, fuzzy
 msgid "Inspiration"
 msgstr "时长"
 
 #. Translators: This is the summary of the another app Lexi: https://flathub.org/apps/io.github.dzheremi2.lexi
-#: chronograph/main.py:181
+#: chronograph/main.py:187
 msgid "Build your own dictionary"
 msgstr ""
 
-#: chronograph/main.py:187
+#: chronograph/main.py:193
 msgid "Translate the App"
 msgstr ""
 
@@ -114,83 +114,83 @@ msgstr "无同步歌词可用"
 msgid "No plain lyrics available"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/preferences.py:147
+#: chronograph/ui/dialogs/preferences.py:123
 #, fuzzy
 msgid "Synced Only"
 msgstr "已同步"
 
-#: chronograph/ui/dialogs/preferences.py:148
+#: chronograph/ui/dialogs/preferences.py:124
 msgid "Synced, Fallback to Plain If Unavailable"
 msgstr ""
 
-#: chronograph/ui/dialogs/preferences.py:149
+#: chronograph/ui/dialogs/preferences.py:125
 #, fuzzy
 msgid "Plain Only"
 msgstr "纯文本"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:64
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:132
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:73
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:144
 #: data/gtk/ui/dialogs/MassDownloadingDialog.blp:62
 msgid "Fetch"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:128
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:140
 #: chronograph/ui/dialogs/tag_registration_dialog.py:22
-#: chronograph/ui/widgets/tag_row.py:60 chronograph/ui/widgets/tag_row.py:87
+#: chronograph/ui/widgets/tag_row.py:61 chronograph/ui/widgets/tag_row.py:88
 #: data/gtk/ui/dialogs/MetadataEditor.blp:16
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:17
 msgid "Cancel"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:152
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:165
 msgid "Connection timed out"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:154
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:167
 #, fuzzy
 msgid "Connection error occurred"
 msgstr "发生未知错误 "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:156
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:169
 #, fuzzy
 msgid "An error occurred: "
 msgstr "发生未知错误 "
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:162
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:175
 #, fuzzy
 msgid "Instrumental track. No lyrics available"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:170
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:183
 msgid "Track is missing from library"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:180
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:193
 #, fuzzy
 msgid "No synced lyrics found"
 msgstr "无同步歌词可用"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:192
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:205
 #: chronograph/backend/lrclib/lrclib_service.py:423
 #, fuzzy
 msgid "No lyrics found"
 msgstr "尚未找到保存项"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:200
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:213
 #, fuzzy
 msgid "No plain lyrics found"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:221
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:235
 msgid "Cancelled"
 msgstr ""
 
-#: chronograph/ui/dialogs/mass_downloading_dialog.py:269
+#: chronograph/ui/dialogs/mass_downloading_dialog.py:283
 msgid "Fetching"
 msgstr ""
 
 #: chronograph/ui/dialogs/tag_registration_dialog.py:15
-#: chronograph/ui/dialogs/about_file_dialog.py:173
+#: chronograph/ui/dialogs/about_file_dialog.py:174
 msgid "Add New Tag"
 msgstr ""
 
@@ -202,34 +202,34 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:43
+#: chronograph/ui/dialogs/about_file_dialog.py:44
 msgid "Assign tag"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:122
+#: chronograph/ui/dialogs/about_file_dialog.py:118
 #, fuzzy
 msgid "No Lyrics Available"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/about_file_dialog.py:136
+#: chronograph/ui/dialogs/about_file_dialog.py:137
 #, fuzzy
 msgid "Select Tag"
 msgstr "选择目录"
 
-#: chronograph/ui/dialogs/about_file_dialog.py:158
+#: chronograph/ui/dialogs/about_file_dialog.py:159
 #, fuzzy
 msgid "No Tags Available"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/dialogs/about_file_dialog.py:159
+#: chronograph/ui/dialogs/about_file_dialog.py:160
 msgid "There's no tags registered yet or all tags were assigned"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:302
+#: chronograph/ui/dialogs/about_file_dialog.py:303
 msgid "Click to unassign"
 msgstr ""
 
-#: chronograph/ui/dialogs/about_file_dialog.py:365
+#: chronograph/ui/dialogs/about_file_dialog.py:366
 #, python-brace-format
 msgid "File \"{title} — {artist}\" was deleted"
 msgstr ""
@@ -239,107 +239,107 @@ msgstr ""
 msgid "Imported {imported}/{total}"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:310
-#: chronograph/ui/sync_pages/wbw_sync_page.py:266
+#: chronograph/ui/sync_pages/lrc_sync_page.py:306
+#: chronograph/ui/sync_pages/wbw_sync_page.py:272
 #, fuzzy
 msgid "Lyrics exported to clipboard"
 msgstr "复制到粘贴板"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:324
-#: chronograph/ui/sync_pages/wbw_sync_page.py:219
+#: chronograph/ui/sync_pages/lrc_sync_page.py:322
+#: chronograph/ui/sync_pages/wbw_sync_page.py:222
 msgid "Lyrics exported to file"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:325
-#: chronograph/ui/sync_pages/wbw_sync_page.py:220
+#: chronograph/ui/sync_pages/lrc_sync_page.py:323
+#: chronograph/ui/sync_pages/wbw_sync_page.py:223
 msgid "Show"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:339
-#: chronograph/ui/sync_pages/wbw_sync_page.py:243
+#: chronograph/ui/sync_pages/lrc_sync_page.py:331
+#: chronograph/ui/sync_pages/wbw_sync_page.py:240
 #, python-brace-format
 msgid "Lyrics ({pattern})"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:460
+#: chronograph/ui/sync_pages/lrc_sync_page.py:450
 #, fuzzy, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "发布成功 "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:464
+#: chronograph/ui/sync_pages/lrc_sync_page.py:454
 #, fuzzy, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "发布令牌错误 "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:468
+#: chronograph/ui/sync_pages/lrc_sync_page.py:458
 #, fuzzy, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "发生未知错误 "
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:480
+#: chronograph/ui/sync_pages/lrc_sync_page.py:470
 msgid "Network error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:481
-#: chronograph/ui/sync_pages/lrc_sync_page.py:487
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "Log"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:486
+#: chronograph/ui/sync_pages/lrc_sync_page.py:476
 msgid "An error occurred while publishing lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:501
+#: chronograph/ui/sync_pages/lrc_sync_page.py:490
 msgid "Seems like not every line is synced"
 msgstr "似乎不是每一句歌词都是同步的"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:504
 msgid "Unable to publish lyrics."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:517
+#: chronograph/ui/sync_pages/lrc_sync_page.py:506
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:522
+#: chronograph/ui/sync_pages/lrc_sync_page.py:511
 msgid "Close"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:526
+#: chronograph/ui/sync_pages/lrc_sync_page.py:515
 msgid "Cannot publish empty lyrics"
 msgstr ""
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:527
+#: chronograph/ui/sync_pages/lrc_sync_page.py:516
 msgid "Why?"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:129
+#: chronograph/ui/sync_pages/wbw_sync_page.py:122
 #, fuzzy
 msgid "No lyrics available"
 msgstr "无纯文本歌词可用"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:130
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "You've not provided any lyrics for synchronization"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:353
+#: chronograph/ui/sync_pages/wbw_sync_page.py:359
 msgid "No lyrics to be re-synced"
 msgstr ""
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:355
+#: chronograph/ui/sync_pages/wbw_sync_page.py:361
 msgid "Open Sync mode to re-sync all words"
 msgstr ""
 
-#: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/ui/dialogs/LRClib.blp:61
-#: data/gtk/ui/dialogs/MetadataEditor.blp:109
+#: chronograph/ui/widgets/lrclib_track.py:10 data/gtk/window.blp:305
+#: data/gtk/ui/dialogs/LRClib.blp:61 data/gtk/ui/dialogs/MetadataEditor.blp:109
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:79
 msgid "Title"
 msgstr "标题"
 
-#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/ui/dialogs/LRClib.blp:66
-#: data/gtk/ui/dialogs/MetadataEditor.blp:113
+#: chronograph/ui/widgets/lrclib_track.py:11 data/gtk/window.blp:311
+#: data/gtk/ui/dialogs/LRClib.blp:66 data/gtk/ui/dialogs/MetadataEditor.blp:113
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:89
 msgid "Artist"
 msgstr "作者"
@@ -348,8 +348,8 @@ msgstr "作者"
 msgid "Duration"
 msgstr "时长"
 
-#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/ui/dialogs/LRClib.blp:70
-#: data/gtk/ui/dialogs/MetadataEditor.blp:117
+#: chronograph/ui/widgets/lrclib_track.py:13 data/gtk/window.blp:317
+#: data/gtk/ui/dialogs/LRClib.blp:70 data/gtk/ui/dialogs/MetadataEditor.blp:117
 #: data/gtk/ui/dialogs/AboutFileDialog.blp:99
 msgid "Album"
 msgstr "专辑"
@@ -372,20 +372,7 @@ msgstr ""
 msgid "{vol}%"
 msgstr ""
 
-#: chronograph/ui/widgets/lyric_row.py:28
-#, fuzzy
-msgid "LRClib"
-msgstr "搜索"
-
-#: chronograph/ui/widgets/lyric_row.py:29
-msgid "Other Lyric"
-msgstr ""
-
-#: chronograph/ui/widgets/lyric_row.py:30
-msgid "Import From…"
-msgstr ""
-
-#: chronograph/ui/widgets/lyric_row.py:37
+#: chronograph/ui/widgets/lyric_row.py:27
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
@@ -393,7 +380,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: chronograph/ui/widgets/lyric_row.py:38
+#: chronograph/ui/widgets/lyric_row.py:28
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
@@ -401,53 +388,52 @@ msgstr ""
 msgid "Clipboard"
 msgstr ""
 
-#: chronograph/ui/widgets/lyric_row.py:39
-msgid "Export To…"
+#: chronograph/ui/widgets/lyric_row.py:29
+msgid "TBI Export To…"
 msgstr ""
 
-#: chronograph/ui/widgets/tag_row.py:44 chronograph/ui/widgets/tag_row.py:61
+#: chronograph/ui/widgets/tag_row.py:45 chronograph/ui/widgets/tag_row.py:62
 msgid "Rename"
 msgstr ""
 
-#: chronograph/ui/widgets/tag_row.py:45 chronograph/ui/widgets/tag_row.py:88
+#: chronograph/ui/widgets/tag_row.py:46 chronograph/ui/widgets/tag_row.py:89
 msgid "Delete"
 msgstr ""
 
-#: chronograph/ui/widgets/tag_row.py:56
+#: chronograph/ui/widgets/tag_row.py:57
 msgid "Rename Tag"
 msgstr ""
 
-#: chronograph/ui/widgets/tag_row.py:83
+#: chronograph/ui/widgets/tag_row.py:84
 msgid "Delete Tag?"
 msgstr ""
 
-#: chronograph/backend/file/song_card_model.py:13
+#: chronograph/backend/file/song_card_model.py:14
 #, fuzzy
 msgctxt "song title placeholder"
 msgid "Unknown"
 msgstr "未知"
 
-#: chronograph/backend/file/song_card_model.py:14
+#: chronograph/backend/file/song_card_model.py:15
 #, fuzzy
 msgctxt "song artist placeholder"
 msgid "Unknown"
 msgstr "未知"
 
-#: chronograph/backend/file/song_card_model.py:15
+#: chronograph/backend/file/song_card_model.py:16
 #, fuzzy
 msgctxt "song album placeholder"
 msgid "Unknown"
 msgstr "未知"
 
-#: chronograph/backend/file/available_lyrics.py:65 data/gtk/window.blp:273
+#: chronograph/backend/file/available_lyrics.py:63 data/gtk/window.blp:273
 msgctxt "means lyrics absence"
 msgid "None"
 msgstr ""
 
-#: chronograph/backend/file/available_lyrics.py:66
-#: chronograph/backend/file/available_lyrics.py:78 data/gtk/window.blp:277
-#: data/gtk/ui/dialogs/LRClib.blp:154 data/gtk/ui/dialogs/Preferences.blp:206
-#: data/gtk/ui/dialogs/Preferences.blp:208
+#: chronograph/backend/file/available_lyrics.py:64
+#: chronograph/backend/file/available_lyrics.py:76 data/gtk/window.blp:277
+#: data/gtk/ui/dialogs/LRClib.blp:154
 msgid "Plain"
 msgstr "纯文本"
 
@@ -481,7 +467,7 @@ msgstr ""
 msgid "Press plus button to register a new Tag"
 msgstr "点击固定按钮将当前目录添加到保存项"
 
-#: data/gtk/window.blp:17 data/gtk/window.blp:319
+#: data/gtk/window.blp:17 data/gtk/window.blp:347
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:30
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:29
 msgid "Quick Editor"
@@ -509,20 +495,20 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: data/gtk/window.blp:147 data/gtk/window.blp:324
+#: data/gtk/window.blp:147 data/gtk/window.blp:352
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:34
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:33
 msgid "Preferences"
 msgstr ""
 
-#: data/gtk/window.blp:148 data/gtk/window.blp:325
+#: data/gtk/window.blp:148 data/gtk/window.blp:353
 #: data/gtk/ui/shortcuts-dialog.blp:30
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:35
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:34
 msgid "Keybindings"
 msgstr ""
 
-#: data/gtk/window.blp:149 data/gtk/window.blp:326
+#: data/gtk/window.blp:149 data/gtk/window.blp:354
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:36
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:35
 #, fuzzy
@@ -533,7 +519,7 @@ msgstr "关于文件"
 msgid "Open or create Library to start syncing"
 msgstr ""
 
-#: data/gtk/window.blp:171 data/gtk/window.blp:434
+#: data/gtk/window.blp:171 data/gtk/window.blp:462
 #, fuzzy
 msgid "Open Library"
 msgstr "空目录"
@@ -571,56 +557,65 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: data/gtk/window.blp:304
+#: data/gtk/window.blp:323
+msgid "Last Added"
+msgstr ""
+
+#: data/gtk/window.blp:331
 msgid "A-Z"
 msgstr ""
 
-#: data/gtk/window.blp:310
+#: data/gtk/window.blp:337
 msgid "Z-A"
 msgstr ""
 
-#: data/gtk/window.blp:320
+#: data/gtk/window.blp:348
 msgid "Mass Lyrics Downloading"
 msgstr ""
 
-#: data/gtk/window.blp:351
+#: data/gtk/window.blp:379
 #, fuzzy
 msgid "Delete selected files"
 msgstr "重新播放选中的歌词行"
 
-#: data/gtk/window.blp:360
+#: data/gtk/window.blp:388
 msgid "Enable bulk deletion mode"
 msgstr ""
 
-#: data/gtk/window.blp:378 data/gtk/ui/dialogs/LRClib.blp:80
+#: data/gtk/window.blp:406 data/gtk/ui/dialogs/LRClib.blp:80
 msgid "Search"
 msgstr "搜索"
 
-#: data/gtk/window.blp:399
+#: data/gtk/window.blp:427
 msgid "Library is Empty"
 msgstr ""
 
-#: data/gtk/window.blp:400
+#: data/gtk/window.blp:428
 msgid ""
 "Your current Library is empty. Import files right now or open another Library"
 msgstr ""
 
-#: data/gtk/window.blp:407
+#: data/gtk/window.blp:435
 msgid "Import…"
 msgstr ""
 
-#: data/gtk/window.blp:417 data/gtk/ui/dialogs/LRClib.blp:223
+#: data/gtk/window.blp:445 data/gtk/ui/dialogs/LRClib.blp:223
 msgid "Nothing Was Found"
 msgstr ""
 
-#: data/gtk/window.blp:418
+#: data/gtk/window.blp:446
 msgid "No songs found for your request. Try out another one"
 msgstr ""
 
-#: data/gtk/window.blp:433 data/gtk/ui/dialogs/ImportDialog.blp:10
+#: data/gtk/window.blp:461 data/gtk/ui/dialogs/ImportDialog.blp:10
 #, fuzzy
 msgid "Import Files"
 msgstr "关于文件"
+
+#: data/gtk/window.blp:466
+#, fuzzy
+msgid "Create New Library"
+msgstr "空目录"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:62
@@ -918,55 +913,6 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:162
 msgid "Autosave interval after lyrics syncing inactivity"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:177
-msgid "Save Plain LRC Too"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:178
-msgid ""
-"Saves a plain LRC file along with eLRC one. Won't work if eLRC prefix isn't "
-"set"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:183
-msgid "Lyrics Embedding"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:187
-msgid "Embed Lyrics Within Audio File"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:191
-msgid "Use Individual Synced Lyrics Tag in Vorbis Files"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:192
-msgid ""
-"Enables writing synced lyrics into separate tag in Vorbis Comment capable "
-"files (ogg, flac, opus)"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:197
-msgid "Embed Lyrics Default Format"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:198
-msgid "Brings lyrics to selected format before embedding"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:227
-msgctxt "button tooltip; noun"
-msgid "Help"
-msgstr ""
-
-#: data/gtk/ui/dialogs/Preferences.blp:233
-msgid ""
-"The lyrics would be brought to selected format BEFORE the embedding starts.\n"
-"If you're using e.g eLRC, but default format is set to LRC, then lyrics will "
-"be converted to LRC and then embedded the way you've selected (Vorbis)\n"
-"This only fallbacks the lyrics to selected format (eLRC -> LRC -> Plain)"
 msgstr ""
 
 #: data/gtk/ui/dialogs/ResyncAllAlertDialog.blp:5
@@ -1333,6 +1279,10 @@ msgstr ""
 #: data/io.github.dzheremi2.lrcmake-gtk.desktop.in:10
 msgid "lyrics;songs;multimedia;media;lrclib;music;syncing;chronograph;"
 msgstr ""
+
+#, fuzzy
+#~ msgid "LRClib"
+#~ msgstr "搜索"
 
 #~ msgid "Path"
 #~ msgstr "路径"

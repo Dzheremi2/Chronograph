@@ -240,7 +240,7 @@ class WBWSyncPage(Adw.NavigationPage):
     lrc_filter.set_name(_("Lyrics ({pattern})").format(pattern="*.lrc"))
     lrc_filter.add_pattern("*.lrc")
     chron_filter = Gtk.FileFilter()
-    chron_filter.set_name(_("Chronie ({pattern})").format(pattern="*.chron"))
+    chron_filter.set_name("Chronie (.chron)")
     chron_filter.add_pattern("*.chron")
 
     filters = Gio.ListStore.new(Gtk.FileFilter)
