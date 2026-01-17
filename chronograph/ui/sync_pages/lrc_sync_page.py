@@ -336,7 +336,9 @@ class LRCSyncPage(Adw.NavigationPage):
     file_filter.add_pattern(pattern)
     filters = Gio.ListStore.new(Gtk.FileFilter)
     filters.append(file_filter)
-    dialog = Gtk.FileDialog(initial_name=Path(self._file.path).stem + suffix)
+    dialog = Gtk.FileDialog(
+      initial_name=f"{self._card.artist_display} - {self._card.title_display}" + suffix
+    )
     dialog.set_filters(filters)
     dialog.set_default_filter(file_filter)
     dialog.save(Constants.WIN, None, on_export_file_selected, lyrics)
