@@ -89,12 +89,42 @@ _need_cmd pkg-config
 _need_cmd ldd
 _need_cmd find
 
+_append_env_path() {
+  local var_name="$1"
+  local value="$2"
+
+  if [[ -z "$value" ]]; then
+    return
+  fi
+
+  local current="${!var_name:-}"
+  if [[ -n "$current" ]]; then
+    if [[ ":$current:" == *":$value:"* ]]; then
+      return
+    fi
+    export "$var_name"="${value}:${current}"
+  else
+    export "$var_name"="$value"
+  fi
+}
+
+GI_TYPELIB_DIR="$(pkg-config --variable=typelibdir gobject-introspection-1.0 2>/dev/null || true)"
+_append_env_path "GI_TYPELIB_PATH" "$GI_TYPELIB_DIR"
+for candidate in /usr/lib/girepository-1.0 /usr/lib64/girepository-1.0 /usr/lib/*/girepository-1.0; do
+  if [[ -d "$candidate" ]]; then
+    _append_env_path "GI_TYPELIB_PATH" "$candidate"
+  fi
+done
+
 ARCH="$(uname -m)"
 if [[ "$ARCH" != "x86_64" ]]; then
   _die "Only x86_64 AppImage builds are supported."
 fi
 
-BUILD_ROOT="$ROOT/_build/appimage"
+BUILD_ROOT="${CHRONOGRAPH_BUILD_ROOT:-$ROOT/_build/appimage}"
+if [[ "$BUILD_ROOT" != /* ]]; then
+  BUILD_ROOT="$ROOT/$BUILD_ROOT"
+fi
 APPDIR="$BUILD_ROOT/AppDir"
 BUILD_DIR="$BUILD_ROOT/meson"
 export BUILD_DIR
@@ -105,9 +135,11 @@ rm -rf "$APPDIR" "$DIST_DIR"
 mkdir -p "$APPDIR" "$DIST_DIR" "$TOOLS_DIR"
 
 if [[ -d "$BUILD_DIR" ]]; then
-  meson setup --reconfigure "$BUILD_DIR" "$ROOT" --prefix /usr -Dprofile="$PROFILE"
+  meson setup --reconfigure "$BUILD_DIR" "$ROOT" --prefix /usr \
+    --wrap-mode=nofallback -Dprofile="$PROFILE"
 else
-  meson setup "$BUILD_DIR" "$ROOT" --prefix /usr -Dprofile="$PROFILE"
+  meson setup "$BUILD_DIR" "$ROOT" --prefix /usr \
+    --wrap-mode=nofallback -Dprofile="$PROFILE"
 fi
 meson compile -C "$BUILD_DIR"
 DESTDIR="$APPDIR" meson install -C "$BUILD_DIR"

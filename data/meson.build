@@ -21,7 +21,7 @@ blueprints = custom_target('blueprints',
     'gtk/ui/shortcuts-dialog.blp',
   ),
   output: '.',
-  command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
+  command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@']
 )
 
 gnome.compile_resources(
