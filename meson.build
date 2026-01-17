@@ -1,5 +1,5 @@
 project('chronograph',
-          version: '49-rc1',
+          version: '49-rc2',
     meson_version: '>= 1.0.0',
   default_options: [ 'warning_level=2', 'werror=false', ],
 )

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 20:40+0300\n"
+"POT-Creation-Date: 2026-01-17 20:45+0300\n"
 "PO-Revision-Date: 2026-01-12 00:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -867,16 +867,20 @@ msgid "Amount of milliseconds large re-sync performs by"
 msgstr "Pika uuesti sünkroonimise väärtus millisekundites"
 
 #: data/gtk/ui/dialogs/Preferences.blp:146
-msgid "File Manipulation"
+#, fuzzy
+msgid "Lyric Manipulation"
 msgstr "Failide muutmine"
 
 #: data/gtk/ui/dialogs/Preferences.blp:151
-msgid "Auto File Manipulation"
+#, fuzzy
+msgid "Auto Lyric Manipulation"
 msgstr "Muuda laulusõnade faili automaatselt"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
+#, fuzzy
 msgid ""
-"Automatically creates and updates files when any of lyrics lines changed"
+"Automatically creates and updates lyric DB instance when any of lyric line "
+"or word changed"
 msgstr "Kui laulusõnade rida muutub, siis loo ja uuenda faili automaatselt"
 
 #: data/gtk/ui/dialogs/Preferences.blp:161

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 20:40+0300\n"
-"PO-Revision-Date: 2026-01-17 20:40+0300\n"
+"POT-Creation-Date: 2026-01-17 20:45+0300\n"
+"PO-Revision-Date: 2026-01-17 20:46+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -866,17 +866,20 @@ msgid "Amount of milliseconds large re-sync performs by"
 msgstr "Количество миллисекунд для большой пересинхронизации"
 
 #: data/gtk/ui/dialogs/Preferences.blp:146
-msgid "File Manipulation"
-msgstr "Манипулирование файлами"
+msgid "Lyric Manipulation"
+msgstr "Манипулирование текстами"
 
 #: data/gtk/ui/dialogs/Preferences.blp:151
-msgid "Auto File Manipulation"
-msgstr "Автоматическое манипулирование файлами"
+msgid "Auto Lyric Manipulation"
+msgstr "Автоматическое манипулирование текстами"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
 msgid ""
-"Automatically creates and updates files when any of lyrics lines changed"
-msgstr "Автоматически создаёт и обновляет файлы при изменении текста слов"
+"Automatically creates and updates lyric DB instance when any of lyric line "
+"or word changed"
+msgstr ""
+"Автоматически создаёт и обновляет записи в базе данных при изменении строк "
+"или слов песли"
 
 #: data/gtk/ui/dialogs/Preferences.blp:161
 msgid "Autosave Interval"

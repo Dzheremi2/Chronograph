@@ -98,9 +98,9 @@ jobs:
               print("Error: docs/CHANGELOG.md not found.", file=sys.stderr)
               sys.exit(1)
           pattern = re.compile(
-              r'^##\s*\d+\.\d+\.?\d*(?:\-rc\d*)?\s*\n'
+              r'^##\s*\d+(?:\.\d+){0,2}(?:\-rc\d*)?\s*\n'
               r'([\s\S]*?)'
-              r'(?=^##\s*\d+\.\d+|\Z)',
+              r'(?=^##\s*\d+(?:\.\d+){0,2}|\Z)',
               re.MULTILINE
           )
           match = pattern.search(changelog_content)
@@ -119,7 +119,7 @@ jobs:
         id: get_tag_name
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo tag_name=v5.3.2 >> $GITHUB_OUTPUT
+            echo tag_name=Manual >> $GITHUB_OUTPUT
           else
             echo tag_name=${GITHUB_REF#refs/tags/} >> $GITHUB_OUTPUT
           fi

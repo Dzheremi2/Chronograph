@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 20:40+0300\n"
+"POT-Creation-Date: 2026-01-17 20:45+0300\n"
 "PO-Revision-Date: 2025-11-30 14:00+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/chronograph/"
@@ -895,17 +895,19 @@ msgstr ""
 
 #: data/gtk/ui/dialogs/Preferences.blp:146
 #, fuzzy
-msgid "File Manipulation"
+msgid "Lyric Manipulation"
 msgstr "Automatische Dateibearbeitung"
 
 #: data/gtk/ui/dialogs/Preferences.blp:151
 #, fuzzy
-msgid "Auto File Manipulation"
+msgid "Auto Lyric Manipulation"
 msgstr "Automatische Dateibearbeitung"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
+#, fuzzy
 msgid ""
-"Automatically creates and updates files when any of lyrics lines changed"
+"Automatically creates and updates lyric DB instance when any of lyric line "
+"or word changed"
 msgstr ""
 "Erstellt und aktualisiert automatisch Dateien, wenn sich eine der "
 "Liedtextzeilen ändert"

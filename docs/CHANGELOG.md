@@ -1,3 +1,27 @@
+## 49-rc2
+
+<p>New Chronograph's own lyric format Chronie. Its main goal to be compatible with every
+other format Chronograph supports. Since barely all formats use Line-by-line or
+Word-by-word syncing and either only start or both start and end timestamps, Chronie
+combines all these approaches and store ALL of them simultaniously. Chronie can be
+converted to any lyric format and then exported, at the same time, it is exportable
+itself.</p>
+
+<p>New features</p>
+<ul>
+  <li>Ability to sort by Title, Artist and Album both A-Z and Z-A</li>
+  <li>Sorting based on file import time</li>
+</ul>
+<p>Bug fixes</p>
+<ul>
+  <li>Exporting to file now always uses .lrc suffix</li>
+  <li>File's default filename now built as {artist} - {title}.lrc</li>
+</ul>
+<p>Miscellaneous</p>
+<ul>
+  <li>Removed deprecated and unused preferences</li>
+</ul>
+
 ## 49-rc1
 
 <p>New Library approach: Previously, Chronograph has manipulated different
