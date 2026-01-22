@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 20:45+0300\n"
+"POT-Creation-Date: 2026-01-22 16:58+0300\n"
 "PO-Revision-Date: 2026-01-18 21:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
@@ -31,44 +31,44 @@ msgstr "Toetatud on vaid Kronograafi teegid"
 msgid "Failed to create library"
 msgstr "Muusikakogu loomine ei õnnestunud"
 
-#: chronograph/window.py:314 chronograph/window.py:369 chronograph/main.py:78
+#: chronograph/window.py:314 chronograph/window.py:375 chronograph/main.py:78
 msgid "Open a library before importing files"
 msgstr "Enne failide importimist ava muusikakogu"
 
-#: chronograph/window.py:426
+#: chronograph/window.py:432
 msgid "Selected folder is not a Chronograph Library"
 msgstr "Valitud kaust pole Kronograafi muusikakogu"
 
-#: chronograph/window.py:475
+#: chronograph/window.py:482
 msgid "Open a library to import files"
 msgstr "Failide importimiseks ava muusikakogu"
 
-#: chronograph/window.py:479
+#: chronograph/window.py:486
 msgid "Import already in progress"
 msgstr "Importimine on juba töös"
 
-#: chronograph/window.py:484 chronograph/window.py:514
+#: chronograph/window.py:491 chronograph/window.py:521
 msgid "No supported files were imported"
 msgstr "Ühtegi toetatud faili pole imporditud"
 
-#: chronograph/window.py:536
+#: chronograph/window.py:544
 msgid "Imported {} track"
 msgid_plural "Imported {} tracks"
 msgstr[0] "Importisin {} loo"
 msgstr[1] "Importisin {} lugu"
 
-#: chronograph/window.py:548
+#: chronograph/window.py:556
 msgid "Import failed"
 msgstr "Importimine ei õnnestunud"
 
-#: chronograph/window.py:624
+#: chronograph/window.py:639
 #, python-brace-format
 msgid "Deleted {deleted} file"
 msgid_plural "Deleted {deleted} files"
 msgstr[0] "Kustutasin {deleted} faili"
 msgstr[1] "Kustutasin {deleted} faili"
 
-#: chronograph/window.py:663
+#: chronograph/window.py:678
 msgid "Copied successfully"
 msgstr "Kopeerimine õnnestus"
 
@@ -230,64 +230,64 @@ msgstr "„{title} - {artist}“ fail on kustutatud"
 msgid "Imported {imported}/{total}"
 msgstr "Imporditud: {imported}/{total}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:306
-#: chronograph/ui/sync_pages/wbw_sync_page.py:272
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
+#: chronograph/ui/sync_pages/wbw_sync_page.py:273
 msgid "Lyrics exported to clipboard"
 msgstr "Laulusõnad on eksporditud lõikelauale"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:322
-#: chronograph/ui/sync_pages/wbw_sync_page.py:222
+#: chronograph/ui/sync_pages/lrc_sync_page.py:323
+#: chronograph/ui/sync_pages/wbw_sync_page.py:223
 msgid "Lyrics exported to file"
 msgstr "Laulusõnad on eksporditud faili"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:323
-#: chronograph/ui/sync_pages/wbw_sync_page.py:223
+#: chronograph/ui/sync_pages/lrc_sync_page.py:324
+#: chronograph/ui/sync_pages/wbw_sync_page.py:224
 msgid "Show"
 msgstr "Näita"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:331
-#: chronograph/ui/sync_pages/wbw_sync_page.py:240
+#: chronograph/ui/sync_pages/lrc_sync_page.py:332
+#: chronograph/ui/sync_pages/wbw_sync_page.py:241
 #, python-brace-format
 msgid "Lyrics ({pattern})"
 msgstr "Laulusõnad: ({pattern})"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:451
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Avaldamine õnnestus: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:454
+#: chronograph/ui/sync_pages/lrc_sync_page.py:455
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Vigane avaldamise tunnusluba: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Tekkis tundmatu viga: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Network error occurred while publishing lyrics"
 msgstr "Laulusõnade avaldamisel tekkis võrguviga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid "Log"
 msgstr "Logi"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "An error occurred while publishing lyrics"
 msgstr "Laulusõnade avaldamisel tekkis viga"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:490
+#: chronograph/ui/sync_pages/lrc_sync_page.py:491
 msgid "Seems like not every line is synced"
 msgstr "Tundub, et kõik lauluread pole sünkroonis"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Unable to publish lyrics."
 msgstr "Laulusõnade avaldamine ei õnnestu."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:506
+#: chronograph/ui/sync_pages/lrc_sync_page.py:507
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -295,31 +295,31 @@ msgstr ""
 "Laulusõnade avaldamiseks peavad pealkirja, esitaja, albumi ja laulusõnade "
 "väljad olema täidetud."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:511
+#: chronograph/ui/sync_pages/lrc_sync_page.py:512
 msgid "Close"
 msgstr "Sulge"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:516
 msgid "Cannot publish empty lyrics"
 msgstr "Tühje laulusõnu ei saa avaldada"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:516
+#: chronograph/ui/sync_pages/lrc_sync_page.py:517
 msgid "Why?"
 msgstr "Miks?"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:122
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
 msgstr "Laulusõnu pole saadaval"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:123
+#: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Sa pole laulusõnu lisanud sünkroonimiseks"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:359
+#: chronograph/ui/sync_pages/wbw_sync_page.py:360
 msgid "No lyrics to be re-synced"
 msgstr "Pole laulusõnu, mida uuesti sünkroonida"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:361
+#: chronograph/ui/sync_pages/wbw_sync_page.py:362
 msgid "Open Sync mode to re-sync all words"
 msgstr "Uuesti sünkroonimiseks ava sünkroonimisvaade"
 
@@ -365,7 +365,7 @@ msgstr "{vol}%"
 
 #: chronograph/ui/widgets/lyric_row.py:27
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
 msgid "File"
@@ -373,9 +373,9 @@ msgstr "Fail"
 
 #: chronograph/ui/widgets/lyric_row.py:28
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:147
 msgid "Clipboard"
 msgstr "Lõikelaud"
 
@@ -662,7 +662,7 @@ msgid "Append line to selected"
 msgstr "Lisa laulurida valiku järgi"
 
 #: data/gtk/ui/shortcuts-dialog.blp:93
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:161
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
 msgid "Append line to end"
 msgstr "Lisa laulurida kõige lõppu"
 
@@ -706,7 +706,7 @@ msgstr "Tavalised laulusõnad LRClib-i teenusest"
 msgid "Imports currently selected lyrics"
 msgstr "Impordib hetkel valitud laulusõnad"
 
-#: data/gtk/ui/dialogs/LRClib.blp:188 data/gtk/ui/dialogs/ImportDialog.blp:61
+#: data/gtk/ui/dialogs/LRClib.blp:188 data/gtk/ui/dialogs/ImportDialog.blp:66
 msgid "Import"
 msgstr "Impordi"
 
@@ -978,11 +978,22 @@ msgstr "eLRC prefiks"
 msgid "Remain empty if not used"
 msgstr "Kui pole kasutusel, siis jääb tühjaks"
 
+#: data/gtk/ui/dialogs/ImportDialog.blp:48
+#, fuzzy
+msgid "Prefer Embedded Lyrics"
+msgstr "Lõimitud laulusõnad"
+
 #: data/gtk/ui/dialogs/ImportDialog.blp:49
+msgid ""
+"If file has lyrics embedded, they would be used during import. This "
+"overrides any import from files"
+msgstr ""
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:54
 msgid "Move Files"
 msgstr "Teisalda faile"
 
-#: data/gtk/ui/dialogs/ImportDialog.blp:50
+#: data/gtk/ui/dialogs/ImportDialog.blp:55
 msgid "Moves files to the import location instead of copying them"
 msgstr "Kopeerimise asemel teisaldab failid impordikausta"
 
@@ -1026,46 +1037,63 @@ msgstr "Impordi…"
 msgid "Export to …"
 msgstr "Ekspordi…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:152
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:134
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:126
+#, fuzzy
+msgid "Embed to File"
+msgstr "Faili teave"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:137
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:129
+#, fuzzy
+msgid "As Plain"
+msgstr "Tavaline"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:143
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:135
+msgid "As LRC"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:170
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
 msgid "Actions with selected line"
 msgstr "Toimingud valitud reaga"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:158
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
 msgid "Remove line"
 msgstr "Eemalda laulurida"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:159
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
 msgid "Prepend line"
 msgstr "Lisa laulurea ette"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:160
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
 msgid "Append line"
 msgstr "Lisa laulurea järgi"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:146
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:190
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:195
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:165
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:169
 msgid "Utilities"
 msgstr "Tarvikud"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:148
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:171
 msgid "Re-sync all"
 msgstr "Sünkrooni kõik"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:197
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:172
 msgid "Edit metadata"
 msgstr "Muuda metateavet"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:198
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:173
 msgid "About file"
 msgstr "Faili teave"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:225
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:243
 msgid "Add Line"
 msgstr "Lisa laulurida"
 
@@ -1077,11 +1105,15 @@ msgstr "Sünkrooni valitud sõna tahapoole"
 msgid "Re-sync selected word forward"
 msgstr "Sünkrooni valitud sõna ettepoole"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:141
+msgid "As eLRC"
+msgstr ""
+
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:205
 msgid "Edit"
 msgstr "Muuda"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:231
 #: data/gtk/ui/widgets/SongCard.blp:35
 msgid "Sync"
 msgstr "Sünkrooni"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lrcmake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 20:45+0300\n"
-"PO-Revision-Date: 2026-01-17 20:46+0300\n"
+"POT-Creation-Date: 2026-01-22 16:58+0300\n"
+"PO-Revision-Date: 2026-01-22 17:05+0300\n"
 "Last-Translator: Артём Чичваров <chichvarov1315@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -32,38 +32,38 @@ msgstr "Поддерживаются только библиотеки Хрон�
 msgid "Failed to create library"
 msgstr "Не удалось создать библиотеку"
 
-#: chronograph/window.py:314 chronograph/window.py:369 chronograph/main.py:78
+#: chronograph/window.py:314 chronograph/window.py:375 chronograph/main.py:78
 msgid "Open a library before importing files"
 msgstr "Откройте библиотеку прежде чем импортировать файлы"
 
-#: chronograph/window.py:426
+#: chronograph/window.py:432
 msgid "Selected folder is not a Chronograph Library"
 msgstr "Выбранная папке де является библиотекой Хронографа"
 
-#: chronograph/window.py:475
+#: chronograph/window.py:482
 msgid "Open a library to import files"
 msgstr "Откройте библиотеку, чтобы импортировать файлы"
 
-#: chronograph/window.py:479
+#: chronograph/window.py:486
 msgid "Import already in progress"
 msgstr "Импорт уже в процессе"
 
-#: chronograph/window.py:484 chronograph/window.py:514
+#: chronograph/window.py:491 chronograph/window.py:521
 msgid "No supported files were imported"
 msgstr "Не было импортировано поддерживаемых файлов"
 
-#: chronograph/window.py:536
+#: chronograph/window.py:544
 msgid "Imported {} track"
 msgid_plural "Imported {} tracks"
 msgstr[0] "Импортирован {} трек"
 msgstr[1] "Импортировано {} трека"
 msgstr[2] "Импортировано {} треков"
 
-#: chronograph/window.py:548
+#: chronograph/window.py:556
 msgid "Import failed"
 msgstr "Импорт не удался"
 
-#: chronograph/window.py:624
+#: chronograph/window.py:639
 #, python-brace-format
 msgid "Deleted {deleted} file"
 msgid_plural "Deleted {deleted} files"
@@ -71,7 +71,7 @@ msgstr[0] "Удалён {deleted} файл"
 msgstr[1] "Удалено {deleted} файла"
 msgstr[2] "Удалено {deleted} файлов"
 
-#: chronograph/window.py:663
+#: chronograph/window.py:678
 msgid "Copied successfully"
 msgstr "Скопированно успешно"
 
@@ -232,64 +232,64 @@ msgstr "Файл \"{title} — {artist}\" был удалёл"
 msgid "Imported {imported}/{total}"
 msgstr "Импортировано {imported} из {total}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:306
-#: chronograph/ui/sync_pages/wbw_sync_page.py:272
+#: chronograph/ui/sync_pages/lrc_sync_page.py:307
+#: chronograph/ui/sync_pages/wbw_sync_page.py:273
 msgid "Lyrics exported to clipboard"
 msgstr "Текст экспортирован в буфер обмена"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:322
-#: chronograph/ui/sync_pages/wbw_sync_page.py:222
+#: chronograph/ui/sync_pages/lrc_sync_page.py:323
+#: chronograph/ui/sync_pages/wbw_sync_page.py:223
 msgid "Lyrics exported to file"
 msgstr "Текст экспортирован в файл"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:323
-#: chronograph/ui/sync_pages/wbw_sync_page.py:223
+#: chronograph/ui/sync_pages/lrc_sync_page.py:324
+#: chronograph/ui/sync_pages/wbw_sync_page.py:224
 msgid "Show"
 msgstr "Показать"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:331
-#: chronograph/ui/sync_pages/wbw_sync_page.py:240
+#: chronograph/ui/sync_pages/lrc_sync_page.py:332
+#: chronograph/ui/sync_pages/wbw_sync_page.py:241
 #, python-brace-format
 msgid "Lyrics ({pattern})"
 msgstr "Текст песни ({pattern})"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:450
+#: chronograph/ui/sync_pages/lrc_sync_page.py:451
 #, python-brace-format
 msgid "Published successfully: {code}"
 msgstr "Успешно опубликовано: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:454
+#: chronograph/ui/sync_pages/lrc_sync_page.py:455
 #, python-brace-format
 msgid "Incorrect publish token: {code}"
 msgstr "Неверный публичный токен: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:458
+#: chronograph/ui/sync_pages/lrc_sync_page.py:459
 #, python-brace-format
 msgid "Unknown error occured: {code}"
 msgstr "Произошла неизвестная ошибка: {code}"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:470
+#: chronograph/ui/sync_pages/lrc_sync_page.py:471
 msgid "Network error occurred while publishing lyrics"
 msgstr "Ошибка подключения во время публикации"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:471
-#: chronograph/ui/sync_pages/lrc_sync_page.py:477
+#: chronograph/ui/sync_pages/lrc_sync_page.py:472
+#: chronograph/ui/sync_pages/lrc_sync_page.py:478
 msgid "Log"
 msgstr "Журнал"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:476
+#: chronograph/ui/sync_pages/lrc_sync_page.py:477
 msgid "An error occurred while publishing lyrics"
 msgstr "Произошла ошибка при публикации"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:490
+#: chronograph/ui/sync_pages/lrc_sync_page.py:491
 msgid "Seems like not every line is synced"
 msgstr "Похоже, не все строки синхронизированы"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:504
+#: chronograph/ui/sync_pages/lrc_sync_page.py:505
 msgid "Unable to publish lyrics."
 msgstr "Невозможно опубликовать текст."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:506
+#: chronograph/ui/sync_pages/lrc_sync_page.py:507
 msgid ""
 "To publish lyrics the track must have a title, artist, album and lyrics "
 "fields set."
@@ -297,31 +297,31 @@ msgstr ""
 "Для публикации текста необходимо заполнить поля «Название», «Исполнитель», "
 "«Альбом» и синхронизировать слова."
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:511
+#: chronograph/ui/sync_pages/lrc_sync_page.py:512
 msgid "Close"
 msgstr "Закрыть"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:515
+#: chronograph/ui/sync_pages/lrc_sync_page.py:516
 msgid "Cannot publish empty lyrics"
 msgstr "Невозможно опубликовать пустой текст"
 
-#: chronograph/ui/sync_pages/lrc_sync_page.py:516
+#: chronograph/ui/sync_pages/lrc_sync_page.py:517
 msgid "Why?"
 msgstr "Почему?"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:122
+#: chronograph/ui/sync_pages/wbw_sync_page.py:123
 msgid "No lyrics available"
 msgstr "Нет текста песни"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:123
+#: chronograph/ui/sync_pages/wbw_sync_page.py:124
 msgid "You've not provided any lyrics for synchronization"
 msgstr "Вы не предоставили никаких слов для синхронизации"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:359
+#: chronograph/ui/sync_pages/wbw_sync_page.py:360
 msgid "No lyrics to be re-synced"
 msgstr "Нет слов для пересинхронизации"
 
-#: chronograph/ui/sync_pages/wbw_sync_page.py:361
+#: chronograph/ui/sync_pages/wbw_sync_page.py:362
 msgid "Open Sync mode to re-sync all words"
 msgstr "Перейдите в режим синхронизации, чтобы пересинхронизировать все слова"
 
@@ -367,7 +367,7 @@ msgstr "{vol}%"
 
 #: chronograph/ui/widgets/lyric_row.py:27
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:111
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:130
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:104
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:123
 msgid "File"
@@ -375,9 +375,9 @@ msgstr "Файл"
 
 #: chronograph/ui/widgets/lyric_row.py:28
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:112
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:131
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:149
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:105
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:124
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:147
 msgid "Clipboard"
 msgstr "Буфер обмена"
 
@@ -663,7 +663,7 @@ msgid "Append line to selected"
 msgstr "Добавить новую строку ниже выбранной"
 
 #: data/gtk/ui/shortcuts-dialog.blp:93
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:161
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
 msgid "Append line to end"
 msgstr "Добавить строку к концу"
 
@@ -707,7 +707,7 @@ msgstr "Простые слова с LRClib"
 msgid "Imports currently selected lyrics"
 msgstr "Импортирует текущие выбранные слова"
 
-#: data/gtk/ui/dialogs/LRClib.blp:188 data/gtk/ui/dialogs/ImportDialog.blp:61
+#: data/gtk/ui/dialogs/LRClib.blp:188 data/gtk/ui/dialogs/ImportDialog.blp:66
 msgid "Import"
 msgstr "Импортировать"
 
@@ -979,11 +979,23 @@ msgstr "Префикс eLRC"
 msgid "Remain empty if not used"
 msgstr "Оставьте пустым, если не успользуете"
 
+#: data/gtk/ui/dialogs/ImportDialog.blp:48
+msgid "Prefer Embedded Lyrics"
+msgstr "Предпочитать встроенные слова"
+
 #: data/gtk/ui/dialogs/ImportDialog.blp:49
+msgid ""
+"If file has lyrics embedded, they would be used during import. This "
+"overrides any import from files"
+msgstr ""
+"Если файл содержит встроенные слова, они будут использованы во время "
+"импорта. Эта опция отключает любой импорт из файлов"
+
+#: data/gtk/ui/dialogs/ImportDialog.blp:54
 msgid "Move Files"
 msgstr "Переместить файлы"
 
-#: data/gtk/ui/dialogs/ImportDialog.blp:50
+#: data/gtk/ui/dialogs/ImportDialog.blp:55
 msgid "Moves files to the import location instead of copying them"
 msgstr "Перемещает файлы в место импорта, а не копирует их"
 
@@ -1027,46 +1039,61 @@ msgstr "Импортировать из…"
 msgid "Export to …"
 msgstr "Экспортировать в…"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:152
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:157
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:134
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:126
+msgid "Embed to File"
+msgstr "Встроить в файл"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:137
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:129
+msgid "As Plain"
+msgstr "Как простые"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:143
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:135
+msgid "As LRC"
+msgstr "Как LRC"
+
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:170
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
 msgid "Actions with selected line"
 msgstr "Действия с выбранной строкой"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:158
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:176
 msgid "Remove line"
 msgstr "Удалить строку"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:159
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
 msgid "Prepend line"
 msgstr "Добавить строку выше"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:160
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
 msgid "Append line"
 msgstr "Добавить строку ниже"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:172
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:177
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:142
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:146
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:190
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:195
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:165
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:169
 msgid "Utilities"
 msgstr "Утилиты"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:178
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:148
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:196
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:171
 msgid "Re-sync all"
 msgstr "Пересинхронизировать всё"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:179
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:149
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:197
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:172
 msgid "Edit metadata"
 msgstr "Редактировать метаданные"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:180
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:150
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:198
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:173
 msgid "About file"
 msgstr "Сведения о файле"
 
-#: data/gtk/ui/sync_pages/LRCSyncPage.blp:225
+#: data/gtk/ui/sync_pages/LRCSyncPage.blp:243
 msgid "Add Line"
 msgstr "Добавить строку"
 
@@ -1078,11 +1105,15 @@ msgstr "Пересинхронизировать текущее слово на�
 msgid "Re-sync selected word forward"
 msgstr "Пересинхронизировать текущее слово вперёд"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:182
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:141
+msgid "As eLRC"
+msgstr "Как eLRC"
+
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:205
 msgid "Edit"
 msgstr "Редактирование"
 
-#: data/gtk/ui/sync_pages/WBWSyncPage.blp:208
+#: data/gtk/ui/sync_pages/WBWSyncPage.blp:231
 #: data/gtk/ui/widgets/SongCard.blp:35
 msgid "Sync"
 msgstr "Синхронизация"
