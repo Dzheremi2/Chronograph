@@ -1,3 +1,4 @@
+import collections.abc
 import json
 from functools import wraps
 from typing import Callable
@@ -74,7 +75,9 @@ class Actions:
       parts = parts[1:]
     for part in parts:
       obj = getattr(obj, part)
-    return obj
+    if isinstance(obj, collections.abc.Callable):
+      return obj
+    raise TypeError(f"Resolved object '{dotted}' is not callable")
 
   def _resolve_args(self, raw_args: list[str]):
     out = []
