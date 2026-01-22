@@ -321,7 +321,7 @@ class LRCSyncPage(Adw.NavigationPage):
       Constants.WIN.show_toast(
         _("Lyrics exported to file"),
         button_label=_("Show"),
-        button_callback=lambda *__: launch_path(Path(filepath).parent),
+        button_callback=lambda *__: launch_path(Path(filepath)),
       )
 
     lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")

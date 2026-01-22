@@ -1,14 +1,25 @@
-from __future__ import annotations
-
 import os
 import sys
 import urllib.parse
-from typing import TYPE_CHECKING, Optional
+from pathlib import Path
+from typing import Optional
 
-from gi.repository import Gio
+from gi.repository import Gio, GLib
 
-if TYPE_CHECKING:
-  from pathlib import Path
+from chronograph.internal import Constants
+
+logger = Constants.LOGGER
+
+if sys.platform == "linux":
+  proxy = Gio.DBusProxy.new_for_bus_sync(
+    Gio.BusType.SESSION,
+    Gio.DBusProxyFlags.NONE,
+    None,
+    "org.freedesktop.FileManager1",
+    "/org/freedesktop/FileManager1",
+    "org.freedesktop.FileManager1",
+    None,
+  )
 
 
 def _file_uri_to_path(uri: str) -> Optional[str]:
@@ -34,7 +45,24 @@ def _launch_uri(uri: str) -> bool:
         return True
       except OSError:
         return False
-  return Gio.AppInfo.launch_default_for_uri(uri)
+  if sys.platform == "linux":
+    try:
+      proxy.call_sync(
+        "ShowItems",
+        GLib.Variant("(ass)", [[uri], ""]),
+        Gio.DBusCallFlags.NONE,
+        -1,
+        None,
+      )
+      return True
+    except Exception:
+      parent_dir_uri = Path.from_uri(uri).parent.as_uri()
+      logger.exception(
+        "Failed to launch file manager with file (%s) highlighted. Launched for parent directory",
+        Path.from_uri(uri),
+        stack_info=True,
+      )
+      return Gio.AppInfo.launch_default_for_uri(parent_dir_uri)
 
 
 def launch_path(path: Path) -> bool:
@@ -50,4 +78,7 @@ def launch_path(path: Path) -> bool:
   bool
     `True` if the launch request was accepted.
   """
-  return _launch_uri(path.absolute().as_uri())
+  if sys.platform == "linux":
+    return _launch_uri(path.absolute().as_uri())
+  elif sys.platform == "win32":  # noqa: RET505
+    return _launch_uri(path.parent.absolute().as_uri())

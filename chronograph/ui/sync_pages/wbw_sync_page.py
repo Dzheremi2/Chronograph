@@ -221,7 +221,7 @@ class WBWSyncPage(Adw.NavigationPage):
       Constants.WIN.show_toast(
         _("Lyrics exported to file"),
         button_label=_("Show"),
-        button_callback=lambda *_: launch_path(Path(filepath).parent),
+        button_callback=lambda *_: launch_path(Path(filepath)),
       )
 
     if self._current_page == self.edit_view_stack_page:
