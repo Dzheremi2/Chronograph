@@ -8,6 +8,7 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
 from chronograph.backend.file import SongCardModel
+from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lyrics import (
   ElrcLyrics,
   chronie_from_text,
@@ -443,3 +444,39 @@ class WBWSyncPage(Adw.NavigationPage):
     return False
 
   ###############
+
+  def _embed_file(self, _action, state: GLib.Variant) -> None:
+    from chronograph.window import MIME_TYPE_FILTERS
+
+    def _on_file_selected(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
+      media_path = file_dialog.open_finish(result).get_path()
+      if not media_path:
+        return
+      media = parse_file(media_path)
+      if not media:
+        return
+
+      try:
+        if (
+          self.modes.get_page(self.modes.get_visible_child())
+          == self.edit_view_stack_page
+        ):
+          lyrics_text = self.edit_view_text_view.get_buffer().get_text(
+            self.edit_view_text_view.get_buffer().get_start_iter(),
+            self.edit_view_text_view.get_buffer().get_end_iter(),
+            include_hidden_chars=False,
+          )
+          chronie = chronie_from_text(lyrics_text)
+        else:
+          chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+      except Exception:
+        logger.exception("Failed to extract lyrics for embedding")
+        return
+      if not chronie:
+        return
+      media.embed_lyrics(chronie, str(state).strip("'"))
+
+    dialog = Gtk.FileDialog(
+      default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS
+    )
+    dialog.open(Constants.WIN, None, _on_file_selected)

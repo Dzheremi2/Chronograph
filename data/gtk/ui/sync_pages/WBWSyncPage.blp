@@ -108,7 +108,7 @@ template $WBWSyncPage : Adw.NavigationPage {
             };
 
             styles [
-              "osd",
+              "osd-button-only",
               "circular"
             ]
           }
@@ -121,12 +121,35 @@ template $WBWSyncPage : Adw.NavigationPage {
                 label: _("Export to …");
 
                 item (_("File"), "export.file")
+
+                submenu {
+                  label: _("Embed to File");
+
+                  item {
+                    label: _("As Plain");
+                    action: "export.embed";
+                    target: "plain";
+                  }
+
+                  item {
+                    label: _("As LRC");
+                    action: "export.embed";
+                    target: "lrc";
+                  }
+
+                  item {
+                    label: _("As eLRC");
+                    action: "export.embed";
+                    target: "elrc";
+                  }
+                }
+
                 item (_("Clipboard"), "export.clipboard")
               }
             };
 
             styles [
-              "osd",
+              "osd-button-only",
               "circular"
             ]
           }
@@ -151,7 +174,7 @@ template $WBWSyncPage : Adw.NavigationPage {
               }
             };
 
-            styles ["circular", "osd"]
+            styles ["circular", "osd-button-only"]
           }
         }
       }

@@ -10,14 +10,6 @@ root:
         min: 1.0
         max: 10.0
         default: 5.0
-      embed-lyrics: # TODO: Remove and replace with export option
-        default:
-          type: str
-          enum: [plain, lrc, elrc]
-          default: lrc
-        vorbis:
-          type: bool
-          default: true
     syncing:
       sync-type:
         type: str

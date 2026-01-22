@@ -13,6 +13,9 @@ groups:
       with_args: ["self._card"]
     - name: file
       callback: _export_file
+    - name: embed
+      callback: _embed_file
+      parameter-type: s
     - name: clipboard
       callback: _export_clipboard
 

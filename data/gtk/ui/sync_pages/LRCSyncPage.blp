@@ -127,7 +127,25 @@ template $LRCSyncPage: Adw.NavigationPage {
             menu-model: menu export_to {
               section {
                 label: _("Export to …");
+
                 item (_("File"), "export.file")
+
+                submenu {
+                  label: _("Embed to File");
+
+                  item {
+                    label: _("As Plain");
+                    action: "export.embed";
+                    target: "plain";
+                  }
+
+                  item {
+                    label: _("As LRC");
+                    action: "export.embed";
+                    target: "lrc";
+                  }
+                }
+
                 item (_("Clipboard"), "export.clipboard")
                 item ("LRClib", "export.lrclib")
               }

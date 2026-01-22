@@ -10,7 +10,6 @@ from chronograph.backend.lyrics import (
   export_chronie,
 )
 from chronograph.backend.lyrics.formats import chronie_from_text
-from chronograph.internal import Schema
 
 from .file import TaggableFile
 
@@ -102,16 +101,15 @@ class FileID3(TaggableFile):
     setattr(self, tags_conjunction[tag_name], new_val)
     return self
 
-  def embed_lyrics(
-    self, lyrics: Optional[ChronieLyrics], *, force: bool = False
-  ) -> Self:
-    if not force:
-      return self
+  def embed_lyrics(self, lyrics: Optional[ChronieLyrics], target: str) -> Self:
     if lyrics is not None:
-      target = Schema.get(
-        "root.settings.do-lyrics-db-updates.embed-lyrics.default"
-      ).lower()
-      chosen = choose_export_format(lyrics, target)
+      # fmt: off
+      match target.lower():
+        case "plain": chosen = choose_export_format(lyrics, "plain")
+        case "lrc": chosen = choose_export_format(lyrics, "lrc")
+        case "elrc": chosen = choose_export_format(lyrics, "enhanced")
+        case __: chosen = choose_export_format(lyrics, "plain")
+      # fmt: on
       if chosen is None:
         return self
       try:
@@ -119,8 +117,8 @@ class FileID3(TaggableFile):
       except LyricsConversionError:
         text = export_chronie(lyrics, "plain")
       try:
-        self._mutagen_file.tags["USLT"].text = text
-      except KeyError:
+        self._mutagen_file.tags.getall("USLT")[0].text = text
+      except IndexError:
         self._mutagen_file.tags.add(USLT(text=text))
       self.save()
       return self
@@ -134,7 +132,7 @@ class FileID3(TaggableFile):
   def read_lyrics(self) -> Optional[ChronieLyrics]:
     try:
       lyrics: str = self._mutagen_file.tags.getall("USLT")[0].text
-      if lyrics.strip() == "":
+      if not lyrics.strip():
         return None
       return chronie_from_text(lyrics)
     except KeyError:

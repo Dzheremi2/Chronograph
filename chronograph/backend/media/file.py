@@ -204,9 +204,7 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
-  def embed_lyrics(
-    self, lyrics: Optional[ChronieLyrics], *, force: bool = False
-  ) -> Self:
+  def embed_lyrics(self, lyrics: Optional[ChronieLyrics], target: str) -> Self:
     """Embeds the lyrics to the corresponding tags in realization
 
     Parameters

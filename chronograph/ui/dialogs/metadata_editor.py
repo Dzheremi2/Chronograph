@@ -4,8 +4,11 @@ from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
 from chronograph.backend.file.song_card_model import SongCardModel
 from chronograph.backend.lyrics import chronie_from_text, chronie_from_tokens
+from chronograph.backend.lyrics.formats import choose_export_format, detect_lyric_format
 from chronograph.internal import Constants
-from chronograph.ui.widgets.internal.menu_button import ChrMenuButton  # noqa: F401
+from chronograph.ui.widgets.internal.menu_button import (
+  ChrMenuButton,  # noqa: F401
+)
 from dgutils import Actions, Linker
 
 gtc = Gtk.Template.Child
@@ -91,18 +94,18 @@ class MetadataEditor(Adw.Dialog, Linker):
         )
       else:
         chronie = chronie_from_tokens(page._lyrics_model.get_tokens())  # noqa: SLF001
-      self._card.media().embed_lyrics(chronie, force=True)
+      self._card.media().embed_lyrics(chronie, choose_export_format(chronie, "elrc"))
     elif isinstance(page, LRCSyncPage):
       lyrics = [line.get_text() for line in page.sync_lines]
       chronie = chronie_from_text("\n".join(lyrics).strip())
-      self._card.media().embed_lyrics(chronie, force=True)
+      self._card.media().embed_lyrics(chronie, detect_lyric_format(lyrics).format)
     else:
       logger.debug("Prevented lyrics embedding from library page")
 
   @Gtk.Template.Callback()
   def on_delete_lyrics_clicked(self, *_args) -> None:
     """Triggered on delete lyrics button click. Removes embeded lyrics from media file"""
-    self._card.media().embed_lyrics(None, force=True)
+    self._card.media().embed_lyrics(None)
 
   @Gtk.Template.Callback()
   def save(self, *_args) -> None:

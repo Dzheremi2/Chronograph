@@ -10,7 +10,7 @@ from typing import Callable, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
-from chronograph.backend.db.models import SchemaInfo, Track
+from chronograph.backend.db.models import SchemaInfo
 from chronograph.backend.file.available_lyrics import AvailableLyrics
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel

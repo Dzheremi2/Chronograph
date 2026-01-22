@@ -134,27 +134,23 @@ class FileVorbis(TaggableFile):
     setattr(self, tags_conjunction[tag_name][0], new_val)
     return self
 
-  def embed_lyrics(
-    self, lyrics: Optional[ChronieLyrics], *, force: bool = False
-  ) -> Self:
-    if not force:
-      return self
+  def embed_lyrics(self, lyrics: Optional[ChronieLyrics], target: str) -> Self:
     if lyrics is not None:
-      target = Schema.get(
-        "root.settings.do-lyrics-db-updates.embed-lyrics.default"
-      ).lower()
-      chosen = choose_export_format(lyrics, target)
+      # fmt: off
+      match target.lower():
+        case "plain": chosen = choose_export_format(lyrics, "plain")
+        case "lrc": chosen = choose_export_format(lyrics, "lrc")
+        case "elrc": chosen = choose_export_format(lyrics, "enhanced")
+        case __: chosen = choose_export_format(lyrics, "plain")
+      # fmt: on
       if chosen is None:
         return self
       try:
         text = export_chronie(lyrics, chosen)
       except LyricsConversionError:
         text = export_chronie(lyrics, "plain")
-      if not Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.vorbis"):
-        self._mutagen_file.tags["UNSYNCEDLYRICS"] = text
-      else:
-        self._mutagen_file.tags["UNSYNCEDLYRICS"] = export_chronie(lyrics, "plain")
-        self._mutagen_file.tags["LYRICS"] = text
+      self._mutagen_file.tags["UNSYNCEDLYRICS"] = export_chronie(lyrics, "plain")
+      self._mutagen_file.tags["LYRICS"] = text
       self.save()
       return self
 
@@ -169,15 +165,10 @@ class FileVorbis(TaggableFile):
 
   def read_lyrics(self) -> Optional[ChronieLyrics]:
     tags = self._mutagen_file.tags
-    use_vorbis = Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.vorbis")
 
-    if use_vorbis:
-      lyrics: str = tags.get("LYRICS", "").strip()
-      if not lyrics:
-        lyrics: str = tags.get("UNSYNCEDLYRICS", "").strip()
-      if lyrics:
-        return chronie_from_text(lyrics)
-      return None
-
-    lyrics: str = tags.get("UNSYNCEDLYRICS", "").strip()
-    return chronie_from_text(lyrics) if lyrics else None
+    lyrics: str = tags.get("LYRICS", "").strip()
+    if not lyrics:
+      lyrics: str = tags.get("UNSYNCEDLYRICS", "").strip()
+    if lyrics:
+      return chronie_from_text(lyrics)
+    return None

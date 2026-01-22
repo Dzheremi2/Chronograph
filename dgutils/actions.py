@@ -1,12 +1,14 @@
 import json
 from functools import wraps
+from typing import Callable
 
 import gi
 import yaml
 
 gi.require_version("Gio", "2.0")
+gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "4.0")
-from gi.repository import Gio, Gtk
+from gi.repository import Gio, GLib, Gtk
 
 
 class Actions:
@@ -32,11 +34,15 @@ class Actions:
       has_shortcuts = False  # GTK may not expose get_shortcuts(); track ourselves
 
       for action in actions:
+        action: dict
         name = action["name"]
-        callback_name = action["callback"]
+        callback_name: str = action["callback"]
+        parameter_type: str = action.get("parameter-type", None)
         callback = self._resolve_callback(callback_name)
 
-        gio_action = Gio.SimpleAction.new(name, None)
+        gio_action = Gio.SimpleAction.new(
+          name, None if not parameter_type else GLib.VariantType.new(parameter_type)
+        )
 
         raw_args: list[str] = action.get("with_args", [])
         resolved_args = self._resolve_args(raw_args)
@@ -61,7 +67,7 @@ class Actions:
       if has_shortcuts:
         self.instance.add_controller(shortcut_controller)
 
-  def _resolve_callback(self, dotted: str):
+  def _resolve_callback(self, dotted: str) -> Callable:
     parts = dotted.split(".")
     obj = self.instance
     if parts and parts[0] == "self":

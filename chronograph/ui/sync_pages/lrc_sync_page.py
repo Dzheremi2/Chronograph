@@ -9,6 +9,7 @@ from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
 from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
 from chronograph.backend.file.song_card_model import SongCardModel
+from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lrclib.exceptions import APIRequestError
 from chronograph.backend.lrclib.lrclib_service import LRClibService
 from chronograph.backend.lyrics import (
@@ -529,6 +530,28 @@ class LRCSyncPage(Adw.NavigationPage):
     from chronograph.ui.dialogs.metadata_editor import MetadataEditor
 
     MetadataEditor(self._card).present(Constants.WIN)
+
+  def _embed_file(self, _action, state: GLib.Variant) -> None:
+    from chronograph.window import MIME_TYPE_FILTERS
+
+    def _on_file_selected(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
+      media_path = file_dialog.open_finish(result).get_path()
+      if not media_path:
+        return
+      media = parse_file(media_path)
+      if not media:
+        return
+
+      lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+      if not lyrics.strip():
+        return
+      chronie = chronie_from_text(lyrics)
+      media.embed_lyrics(chronie, str(state).strip("'"))
+
+    dialog = Gtk.FileDialog(
+      default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS
+    )
+    dialog.open(Constants.WIN, None, _on_file_selected)
 
 
 class LRCSyncLine(Adw.EntryRow):
