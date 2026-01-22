@@ -7,3 +7,13 @@ option(
     ],
     value: 'release'
 )
+
+option(
+    'include_dgutils',
+    type: 'combo',
+    choices: [
+        'true',
+        'false',
+    ],
+    value: 'false'
+)

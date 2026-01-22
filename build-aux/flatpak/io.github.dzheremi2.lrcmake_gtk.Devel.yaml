@@ -131,6 +131,7 @@ modules:
     run-tests: true
     config-opts:
       - -Dprofile=development
+      - -Dinclude_dgutils=true
     sources:
       - type: dir
         path: ../..

@@ -12,6 +12,7 @@ finish-args:
   - --socket=pulseaudio
   - --filesystem=host
   - --filesystem=xdg-run/gvfsd
+  - --talk-name=org.freedesktop.FileManager1
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -124,6 +125,15 @@ modules:
         - type: file
           url: https://files.pythonhosted.org/packages/6f/60/58e7a307a24044e0e982b99042fcd5a58d0cd928d9c01829574d7553ee8d/peewee-3.18.3.tar.gz
           sha256: 62c3d93315b1a909360c4b43c3a573b47557a1ec7a4583a71286df2a28d4b72e
+      - name: python3-dgutils
+        buildsystem: simple
+        build-commands:
+        - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+          --prefix=${FLATPAK_DEST} "." --no-build-isolation
+        sources:
+        - type: git
+          url: https://github.com/Dzheremi2/DGutils.git
+          commit: v0.1
   - name: Chronograph
     builddir: true
     buildsystem: meson

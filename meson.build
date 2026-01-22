@@ -36,7 +36,12 @@ conf.set('pkgdatadir', pkgdatadir)
 
 subdir('data')
 subdir('chronograph')
-install_subdir('dgutils', install_dir: pkgdatadir) # TODO: Fix and remove
+
+include_dgutils = get_option('include_dgutils')
+if include_dgutils == 'true'
+    install_subdir('dgutils', install_dir: pkgdatadir)
+endif
+
 subdir('po')
 
 gnome.post_install(
