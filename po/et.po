@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-17 20:45+0300\n"
-"PO-Revision-Date: 2026-01-12 00:01+0000\n"
+"PO-Revision-Date: 2026-01-18 21:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: chronograph/window.py:51
 msgid "All Supported Media"
@@ -380,9 +380,8 @@ msgid "Clipboard"
 msgstr "Lõikelaud"
 
 #: chronograph/ui/widgets/lyric_row.py:29
-#, fuzzy
 msgid "TBI Export To…"
-msgstr "Ekspordi…"
+msgstr "TBI eksport asukohta…"
 
 #: chronograph/ui/widgets/tag_row.py:45 chronograph/ui/widgets/tag_row.py:62
 msgid "Rename"
@@ -542,9 +541,8 @@ msgid "Sort"
 msgstr "Järjesta"
 
 #: data/gtk/window.blp:323
-#, fuzzy
 msgid "Last Added"
-msgstr "Viimati muudetud"
+msgstr "Viimati lisatud"
 
 #: data/gtk/window.blp:331
 msgid "A-Z"
@@ -598,9 +596,8 @@ msgid "Import Files"
 msgstr "Impordi faile"
 
 #: data/gtk/window.blp:466
-#, fuzzy
 msgid "Create New Library"
-msgstr "Loo muusikakogu"
+msgstr "Loo uus muusikakogu"
 
 #: data/gtk/ui/shortcuts-dialog.blp:7 data/gtk/ui/dialogs/Preferences.blp:8
 #: data/gtk/ui/dialogs/Preferences.blp:62
@@ -867,21 +864,20 @@ msgid "Amount of milliseconds large re-sync performs by"
 msgstr "Pika uuesti sünkroonimise väärtus millisekundites"
 
 #: data/gtk/ui/dialogs/Preferences.blp:146
-#, fuzzy
 msgid "Lyric Manipulation"
-msgstr "Failide muutmine"
+msgstr "Laulusõnade muutmine"
 
 #: data/gtk/ui/dialogs/Preferences.blp:151
-#, fuzzy
 msgid "Auto Lyric Manipulation"
-msgstr "Muuda laulusõnade faili automaatselt"
+msgstr "Laulusõnade muutmine automaatselt"
 
 #: data/gtk/ui/dialogs/Preferences.blp:152
-#, fuzzy
 msgid ""
 "Automatically creates and updates lyric DB instance when any of lyric line "
 "or word changed"
-msgstr "Kui laulusõnade rida muutub, siis loo ja uuenda faili automaatselt"
+msgstr ""
+"Kui laulusõnade rida või sõna muutub, siis laulusõnade andmebaas uuendub "
+"automaatselt"
 
 #: data/gtk/ui/dialogs/Preferences.blp:161
 msgid "Autosave Interval"
