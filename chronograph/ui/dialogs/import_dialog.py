@@ -16,6 +16,7 @@ class ImportDialog(Adw.Dialog, Linker):
   file_list_group: Adw.PreferencesGroup = gtc()
   import_with_lyrics_switch: Adw.ExpanderRow = gtc()
   elrc_prefix_entry: Adw.EntryRow = gtc()
+  prefer_embedded_lyrics_switch: Adw.SwitchRow = gtc()
   move_files_switch: Adw.SwitchRow = gtc()
   import_button: Gtk.Button = gtc()
 
@@ -38,6 +39,10 @@ class ImportDialog(Adw.Dialog, Linker):
     self.import_with_lyrics_switch.set_property("enable-expansion", True)
     self._on_items_changed(self._file_list, 0, 0, 0)
     self.new_connection(self, "closed", lambda *__: self.disconnect_all())
+
+  def close(self) -> bool:
+    self.disconnect_all()
+    return super().close()
 
   def _row_factory(self, item: Gtk.StringObject) -> Gtk.Widget:
     path = item.get_string()
@@ -78,7 +83,8 @@ class ImportDialog(Adw.Dialog, Linker):
     ]
     import_with_lyrics = self.import_with_lyrics_switch.get_property("enable-expansion")
     elrc_prefix = self.elrc_prefix_entry.get_text().strip()
+    prefer_embedded = self.prefer_embedded_lyrics_switch.get_active()
     move_files = self.move_files_switch.get_active()
 
     self.close()
-    self._on_import(paths, import_with_lyrics, elrc_prefix, move_files)
+    self._on_import(paths, import_with_lyrics, elrc_prefix, prefer_embedded, move_files)

@@ -20,7 +20,7 @@ class Actions:
       class MyWidget(...): ...
   """
 
-  def __init__(self, instance, schema: dict):
+  def __init__(self, instance, schema: dict) -> None:
     self.instance = instance
     self.schema = schema
     self._setup()

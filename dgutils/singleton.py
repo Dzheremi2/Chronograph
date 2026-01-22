@@ -1,8 +1,8 @@
-from typing import TypeVar, cast
+from __future__ import annotations
+
+from typing import cast
 
 import gi
-
-T = TypeVar("T", bound=object)
 
 
 class GSingleton(gi.types.GObjectMeta):
@@ -12,7 +12,7 @@ class GSingleton(gi.types.GObjectMeta):
 
   _instances = {}
 
-  def __call__(cls: type[T], *args, **kwargs) -> T:  # noqa: D102, N805
+  def __call__[T: object](cls: type[T], *args, **kwargs) -> T:  # noqa: N805
     if cls not in GSingleton._instances:
       instance = super().__call__(*args, **kwargs)
       GSingleton._instances[cls] = instance
@@ -26,7 +26,7 @@ class Singleton(type):
 
   _instances = {}
 
-  def __call__(cls: type[T], *args, **kwargs) -> T:  # noqa: D102
+  def __call__[T: object](cls: type[T], *args, **kwargs) -> T:
     if cls not in Singleton._instances:
       instance = super().__call__(*args, **kwargs)
       Singleton._instances[cls] = instance

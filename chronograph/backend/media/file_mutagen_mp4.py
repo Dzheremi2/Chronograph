@@ -8,6 +8,7 @@ from chronograph.backend.lyrics import (
   choose_export_format,
   export_chronie,
 )
+from chronograph.backend.lyrics.formats import chronie_from_text
 from chronograph.internal import Schema
 
 from .file import TaggableFile
@@ -126,3 +127,12 @@ class FileMP4(TaggableFile):
 
     self.save()
     return self
+
+  def read_lyrics(self) -> Optional[ChronieLyrics]:
+    try:
+      lyrics: str = self._mutagen_file.tags["\xa9lyr"]
+      if lyrics.strip() == "":
+        return None
+      return chronie_from_text(lyrics)
+    except KeyError:
+      return None

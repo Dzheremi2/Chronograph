@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import builtins
 import importlib
 from typing import Any
@@ -8,7 +10,7 @@ from gi.repository import Gio
 
 class Constants:
   @classmethod
-  def from_resource(cls, resource_path: str) -> "Constants":
+  def from_resource(cls, resource_path: str) -> Constants:
     """Create a Constants instance from a GResource YAML file.
 
     Parameters

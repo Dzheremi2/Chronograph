@@ -14,6 +14,7 @@ from chronograph.backend.lyrics import (
   choose_export_format,
   export_chronie,
 )
+from chronograph.backend.lyrics.formats import chronie_from_text
 from chronograph.internal import Schema
 
 from .file import TaggableFile
@@ -165,3 +166,18 @@ class FileVorbis(TaggableFile):
 
     self.save()
     return self
+
+  def read_lyrics(self) -> Optional[ChronieLyrics]:
+    tags = self._mutagen_file.tags
+    use_vorbis = Schema.get("root.settings.do-lyrics-db-updates.embed-lyrics.vorbis")
+
+    if use_vorbis:
+      lyrics: str = tags.get("LYRICS", "").strip()
+      if not lyrics:
+        lyrics: str = tags.get("UNSYNCEDLYRICS", "").strip()
+      if lyrics:
+        return chronie_from_text(lyrics)
+      return None
+
+    lyrics: str = tags.get("UNSYNCEDLYRICS", "").strip()
+    return chronie_from_text(lyrics) if lyrics else None

@@ -43,6 +43,11 @@ template $ImportDialog : Adw.Dialog {
                 title: _("eLRC prefix");
                 tooltip-text: _("Remain empty if not used");
               }
+
+              Adw.SwitchRow prefer_embedded_lyrics_switch {
+                title: _("Prefer Embedded Lyrics");
+                subtitle: _("If file has lyrics embedded, they would be used during import. This overrides any import from files");
+              }
             }
 
             Adw.SwitchRow move_files_switch {

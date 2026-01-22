@@ -10,7 +10,7 @@ from typing import Callable, Optional, Union
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
-from chronograph.backend.db.models import SchemaInfo
+from chronograph.backend.db.models import SchemaInfo, Track
 from chronograph.backend.file.available_lyrics import AvailableLyrics
 from chronograph.backend.file.library_manager import LibraryManager
 from chronograph.backend.file.song_card_model import SongCardModel
@@ -321,13 +321,19 @@ class ChronographWindow(Adw.ApplicationWindow):
     dialog.present(self)
 
   def _on_import_dialog_confirmed(
-    self, files: list[str], import_with_lyrics: bool, elrc_prefix: str, move: bool
+    self,
+    files: list[str],
+    import_with_lyrics: bool,
+    elrc_prefix: str,
+    prefer_embedded: bool,
+    move: bool,
   ) -> None:
     self.import_files_to_library(
       files,
       move=move,
       import_with_lyrics=import_with_lyrics,
       elrc_prefix=elrc_prefix,
+      prefer_embedded=prefer_embedded,
     )
 
   ##############################
@@ -457,6 +463,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     move: bool = False,
     import_with_lyrics: bool = True,
     elrc_prefix: str = "",
+    prefer_embedded: bool = False,
   ) -> None:
     """Import media files into the current library.
 
@@ -521,6 +528,7 @@ class ChronographWindow(Adw.ApplicationWindow):
           src_path,
           import_with_lyrics,
           elrc_prefix,
+          prefer_embedded,
         )
         media_path = LibraryManager.track_path(track_uuid, track_format)
         if media_path.exists():
@@ -558,9 +566,16 @@ class ChronographWindow(Adw.ApplicationWindow):
     source_path: Path,
     import_with_lyrics: bool,
     elrc_prefix: str,
+    prefer_embedded: bool = False,
   ) -> None:
     if not import_with_lyrics:
       return
+
+    if prefer_embedded:
+      chronie = parse_file(source_path).read_lyrics()
+      if chronie:
+        save_track_lyric(track_uuid, chronie)
+        return
 
     lyric_path = source_path.with_suffix(".lrc")
     self._import_lyrics_from_path(track_uuid, lyric_path)
@@ -764,13 +779,6 @@ class ChronographWindow(Adw.ApplicationWindow):
 
   @state.setter
   def state(self, value: Union[WindowState, int]) -> None:
-    """Set the current window state.
-
-    Parameters
-    ----------
-    value : Union[WindowState, int]
-      New window state value.
-    """
     if isinstance(value, WindowState):
       self._state = value
     else:

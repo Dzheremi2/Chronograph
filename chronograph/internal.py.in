@@ -55,7 +55,7 @@ class Constants(metaclass=ConstantsMeta):
   # App metadata
   APP_ID = "@APP_ID@"
   VERSION = "@VERSION@"
-  PREFIX = "@PREFIX@"
+  PREFIX = _PREFIX
   CACHEV = int("@CACHEV@")
   DB_VER = "@DBVER@"
 

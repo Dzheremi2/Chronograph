@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from threading import Lock
+from typing import Callable, cast
 
 from dgutils.exceptions import (
   BaseClassInstantiation,
@@ -7,7 +10,7 @@ from dgutils.exceptions import (
 )
 
 
-def errsingleton(cls):
+def errsingleton[T: type](cls: T) -> T:
   """Raises a `SingletonInstantiation` exception when trying to instantiate twice."""
   instance = None
   has_instance = False
@@ -25,7 +28,7 @@ def errsingleton(cls):
   return get_instance
 
 
-def singleton(cls):
+def singleton[T: type](cls: T) -> T:
   """Returns an already created instance on second instantiation.
 
   Simple singleton realizations. Disables support for staticmethods and classmethods,
@@ -46,7 +49,7 @@ def singleton(cls):
   return get_instance
 
 
-def final(cls):
+def final[T: type](cls: T) -> T:
   """Raises a `FinalClassInherited` exception when trying to subclass decorated class"""
 
   def fail_on_inherit(_subclass, **_kwargs):
@@ -56,16 +59,16 @@ def final(cls):
   return cls
 
 
-def baseclass(cls):
+def baseclass[T: type](cls: T) -> T:
   """Raises a `BaseClassInstantiation` exception when trying to instantiate decorated class"""
   original_init = cls.__init__
 
-  def __init__(self, *args, **kwargs):  # noqa: N807
+  def __init__(self: object, *args, **kwargs):  # noqa: N807
     if self.__class__ is cls:
       raise BaseClassInstantiation(
         f"{cls.__name__} is a base class and cannot be instantiated directly"
       )
-    original_init(self, *args, **kwargs)
+    cast("Callable[..., None]", original_init)(self, *args, **kwargs)
 
   cls.__init__ = __init__
   return cls

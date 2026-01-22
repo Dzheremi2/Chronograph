@@ -32,8 +32,6 @@ class BaseFile:
       duration : int -> Duration of the loaded song
   """
 
-  __gtype_name__ = "BaseFile"
-
   _title: str = None
   _artist: str = None
   _album: str = None
@@ -222,6 +220,17 @@ class BaseFile:
     """
     raise NotImplementedError(self.path)
 
+  def read_lyrics(self) -> Optional[ChronieLyrics]:
+    """Reads the embedded lyrics from media file if available
+
+    Returns
+    -------
+    Optional[ChronieLyrics]
+      Returns lyrics in Chronie format if found, `None` otherwise
+
+    Should be implemented in file specific child classes
+    """
+
 
 class TaggableFile(BaseFile):
   """Base class for files that support metadata editing.
@@ -231,8 +240,6 @@ class TaggableFile(BaseFile):
   path : Path
     A path to file for loading
   """
-
-  __gtype_name__ = "TaggableFile"
 
   def __init__(self, path: Path) -> None:
     super().__init__(path)
