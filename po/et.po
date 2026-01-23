@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chronograph\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-22 16:58+0300\n"
-"PO-Revision-Date: 2026-01-18 21:01+0000\n"
+"PO-Revision-Date: 2026-01-22 22:01+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/chronograph/"
 "chronograph/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: chronograph/window.py:51
 msgid "All Supported Media"
@@ -979,15 +979,16 @@ msgid "Remain empty if not used"
 msgstr "Kui pole kasutusel, siis jääb tühjaks"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:48
-#, fuzzy
 msgid "Prefer Embedded Lyrics"
-msgstr "Lõimitud laulusõnad"
+msgstr "Eelista lõimitud laulusõnu"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:49
 msgid ""
 "If file has lyrics embedded, they would be used during import. This "
 "overrides any import from files"
 msgstr ""
+"Kui laulusõnad on lõimitud faili, siis kasutatakse neid importimisel. "
+"Sellega sürjutad importimise muudest failidest"
 
 #: data/gtk/ui/dialogs/ImportDialog.blp:54
 msgid "Move Files"
@@ -1039,20 +1040,18 @@ msgstr "Ekspordi…"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:134
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:126
-#, fuzzy
 msgid "Embed to File"
-msgstr "Faili teave"
+msgstr "Lõimi faili"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:137
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:129
-#, fuzzy
 msgid "As Plain"
-msgstr "Tavaline"
+msgstr "Tavatekstina"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:143
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:135
 msgid "As LRC"
-msgstr ""
+msgstr "LRC-vormingus"
 
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:170
 #: data/gtk/ui/sync_pages/LRCSyncPage.blp:175
@@ -1107,7 +1106,7 @@ msgstr "Sünkrooni valitud sõna ettepoole"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:141
 msgid "As eLRC"
-msgstr ""
+msgstr "eLRC-vormingus"
 
 #: data/gtk/ui/sync_pages/WBWSyncPage.blp:205
 msgid "Edit"
