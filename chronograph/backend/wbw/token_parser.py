@@ -1,6 +1,6 @@
 import re
 from pathlib import Path
-from typing import Optional, Union
+from typing import Optional, Union, cast
 
 from chronograph.backend.wbw.tokens import LineToken, WordToken
 
@@ -86,7 +86,7 @@ class TokenParser:
     tuple[WordToken, ...]
       Tuple of `WordToken` dataclasses
     """
-    raw = line.line if hasattr(line, "line") else line
+    raw = cast("str", line.line) if hasattr(line, "line") else line
     pos = 0
     match = TokenParser.LINE_TIMESTAMP.match(raw)
     if match:

@@ -1,3 +1,5 @@
+from typing import cast
+
 from gi.repository import Adw, GObject, Gst, Gtk
 
 from chronograph.backend.file.song_card_model import SongCardModel
@@ -182,7 +184,7 @@ class UIPlayer(Adw.BreakpointBin, Linker):
       self.volume_button.remove_css_class("destructive-action")
       self.volume_adj.set_value(0)
     else:
-      vol = Schema.get("root.state.player.volume")
+      vol = cast("int", Schema.get("root.state.player.volume"))
       self.volume_adj.set_value(vol)
       self._on_volume(None, None, vol)
 
@@ -197,7 +199,7 @@ class UIPlayer(Adw.BreakpointBin, Linker):
 
   @Gtk.Template.Callback()
   def _on_seekbar_value(self, _rng, _scrl, value: float) -> None:
-    Player().seek(value * 1_000)
+    Player().seek(int(value * 1_000))
 
   @Gtk.Template.Callback()
   def _on_breakpoint(self, *_args) -> None:

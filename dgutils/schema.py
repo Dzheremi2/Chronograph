@@ -5,8 +5,8 @@ from typing import Any, Callable, Optional, Union
 import yaml
 from gi.repository import Gio, GObject
 
-Transform = Callable[[Any], Any]
-SupportedTypes = Union[bool, str, int, float]
+type Transform = Callable[[Any], Any]
+type SupportedTypes = Union[bool, str, int, float]
 
 
 class Schema(GObject.GObject):

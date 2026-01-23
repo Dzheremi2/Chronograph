@@ -4,7 +4,7 @@ import re
 import threading
 from difflib import SequenceMatcher
 from enum import StrEnum
-from typing import Callable, Iterable, Optional
+from typing import Callable, Iterable, Optional, Sized, cast
 
 import httpx
 import requests
@@ -13,6 +13,7 @@ from gi.repository import GLib, GObject
 from chronograph.backend.media import BaseFile
 from chronograph.internal import Constants, Schema
 from dgutils import GSingleton
+from dgutils.typing import unwrap
 
 from . import APP_SIGNATURE_HEADER
 from .cryptograpic_challenge import solve_challenge
@@ -334,9 +335,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
       lyrics found
     """
     sem = asyncio.Semaphore(
-      Schema.get("root.settings.general.mass-downloading.parallel-amount")
+      cast("int", Schema.get("root.settings.general.mass-downloading.parallel-amount"))
     )
-    files_parse = len(tracks)
+    files_parse = len(cast("Sized", tracks))
     files_parsed = 0
 
     def emit_message(path: str, msg: str) -> None:
@@ -372,16 +373,14 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
 
         except TrackNotFound:
           # Second attempt using api_search
-          emit_message(
-            track.path, _("Fetch using /api/get failed, trying /api/search")
-          )
+          emit_message(track.path, _("Fetch using /api/get failed, trying /api/search"))
           logger.warning(
             "[FETCH] Failed to fetch lyrics for %s using absolute /api/get", track.path
           )
 
           try:
             search_response = await self.api_search(
-              track.title, track.artist, track.album
+              unwrap(track.title), unwrap(track.artist), unwrap(track.album)
             )
             nearest = LRClibService.get_nearest(track, search_response)
 
@@ -390,7 +389,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
                 with contextlib.suppress(SearchEmptyReturn):
                   logger.info("Trying to search %s with no album", track.path)
                   emit_message(track.path, _("Trying search with no album"))
-                  search_response = await self.api_search(track.title, track.artist)
+                  search_response = await self.api_search(
+                    unwrap(track.title), unwrap(track.artist)
+                  )
                   nearest = LRClibService.get_nearest(track, search_response)
                   if nearest:
                     emit_message(track.path, _("Fetched successfully"))
@@ -436,7 +437,7 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
 
         return track, None
 
-    tasks: list[asyncio.Task] = [sem_fetch(track) for track in tracks]
+    tasks: list[asyncio.Task] = [sem_fetch(track) for track in tracks]  # ty:ignore[invalid-assignment]
     try:
       results = await asyncio.gather(*tasks)
     except asyncio.CancelledError:
@@ -484,9 +485,9 @@ class LRClibService(GObject.Object, metaclass=GSingleton):
 
     def track_score(candidate: LRClibEntry) -> float:
       scores = [
-        string_similarity(original.title, candidate.track_name),
-        string_similarity(original.artist, candidate.artist_name),
-        string_similarity(original.album, candidate.album_name),
+        string_similarity(unwrap(original.title), candidate.track_name),
+        string_similarity(unwrap(original.artist), candidate.artist_name),
+        string_similarity(unwrap(original.album), candidate.album_name),
         duration_similarity(original.duration, candidate.duration),
       ]
       for score in scores:

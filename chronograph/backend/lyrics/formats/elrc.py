@@ -1,5 +1,5 @@
 import re
-from typing import Any, Optional
+from typing import Any, Optional, cast
 
 from chronograph.backend.lyrics.chronie import (
   ChronieLine,
@@ -89,7 +89,7 @@ class ElrcLyrics(LyricFormat):
   @classmethod
   def from_chronie(cls, chronie: ChronieLyrics) -> "ElrcLyrics":
     out_lines: list[str] = []
-    precise = Schema.get("root.settings.syncing.precise")
+    precise = cast("bool", Schema.get("root.settings.syncing.precise"))
 
     for line in chronie.lines:
       line_timestamp = None

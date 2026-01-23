@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, cast
 
 from gi.repository import Adw, Gdk, Gio, GObject, Gtk
 
@@ -10,6 +10,7 @@ from chronograph.ui.widgets.internal.menu_button import (
   ChrMenuButton,  # noqa: F401
 )
 from dgutils import Actions, Linker
+from dgutils.typing import unwrap
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -83,7 +84,8 @@ class MetadataEditor(Adw.Dialog, Linker):
     page = Constants.WIN.navigation_view.get_visible_page()
     if isinstance(page, WBWSyncPage):
       if (
-        page.modes.get_page(page.modes.get_visible_child()) == page.edit_view_stack_page
+        page.modes.get_page(unwrap(page.modes.get_visible_child()))
+        == page.edit_view_stack_page
       ):
         chronie = chronie_from_text(
           page.edit_view_text_view.get_buffer().get_text(
@@ -93,23 +95,29 @@ class MetadataEditor(Adw.Dialog, Linker):
           )
         )
       else:
-        chronie = chronie_from_tokens(page._lyrics_model.get_tokens())  # noqa: SLF001
-      self._card.media().embed_lyrics(chronie, choose_export_format(chronie, "elrc"))
+        chronie = chronie_from_tokens(unwrap(page._lyrics_model).get_tokens())  # noqa: SLF001
+      unwrap(self._card).media().embed_lyrics(
+        chronie, unwrap(choose_export_format(chronie, "elrc"))
+      )
     elif isinstance(page, LRCSyncPage):
-      lyrics = [line.get_text() for line in page.sync_lines]
-      chronie = chronie_from_text("\n".join(lyrics).strip())
-      self._card.media().embed_lyrics(chronie, detect_lyric_format(lyrics).format)
+      lyrics = cast("list[str]", [line.get_text() for line in page.sync_lines])  # ty:ignore[not-iterable]
+      lyrics = "\n".join(lyrics).strip()
+      chronie = chronie_from_text(lyrics)
+      unwrap(self._card).media().embed_lyrics(
+        chronie, detect_lyric_format(lyrics).format
+      )
     else:
       logger.debug("Prevented lyrics embedding from library page")
 
   @Gtk.Template.Callback()
   def on_delete_lyrics_clicked(self, *_args) -> None:
     """Triggered on delete lyrics button click. Removes embeded lyrics from media file"""
-    self._card.media().embed_lyrics(None)
+    unwrap(self._card).media().embed_lyrics(None, "")
 
   @Gtk.Template.Callback()
   def save(self, *_args) -> None:
     """Save metadata changes"""
+    self._card = unwrap(self._card)
     if self._is_cover_changed:
       self._card.media().set_cover(self._new_cover_path).save()
       self._card.notify("cover")
@@ -151,7 +159,7 @@ class MetadataEditor(Adw.Dialog, Linker):
       self._new_cover_path = dialog.open_finish(result).get_path()
       self._is_cover_changed = True
       self.cover_image.set_from_paintable(
-        Gdk.Texture.new_from_filename(self._new_cover_path)
+        Gdk.Texture.new_from_filename(unwrap(self._new_cover_path))
       )
       logger.debug("Queuing cover changing to '%s' image", self._new_cover_path)
 

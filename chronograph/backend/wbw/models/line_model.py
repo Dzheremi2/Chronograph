@@ -1,10 +1,13 @@
-from typing import Iterator, Optional
+from typing import TYPE_CHECKING, Iterator, Optional, cast
 
 from gi.repository import Gio, GObject
 
 from chronograph.backend.wbw.models.word_model import WordModel
 from chronograph.backend.wbw.token_parser import TokenParser
 from chronograph.backend.wbw.tokens import LineToken
+
+if TYPE_CHECKING:
+  from gi.repository.Gio import ListStore
 
 
 class LineModel(GObject.Object):
@@ -17,12 +20,12 @@ class LineModel(GObject.Object):
     "end-of-line": (GObject.SignalFlags.RUN_FIRST, None, (bool,)),
   }
 
-  text: str = GObject.Property(type=str, default="")
-  line: str = GObject.Property(type=str, default="")
-  time: int = GObject.Property(type=int, default=-1)
-  timestamp = GObject.Property(type=str, default="")
-  cindex: int = GObject.Property(type=int, default=-1)
-  words: Gio.ListStore = GObject.Property(type=Gio.ListStore)
+  text: str = cast("str", GObject.Property(type=str, default=""))
+  line: str = cast("str", GObject.Property(type=str, default=""))
+  time: int = cast("int", GObject.Property(type=int, default=-1))
+  timestamp: str = cast("str", GObject.Property(type=str, default=""))
+  cindex: int = cast("int", GObject.Property(type=int, default=-1))
+  words: Gio.ListStore = cast("ListStore", GObject.Property(type=Gio.ListStore))
 
   def __init__(self, line: LineToken) -> None:
     """Create model from `LineToken`"""
@@ -65,7 +68,9 @@ class LineModel(GObject.Object):
       self.emit("cindex-changed", old, index)
       for word in self:
         word.set_property("highlighted", False)
-      self.words.get_item(self.cindex).set_property("highlighted", True)
+      cast("WordModel", self.words.get_item(self.cindex)).set_property(
+        "highlighted", True
+      )
     else:
       self.emit("end-of-line", not (index < 0))
       self.cindex = -1
@@ -126,7 +131,7 @@ class LineModel(GObject.Object):
     """Return word by index."""
     try:
       if (item := self.words.get_item(index)) is not None:
-        return item
+        return cast("WordModel", item)
       raise IndexError("List index out of range")  # noqa: TRY301
     except (IndexError, OverflowError) as e:
       raise IndexError("List index out of range") from e

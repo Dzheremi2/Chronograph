@@ -1,5 +1,5 @@
 import contextlib
-from typing import Iterator, Optional
+from typing import TYPE_CHECKING, Iterator, Optional, cast
 
 from gi.repository import Gio, GObject
 
@@ -7,6 +7,9 @@ from chronograph.backend.wbw.models.line_model import LineModel
 from chronograph.backend.wbw.models.word_model import WordModel
 from chronograph.backend.wbw.token_parser import TokenParser
 from chronograph.backend.wbw.tokens import WordToken
+
+if TYPE_CHECKING:
+  from gi.repository.Gio import ListStore
 
 
 class LyricsModel(GObject.Object):
@@ -16,9 +19,11 @@ class LyricsModel(GObject.Object):
     "cindex-changed": (GObject.SignalFlags.RUN_FIRST, None, (int, int)),
   }
 
-  lines: Gio.ListStore = GObject.Property(type=Gio.ListStore)
-  cindex: int = GObject.Property(type=int, default=-1)
-  position_ms: int = GObject.Property(type=int, default=-1)
+  lines: Gio.ListStore = cast(
+    "ListStore", GObject.Property(type=Gio.ListStore)
+  )
+  cindex: int = cast("int", GObject.Property(type=int, default=-1))
+  position_ms: int = cast("int", GObject.Property(type=int, default=-1))
 
   _eol_handler: int
 
@@ -137,6 +142,7 @@ class LyricsModel(GObject.Object):
   def __getitem__(self, index: int) -> LineModel:
     try:
       if (item := self.lines.get_item(index)) is not None:
-        return item
+        return cast("LineModel", item)
+      raise IndexError  # noqa: TRY301
     except (OverflowError, IndexError) as e:
       raise IndexError("List index out of range") from e

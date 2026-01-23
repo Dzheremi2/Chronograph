@@ -1,9 +1,14 @@
 import json
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Adw, Gio, GObject, Gtk
+from peewee import DoesNotExist
 
 from chronograph.backend.db.models import SchemaInfo, Track
 from chronograph.internal import Constants
+
+if TYPE_CHECKING:
+  from chronograph.backend.file import SongCardModel
 
 gtc = Gtk.Template.Child
 
@@ -124,7 +129,7 @@ class TagRow(Gtk.Box):
 
     cards_model = Constants.WIN.library.cards_model
     for index in range(cards_model.get_n_items()):
-      card = cards_model.get_item(index)
+      card = cast("SongCardModel", cards_model.get_item(index))
       if card is None:
         continue
       if old_tag not in card.tags:
@@ -157,7 +162,7 @@ class TagRow(Gtk.Box):
 
     cards_model = Constants.WIN.library.cards_model
     for index in range(cards_model.get_n_items()):
-      card = cards_model.get_item(index)
+      card = cast("SongCardModel", cards_model.get_item(index))
       if card is None:
         continue
       if tag not in card.tags:
@@ -182,7 +187,7 @@ class TagRow(Gtk.Box):
   def _get_registered_tags() -> list[str]:
     try:
       raw = SchemaInfo.get_by_id("tags").value
-    except SchemaInfo.DoesNotExist:
+    except DoesNotExist:
       return []
     try:
       tags = json.loads(raw)

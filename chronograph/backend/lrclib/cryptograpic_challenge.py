@@ -17,7 +17,7 @@ def solve_challenge(prefix: str, target_hex: str) -> str:
   str
     Nonce, that in combination with prefix will be an X-Publish-Token
   """
-  def verify_nonce(result: int, target: int) -> bool:
+  def verify_nonce(result: bytes, target: bytes) -> bool:
     if len(result) != len(target):
       return False
 

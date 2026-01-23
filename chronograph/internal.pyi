@@ -19,8 +19,8 @@ class Constants(metaclass=ConstantsMeta):
   CACHEV: Final[int]
   DB_VER: Final[str]
 
-  APP: Final[ChronographApplication]
-  WIN: Final[ChronographWindow]
+  APP: ChronographApplication
+  WIN: ChronographWindow
 
   CFG_DIR: Final[Path]
   DATA_DIR: Final[Path]

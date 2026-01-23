@@ -1,6 +1,6 @@
 from typing import Optional, Self
 
-from mutagen.mp4 import MP4Cover
+from mutagen.mp4 import MP4Cover, MP4Tags
 
 from chronograph.backend.lyrics import (
   ChronieLyrics,
@@ -9,7 +9,6 @@ from chronograph.backend.lyrics import (
   export_chronie,
 )
 from chronograph.backend.lyrics.formats import chronie_from_text
-from chronograph.internal import Schema
 
 from .file import TaggableFile
 
@@ -31,10 +30,14 @@ class FileMP4(TaggableFile):
 
   __gtype_name__ = "FileMP4"
 
+  @property
+  def tags(self) -> MP4Tags:
+    return self._mutagen_file.tags  # ty:ignore[invalid-return-type]
+
   def load_cover(self) -> None:
     if (
-      "covr" not in self._mutagen_file.tags
-      or not self._mutagen_file.tags["covr"]
+      "covr" not in self.tags
+      or not self.tags["covr"]
       or self._mutagen_file.tags is None
     ):
       self.cover = None
@@ -91,7 +94,7 @@ class FileMP4(TaggableFile):
     if self._mutagen_file.tags is None:
       self._mutagen_file.add_tags()
 
-    self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
+    self.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
     return self
 
@@ -114,7 +117,7 @@ class FileMP4(TaggableFile):
       except LyricsConversionError:
         text = export_chronie(lyrics, "plain")
 
-      self._mutagen_file.tags["\xa9lyr"] = text
+      self.tags["\xa9lyr"] = text
       self.save()
       return self
 
@@ -129,7 +132,7 @@ class FileMP4(TaggableFile):
 
   def read_lyrics(self) -> Optional[ChronieLyrics]:
     try:
-      lyrics: str = self._mutagen_file.tags["\xa9lyr"]
+      lyrics: str = self.tags["\xa9lyr"]
       if not lyrics.strip():
         return None
       return chronie_from_text(lyrics)

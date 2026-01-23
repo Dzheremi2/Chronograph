@@ -1,6 +1,7 @@
 from datetime import datetime
 from gettext import pgettext as C_
 from pathlib import Path
+from typing import cast
 
 from gi.repository import Gdk, GObject
 
@@ -10,6 +11,7 @@ from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lyrics import get_track_lyric
 from chronograph.backend.media.file import BaseFile
 from chronograph.internal import Constants
+from dgutils.typing import unwrap
 
 _title_palceholder = C_("song title placeholder", "Unknown")
 _artist_placeholder = C_("song artist placeholder", "Unknown")
@@ -19,9 +21,10 @@ _album_placeholder = C_("song album placeholder", "Unknown")
 class SongCardModel(GObject.Object):
   __gtype_name__ = "SongCardModel"
 
-  duration: int = GObject.Property(type=int, default=0)
-  available_lyrics: AvailableLyrics = GObject.Property(
-    type=AvailableLyrics, default=AvailableLyrics.NONE
+  duration = cast("int", GObject.Property(type=int, default=0))
+  available_lyrics = cast(
+    "AvailableLyrics",
+    GObject.Property(type=AvailableLyrics, default=AvailableLyrics.NONE),
   )
 
   def __init__(self, mediafile: Path, uuid: str, **kwargs) -> None:
@@ -49,7 +52,7 @@ class SongCardModel(GObject.Object):
     BaseFile
       A fresh instance of `BaseFile` depending on mutagen realization
     """
-    return parse_file(self.mediafile)
+    return unwrap(parse_file(self.mediafile))
 
   @GObject.Property(type=str)
   def path(self) -> str:

@@ -1,8 +1,13 @@
 import re
+from typing import TYPE_CHECKING, Union
 
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants
+
+if TYPE_CHECKING:
+  from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
+  from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 
 
 @Gtk.Template(
@@ -14,7 +19,7 @@ class ResyncAllAlertDialog(Adw.AlertDialog):
   ms_entry: Gtk.Entry = Gtk.Template.Child()
   ms_entry_regex = re.compile(r"^-?\d+$")
 
-  def __init__(self, page: Adw.NavigationPage) -> None:
+  def __init__(self, page: Union["LRCSyncPage", "WBWSyncPage"]) -> None:
     super().__init__()
     self.page = page
     self._on_ms_entry_changed(self.ms_entry)

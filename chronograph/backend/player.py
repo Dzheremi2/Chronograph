@@ -1,10 +1,11 @@
 from pathlib import Path
+from typing import cast
 
 import gi
 
 gi.require_version("Gst", "1.0")
 gi.require_version("GstPlay", "1.0")
-from gi.repository import GObject, Gst, GstPlay, Gtk
+from gi.repository import GObject, Gst, GstPlay, Gtk  # ty:ignore[unresolved-import]
 
 from chronograph.internal import Constants, Schema
 from dgutils import GSingleton
@@ -56,7 +57,7 @@ class GstPlayer(GstPlay.Play, metaclass=GSingleton):
   def _on_bus_message(self, _bus, message: Gst.Message) -> None:
     if message:
       if message.type == Gst.MessageType.BUFFERING:
-        if message.percentage < 100:
+        if message.percentage < 100:  # ty:ignore[unresolved-attribute]
           self.pause()
           logger.info("Buffering")
         else:
@@ -100,12 +101,12 @@ class Player(GObject.Object, metaclass=GSingleton):
 
   _cookie = 0
 
-  playing: bool = GObject.Property(type=bool, default=False)
-  volume: float = GObject.Property(type=float, default=1.0)
-  rate: float = GObject.Property(type=float, default=1.0)
-  mute: bool = GObject.Property(type=bool, default=False)
-  pos: int = GObject.Property(type=GObject.TYPE_INT64, default=0)
-  duration: int = GObject.Property(type=GObject.TYPE_INT64, default=-1)
+  playing: bool = cast("bool", GObject.Property(type=bool, default=False))
+  volume: float = cast("float", GObject.Property(type=float, default=1.0))
+  rate: float = cast("float", GObject.Property(type=float, default=1.0))
+  mute: bool = cast("bool", GObject.Property(type=bool, default=False))
+  pos: int = cast("int", GObject.Property(type=GObject.TYPE_INT64, default=0))
+  duration: int = cast("int", GObject.Property(type=GObject.TYPE_INT64, default=-1))
 
   looped: bool = False
 
@@ -156,14 +157,14 @@ class Player(GObject.Object, metaclass=GSingleton):
       if self._cookie:
         return
 
-      self._cookie = app.inhibit(
+      self._cookie = app.inhibit(  # ty:ignore[unresolved-attribute]
         None, Gtk.ApplicationInhibitFlags.SUSPEND, "Playback in progress"
       )
       logger.debug(
         "Application inhibited to prevent playing media app from being suspended"
       )
     elif self._cookie != 0:
-      app.uninhibit(self._cookie)
+      app.uninhibit(self._cookie)  # ty:ignore[unresolved-attribute]
       logger.debug("Application uninhibited")
       self._cookie = 0
 
@@ -190,7 +191,7 @@ class Player(GObject.Object, metaclass=GSingleton):
   def stop(self) -> None:
     """Force stops the player"""
     self._gst_player.stop()
-    self.props.playing = False
+    self.props.playing = False  # ty:ignore[unresolved-attribute]
     self._inhibit(inhibit=False)
     logger.info("Player stopped")
 

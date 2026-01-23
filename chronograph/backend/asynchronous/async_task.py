@@ -1,7 +1,7 @@
 import asyncio
 import contextlib
 import threading
-from typing import Coroutine, Optional
+from typing import Coroutine, Optional, cast
 
 from gi.repository import GLib, GObject
 
@@ -48,8 +48,8 @@ class AsyncTask(GObject.Object):
     "cancelled": (GObject.SignalFlags.RUN_FIRST, None, ()),
   }
 
-  progress: float = GObject.Property(
-    type=float, minimum=0.0, maximum=1.0000001, default=0.0
+  progress: float = cast(
+    "float", GObject.Property(type=float, minimum=0.0, maximum=1.0000001, default=0.0)
   )
 
   def __init__(
@@ -101,7 +101,7 @@ class AsyncTask(GObject.Object):
       if self._do_use_cancellable:
         self._kwargs["cancellable"] = self._cancel_event
       self._asyncio_task = loop.create_task(
-        self._coroutine(*self._args, **self._kwargs)
+        self._coroutine(*self._args, **self._kwargs)  # ty:ignore[call-non-callable]
       )
       try:
         result = loop.run_until_complete(self._asyncio_task)

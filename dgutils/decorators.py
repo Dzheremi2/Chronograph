@@ -25,7 +25,7 @@ def errsingleton[T: type](cls: T) -> T:
       has_instance = True
       return instance
 
-  return get_instance
+  return get_instance()
 
 
 def singleton[T: type](cls: T) -> T:
@@ -46,7 +46,7 @@ def singleton[T: type](cls: T) -> T:
         instances[cls] = cls(*args, **kwargs)
       return instances[cls]
 
-  return get_instance
+  return get_instance()
 
 
 def final[T: type](cls: T) -> T:
@@ -55,7 +55,7 @@ def final[T: type](cls: T) -> T:
   def fail_on_inherit(_subclass, **_kwargs):
     raise FinalClassInherited(f"Cannot subclass final class {cls.__name__}")
 
-  cls.__init_subclass__ = classmethod(fail_on_inherit)
+  cls.__init_subclass__ = classmethod(fail_on_inherit)  # ty:ignore[invalid-assignment]
   return cls
 
 
@@ -70,5 +70,5 @@ def baseclass[T: type](cls: T) -> T:
       )
     cast("Callable[..., None]", original_init)(self, *args, **kwargs)
 
-  cls.__init__ = __init__
+  cls.__init__ = __init__  # ty:ignore[invalid-assignment]
   return cls

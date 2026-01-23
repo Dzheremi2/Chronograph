@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterable, cast
 
 from gi.repository import Adw, GLib, Gtk
 
@@ -127,7 +127,7 @@ class LRClib(Adw.Dialog, Linker):
     title = self.title_entry.get_text().strip()
     artist = self.artist_entry.get_text().strip()
     album = self.album_entry.get_text().strip()
-    task = AsyncTask(LRClibService().api_search, title, artist, album)
+    task = AsyncTask(LRClibService().api_search, title, artist, album)  # ty:ignore[invalid-argument-type]
     self.new_connection(task, "task-done", on_search_result)
     self.new_connection(task, "error", on_search_failed)
     task.start()
@@ -191,8 +191,8 @@ class LRClib(Adw.Dialog, Linker):
     row : Gtk.ListBoxRow
       A Gtk.ListBoxRow containing the selected track
     """
-    synced: str = row.get_child().synced
-    plain: str = row.get_child().plain
+    synced: str = cast("LRClibTrack", row.get_child()).synced
+    plain: str = cast("LRClibTrack", row.get_child()).plain
     if synced:
       self.synced_text_view.set_buffer(Gtk.TextBuffer(text=synced))
     else:
@@ -211,5 +211,5 @@ class LRClib(Adw.Dialog, Linker):
     self.plain_text_view.remove_css_class("placeholder-text")
     logger.debug(
       "Lyrics for \n----------\n%s\n----------\nwere loaded to TextViews",
-      row.get_child().get_tooltip_text(),
+      cast("LRClibTrack", row.get_child()).get_tooltip_text(),
     )

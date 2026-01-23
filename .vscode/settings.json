@@ -45,5 +45,6 @@
     "ruff.lint.enable": true,
     "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
     "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "_build"
+    "mesonbuild.buildFolder": "_build",
+    "ty.diagnosticMode": "workspace",
 }

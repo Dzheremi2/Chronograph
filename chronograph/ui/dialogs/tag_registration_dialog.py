@@ -2,6 +2,7 @@ import json
 from typing import Callable, Optional
 
 from gi.repository import Adw, Gtk
+from peewee import DoesNotExist
 
 from chronograph.backend.db.models import SchemaInfo
 from chronograph.internal import Constants
@@ -25,7 +26,7 @@ class TagRegistrationDialog(Adw.AlertDialog):
     self._entry.connect("activate", lambda *__: self.emit("response", "add"))
     self.connect("response", self._on_response)
 
-  def present(self, parent: Gtk.Widget) -> None:
+  def present(self, parent: Gtk.Widget) -> None:  # ty:ignore[invalid-method-override]
     """Present the dialog and focus the entry.
 
     Parameters
@@ -56,7 +57,7 @@ class TagRegistrationDialog(Adw.AlertDialog):
   def _get_registered_tags() -> list[str]:
     try:
       raw = SchemaInfo.get_by_id("tags").value
-    except SchemaInfo.DoesNotExist:
+    except DoesNotExist:
       return []
     try:
       tags = json.loads(raw)

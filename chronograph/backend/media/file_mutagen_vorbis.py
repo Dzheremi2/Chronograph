@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Optional, Self
 
 import magic
+from mutagen._vorbis import VCommentDict
 from mutagen.flac import FLAC, Picture
 from mutagen.flac import error as FLACError
 from PIL import Image
@@ -15,7 +16,6 @@ from chronograph.backend.lyrics import (
   export_chronie,
 )
 from chronograph.backend.lyrics.formats import chronie_from_text
-from chronograph.internal import Schema
 
 from .file import TaggableFile
 
@@ -36,6 +36,10 @@ class FileVorbis(TaggableFile):
   """
 
   __gtype_name__ = "FileVorbis"
+
+  @property
+  def tags(self) -> VCommentDict:
+    return self._mutagen_file.tags  # ty:ignore[invalid-return-type]
 
   def load_cover(self) -> None:
     if isinstance(self._mutagen_file, FLAC) and self._mutagen_file.pictures:
@@ -63,22 +67,23 @@ class FileVorbis(TaggableFile):
     else:
       self._cover = None
 
-  def load_str_data(self, tags: list = ("title", "artist", "album")) -> None:
-    if self._mutagen_file.tags is not None:
+  def load_str_data(self) -> None:
+    tags = ("title", "artist", "album")
+    if self.tags is not None:
       for tag in tags:
         try:
           text = (
             "Unknown"
-            if not self._mutagen_file.tags[tag.lower()][0]
-            else self._mutagen_file.tags[tag.lower()][0]
+            if not self.tags[tag.lower()][0]
+            else self.tags[tag.lower()][0]
           )
           setattr(self, f"_{tag}", text)
         except KeyError:
           try:
             text = (
               "Unknown"
-              if not self._mutagen_file.tags[tag.upper()][0]
-              else self._mutagen_file.tags[tag.upper()][0]
+              if not self.tags[tag.upper()][0]
+              else self.tags[tag.upper()][0]
             )
             setattr(self, f"_{tag}", text)
           except KeyError:
@@ -127,10 +132,10 @@ class FileVorbis(TaggableFile):
     return self
 
   def set_str_data(self, tag_name: str, new_val: str) -> Self:
-    if tags_conjunction[tag_name][1].upper() in self._mutagen_file.tags:
-      self._mutagen_file.tags[tags_conjunction[tag_name][1].upper()] = new_val
+    if tags_conjunction[tag_name][1].upper() in self.tags:
+      self.tags[tags_conjunction[tag_name][1].upper()] = new_val
     else:
-      self._mutagen_file.tags[tags_conjunction[tag_name][1]] = new_val
+      self.tags[tags_conjunction[tag_name][1]] = new_val
     setattr(self, tags_conjunction[tag_name][0], new_val)
     return self
 
@@ -149,22 +154,22 @@ class FileVorbis(TaggableFile):
         text = export_chronie(lyrics, chosen)
       except LyricsConversionError:
         text = export_chronie(lyrics, "plain")
-      self._mutagen_file.tags["UNSYNCEDLYRICS"] = export_chronie(lyrics, "plain")
-      self._mutagen_file.tags["LYRICS"] = text
+      self.tags["UNSYNCEDLYRICS"] = export_chronie(lyrics, "plain")
+      self.tags["LYRICS"] = text
       self.save()
       return self
 
     with contextlib.suppress(KeyError):
-      del self._mutagen_file.tags["UNSYNCEDLYRICS"]
+      del self.tags["UNSYNCEDLYRICS"]
 
     with contextlib.suppress(KeyError):
-      del self._mutagen_file.tags["LYRICS"]
+      del self.tags["LYRICS"]
 
     self.save()
     return self
 
   def read_lyrics(self) -> Optional[ChronieLyrics]:
-    tags = self._mutagen_file.tags
+    tags = self.tags
 
     lyrics: str = tags.get("LYRICS", "").strip()
     if not lyrics:

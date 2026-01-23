@@ -1,5 +1,7 @@
 from gi.repository import GObject, Gtk
 
+from dgutils.typing import unwrap
+
 
 class ChrMenuButton(Gtk.ToggleButton):
   __gtype_name__ = "ChrMenuButton"
@@ -11,7 +13,7 @@ class ChrMenuButton(Gtk.ToggleButton):
   @GObject.Property(type=Gtk.Popover)
   def popover(self) -> Gtk.Popover:
     """Attached popover."""
-    return self._popover
+    return unwrap(self._popover)
 
   @popover.setter
   def popover(self, popover: Gtk.Popover) -> None:
@@ -26,7 +28,7 @@ class ChrMenuButton(Gtk.ToggleButton):
   @GObject.Property(type=Gtk.Widget)
   def child(self) -> Gtk.Widget:
     """Current child widget."""
-    return self.get_child()
+    return unwrap(self.get_child())
 
   @child.setter
   def child(self, child: Gtk.Widget) -> None:

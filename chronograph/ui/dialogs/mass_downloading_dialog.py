@@ -1,6 +1,6 @@
 import contextlib
 from pathlib import Path
-from typing import Optional, Union
+from typing import TYPE_CHECKING, Optional, Union, cast
 
 import httpx
 from gi.repository import Adw, Gio, GObject, Gtk
@@ -18,6 +18,12 @@ from chronograph.backend.lyrics import (
 from chronograph.backend.media import BaseFile  # noqa: TC001
 from chronograph.internal import Constants, Schema
 from dgutils import Linker
+from dgutils.typing import unwrap
+
+if TYPE_CHECKING:
+  from gi.repository.Gio import ListStore
+
+  from chronograph.backend.file import SongCardModel
 
 gtc = Gtk.Template.Child
 
@@ -37,7 +43,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
   rewrite_already_existing_switch: Adw.SwitchRow = gtc()
   fetch_button: Gtk.Button = gtc()
 
-  log_items: Gio.ListStore = GObject.Property(type=Gio.ListStore)
+  log_items: Gio.ListStore = cast("ListStore", GObject.Property(type=Gio.ListStore))
 
   _fetch_going = False
 
@@ -83,28 +89,32 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
         self.disconnect_all()
       if getattr(self, "_task_cancel_hdl", None) and getattr(self, "task", None):
         with contextlib.suppress(Exception):
-          self.task.disconnect(self._task_cancel_hdl)
+          self.task.disconnect(unwrap(self._task_cancel_hdl))
       self._task_cancel_hdl = None
       if LibraryManager.current_library is None:
         return
       medias: list[BaseFile] = []
       self._path_to_uuid: dict[str, str] = {}
       for track in LibraryManager.list_tracks():
-        media_path = LibraryManager.track_path(track.track_uuid, track.format)
+        media_path = LibraryManager.track_path(
+          cast("str", track.track_uuid), cast("str", track.format)
+        )
         media = parse_file(media_path)
         if media is None:
           continue
         if not self.rewrite_already_existing_switch.get_active() and not is_lrc_missing(
-          track.track_uuid
+          cast("str", track.track_uuid)
         ):
           continue
         medias.append(media)
-        self._path_to_uuid[self._normalize_path(media.path)] = track.track_uuid
+        self._path_to_uuid[self._normalize_path(media.path)] = cast(
+          "str", track.track_uuid
+        )
       if len(medias) == 0:
         self.fetch_log_list_box.set_placeholder(self.already_fetched)
         return
       self.task = AsyncTask(
-        LRClibService().fetch_lyrics_many,
+        LRClibService().fetch_lyrics_many,  # ty:ignore[invalid-argument-type]
         medias,
         do_use_progress=True,
         do_use_cancellable=True,
@@ -157,68 +167,71 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
     if entry is None:
       state = FetchStates.FAILED
     for item in self.log_items:
+      item = cast("LogEntry", item)
       if item.path == path:
         if isinstance(entry, Exception):
           state = FetchStates.FAILED
           match entry:
             case httpx.ConnectTimeout:
-              item.props.message = _("Connection timed out")
+              item.props.message = _("Connection timed out")  # ty:ignore[unresolved-attribute]
             case httpx.ConnectError:
-              item.props.message = _("Connection error occurred")
+              item.props.message = _("Connection error occurred")  # ty:ignore[unresolved-attribute]
             case __:
-              item.props.message = _("An error occurred: ") + str(entry)
+              item.props.message = _("An error occurred: ") + str(entry)  # ty:ignore[unresolved-attribute]
         # fmt: off
         match state:
           case FetchStates.DONE:
+            entry = cast("LRClibEntry", entry)
             if entry.instrumental:
-              item.props.instrumental = True
-              item.props.message = _("Instrumental track. No lyrics available")
+              item.props.instrumental = True  # ty:ignore[unresolved-attribute]
+              item.props.message = _("Instrumental track. No lyrics available")  # ty:ignore[unresolved-attribute]
               return
             dl_profile = Schema.get(
               "root.settings.general.mass-downloading.preferred-format"
             )
             track_uuid = self._path_to_uuid.get(path)
             if not track_uuid:
-              item.props.failed = True
-              item.props.message = _("Track is missing from library")
+              item.props.failed = True  # ty:ignore[unresolved-attribute]
+              item.props.message = _("Track is missing from library")  # ty:ignore[unresolved-attribute]
               return
             match dl_profile:
               case "s":
                 if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
                   save_track_lyric(track_uuid, chronie_from_text(entry.synced_lyrics))
                   self._refresh_card(track_uuid)
-                  item.props.done = True
+                  item.props.done = True  # ty:ignore[unresolved-attribute]
                   return
-                item.props.failed = True
-                item.props.message = _("No synced lyrics found")
+                item.props.failed = True  # ty:ignore[unresolved-attribute]
+                item.props.message = _("No synced lyrics found")  # ty:ignore[unresolved-attribute]
               case "s~p":
                 if entry.synced_lyrics and entry.synced_lyrics.strip() != "":
                   save_track_lyric(track_uuid, chronie_from_text(entry.synced_lyrics))
                   self._refresh_card(track_uuid)
-                  item.props.done = True
+                  item.props.done = True  # ty:ignore[unresolved-attribute]
                 elif entry.plain_lyrics.strip() != "":
                   save_track_lyric(track_uuid, chronie_from_text(entry.plain_lyrics))
                   self._refresh_card(track_uuid)
-                  item.props.done = True
+                  item.props.done = True  # ty:ignore[unresolved-attribute]
                 else:
-                  item.props.failed = True
-                  item.props.message = _("No lyrics found")
+                  item.props.failed = True  # ty:ignore[unresolved-attribute]
+                  item.props.message = _("No lyrics found")  # ty:ignore[unresolved-attribute]
               case "p":
                 if entry.plain_lyrics.strip() != "":
                   save_track_lyric(track_uuid, chronie_from_text(entry.plain_lyrics))
                   self._refresh_card(track_uuid)
-                  item.props.done = True
+                  item.props.done = True  # ty:ignore[unresolved-attribute]
                   return
-                item.props.failed = True
-                item.props.message = _("No plain lyrics found")
-          case FetchStates.FAILED: item.props.failed = True
-          case FetchStates.CANCELLED: item.props.cancelled = True
+                item.props.failed = True  # ty:ignore[unresolved-attribute]
+                item.props.message = _("No plain lyrics found")  # ty:ignore[unresolved-attribute]
+          case FetchStates.FAILED: item.props.failed = True  # ty:ignore[unresolved-attribute]
+          case FetchStates.CANCELLED: item.props.cancelled = True  # ty:ignore[unresolved-attribute]
         # fmt: on
         break
 
   def _on_fetch_message(self, _lrclib, path: str, message: str) -> None:
     path = self._normalize_path(path)
     for item in self.log_items:
+      item = cast("LogEntry", item)
       if item.path == path:
         item.set_property("message", message)
         break
@@ -226,10 +239,10 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
   def _on_task_cancelled(self, *_args) -> None:
     for item in self.log_items:
       if not (
-        item.props.done
-        or item.props.failed
-        or item.props.cancelled
-        or item.props.instrumental,
+        item.props.done  # ty:ignore[unresolved-attribute]
+        or item.props.failed  # ty:ignore[unresolved-attribute]
+        or item.props.cancelled  # ty:ignore[unresolved-attribute]
+        or item.props.instrumental,  # ty:ignore[unresolved-attribute]
       ):
         item.set_property("cancelled", True)
         item.set_property("message", _("Cancelled"))
@@ -240,7 +253,7 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
     except AttributeError:
       return
     for index in range(cards.get_n_items()):
-      model = cards.get_item(index)
+      model = cast("SongCardModel", cards.get_item(index))
       if model and model.uuid == track_uuid:
         model.refresh_available_lyrics()
         break
@@ -274,11 +287,11 @@ class MassDownloadingDialog(Adw.Dialog, Linker):
 
 
 class LogEntry(GObject.Object):
-  message: str = GObject.Property(type=str, default="")
-  failed: bool = GObject.Property(type=bool, default=False)
-  done: bool = GObject.Property(type=bool, default=False)
-  cancelled: bool = GObject.Property(type=bool, default=False)
-  instrumental: bool = GObject.Property(type=bool, default=False)
+  message: str = cast("str", GObject.Property(type=str, default=""))
+  failed: bool = cast("bool", GObject.Property(type=bool, default=False))
+  done: bool = cast("bool", GObject.Property(type=bool, default=False))
+  cancelled: bool = cast("bool", GObject.Property(type=bool, default=False))
+  instrumental: bool = cast("bool", GObject.Property(type=bool, default=False))
 
   def __init__(self, path: str, message: str = _("Fetching")) -> None:
     super().__init__(message=message)

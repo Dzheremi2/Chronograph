@@ -1,3 +1,5 @@
+from typing import cast
+
 from gi.repository import GObject
 
 from chronograph.backend.wbw.tokens import WordToken
@@ -9,12 +11,12 @@ class WordModel(GObject.Object):
 
   __gtype_name__ = "WordModel"
 
-  word: str = GObject.Property(type=str, default="")
-  time: int = GObject.Property(type=int, default=-1)
-  timestamp: str = GObject.Property(type=str, default="")
-  synced: bool = GObject.Property(type=bool, default=False)
-  active: bool = GObject.Property(type=bool, default=False)
-  highlighted: bool = GObject.Property(type=bool, default=False)
+  word: str = cast("str", GObject.Property(type=str, default=""))
+  time: int = cast("int", GObject.Property(type=int, default=-1))
+  timestamp: str = cast("str", GObject.Property(type=str, default=""))
+  synced: bool = cast("bool", GObject.Property(type=bool, default=False))
+  active: bool = cast("bool", GObject.Property(type=bool, default=False))
+  highlighted: bool = cast("bool", GObject.Property(type=bool, default=False))
 
   def __init__(self, word: WordToken) -> None:
     """Create model from `WordToken`"""

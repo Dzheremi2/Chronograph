@@ -96,7 +96,7 @@ class Actions:
     return obj
 
   @classmethod
-  def from_schema(cls, path: str, encoding: str = "yaml"):
+  def from_schema[T](cls, path: str, encoding: str = "yaml") -> Callable[[type[T]], type[T]]:
     """Create a class decorator from a GResource actions schema.
 
     Parameters

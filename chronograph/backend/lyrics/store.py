@@ -1,6 +1,6 @@
 import contextlib
 import time
-from typing import Optional, Union
+from typing import Optional, Union, cast
 from uuid import uuid4
 
 from chronograph.backend.db import db
@@ -40,7 +40,7 @@ def get_track_lyric(track_uuid: str) -> Optional[ChronieLyrics]:
     lyric = _get_track_lyric_model(track_uuid)
     if lyric is None:
       return None
-    return _load_chronie(lyric.content)
+    return _load_chronie(cast("str", lyric.content))
 
 
 def save_track_lyric(
@@ -108,7 +108,7 @@ def delete_track_lyric(track_uuid: str) -> None:
     if not lyric_ids:
       return
     TrackLyric.delete().where(TrackLyric.track == track_uuid).execute()
-    Lyric.delete().where(Lyric.lyrics_uuid.in_(lyric_ids)).execute()
+    Lyric.delete().where(Lyric.lyrics_uuid.in_(lyric_ids)).execute()  # ty:ignore[missing-argument, invalid-argument-type]
     logger.info("Lyrics deleted: track=%s", track_uuid)
 
 

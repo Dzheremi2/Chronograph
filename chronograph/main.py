@@ -1,7 +1,10 @@
 import sys
 from pathlib import Path
+from typing import cast
 
 import gi
+
+from dgutils.typing import unwrap
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -29,7 +32,7 @@ class ChronographApplication(Adw.Application):
     super().__init__(
       application_id=Constants.APP_ID, flags=Gio.ApplicationFlags.HANDLES_OPEN
     )
-    theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
+    theme = Gtk.IconTheme.get_for_display(unwrap(Gdk.Display.get_default()))
     theme.add_resource_path(Constants.PREFIX + "/data/icons")
     self.paths = []
     self.connect("open", self.on_open)
@@ -60,10 +63,10 @@ class ChronographApplication(Adw.Application):
     if not win:
       Constants.WIN = win = ChronographWindow(application=self)
     else:
-      Constants.WIN = win
+      Constants.WIN = cast("ChronographWindow", win)
     logger.debug("Window was created")
 
-    last_library = Schema.get("root.state.library.last-library")
+    last_library = cast("str", Schema.get("root.state.library.last-library"))
     last_library_path = Path(last_library) if last_library else None
     if (
       last_library_path
@@ -128,7 +131,9 @@ class ChronographApplication(Adw.Application):
     )
 
     Constants.WIN.present()
-    Player().set_property("volume", float(Schema.get("root.state.player.volume") / 100))
+    Player().set_property(
+      "volume", float(cast("int", Schema.get("root.state.player.volume")) / 100)
+    )
     Player().set_property("rate", float(Schema.get("root.state.player.rate")))
     logger.debug("Window shown")
 

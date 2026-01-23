@@ -1,13 +1,13 @@
 # TODO: Implement TTML (Timed Text Markup Language) support
 # TODO: Implement LRC metatags support
-
 import json
 from enum import Enum
 from gettext import ngettext
 from pathlib import Path
-from typing import Callable, Optional, Union
+from typing import Callable, Coroutine, Optional, Union, cast
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
+from peewee import DoesNotExist
 
 from chronograph.backend.asynchronous.async_task import AsyncTask
 from chronograph.backend.db.models import SchemaInfo
@@ -26,6 +26,7 @@ from chronograph.ui.sync_pages.lrc_sync_page import LRCSyncPage
 from chronograph.ui.sync_pages.wbw_sync_page import WBWSyncPage
 from chronograph.ui.widgets.library import Library
 from chronograph.ui.widgets.tag_row import TagRow
+from dgutils.typing import unwrap
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -102,14 +103,13 @@ class ChronographWindow(Adw.ApplicationWindow):
   quick_edit_text_view: Gtk.TextView = gtc()
   quick_edit_copy_button: Gtk.Button = gtc()
 
-  filter_none: bool = GObject.Property(type=bool, default=True)
-  filter_plain: bool = GObject.Property(type=bool, default=True)
-  filter_lrc: bool = GObject.Property(type=bool, default=True)
-  filter_elrc: bool = GObject.Property(type=bool, default=True)
-  reparse_action_done: bool = GObject.Property(type=bool, default=True)
-
-  sort_mode: str = Schema.get("root.state.library.sorting.sort-mode")
-  sort_type: str = Schema.get("root.state.library.sorting.sort-type")
+  filter_none: bool = cast("bool", GObject.Property(type=bool, default=True))
+  filter_plain: bool = cast("bool", GObject.Property(type=bool, default=True))
+  filter_lrc: bool = cast("bool", GObject.Property(type=bool, default=True))
+  filter_elrc: bool = cast("bool", GObject.Property(type=bool, default=True))
+  reparse_action_done: bool = cast("bool", GObject.Property(type=bool, default=True))
+  sort_mode: str = cast("str", Schema.get("root.state.library.sorting.sort-mode"))
+  sort_type: str = cast("str", Schema.get("root.state.library.sorting.sort-type"))
 
   def __init__(self, **kwargs) -> None:
     super().__init__(**kwargs)
@@ -146,11 +146,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.sidebar.set_placeholder(self.no_saves_found_status)
 
     # Setup filter by lyrics format
-    filter_flags = Schema.get("root.state.library.filter")
-    self.props.filter_none = bool(filter_flags & FILTER_NONE)
-    self.props.filter_plain = bool(filter_flags & FILTER_PLAIN)
-    self.props.filter_lrc = bool(filter_flags & FILTER_LRC)
-    self.props.filter_elrc = bool(filter_flags & FILTER_ELRC)
+    filter_flags = cast("int", Schema.get("root.state.library.filter"))
+    self.props.filter_none = bool(filter_flags & FILTER_NONE)  # ty:ignore[unresolved-attribute]
+    self.props.filter_plain = bool(filter_flags & FILTER_PLAIN)  # ty:ignore[unresolved-attribute]
+    self.props.filter_lrc = bool(filter_flags & FILTER_LRC)  # ty:ignore[unresolved-attribute]
+    self.props.filter_elrc = bool(filter_flags & FILTER_ELRC)  # ty:ignore[unresolved-attribute]
     filter_none_action = Gio.PropertyAction.new("filter_none", self, "filter_none")
     self.add_action(filter_none_action)
     filter_plain_action = Gio.PropertyAction.new("filter_plain", self, "filter_plain")
@@ -184,7 +184,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   def _get_registered_tags(self) -> list[str]:
     try:
       raw = SchemaInfo.get_by_id("tags").value
-    except (SchemaInfo.DoesNotExist, AttributeError):
+    except (DoesNotExist, AttributeError):
       return []
     try:
       tags = json.loads(raw)
@@ -260,14 +260,14 @@ class ChronographWindow(Adw.ApplicationWindow):
     def select_files(*_args) -> None:
       logger.debug("Showing files selection dialog")
       dialog = Gtk.FileDialog(
-        default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS
+        default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS  # ty:ignore[invalid-argument-type]
       )
       dialog.open_multiple(self, None, on_select_files)
 
     def on_select_files(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
       try:
         files = [
-          file.get_path() for file in file_dialog.open_multiple_finish(result) if file
+          file.get_path() for file in file_dialog.open_multiple_finish(result) if file  # ty:ignore[unresolved-attribute]
         ]
         if files:
           self._open_import_dialog(files)
@@ -350,7 +350,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     """
     revealer.set_visible(revealer.props.child_revealed)
 
-  def _on_drag_enter(self, *_args) -> None:
+  def _on_drag_enter(self, *_args) -> Optional[Gdk.DragAction]:
     if self.navigation_view.get_visible_page() == self.library_nav_page:
       logger.debug("Showing DND area")
       self.dnd_area_revealer.set_visible(True)
@@ -364,10 +364,8 @@ class ChronographWindow(Adw.ApplicationWindow):
     self.dnd_area_revealer.set_reveal_child(False)
     self.dnd_area_revealer.set_can_target(False)
 
-  def _on_drag_drop(
-    self, _drop_target: Gtk.DropTarget, value: GObject.Value, *_args
-  ) -> None:
-    files = [file.get_path() for file in value.get_files()]
+  def _on_drag_drop(self, _drop_target, value: Gdk.FileList, *_args) -> None:
+    files = [unwrap(file.get_path()) for file in value.get_files()]
     logger.info("DND recieved files: %s\n", "\n".join(files))
     if LibraryManager.current_library is not None:
       self.import_files_to_library(files)
@@ -376,7 +374,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     self._on_drag_leave()
 
   def _on_drag_accept(self, _target: Gtk.DropTarget, drop: Gdk.Drop, *_args) -> bool:
-    def verify_files_valid(drop: Gdk.Drop, task: Gio.Task, *_args) -> bool:
+    def verify_files_valid(drop: Gdk.Drop, task: Gio.Task, *_args) -> Optional[bool]:
       try:
         files = drop.read_value_finish(task).get_files()
       except GLib.GError:
@@ -410,7 +408,7 @@ class ChronographWindow(Adw.ApplicationWindow):
           self.drop_target.reject()
           self._on_drag_leave()
 
-    drop.read_value_async(Gdk.FileList, 0, None, verify_files_valid)
+    drop.read_value_async(Gdk.FileList, 0, None, verify_files_valid)  # ty:ignore[invalid-argument-type]
     return True
 
   ##############################
@@ -447,9 +445,11 @@ class ChronographWindow(Adw.ApplicationWindow):
     cards: list[SongCardModel] = []
 
     for track in LibraryManager.list_tracks():
-      media_path = LibraryManager.track_path(track.track_uuid, track.format)
+      media_path = LibraryManager.track_path(
+        cast("str", track.track_uuid), cast("str", track.format)
+      )
       if media_path.exists() and parse_file(media_path) is not None:
-        cards.append(SongCardModel(media_path, track.track_uuid))
+        cards.append(SongCardModel(media_path, cast("str", track.track_uuid)))
 
     if cards:
       self.library.add_cards(cards)
@@ -495,7 +495,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     self._import_dialog.present(self)
 
     self._import_task = AsyncTask(
-      LibraryManager.import_files_async,
+      cast("Coroutine", LibraryManager.import_files_async),
       pending_files,
       move,
       do_use_progress=True,
@@ -505,7 +505,7 @@ class ChronographWindow(Adw.ApplicationWindow):
     def on_progress(task: AsyncTask, *_args) -> None:
       if self._import_dialog is None:
         return
-      progress = task.props.progress
+      progress = cast("float", task.props.progress)  # ty:ignore[unresolved-attribute]
       imported_count = min(
         len(pending_files), max(0, round(progress * len(pending_files)))
       )
@@ -572,7 +572,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       return
 
     if prefer_embedded:
-      chronie = parse_file(source_path).read_lyrics()
+      chronie = unwrap(parse_file(source_path)).read_lyrics()
       if chronie:
         save_track_lyric(track_uuid, chronie)
         return
@@ -615,7 +615,7 @@ class ChronographWindow(Adw.ApplicationWindow):
   def _on_sidebar_tag_activated(self, _list_box, row: Gtk.ListBoxRow) -> None:
     if row is None:
       return
-    child = row.get_child()
+    child = cast("TagRow", row.get_child())
     if child is None:
       return
     tag = child.tag
@@ -672,7 +672,7 @@ class ChronographWindow(Adw.ApplicationWindow):
       end=self.quick_edit_text_view.get_buffer().get_end_iter(),
       include_hidden_chars=False,
     )
-    clipboard = Gdk.Display().get_default().get_clipboard()
+    clipboard = unwrap(Gdk.Display().get_default()).get_clipboard()
     clipboard.set(text)
     logger.info("Quick Editor text copied")
     self.quck_editor_toast_overlay.add_toast(Adw.Toast(title=_("Copied successfully")))
@@ -755,10 +755,10 @@ class ChronographWindow(Adw.ApplicationWindow):
     )
 
   def _on_filter_state(self, _obj, _pspec) -> None:
-    nn = self.lookup_action("filter_none").get_state().get_boolean()
-    pp = self.lookup_action("filter_plain").get_state().get_boolean()
-    ll = self.lookup_action("filter_lrc").get_state().get_boolean()
-    ee = self.lookup_action("filter_elrc").get_state().get_boolean()
+    nn = unwrap(unwrap(self.lookup_action("filter_none")).get_state()).get_boolean()
+    pp = unwrap(unwrap(self.lookup_action("filter_plain")).get_state()).get_boolean()
+    ll = unwrap(unwrap(self.lookup_action("filter_lrc")).get_state()).get_boolean()
+    ee = unwrap(unwrap(self.lookup_action("filter_elrc")).get_state()).get_boolean()
     flags = 0
     if nn:
       flags |= FILTER_NONE

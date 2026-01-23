@@ -2,7 +2,7 @@
 
 import traceback
 from pathlib import Path
-from typing import Literal, Optional
+from typing import Literal, Optional, cast
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
@@ -10,6 +10,7 @@ from chronograph.backend.converter import ns_to_timestamp, timestamp_to_ns
 from chronograph.backend.file import SongCardModel
 from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lyrics import (
+  ChronieLyrics,
   ElrcLyrics,
   chronie_from_text,
   chronie_from_tokens,
@@ -26,6 +27,7 @@ from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.launch import launch_path
 from dgutils import Actions
+from dgutils.typing import unwrap
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -45,7 +47,6 @@ class WBWSyncPage(Adw.NavigationPage):
   sync_view_stack_page: Adw.ViewStackPage = gtc()
   lyrics_layout_container: Adw.Bin = gtc()
 
-  _lyrics_model: LyricsModel
   _autosave_timeout_id: Optional[int] = None
   _lyrics_model: Optional[LyricsModel] = None
 
@@ -91,7 +92,7 @@ class WBWSyncPage(Adw.NavigationPage):
       self.edit_view_text_view.set_buffer(buffer)
 
   def _page_visibility(self, stack: Adw.ViewStack, _pspec) -> None:
-    page: Adw.ViewStackPage = stack.get_page(stack.get_visible_child())
+    page: Adw.ViewStackPage = stack.get_page(unwrap(stack.get_visible_child()))
     self._previous_page = self._current_page
     self._current_page = page
     self._on_page_switched(self._previous_page, self._current_page)
@@ -130,7 +131,7 @@ class WBWSyncPage(Adw.NavigationPage):
       prev_page == self.sync_view_stack_page and new_page == self.edit_view_stack_page
     ):
       try:
-        chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+        chronie = chronie_from_tokens(unwrap(self._lyrics_model).get_tokens())
         lyrics = ElrcLyrics.from_chronie(chronie).text
         buffer = Gtk.TextBuffer()
         buffer.set_text(lyrics)
@@ -141,8 +142,8 @@ class WBWSyncPage(Adw.NavigationPage):
   @Gtk.Template.Callback()
   def _on_seek_button_released(self, button: Gtk.Button) -> None:
     display = Constants.WIN.get_display()
-    seat = display.get_default_seat()
-    device = seat.get_keyboard()
+    seat = unwrap(display.get_default_seat())
+    device = unwrap(seat.get_keyboard())
     state = device.get_modifier_state()
 
     direction = button == self.forw_button
@@ -162,7 +163,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
   def _import_file(self, *_args) -> None:
     def on_selected_lyrics_file(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
-      path = file_dialog.open_finish(result).get_path()
+      path = unwrap(file_dialog.open_finish(result).get_path())
 
       chronie = chronie_from_text(Path(path).read_text(encoding="utf-8"))
       lyrics = ElrcLyrics.from_chronie(chronie)
@@ -187,8 +188,8 @@ class WBWSyncPage(Adw.NavigationPage):
       self.edit_view_text_view.set_buffer(buffer)
       logger.info("Imported lyrics from clipboard")
 
-    clipboard = Gdk.Display().get_default().get_clipboard()
-    clipboard.read_text_async(None, on_clipboard_parsed, user_data=clipboard)
+    clipboard = unwrap(Gdk.Display().get_default()).get_clipboard()
+    clipboard.read_text_async(None, on_clipboard_parsed, user_data=clipboard)  # ty:ignore[unknown-argument]
 
   ###############
 
@@ -205,9 +206,9 @@ class WBWSyncPage(Adw.NavigationPage):
   ############### Export Actions ###############
   def _export_file(self, *_args) -> None:
     def on_export_file_selected(
-      file_dialog: Gtk.FileDialog, result: Gio.Task, chronie: object
+      file_dialog: Gtk.FileDialog, result: Gio.Task, chronie: ChronieLyrics
     ) -> None:
-      filepath = file_dialog.save_finish(result).get_path()
+      filepath = unwrap(file_dialog.save_finish(result).get_path())
       if not chronie:
         Path(filepath).write_text("", encoding="utf-8")
       else:
@@ -233,7 +234,7 @@ class WBWSyncPage(Adw.NavigationPage):
       )
       chronie = chronie_from_text(lyrics)
     elif not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-      chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+      chronie = chronie_from_tokens(unwrap(self._lyrics_model).get_tokens())
     else:
       chronie = None
 
@@ -263,11 +264,11 @@ class WBWSyncPage(Adw.NavigationPage):
         include_hidden_chars=False,
       )
     elif not isinstance(self.lyrics_layout_container.get_child(), Adw.StatusPage):
-      chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+      chronie = chronie_from_tokens(unwrap(self._lyrics_model).get_tokens())
       lyrics = ElrcLyrics.from_chronie(chronie).text
     else:
       lyrics = ""
-    clipboard = Gdk.Display().get_default().get_clipboard()
+    clipboard = unwrap(Gdk.Display().get_default()).get_clipboard()
     clipboard.set(lyrics)
     logger.info("Lyrics exported to clipboard")
     Constants.WIN.show_toast(_("Lyrics exported to clipboard"), timeout=3)
@@ -276,7 +277,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
   ############### Sync Actions ###############
   def _sync(self, *_args) -> None:
-    current_line = self._lyrics_model.get_current_line()
+    current_line = unwrap(self._lyrics_model).get_current_line()
     current_word = current_line.get_current_word()
     ns = Player()._gst_player.props.position  # noqa: SLF001
     ms = ns // 1_000_000
@@ -290,7 +291,7 @@ class WBWSyncPage(Adw.NavigationPage):
     self.reset_timer()
 
   def _replay(self, *_args) -> None:
-    current_line = self._lyrics_model.get_current_line()
+    current_line = unwrap(self._lyrics_model).get_current_line()
     current_word = current_line.get_current_word()
     ns = timestamp_to_ns(
       f"[{current_word.timestamp}]"
@@ -301,14 +302,20 @@ class WBWSyncPage(Adw.NavigationPage):
   def _seek(self, _action, _param, direction: bool, large: bool = False) -> None:
     if direction:
       if not large:
-        mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000
+        mcs_seek = cast("int", Schema.get("root.settings.syncing.seek.wbw.def")) * 1_000
       else:
-        mcs_seek = Schema.get("root.settings.syncing.seek.wbw.large") * 1_000
+        mcs_seek = (
+          cast("int", Schema.get("root.settings.syncing.seek.wbw.large")) * 1_000
+        )
     elif not large:
-      mcs_seek = Schema.get("root.settings.syncing.seek.wbw.def") * 1_000 * -1
+      mcs_seek = (
+        cast("int", Schema.get("root.settings.syncing.seek.wbw.def")) * 1_000 * -1
+      )
     else:
-      mcs_seek = Schema.get("root.settings.syncing.seek.wbw.large") * 1_000 * -1
-    current_line = self._lyrics_model.get_current_line()
+      mcs_seek = (
+        cast("int", Schema.get("root.settings.syncing.seek.wbw.large")) * 1_000 * -1
+      )
+    current_line = unwrap(self._lyrics_model).get_current_line()
     current_word = current_line.get_current_word()
     ms = current_word.time
     ns = ms * 1_000_000
@@ -334,7 +341,7 @@ class WBWSyncPage(Adw.NavigationPage):
     backwards : bool, optional
       Is re-sync back, by default False
     """
-    for line in self._lyrics_model:
+    for line in unwrap(self._lyrics_model):
       for word in line:
         prev_time = word.time
         time = (prev_time - ms) if backwards else (prev_time + ms)
@@ -355,7 +362,7 @@ class WBWSyncPage(Adw.NavigationPage):
     ):
       dialog = ResyncAllAlertDialog(self)
       dialog.present(Constants.WIN)
-      dialog.get_extra_child().grab_focus()
+      unwrap(dialog.get_extra_child()).grab_focus()
     elif self._current_page == self.sync_view_stack_page and self._lyrics_model is None:
       Constants.WIN.show_toast(_("No lyrics to be re-synced"), 2)
     else:
@@ -365,16 +372,16 @@ class WBWSyncPage(Adw.NavigationPage):
 
   ############### Navigation Actions ###############
   def _nav_prev(self, *_args) -> None:
-    self._lyrics_model.get_current_line().previous()
+    unwrap(self._lyrics_model).get_current_line().previous()
 
   def _nav_next(self, *_args) -> None:
-    self._lyrics_model.get_current_line().next()
+    unwrap(self._lyrics_model).get_current_line().next()
 
   def _nav_up(self, *_args) -> None:
-    self._lyrics_model.previous()
+    unwrap(self._lyrics_model).previous()
 
   def _nav_down(self, *_args) -> None:
-    self._lyrics_model.next()
+    unwrap(self._lyrics_model).next()
 
   ###############
 
@@ -386,7 +393,7 @@ class WBWSyncPage(Adw.NavigationPage):
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       self._autosave_timeout_id = GLib.timeout_add(
-        Schema.get("root.settings.do-lyrics-db-updates.throttling") * 1000,
+        cast("int", Schema.get("root.settings.do-lyrics-db-updates.throttling")) * 1000,
         self._autosave,
       )
 
@@ -394,7 +401,7 @@ class WBWSyncPage(Adw.NavigationPage):
     if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       try:
         if (
-          self.modes.get_page(self.modes.get_visible_child())
+          self.modes.get_page(unwrap(self.modes.get_visible_child()))
           == self.edit_view_stack_page
         ):
           lyrics_text = self.edit_view_text_view.get_buffer().get_text(
@@ -404,7 +411,7 @@ class WBWSyncPage(Adw.NavigationPage):
           )
           chronie = chronie_from_text(lyrics_text)
         else:
-          chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+          chronie = chronie_from_tokens(unwrap(self._lyrics_model).get_tokens())
 
         if not chronie:
           delete_track_lyric(self._track_uuid)
@@ -435,7 +442,7 @@ class WBWSyncPage(Adw.NavigationPage):
     Player().stop()
     self._player_widget.link_teardown()
 
-  def _on_app_close(self, *_) -> None:
+  def _on_app_close(self, *_) -> bool:
     if self._autosave_timeout_id:
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
@@ -458,7 +465,7 @@ class WBWSyncPage(Adw.NavigationPage):
 
       try:
         if (
-          self.modes.get_page(self.modes.get_visible_child())
+          self.modes.get_page(unwrap(self.modes.get_visible_child()))
           == self.edit_view_stack_page
         ):
           lyrics_text = self.edit_view_text_view.get_buffer().get_text(
@@ -468,7 +475,7 @@ class WBWSyncPage(Adw.NavigationPage):
           )
           chronie = chronie_from_text(lyrics_text)
         else:
-          chronie = chronie_from_tokens(self._lyrics_model.get_tokens())
+          chronie = chronie_from_tokens(unwrap(self._lyrics_model).get_tokens())
       except Exception:
         logger.exception("Failed to extract lyrics for embedding")
         return
@@ -477,6 +484,6 @@ class WBWSyncPage(Adw.NavigationPage):
       media.embed_lyrics(chronie, str(state).strip("'"))
 
     dialog = Gtk.FileDialog(
-      default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS
+      default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS  # ty:ignore[invalid-argument-type]
     )
     dialog.open(Constants.WIN, None, _on_file_selected)

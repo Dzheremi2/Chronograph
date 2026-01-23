@@ -26,7 +26,7 @@ if __name__ == "__main__":
   from gi.repository import Gio
 
   resource = Gio.Resource.load(os.path.join(pkgdatadir, "Chronograph.gresource"))
-  resource._register()  # noqa: SLF001
+  resource._register()  # noqa: SLF001  # ty:ignore[unresolved-attribute]
 
   from chronograph import main
 

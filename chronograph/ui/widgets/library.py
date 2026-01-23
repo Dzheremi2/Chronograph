@@ -2,7 +2,7 @@ import contextlib
 from concurrent.futures import Future, ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
+from typing import Optional, cast
 
 from gi.repository import Gdk, Gio, GLib, Gtk
 
@@ -66,7 +66,7 @@ def _process_cover_queue() -> None:
         if req.state.token == req.token and req.state.fut is f:
           req.state.fut = None
           try:
-            tex: Gdk.Texture = f.result()
+            tex: Optional[Gdk.Texture] = f.result()
           except Exception:
             tex = None
 
@@ -76,7 +76,7 @@ def _process_cover_queue() -> None:
         _process_cover_queue()
         return GLib.SOURCE_REMOVE
 
-      GLib.idle_add(apply, priority=GLib.PRIORITY_DEFAULT_IDLE)
+      GLib.idle_add(apply, priority=GLib.PRIORITY_DEFAULT_IDLE)  # ty:ignore[unknown-argument]
 
     fut.add_done_callback(done_callback)
 
@@ -127,17 +127,17 @@ class Library(Gtk.GridView):
 
   def _on_setup(self, _factory, list_item: Gtk.ListItem) -> None:
     card = SongCard()
-    card._cover_state = _CoverState()  # noqa: SLF001
+    card._cover_state = _CoverState()  # noqa: SLF001  # ty:ignore[unresolved-attribute]
     list_item.set_child(card)
     list_item.set_focusable(False)
     list_item.set_selectable(False)
     list_item.set_activatable(False)
 
   def _on_bind(self, _factory, list_item: Gtk.ListItem) -> None:
-    card: SongCard = list_item.get_child()
-    model: SongCardModel = list_item.get_item()
+    card: SongCard = cast("SongCard", list_item.get_child())
+    model: SongCardModel = cast("SongCardModel", list_item.get_item())
 
-    st: _CoverState = card._cover_state  # noqa: SLF001
+    st: _CoverState = card._cover_state  # noqa: SLF001  # ty:ignore[unresolved-attribute]
     st.token += 1
     token = st.token
 
@@ -145,7 +145,7 @@ class Library(Gtk.GridView):
     card.set_bulk_selected(model.uuid in self._bulk_selected_uuids)
     self._bound_cards.add(card)
 
-    card._lyrics_filter_handler = model.connect(  # noqa: SLF001
+    card._lyrics_filter_handler = model.connect(  # noqa: SLF001  # ty:ignore[unresolved-attribute]
       "notify::available-lyrics",
       lambda *_: self.filter.changed(Gtk.FilterChange.DIFFERENT),
     )
@@ -160,12 +160,12 @@ class Library(Gtk.GridView):
     _process_cover_queue()
 
   def _on_unbind(self, _factory, list_item: Gtk.ListItem) -> None:
-    card: SongCard = list_item.get_child()
+    card: SongCard = cast("SongCard", list_item.get_child())
     if not card:
       return
-    model: SongCardModel = list_item.get_item()
+    model: SongCardModel = cast("SongCardModel", list_item.get_item())
 
-    st: _CoverState = card._cover_state  # noqa: SLF001
+    st: _CoverState = card._cover_state  # noqa: SLF001  # ty:ignore[unresolved-attribute]
     if st.fut is not None:
       st.fut.cancel()
       st.fut = None
@@ -175,16 +175,18 @@ class Library(Gtk.GridView):
     card.unbind()
     if model and hasattr(card, "_lyrics_filter_handler"):
       with contextlib.suppress(Exception):
-        model.disconnect(card._lyrics_filter_handler)  # noqa: SLF001
-      card._lyrics_filter_handler = None  # noqa: SLF001
+        model.disconnect(card._lyrics_filter_handler)  # noqa: SLF001  # ty:ignore[invalid-argument-type]
+      card._lyrics_filter_handler = None  # noqa: SLF001  # ty:ignore[invalid-assignment]
     self._bound_cards.discard(card)
 
   def _on_teardown(self, _factory, list_item: Gtk.ListItem) -> None:
-    card: SongCard = list_item.get_child()
+    card: SongCard = cast("SongCard", list_item.get_child())
     if card:
-      st: _CoverState = getattr(card, "_cover_state", None)
+      st: Optional[_CoverState] = cast(
+        "Optional[_CoverState]", getattr(card, "_cover_state", None)
+      )
       if hasattr(card, "_cover_state") and card._cover_state is not None:  # noqa: SLF001
-        card._cover_state = None  # noqa: SLF001
+        card._cover_state = None  # noqa: SLF001  # ty:ignore[invalid-assignment]
       if st and st.fut is not None:
         st.fut.cancel()
         st.fut = None
@@ -230,6 +232,8 @@ class Library(Gtk.GridView):
         return ((model1.album_display > model2.album_display) ^ order) * 2 - 1
       case "last-added":
         return ((model1.imported_at_ts > model2.imported_at_ts) ^ (not order)) * 2 - 1
+      case __:
+        return 0
 
   def _cards_filter_func(self, model: SongCardModel, *_args) -> bool:
     text = Constants.WIN.search_entry.get_text().lower()
@@ -339,7 +343,7 @@ class Library(Gtk.GridView):
 
     uuids_set = set(uuids)
     for index in range(self.cards_model.get_n_items() - 1, -1, -1):
-      card = self.cards_model.get_item(index)
+      card = cast("SongCardModel", self.cards_model.get_item(index))
       if card is not None and card.uuid in uuids_set:
         self.cards_model.remove(index)
 

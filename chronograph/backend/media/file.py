@@ -9,6 +9,7 @@ from gi.repository import Gdk, GdkPixbuf, GLib
 
 from chronograph.backend.lyrics.chronie import ChronieLyrics
 from dgutils.decorators import baseclass
+from dgutils.typing import unwrap
 
 
 @baseclass
@@ -32,16 +33,16 @@ class BaseFile:
       duration : int -> Duration of the loaded song
   """
 
-  _title: str = None
-  _artist: str = None
-  _album: str = None
+  _title: Optional[str] = None
+  _artist: Optional[str] = None
+  _album: Optional[str] = None
   _cover: Optional[bytes] = None
-  _mutagen_file: mutagen.FileType = None
-  _duration: float = None
+  _mutagen_file: mutagen.FileType
+  _duration: Optional[float] = None
   _cover_updated: bool = False
 
-  def __init__(self, path: Path) -> None:
-    self._path: Path = path
+  def __init__(self, path: str) -> None:
+    self._path = path
     self.load_from_file(path)
 
   def save(self) -> Self:
@@ -107,14 +108,16 @@ class BaseFile:
       loader = GdkPixbuf.PixbufLoader.new()
       loader.write_bytes(GLib.Bytes.new(self._cover))
       loader.close()
-      pixbuf = loader.get_pixbuf()
+      pixbuf = unwrap(loader.get_pixbuf())
 
-      scaled_pixbuf = pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
+      scaled_pixbuf = unwrap(
+        pixbuf.scale_simple(160, 160, GdkPixbuf.InterpType.BILINEAR)
+      )
       return Gdk.Texture.new_for_pixbuf(scaled_pixbuf)
     return None
 
   @property
-  def title(self) -> str:
+  def title(self) -> Optional[str]:
     """Title of the song."""
     return self._title
 
@@ -123,7 +126,7 @@ class BaseFile:
     self._title = value
 
   @property
-  def artist(self) -> str:
+  def artist(self) -> Optional[str]:
     """Artist of the song."""
     return self._artist
 
@@ -132,7 +135,7 @@ class BaseFile:
     self._artist = value
 
   @property
-  def album(self) -> str:
+  def album(self) -> Optional[str]:
     """Album of the song."""
     return self._album
 
@@ -141,12 +144,12 @@ class BaseFile:
     self._album = value
 
   @property
-  def cover(self) -> bytes:
+  def cover(self) -> Optional[bytes]:
     """Cover image bytes."""
     return self._cover
 
   @cover.setter
-  def cover(self, data: bytes) -> None:
+  def cover(self, data: Optional[bytes]) -> None:
     self._cover = data
 
   @property
@@ -157,12 +160,20 @@ class BaseFile:
   @property
   def duration(self) -> int:
     """Duration of the song in seconds."""
-    return round(self._duration)
+    return round(unwrap(self._duration))
 
   @property
   def duration_ns(self) -> int:
     """Duration of the song in nanoseconds."""
     return int(self._duration * 1_000_000_000) if self._duration else 0
+
+  @property
+  def tags(self) -> mutagen.Tags:
+    """Returns the tags of `self._mutagen_file` for type checker to know the tags type
+
+    Should be implemented in file specific child classes
+    """
+    raise NotImplementedError
 
   def load_str_data(self) -> None:
     """Reads the string data from file and binds it to the instance
@@ -239,7 +250,7 @@ class TaggableFile(BaseFile):
     A path to file for loading
   """
 
-  def __init__(self, path: Path) -> None:
+  def __init__(self, path: str) -> None:
     super().__init__(path)
     self.load_cover()
     self.load_str_data()

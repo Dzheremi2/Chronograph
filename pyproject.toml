@@ -73,3 +73,9 @@ indent-style = "space"
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 property-decorators = ["gi.repository.GObject.Property"]
+
+[tool.ty.rules]
+unresolved-reference = "ignore" # Since ty cannot read "_" from __builtins__
+unresolved-attribute = "warn" # Since .props in GObjects are not typed
+invalid-exception-caught = "ignore" # Since exceptions from libraries are linted incorrectly
+conflicting-metaclass = "ignore" # Some complaining onto the GObjectMeta in DGutils

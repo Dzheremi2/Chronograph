@@ -3,7 +3,7 @@
 import re
 import traceback
 from pathlib import Path
-from typing import Literal, Optional
+from typing import Literal, Optional, cast
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Pango
 
@@ -13,6 +13,7 @@ from chronograph.backend.file_parsers import parse_file
 from chronograph.backend.lrclib.exceptions import APIRequestError
 from chronograph.backend.lrclib.lrclib_service import LRClibService
 from chronograph.backend.lyrics import (
+  ChronieLyrics,
   LrcLyrics,
   PlainLyrics,
   chronie_from_text,
@@ -21,7 +22,6 @@ from chronograph.backend.lyrics import (
   merge_lbl_chronie,
   save_track_lyric,
 )
-from chronograph.backend.lyrics.interfaces import LyricFormat
 from chronograph.backend.media import FileUntaggable
 from chronograph.backend.player import Player
 from chronograph.internal import Constants, Schema
@@ -29,6 +29,7 @@ from chronograph.ui.dialogs.resync_all_alert_dialog import ResyncAllAlertDialog
 from chronograph.ui.widgets.ui_player import UIPlayer
 from chronograph.utils.launch import launch_path
 from dgutils import Actions
+from dgutils.typing import unwrap
 
 gtc = Gtk.Template.Child
 logger = Constants.LOGGER
@@ -89,8 +90,8 @@ class LRCSyncPage(Adw.NavigationPage):
   @Gtk.Template.Callback()
   def _on_seek_button_released(self, button: Gtk.Button) -> None:
     display = Constants.WIN.get_display()
-    seat = display.get_default_seat()
-    device = seat.get_keyboard()
+    seat = unwrap(display.get_default_seat())
+    device = unwrap(seat.get_keyboard())
     state = device.get_modifier_state()
 
     direction = button == self.forw_button
@@ -108,7 +109,7 @@ class LRCSyncPage(Adw.NavigationPage):
     bool
       If all lines have timestamp
     """
-    text = "\n".join([line.get_text() for line in self.sync_lines])
+    text = "\n".join([line.get_text() for line in self.sync_lines])  # ty:ignore[not-iterable]
     timestamp_pattern = re.compile(r"\[\d{2}:\d{2}\.\d{2,3}]")
     return all(timestamp_pattern.search(line) for line in text.strip().splitlines())
 
@@ -121,7 +122,7 @@ class LRCSyncPage(Adw.NavigationPage):
   def append_line(self, *_args) -> None:
     """Append a new LRCSyncLine to a selected line"""
     if self.selected_line:
-      for index, line in enumerate(self.sync_lines):
+      for index, line in enumerate(self.sync_lines):  # ty:ignore[invalid-argument-type]
         if line == self.selected_line:
           self.sync_lines.insert(sync_line := LRCSyncLine(), index + 1)
           adj = self.sync_lines_scrolled_window.get_vadjustment()
@@ -134,7 +135,7 @@ class LRCSyncPage(Adw.NavigationPage):
 
   def _prepend_line(self, *_args) -> None:
     if self.selected_line:
-      for index, line in enumerate(self.sync_lines):
+      for index, line in enumerate(self.sync_lines):  # ty:ignore[invalid-argument-type]
         if line == self.selected_line:
           try:
             self.sync_lines.insert(LRCSyncLine(), index)
@@ -175,7 +176,7 @@ class LRCSyncPage(Adw.NavigationPage):
         )
       logger.debug("Line was synced with timestamp: %s", timestamp)
 
-      for index, line in enumerate(self.sync_lines):
+      for index, line in enumerate(self.sync_lines):  # ty:ignore[invalid-argument-type]
         if (
           line == self.selected_line
           and (row := self.sync_lines.get_row_at_index(index + 1)) is not None
@@ -184,20 +185,27 @@ class LRCSyncPage(Adw.NavigationPage):
           return
 
   def _replay(self, *_args) -> None:
-    ns = timestamp_to_ns(self.selected_line.get_text())
+    ns = timestamp_to_ns(unwrap(self.selected_line).get_text())
     Player().seek(ns // 1_000_000)
     logger.debug("Replayed lines at timing: %s", ns_to_timestamp(ns))
 
   def _seek(self, _action, _param, direction: bool, large: bool = False) -> None:
+    self.selected_line = unwrap(self.selected_line)
     if direction:
       if not large:
-        mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000
+        mcs_seek = cast("int", Schema.get("root.settings.syncing.seek.lbl.def")) * 1_000
       else:
-        mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000
+        mcs_seek = (
+          cast("int", Schema.get("root.settings.syncing.seek.lbl.large")) * 1_000
+        )
     elif not large:
-      mcs_seek = Schema.get("root.settings.syncing.seek.lbl.def") * 1_000 * -1
+      mcs_seek = (
+        cast("int", Schema.get("root.settings.syncing.seek.lbl.def")) * 1_000 * -1
+      )
     else:
-      mcs_seek = Schema.get("root.settings.syncing.seek.lbl.large") * 1_000 * -1
+      mcs_seek = (
+        cast("int", Schema.get("root.settings.syncing.seek.lbl.large")) * 1_000 * -1
+      )
     pattern = re.compile(r"\[([^\[\]]+)\] ")
     match = pattern.search(self.selected_line.get_text())
     if match is None:
@@ -229,7 +237,7 @@ class LRCSyncPage(Adw.NavigationPage):
       Is re-sync back, by default False
     """
     pattern = re.compile(r"\[([^\[\]]+)\]")
-    for line in self.sync_lines:
+    for line in self.sync_lines:  # ty:ignore[not-iterable]
       line: LRCSyncLine
       match = pattern.search(line.get_text())
       if match is None:
@@ -265,12 +273,12 @@ class LRCSyncPage(Adw.NavigationPage):
       self.sync_lines.set_visible(should_visible)
       logger.info("Imported lyrics from clipboard")
 
-    clipboard = Gdk.Display().get_default().get_clipboard()
-    clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)
+    clipboard = unwrap(Gdk.Display().get_default()).get_clipboard()
+    clipboard.read_text_async(None, __on_clipboard_parsed, user_data=clipboard)  # ty:ignore[unknown-argument]
 
   def _import_file(self, *_args) -> None:
     def on_selected_lyrics_file(file_dialog: Gtk.FileDialog, result: Gio.Task) -> None:
-      path = file_dialog.open_finish(result).get_path()
+      path = unwrap(file_dialog.open_finish(result).get_path())
 
       self.sync_lines.remove_all()
       should_visible = False
@@ -298,19 +306,19 @@ class LRCSyncPage(Adw.NavigationPage):
 
   def _export_clipboard(self, *_args) -> None:
     string = ""
-    for line in self.sync_lines:
+    for line in self.sync_lines:  # ty:ignore[not-iterable]
       string += line.get_text() + "\n"
     string = string.strip()
-    clipboard = Gdk.Display().get_default().get_clipboard()
+    clipboard = unwrap(Gdk.Display().get_default()).get_clipboard()
     clipboard.set(string)
     logger.info("Lyrics exported to clipboard")
     Constants.WIN.show_toast(_("Lyrics exported to clipboard"), timeout=3)
 
   def _export_file(self, *_args) -> None:
     def on_export_file_selected(
-      file_dialog: Gtk.FileDialog, result: Gio.Task, chronie: LyricFormat
+      file_dialog: Gtk.FileDialog, result: Gio.Task, chronie: ChronieLyrics
     ) -> None:
-      filepath = file_dialog.save_finish(result).get_path()
+      filepath = unwrap(file_dialog.save_finish(result).get_path())
       suffix = Path(filepath).suffix.lower()
       if suffix == ".chron":
         text = chronie.to_file_text()
@@ -325,7 +333,7 @@ class LRCSyncPage(Adw.NavigationPage):
         button_callback=lambda *__: launch_path(Path(filepath)),
       )
 
-    lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+    lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")  # ty:ignore[not-iterable]
     chronie = chronie_from_text(lyrics)
 
     lrc_filter = Gtk.FileFilter()
@@ -352,7 +360,7 @@ class LRCSyncPage(Adw.NavigationPage):
     try:
       lines: list[LRCSyncLine] = []
       timestamps: list[int] = []
-      for line in self.sync_lines:
+      for line in self.sync_lines:  # ty:ignore[not-iterable]
         line.set_attributes(None)
         if not line.get_text().strip():
           continue
@@ -383,7 +391,7 @@ class LRCSyncPage(Adw.NavigationPage):
   def _resync_all_lines(self, *_args) -> None:
     dialog = ResyncAllAlertDialog(self)
     dialog.present(Constants.WIN)
-    dialog.get_extra_child().grab_focus()
+    unwrap(dialog.get_extra_child()).grab_focus()
 
   ###############
 
@@ -395,14 +403,14 @@ class LRCSyncPage(Adw.NavigationPage):
       GLib.source_remove(self._autosave_timeout_id)
     if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       self._autosave_timeout_id = GLib.timeout_add(
-        Schema.get("root.settings.do-lyrics-db-updates.throttling") * 1000,
+        cast("int", Schema.get("root.settings.do-lyrics-db-updates.throttling")) * 1000,
         self._autosave,
       )
 
   def _autosave(self) -> Literal[False]:
     if Schema.get("root.settings.do-lyrics-db-updates.enabled"):
       try:
-        lyrics_lines = [line.get_text() for line in self.sync_lines]
+        lyrics_lines = [line.get_text() for line in self.sync_lines]  # ty:ignore[not-iterable]
         lyrics_text = "\n".join(lyrics_lines).strip()
         if not lyrics_text.strip():
           delete_track_lyric(self._track_uuid)
@@ -482,7 +490,7 @@ class LRCSyncPage(Adw.NavigationPage):
       self.export_lyrics_button.set_sensitive(True)
       self.export_lyrics_button.set_icon_name("export-to-symbolic")
 
-    lyrics_text = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+    lyrics_text = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")  # ty:ignore[not-iterable]
     chronie = chronie_from_text(lyrics_text)
     lyrics_obj = LrcLyrics.from_chronie(chronie)
     plain_lyrics = PlainLyrics.from_chronie(chronie).text
@@ -542,14 +550,14 @@ class LRCSyncPage(Adw.NavigationPage):
       if not media:
         return
 
-      lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")
+      lyrics = "\n".join(line.get_text() for line in self.sync_lines).rstrip("\n")  # ty:ignore[not-iterable]
       if not lyrics.strip():
         return
       chronie = chronie_from_text(lyrics)
       media.embed_lyrics(chronie, str(state).strip("'"))
 
     dialog = Gtk.FileDialog(
-      default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS
+      default_filter=MIME_TYPE_FILTERS[0], filters=MIME_TYPE_FILTERS  # ty:ignore[invalid-argument-type]
     )
     dialog.open(Constants.WIN, None, _on_file_selected)
 
@@ -566,7 +574,7 @@ class LRCSyncLine(Adw.EntryRow):
     self.connect("entry-activated", self.add_line_on_enter)
     self.connect("changed", self._reset_timer)
 
-    for item in self.get_child():
+    for item in self.get_child():  # ty:ignore[not-iterable]
       for _item in item:
         if isinstance(_item, Gtk.Text):
           self.text_field = _item
@@ -575,20 +583,20 @@ class LRCSyncLine(Adw.EntryRow):
 
   def add_line_on_enter(self, *_args) -> None:
     """Add a new line when Enter is pressed"""
-    self.get_ancestor(LRCSyncPage).append_line()
+    unwrap(self.get_ancestor(LRCSyncPage)).append_line()
     logger.debug("A new line added underneath of %s", self)
 
   def _on_selected(self, *_args) -> None:
-    self.get_ancestor(LRCSyncPage).selected_line = self
+    unwrap(self.get_ancestor(LRCSyncPage)).selected_line = self
 
   def _reset_timer(self, *_args) -> None:
-    self.get_ancestor(LRCSyncPage).reset_timer()
+    unwrap(self.get_ancestor(LRCSyncPage)).reset_timer()
 
   def _remove_line_on_backspace(self, text: Gtk.Text) -> None:
     if text.get_text_length() == 0:
-      page: LRCSyncPage = self.get_ancestor(LRCSyncPage)
+      page: LRCSyncPage = unwrap(self.get_ancestor(LRCSyncPage))
       lines = []
-      for line in page.sync_lines:
+      for line in page.sync_lines:  # ty:ignore[not-iterable]
         lines.append(line)  # noqa: PERF402
       index = lines.index(self)
       page.sync_lines.remove(self)

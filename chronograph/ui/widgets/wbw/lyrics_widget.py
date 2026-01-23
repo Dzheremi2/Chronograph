@@ -2,6 +2,7 @@ from gi.repository import Adw, Gtk
 
 from chronograph.backend.wbw.models.lyrics_model import LyricsModel
 from chronograph.internal import Constants
+from dgutils.typing import unwrap
 
 gtc = Gtk.Template.Child
 
@@ -21,11 +22,11 @@ class LyricsWidget(Adw.Bin):
 
   def _clean_all_boxes(self) -> None:
     if self.first_line_box.get_first_child():
-      self.first_line_box.remove(self.first_line_box.get_first_child())
+      self.first_line_box.remove(unwrap(self.first_line_box.get_first_child()))
     if self.second_line_box.get_first_child():
-      self.second_line_box.remove(self.second_line_box.get_first_child())
+      self.second_line_box.remove(unwrap(self.second_line_box.get_first_child()))
     if self.third_line_box.get_first_child():
-      self.third_line_box.remove(self.third_line_box.get_first_child())
+      self.third_line_box.remove(unwrap(self.third_line_box.get_first_child()))
 
   def _on_index_changed(self, lyrics_model: LyricsModel, _old, new: int) -> None:
     self._clean_all_boxes()

@@ -10,10 +10,7 @@ class FileUntaggable(BaseFile):
 
   def __init__(self, path: str) -> None:
     super().__init__(path)
-
     self.cover = None
 
-  def embed_lyrics(self, lyrics: Optional[ChronieLyrics], *, force: bool = False) -> Self:  # noqa: ARG002
-    if not force:
-      return self
+  def embed_lyrics(self, lyrics: Optional[ChronieLyrics], target: str) -> Self:  # noqa: ARG002
     return self

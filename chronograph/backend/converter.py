@@ -1,8 +1,10 @@
 """Converters for timestamps"""
 
 import re
+from typing import cast
 
 from chronograph.internal import Schema
+from dgutils.typing import unwrap
 
 
 def ns_to_timestamp(ns: int) -> str:
@@ -19,7 +21,7 @@ def ns_to_timestamp(ns: int) -> str:
     LRC-style timestamp token with brackets.
   """
   ms = ns // 1_000_000  # get milliseconds
-  match Schema.get("root.settings.syncing.precise"):
+  match cast("bool", Schema.get("root.settings.syncing.precise")):
     case True:
       return f"[{ms // 60000:02d}:{(ms % 60000) // 1000:02d}.{ms % 1000:03d}] "
     case False:
@@ -46,7 +48,7 @@ def timestamp_to_ns(text: str) -> int:
     raise ValueError(f"No timestamp found in text: {text}")
   timestamp = match[0]
   pattern = r"(\d+):(\d+).(\d+)"
-  mm, ss, ms = re.search(pattern, timestamp).groups()
+  mm, ss, ms = unwrap(re.search(pattern, timestamp)).groups()
   if len(ms) == 2:
     ms = ms + "0"
   total_ss = int(mm) * 60 + int(ss)

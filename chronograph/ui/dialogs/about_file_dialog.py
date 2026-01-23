@@ -1,6 +1,8 @@
 import json
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Adw, GObject, Gtk
+from peewee import DoesNotExist
 
 from chronograph.backend.db.models import SchemaInfo, Track
 from chronograph.backend.file.library_manager import LibraryManager
@@ -10,6 +12,9 @@ from chronograph.internal import Constants
 from chronograph.ui.dialogs.tag_registration_dialog import TagRegistrationDialog
 from chronograph.ui.widgets.lyric_row import LyricRow
 from dgutils import Linker
+
+if TYPE_CHECKING:
+  from gi.repository.Gio import ListStore
 
 gtc = Gtk.Template.Child
 
@@ -106,13 +111,13 @@ class AboutFileDialog(Adw.Dialog, Linker):
     """
     self.unbind_all()
     self._model = None
-    super().close()
+    return super().close()
 
   def _on_available_lyrics_button_clicked(self, *_args) -> None:
     self.nav_view.push(self.lyr_nav_page)
 
   def _populate_available_lyrics(self) -> None:
-    chronie = get_track_lyric(self._model.uuid)
+    chronie = get_track_lyric(cast("SongCardModel", self._model).uuid)
     if not chronie:
       self.available_lyrics_button.set_sensitive(False)
       self.available_lyrics_button.set_title(_("No Lyrics Available"))
@@ -235,13 +240,13 @@ class AboutFileDialog(Adw.Dialog, Linker):
       Track.update(tags_json=updated).where(
         Track.track_uuid == track.track_uuid
       ).execute()
-    current_tags = list(self._model.tags or [])
+    current_tags = list(cast("SongCardModel", self._model).tags or [])
     if tag in current_tags:
       current_tags = [val for val in current_tags if val != tag]
-      self._model.tags = current_tags
+      cast("SongCardModel", self._model).tags = current_tags
     if row.get_parent() is not None and self._tag_dialog_group is not None:
       self._tag_dialog_group.remove(row)
-    if self._tag_dialog_group is not None and self._tag_dialog_group.get_row(0) is None:
+    if self._tag_dialog_group is not None and self._tag_dialog_group.get_row(0) is None:  # ty:ignore[possibly-missing-attribute]
       self._show_tag_status_page()
     self._populate_tags()
     self._refresh_library_filter()
@@ -286,11 +291,11 @@ class AboutFileDialog(Adw.Dialog, Linker):
     tag = tag.strip()
     if not tag:
       return
-    track_tags = list(self._model.tags or [])
+    track_tags = list(cast("SongCardModel", self._model).tags or [])
     if tag in track_tags:
       return
     track_tags.append(tag)
-    self._model.tags = track_tags
+    cast("SongCardModel", self._model).tags = track_tags
     self._populate_tags()
     self._refresh_library_filter()
 
@@ -308,16 +313,16 @@ class AboutFileDialog(Adw.Dialog, Linker):
     tag = tag.strip()
     if not tag:
       return
-    track_tags = list(self._model.tags or [])
+    track_tags = list(cast("SongCardModel", self._model).tags or [])
     if tag not in track_tags:
       return
     track_tags.remove(tag)
-    self._model.tags = track_tags
+    cast("SongCardModel", self._model).tags = track_tags
     self._populate_tags()
     self._refresh_library_filter()
 
   def _get_track_tags(self) -> list[str]:
-    return list(self._model.tags or [])
+    return list(cast("SongCardModel", self._model).tags or [])
 
   def _refresh_library_filter(self) -> None:
     Constants.WIN.library.filter.changed(Gtk.FilterChange.DIFFERENT)
@@ -325,7 +330,7 @@ class AboutFileDialog(Adw.Dialog, Linker):
   def _get_registered_tags(self) -> list[str]:
     try:
       raw = SchemaInfo.get_by_id("tags").value
-    except SchemaInfo.DoesNotExist:
+    except DoesNotExist:
       return []
     try:
       tags = json.loads(raw)
@@ -348,15 +353,15 @@ class AboutFileDialog(Adw.Dialog, Linker):
 
   @Gtk.Template.Callback()
   def _on_delete_file_button_clicked(self, *_args) -> None:
-    track_uuid: str = self._model.uuid
-    title: str = self._model.title_display
-    artist: str = self._model.artist_display
+    track_uuid: str = cast("SongCardModel", self._model).uuid
+    title: str = cast("SongCardModel", self._model).title_display
+    artist: str = cast("SongCardModel", self._model).artist_display
 
     LibraryManager.delete_files([track_uuid])
 
-    cards_model = Constants.WIN.library.cards_model
+    cards_model: ListStore = cast("ListStore", Constants.WIN.library.cards_model)
     for index in range(cards_model.get_n_items()):
-      card: SongCardModel = cards_model.get_item(index)
+      card: SongCardModel = cast("SongCardModel", cards_model.get_item(index))
       if card is not None and card.uuid == track_uuid:
         cards_model.remove(index)
         break

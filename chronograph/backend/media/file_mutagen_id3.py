@@ -1,7 +1,7 @@
 import contextlib
 from typing import Optional, Self
 
-from mutagen.id3 import APIC, TALB, TIT2, TPE1, USLT
+from mutagen.id3 import APIC, ID3, TALB, TIT2, TPE1, USLT
 
 from chronograph.backend.lyrics import (
   ChronieLyrics,
@@ -26,6 +26,10 @@ class FileID3(TaggableFile):
   """
 
   __gtype_name__ = "FileID3"
+
+  @property
+  def tags(self) -> ID3:
+    return self._mutagen_file.tags  # ty:ignore[invalid-return-type]
 
   def load_cover(self) -> None:
     if self._mutagen_file.tags is not None:
@@ -67,7 +71,7 @@ class FileID3(TaggableFile):
       else:
         self._mutagen_file.add_tags()
 
-      self._mutagen_file.tags.add(
+      self.tags.add(
         APIC(
           encoding=3,
           mime="image/png",
@@ -90,14 +94,14 @@ class FileID3(TaggableFile):
       self._mutagen_file.add_tags()
 
     try:
-      self._mutagen_file.tags[tag_name].text[0] = new_val
+      self.tags[tag_name].text[0] = new_val
     except (KeyError, IndexError):
       if tag_name == "TIT2":
-        self._mutagen_file.tags.add(TIT2(text=[new_val]))
+        self.tags.add(TIT2(text=[new_val]))
       elif tag_name == "TPE1":
-        self._mutagen_file.tags.add(TPE1(text=[new_val]))
+        self.tags.add(TPE1(text=[new_val]))
       elif tag_name == "TALB":
-        self._mutagen_file.tags.add(TALB(text=[new_val]))
+        self.tags.add(TALB(text=[new_val]))
     setattr(self, tags_conjunction[tag_name], new_val)
     return self
 
@@ -117,21 +121,21 @@ class FileID3(TaggableFile):
       except LyricsConversionError:
         text = export_chronie(lyrics, "plain")
       try:
-        self._mutagen_file.tags.getall("USLT")[0].text = text
+        self.tags.getall("USLT")[0].text = text
       except IndexError:
-        self._mutagen_file.tags.add(USLT(text=text))
+        self.tags.add(USLT(text=text))
       self.save()
       return self
 
     with contextlib.suppress(KeyError):
-      del self._mutagen_file.tags["USLT"]
+      del self.tags["USLT"]
 
     self.save()
     return self
 
   def read_lyrics(self) -> Optional[ChronieLyrics]:
     try:
-      lyrics: str = self._mutagen_file.tags.getall("USLT")[0].text
+      lyrics: str = self.tags.getall("USLT")[0].text
       if not lyrics.strip():
         return None
       return chronie_from_text(lyrics)

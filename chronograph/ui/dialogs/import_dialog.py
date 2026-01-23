@@ -1,10 +1,14 @@
 from pathlib import Path
-from typing import Callable, Iterable
+from typing import TYPE_CHECKING, Callable, Iterable, cast
 
 from gi.repository import Adw, Gtk
 
 from chronograph.internal import Constants
 from dgutils import Linker
+from dgutils.typing import unwrap
+
+if TYPE_CHECKING:
+  from gi.repository.Gtk import StringList
 
 gtc = Gtk.Template.Child
 
@@ -21,7 +25,9 @@ class ImportDialog(Adw.Dialog, Linker):
   import_button: Gtk.Button = gtc()
 
   def __init__(
-    self, paths: Iterable[str], on_import: Callable[[list[str], bool, str, bool], None]
+    self,
+    paths: Iterable[str],
+    on_import: Callable[[list[str], bool, str, bool, bool], None],
   ) -> None:
     super().__init__()
     Linker.__init__(self)
@@ -32,7 +38,7 @@ class ImportDialog(Adw.Dialog, Linker):
       if path:
         self._file_list.append(path)
 
-    self.file_list_group.bind_model(self._file_list, self._row_factory)
+    self.file_list_group.bind_model(self._file_list, self._row_factory)  # ty:ignore[unresolved-attribute]
     self.new_connection(self._file_list, "items-changed", self._on_items_changed)
     self.new_connection(self.import_button, "clicked", self._on_import_clicked)
 
@@ -79,7 +85,8 @@ class ImportDialog(Adw.Dialog, Linker):
       return
 
     paths = [
-      self._file_list.get_string(idx) for idx in range(self._file_list.get_n_items())
+      unwrap(cast("StringList", self._file_list).get_string(idx))
+      for idx in range(self._file_list.get_n_items())
     ]
     import_with_lyrics = self.import_with_lyrics_switch.get_property("enable-expansion")
     elrc_prefix = self.elrc_prefix_entry.get_text().strip()
