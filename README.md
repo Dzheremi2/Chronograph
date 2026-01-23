@@ -140,9 +140,7 @@ file.
 
 ![](docs/screenshots/libW.png)
 ![](docs/screenshots/syncB.png)
-![](docs/screenshots/syncCB.png)
 ![](docs/screenshots/syncW.png)
-![](docs/screenshots/syncCW.png)
 ![](docs/screenshots/lrclibB.png)
 ![](docs/screenshots/lrclibW.png)
 ![](docs/screenshots/wbwsyncB.png)
