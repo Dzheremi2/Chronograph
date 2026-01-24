@@ -127,7 +127,7 @@ class AsyncTask(GObject.Object):
     GLib.idle_add(self._set_progress, progress)
 
   def _set_progress(self, progress: float) -> bool:
-    self.props.progress = progress
+    self.props.progress = progress  # ty:ignore[unresolved-attribute]
     return GLib.SOURCE_REMOVE
 
   def cancel(self) -> None:

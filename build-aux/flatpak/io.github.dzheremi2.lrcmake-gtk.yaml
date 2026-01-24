@@ -12,7 +12,6 @@ finish-args:
   - --socket=pulseaudio
   - --filesystem=host
   - --filesystem=xdg-run/gvfsd
-  - --talk-name=org.freedesktop.FileManager1
 cleanup:
   - /include
   - /lib/pkgconfig
